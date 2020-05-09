@@ -1,0 +1,12 @@
+syntax = "proto3";
+option java_package = "com.game.gameserver";
+option java_outer_classname = "Protocal";
+
+message loginReq{
+
+}
+
+message loginRes{
+
+}
+

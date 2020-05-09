@@ -1,0 +1,3 @@
+gameserver:
+  port: 11211
+  name: gameserver
