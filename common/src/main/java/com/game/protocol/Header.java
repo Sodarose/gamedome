@@ -1,4 +1,4 @@
-package com.game.gameserver.entity;
+package com.game.gameserver.protocol;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
