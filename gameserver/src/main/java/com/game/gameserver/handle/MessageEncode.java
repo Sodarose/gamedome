@@ -2,27 +2,20 @@ package com.game.gameserver.handle;
 
 import com.game.gameserver.entity.Message;
 import io.netty.buffer.ByteBuf;
+import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
-import io.netty.handler.codec.ByteToMessageCodec;
-import io.netty.handler.codec.ByteToMessageDecoder;
+import io.netty.handler.codec.MessageToByteEncoder;
 import org.springframework.stereotype.Component;
-
-import java.util.List;
 
 /**
  * @author xuewenkang
- * 编解码
+ * 编码器
  */
 @Component
-public class MessageCodec extends  ByteToMessageCodec<Message> {
+public class MessageEncode extends MessageToByteEncoder<Message> {
 
     @Override
     protected void encode(ChannelHandlerContext ctx, Message msg, ByteBuf out) throws Exception {
-
-    }
-
-    @Override
-    protected void decode(ChannelHandlerContext ctx, ByteBuf in, List<Object> out) throws Exception {
 
     }
 }

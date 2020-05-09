@@ -12,16 +12,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class ServerChannelInitializer extends ChannelInitializer<SocketChannel> {
 
-    @Autowired
-    private MessageCodec messageCodec;
 
     @Autowired
     private ServerHandler serverHandler;
 
     @Override
     protected void initChannel(SocketChannel ch) throws Exception {
-        ch.pipeline()
-                .addLast("messageCodec",messageCodec)
-                .addLast("serverHandler",serverHandler);
+        ch.pipeline().addLast("serverHandler",serverHandler);
     }
 }

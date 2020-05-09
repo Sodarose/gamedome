@@ -1,5 +1,7 @@
 package com.game.gameserver.server;
 
+import com.game.gameserver.handle.ServerChannelInitializer;
+import com.game.gameserver.handle.ServerHandler;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
@@ -7,6 +9,7 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.logging.LoggingHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -29,9 +32,12 @@ public class GameServer {
     @Value("${gameserver.name}")
     private String serverName;
 
+    @Autowired
+    private ServerChannelInitializer initializer;
 
     @PostConstruct
     public void start(){
+        logger.info("game server start......");
         boss = new NioEventLoopGroup(1);
         worker = new NioEventLoopGroup(16);
         server = new ServerBootstrap();
@@ -42,12 +48,7 @@ public class GameServer {
                     .option(ChannelOption.SO_BACKLOG, 100)
                     .option(ChannelOption.SO_KEEPALIVE, true)
                     .handler(new LoggingHandler())
-                    .childHandler(new ChannelInitializer<Channel>() {
-                        @Override
-                        protected void initChannel(Channel ch) throws Exception {
-
-                        }
-                    });
+                    .childHandler(initializer);
             ChannelFuture future = server.bind(port).addListener((ChannelFutureListener) f->{
                 if(f.isSuccess()){
                     logger.info("game server is successfully to {},waiting connect....",port);
