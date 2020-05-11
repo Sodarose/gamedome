@@ -1,5 +1,6 @@
 package com.game.gameserver.handler;
 
+import com.game.gameserver.annotation.CmdHandler;
 import com.game.gameserver.service.BaseService;
 import com.game.protocol.Message;
 import org.springframework.stereotype.Component;
@@ -14,7 +15,7 @@ import java.util.HashMap;
 @Component
 public class MessageDispatcher {
 
-    private HashMap<Short,CmdExecutor> executors = new HashMap<>();
+    private final HashMap<Short,CmdExecutor> executors = new HashMap<>();
 
     public void dispatch(Message message){
 
@@ -24,6 +25,11 @@ public class MessageDispatcher {
         Class clazz = service.getClass();
         Method[] methods = clazz.getDeclaredMethods();
         for(Method method:methods){
+           CmdHandler cmdHandler = method.getAnnotation(CmdHandler.class);
+           if(cmdHandler==null){
+                continue;
+           }
+           int cmd = cmdHandler.cmd();
 
         }
     }
