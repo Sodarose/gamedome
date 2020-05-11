@@ -1,4 +1,4 @@
-package com.game.gameserver.handle;
+package com.game.handler;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;

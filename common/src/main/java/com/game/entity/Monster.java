@@ -1,4 +1,4 @@
-package com.game.gameserver.entity;
+package com.game.entity;
 
 
 /**

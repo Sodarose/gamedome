@@ -1,15 +1,22 @@
 package com.game.page;
 
+import com.game.service.AccountService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 
 /**
  * @author kangkang
  */
 @Component
 public class LoginAndRegisterPage extends JPanel {
+
+    @Autowired
+    private AccountService accountService;
+
     public LoginAndRegisterPage(){
         init();
     }
@@ -43,5 +50,16 @@ public class LoginAndRegisterPage extends JPanel {
         add(passwordField);
         add(btn);
         add(label);
+
+        btn.addActionListener(new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String loginId = accountField.getText();
+                String password = passwordField.getText();
+
+            }
+        });
     }
+
+
 }
