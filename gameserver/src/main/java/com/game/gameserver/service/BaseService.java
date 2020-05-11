@@ -2,7 +2,8 @@ package com.game.gameserver.service;
 
 /**
  * @author xuewenkang
- * 登录服务
+ * 服务base类
  */
-public interface LoginService {
+public interface BaseService {
+
 }

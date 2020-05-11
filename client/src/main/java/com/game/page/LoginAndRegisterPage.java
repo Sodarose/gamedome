@@ -7,6 +7,8 @@ import org.springframework.stereotype.Component;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 /**
  * @author kangkang
@@ -14,8 +16,13 @@ import java.awt.event.ActionEvent;
 @Component
 public class LoginAndRegisterPage extends JPanel {
 
+    private final int LOGIN_PAGE = 0;
+    private final int REGISTER_PAGE = 1;
+
     @Autowired
     private AccountService accountService;
+
+    private int type = LOGIN_PAGE;
 
     public LoginAndRegisterPage(){
         init();
@@ -41,7 +48,7 @@ public class LoginAndRegisterPage extends JPanel {
         JButton btn = new JButton("登录");
         btn.setBounds(300,375,200,50);
         btn.setBorder(null);
-        JLabel label = new JLabel("注册",JLabel.CENTER);
+        JLabel label = new JLabel("-->注册",JLabel.CENTER);
         label.setBounds(350,425,100,50);
         label.setForeground(Color.white);
 
@@ -51,15 +58,46 @@ public class LoginAndRegisterPage extends JPanel {
         add(btn);
         add(label);
 
-        btn.addActionListener(new AbstractAction() {
+       /* btn.addActionListener(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                if(type==LOGIN_PAGE){
+                    String loginId = accountField.getText();
+                    String password = passwordField.getText();
+                    accountService.login(loginId,password);
+                    *//*removeAll();
+                    add(new TextPage("登录中"));
+                    repaint();
+                    validate();*//*
+                }else{
+
+                }
+            }
+        });*/
+        btn.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
                 String loginId = accountField.getText();
                 String password = passwordField.getText();
+                accountService.login(loginId,password);
+            }
+        });
 
+        label.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if(type==LOGIN_PAGE){
+                    type = REGISTER_PAGE;
+                    btn.setText("注册");
+                    label.setText("-->登录");
+                }else{
+                    type = LOGIN_PAGE;
+                    btn.setText("登录");
+                    label.setText("-->注册");
+                }
+                repaint();
+                validate();
             }
         });
     }
-
-
 }

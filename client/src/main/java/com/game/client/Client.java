@@ -1,9 +1,7 @@
 package com.game.client;
 
-import com.game.page.GameFrame;
-import com.game.page.LoadPage;
-import com.game.page.LoginAndRegisterPage;
-import com.game.page.TextPage;
+import com.game.handler.ClientChannelInitializer;
+import com.game.page.*;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
@@ -31,6 +29,15 @@ public class Client {
     @Autowired
     private GameFrame gameFrame;
 
+    @Autowired
+    private MainPage mainPage;
+
+    @Autowired
+    ClientChannelInitializer initializer;
+
+    @Autowired
+    private LoginAndRegisterPage loginAndRegisterPage;
+
     @PostConstruct
     public void start(){
         logger.info("loading ......");
@@ -43,19 +50,13 @@ public class Client {
                     .group(worker)
                     .channel(NioSocketChannel.class)
                     .option(ChannelOption.TCP_NODELAY, true)
-                    .handler(new ChannelInitializer<Channel>() {
-                        @Override
-                        protected void initChannel(Channel ch) throws Exception {
-
-                        }
-                    });
+                    .handler(initializer);
 
             ChannelFuture future = client
                     .connect(new InetSocketAddress(host,port))
                     .addListener((ChannelFutureListener) f->{
                         if(f.isSuccess()){
                             logger.info("game client successfully start......");
-                            LoginAndRegisterPage loginAndRegisterPage = new LoginAndRegisterPage();
                             gameFrame.setMainPanel(loginAndRegisterPage);
                         }else{
                             TextPage textPage = new TextPage("connect failed ......");

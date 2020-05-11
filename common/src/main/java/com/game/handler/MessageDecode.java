@@ -1,5 +1,6 @@
 package com.game.handler;
 
+import com.game.protocol.Message;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
@@ -9,12 +10,26 @@ import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
  * 解码器
  */
 public class MessageDecode extends LengthFieldBasedFrameDecoder {
-    public MessageDecode(int maxFrameLength, int lengthFieldOffset, int lengthFieldLength) {
-        super(maxFrameLength, lengthFieldOffset, lengthFieldLength);
+
+
+    public MessageDecode(int maxFrameLength, int lengthFieldOffset, int lengthFieldLength, int lengthAdjustment, int initialBytesToStrip) {
+        super(maxFrameLength, lengthFieldOffset, lengthFieldLength, lengthAdjustment, initialBytesToStrip);
     }
 
+    /**
+     * messageLength | cmd      | data
+     * Integer       | Short    | byte[]
+     * */
     @Override
     protected Object decode(ChannelHandlerContext ctx, ByteBuf in) throws Exception {
-        return super.decode(ctx, in);
+        System.out.println(in.readableBytes());
+        ByteBuf farm = (ByteBuf) super.decode(ctx,in);
+        if(farm==null){
+            return null;
+        }
+        int length = farm.readInt();
+        short cmd = farm.readShort();
+        byte[] bytes = new byte[]{1};
+        return new Message(length,cmd,bytes);
     }
 }

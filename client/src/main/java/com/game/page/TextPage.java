@@ -6,7 +6,6 @@ import java.awt.*;
 /**
  * @author kangkang
  */
-
 public class TextPage extends JPanel {
     private JLabel label;
     public TextPage(String text){
@@ -19,8 +18,6 @@ public class TextPage extends JPanel {
 
     public void setText(String text){
         label.setText(text);
-        label.validate();
-        label.repaint();
         refresh();
     }
 

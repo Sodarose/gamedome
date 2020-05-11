@@ -4,21 +4,18 @@ package com.game.protocol;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 /**
  * @author xuewenkang
- * 协议
+ * 消息
  */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class Message {
-    private Header header;
-    private byte[] data;
-
-    public Message(int length,int type,byte[] data){
-        this.header = new Header(length,type);
-        this.data = data;
-    }
-
+   private Integer length;
+   private Short cmd;
+   private byte[] data;
 }

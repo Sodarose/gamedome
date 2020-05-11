@@ -1,22 +1,23 @@
-package com.game.gameserver.handle;
+package com.game.gameserver.handler;
 
+import com.game.protocol.Message;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
 
 /**
  * @author xuewenkang
  */
-@Component
 public class ServerHandler extends ChannelInboundHandlerAdapter {
 
     private final static Logger logger = LoggerFactory.getLogger(ServerHandler.class);
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-        super.channelRead(ctx, msg);
+        logger.info("server accept message {}",msg);
+        Message message = (Message) msg;
+        System.out.println(message);
     }
 
     @Override

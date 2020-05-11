@@ -1,6 +1,4 @@
 package com.game;
-
-import com.game.page.GameFrame;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.io.IOException;

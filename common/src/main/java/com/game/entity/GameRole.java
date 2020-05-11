@@ -1,9 +1,12 @@
 package com.game.entity;
 
+import lombok.Data;
+
 /**
  * @author xuewenkang
  * 游戏角色
  */
-public class Role extends BaseRole{
+@Data
+public class GameRole extends BaseRole{
 
 }
