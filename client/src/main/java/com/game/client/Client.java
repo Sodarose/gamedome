@@ -68,7 +68,7 @@ public class Client {
             e.printStackTrace();
         }finally {
             worker.shutdownGracefully();
-            logger.info("game client end");
+            logger.info("game client end");logger.info("game client end");
         }
     }
 

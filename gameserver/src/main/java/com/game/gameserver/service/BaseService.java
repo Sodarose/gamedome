@@ -6,4 +6,10 @@ package com.game.gameserver.service;
  */
 public interface BaseService {
 
+    /**
+     * Service Name
+     * @return service name
+     * */
+    String serviceName();
+
 }

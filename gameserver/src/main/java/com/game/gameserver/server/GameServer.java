@@ -1,5 +1,6 @@
 package com.game.gameserver.server;
 
+import com.game.gameserver.handler.SceneManager;
 import com.game.gameserver.handler.ServerChannelInitializer;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.*;
@@ -8,6 +9,7 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.logging.LoggingHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -30,10 +32,15 @@ public class GameServer {
     @Value("${gameserver.name}")
     private String serverName;
 
+    @Autowired
+    private SceneManager sceneManager;
+
 
     @PostConstruct
     public void start(){
         logger.info("game server start......");
+        logger.info("load server resource......");
+        loadResource();
         boss = new NioEventLoopGroup(1);
         worker = new NioEventLoopGroup(16);
         server = new ServerBootstrap();
@@ -73,5 +80,12 @@ public class GameServer {
             worker.shutdownGracefully();
         }
         logger.info("game server end");
+    }
+
+    /**
+     * 加载资源
+     * */
+    private void loadResource(){
+        sceneManager.init();
     }
 }

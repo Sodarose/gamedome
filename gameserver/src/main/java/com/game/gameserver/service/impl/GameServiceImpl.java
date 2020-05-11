@@ -9,7 +9,8 @@ import javax.annotation.PostConstruct;
  * @author xuewenkang
  */
 @Service
-public class GameServiceImpl implements GameService {
+public class GameServiceImpl extends GameService {
+
     @PostConstruct
     public void init(){
 

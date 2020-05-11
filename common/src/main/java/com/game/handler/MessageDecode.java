@@ -2,6 +2,7 @@ package com.game.handler;
 
 import com.game.protocol.Message;
 import io.netty.buffer.ByteBuf;
+import io.netty.buffer.ByteBufUtil;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
 
@@ -29,7 +30,8 @@ public class MessageDecode extends LengthFieldBasedFrameDecoder {
         }
         int length = farm.readInt();
         short cmd = farm.readShort();
-        byte[] bytes = new byte[]{1};
+        byte []bytes = ByteBufUtil.getBytes(in);
+        in.readBytes(bytes);
         return new Message(length,cmd,bytes);
     }
 }

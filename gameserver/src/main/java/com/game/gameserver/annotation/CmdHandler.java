@@ -12,5 +12,5 @@ import java.lang.annotation.Target;
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface CmdHandler {
-    int cmd() default 0;
+    short cmd() default 0;
 }

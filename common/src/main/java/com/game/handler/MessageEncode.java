@@ -10,12 +10,13 @@ import io.netty.handler.codec.MessageToByteEncoder;
  * @author xuewenkang
  * 编码器
  */
-
 public class MessageEncode extends MessageToByteEncoder<Message> {
     @Override
     protected void encode(ChannelHandlerContext ctx, Message msg, ByteBuf out) throws Exception {
         out.writeInt(msg.getLength());
         out.writeShort(msg.getCmd());
-        out.writeBytes(msg.getData());
+        if(msg.getData()!=null){
+            out.writeBytes(msg.getData());
+        }
     }
 }

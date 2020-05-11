@@ -8,7 +8,7 @@ import lombok.Data;
 @Data
 public class BaseRole {
     private Integer id;
-    private Integer name;
+    private String name;
     private Integer ph;
     private Integer mp;
     private String description;

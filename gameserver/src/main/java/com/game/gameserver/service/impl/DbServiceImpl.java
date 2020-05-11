@@ -7,5 +7,6 @@ import org.springframework.stereotype.Service;
  * @author xuewenkang
  */
 @Service
-public class DbServiceImpl  implements DbService {
+public class DbServiceImpl  extends DbService {
+
 }

@@ -1,10 +1,12 @@
 package com.game.gameserver.handler;
 
+import com.game.gameserver.context.ServerContext;
 import com.game.protocol.Message;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.ApplicationContext;
 
 /**
  * @author xuewenkang
@@ -17,7 +19,13 @@ public class ServerHandler extends ChannelInboundHandlerAdapter {
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         logger.info("server accept message {}",msg);
         Message message = (Message) msg;
-        System.out.println(message);
+        try {
+            MessageDispatcher messageDispatcher = ServerContext.getApplication()
+                    .getBean(MessageDispatcher.class);
+            messageDispatcher.dispatch(message);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -29,10 +37,13 @@ public class ServerHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {
         super.channelInactive(ctx);
+        ctx.channel().close();
     }
 
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
-        super.exceptionCaught(ctx, cause);
+        super.exceptionCaught(ctx,cause);
+        ctx.channel().close();
+        cause.printStackTrace();
     }
 }

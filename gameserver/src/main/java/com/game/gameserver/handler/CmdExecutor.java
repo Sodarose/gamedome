@@ -1,6 +1,9 @@
 package com.game.gameserver.handler;
 
 import com.game.protocol.Message;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.lang.reflect.Method;
 
@@ -8,6 +11,7 @@ import java.lang.reflect.Method;
  * @author xuewenkang
  * cmd 任务执行器
  */
+@Getter
 public class CmdExecutor {
 
     /**
@@ -24,6 +28,12 @@ public class CmdExecutor {
      * 执行对应的对象
      * */
     private Object object;
+
+    public CmdExecutor(Short cmd,Method method,Object object){
+        this.cmd = cmd;
+        this.method = method;
+        this.object = object;
+    }
 
     public void invoked(Message message){
         try {

@@ -1,6 +1,6 @@
 package com.game.page;
 
-import com.game.entity.Way;
+import com.game.entity.GameMap;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,7 +15,7 @@ public class WayPage extends JPanel {
     private final int height = 80;
     private final int width = 790;
 
-    private List<Way> ways;
+    private List<GameMap> ways;
     private JLabel label;
     private JPanel waysPanel;
 
