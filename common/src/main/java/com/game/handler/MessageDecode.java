@@ -12,10 +12,10 @@ import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
  */
 public class MessageDecode extends LengthFieldBasedFrameDecoder {
 
-
     public MessageDecode(int maxFrameLength, int lengthFieldOffset, int lengthFieldLength, int lengthAdjustment, int initialBytesToStrip) {
         super(maxFrameLength, lengthFieldOffset, lengthFieldLength, lengthAdjustment, initialBytesToStrip);
     }
+
 
     /**
      * messageLength | cmd      | data
@@ -23,15 +23,13 @@ public class MessageDecode extends LengthFieldBasedFrameDecoder {
      * */
     @Override
     protected Object decode(ChannelHandlerContext ctx, ByteBuf in) throws Exception {
-        System.out.println(in.readableBytes());
         ByteBuf farm = (ByteBuf) super.decode(ctx,in);
         if(farm==null){
             return null;
         }
         int length = farm.readInt();
         short cmd = farm.readShort();
-        byte []bytes = ByteBufUtil.getBytes(in);
-        in.readBytes(bytes);
+        byte []bytes = ByteBufUtil.getBytes(farm);
         return new Message(length,cmd,bytes);
     }
 }

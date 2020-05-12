@@ -15,6 +15,4 @@ public class Main
         ctx.refresh();
         //System.in.read();
     }
-
-
 }

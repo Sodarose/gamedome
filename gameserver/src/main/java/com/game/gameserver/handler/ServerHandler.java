@@ -19,9 +19,10 @@ public class ServerHandler extends ChannelInboundHandlerAdapter {
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         logger.info("server accept message {}",msg);
         Message message = (Message) msg;
-        try {
+       try {
             MessageDispatcher messageDispatcher = ServerContext.getApplication()
                     .getBean(MessageDispatcher.class);
+            logger.info("messageDispatcher {}",messageDispatcher);
             messageDispatcher.dispatch(message);
         }catch (Exception e){
             e.printStackTrace();
@@ -37,13 +38,13 @@ public class ServerHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {
         super.channelInactive(ctx);
-        ctx.channel().close();
+        //ctx.channel().close();
     }
 
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
         super.exceptionCaught(ctx,cause);
-        ctx.channel().close();
+        //ctx.channel().close();
         cause.printStackTrace();
     }
 }

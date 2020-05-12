@@ -21,6 +21,10 @@ public class MessageDispatcher {
 
     private final HashMap<Short,CmdExecutor> executors = new HashMap<>(16);
 
+    /**
+     * 根据消息中的cmd值，分发指定的CmdExecutor执行
+     * @param message 消息
+     * */
     public void dispatch(Message message){
         short cmd = message.getCmd();
         if(executors.get(cmd)==null){
@@ -29,6 +33,10 @@ public class MessageDispatcher {
         executors.get(cmd).invoked(message);
     }
 
+    /**
+     * 将服务中的方法注册证CmdExecutor
+     * @param service 处理消息的服务
+     * */
     public void registerService(BaseService service){
         logger.info("register service {}",service);
         Class clazz = service.getClass();
@@ -43,7 +51,4 @@ public class MessageDispatcher {
            executors.put(cmd,cmdExecutor);
         }
     }
-
-
-
 }
