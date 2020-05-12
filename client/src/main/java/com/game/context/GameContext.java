@@ -1,6 +1,6 @@
 package com.game.context;
 
-import com.game.entity.GameRole;
+import com.game.pojo.Role;
 import com.game.entity.Scene;
 import lombok.Data;
 import org.springframework.stereotype.Component;
@@ -21,6 +21,6 @@ public class GameContext {
     /**
      * 当前游戏角色
      * */
-    private GameRole gameRole;
+    private Role role;
 
 }

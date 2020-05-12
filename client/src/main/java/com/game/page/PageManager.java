@@ -1,5 +1,6 @@
 package com.game.page;
 
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -10,6 +11,7 @@ import javax.swing.*;
  * 页面管理器 负责页面的刷新、切换、展示
  */
 @Component
+@Data
 public class PageManager {
 
     @Autowired

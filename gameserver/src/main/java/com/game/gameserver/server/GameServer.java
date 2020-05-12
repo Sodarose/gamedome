@@ -1,6 +1,6 @@
 package com.game.gameserver.server;
 
-import com.game.gameserver.handler.SceneManager;
+import com.game.gameserver.context.GameContext;
 import com.game.gameserver.handler.ServerChannelInitializer;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.*;
@@ -33,14 +33,13 @@ public class GameServer {
     private String serverName;
 
     @Autowired
-    private SceneManager sceneManager;
+    private GameContext gameContext;
+
 
 
     @PostConstruct
     public void start(){
         logger.info("game server start......");
-        logger.info("load server resource......");
-        loadResource();
         boss = new NioEventLoopGroup(1);
         worker = new NioEventLoopGroup(16);
         server = new ServerBootstrap();
@@ -55,6 +54,7 @@ public class GameServer {
             ChannelFuture future = server.bind(port).addListener((ChannelFutureListener) f->{
                 if(f.isSuccess()){
                     logger.info("game server is successfully to {},waiting connect....",port);
+                    gameContext.loadResource();
                 }else{
                     logger.info("game server start failed");
                 }
@@ -82,10 +82,4 @@ public class GameServer {
         logger.info("game server end");
     }
 
-    /**
-     * 加载资源
-     * */
-    private void loadResource(){
-        sceneManager.init();
-    }
 }

@@ -3,28 +3,75 @@ option java_package = "com.game.protocol";
 option java_outer_classname = "Protocol";
 
 
-message registerReq{
+message RegisterReq{
     string loginId =1;
     string password = 2;
 }
 
-message registerRes{
+message RegisterRes{
     int32 code = 1;
     string msg = 2;
 }
 
-message loginReq{
+message LoginReq{
     string loginId = 1;
     string password = 2;
 }
 
-message loginRes{
+message LoginRes{
     int32 code = 1;
     string msg = 2;
     string token = 3;
     int32 id = 4;
 }
 
+message Role{
+    int32 id = 1;
+    string name = 2;
+    int32 ph = 3;
+    int32 mp = 4;
+    int32 phyAttack = 5;
+    int32 magicAttack = 6;
+    int32 phyDefense = 7;
+    int32 magicDefense = 8;
+    int32 mapId = 9;
+}
+
+message Npc{
+    int32 id = 1;
+    string name = 2;
+    int32 ph = 3;
+    int32 mp = 4;
+    int32 phyAttack = 5;
+    int32 magicAttack = 6;
+    int32 phyDefense = 7;
+    int32 magicDefense = 8;
+    int32 mapId = 9;
+}
+
+message Monster{
+    int32 id = 1;
+    string name = 2;
+    int32 ph = 3;
+    int32 mp = 4;
+    int32 phyAttack = 5;
+    int32 magicAttack = 6;
+    int32 phyDefense = 7;
+    int32 magicDefense = 8;
+    int32 mapId = 9;
+}
+
+
+message Map{
+    int32 id = 1;
+    string name = 2;
+    string description = 3;
+    repeated Map ways = 4;
+}
+
+message Scene{
+
+}
 
 
 

@@ -37,7 +37,7 @@ public abstract class AbstractAccountService implements BaseService{
 
     @Override
     public String serviceName() {
-        return "AbstractAccountService";
+        return "AccountService";
     }
 
     @Override

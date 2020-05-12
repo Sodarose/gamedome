@@ -1,10 +1,13 @@
 package com.game.entity;
 
 
+import com.game.config.RoleStatus;
+import com.game.pojo.GameMap;
+import com.game.pojo.Role;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Random;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -13,83 +16,74 @@ import java.util.concurrent.ConcurrentHashMap;
  * 游戏场景
  */
 @Data
+@NoArgsConstructor
 public class Scene {
 
     private Integer id;
 
-    private volatile boolean init = false;
-
     /**
      * 游戏地图
      * */
-    private GameMap map;
+    private GameMap gameMap;
 
     /**
      * 场景内玩家列表
      * */
-    private ConcurrentHashMap<Integer, GameRole> user;
+    private ConcurrentHashMap<Integer, Role> roles;
 
     /**
      * 场景NPC列表
      * */
-    private HashMap<Integer,GameNpc> npc;
+    private HashMap<Integer, Npc> npcs;
 
     /**
      * 场景内怪物列表
      * */
     private HashMap<Integer,Monster> monsters;
 
-    /**
-     * 创建怪物
-     */
-    private void createMonster(){
-        monsters = new HashMap<>(16);
-        Random rn = new Random();
-        int length = rn.nextInt(10);
-        for(int i=0;i<length;i++){
-            Monster monster = new Monster();
-            monster.setName("怪物"+i+"号");
-            monster.setId(i);
-            monster.setDescription("怪物"+i+"号");
-            monster.setPh(10000);
-            monster.setMp(10000);
-            monsters.put(id,monster);
-        }
-    }
-
-    /**
-     * 创建Npc
-     * */
-    private void createNpc(){
-        npc = new HashMap<>(16);
-        Random rn = new Random();
-        int length = rn.nextInt(5);
-        for(int i=0;i<length;i++){
-            GameNpc gameNpc = new GameNpc();
-            gameNpc.setId(i);
-            gameNpc.setName("NPC"+i+"号");
-            gameNpc.setDescription("NPC"+i+"号");
-            gameNpc.setPh(1000);
-            gameNpc.setMp(1000);
-            npc.put(gameNpc.getId(),gameNpc);
-        }
-    }
-
-    /**
-     * 加载地图
-     * */
-    private void loadMap(GameMap gameMap){
-        id = gameMap.getId();
-        map = gameMap;
-
+    public Scene(GameMap gameMap){
+        this.gameMap = gameMap;
     }
 
     /**
      * 场景初始化
-     * */
-    public void init(final GameMap map){
-        loadMap(map);
-        createNpc();
-        createMonster();
+     * 初始化 怪物 NPC
+     */
+    public void init(){
+        id = gameMap.getId();
+        roles = new ConcurrentHashMap<>(16);
+        npcs = new HashMap<>(16);
+        monsters = new HashMap<>(16);
+        Random random = new Random();
+        int rn = random.nextInt(10);
+        for(int i=0;i<rn;i++){
+            Monster monster = new Monster();
+            monster.setId(i);
+            monster.setPh(1000);
+            monster.setMp(1000);
+            monster.setName("怪物"+i+"号");
+            monster.setPhyAttack(1000);
+            monster.setPhyDefense(1000);
+            monster.setMagicAttack(1000);
+            monster.setMagicDefense(1000);
+            monster.setMapId(id);
+            monster.setStatus(RoleStatus.ROLE_LIVE);
+            monsters.put(monster.getId(),monster);
+        }
+        rn = random.nextInt(5);
+        for(int i=0;i<rn;i++){
+            Npc npc = new Npc();
+            npc.setId(i);
+            npc.setPh(1000);
+            npc.setMp(1000);
+            npc.setName("怪物"+i+"号");
+            npc.setPhyAttack(1000);
+            npc.setPhyDefense(1000);
+            npc.setMagicAttack(1000);
+            npc.setMagicDefense(1000);
+            npc.setMapId(id);
+            npc.setStatus(RoleStatus.ROLE_LIVE);
+            npcs.put(npc.getId(),npc);
+        }
     }
 }

@@ -2,7 +2,7 @@ package com.game.gameserver.service;
 
 
 import com.game.protocol.Message;
-import com.game.protocol.Protocol;
+import io.netty.channel.Channel;
 
 /**
  * @author xuewenkang
@@ -12,16 +12,18 @@ public abstract class AbstractAccountService implements BaseService{
     /**
      * 处理登录事件
      * @param message 消息载体
-     * @return 返回结果
+     * @param channel 该用户通道
+     * @return void
      * */
-    public abstract Message login(Message message);
+    public abstract void login(Message message, Channel channel);
 
     /**
      * 注册
      * @param message 注册信息载体
-     * @return 返回结果
+     * @param channel 该用户通道
+     * @return void
      * */
-    public abstract Message register(Message message);
+    public abstract void register(Message message,Channel channel);
 
     @Override
     public String serviceName() {

@@ -1,4 +1,4 @@
-package com.game.entity;
+package com.game.pojo;
 
 
 import lombok.AllArgsConstructor;
@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 /**
  * @author xuewenkang
+ * 用户
  */
 @Data
 @AllArgsConstructor

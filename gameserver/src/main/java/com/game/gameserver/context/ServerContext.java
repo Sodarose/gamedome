@@ -29,14 +29,15 @@ public class ServerContext implements ApplicationContextAware {
     @Autowired
     private AbstractGameService gameService;
 
-    private  static ApplicationContext application;
+    private static ApplicationContext application;
+
+
+    public static ApplicationContext getApplication(){
+        return application;
+    }
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         application = applicationContext;
-    }
-
-    public static ApplicationContext getApplication(){
-        return application;
     }
 }

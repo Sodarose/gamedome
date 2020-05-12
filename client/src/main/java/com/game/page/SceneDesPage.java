@@ -1,6 +1,6 @@
 package com.game.page;
 
-import com.game.entity.GameMap;
+import com.game.pojo.GameMap;
 
 import javax.swing.*;
 import java.awt.*;

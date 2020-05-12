@@ -1,6 +1,6 @@
 package com.game.gameserver.mapper;
 
-import com.game.entity.User;
+import com.game.pojo.User;
 import org.springframework.stereotype.Repository;
 
 /**

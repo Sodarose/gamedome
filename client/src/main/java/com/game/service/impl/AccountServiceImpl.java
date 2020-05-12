@@ -3,11 +3,13 @@ package com.game.service.impl;
 import com.game.annotation.CmdHandler;
 import com.game.config.MessageType;
 import com.game.context.ClientContext;
+import com.game.context.GameContext;
 import com.game.handler.MessageDispatcher;
 import com.game.page.PageManager;
 import com.game.protocol.Message;
 import com.game.protocol.Protocol;
 import com.game.service.AbstractAccountService;
+import com.game.service.AbstractGameService;
 import com.google.protobuf.InvalidProtocolBufferException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,10 +35,13 @@ public class AccountServiceImpl extends AbstractAccountService {
     @Autowired
     private PageManager pageManager;
 
+    @Autowired
+    private AbstractGameService gameService;
+
     @Override
     public void login(String loginId, String password) {
         logger.info("user loginId {} do login ......",loginId);
-        Protocol.loginReq loginReq = Protocol.loginReq.newBuilder()
+        Protocol.LoginReq loginReq = Protocol.LoginReq.newBuilder()
                 .setLoginId(loginId)
                 .setPassword(password)
                 .build();
@@ -47,7 +52,7 @@ public class AccountServiceImpl extends AbstractAccountService {
     @Override
     public void register(String loginId, String password) {
         logger.info("user loginId {} do register ......",loginId);
-        Protocol.registerReq registerReq = Protocol.registerReq.newBuilder()
+        Protocol.RegisterReq registerReq = Protocol.RegisterReq.newBuilder()
                 .setLoginId(loginId)
                 .setPassword(password)
                 .build();
@@ -60,13 +65,13 @@ public class AccountServiceImpl extends AbstractAccountService {
     public void handleLoginRes(Message message) {
         logger.info("handle login response message {}",message);
         try {
-            Protocol.loginRes loginRes = Protocol.loginRes.parseFrom(message.getData());
+            Protocol.LoginRes loginRes = Protocol.LoginRes.parseFrom(message.getData());
             if(loginRes.getCode()!=0){
                 pageManager.showMessageDialog(loginRes.getMsg());
                 return;
             }
             pageManager.showMessageDialog("登录成功 即将跳转");
-            
+            gameService.iniGameClient();
         } catch (InvalidProtocolBufferException e) {
             e.printStackTrace();
             logger.error("message{} parse error ",message);
@@ -78,7 +83,7 @@ public class AccountServiceImpl extends AbstractAccountService {
     public void handleRegisterRes(Message message) {
         logger.info("handle register response message {}",message);
         try {
-            Protocol.registerRes registerRes = Protocol.registerRes.parseFrom(message.getData());
+            Protocol.RegisterRes registerRes = Protocol.RegisterRes.parseFrom(message.getData());
             if(registerRes.getCode()!=0){
                 pageManager.showMessageDialog(registerRes.getMsg());
                 return;

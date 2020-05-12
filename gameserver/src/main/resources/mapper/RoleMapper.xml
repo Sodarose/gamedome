@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.game.gameserver.mapper.RoleMapper">
+    <resultMap id="baseResultMap" type="com.game.pojo.Role">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="ph" property="ph"/>
+        <result column="mp" property="mp"/>
+        <result column="phy_attack" property="phyAttack"/>
+        <result column="magic_attack" property="magicAttack"/>
+        <result column="phy_defense" property="phyDefense"/>
+        <result column="magic_defense" property="magicDefense"/>
+        <result column="map_id" property="mapId"/>
+        <result column="userId" property="userId"/>
+    </resultMap>
+    <select id="findRoleByUserId" resultMap="baseResultMap">
+        SELECT id,name,ph,mp,phy_attack,magic_attack,phy_defense,magic_defense,map_id,userId FROM game_role
+        WHERE userId = #{userId}
+    </select>
+</mapper>

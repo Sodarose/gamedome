@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.game.gameserver.mapper.AccountMapper">
-    <resultMap id="userResultMap" type="com.game.entity.User">
+    <resultMap id="userResultMap" type="com.game.pojo.User">
         <id column="id" property="id"/>
         <result column="login_id" property="loginId"/>
         <result column="password" property="password"/>
@@ -10,7 +10,7 @@
         SELECT id,login_id,password FROM game_user WHERE login_id = #{loginId}
     </select>
 
-    <insert id="insertUserByUser" useGeneratedKeys="true" keyProperty="id" parameterType="com.game.entity.User">
+    <insert id="insertUserByUser" useGeneratedKeys="true" keyProperty="id" parameterType="com.game.pojo.User">
         INSERT  INTO game_user(login_id,password) VALUES (#{loginId},#{password})
     </insert>
 </mapper>
