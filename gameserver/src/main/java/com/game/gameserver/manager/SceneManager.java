@@ -26,4 +26,8 @@ public class SceneManager {
     public void addScene(Scene scene){
         scenes.put(scene.getId(),scene);
     }
+
+    public Scene getScene(Integer id){
+        return scenes.get(id);
+    }
 }

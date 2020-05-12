@@ -7,6 +7,9 @@ import com.game.page.PageManager;
 import com.game.protocol.Message;
 import com.game.protocol.Protocol;
 import com.game.service.AbstractGameService;
+import com.google.protobuf.InvalidProtocolBufferException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +19,8 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class GameServiceImpl extends AbstractGameService {
+
+    private final static Logger logger = LoggerFactory.getLogger(GameServiceImpl.class);
 
     @Autowired
     private ClientContext clientContext;
@@ -37,14 +42,20 @@ public class GameServiceImpl extends AbstractGameService {
 
     @Override
     public void requestGameRole() {
-        Protocol.GameRole gameRole = Protocol.GameRole.newBuilder().build();
+        Protocol.Role gameRole = Protocol.Role.newBuilder().build();
         clientContext.getChannel().writeAndFlush(createMessage(MessageType.GAME_ROLE_S,gameRole.toByteArray()));
     }
 
     @CmdHandler(cmd = MessageType.GAME_SCENE_S)
     @Override
     public void handleSceneMessage(Message message) {
-
+        logger.info("handle scene response");
+        try {
+            Protocol.Scene scene =Protocol.Scene.parseFrom(message.getData());
+            
+        } catch (InvalidProtocolBufferException e) {
+            e.printStackTrace();
+        }
     }
 
     @CmdHandler(cmd = MessageType.GAME_ROLE_S)

@@ -10,13 +10,13 @@ import io.netty.channel.Channel;
 public abstract class AbstractGameService implements BaseService{
 
     /**
-     * description: 处理初始化
+     * description: 处理客户端的场景请求
      *
-     * @param message 消息
-     * @param channel 当前用户通道
+     * @param message 消息体
+     * @param channel 通道
      * @return void
      */
-    public abstract void handleInitClient(Message message, Channel channel);
+    public abstract void handleScene(Message message,Channel channel);
 
     @Override
     public String serviceName() {

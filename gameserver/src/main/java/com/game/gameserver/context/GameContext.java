@@ -1,5 +1,6 @@
 package com.game.gameserver.context;
 
+import com.game.entity.GameRole;
 import com.game.gameserver.manager.SceneManager;
 import com.game.pojo.GameMap;
 import com.game.entity.Scene;
@@ -15,6 +16,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -68,6 +70,12 @@ public class GameContext {
         // 调整地图关系网
         for(Map.Entry<Integer, GameMap> entry:maps.entrySet()){
             GameMap gameMap = entry.getValue();
+            gameMap.setWays(new ArrayList<>());
+            String[] ids = gameMap.getWay().split(",");
+            for(String id:ids){
+                GameMap tmp = maps.get(Integer.parseInt(id));
+                gameMap.getWays().add(tmp);
+            }
             this.maps.put(gameMap.getId(), gameMap);
         }
     }

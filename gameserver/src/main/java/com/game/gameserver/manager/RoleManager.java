@@ -50,4 +50,8 @@ public class RoleManager {
         roles.put(user.getId(),gameRole);
         sceneManager.intoScene(gameRole);
     }
+
+    public GameRole getGameRole(Integer userId){
+        return roles.get(userId);
+    }
 }

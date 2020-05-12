@@ -70,7 +70,11 @@ message Map{
 }
 
 message Scene{
-
+    int32 id = 1;
+    Map map = 2;
+    map<int32,Role> roles = 3;
+    map<int32,Npc> npc = 4;
+    map<int32,Monster> monster = 5;
 }
 
 

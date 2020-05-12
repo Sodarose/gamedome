@@ -36,4 +36,9 @@ public class GameMap {
      * 地图出口 格式 "1,2,3,4" 字符串中数字表示连接的其他地图ID
      */
     private String way;
+
+    /**
+     *  地图出口
+     * */
+    private List<GameMap> ways;
 }
