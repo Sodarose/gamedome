@@ -1,6 +1,5 @@
 package com.game.page;
 
-import com.game.service.CmdService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -14,9 +13,6 @@ import java.awt.event.KeyEvent;
  */
 @Component
 public class CmdPage extends JPanel {
-
-    @Autowired
-    private CmdService cmdService;
 
     private final int height = 80;
     private final int width = 790;

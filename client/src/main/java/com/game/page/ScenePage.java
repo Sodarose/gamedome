@@ -1,10 +1,15 @@
 package com.game.page;
 
+import com.game.context.GameContext;
+import com.game.entity.BaseRole;
 import com.game.entity.Scene;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author xuewenkang
@@ -13,6 +18,9 @@ import java.awt.*;
 public class ScenePage extends JPanel {
     private final int height = 450;
     private final int width = 790;
+
+    @Autowired
+    private GameContext gameContext;
 
     private Scene scene;
 
@@ -44,12 +52,16 @@ public class ScenePage extends JPanel {
 
     }
 
-    public void setScene(Scene scene){
-        this.scene = scene;
-    }
-
     public void refresh(){
-
+        this.scene = gameContext.getScene();
+        this.sceneDes.setGameMap(scene.getMap());
+        this.sceneDes.refresh();
+        List<BaseRole> roles = new ArrayList<>();
+        roles.addAll(scene.getUser().values());
+        roles.addAll(scene.getNpc().values());
+        roles.addAll(scene.getMonsters().values());
+        this.around.setRoles(roles);
+        this.way.setWays(scene.getMap().getWays());
     }
 
 }

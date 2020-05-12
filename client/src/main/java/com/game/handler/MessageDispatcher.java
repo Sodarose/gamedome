@@ -1,8 +1,8 @@
-package com.game.gameserver.handler;
+package com.game.handler;
 
-import com.game.gameserver.annotation.CmdHandler;
-import com.game.gameserver.service.BaseService;
+import com.game.annotation.CmdHandler;
 import com.game.protocol.Message;
+import com.game.service.BaseService;
 import io.netty.channel.Channel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

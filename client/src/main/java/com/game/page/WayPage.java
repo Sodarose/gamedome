@@ -38,4 +38,12 @@ public class WayPage extends JPanel {
         waysPanel.setBackground(Color.BLACK);
         add(waysPanel);
     }
+
+    public void setWays(List<GameMap> gameMaps){
+        this.ways = gameMaps;
+    }
+
+    public void refresh(){
+
+    }
 }

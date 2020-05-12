@@ -737,6 +737,18 @@ public final class Protocol {
      * @return The code.
      */
     int getCode();
+
+    /**
+     * <code>string msg = 2;</code>
+     * @return The msg.
+     */
+    java.lang.String getMsg();
+    /**
+     * <code>string msg = 2;</code>
+     * @return The bytes for msg.
+     */
+    com.google.protobuf.ByteString
+        getMsgBytes();
   }
   /**
    * Protobuf type {@code registerRes}
@@ -751,6 +763,7 @@ public final class Protocol {
       super(builder);
     }
     private registerRes() {
+      msg_ = "";
     }
 
     @java.lang.Override
@@ -786,6 +799,12 @@ public final class Protocol {
             case 8: {
 
               code_ = input.readInt32();
+              break;
+            }
+            case 18: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              msg_ = s;
               break;
             }
             default: {
@@ -830,6 +849,42 @@ public final class Protocol {
       return code_;
     }
 
+    public static final int MSG_FIELD_NUMBER = 2;
+    private volatile java.lang.Object msg_;
+    /**
+     * <code>string msg = 2;</code>
+     * @return The msg.
+     */
+    public java.lang.String getMsg() {
+      java.lang.Object ref = msg_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        msg_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string msg = 2;</code>
+     * @return The bytes for msg.
+     */
+    public com.google.protobuf.ByteString
+        getMsgBytes() {
+      java.lang.Object ref = msg_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        msg_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -847,6 +902,9 @@ public final class Protocol {
       if (code_ != 0) {
         output.writeInt32(1, code_);
       }
+      if (!getMsgBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, msg_);
+      }
       unknownFields.writeTo(output);
     }
 
@@ -859,6 +917,9 @@ public final class Protocol {
       if (code_ != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(1, code_);
+      }
+      if (!getMsgBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, msg_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -877,6 +938,8 @@ public final class Protocol {
 
       if (getCode()
           != other.getCode()) return false;
+      if (!getMsg()
+          .equals(other.getMsg())) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -890,6 +953,8 @@ public final class Protocol {
       hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + CODE_FIELD_NUMBER;
       hash = (53 * hash) + getCode();
+      hash = (37 * hash) + MSG_FIELD_NUMBER;
+      hash = (53 * hash) + getMsg().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -1025,6 +1090,8 @@ public final class Protocol {
         super.clear();
         code_ = 0;
 
+        msg_ = "";
+
         return this;
       }
 
@@ -1052,6 +1119,7 @@ public final class Protocol {
       public com.game.protocol.Protocol.registerRes buildPartial() {
         com.game.protocol.Protocol.registerRes result = new com.game.protocol.Protocol.registerRes(this);
         result.code_ = code_;
+        result.msg_ = msg_;
         onBuilt();
         return result;
       }
@@ -1102,6 +1170,10 @@ public final class Protocol {
         if (other == com.game.protocol.Protocol.registerRes.getDefaultInstance()) return this;
         if (other.getCode() != 0) {
           setCode(other.getCode());
+        }
+        if (!other.getMsg().isEmpty()) {
+          msg_ = other.msg_;
+          onChanged();
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -1158,6 +1230,82 @@ public final class Protocol {
       public Builder clearCode() {
         
         code_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object msg_ = "";
+      /**
+       * <code>string msg = 2;</code>
+       * @return The msg.
+       */
+      public java.lang.String getMsg() {
+        java.lang.Object ref = msg_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          msg_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string msg = 2;</code>
+       * @return The bytes for msg.
+       */
+      public com.google.protobuf.ByteString
+          getMsgBytes() {
+        java.lang.Object ref = msg_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          msg_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string msg = 2;</code>
+       * @param value The msg to set.
+       * @return This builder for chaining.
+       */
+      public Builder setMsg(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        msg_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string msg = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearMsg() {
+        
+        msg_ = getDefaultInstance().getMsg();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string msg = 2;</code>
+       * @param value The bytes for msg to set.
+       * @return This builder for chaining.
+       */
+      public Builder setMsgBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        msg_ = value;
         onChanged();
         return this;
       }
@@ -1933,19 +2081,37 @@ public final class Protocol {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>string token = 1;</code>
+     * <code>int32 code = 1;</code>
+     * @return The code.
+     */
+    int getCode();
+
+    /**
+     * <code>string msg = 2;</code>
+     * @return The msg.
+     */
+    java.lang.String getMsg();
+    /**
+     * <code>string msg = 2;</code>
+     * @return The bytes for msg.
+     */
+    com.google.protobuf.ByteString
+        getMsgBytes();
+
+    /**
+     * <code>string token = 3;</code>
      * @return The token.
      */
     java.lang.String getToken();
     /**
-     * <code>string token = 1;</code>
+     * <code>string token = 3;</code>
      * @return The bytes for token.
      */
     com.google.protobuf.ByteString
         getTokenBytes();
 
     /**
-     * <code>int32 id = 2;</code>
+     * <code>int32 id = 4;</code>
      * @return The id.
      */
     int getId();
@@ -1963,6 +2129,7 @@ public final class Protocol {
       super(builder);
     }
     private loginRes() {
+      msg_ = "";
       token_ = "";
     }
 
@@ -1996,13 +2163,24 @@ public final class Protocol {
             case 0:
               done = true;
               break;
-            case 10: {
+            case 8: {
+
+              code_ = input.readInt32();
+              break;
+            }
+            case 18: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              msg_ = s;
+              break;
+            }
+            case 26: {
               java.lang.String s = input.readStringRequireUtf8();
 
               token_ = s;
               break;
             }
-            case 16: {
+            case 32: {
 
               id_ = input.readInt32();
               break;
@@ -2039,10 +2217,56 @@ public final class Protocol {
               com.game.protocol.Protocol.loginRes.class, com.game.protocol.Protocol.loginRes.Builder.class);
     }
 
-    public static final int TOKEN_FIELD_NUMBER = 1;
+    public static final int CODE_FIELD_NUMBER = 1;
+    private int code_;
+    /**
+     * <code>int32 code = 1;</code>
+     * @return The code.
+     */
+    public int getCode() {
+      return code_;
+    }
+
+    public static final int MSG_FIELD_NUMBER = 2;
+    private volatile java.lang.Object msg_;
+    /**
+     * <code>string msg = 2;</code>
+     * @return The msg.
+     */
+    public java.lang.String getMsg() {
+      java.lang.Object ref = msg_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        msg_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string msg = 2;</code>
+     * @return The bytes for msg.
+     */
+    public com.google.protobuf.ByteString
+        getMsgBytes() {
+      java.lang.Object ref = msg_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        msg_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int TOKEN_FIELD_NUMBER = 3;
     private volatile java.lang.Object token_;
     /**
-     * <code>string token = 1;</code>
+     * <code>string token = 3;</code>
      * @return The token.
      */
     public java.lang.String getToken() {
@@ -2058,7 +2282,7 @@ public final class Protocol {
       }
     }
     /**
-     * <code>string token = 1;</code>
+     * <code>string token = 3;</code>
      * @return The bytes for token.
      */
     public com.google.protobuf.ByteString
@@ -2075,10 +2299,10 @@ public final class Protocol {
       }
     }
 
-    public static final int ID_FIELD_NUMBER = 2;
+    public static final int ID_FIELD_NUMBER = 4;
     private int id_;
     /**
-     * <code>int32 id = 2;</code>
+     * <code>int32 id = 4;</code>
      * @return The id.
      */
     public int getId() {
@@ -2099,11 +2323,17 @@ public final class Protocol {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
+      if (code_ != 0) {
+        output.writeInt32(1, code_);
+      }
+      if (!getMsgBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, msg_);
+      }
       if (!getTokenBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, token_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, token_);
       }
       if (id_ != 0) {
-        output.writeInt32(2, id_);
+        output.writeInt32(4, id_);
       }
       unknownFields.writeTo(output);
     }
@@ -2114,12 +2344,19 @@ public final class Protocol {
       if (size != -1) return size;
 
       size = 0;
+      if (code_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, code_);
+      }
+      if (!getMsgBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, msg_);
+      }
       if (!getTokenBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, token_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, token_);
       }
       if (id_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(2, id_);
+          .computeInt32Size(4, id_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -2136,6 +2373,10 @@ public final class Protocol {
       }
       com.game.protocol.Protocol.loginRes other = (com.game.protocol.Protocol.loginRes) obj;
 
+      if (getCode()
+          != other.getCode()) return false;
+      if (!getMsg()
+          .equals(other.getMsg())) return false;
       if (!getToken()
           .equals(other.getToken())) return false;
       if (getId()
@@ -2151,6 +2392,10 @@ public final class Protocol {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + CODE_FIELD_NUMBER;
+      hash = (53 * hash) + getCode();
+      hash = (37 * hash) + MSG_FIELD_NUMBER;
+      hash = (53 * hash) + getMsg().hashCode();
       hash = (37 * hash) + TOKEN_FIELD_NUMBER;
       hash = (53 * hash) + getToken().hashCode();
       hash = (37 * hash) + ID_FIELD_NUMBER;
@@ -2288,6 +2533,10 @@ public final class Protocol {
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        code_ = 0;
+
+        msg_ = "";
+
         token_ = "";
 
         id_ = 0;
@@ -2318,6 +2567,8 @@ public final class Protocol {
       @java.lang.Override
       public com.game.protocol.Protocol.loginRes buildPartial() {
         com.game.protocol.Protocol.loginRes result = new com.game.protocol.Protocol.loginRes(this);
+        result.code_ = code_;
+        result.msg_ = msg_;
         result.token_ = token_;
         result.id_ = id_;
         onBuilt();
@@ -2368,6 +2619,13 @@ public final class Protocol {
 
       public Builder mergeFrom(com.game.protocol.Protocol.loginRes other) {
         if (other == com.game.protocol.Protocol.loginRes.getDefaultInstance()) return this;
+        if (other.getCode() != 0) {
+          setCode(other.getCode());
+        }
+        if (!other.getMsg().isEmpty()) {
+          msg_ = other.msg_;
+          onChanged();
+        }
         if (!other.getToken().isEmpty()) {
           token_ = other.token_;
           onChanged();
@@ -2404,9 +2662,115 @@ public final class Protocol {
         return this;
       }
 
+      private int code_ ;
+      /**
+       * <code>int32 code = 1;</code>
+       * @return The code.
+       */
+      public int getCode() {
+        return code_;
+      }
+      /**
+       * <code>int32 code = 1;</code>
+       * @param value The code to set.
+       * @return This builder for chaining.
+       */
+      public Builder setCode(int value) {
+        
+        code_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 code = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearCode() {
+        
+        code_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object msg_ = "";
+      /**
+       * <code>string msg = 2;</code>
+       * @return The msg.
+       */
+      public java.lang.String getMsg() {
+        java.lang.Object ref = msg_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          msg_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string msg = 2;</code>
+       * @return The bytes for msg.
+       */
+      public com.google.protobuf.ByteString
+          getMsgBytes() {
+        java.lang.Object ref = msg_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          msg_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string msg = 2;</code>
+       * @param value The msg to set.
+       * @return This builder for chaining.
+       */
+      public Builder setMsg(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        msg_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string msg = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearMsg() {
+        
+        msg_ = getDefaultInstance().getMsg();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string msg = 2;</code>
+       * @param value The bytes for msg to set.
+       * @return This builder for chaining.
+       */
+      public Builder setMsgBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        msg_ = value;
+        onChanged();
+        return this;
+      }
+
       private java.lang.Object token_ = "";
       /**
-       * <code>string token = 1;</code>
+       * <code>string token = 3;</code>
        * @return The token.
        */
       public java.lang.String getToken() {
@@ -2422,7 +2786,7 @@ public final class Protocol {
         }
       }
       /**
-       * <code>string token = 1;</code>
+       * <code>string token = 3;</code>
        * @return The bytes for token.
        */
       public com.google.protobuf.ByteString
@@ -2439,7 +2803,7 @@ public final class Protocol {
         }
       }
       /**
-       * <code>string token = 1;</code>
+       * <code>string token = 3;</code>
        * @param value The token to set.
        * @return This builder for chaining.
        */
@@ -2454,7 +2818,7 @@ public final class Protocol {
         return this;
       }
       /**
-       * <code>string token = 1;</code>
+       * <code>string token = 3;</code>
        * @return This builder for chaining.
        */
       public Builder clearToken() {
@@ -2464,7 +2828,7 @@ public final class Protocol {
         return this;
       }
       /**
-       * <code>string token = 1;</code>
+       * <code>string token = 3;</code>
        * @param value The bytes for token to set.
        * @return This builder for chaining.
        */
@@ -2482,14 +2846,14 @@ public final class Protocol {
 
       private int id_ ;
       /**
-       * <code>int32 id = 2;</code>
+       * <code>int32 id = 4;</code>
        * @return The id.
        */
       public int getId() {
         return id_;
       }
       /**
-       * <code>int32 id = 2;</code>
+       * <code>int32 id = 4;</code>
        * @param value The id to set.
        * @return This builder for chaining.
        */
@@ -2500,7 +2864,7 @@ public final class Protocol {
         return this;
       }
       /**
-       * <code>int32 id = 2;</code>
+       * <code>int32 id = 4;</code>
        * @return This builder for chaining.
        */
       public Builder clearId() {
@@ -2592,10 +2956,11 @@ public final class Protocol {
   static {
     java.lang.String[] descriptorData = {
       "\n\016protocol.proto\"0\n\013registerReq\022\017\n\007login" +
-      "Id\030\001 \001(\t\022\020\n\010password\030\002 \001(\t\"\033\n\013registerRe" +
-      "s\022\014\n\004code\030\001 \001(\005\"-\n\010loginReq\022\017\n\007loginId\030\001" +
-      " \001(\t\022\020\n\010password\030\002 \001(\t\"%\n\010loginRes\022\r\n\005to" +
-      "ken\030\001 \001(\t\022\n\n\002id\030\002 \001(\005B\035\n\021com.game.protoc" +
+      "Id\030\001 \001(\t\022\020\n\010password\030\002 \001(\t\"(\n\013registerRe" +
+      "s\022\014\n\004code\030\001 \001(\005\022\013\n\003msg\030\002 \001(\t\"-\n\010loginReq" +
+      "\022\017\n\007loginId\030\001 \001(\t\022\020\n\010password\030\002 \001(\t\"@\n\010l" +
+      "oginRes\022\014\n\004code\030\001 \001(\005\022\013\n\003msg\030\002 \001(\t\022\r\n\005to" +
+      "ken\030\003 \001(\t\022\n\n\002id\030\004 \001(\005B\035\n\021com.game.protoc" +
       "olB\010Protocolb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
@@ -2613,7 +2978,7 @@ public final class Protocol {
     internal_static_registerRes_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_registerRes_descriptor,
-        new java.lang.String[] { "Code", });
+        new java.lang.String[] { "Code", "Msg", });
     internal_static_loginReq_descriptor =
       getDescriptor().getMessageTypes().get(2);
     internal_static_loginReq_fieldAccessorTable = new
@@ -2625,7 +2990,7 @@ public final class Protocol {
     internal_static_loginRes_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_loginRes_descriptor,
-        new java.lang.String[] { "Token", "Id", });
+        new java.lang.String[] { "Code", "Msg", "Token", "Id", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

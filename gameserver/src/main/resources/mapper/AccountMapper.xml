@@ -6,7 +6,11 @@
         <result column="login_id" property="loginId"/>
         <result column="password" property="password"/>
     </resultMap>
-    <select id="findUserByLoginId" resultMap="userResultMap" parameterType="String">
-        SELECT login_id,password FROM game_user WHERE login_id = #{loginId}
+    <select id="findUserByLoginId" resultMap="userResultMap">
+        SELECT id,login_id,password FROM game_user WHERE login_id = #{loginId}
     </select>
+
+    <insert id="insertUserByUser" useGeneratedKeys="true" keyProperty="id" parameterType="com.game.entity.User">
+        INSERT  INTO game_user(login_id,password) VALUES (#{loginId},#{password})
+    </insert>
 </mapper>

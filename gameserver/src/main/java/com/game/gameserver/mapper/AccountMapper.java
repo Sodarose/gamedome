@@ -15,4 +15,12 @@ public interface AccountMapper {
      * @return 返回用户数据
      * */
     User findUserByLoginId(String loginId);
+
+    /**
+     * description: 新建一个用户
+     *
+     * @param user 用户属性
+     * @return java.lang.Integer
+     */
+    int insertUserByUser(User user);
 }

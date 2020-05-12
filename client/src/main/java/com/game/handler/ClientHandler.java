@@ -1,7 +1,9 @@
 package com.game.handler;
 
-import com.game.client.Client;
+import com.game.config.MessageType;
 import com.game.context.ClientContext;
+import com.game.protocol.Message;
+import com.game.service.AbstractAccountService;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import org.slf4j.Logger;
@@ -20,6 +22,9 @@ public class ClientHandler extends ChannelInboundHandlerAdapter {
     @Autowired
     ClientContext clientContext;
 
+    @Autowired
+    private MessageDispatcher messageDispatcher;
+
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         logger.info("连接已接通 Channel ID {}",ctx.channel().id());
@@ -29,7 +34,9 @@ public class ClientHandler extends ChannelInboundHandlerAdapter {
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-        super.channelRead(ctx, msg);
+        logger.info("client accept message {}",msg);
+        Message message = (Message) msg;
+        messageDispatcher.dispatch(message,ctx.channel());
     }
 
     @Override

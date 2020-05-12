@@ -33,5 +33,9 @@ public class MainPage extends JPanel {
         add(cmdPage);
     }
 
+    public void refresh(){
+        scenePage.refresh();
+    }
+
 }
 

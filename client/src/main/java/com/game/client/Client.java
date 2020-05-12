@@ -27,22 +27,16 @@ public class Client {
     private EventLoopGroup worker;
 
     @Autowired
-    private GameFrame gameFrame;
-
-    @Autowired
-    private MainPage mainPage;
+    private PageManager pageManager;
 
     @Autowired
     ClientChannelInitializer initializer;
-
-    @Autowired
-    private LoginAndRegisterPage loginAndRegisterPage;
 
     @PostConstruct
     public void start(){
         logger.info("loading ......");
         LoadPage loadPage = new LoadPage();
-        gameFrame.setMainPanel(loadPage);
+        pageManager.showPage(loadPage);
         worker = new NioEventLoopGroup();
         Bootstrap client = new Bootstrap();
         try {
@@ -57,10 +51,10 @@ public class Client {
                     .addListener((ChannelFutureListener) f->{
                         if(f.isSuccess()){
                             logger.info("game client successfully start......");
-                            gameFrame.setMainPanel(loginAndRegisterPage);
+                            pageManager.showLoginAndRegisterPage();
                         }else{
                             TextPage textPage = new TextPage("connect failed ......");
-                            gameFrame.setMainPanel(textPage);
+                            pageManager.showPage(textPage);
                         }
                     });
             future.channel().closeFuture().sync();

@@ -10,6 +10,7 @@ message registerReq{
 
 message registerRes{
     int32 code = 1;
+    string msg = 2;
 }
 
 message loginReq{
@@ -18,8 +19,10 @@ message loginReq{
 }
 
 message loginRes{
-    string token = 1;
-    int32 id = 2;
+    int32 code = 1;
+    string msg = 2;
+    string token = 3;
+    int32 id = 4;
 }
 
 

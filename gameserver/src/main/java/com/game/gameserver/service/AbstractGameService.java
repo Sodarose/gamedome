@@ -4,11 +4,11 @@ package com.game.gameserver.service;
  * @author xuewenkang
  * 游戏服务
  */
-public abstract class GameService implements BaseService{
+public abstract class AbstractGameService implements BaseService{
 
     @Override
     public String serviceName() {
-        return "GameService";
+        return "AbstractGameService";
     }
 
     @Override

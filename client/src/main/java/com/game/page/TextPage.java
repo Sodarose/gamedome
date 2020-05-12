@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * @author kangkang
+ * @author xuewenkang
  */
 public class TextPage extends JPanel {
     private JLabel label;

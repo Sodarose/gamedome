@@ -1,6 +1,6 @@
 package com.game.page;
 
-import com.game.service.AccountService;
+import com.game.service.AbstractAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -20,7 +20,7 @@ public class LoginAndRegisterPage extends JPanel {
     private final int REGISTER_PAGE = 1;
 
     @Autowired
-    private AccountService accountService;
+    private AbstractAccountService accountService;
 
     private int type = LOGIN_PAGE;
 
@@ -58,29 +58,17 @@ public class LoginAndRegisterPage extends JPanel {
         add(btn);
         add(label);
 
-       /* btn.addActionListener(new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+       btn.addActionListener(new AbstractAction() {
+           @Override
+           public void actionPerformed(ActionEvent e) {
+               String loginId = accountField.getText();
+               String password = passwordField.getText();
                 if(type==LOGIN_PAGE){
-                    String loginId = accountField.getText();
-                    String password = passwordField.getText();
                     accountService.login(loginId,password);
-                    *//*removeAll();
-                    add(new TextPage("登录中"));
-                    repaint();
-                    validate();*//*
                 }else{
-
+                    accountService.register(loginId,password);
                 }
-            }
-        });*/
-        btn.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                String loginId = accountField.getText();
-                String password = passwordField.getText();
-                accountService.login(loginId,password);
-            }
+           }
         });
 
         label.addMouseListener(new MouseAdapter() {

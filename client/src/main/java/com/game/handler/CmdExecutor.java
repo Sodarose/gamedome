@@ -1,4 +1,4 @@
-package com.game.gameserver.handler;
+package com.game.handler;
 
 import com.game.protocol.Message;
 import io.netty.channel.Channel;
