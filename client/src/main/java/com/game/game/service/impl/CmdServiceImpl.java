@@ -123,6 +123,7 @@ public class CmdServiceImpl extends AbstractCmdService {
         wordPage.print("AIO命令 打印该场景所有实体属性----------------------------");
         for(Map.Entry<Integer, Protocol.Role> entry:scene.getRolesMap().entrySet()){
             wordPage.print(entry.getValue());
+
         }
         for(Map.Entry<Integer, Protocol.Npc> entry:scene.getNpcMap().entrySet()){
             wordPage.print(entry.getValue());
