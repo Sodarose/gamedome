@@ -29,7 +29,7 @@ public class Scene {
     /**
      * 场景内玩家列表
      * */
-    private ConcurrentHashMap<Integer, Role> roles;
+    private ConcurrentHashMap<Integer, GameRole> roles;
 
     /**
      * 场景NPC列表
@@ -54,8 +54,38 @@ public class Scene {
         roles = new ConcurrentHashMap<>(16);
         npcs = new HashMap<>(16);
         monsters = new HashMap<>(16);
+        createNpcs();
+        createMonster();
+    }
+
+    /**
+     * 场景生成NPC
+     * */
+    private void createNpcs(){
         Random random = new Random();
-        int rn = random.nextInt(10);
+        int rn = random.nextInt(5)+1;
+        for(int i=0;i<rn;i++){
+            Npc npc = new Npc();
+            npc.setId(i);
+            npc.setPh(1000);
+            npc.setMp(1000);
+            npc.setName("NPC"+i+"号");
+            npc.setPhyAttack(1000);
+            npc.setPhyDefense(1000);
+            npc.setMagicAttack(1000);
+            npc.setMagicDefense(1000);
+            npc.setMapId(id);
+            npc.setStatus(RoleStatus.ROLE_LIVE);
+            npcs.put(npc.getId(),npc);
+        }
+    }
+
+    /**
+     * 场景生成怪物
+     * */
+    private void createMonster(){
+        Random random = new Random();
+        int rn = random.nextInt(10)+1;
         for(int i=0;i<rn;i++){
             Monster monster = new Monster();
             monster.setId(i);
@@ -69,21 +99,6 @@ public class Scene {
             monster.setMapId(id);
             monster.setStatus(RoleStatus.ROLE_LIVE);
             monsters.put(monster.getId(),monster);
-        }
-        rn = random.nextInt(5);
-        for(int i=0;i<rn;i++){
-            Npc npc = new Npc();
-            npc.setId(i);
-            npc.setPh(1000);
-            npc.setMp(1000);
-            npc.setName("怪物"+i+"号");
-            npc.setPhyAttack(1000);
-            npc.setPhyDefense(1000);
-            npc.setMagicAttack(1000);
-            npc.setMagicDefense(1000);
-            npc.setMapId(id);
-            npc.setStatus(RoleStatus.ROLE_LIVE);
-            npcs.put(npc.getId(),npc);
         }
     }
 }

@@ -3,6 +3,8 @@ package com.game.service.impl;
 import com.game.annotation.CmdHandler;
 import com.game.config.MessageType;
 import com.game.context.ClientContext;
+import com.game.context.GameContext;
+import com.game.handler.MessageDispatcher;
 import com.game.page.PageManager;
 import com.game.protocol.Message;
 import com.game.protocol.Protocol;
@@ -12,6 +14,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import javax.annotation.PostConstruct;
 
 /**
  * @author: xuewenkang
@@ -27,6 +31,12 @@ public class GameServiceImpl extends AbstractGameService {
 
     @Autowired
     private PageManager pageManager;
+
+    @Autowired
+    private MessageDispatcher messageDispatcher;
+
+    @Autowired
+    private GameContext gameContext;
 
     @Override
     public void iniGameClient() {
@@ -52,7 +62,9 @@ public class GameServiceImpl extends AbstractGameService {
         logger.info("handle scene response");
         try {
             Protocol.Scene scene =Protocol.Scene.parseFrom(message.getData());
-            
+            gameContext.setScene(scene);
+            pageManager.refresh();
+            pageManager.showMainPage();
         } catch (InvalidProtocolBufferException e) {
             e.printStackTrace();
         }
@@ -63,6 +75,12 @@ public class GameServiceImpl extends AbstractGameService {
     public void handleGameRoleMessage(Message message) {
 
     }
+
+    @PostConstruct
+    public void init(){
+        messageDispatcher.registerService(this);
+    }
+
     private Message createMessage(short cmd,byte[] bytes){
         int length = 6;
         if(bytes!=null){

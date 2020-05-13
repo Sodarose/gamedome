@@ -1,6 +1,7 @@
 package com.game.page;
 
 import com.game.pojo.GameMap;
+import com.game.protocol.Protocol;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,7 +10,7 @@ import java.awt.*;
  * @author xuewenkang
  */
 public class SceneDesPage extends JPanel {
-    private GameMap gameMap;
+    private Protocol.Map gameMap;
     private final int height = 300;
     private final int with = 790;
 
@@ -54,7 +55,7 @@ public class SceneDesPage extends JPanel {
         add(desPanel);
     }
 
-    public void setGameMap(GameMap gameMap){
+    public void setGameMap(Protocol.Map gameMap){
         this.gameMap = gameMap;
         this.name = gameMap.getName();
         this.description = gameMap.getDescription();

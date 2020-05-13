@@ -2989,6 +2989,12 @@ public final class Protocol {
      * @return The mapId.
      */
     int getMapId();
+
+    /**
+     * <code>int32 status = 10;</code>
+     * @return The status.
+     */
+    int getStatus();
   }
   /**
    * Protobuf type {@code Role}
@@ -3080,6 +3086,11 @@ public final class Protocol {
             case 72: {
 
               mapId_ = input.readInt32();
+              break;
+            }
+            case 80: {
+
+              status_ = input.readInt32();
               break;
             }
             default: {
@@ -3230,6 +3241,16 @@ public final class Protocol {
       return mapId_;
     }
 
+    public static final int STATUS_FIELD_NUMBER = 10;
+    private int status_;
+    /**
+     * <code>int32 status = 10;</code>
+     * @return The status.
+     */
+    public int getStatus() {
+      return status_;
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -3270,6 +3291,9 @@ public final class Protocol {
       }
       if (mapId_ != 0) {
         output.writeInt32(9, mapId_);
+      }
+      if (status_ != 0) {
+        output.writeInt32(10, status_);
       }
       unknownFields.writeTo(output);
     }
@@ -3315,6 +3339,10 @@ public final class Protocol {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(9, mapId_);
       }
+      if (status_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(10, status_);
+      }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
@@ -3348,6 +3376,8 @@ public final class Protocol {
           != other.getMagicDefense()) return false;
       if (getMapId()
           != other.getMapId()) return false;
+      if (getStatus()
+          != other.getStatus()) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -3377,6 +3407,8 @@ public final class Protocol {
       hash = (53 * hash) + getMagicDefense();
       hash = (37 * hash) + MAPID_FIELD_NUMBER;
       hash = (53 * hash) + getMapId();
+      hash = (37 * hash) + STATUS_FIELD_NUMBER;
+      hash = (53 * hash) + getStatus();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -3528,6 +3560,8 @@ public final class Protocol {
 
         mapId_ = 0;
 
+        status_ = 0;
+
         return this;
       }
 
@@ -3563,6 +3597,7 @@ public final class Protocol {
         result.phyDefense_ = phyDefense_;
         result.magicDefense_ = magicDefense_;
         result.mapId_ = mapId_;
+        result.status_ = status_;
         onBuilt();
         return result;
       }
@@ -3638,6 +3673,9 @@ public final class Protocol {
         }
         if (other.getMapId() != 0) {
           setMapId(other.getMapId());
+        }
+        if (other.getStatus() != 0) {
+          setStatus(other.getStatus());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -3983,6 +4021,36 @@ public final class Protocol {
         onChanged();
         return this;
       }
+
+      private int status_ ;
+      /**
+       * <code>int32 status = 10;</code>
+       * @return The status.
+       */
+      public int getStatus() {
+        return status_;
+      }
+      /**
+       * <code>int32 status = 10;</code>
+       * @param value The status to set.
+       * @return This builder for chaining.
+       */
+      public Builder setStatus(int value) {
+        
+        status_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 status = 10;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearStatus() {
+        
+        status_ = 0;
+        onChanged();
+        return this;
+      }
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -4099,6 +4167,12 @@ public final class Protocol {
      * @return The mapId.
      */
     int getMapId();
+
+    /**
+     * <code>int32 status = 10;</code>
+     * @return The status.
+     */
+    int getStatus();
   }
   /**
    * Protobuf type {@code Npc}
@@ -4190,6 +4264,11 @@ public final class Protocol {
             case 72: {
 
               mapId_ = input.readInt32();
+              break;
+            }
+            case 80: {
+
+              status_ = input.readInt32();
               break;
             }
             default: {
@@ -4340,6 +4419,16 @@ public final class Protocol {
       return mapId_;
     }
 
+    public static final int STATUS_FIELD_NUMBER = 10;
+    private int status_;
+    /**
+     * <code>int32 status = 10;</code>
+     * @return The status.
+     */
+    public int getStatus() {
+      return status_;
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -4380,6 +4469,9 @@ public final class Protocol {
       }
       if (mapId_ != 0) {
         output.writeInt32(9, mapId_);
+      }
+      if (status_ != 0) {
+        output.writeInt32(10, status_);
       }
       unknownFields.writeTo(output);
     }
@@ -4425,6 +4517,10 @@ public final class Protocol {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(9, mapId_);
       }
+      if (status_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(10, status_);
+      }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
@@ -4458,6 +4554,8 @@ public final class Protocol {
           != other.getMagicDefense()) return false;
       if (getMapId()
           != other.getMapId()) return false;
+      if (getStatus()
+          != other.getStatus()) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -4487,6 +4585,8 @@ public final class Protocol {
       hash = (53 * hash) + getMagicDefense();
       hash = (37 * hash) + MAPID_FIELD_NUMBER;
       hash = (53 * hash) + getMapId();
+      hash = (37 * hash) + STATUS_FIELD_NUMBER;
+      hash = (53 * hash) + getStatus();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -4638,6 +4738,8 @@ public final class Protocol {
 
         mapId_ = 0;
 
+        status_ = 0;
+
         return this;
       }
 
@@ -4673,6 +4775,7 @@ public final class Protocol {
         result.phyDefense_ = phyDefense_;
         result.magicDefense_ = magicDefense_;
         result.mapId_ = mapId_;
+        result.status_ = status_;
         onBuilt();
         return result;
       }
@@ -4748,6 +4851,9 @@ public final class Protocol {
         }
         if (other.getMapId() != 0) {
           setMapId(other.getMapId());
+        }
+        if (other.getStatus() != 0) {
+          setStatus(other.getStatus());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -5093,6 +5199,36 @@ public final class Protocol {
         onChanged();
         return this;
       }
+
+      private int status_ ;
+      /**
+       * <code>int32 status = 10;</code>
+       * @return The status.
+       */
+      public int getStatus() {
+        return status_;
+      }
+      /**
+       * <code>int32 status = 10;</code>
+       * @param value The status to set.
+       * @return This builder for chaining.
+       */
+      public Builder setStatus(int value) {
+        
+        status_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 status = 10;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearStatus() {
+        
+        status_ = 0;
+        onChanged();
+        return this;
+      }
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -5209,6 +5345,12 @@ public final class Protocol {
      * @return The mapId.
      */
     int getMapId();
+
+    /**
+     * <code>int32 status = 10;</code>
+     * @return The status.
+     */
+    int getStatus();
   }
   /**
    * Protobuf type {@code Monster}
@@ -5300,6 +5442,11 @@ public final class Protocol {
             case 72: {
 
               mapId_ = input.readInt32();
+              break;
+            }
+            case 80: {
+
+              status_ = input.readInt32();
               break;
             }
             default: {
@@ -5450,6 +5597,16 @@ public final class Protocol {
       return mapId_;
     }
 
+    public static final int STATUS_FIELD_NUMBER = 10;
+    private int status_;
+    /**
+     * <code>int32 status = 10;</code>
+     * @return The status.
+     */
+    public int getStatus() {
+      return status_;
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -5490,6 +5647,9 @@ public final class Protocol {
       }
       if (mapId_ != 0) {
         output.writeInt32(9, mapId_);
+      }
+      if (status_ != 0) {
+        output.writeInt32(10, status_);
       }
       unknownFields.writeTo(output);
     }
@@ -5535,6 +5695,10 @@ public final class Protocol {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(9, mapId_);
       }
+      if (status_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(10, status_);
+      }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
@@ -5568,6 +5732,8 @@ public final class Protocol {
           != other.getMagicDefense()) return false;
       if (getMapId()
           != other.getMapId()) return false;
+      if (getStatus()
+          != other.getStatus()) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -5597,6 +5763,8 @@ public final class Protocol {
       hash = (53 * hash) + getMagicDefense();
       hash = (37 * hash) + MAPID_FIELD_NUMBER;
       hash = (53 * hash) + getMapId();
+      hash = (37 * hash) + STATUS_FIELD_NUMBER;
+      hash = (53 * hash) + getStatus();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -5748,6 +5916,8 @@ public final class Protocol {
 
         mapId_ = 0;
 
+        status_ = 0;
+
         return this;
       }
 
@@ -5783,6 +5953,7 @@ public final class Protocol {
         result.phyDefense_ = phyDefense_;
         result.magicDefense_ = magicDefense_;
         result.mapId_ = mapId_;
+        result.status_ = status_;
         onBuilt();
         return result;
       }
@@ -5858,6 +6029,9 @@ public final class Protocol {
         }
         if (other.getMapId() != 0) {
           setMapId(other.getMapId());
+        }
+        if (other.getStatus() != 0) {
+          setStatus(other.getStatus());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -6200,6 +6374,36 @@ public final class Protocol {
       public Builder clearMapId() {
         
         mapId_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int status_ ;
+      /**
+       * <code>int32 status = 10;</code>
+       * @return The status.
+       */
+      public int getStatus() {
+        return status_;
+      }
+      /**
+       * <code>int32 status = 10;</code>
+       * @param value The status to set.
+       * @return This builder for chaining.
+       */
+      public Builder setStatus(int value) {
+        
+        status_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 status = 10;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearStatus() {
+        
+        status_ = 0;
         onChanged();
         return this;
       }
@@ -9036,29 +9240,30 @@ public final class Protocol {
       "s\022\014\n\004code\030\001 \001(\005\022\013\n\003msg\030\002 \001(\t\"-\n\010LoginReq" +
       "\022\017\n\007loginId\030\001 \001(\t\022\020\n\010password\030\002 \001(\t\"@\n\010L" +
       "oginRes\022\014\n\004code\030\001 \001(\005\022\013\n\003msg\030\002 \001(\t\022\r\n\005to" +
-      "ken\030\003 \001(\t\022\n\n\002id\030\004 \001(\005\"\231\001\n\004Role\022\n\n\002id\030\001 \001" +
+      "ken\030\003 \001(\t\022\n\n\002id\030\004 \001(\005\"\251\001\n\004Role\022\n\n\002id\030\001 \001" +
       "(\005\022\014\n\004name\030\002 \001(\t\022\n\n\002ph\030\003 \001(\005\022\n\n\002mp\030\004 \001(\005" +
       "\022\021\n\tphyAttack\030\005 \001(\005\022\023\n\013magicAttack\030\006 \001(\005" +
       "\022\022\n\nphyDefense\030\007 \001(\005\022\024\n\014magicDefense\030\010 \001" +
-      "(\005\022\r\n\005mapId\030\t \001(\005\"\230\001\n\003Npc\022\n\n\002id\030\001 \001(\005\022\014\n" +
-      "\004name\030\002 \001(\t\022\n\n\002ph\030\003 \001(\005\022\n\n\002mp\030\004 \001(\005\022\021\n\tp" +
-      "hyAttack\030\005 \001(\005\022\023\n\013magicAttack\030\006 \001(\005\022\022\n\np" +
-      "hyDefense\030\007 \001(\005\022\024\n\014magicDefense\030\010 \001(\005\022\r\n" +
-      "\005mapId\030\t \001(\005\"\234\001\n\007Monster\022\n\n\002id\030\001 \001(\005\022\014\n\004" +
-      "name\030\002 \001(\t\022\n\n\002ph\030\003 \001(\005\022\n\n\002mp\030\004 \001(\005\022\021\n\tph" +
-      "yAttack\030\005 \001(\005\022\023\n\013magicAttack\030\006 \001(\005\022\022\n\nph" +
-      "yDefense\030\007 \001(\005\022\024\n\014magicDefense\030\010 \001(\005\022\r\n\005" +
-      "mapId\030\t \001(\005\"H\n\003Map\022\n\n\002id\030\001 \001(\005\022\014\n\004name\030\002" +
-      " \001(\t\022\023\n\013description\030\003 \001(\t\022\022\n\004ways\030\004 \003(\0132" +
-      "\004.Map\"\255\002\n\005Scene\022\n\n\002id\030\001 \001(\005\022\021\n\003map\030\002 \001(\013" +
-      "2\004.Map\022 \n\005roles\030\003 \003(\0132\021.Scene.RolesEntry" +
-      "\022\034\n\003npc\030\004 \003(\0132\017.Scene.NpcEntry\022$\n\007monste" +
-      "r\030\005 \003(\0132\023.Scene.MonsterEntry\0323\n\nRolesEnt" +
-      "ry\022\013\n\003key\030\001 \001(\005\022\024\n\005value\030\002 \001(\0132\005.Role:\0028" +
-      "\001\0320\n\010NpcEntry\022\013\n\003key\030\001 \001(\005\022\023\n\005value\030\002 \001(" +
-      "\0132\004.Npc:\0028\001\0328\n\014MonsterEntry\022\013\n\003key\030\001 \001(\005" +
-      "\022\027\n\005value\030\002 \001(\0132\010.Monster:\0028\001B\035\n\021com.gam" +
-      "e.protocolB\010Protocolb\006proto3"
+      "(\005\022\r\n\005mapId\030\t \001(\005\022\016\n\006status\030\n \001(\005\"\250\001\n\003Np" +
+      "c\022\n\n\002id\030\001 \001(\005\022\014\n\004name\030\002 \001(\t\022\n\n\002ph\030\003 \001(\005\022" +
+      "\n\n\002mp\030\004 \001(\005\022\021\n\tphyAttack\030\005 \001(\005\022\023\n\013magicA" +
+      "ttack\030\006 \001(\005\022\022\n\nphyDefense\030\007 \001(\005\022\024\n\014magic" +
+      "Defense\030\010 \001(\005\022\r\n\005mapId\030\t \001(\005\022\016\n\006status\030\n" +
+      " \001(\005\"\254\001\n\007Monster\022\n\n\002id\030\001 \001(\005\022\014\n\004name\030\002 \001" +
+      "(\t\022\n\n\002ph\030\003 \001(\005\022\n\n\002mp\030\004 \001(\005\022\021\n\tphyAttack\030" +
+      "\005 \001(\005\022\023\n\013magicAttack\030\006 \001(\005\022\022\n\nphyDefense" +
+      "\030\007 \001(\005\022\024\n\014magicDefense\030\010 \001(\005\022\r\n\005mapId\030\t " +
+      "\001(\005\022\016\n\006status\030\n \001(\005\"H\n\003Map\022\n\n\002id\030\001 \001(\005\022\014" +
+      "\n\004name\030\002 \001(\t\022\023\n\013description\030\003 \001(\t\022\022\n\004way" +
+      "s\030\004 \003(\0132\004.Map\"\255\002\n\005Scene\022\n\n\002id\030\001 \001(\005\022\021\n\003m" +
+      "ap\030\002 \001(\0132\004.Map\022 \n\005roles\030\003 \003(\0132\021.Scene.Ro" +
+      "lesEntry\022\034\n\003npc\030\004 \003(\0132\017.Scene.NpcEntry\022$" +
+      "\n\007monster\030\005 \003(\0132\023.Scene.MonsterEntry\0323\n\n" +
+      "RolesEntry\022\013\n\003key\030\001 \001(\005\022\024\n\005value\030\002 \001(\0132\005" +
+      ".Role:\0028\001\0320\n\010NpcEntry\022\013\n\003key\030\001 \001(\005\022\023\n\005va" +
+      "lue\030\002 \001(\0132\004.Npc:\0028\001\0328\n\014MonsterEntry\022\013\n\003k" +
+      "ey\030\001 \001(\005\022\027\n\005value\030\002 \001(\0132\010.Monster:\0028\001B\035\n" +
+      "\021com.game.protocolB\010Protocolb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -9093,19 +9298,19 @@ public final class Protocol {
     internal_static_Role_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Role_descriptor,
-        new java.lang.String[] { "Id", "Name", "Ph", "Mp", "PhyAttack", "MagicAttack", "PhyDefense", "MagicDefense", "MapId", });
+        new java.lang.String[] { "Id", "Name", "Ph", "Mp", "PhyAttack", "MagicAttack", "PhyDefense", "MagicDefense", "MapId", "Status", });
     internal_static_Npc_descriptor =
       getDescriptor().getMessageTypes().get(5);
     internal_static_Npc_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Npc_descriptor,
-        new java.lang.String[] { "Id", "Name", "Ph", "Mp", "PhyAttack", "MagicAttack", "PhyDefense", "MagicDefense", "MapId", });
+        new java.lang.String[] { "Id", "Name", "Ph", "Mp", "PhyAttack", "MagicAttack", "PhyDefense", "MagicDefense", "MapId", "Status", });
     internal_static_Monster_descriptor =
       getDescriptor().getMessageTypes().get(6);
     internal_static_Monster_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Monster_descriptor,
-        new java.lang.String[] { "Id", "Name", "Ph", "Mp", "PhyAttack", "MagicAttack", "PhyDefense", "MagicDefense", "MapId", });
+        new java.lang.String[] { "Id", "Name", "Ph", "Mp", "PhyAttack", "MagicAttack", "PhyDefense", "MagicDefense", "MapId", "Status", });
     internal_static_Map_descriptor =
       getDescriptor().getMessageTypes().get(7);
     internal_static_Map_fieldAccessorTable = new

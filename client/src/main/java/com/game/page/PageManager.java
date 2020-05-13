@@ -24,6 +24,10 @@ public class PageManager {
     private LoginAndRegisterPage loginAndRegisterPage;
 
     public void showMainPage(){
+        if(gameFrame.getContentPane().equals(mainPage)){
+            mainPage.refresh();
+            return;
+        }
         mainPage.init();
         gameFrame.setMainPanel(mainPage);
     }

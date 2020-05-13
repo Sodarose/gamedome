@@ -2,6 +2,7 @@ package com.game.page;
 
 import com.game.context.GameContext;
 import com.game.entity.Scene;
+import com.game.protocol.Protocol;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -19,7 +20,7 @@ public class ScenePage extends JPanel {
     @Autowired
     private GameContext gameContext;
 
-    private Scene scene;
+    private Protocol.Scene scene;
 
     private SceneDesPage sceneDes;
     private AroundPage around;
@@ -49,18 +50,16 @@ public class ScenePage extends JPanel {
 
     }
 
-    public void setScene(Scene scene){
-        this.scene = scene;
-    }
-
-    public Scene getScene(){
-        return this.scene;
-    }
-
     public void refresh(){
         this.scene = gameContext.getScene();
-        this.sceneDes.setGameMap(scene.getGameMap());
+        this.sceneDes.setGameMap(scene.getMap());
         this.sceneDes.refresh();
+        this.around.setRoles(scene.getRolesMap());
+        this.around.setNpcs(scene.getNpcMap());
+        this.around.setMonsters(scene.getMonsterMap());
+        this.around.refresh();
+        this.way.setWays(scene.getMap().getWaysList());
+        this.way.refresh();
     }
 
 }

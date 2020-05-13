@@ -1,6 +1,7 @@
 package com.game.page;
 
 import com.game.pojo.GameMap;
+import com.game.protocol.Protocol;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,7 +16,7 @@ public class WayPage extends JPanel {
     private final int height = 80;
     private final int width = 790;
 
-    private List<GameMap> ways;
+    private List<Protocol.Map> ways;
     private JLabel label;
     private JPanel waysPanel;
 
@@ -39,11 +40,20 @@ public class WayPage extends JPanel {
         add(waysPanel);
     }
 
-    public void setWays(List<GameMap> gameMaps){
-        this.ways = gameMaps;
+    public void setWays(List<Protocol.Map> ways){
+        this.ways = ways;
     }
 
     public void refresh(){
-
+        for(Protocol.Map way:ways){
+            JLabel jLabel = new JLabel(way.getName());
+            jLabel.setFont(new Font("宋体", Font.PLAIN, 24));
+            jLabel.setForeground(Color.white);
+            waysPanel.add(jLabel);
+        }
+        waysPanel.repaint();
+        waysPanel.validate();
+        repaint();
+        validate();
     }
 }

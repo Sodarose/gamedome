@@ -38,10 +38,7 @@ public class CmdExecutor {
 
     public void invoked(Message message, Channel channel){
         try {
-           Object msg = method.invoke(object,message);
-           if(msg instanceof Message){
-                channel.writeAndFlush(msg);
-           }
+           method.invoke(object,message);
         } catch (Exception e){
             e.printStackTrace();
         }

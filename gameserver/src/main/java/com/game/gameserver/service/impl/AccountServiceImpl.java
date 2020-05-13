@@ -10,6 +10,7 @@ import com.game.gameserver.mapper.AccountMapper;
 import com.game.gameserver.service.AbstractAccountService;
 import com.game.protocol.Message;
 import com.game.protocol.Protocol;
+import com.game.ulit.MessageUtil;
 import com.google.protobuf.InvalidProtocolBufferException;
 import io.netty.channel.Channel;
 import io.netty.util.Attribute;
@@ -78,7 +79,7 @@ public class AccountServiceImpl extends AbstractAccountService {
                        .setMsg("用户不存在或密码错误")
                        .build();
             }
-            channel.writeAndFlush(createMessage(MessageType.USER_LOGIN_RES,res.toByteArray()));
+            channel.writeAndFlush(MessageUtil.createMessage(MessageType.USER_LOGIN_RES,res.toByteArray()));
         } catch (Exception e) {
             e.printStackTrace();
             logger.error("login message parse error {}",message);
@@ -113,20 +114,12 @@ public class AccountServiceImpl extends AbstractAccountService {
                             .build();
                 }
             }
-            Message msgRes = createMessage(MessageType.USER_REGISTER_RES,res.toByteArray());
+            Message msgRes = MessageUtil.createMessage(MessageType.USER_REGISTER_RES,res.toByteArray());
             channel.writeAndFlush(msgRes);
         } catch (InvalidProtocolBufferException e) {
             e.printStackTrace();
             logger.error("register message parse error {}",message);
         }
-    }
-
-    private Message createMessage(short cmd,byte[] bytes){
-        int length = 4+2;
-        if(bytes!=null){
-            length += bytes.length;
-        }
-        return new Message(length,cmd,bytes);
     }
 
 }

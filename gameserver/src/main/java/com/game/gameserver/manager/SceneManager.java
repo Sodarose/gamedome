@@ -21,6 +21,7 @@ public class SceneManager {
     public void intoScene(GameRole gameRole){
         Scene scene = scenes.get(gameRole.getMapId());
         gameRole.setScene(scene);
+        scene.getRoles().put(gameRole.getId(),gameRole);
     }
 
     public void addScene(Scene scene){

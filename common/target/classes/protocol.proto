@@ -25,50 +25,59 @@ message LoginRes{
     int32 id = 4;
 }
 
-message GameRole{
+message Role{
     int32 id = 1;
     string name = 2;
-    int32 hp = 3;
+    int32 ph = 3;
     int32 mp = 4;
-    string description = 5;
-    int32 status = 6;
-    int32 mapId = 7;
+    int32 phyAttack = 5;
+    int32 magicAttack = 6;
+    int32 phyDefense = 7;
+    int32 magicDefense = 8;
+    int32 mapId = 9;
+    int32 status = 10;
 }
 
-message GameNpc{
+message Npc{
     int32 id = 1;
     string name = 2;
-    int32 hp = 3;
+    int32 ph = 3;
     int32 mp = 4;
-    string description = 5;
-    int32 status = 6;
-    int32 mapId = 7;
+    int32 phyAttack = 5;
+    int32 magicAttack = 6;
+    int32 phyDefense = 7;
+    int32 magicDefense = 8;
+    int32 mapId = 9;
+    int32 status = 10;
 }
 
 message Monster{
     int32 id = 1;
     string name = 2;
-    int32 hp = 3;
+    int32 ph = 3;
     int32 mp = 4;
-    string description = 5;
-    int32 status = 6;
-    int32 mapId = 7;
+    int32 phyAttack = 5;
+    int32 magicAttack = 6;
+    int32 phyDefense = 7;
+    int32 magicDefense = 8;
+    int32 mapId = 9;
+    int32 status = 10;
 }
 
 
-message GameMap{
+message Map{
     int32 id = 1;
     string name = 2;
     string description = 3;
-    repeated GameMap ways  = 4;
+    repeated Map ways = 4;
 }
 
 message Scene{
     int32 id = 1;
-    GameMap map = 2;
-    map<int32,GameRole> roles = 3;
-    map<int32,GameNpc> npcs = 4;
-    map<int32,Monster> monsters = 5;
+    Map map = 2;
+    map<int32,Role> roles = 3;
+    map<int32,Npc> npc = 4;
+    map<int32,Monster> monster = 5;
 }
 
 

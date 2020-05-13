@@ -2,6 +2,7 @@ package com.game.context;
 
 import com.game.pojo.Role;
 import com.game.entity.Scene;
+import com.game.protocol.Protocol;
 import lombok.Data;
 import org.springframework.stereotype.Component;
 
@@ -16,11 +17,11 @@ public class GameContext {
     /**
      * 当前场景
      * */
-    private Scene scene;
+    private Protocol.Scene scene;
 
     /**
      * 当前游戏角色
      * */
-    private Role role;
+    private Protocol.Role role;
 
 }
