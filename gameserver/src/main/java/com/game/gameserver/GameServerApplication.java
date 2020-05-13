@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author xuwenkang
  */
 @SpringBootApplication
-@MapperScan(basePackages = "com.game.gameserver.mapper")
+@MapperScan(basePackages = "com.game.gameserver.game.mapper")
 public class GameServerApplication {
 
     public static void main(String[] args) {

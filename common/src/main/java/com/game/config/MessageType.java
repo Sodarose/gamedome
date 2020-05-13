@@ -27,7 +27,7 @@ public class MessageType {
     public final static short USER_LOGIN_RES = 3;
 
     /**
-     * 移动
+     * 移动指令
      * */
     public final static short GAME_MOVE_S = 4;
 
@@ -55,4 +55,19 @@ public class MessageType {
      * 地图
      * */
     public final static short GAME_MAP_S = 9;
+
+    /**
+     * 切换场景
+     * */
+    public final static short GAME_CUT_S = 10;
+
+    /**
+     * 查看
+     * */
+    public final static short GAME_CHECK_S = 11;
+
+    /**
+     * AIO
+     * */
+    public final static short GAME_AIO_S = 12;
 }

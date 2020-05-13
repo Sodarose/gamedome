@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.game.gameserver.mapper.RoleMapper">
+<mapper namespace="com.game.gameserver.game.mapper.RoleMapper">
     <resultMap id="baseResultMap" type="com.game.pojo.Role">
         <id column="id" property="id"/>
         <result column="name" property="name"/>
@@ -17,4 +17,9 @@
         SELECT id,name,ph,mp,phy_attack,magic_attack,phy_defense,magic_defense,map_id,userId FROM game_role
         WHERE userId = #{userId}
     </select>
+
+    <update id="saveRoleByRole" parameterType="com.game.pojo.Role">
+        UPDATE game_role SET name=#{name},ph=#{ph},mp=#{mp},phy_attack=#{phyAttack},magic_attack=#{magicAttack},
+            phy_defense=#{phyDefense},magic_defense=#{magicDefense},map_id=#{mapId} WHERE id=#{id}
+    </update>
 </mapper>

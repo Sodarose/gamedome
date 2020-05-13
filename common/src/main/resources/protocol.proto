@@ -80,6 +80,12 @@ message Scene{
     map<int32,Monster> monster = 5;
 }
 
+message MoveScene{
+    int32 sceneId = 1;
+    string mapName = 2;
+}
+
+
 
 
 

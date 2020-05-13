@@ -16,11 +16,6 @@ public class GameRole extends Role {
      * */
     private Integer status;
 
-    /**
-     * 用户场景
-     * */
-    private Scene scene;
-
     public GameRole(Role role) {
         setId(role.getId());
         setName(role.getName());

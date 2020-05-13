@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.game.gameserver.mapper.GameMapMapper">
+<mapper namespace="com.game.gameserver.game.mapper.GameMapMapper">
     <resultMap id="gameMapResultMap" type="com.game.pojo.GameMap">
         <id column="id" property="id"/>
         <result column="name" property="name"/>
@@ -10,4 +10,5 @@
     <select id="list" resultMap="gameMapResultMap">
         SELECT id,name,description,way FROM game_map;
     </select>
+
 </mapper>
