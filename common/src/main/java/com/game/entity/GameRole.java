@@ -29,4 +29,5 @@ public class GameRole extends Role {
         setMapId(role.getMapId());
         setStatus(RoleStatus.ROLE_LIVE);
     }
+
 }

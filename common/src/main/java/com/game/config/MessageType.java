@@ -70,4 +70,6 @@ public class MessageType {
      * AIO
      * */
     public final static short GAME_AIO_S = 12;
+
+    public final static short GAME_SAVE_S = 13;
 }

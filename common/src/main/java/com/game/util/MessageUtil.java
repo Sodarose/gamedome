@@ -1,4 +1,4 @@
-package com.game.ulit;
+package com.game.util;
 
 import com.game.protocol.Message;
 
@@ -15,14 +15,15 @@ public class MessageUtil {
 
     /**
      * short 2个长度
-     * */
+     */
     private final static int CMD_LENGTH = 2;
 
-    public static Message createMessage(short cmd, byte[] bytes){
-        int length = LENGTH+CMD_LENGTH;
-        if(bytes!=null){
+    public static Message createMessage(short cmd, byte[] bytes) {
+        int length = LENGTH + CMD_LENGTH;
+        if (bytes != null) {
             length += bytes.length;
         }
-        return new Message(length,cmd,bytes);
+        return new Message(length, cmd, bytes);
     }
+
 }

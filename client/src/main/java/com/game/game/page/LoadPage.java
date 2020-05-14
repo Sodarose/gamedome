@@ -12,7 +12,6 @@ import java.util.concurrent.TimeUnit;
 public class LoadPage  extends JPanel {
 
     private volatile boolean stop = false;
-    private final int MAX = 12;
     private JLabel jLabel;
     private String text = "loading";
     private ScheduledExecutorService task;
@@ -25,9 +24,10 @@ public class LoadPage  extends JPanel {
         setSize(400,200);
         task = new ScheduledThreadPoolExecutor(1);
         task.scheduleAtFixedRate(new Runnable() {
+            private int max = 12;
             @Override
             public void run() {
-                if(text.length()>MAX){
+                if(text.length()>max){
                     text = "loading";
                 }else {
                     text+=".";

@@ -17,9 +17,9 @@ import org.springframework.stereotype.Service;
 import javax.annotation.PostConstruct;
 
 /**
+ * 接受服务端数据 并渲染页面
  * @author: xuewenkang
  * @date: 2020/5/12 17:05
- * 接受数据 并 渲染页面
  */
 @Service
 public class GameServiceImpl extends AbstractGameService {

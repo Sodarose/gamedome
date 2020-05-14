@@ -43,6 +43,6 @@ public class ClientContext implements ApplicationContextAware {
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        application = applicationContext;
+       application = applicationContext;
     }
 }

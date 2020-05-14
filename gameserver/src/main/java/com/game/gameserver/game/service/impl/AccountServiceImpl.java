@@ -9,7 +9,7 @@ import com.game.gameserver.game.mapper.AccountMapper;
 import com.game.gameserver.game.service.AbstractAccountService;
 import com.game.protocol.Message;
 import com.game.protocol.Protocol;
-import com.game.ulit.MessageUtil;
+import com.game.util.MessageUtil;
 import com.google.protobuf.InvalidProtocolBufferException;
 import io.netty.channel.Channel;
 import org.slf4j.Logger;
@@ -43,13 +43,6 @@ public class AccountServiceImpl extends AbstractAccountService {
         messageDispatcher.registerService(this);
     }
 
-
-    /**
-     * description: 处理登录事件
-     *
-     * @param message 登录信息载体
-     * @return com.game.protocol.Message
-     */
     @CmdHandler(cmd = MessageType.USER_LOGIN_REQ)
     @Override
     public void login(Message message, Channel channel) {

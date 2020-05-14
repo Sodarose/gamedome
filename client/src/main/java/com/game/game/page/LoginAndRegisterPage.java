@@ -16,8 +16,8 @@ import java.awt.event.MouseEvent;
 @Component
 public class LoginAndRegisterPage extends JPanel {
 
-    private final int LOGIN_PAGE = 0;
-    private final int REGISTER_PAGE = 1;
+    private static final int LOGIN_PAGE = 0;
+    private static final int REGISTER_PAGE = 1;
 
     @Autowired
     private AbstractAccountService accountService;

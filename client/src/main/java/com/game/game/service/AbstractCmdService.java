@@ -7,16 +7,14 @@ package com.game.game.service;
 public abstract class AbstractCmdService implements BaseService {
 
     /**
-     * description: 执行命令
-     *
+     * 执行命令
      * @param cmd 指令
      * @return void
      */
     public abstract void runCmd(String cmd);
 
     /**
-     * description: 初始化游戏客户端指令
-     *
+     * 初始化游戏客户端指令
      * @param
      * @return void
      */

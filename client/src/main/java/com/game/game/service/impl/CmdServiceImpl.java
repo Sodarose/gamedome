@@ -7,7 +7,7 @@ import com.game.game.page.PageManager;
 import com.game.game.page.WordPage;
 import com.game.game.service.AbstractCmdService;
 import com.game.protocol.Protocol;
-import com.game.ulit.MessageUtil;
+import com.game.util.MessageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -78,7 +78,9 @@ public class CmdServiceImpl extends AbstractCmdService {
             case CMD_CLEAN:
                 clean();
                 break;
-            default:{}
+            default:{
+                wordPage.print("【"+cmd+"】无效指令");
+            }
         }
     }
 
