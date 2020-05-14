@@ -30,6 +30,12 @@ public abstract class AbstractGameService implements BaseService {
      */
     public abstract void handleCutSceneMessage(Message message);
 
+    /**
+     * 刷新页面
+     * @param message 刷新当前场景
+     * @return void
+     */
+    public abstract void handleRefreshMessage(Message message);
 
     /**
      * 处理移动信息

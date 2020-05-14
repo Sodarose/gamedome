@@ -20,6 +20,11 @@ public abstract class AbstractCmdService implements BaseService {
      */
     public abstract void initGameClient();
 
+    /***
+     * 刷新用户所在场景数据
+     */
+    public abstract void refreshUserScene();
+
 
     @Override
     public String serviceName() {

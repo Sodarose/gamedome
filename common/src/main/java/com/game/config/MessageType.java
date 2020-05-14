@@ -71,5 +71,18 @@ public class MessageType {
      * */
     public final static short GAME_AIO_S = 12;
 
+    /**
+     * 保存游戏数据
+     * */
     public final static short GAME_SAVE_S = 13;
+
+    /**
+     * 退出游戏
+     * */
+    public final static short GAME_EXIT_S = 14;
+
+    /**
+     * 刷新页面
+     */
+    public final static short GAME_REFRESH_S = 15;
 }

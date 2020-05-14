@@ -15,6 +15,7 @@ import com.game.util.MessageUtil;
 import com.game.util.ProtocolUtil;
 import com.google.protobuf.InvalidProtocolBufferException;
 import io.netty.channel.Channel;
+import io.netty.channel.ChannelId;
 import io.netty.util.Attribute;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -92,6 +93,8 @@ public class GameServiceImpl extends AbstractGameService {
             Message resMsg = MessageUtil.createMessage(MessageType.GAME_MOVE_S,
                     ProtocolUtil.sceneToProtocolScene(targetScene).toByteArray());
             channel.writeAndFlush(resMsg);
+            notifyUserSceneChanged(gameRole.getUserId(),scene);
+            notifyUserSceneChanged(gameRole.getUserId(),targetScene);
         } catch (InvalidProtocolBufferException e) {
             e.printStackTrace();
             logger.error("RoleMove parse error");
@@ -135,6 +138,20 @@ public class GameServiceImpl extends AbstractGameService {
         roleMapper.saveRoleByRole(gameRole);
     }
 
+    @CmdHandler(cmd = MessageType.GAME_EXIT_S)
+    @Override
+    public void handleExit(Message message, Channel channel) {
+        logger.info("执行用户退出");
+        // 保存再退出
+        handleSave(null,channel);
+        GameRole gameRole = getGameRoleByChannelAttr(channel);
+        Scene scene = gameContext.getScenes().get(gameRole.getMapId());
+        scene.getRoles().remove(gameRole.getId());
+        gameContext.getRoles().remove(gameRole.getId());
+        Attribute<User> attr = channel.attr(GameContext.CHANNEL_USER_KEY);
+        attr.set(null);
+    }
+
     /**
      * 根据Channel attr 获得当前Channel的用户的角色
      * @param channel 用户Channel
@@ -144,6 +161,26 @@ public class GameServiceImpl extends AbstractGameService {
         Attribute<User> attr = channel.attr(GameContext.CHANNEL_USER_KEY);
         GameRole gameRole = gameContext.getRoles().get(attr.get().getId());
         return gameRole;
+    }
+
+    /**
+     * 通知该场景中的用户场景发生改变
+     * @param scene 场景
+     * @return void
+     */
+    private void notifyUserSceneChanged(Integer moveUserId,Scene scene){
+        Map<Integer, GameRole> roles = scene.getRoles();
+        for(Map.Entry<Integer,GameRole> entry:roles.entrySet()){
+                Integer userId = entry.getValue().getUserId();
+                if(userId.equals(moveUserId)){
+                    continue;
+                }
+                ChannelId channelId = gameContext.getUserChannelIdMap().get(userId);
+                Channel channel = gameContext.getUserGroup().find(channelId);
+                if(channel!=null){
+                    channel.writeAndFlush(MessageUtil.createMessage(MessageType.GAME_REFRESH_S,null));
+                }
+        }
     }
 
 

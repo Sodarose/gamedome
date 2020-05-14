@@ -25,6 +25,7 @@ public class PageManager {
 
     public void showMainPage(){
         if(gameFrame.getContentPane().equals(mainPage)){
+            mainPage.getWord().clean();
             mainPage.refresh();
             return;
         }

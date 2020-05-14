@@ -6,6 +6,7 @@ import com.game.game.context.GameContext;
 import com.game.game.page.PageManager;
 import com.game.game.page.WordPage;
 import com.game.game.service.AbstractCmdService;
+import com.game.protocol.Message;
 import com.game.protocol.Protocol;
 import com.game.util.MessageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,7 @@ public class CmdServiceImpl extends AbstractCmdService {
     private final static String CMD_CHECK = "CHECK";
     private final static String CMD_SELF = "SELF";
     private final static String CMD_CLEAN="CLEAN";
+    private final static String CMD_EXIT = "EXIT";
 
     private final static int MIN_ORDER_LENGTH = 2;
     private final static int CMD_CHECK_LENGTH = 3;
@@ -59,6 +61,7 @@ public class CmdServiceImpl extends AbstractCmdService {
     public void runCmd(String cmd) {
         String[] orders = cmd.split("\\s+");
         String order = orders[0].toUpperCase();
+        clean();
         switch (order){
             case CMD_MOVE:
                 sendCmdMove(orders);
@@ -77,6 +80,9 @@ public class CmdServiceImpl extends AbstractCmdService {
                 break;
             case CMD_CLEAN:
                 clean();
+                break;
+            case CMD_EXIT:
+                exit();
                 break;
             default:{
                 wordPage.print("【"+cmd+"】无效指令");
@@ -233,4 +239,23 @@ public class CmdServiceImpl extends AbstractCmdService {
         wordPage.clean();
     }
 
+    /**
+     * 退出游戏
+     * @param
+     * @return void
+     */
+    private void exit(){
+        Message message = MessageUtil.createMessage(MessageType.GAME_EXIT_S,null);
+        clientContext.getChannel().writeAndFlush(message);
+        wordPage.print("退出游戏");
+        pageManager.showLoginAndRegisterPage();
+    }
+
+    /**
+     * 刷新用户所在场景信息
+     */
+    @Override
+    public void refreshUserScene(){
+        clientContext.getChannel().writeAndFlush(MessageUtil.createMessage(MessageType.GAME_SCENE_S,null));
+    }
 }

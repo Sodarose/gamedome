@@ -35,6 +35,9 @@ public class GameServiceImpl extends AbstractGameService {
     @Autowired
     private WordPage wordPage;
 
+    @Autowired
+    private CmdServiceImpl cmdService;
+
     @CmdHandler(cmd = MessageType.GAME_SCENE_S)
     @Override
     public void handleSceneMessage(Message message) {
@@ -56,6 +59,7 @@ public class GameServiceImpl extends AbstractGameService {
         logger.info("handle role message");
         try{
             Protocol.Role role = Protocol.Role.parseFrom(message.getData());
+            gameContext.setRole(role);
             wordPage.print(role);
         } catch (InvalidProtocolBufferException e) {
             e.printStackTrace();
@@ -73,6 +77,13 @@ public class GameServiceImpl extends AbstractGameService {
         } catch (InvalidProtocolBufferException e) {
             e.printStackTrace();
         }
+    }
+
+    @CmdHandler(cmd = MessageType.GAME_REFRESH_S)
+    @Override
+    public void handleRefreshMessage(Message message) {
+        wordPage.clean();
+        cmdService.refreshUserScene();
     }
 
     @CmdHandler(cmd = MessageType.GAME_MOVE_S)

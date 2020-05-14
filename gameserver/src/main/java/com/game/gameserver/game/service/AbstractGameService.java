@@ -41,12 +41,22 @@ public abstract class AbstractGameService implements BaseService{
     public abstract void handleCutMap(Message message,Channel channel);
 
     /**
-     * description: 保存用户角色数据
-     * @param message
-     * @param channel
+     * 保存用户角色数据
+     * @param message 消息
+     * @param channel 用户channel
      * @return void
      */
     public abstract void handleSave(Message message,Channel channel);
+
+    /**
+     * 退出游戏
+     * @param message 消息
+     * @param channel 用户channel
+     * @return void
+     */
+    public abstract void handleExit(Message message,Channel channel);
+
+
 
     @Override
     public String serviceName() {

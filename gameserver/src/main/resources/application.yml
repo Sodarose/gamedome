@@ -30,3 +30,6 @@ mybatis:
   type-aliases-package: com.game.entity
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+logging:
+  level:
+    root: info

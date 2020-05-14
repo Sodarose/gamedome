@@ -1,6 +1,8 @@
 package com.game.gameserver.net.handler;
 
 import com.game.gameserver.game.context.ServerContext;
+import com.game.gameserver.game.service.AbstractGameService;
+import com.game.gameserver.game.service.impl.GameServiceImpl;
 import com.game.gameserver.task.MessageDispatcher;
 import com.game.protocol.Message;
 import io.netty.channel.ChannelHandlerContext;
@@ -38,15 +40,13 @@ public class ServerHandler extends ChannelInboundHandlerAdapter {
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {
         logger.info("channel {} inactive ",ctx.channel().id());
         super.channelInactive(ctx);
-        ctx.channel().close();
     }
 
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
         logger.error("channel {} exception",ctx.channel().id());
-        super.exceptionCaught(ctx,cause);
-        
+        GameServiceImpl gameService = ServerContext.getApplication().getBean(GameServiceImpl.class);
+        gameService.handleExit(null,ctx.channel());
         ctx.channel().close();
-        cause.printStackTrace();
     }
 }
