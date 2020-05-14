@@ -4,8 +4,8 @@ package com.game.entity;
 import lombok.Data;
 
 /**
+ * 游戏怪物 实体
  * @author xuwenkang
- * 游戏怪物
  */
 @Data
 public class Monster {

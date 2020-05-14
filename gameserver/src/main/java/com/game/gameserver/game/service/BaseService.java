@@ -1,8 +1,8 @@
 package com.game.gameserver.game.service;
 
 /**
- * @author xuewenkang
  * 服务base类
+ * @author xuewenkang
  */
 public interface BaseService {
 

@@ -12,8 +12,8 @@ import java.util.Random;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * @author xuewenkang
  * 游戏场景
+ * @author xuewenkang
  */
 @Data
 @NoArgsConstructor

@@ -6,8 +6,8 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * @author xuewenkang
  * 指定处理CMD任务的方法的注解
+ * @author xuewenkang
  */
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)

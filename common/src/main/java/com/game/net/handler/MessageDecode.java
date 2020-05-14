@@ -7,8 +7,8 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
 
 /**
- * @author xuewenkang
  * 解码器
+ * @author xuewenkang
  */
 public class MessageDecode extends LengthFieldBasedFrameDecoder {
 

@@ -1,8 +1,8 @@
 package com.game.config;
 
 /**
- * @author xuwenkang
  * 消息类型
+ * @author xuwenkang
  */
 public class MessageType {
 

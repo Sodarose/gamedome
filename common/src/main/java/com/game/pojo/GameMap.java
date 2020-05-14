@@ -1,16 +1,14 @@
 package com.game.pojo;
 
-import com.game.protocol.Protocol;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author xuewenkang
  * 游戏地图
+ * @author xuewenkang
  */
 @Data
 @NoArgsConstructor

@@ -7,8 +7,8 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 /**
- * @author xuewenkang
  * 消息
+ * @author xuewenkang
  */
 @Data
 @AllArgsConstructor

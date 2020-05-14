@@ -5,8 +5,8 @@ import lombok.Data;
 import org.springframework.stereotype.Component;
 
 /**
- * @author xuewenkang
  * 游戏上下文，用于存储游戏数据
+ * @author xuewenkang
  */
 @Component
 @Data

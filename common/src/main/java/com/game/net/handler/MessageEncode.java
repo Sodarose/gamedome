@@ -6,8 +6,8 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToByteEncoder;
 
 /**
- * @author xuewenkang
  * 编码器
+ * @author xuewenkang
  */
 public class MessageEncode extends MessageToByteEncoder<Message> {
     @Override

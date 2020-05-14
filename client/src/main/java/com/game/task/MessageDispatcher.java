@@ -12,8 +12,8 @@ import java.lang.reflect.Method;
 import java.util.HashMap;
 
 /**
- * @author xuewenkang
  * 消息分发 将消息分发到对应的服务
+ * @author xuewenkang
  */
 @Component
 public class MessageDispatcher {

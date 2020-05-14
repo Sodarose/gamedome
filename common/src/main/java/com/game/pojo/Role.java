@@ -5,8 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * @author xuewenkang
  * 游戏角色
+ * @author xuewenkang
  */
 @Data
 @AllArgsConstructor

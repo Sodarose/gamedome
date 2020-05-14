@@ -1,6 +1,7 @@
 package com.game.config;
 
 /**
+ * 实体状态
  * @author: xuewenkang
  * @date: 2020/5/12 16:15
  */

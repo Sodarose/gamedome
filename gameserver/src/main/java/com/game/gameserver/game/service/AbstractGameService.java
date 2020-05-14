@@ -7,6 +7,7 @@ import io.netty.channel.Channel;
 /**
  * 游戏服务 处理游戏逻辑
  * @author xuewenkang
+ * @date: 2020/5/12 16:09
  */
 public abstract class AbstractGameService implements BaseService{
 

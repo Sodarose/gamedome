@@ -9,8 +9,8 @@ import lombok.NoArgsConstructor;
 import java.lang.reflect.Method;
 
 /**
- * @author xuewenkang
  * cmd 任务执行器
+ * @author xuewenkang
  */
 @Getter
 public class CmdExecutor {

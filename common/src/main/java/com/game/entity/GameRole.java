@@ -5,6 +5,7 @@ import com.game.pojo.Role;
 import lombok.Data;
 
 /**
+ * 游戏角色实体
  * @author: xuewenkang
  * @date: 2020/5/12 20:35
  */

@@ -6,8 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * @author xuewenkang
  * 用户
+ * @author xuewenkang
  */
 @Data
 @AllArgsConstructor

@@ -3,8 +3,8 @@ package com.game.entity;
 import lombok.Data;
 
 /**
+ * 游戏npc 实体
  * @author xuwenkang
- * 游戏npc
  */
 @Data
 public class Npc {
