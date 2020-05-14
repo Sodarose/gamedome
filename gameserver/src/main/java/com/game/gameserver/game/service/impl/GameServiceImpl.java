@@ -90,7 +90,7 @@ public class GameServiceImpl extends AbstractGameService {
             gameRole.setMapId(targetScene.getGameMap().getId());
             // 移动到目标场景中
             targetScene.getRoles().put(gameRole.getId(),gameRole);
-            handleSave(null,channel);
+            //handleSave(null,channel);
             Message resMsg = MessageUtil.createMessage(MessageType.GAME_MOVE_S,
                     ProtocolUtil.sceneToProtocolScene(targetScene).toByteArray());
             channel.writeAndFlush(resMsg);
@@ -143,14 +143,15 @@ public class GameServiceImpl extends AbstractGameService {
     @Override
     public void handleExit(Message message, Channel channel) {
         logger.info("执行用户退出");
+        GameRole gameRole = getGameRoleByChannelAttr(channel);
         // 保存再退出
         handleSave(null,channel);
-        GameRole gameRole = getGameRoleByChannelAttr(channel);
         Scene scene = gameContext.getScenes().get(gameRole.getMapId());
         scene.getRoles().remove(gameRole.getId());
         gameContext.getRoles().remove(gameRole.getId());
         Attribute<User> attr = channel.attr(GameContext.CHANNEL_USER_KEY);
         attr.set(null);
+        notifyUserSceneChanged(gameRole.getUserId(),scene);
     }
 
     /**
