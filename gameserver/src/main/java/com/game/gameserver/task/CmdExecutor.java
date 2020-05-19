@@ -34,7 +34,7 @@ public class CmdExecutor {
         this.object = object;
     }
 
-    public void invoked(Message message, Channel channel){
+    public void execute(Message message, Channel channel){
         try {
            method.invoke(object,message,channel);
         } catch (Exception e){

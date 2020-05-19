@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import java.io.IOException;
 
 /**
- * @author xuwenkang
+ * @author xuewenkang
  */
 @SpringBootApplication
 @MapperScan(basePackages = "com.game.gameserver.game.mapper")

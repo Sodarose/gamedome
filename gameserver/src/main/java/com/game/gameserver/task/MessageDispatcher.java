@@ -1,7 +1,6 @@
 package com.game.gameserver.task;
 
 import com.game.gameserver.task.annotation.CmdHandler;
-import com.game.gameserver.game.service.BaseService;
 import com.game.protocol.Message;
 import io.netty.channel.Channel;
 import org.slf4j.Logger;
@@ -32,14 +31,14 @@ public class MessageDispatcher {
         if(executors.get(cmd)==null){
             return;
         }
-        executors.get(cmd).invoked(message,channel);
+        executors.get(cmd).execute(message,channel);
     }
 
     /**
      * 将服务中的方法注册证CmdExecutor
      * @param service 处理消息的服务
      * */
-    public void registerService(BaseService service){
+    /*public void registerService(BaseService service){
         logger.info("register service {}",service);
         Class clazz = service.getClass();
         Method[] methods = clazz.getDeclaredMethods();
@@ -52,5 +51,5 @@ public class MessageDispatcher {
            CmdExecutor cmdExecutor = new CmdExecutor(cmd,method,service);
            executors.put(cmd,cmdExecutor);
         }
-    }
+    }*/
 }

@@ -1,8 +1,6 @@
 package com.game.gameserver.game.context;
 
 import com.game.gameserver.task.MessageDispatcher;
-import com.game.gameserver.game.service.AbstractAccountService;
-import com.game.gameserver.game.service.AbstractGameService;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -20,14 +18,7 @@ public class ServerContext implements ApplicationContextAware {
     @Autowired
     private MessageDispatcher messageDispatcher;
 
-    @Autowired
-    private AbstractAccountService accountService;
-
-    @Autowired
-    private AbstractGameService gameService;
-
     private static ApplicationContext application;
-
 
     public static ApplicationContext getApplication(){
         return application;

@@ -1,8 +1,6 @@
 package com.game.game.context;
 
 import com.game.task.MessageDispatcher;
-import com.game.game.service.AbstractAccountService;
-import com.game.game.service.AbstractGameService;
 import io.netty.channel.Channel;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,15 +18,6 @@ public class ClientContext implements ApplicationContextAware {
 
     @Autowired
     private MessageDispatcher messageDispatcher;
-
-    @Autowired
-    private AbstractAccountService accountService;
-
-    @Autowired
-    private GameContext gameContext;
-
-    @Autowired
-    private AbstractGameService gameService;
 
 
     private  static ApplicationContext application;

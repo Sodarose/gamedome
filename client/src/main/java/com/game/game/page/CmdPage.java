@@ -1,6 +1,5 @@
 package com.game.game.page;
 
-import com.game.game.service.AbstractCmdService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -20,8 +19,6 @@ public class CmdPage extends JTextField {
     @Autowired
     private WordPage wordPage;
 
-    @Autowired
-    private AbstractCmdService cmdService;
 
     public CmdPage(){
         setText("请输入指令");
@@ -41,8 +38,7 @@ public class CmdPage extends JTextField {
                     if(cmd==null||cmd.isEmpty()){
                         return;
                     }
-                    wordPage.print(cmd);
-                    cmdService.runCmd(cmd);
+
                     setText("");
                     refresh();
                 }

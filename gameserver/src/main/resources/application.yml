@@ -27,7 +27,6 @@ spring:
       use-global-data-source-stat: true
 mybatis:
   mapper-locations: classpath:mapper/*.xml
-  type-aliases-package: com.game.entity
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 logging:

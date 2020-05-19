@@ -7,8 +7,8 @@ import org.springframework.stereotype.Component;
 import javax.swing.*;
 
 /**
- * @author xuewenkang
  * 页面管理器 负责页面的刷新、切换、展示
+ * @author xuewenkang
  */
 @Component
 @Data
@@ -24,12 +24,7 @@ public class PageManager {
     private LoginAndRegisterPage loginAndRegisterPage;
 
     public void showMainPage(){
-        if(gameFrame.getContentPane().equals(mainPage)){
-            mainPage.getWord().clean();
-            mainPage.refresh();
-            return;
-        }
-        gameFrame.setMainPanel(mainPage);
+
     }
 
     public void showLoginAndRegisterPage(){

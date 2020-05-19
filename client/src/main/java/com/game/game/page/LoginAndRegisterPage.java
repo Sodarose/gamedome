@@ -1,7 +1,5 @@
 package com.game.game.page;
 
-import com.game.game.service.AbstractAccountService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.swing.*;
@@ -19,8 +17,6 @@ public class LoginAndRegisterPage extends JPanel {
     private static final int LOGIN_PAGE = 0;
     private static final int REGISTER_PAGE = 1;
 
-    @Autowired
-    private AbstractAccountService accountService;
 
     private int type = LOGIN_PAGE;
 
@@ -63,11 +59,7 @@ public class LoginAndRegisterPage extends JPanel {
            public void actionPerformed(ActionEvent e) {
                String loginId = accountField.getText();
                String password = passwordField.getText();
-                if(type==LOGIN_PAGE){
-                    accountService.login(loginId,password);
-                }else{
-                    accountService.register(loginId,password);
-                }
+
            }
         });
 
