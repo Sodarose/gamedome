@@ -1,5 +1,7 @@
 package com.game.gameserver.game.equip;
 
+import java.util.HashMap;
+
 /**
  * 装备
  * @author xuewenkang

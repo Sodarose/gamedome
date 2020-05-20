@@ -38,7 +38,7 @@ public class MessageDispatcher {
      * 将服务中的方法注册证CmdExecutor
      * @param service 处理消息的服务
      * */
-    /*public void registerService(BaseService service){
+    public void registerService(Object service){
         logger.info("register service {}",service);
         Class clazz = service.getClass();
         Method[] methods = clazz.getDeclaredMethods();
@@ -51,5 +51,5 @@ public class MessageDispatcher {
            CmdExecutor cmdExecutor = new CmdExecutor(cmd,method,service);
            executors.put(cmd,cmdExecutor);
         }
-    }*/
+    }
 }

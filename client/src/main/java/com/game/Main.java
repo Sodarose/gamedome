@@ -13,6 +13,5 @@ public class Main
         AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
         ctx.scan("com.game");
         ctx.refresh();
-        //System.in.read();
     }
 }

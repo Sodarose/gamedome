@@ -1,5 +1,6 @@
 package com.game.gameserver.net.server;
 
+import com.game.gameserver.game.Platform;
 import com.game.gameserver.net.handler.ServerChannelInitializer;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.*;
@@ -8,6 +9,7 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.logging.LoggingHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -31,6 +33,9 @@ public class GameServer {
     @Value("${gameserver.name}")
     private String serverName;
 
+    @Autowired
+    private Platform platform;
+
 
     @PostConstruct
     public void start(){
@@ -49,6 +54,7 @@ public class GameServer {
             ChannelFuture future = server.bind(port).addListener((ChannelFutureListener) f->{
                 if(f.isSuccess()){
                     logger.info("game server is successfully to {},waiting connect....",port);
+                    platform.startUp();
                 }else{
                     logger.info("game server start failed");
                 }

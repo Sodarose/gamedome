@@ -10,7 +10,7 @@ import java.io.IOException;
  * @author xuewenkang
  */
 @SpringBootApplication
-@MapperScan(basePackages = "com.game.gameserver.game.mapper")
+@MapperScan(basePackages = "com.game.gameserver.game")
 public class GameServerApplication {
 
     public static void main(String[] args)  {

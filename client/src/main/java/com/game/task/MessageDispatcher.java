@@ -2,7 +2,6 @@ package com.game.task;
 
 import com.game.task.annotation.CmdHandler;
 import com.game.protocol.Message;
-import com.game.game.service.BaseService;
 import io.netty.channel.Channel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,7 +37,7 @@ public class MessageDispatcher {
      * 将服务中的方法注册证CmdExecutor
      * @param service 处理消息的服务
      * */
-    public void registerService(BaseService service){
+    public void registerService(Object service){
         logger.info("register service {}",service);
         Class clazz = service.getClass();
         Method[] methods = clazz.getDeclaredMethods();

@@ -14,4 +14,5 @@ public class MessageType {
     public static final short USER_REGISTER_REQ = 7;
     public static final short USER_LOGIN_RES = 8;
     public static final short USER_REGISTER_RES = 9;
+    public static final short PLAYER_DATA_S = 10;
 }

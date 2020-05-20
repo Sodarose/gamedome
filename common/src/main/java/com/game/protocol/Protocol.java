@@ -2926,3542 +2926,8 @@ public final class Protocol {
 
   }
 
-  public interface RoleOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:Role)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>int32 id = 1;</code>
-     * @return The id.
-     */
-    int getId();
-
-    /**
-     * <code>string name = 2;</code>
-     * @return The name.
-     */
-    java.lang.String getName();
-    /**
-     * <code>string name = 2;</code>
-     * @return The bytes for name.
-     */
-    com.google.protobuf.ByteString
-        getNameBytes();
-
-    /**
-     * <code>int32 ph = 3;</code>
-     * @return The ph.
-     */
-    int getPh();
-
-    /**
-     * <code>int32 mp = 4;</code>
-     * @return The mp.
-     */
-    int getMp();
-
-    /**
-     * <code>int32 phyAttack = 5;</code>
-     * @return The phyAttack.
-     */
-    int getPhyAttack();
-
-    /**
-     * <code>int32 magicAttack = 6;</code>
-     * @return The magicAttack.
-     */
-    int getMagicAttack();
-
-    /**
-     * <code>int32 phyDefense = 7;</code>
-     * @return The phyDefense.
-     */
-    int getPhyDefense();
-
-    /**
-     * <code>int32 magicDefense = 8;</code>
-     * @return The magicDefense.
-     */
-    int getMagicDefense();
-
-    /**
-     * <code>int32 mapId = 9;</code>
-     * @return The mapId.
-     */
-    int getMapId();
-
-    /**
-     * <code>int32 status = 10;</code>
-     * @return The status.
-     */
-    int getStatus();
-  }
-  /**
-   * Protobuf type {@code Role}
-   */
-  public  static final class Role extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:Role)
-      RoleOrBuilder {
-  private static final long serialVersionUID = 0L;
-    // Use Role.newBuilder() to construct.
-    private Role(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private Role() {
-      name_ = "";
-    }
-
-    @java.lang.Override
-    @SuppressWarnings({"unused"})
-    protected java.lang.Object newInstance(
-        UnusedPrivateParameter unused) {
-      return new Role();
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private Role(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 8: {
-
-              id_ = input.readInt32();
-              break;
-            }
-            case 18: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              name_ = s;
-              break;
-            }
-            case 24: {
-
-              ph_ = input.readInt32();
-              break;
-            }
-            case 32: {
-
-              mp_ = input.readInt32();
-              break;
-            }
-            case 40: {
-
-              phyAttack_ = input.readInt32();
-              break;
-            }
-            case 48: {
-
-              magicAttack_ = input.readInt32();
-              break;
-            }
-            case 56: {
-
-              phyDefense_ = input.readInt32();
-              break;
-            }
-            case 64: {
-
-              magicDefense_ = input.readInt32();
-              break;
-            }
-            case 72: {
-
-              mapId_ = input.readInt32();
-              break;
-            }
-            case 80: {
-
-              status_ = input.readInt32();
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return com.game.protocol.Protocol.internal_static_Role_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return com.game.protocol.Protocol.internal_static_Role_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              com.game.protocol.Protocol.Role.class, com.game.protocol.Protocol.Role.Builder.class);
-    }
-
-    public static final int ID_FIELD_NUMBER = 1;
-    private int id_;
-    /**
-     * <code>int32 id = 1;</code>
-     * @return The id.
-     */
-    public int getId() {
-      return id_;
-    }
-
-    public static final int NAME_FIELD_NUMBER = 2;
-    private volatile java.lang.Object name_;
-    /**
-     * <code>string name = 2;</code>
-     * @return The name.
-     */
-    public java.lang.String getName() {
-      java.lang.Object ref = name_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        name_ = s;
-        return s;
-      }
-    }
-    /**
-     * <code>string name = 2;</code>
-     * @return The bytes for name.
-     */
-    public com.google.protobuf.ByteString
-        getNameBytes() {
-      java.lang.Object ref = name_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        name_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    public static final int PH_FIELD_NUMBER = 3;
-    private int ph_;
-    /**
-     * <code>int32 ph = 3;</code>
-     * @return The ph.
-     */
-    public int getPh() {
-      return ph_;
-    }
-
-    public static final int MP_FIELD_NUMBER = 4;
-    private int mp_;
-    /**
-     * <code>int32 mp = 4;</code>
-     * @return The mp.
-     */
-    public int getMp() {
-      return mp_;
-    }
-
-    public static final int PHYATTACK_FIELD_NUMBER = 5;
-    private int phyAttack_;
-    /**
-     * <code>int32 phyAttack = 5;</code>
-     * @return The phyAttack.
-     */
-    public int getPhyAttack() {
-      return phyAttack_;
-    }
-
-    public static final int MAGICATTACK_FIELD_NUMBER = 6;
-    private int magicAttack_;
-    /**
-     * <code>int32 magicAttack = 6;</code>
-     * @return The magicAttack.
-     */
-    public int getMagicAttack() {
-      return magicAttack_;
-    }
-
-    public static final int PHYDEFENSE_FIELD_NUMBER = 7;
-    private int phyDefense_;
-    /**
-     * <code>int32 phyDefense = 7;</code>
-     * @return The phyDefense.
-     */
-    public int getPhyDefense() {
-      return phyDefense_;
-    }
-
-    public static final int MAGICDEFENSE_FIELD_NUMBER = 8;
-    private int magicDefense_;
-    /**
-     * <code>int32 magicDefense = 8;</code>
-     * @return The magicDefense.
-     */
-    public int getMagicDefense() {
-      return magicDefense_;
-    }
-
-    public static final int MAPID_FIELD_NUMBER = 9;
-    private int mapId_;
-    /**
-     * <code>int32 mapId = 9;</code>
-     * @return The mapId.
-     */
-    public int getMapId() {
-      return mapId_;
-    }
-
-    public static final int STATUS_FIELD_NUMBER = 10;
-    private int status_;
-    /**
-     * <code>int32 status = 10;</code>
-     * @return The status.
-     */
-    public int getStatus() {
-      return status_;
-    }
-
-    private byte memoizedIsInitialized = -1;
-    @java.lang.Override
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    @java.lang.Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (id_ != 0) {
-        output.writeInt32(1, id_);
-      }
-      if (!getNameBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, name_);
-      }
-      if (ph_ != 0) {
-        output.writeInt32(3, ph_);
-      }
-      if (mp_ != 0) {
-        output.writeInt32(4, mp_);
-      }
-      if (phyAttack_ != 0) {
-        output.writeInt32(5, phyAttack_);
-      }
-      if (magicAttack_ != 0) {
-        output.writeInt32(6, magicAttack_);
-      }
-      if (phyDefense_ != 0) {
-        output.writeInt32(7, phyDefense_);
-      }
-      if (magicDefense_ != 0) {
-        output.writeInt32(8, magicDefense_);
-      }
-      if (mapId_ != 0) {
-        output.writeInt32(9, mapId_);
-      }
-      if (status_ != 0) {
-        output.writeInt32(10, status_);
-      }
-      unknownFields.writeTo(output);
-    }
-
-    @java.lang.Override
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (id_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(1, id_);
-      }
-      if (!getNameBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, name_);
-      }
-      if (ph_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(3, ph_);
-      }
-      if (mp_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(4, mp_);
-      }
-      if (phyAttack_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(5, phyAttack_);
-      }
-      if (magicAttack_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(6, magicAttack_);
-      }
-      if (phyDefense_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(7, phyDefense_);
-      }
-      if (magicDefense_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(8, magicDefense_);
-      }
-      if (mapId_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(9, mapId_);
-      }
-      if (status_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(10, status_);
-      }
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof com.game.protocol.Protocol.Role)) {
-        return super.equals(obj);
-      }
-      com.game.protocol.Protocol.Role other = (com.game.protocol.Protocol.Role) obj;
-
-      if (getId()
-          != other.getId()) return false;
-      if (!getName()
-          .equals(other.getName())) return false;
-      if (getPh()
-          != other.getPh()) return false;
-      if (getMp()
-          != other.getMp()) return false;
-      if (getPhyAttack()
-          != other.getPhyAttack()) return false;
-      if (getMagicAttack()
-          != other.getMagicAttack()) return false;
-      if (getPhyDefense()
-          != other.getPhyDefense()) return false;
-      if (getMagicDefense()
-          != other.getMagicDefense()) return false;
-      if (getMapId()
-          != other.getMapId()) return false;
-      if (getStatus()
-          != other.getStatus()) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
-      return true;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + ID_FIELD_NUMBER;
-      hash = (53 * hash) + getId();
-      hash = (37 * hash) + NAME_FIELD_NUMBER;
-      hash = (53 * hash) + getName().hashCode();
-      hash = (37 * hash) + PH_FIELD_NUMBER;
-      hash = (53 * hash) + getPh();
-      hash = (37 * hash) + MP_FIELD_NUMBER;
-      hash = (53 * hash) + getMp();
-      hash = (37 * hash) + PHYATTACK_FIELD_NUMBER;
-      hash = (53 * hash) + getPhyAttack();
-      hash = (37 * hash) + MAGICATTACK_FIELD_NUMBER;
-      hash = (53 * hash) + getMagicAttack();
-      hash = (37 * hash) + PHYDEFENSE_FIELD_NUMBER;
-      hash = (53 * hash) + getPhyDefense();
-      hash = (37 * hash) + MAGICDEFENSE_FIELD_NUMBER;
-      hash = (53 * hash) + getMagicDefense();
-      hash = (37 * hash) + MAPID_FIELD_NUMBER;
-      hash = (53 * hash) + getMapId();
-      hash = (37 * hash) + STATUS_FIELD_NUMBER;
-      hash = (53 * hash) + getStatus();
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static com.game.protocol.Protocol.Role parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.game.protocol.Protocol.Role parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.game.protocol.Protocol.Role parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.game.protocol.Protocol.Role parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.game.protocol.Protocol.Role parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.game.protocol.Protocol.Role parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.game.protocol.Protocol.Role parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.game.protocol.Protocol.Role parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static com.game.protocol.Protocol.Role parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static com.game.protocol.Protocol.Role parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static com.game.protocol.Protocol.Role parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.game.protocol.Protocol.Role parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(com.game.protocol.Protocol.Role prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    @java.lang.Override
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * Protobuf type {@code Role}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:Role)
-        com.game.protocol.Protocol.RoleOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return com.game.protocol.Protocol.internal_static_Role_descriptor;
-      }
-
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return com.game.protocol.Protocol.internal_static_Role_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                com.game.protocol.Protocol.Role.class, com.game.protocol.Protocol.Role.Builder.class);
-      }
-
-      // Construct using com.game.protocol.Protocol.Role.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
-      }
-      @java.lang.Override
-      public Builder clear() {
-        super.clear();
-        id_ = 0;
-
-        name_ = "";
-
-        ph_ = 0;
-
-        mp_ = 0;
-
-        phyAttack_ = 0;
-
-        magicAttack_ = 0;
-
-        phyDefense_ = 0;
-
-        magicDefense_ = 0;
-
-        mapId_ = 0;
-
-        status_ = 0;
-
-        return this;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return com.game.protocol.Protocol.internal_static_Role_descriptor;
-      }
-
-      @java.lang.Override
-      public com.game.protocol.Protocol.Role getDefaultInstanceForType() {
-        return com.game.protocol.Protocol.Role.getDefaultInstance();
-      }
-
-      @java.lang.Override
-      public com.game.protocol.Protocol.Role build() {
-        com.game.protocol.Protocol.Role result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      @java.lang.Override
-      public com.game.protocol.Protocol.Role buildPartial() {
-        com.game.protocol.Protocol.Role result = new com.game.protocol.Protocol.Role(this);
-        result.id_ = id_;
-        result.name_ = name_;
-        result.ph_ = ph_;
-        result.mp_ = mp_;
-        result.phyAttack_ = phyAttack_;
-        result.magicAttack_ = magicAttack_;
-        result.phyDefense_ = phyDefense_;
-        result.magicDefense_ = magicDefense_;
-        result.mapId_ = mapId_;
-        result.status_ = status_;
-        onBuilt();
-        return result;
-      }
-
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
-      }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
-      @java.lang.Override
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.game.protocol.Protocol.Role) {
-          return mergeFrom((com.game.protocol.Protocol.Role)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(com.game.protocol.Protocol.Role other) {
-        if (other == com.game.protocol.Protocol.Role.getDefaultInstance()) return this;
-        if (other.getId() != 0) {
-          setId(other.getId());
-        }
-        if (!other.getName().isEmpty()) {
-          name_ = other.name_;
-          onChanged();
-        }
-        if (other.getPh() != 0) {
-          setPh(other.getPh());
-        }
-        if (other.getMp() != 0) {
-          setMp(other.getMp());
-        }
-        if (other.getPhyAttack() != 0) {
-          setPhyAttack(other.getPhyAttack());
-        }
-        if (other.getMagicAttack() != 0) {
-          setMagicAttack(other.getMagicAttack());
-        }
-        if (other.getPhyDefense() != 0) {
-          setPhyDefense(other.getPhyDefense());
-        }
-        if (other.getMagicDefense() != 0) {
-          setMagicDefense(other.getMagicDefense());
-        }
-        if (other.getMapId() != 0) {
-          setMapId(other.getMapId());
-        }
-        if (other.getStatus() != 0) {
-          setStatus(other.getStatus());
-        }
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
-        return this;
-      }
-
-      @java.lang.Override
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        com.game.protocol.Protocol.Role parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.game.protocol.Protocol.Role) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-
-      private int id_ ;
-      /**
-       * <code>int32 id = 1;</code>
-       * @return The id.
-       */
-      public int getId() {
-        return id_;
-      }
-      /**
-       * <code>int32 id = 1;</code>
-       * @param value The id to set.
-       * @return This builder for chaining.
-       */
-      public Builder setId(int value) {
-        
-        id_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>int32 id = 1;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearId() {
-        
-        id_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private java.lang.Object name_ = "";
-      /**
-       * <code>string name = 2;</code>
-       * @return The name.
-       */
-      public java.lang.String getName() {
-        java.lang.Object ref = name_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          name_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>string name = 2;</code>
-       * @return The bytes for name.
-       */
-      public com.google.protobuf.ByteString
-          getNameBytes() {
-        java.lang.Object ref = name_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          name_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>string name = 2;</code>
-       * @param value The name to set.
-       * @return This builder for chaining.
-       */
-      public Builder setName(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        name_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string name = 2;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearName() {
-        
-        name_ = getDefaultInstance().getName();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string name = 2;</code>
-       * @param value The bytes for name to set.
-       * @return This builder for chaining.
-       */
-      public Builder setNameBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        name_ = value;
-        onChanged();
-        return this;
-      }
-
-      private int ph_ ;
-      /**
-       * <code>int32 ph = 3;</code>
-       * @return The ph.
-       */
-      public int getPh() {
-        return ph_;
-      }
-      /**
-       * <code>int32 ph = 3;</code>
-       * @param value The ph to set.
-       * @return This builder for chaining.
-       */
-      public Builder setPh(int value) {
-        
-        ph_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>int32 ph = 3;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearPh() {
-        
-        ph_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private int mp_ ;
-      /**
-       * <code>int32 mp = 4;</code>
-       * @return The mp.
-       */
-      public int getMp() {
-        return mp_;
-      }
-      /**
-       * <code>int32 mp = 4;</code>
-       * @param value The mp to set.
-       * @return This builder for chaining.
-       */
-      public Builder setMp(int value) {
-        
-        mp_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>int32 mp = 4;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearMp() {
-        
-        mp_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private int phyAttack_ ;
-      /**
-       * <code>int32 phyAttack = 5;</code>
-       * @return The phyAttack.
-       */
-      public int getPhyAttack() {
-        return phyAttack_;
-      }
-      /**
-       * <code>int32 phyAttack = 5;</code>
-       * @param value The phyAttack to set.
-       * @return This builder for chaining.
-       */
-      public Builder setPhyAttack(int value) {
-        
-        phyAttack_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>int32 phyAttack = 5;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearPhyAttack() {
-        
-        phyAttack_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private int magicAttack_ ;
-      /**
-       * <code>int32 magicAttack = 6;</code>
-       * @return The magicAttack.
-       */
-      public int getMagicAttack() {
-        return magicAttack_;
-      }
-      /**
-       * <code>int32 magicAttack = 6;</code>
-       * @param value The magicAttack to set.
-       * @return This builder for chaining.
-       */
-      public Builder setMagicAttack(int value) {
-        
-        magicAttack_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>int32 magicAttack = 6;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearMagicAttack() {
-        
-        magicAttack_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private int phyDefense_ ;
-      /**
-       * <code>int32 phyDefense = 7;</code>
-       * @return The phyDefense.
-       */
-      public int getPhyDefense() {
-        return phyDefense_;
-      }
-      /**
-       * <code>int32 phyDefense = 7;</code>
-       * @param value The phyDefense to set.
-       * @return This builder for chaining.
-       */
-      public Builder setPhyDefense(int value) {
-        
-        phyDefense_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>int32 phyDefense = 7;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearPhyDefense() {
-        
-        phyDefense_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private int magicDefense_ ;
-      /**
-       * <code>int32 magicDefense = 8;</code>
-       * @return The magicDefense.
-       */
-      public int getMagicDefense() {
-        return magicDefense_;
-      }
-      /**
-       * <code>int32 magicDefense = 8;</code>
-       * @param value The magicDefense to set.
-       * @return This builder for chaining.
-       */
-      public Builder setMagicDefense(int value) {
-        
-        magicDefense_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>int32 magicDefense = 8;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearMagicDefense() {
-        
-        magicDefense_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private int mapId_ ;
-      /**
-       * <code>int32 mapId = 9;</code>
-       * @return The mapId.
-       */
-      public int getMapId() {
-        return mapId_;
-      }
-      /**
-       * <code>int32 mapId = 9;</code>
-       * @param value The mapId to set.
-       * @return This builder for chaining.
-       */
-      public Builder setMapId(int value) {
-        
-        mapId_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>int32 mapId = 9;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearMapId() {
-        
-        mapId_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private int status_ ;
-      /**
-       * <code>int32 status = 10;</code>
-       * @return The status.
-       */
-      public int getStatus() {
-        return status_;
-      }
-      /**
-       * <code>int32 status = 10;</code>
-       * @param value The status to set.
-       * @return This builder for chaining.
-       */
-      public Builder setStatus(int value) {
-        
-        status_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>int32 status = 10;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearStatus() {
-        
-        status_ = 0;
-        onChanged();
-        return this;
-      }
-      @java.lang.Override
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFields(unknownFields);
-      }
-
-      @java.lang.Override
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:Role)
-    }
-
-    // @@protoc_insertion_point(class_scope:Role)
-    private static final com.game.protocol.Protocol.Role DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new com.game.protocol.Protocol.Role();
-    }
-
-    public static com.game.protocol.Protocol.Role getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<Role>
-        PARSER = new com.google.protobuf.AbstractParser<Role>() {
-      @java.lang.Override
-      public Role parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new Role(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<Role> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<Role> getParserForType() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.game.protocol.Protocol.Role getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
-  public interface NpcOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:Npc)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>int32 id = 1;</code>
-     * @return The id.
-     */
-    int getId();
-
-    /**
-     * <code>string name = 2;</code>
-     * @return The name.
-     */
-    java.lang.String getName();
-    /**
-     * <code>string name = 2;</code>
-     * @return The bytes for name.
-     */
-    com.google.protobuf.ByteString
-        getNameBytes();
-
-    /**
-     * <code>int32 ph = 3;</code>
-     * @return The ph.
-     */
-    int getPh();
-
-    /**
-     * <code>int32 mp = 4;</code>
-     * @return The mp.
-     */
-    int getMp();
-
-    /**
-     * <code>int32 phyAttack = 5;</code>
-     * @return The phyAttack.
-     */
-    int getPhyAttack();
-
-    /**
-     * <code>int32 magicAttack = 6;</code>
-     * @return The magicAttack.
-     */
-    int getMagicAttack();
-
-    /**
-     * <code>int32 phyDefense = 7;</code>
-     * @return The phyDefense.
-     */
-    int getPhyDefense();
-
-    /**
-     * <code>int32 magicDefense = 8;</code>
-     * @return The magicDefense.
-     */
-    int getMagicDefense();
-
-    /**
-     * <code>int32 mapId = 9;</code>
-     * @return The mapId.
-     */
-    int getMapId();
-
-    /**
-     * <code>int32 status = 10;</code>
-     * @return The status.
-     */
-    int getStatus();
-  }
-  /**
-   * Protobuf type {@code Npc}
-   */
-  public  static final class Npc extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:Npc)
-      NpcOrBuilder {
-  private static final long serialVersionUID = 0L;
-    // Use Npc.newBuilder() to construct.
-    private Npc(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private Npc() {
-      name_ = "";
-    }
-
-    @java.lang.Override
-    @SuppressWarnings({"unused"})
-    protected java.lang.Object newInstance(
-        UnusedPrivateParameter unused) {
-      return new Npc();
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private Npc(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 8: {
-
-              id_ = input.readInt32();
-              break;
-            }
-            case 18: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              name_ = s;
-              break;
-            }
-            case 24: {
-
-              ph_ = input.readInt32();
-              break;
-            }
-            case 32: {
-
-              mp_ = input.readInt32();
-              break;
-            }
-            case 40: {
-
-              phyAttack_ = input.readInt32();
-              break;
-            }
-            case 48: {
-
-              magicAttack_ = input.readInt32();
-              break;
-            }
-            case 56: {
-
-              phyDefense_ = input.readInt32();
-              break;
-            }
-            case 64: {
-
-              magicDefense_ = input.readInt32();
-              break;
-            }
-            case 72: {
-
-              mapId_ = input.readInt32();
-              break;
-            }
-            case 80: {
-
-              status_ = input.readInt32();
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return com.game.protocol.Protocol.internal_static_Npc_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return com.game.protocol.Protocol.internal_static_Npc_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              com.game.protocol.Protocol.Npc.class, com.game.protocol.Protocol.Npc.Builder.class);
-    }
-
-    public static final int ID_FIELD_NUMBER = 1;
-    private int id_;
-    /**
-     * <code>int32 id = 1;</code>
-     * @return The id.
-     */
-    public int getId() {
-      return id_;
-    }
-
-    public static final int NAME_FIELD_NUMBER = 2;
-    private volatile java.lang.Object name_;
-    /**
-     * <code>string name = 2;</code>
-     * @return The name.
-     */
-    public java.lang.String getName() {
-      java.lang.Object ref = name_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        name_ = s;
-        return s;
-      }
-    }
-    /**
-     * <code>string name = 2;</code>
-     * @return The bytes for name.
-     */
-    public com.google.protobuf.ByteString
-        getNameBytes() {
-      java.lang.Object ref = name_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        name_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    public static final int PH_FIELD_NUMBER = 3;
-    private int ph_;
-    /**
-     * <code>int32 ph = 3;</code>
-     * @return The ph.
-     */
-    public int getPh() {
-      return ph_;
-    }
-
-    public static final int MP_FIELD_NUMBER = 4;
-    private int mp_;
-    /**
-     * <code>int32 mp = 4;</code>
-     * @return The mp.
-     */
-    public int getMp() {
-      return mp_;
-    }
-
-    public static final int PHYATTACK_FIELD_NUMBER = 5;
-    private int phyAttack_;
-    /**
-     * <code>int32 phyAttack = 5;</code>
-     * @return The phyAttack.
-     */
-    public int getPhyAttack() {
-      return phyAttack_;
-    }
-
-    public static final int MAGICATTACK_FIELD_NUMBER = 6;
-    private int magicAttack_;
-    /**
-     * <code>int32 magicAttack = 6;</code>
-     * @return The magicAttack.
-     */
-    public int getMagicAttack() {
-      return magicAttack_;
-    }
-
-    public static final int PHYDEFENSE_FIELD_NUMBER = 7;
-    private int phyDefense_;
-    /**
-     * <code>int32 phyDefense = 7;</code>
-     * @return The phyDefense.
-     */
-    public int getPhyDefense() {
-      return phyDefense_;
-    }
-
-    public static final int MAGICDEFENSE_FIELD_NUMBER = 8;
-    private int magicDefense_;
-    /**
-     * <code>int32 magicDefense = 8;</code>
-     * @return The magicDefense.
-     */
-    public int getMagicDefense() {
-      return magicDefense_;
-    }
-
-    public static final int MAPID_FIELD_NUMBER = 9;
-    private int mapId_;
-    /**
-     * <code>int32 mapId = 9;</code>
-     * @return The mapId.
-     */
-    public int getMapId() {
-      return mapId_;
-    }
-
-    public static final int STATUS_FIELD_NUMBER = 10;
-    private int status_;
-    /**
-     * <code>int32 status = 10;</code>
-     * @return The status.
-     */
-    public int getStatus() {
-      return status_;
-    }
-
-    private byte memoizedIsInitialized = -1;
-    @java.lang.Override
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    @java.lang.Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (id_ != 0) {
-        output.writeInt32(1, id_);
-      }
-      if (!getNameBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, name_);
-      }
-      if (ph_ != 0) {
-        output.writeInt32(3, ph_);
-      }
-      if (mp_ != 0) {
-        output.writeInt32(4, mp_);
-      }
-      if (phyAttack_ != 0) {
-        output.writeInt32(5, phyAttack_);
-      }
-      if (magicAttack_ != 0) {
-        output.writeInt32(6, magicAttack_);
-      }
-      if (phyDefense_ != 0) {
-        output.writeInt32(7, phyDefense_);
-      }
-      if (magicDefense_ != 0) {
-        output.writeInt32(8, magicDefense_);
-      }
-      if (mapId_ != 0) {
-        output.writeInt32(9, mapId_);
-      }
-      if (status_ != 0) {
-        output.writeInt32(10, status_);
-      }
-      unknownFields.writeTo(output);
-    }
-
-    @java.lang.Override
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (id_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(1, id_);
-      }
-      if (!getNameBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, name_);
-      }
-      if (ph_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(3, ph_);
-      }
-      if (mp_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(4, mp_);
-      }
-      if (phyAttack_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(5, phyAttack_);
-      }
-      if (magicAttack_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(6, magicAttack_);
-      }
-      if (phyDefense_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(7, phyDefense_);
-      }
-      if (magicDefense_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(8, magicDefense_);
-      }
-      if (mapId_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(9, mapId_);
-      }
-      if (status_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(10, status_);
-      }
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof com.game.protocol.Protocol.Npc)) {
-        return super.equals(obj);
-      }
-      com.game.protocol.Protocol.Npc other = (com.game.protocol.Protocol.Npc) obj;
-
-      if (getId()
-          != other.getId()) return false;
-      if (!getName()
-          .equals(other.getName())) return false;
-      if (getPh()
-          != other.getPh()) return false;
-      if (getMp()
-          != other.getMp()) return false;
-      if (getPhyAttack()
-          != other.getPhyAttack()) return false;
-      if (getMagicAttack()
-          != other.getMagicAttack()) return false;
-      if (getPhyDefense()
-          != other.getPhyDefense()) return false;
-      if (getMagicDefense()
-          != other.getMagicDefense()) return false;
-      if (getMapId()
-          != other.getMapId()) return false;
-      if (getStatus()
-          != other.getStatus()) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
-      return true;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + ID_FIELD_NUMBER;
-      hash = (53 * hash) + getId();
-      hash = (37 * hash) + NAME_FIELD_NUMBER;
-      hash = (53 * hash) + getName().hashCode();
-      hash = (37 * hash) + PH_FIELD_NUMBER;
-      hash = (53 * hash) + getPh();
-      hash = (37 * hash) + MP_FIELD_NUMBER;
-      hash = (53 * hash) + getMp();
-      hash = (37 * hash) + PHYATTACK_FIELD_NUMBER;
-      hash = (53 * hash) + getPhyAttack();
-      hash = (37 * hash) + MAGICATTACK_FIELD_NUMBER;
-      hash = (53 * hash) + getMagicAttack();
-      hash = (37 * hash) + PHYDEFENSE_FIELD_NUMBER;
-      hash = (53 * hash) + getPhyDefense();
-      hash = (37 * hash) + MAGICDEFENSE_FIELD_NUMBER;
-      hash = (53 * hash) + getMagicDefense();
-      hash = (37 * hash) + MAPID_FIELD_NUMBER;
-      hash = (53 * hash) + getMapId();
-      hash = (37 * hash) + STATUS_FIELD_NUMBER;
-      hash = (53 * hash) + getStatus();
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static com.game.protocol.Protocol.Npc parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.game.protocol.Protocol.Npc parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.game.protocol.Protocol.Npc parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.game.protocol.Protocol.Npc parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.game.protocol.Protocol.Npc parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.game.protocol.Protocol.Npc parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.game.protocol.Protocol.Npc parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.game.protocol.Protocol.Npc parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static com.game.protocol.Protocol.Npc parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static com.game.protocol.Protocol.Npc parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static com.game.protocol.Protocol.Npc parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.game.protocol.Protocol.Npc parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(com.game.protocol.Protocol.Npc prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    @java.lang.Override
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * Protobuf type {@code Npc}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:Npc)
-        com.game.protocol.Protocol.NpcOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return com.game.protocol.Protocol.internal_static_Npc_descriptor;
-      }
-
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return com.game.protocol.Protocol.internal_static_Npc_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                com.game.protocol.Protocol.Npc.class, com.game.protocol.Protocol.Npc.Builder.class);
-      }
-
-      // Construct using com.game.protocol.Protocol.Npc.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
-      }
-      @java.lang.Override
-      public Builder clear() {
-        super.clear();
-        id_ = 0;
-
-        name_ = "";
-
-        ph_ = 0;
-
-        mp_ = 0;
-
-        phyAttack_ = 0;
-
-        magicAttack_ = 0;
-
-        phyDefense_ = 0;
-
-        magicDefense_ = 0;
-
-        mapId_ = 0;
-
-        status_ = 0;
-
-        return this;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return com.game.protocol.Protocol.internal_static_Npc_descriptor;
-      }
-
-      @java.lang.Override
-      public com.game.protocol.Protocol.Npc getDefaultInstanceForType() {
-        return com.game.protocol.Protocol.Npc.getDefaultInstance();
-      }
-
-      @java.lang.Override
-      public com.game.protocol.Protocol.Npc build() {
-        com.game.protocol.Protocol.Npc result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      @java.lang.Override
-      public com.game.protocol.Protocol.Npc buildPartial() {
-        com.game.protocol.Protocol.Npc result = new com.game.protocol.Protocol.Npc(this);
-        result.id_ = id_;
-        result.name_ = name_;
-        result.ph_ = ph_;
-        result.mp_ = mp_;
-        result.phyAttack_ = phyAttack_;
-        result.magicAttack_ = magicAttack_;
-        result.phyDefense_ = phyDefense_;
-        result.magicDefense_ = magicDefense_;
-        result.mapId_ = mapId_;
-        result.status_ = status_;
-        onBuilt();
-        return result;
-      }
-
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
-      }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
-      @java.lang.Override
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.game.protocol.Protocol.Npc) {
-          return mergeFrom((com.game.protocol.Protocol.Npc)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(com.game.protocol.Protocol.Npc other) {
-        if (other == com.game.protocol.Protocol.Npc.getDefaultInstance()) return this;
-        if (other.getId() != 0) {
-          setId(other.getId());
-        }
-        if (!other.getName().isEmpty()) {
-          name_ = other.name_;
-          onChanged();
-        }
-        if (other.getPh() != 0) {
-          setPh(other.getPh());
-        }
-        if (other.getMp() != 0) {
-          setMp(other.getMp());
-        }
-        if (other.getPhyAttack() != 0) {
-          setPhyAttack(other.getPhyAttack());
-        }
-        if (other.getMagicAttack() != 0) {
-          setMagicAttack(other.getMagicAttack());
-        }
-        if (other.getPhyDefense() != 0) {
-          setPhyDefense(other.getPhyDefense());
-        }
-        if (other.getMagicDefense() != 0) {
-          setMagicDefense(other.getMagicDefense());
-        }
-        if (other.getMapId() != 0) {
-          setMapId(other.getMapId());
-        }
-        if (other.getStatus() != 0) {
-          setStatus(other.getStatus());
-        }
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
-        return this;
-      }
-
-      @java.lang.Override
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        com.game.protocol.Protocol.Npc parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.game.protocol.Protocol.Npc) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-
-      private int id_ ;
-      /**
-       * <code>int32 id = 1;</code>
-       * @return The id.
-       */
-      public int getId() {
-        return id_;
-      }
-      /**
-       * <code>int32 id = 1;</code>
-       * @param value The id to set.
-       * @return This builder for chaining.
-       */
-      public Builder setId(int value) {
-        
-        id_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>int32 id = 1;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearId() {
-        
-        id_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private java.lang.Object name_ = "";
-      /**
-       * <code>string name = 2;</code>
-       * @return The name.
-       */
-      public java.lang.String getName() {
-        java.lang.Object ref = name_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          name_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>string name = 2;</code>
-       * @return The bytes for name.
-       */
-      public com.google.protobuf.ByteString
-          getNameBytes() {
-        java.lang.Object ref = name_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          name_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>string name = 2;</code>
-       * @param value The name to set.
-       * @return This builder for chaining.
-       */
-      public Builder setName(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        name_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string name = 2;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearName() {
-        
-        name_ = getDefaultInstance().getName();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string name = 2;</code>
-       * @param value The bytes for name to set.
-       * @return This builder for chaining.
-       */
-      public Builder setNameBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        name_ = value;
-        onChanged();
-        return this;
-      }
-
-      private int ph_ ;
-      /**
-       * <code>int32 ph = 3;</code>
-       * @return The ph.
-       */
-      public int getPh() {
-        return ph_;
-      }
-      /**
-       * <code>int32 ph = 3;</code>
-       * @param value The ph to set.
-       * @return This builder for chaining.
-       */
-      public Builder setPh(int value) {
-        
-        ph_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>int32 ph = 3;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearPh() {
-        
-        ph_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private int mp_ ;
-      /**
-       * <code>int32 mp = 4;</code>
-       * @return The mp.
-       */
-      public int getMp() {
-        return mp_;
-      }
-      /**
-       * <code>int32 mp = 4;</code>
-       * @param value The mp to set.
-       * @return This builder for chaining.
-       */
-      public Builder setMp(int value) {
-        
-        mp_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>int32 mp = 4;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearMp() {
-        
-        mp_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private int phyAttack_ ;
-      /**
-       * <code>int32 phyAttack = 5;</code>
-       * @return The phyAttack.
-       */
-      public int getPhyAttack() {
-        return phyAttack_;
-      }
-      /**
-       * <code>int32 phyAttack = 5;</code>
-       * @param value The phyAttack to set.
-       * @return This builder for chaining.
-       */
-      public Builder setPhyAttack(int value) {
-        
-        phyAttack_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>int32 phyAttack = 5;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearPhyAttack() {
-        
-        phyAttack_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private int magicAttack_ ;
-      /**
-       * <code>int32 magicAttack = 6;</code>
-       * @return The magicAttack.
-       */
-      public int getMagicAttack() {
-        return magicAttack_;
-      }
-      /**
-       * <code>int32 magicAttack = 6;</code>
-       * @param value The magicAttack to set.
-       * @return This builder for chaining.
-       */
-      public Builder setMagicAttack(int value) {
-        
-        magicAttack_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>int32 magicAttack = 6;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearMagicAttack() {
-        
-        magicAttack_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private int phyDefense_ ;
-      /**
-       * <code>int32 phyDefense = 7;</code>
-       * @return The phyDefense.
-       */
-      public int getPhyDefense() {
-        return phyDefense_;
-      }
-      /**
-       * <code>int32 phyDefense = 7;</code>
-       * @param value The phyDefense to set.
-       * @return This builder for chaining.
-       */
-      public Builder setPhyDefense(int value) {
-        
-        phyDefense_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>int32 phyDefense = 7;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearPhyDefense() {
-        
-        phyDefense_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private int magicDefense_ ;
-      /**
-       * <code>int32 magicDefense = 8;</code>
-       * @return The magicDefense.
-       */
-      public int getMagicDefense() {
-        return magicDefense_;
-      }
-      /**
-       * <code>int32 magicDefense = 8;</code>
-       * @param value The magicDefense to set.
-       * @return This builder for chaining.
-       */
-      public Builder setMagicDefense(int value) {
-        
-        magicDefense_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>int32 magicDefense = 8;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearMagicDefense() {
-        
-        magicDefense_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private int mapId_ ;
-      /**
-       * <code>int32 mapId = 9;</code>
-       * @return The mapId.
-       */
-      public int getMapId() {
-        return mapId_;
-      }
-      /**
-       * <code>int32 mapId = 9;</code>
-       * @param value The mapId to set.
-       * @return This builder for chaining.
-       */
-      public Builder setMapId(int value) {
-        
-        mapId_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>int32 mapId = 9;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearMapId() {
-        
-        mapId_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private int status_ ;
-      /**
-       * <code>int32 status = 10;</code>
-       * @return The status.
-       */
-      public int getStatus() {
-        return status_;
-      }
-      /**
-       * <code>int32 status = 10;</code>
-       * @param value The status to set.
-       * @return This builder for chaining.
-       */
-      public Builder setStatus(int value) {
-        
-        status_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>int32 status = 10;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearStatus() {
-        
-        status_ = 0;
-        onChanged();
-        return this;
-      }
-      @java.lang.Override
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFields(unknownFields);
-      }
-
-      @java.lang.Override
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:Npc)
-    }
-
-    // @@protoc_insertion_point(class_scope:Npc)
-    private static final com.game.protocol.Protocol.Npc DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new com.game.protocol.Protocol.Npc();
-    }
-
-    public static com.game.protocol.Protocol.Npc getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<Npc>
-        PARSER = new com.google.protobuf.AbstractParser<Npc>() {
-      @java.lang.Override
-      public Npc parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new Npc(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<Npc> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<Npc> getParserForType() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.game.protocol.Protocol.Npc getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
-  public interface MonsterOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:Monster)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>int32 id = 1;</code>
-     * @return The id.
-     */
-    int getId();
-
-    /**
-     * <code>string name = 2;</code>
-     * @return The name.
-     */
-    java.lang.String getName();
-    /**
-     * <code>string name = 2;</code>
-     * @return The bytes for name.
-     */
-    com.google.protobuf.ByteString
-        getNameBytes();
-
-    /**
-     * <code>int32 ph = 3;</code>
-     * @return The ph.
-     */
-    int getPh();
-
-    /**
-     * <code>int32 mp = 4;</code>
-     * @return The mp.
-     */
-    int getMp();
-
-    /**
-     * <code>int32 phyAttack = 5;</code>
-     * @return The phyAttack.
-     */
-    int getPhyAttack();
-
-    /**
-     * <code>int32 magicAttack = 6;</code>
-     * @return The magicAttack.
-     */
-    int getMagicAttack();
-
-    /**
-     * <code>int32 phyDefense = 7;</code>
-     * @return The phyDefense.
-     */
-    int getPhyDefense();
-
-    /**
-     * <code>int32 magicDefense = 8;</code>
-     * @return The magicDefense.
-     */
-    int getMagicDefense();
-
-    /**
-     * <code>int32 mapId = 9;</code>
-     * @return The mapId.
-     */
-    int getMapId();
-
-    /**
-     * <code>int32 status = 10;</code>
-     * @return The status.
-     */
-    int getStatus();
-  }
-  /**
-   * Protobuf type {@code Monster}
-   */
-  public  static final class Monster extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:Monster)
-      MonsterOrBuilder {
-  private static final long serialVersionUID = 0L;
-    // Use Monster.newBuilder() to construct.
-    private Monster(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private Monster() {
-      name_ = "";
-    }
-
-    @java.lang.Override
-    @SuppressWarnings({"unused"})
-    protected java.lang.Object newInstance(
-        UnusedPrivateParameter unused) {
-      return new Monster();
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private Monster(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 8: {
-
-              id_ = input.readInt32();
-              break;
-            }
-            case 18: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              name_ = s;
-              break;
-            }
-            case 24: {
-
-              ph_ = input.readInt32();
-              break;
-            }
-            case 32: {
-
-              mp_ = input.readInt32();
-              break;
-            }
-            case 40: {
-
-              phyAttack_ = input.readInt32();
-              break;
-            }
-            case 48: {
-
-              magicAttack_ = input.readInt32();
-              break;
-            }
-            case 56: {
-
-              phyDefense_ = input.readInt32();
-              break;
-            }
-            case 64: {
-
-              magicDefense_ = input.readInt32();
-              break;
-            }
-            case 72: {
-
-              mapId_ = input.readInt32();
-              break;
-            }
-            case 80: {
-
-              status_ = input.readInt32();
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return com.game.protocol.Protocol.internal_static_Monster_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return com.game.protocol.Protocol.internal_static_Monster_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              com.game.protocol.Protocol.Monster.class, com.game.protocol.Protocol.Monster.Builder.class);
-    }
-
-    public static final int ID_FIELD_NUMBER = 1;
-    private int id_;
-    /**
-     * <code>int32 id = 1;</code>
-     * @return The id.
-     */
-    public int getId() {
-      return id_;
-    }
-
-    public static final int NAME_FIELD_NUMBER = 2;
-    private volatile java.lang.Object name_;
-    /**
-     * <code>string name = 2;</code>
-     * @return The name.
-     */
-    public java.lang.String getName() {
-      java.lang.Object ref = name_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        name_ = s;
-        return s;
-      }
-    }
-    /**
-     * <code>string name = 2;</code>
-     * @return The bytes for name.
-     */
-    public com.google.protobuf.ByteString
-        getNameBytes() {
-      java.lang.Object ref = name_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        name_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    public static final int PH_FIELD_NUMBER = 3;
-    private int ph_;
-    /**
-     * <code>int32 ph = 3;</code>
-     * @return The ph.
-     */
-    public int getPh() {
-      return ph_;
-    }
-
-    public static final int MP_FIELD_NUMBER = 4;
-    private int mp_;
-    /**
-     * <code>int32 mp = 4;</code>
-     * @return The mp.
-     */
-    public int getMp() {
-      return mp_;
-    }
-
-    public static final int PHYATTACK_FIELD_NUMBER = 5;
-    private int phyAttack_;
-    /**
-     * <code>int32 phyAttack = 5;</code>
-     * @return The phyAttack.
-     */
-    public int getPhyAttack() {
-      return phyAttack_;
-    }
-
-    public static final int MAGICATTACK_FIELD_NUMBER = 6;
-    private int magicAttack_;
-    /**
-     * <code>int32 magicAttack = 6;</code>
-     * @return The magicAttack.
-     */
-    public int getMagicAttack() {
-      return magicAttack_;
-    }
-
-    public static final int PHYDEFENSE_FIELD_NUMBER = 7;
-    private int phyDefense_;
-    /**
-     * <code>int32 phyDefense = 7;</code>
-     * @return The phyDefense.
-     */
-    public int getPhyDefense() {
-      return phyDefense_;
-    }
-
-    public static final int MAGICDEFENSE_FIELD_NUMBER = 8;
-    private int magicDefense_;
-    /**
-     * <code>int32 magicDefense = 8;</code>
-     * @return The magicDefense.
-     */
-    public int getMagicDefense() {
-      return magicDefense_;
-    }
-
-    public static final int MAPID_FIELD_NUMBER = 9;
-    private int mapId_;
-    /**
-     * <code>int32 mapId = 9;</code>
-     * @return The mapId.
-     */
-    public int getMapId() {
-      return mapId_;
-    }
-
-    public static final int STATUS_FIELD_NUMBER = 10;
-    private int status_;
-    /**
-     * <code>int32 status = 10;</code>
-     * @return The status.
-     */
-    public int getStatus() {
-      return status_;
-    }
-
-    private byte memoizedIsInitialized = -1;
-    @java.lang.Override
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    @java.lang.Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (id_ != 0) {
-        output.writeInt32(1, id_);
-      }
-      if (!getNameBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, name_);
-      }
-      if (ph_ != 0) {
-        output.writeInt32(3, ph_);
-      }
-      if (mp_ != 0) {
-        output.writeInt32(4, mp_);
-      }
-      if (phyAttack_ != 0) {
-        output.writeInt32(5, phyAttack_);
-      }
-      if (magicAttack_ != 0) {
-        output.writeInt32(6, magicAttack_);
-      }
-      if (phyDefense_ != 0) {
-        output.writeInt32(7, phyDefense_);
-      }
-      if (magicDefense_ != 0) {
-        output.writeInt32(8, magicDefense_);
-      }
-      if (mapId_ != 0) {
-        output.writeInt32(9, mapId_);
-      }
-      if (status_ != 0) {
-        output.writeInt32(10, status_);
-      }
-      unknownFields.writeTo(output);
-    }
-
-    @java.lang.Override
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (id_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(1, id_);
-      }
-      if (!getNameBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, name_);
-      }
-      if (ph_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(3, ph_);
-      }
-      if (mp_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(4, mp_);
-      }
-      if (phyAttack_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(5, phyAttack_);
-      }
-      if (magicAttack_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(6, magicAttack_);
-      }
-      if (phyDefense_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(7, phyDefense_);
-      }
-      if (magicDefense_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(8, magicDefense_);
-      }
-      if (mapId_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(9, mapId_);
-      }
-      if (status_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(10, status_);
-      }
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof com.game.protocol.Protocol.Monster)) {
-        return super.equals(obj);
-      }
-      com.game.protocol.Protocol.Monster other = (com.game.protocol.Protocol.Monster) obj;
-
-      if (getId()
-          != other.getId()) return false;
-      if (!getName()
-          .equals(other.getName())) return false;
-      if (getPh()
-          != other.getPh()) return false;
-      if (getMp()
-          != other.getMp()) return false;
-      if (getPhyAttack()
-          != other.getPhyAttack()) return false;
-      if (getMagicAttack()
-          != other.getMagicAttack()) return false;
-      if (getPhyDefense()
-          != other.getPhyDefense()) return false;
-      if (getMagicDefense()
-          != other.getMagicDefense()) return false;
-      if (getMapId()
-          != other.getMapId()) return false;
-      if (getStatus()
-          != other.getStatus()) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
-      return true;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + ID_FIELD_NUMBER;
-      hash = (53 * hash) + getId();
-      hash = (37 * hash) + NAME_FIELD_NUMBER;
-      hash = (53 * hash) + getName().hashCode();
-      hash = (37 * hash) + PH_FIELD_NUMBER;
-      hash = (53 * hash) + getPh();
-      hash = (37 * hash) + MP_FIELD_NUMBER;
-      hash = (53 * hash) + getMp();
-      hash = (37 * hash) + PHYATTACK_FIELD_NUMBER;
-      hash = (53 * hash) + getPhyAttack();
-      hash = (37 * hash) + MAGICATTACK_FIELD_NUMBER;
-      hash = (53 * hash) + getMagicAttack();
-      hash = (37 * hash) + PHYDEFENSE_FIELD_NUMBER;
-      hash = (53 * hash) + getPhyDefense();
-      hash = (37 * hash) + MAGICDEFENSE_FIELD_NUMBER;
-      hash = (53 * hash) + getMagicDefense();
-      hash = (37 * hash) + MAPID_FIELD_NUMBER;
-      hash = (53 * hash) + getMapId();
-      hash = (37 * hash) + STATUS_FIELD_NUMBER;
-      hash = (53 * hash) + getStatus();
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static com.game.protocol.Protocol.Monster parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.game.protocol.Protocol.Monster parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.game.protocol.Protocol.Monster parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.game.protocol.Protocol.Monster parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.game.protocol.Protocol.Monster parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.game.protocol.Protocol.Monster parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.game.protocol.Protocol.Monster parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.game.protocol.Protocol.Monster parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static com.game.protocol.Protocol.Monster parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static com.game.protocol.Protocol.Monster parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static com.game.protocol.Protocol.Monster parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.game.protocol.Protocol.Monster parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(com.game.protocol.Protocol.Monster prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    @java.lang.Override
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * Protobuf type {@code Monster}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:Monster)
-        com.game.protocol.Protocol.MonsterOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return com.game.protocol.Protocol.internal_static_Monster_descriptor;
-      }
-
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return com.game.protocol.Protocol.internal_static_Monster_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                com.game.protocol.Protocol.Monster.class, com.game.protocol.Protocol.Monster.Builder.class);
-      }
-
-      // Construct using com.game.protocol.Protocol.Monster.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
-      }
-      @java.lang.Override
-      public Builder clear() {
-        super.clear();
-        id_ = 0;
-
-        name_ = "";
-
-        ph_ = 0;
-
-        mp_ = 0;
-
-        phyAttack_ = 0;
-
-        magicAttack_ = 0;
-
-        phyDefense_ = 0;
-
-        magicDefense_ = 0;
-
-        mapId_ = 0;
-
-        status_ = 0;
-
-        return this;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return com.game.protocol.Protocol.internal_static_Monster_descriptor;
-      }
-
-      @java.lang.Override
-      public com.game.protocol.Protocol.Monster getDefaultInstanceForType() {
-        return com.game.protocol.Protocol.Monster.getDefaultInstance();
-      }
-
-      @java.lang.Override
-      public com.game.protocol.Protocol.Monster build() {
-        com.game.protocol.Protocol.Monster result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      @java.lang.Override
-      public com.game.protocol.Protocol.Monster buildPartial() {
-        com.game.protocol.Protocol.Monster result = new com.game.protocol.Protocol.Monster(this);
-        result.id_ = id_;
-        result.name_ = name_;
-        result.ph_ = ph_;
-        result.mp_ = mp_;
-        result.phyAttack_ = phyAttack_;
-        result.magicAttack_ = magicAttack_;
-        result.phyDefense_ = phyDefense_;
-        result.magicDefense_ = magicDefense_;
-        result.mapId_ = mapId_;
-        result.status_ = status_;
-        onBuilt();
-        return result;
-      }
-
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
-      }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
-      @java.lang.Override
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.game.protocol.Protocol.Monster) {
-          return mergeFrom((com.game.protocol.Protocol.Monster)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(com.game.protocol.Protocol.Monster other) {
-        if (other == com.game.protocol.Protocol.Monster.getDefaultInstance()) return this;
-        if (other.getId() != 0) {
-          setId(other.getId());
-        }
-        if (!other.getName().isEmpty()) {
-          name_ = other.name_;
-          onChanged();
-        }
-        if (other.getPh() != 0) {
-          setPh(other.getPh());
-        }
-        if (other.getMp() != 0) {
-          setMp(other.getMp());
-        }
-        if (other.getPhyAttack() != 0) {
-          setPhyAttack(other.getPhyAttack());
-        }
-        if (other.getMagicAttack() != 0) {
-          setMagicAttack(other.getMagicAttack());
-        }
-        if (other.getPhyDefense() != 0) {
-          setPhyDefense(other.getPhyDefense());
-        }
-        if (other.getMagicDefense() != 0) {
-          setMagicDefense(other.getMagicDefense());
-        }
-        if (other.getMapId() != 0) {
-          setMapId(other.getMapId());
-        }
-        if (other.getStatus() != 0) {
-          setStatus(other.getStatus());
-        }
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
-        return this;
-      }
-
-      @java.lang.Override
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        com.game.protocol.Protocol.Monster parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.game.protocol.Protocol.Monster) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-
-      private int id_ ;
-      /**
-       * <code>int32 id = 1;</code>
-       * @return The id.
-       */
-      public int getId() {
-        return id_;
-      }
-      /**
-       * <code>int32 id = 1;</code>
-       * @param value The id to set.
-       * @return This builder for chaining.
-       */
-      public Builder setId(int value) {
-        
-        id_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>int32 id = 1;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearId() {
-        
-        id_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private java.lang.Object name_ = "";
-      /**
-       * <code>string name = 2;</code>
-       * @return The name.
-       */
-      public java.lang.String getName() {
-        java.lang.Object ref = name_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          name_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>string name = 2;</code>
-       * @return The bytes for name.
-       */
-      public com.google.protobuf.ByteString
-          getNameBytes() {
-        java.lang.Object ref = name_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          name_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>string name = 2;</code>
-       * @param value The name to set.
-       * @return This builder for chaining.
-       */
-      public Builder setName(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        name_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string name = 2;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearName() {
-        
-        name_ = getDefaultInstance().getName();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string name = 2;</code>
-       * @param value The bytes for name to set.
-       * @return This builder for chaining.
-       */
-      public Builder setNameBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        name_ = value;
-        onChanged();
-        return this;
-      }
-
-      private int ph_ ;
-      /**
-       * <code>int32 ph = 3;</code>
-       * @return The ph.
-       */
-      public int getPh() {
-        return ph_;
-      }
-      /**
-       * <code>int32 ph = 3;</code>
-       * @param value The ph to set.
-       * @return This builder for chaining.
-       */
-      public Builder setPh(int value) {
-        
-        ph_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>int32 ph = 3;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearPh() {
-        
-        ph_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private int mp_ ;
-      /**
-       * <code>int32 mp = 4;</code>
-       * @return The mp.
-       */
-      public int getMp() {
-        return mp_;
-      }
-      /**
-       * <code>int32 mp = 4;</code>
-       * @param value The mp to set.
-       * @return This builder for chaining.
-       */
-      public Builder setMp(int value) {
-        
-        mp_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>int32 mp = 4;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearMp() {
-        
-        mp_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private int phyAttack_ ;
-      /**
-       * <code>int32 phyAttack = 5;</code>
-       * @return The phyAttack.
-       */
-      public int getPhyAttack() {
-        return phyAttack_;
-      }
-      /**
-       * <code>int32 phyAttack = 5;</code>
-       * @param value The phyAttack to set.
-       * @return This builder for chaining.
-       */
-      public Builder setPhyAttack(int value) {
-        
-        phyAttack_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>int32 phyAttack = 5;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearPhyAttack() {
-        
-        phyAttack_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private int magicAttack_ ;
-      /**
-       * <code>int32 magicAttack = 6;</code>
-       * @return The magicAttack.
-       */
-      public int getMagicAttack() {
-        return magicAttack_;
-      }
-      /**
-       * <code>int32 magicAttack = 6;</code>
-       * @param value The magicAttack to set.
-       * @return This builder for chaining.
-       */
-      public Builder setMagicAttack(int value) {
-        
-        magicAttack_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>int32 magicAttack = 6;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearMagicAttack() {
-        
-        magicAttack_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private int phyDefense_ ;
-      /**
-       * <code>int32 phyDefense = 7;</code>
-       * @return The phyDefense.
-       */
-      public int getPhyDefense() {
-        return phyDefense_;
-      }
-      /**
-       * <code>int32 phyDefense = 7;</code>
-       * @param value The phyDefense to set.
-       * @return This builder for chaining.
-       */
-      public Builder setPhyDefense(int value) {
-        
-        phyDefense_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>int32 phyDefense = 7;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearPhyDefense() {
-        
-        phyDefense_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private int magicDefense_ ;
-      /**
-       * <code>int32 magicDefense = 8;</code>
-       * @return The magicDefense.
-       */
-      public int getMagicDefense() {
-        return magicDefense_;
-      }
-      /**
-       * <code>int32 magicDefense = 8;</code>
-       * @param value The magicDefense to set.
-       * @return This builder for chaining.
-       */
-      public Builder setMagicDefense(int value) {
-        
-        magicDefense_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>int32 magicDefense = 8;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearMagicDefense() {
-        
-        magicDefense_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private int mapId_ ;
-      /**
-       * <code>int32 mapId = 9;</code>
-       * @return The mapId.
-       */
-      public int getMapId() {
-        return mapId_;
-      }
-      /**
-       * <code>int32 mapId = 9;</code>
-       * @param value The mapId to set.
-       * @return This builder for chaining.
-       */
-      public Builder setMapId(int value) {
-        
-        mapId_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>int32 mapId = 9;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearMapId() {
-        
-        mapId_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private int status_ ;
-      /**
-       * <code>int32 status = 10;</code>
-       * @return The status.
-       */
-      public int getStatus() {
-        return status_;
-      }
-      /**
-       * <code>int32 status = 10;</code>
-       * @param value The status to set.
-       * @return This builder for chaining.
-       */
-      public Builder setStatus(int value) {
-        
-        status_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>int32 status = 10;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearStatus() {
-        
-        status_ = 0;
-        onChanged();
-        return this;
-      }
-      @java.lang.Override
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFields(unknownFields);
-      }
-
-      @java.lang.Override
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:Monster)
-    }
-
-    // @@protoc_insertion_point(class_scope:Monster)
-    private static final com.game.protocol.Protocol.Monster DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new com.game.protocol.Protocol.Monster();
-    }
-
-    public static com.game.protocol.Protocol.Monster getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<Monster>
-        PARSER = new com.google.protobuf.AbstractParser<Monster>() {
-      @java.lang.Override
-      public Monster parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new Monster(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<Monster> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<Monster> getParserForType() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.game.protocol.Protocol.Monster getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
-  public interface MapOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:Map)
+  public interface SceneDataOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:SceneData)
       com.google.protobuf.MessageOrBuilder {
 
     /**
@@ -6493,54 +2959,29 @@ public final class Protocol {
      */
     com.google.protobuf.ByteString
         getDescriptionBytes();
-
-    /**
-     * <code>repeated .Map ways = 4;</code>
-     */
-    java.util.List<com.game.protocol.Protocol.Map> 
-        getWaysList();
-    /**
-     * <code>repeated .Map ways = 4;</code>
-     */
-    com.game.protocol.Protocol.Map getWays(int index);
-    /**
-     * <code>repeated .Map ways = 4;</code>
-     */
-    int getWaysCount();
-    /**
-     * <code>repeated .Map ways = 4;</code>
-     */
-    java.util.List<? extends com.game.protocol.Protocol.MapOrBuilder> 
-        getWaysOrBuilderList();
-    /**
-     * <code>repeated .Map ways = 4;</code>
-     */
-    com.game.protocol.Protocol.MapOrBuilder getWaysOrBuilder(
-        int index);
   }
   /**
-   * Protobuf type {@code Map}
+   * Protobuf type {@code SceneData}
    */
-  public  static final class Map extends
+  public  static final class SceneData extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:Map)
-      MapOrBuilder {
+      // @@protoc_insertion_point(message_implements:SceneData)
+      SceneDataOrBuilder {
   private static final long serialVersionUID = 0L;
-    // Use Map.newBuilder() to construct.
-    private Map(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    // Use SceneData.newBuilder() to construct.
+    private SceneData(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-    private Map() {
+    private SceneData() {
       name_ = "";
       description_ = "";
-      ways_ = java.util.Collections.emptyList();
     }
 
     @java.lang.Override
     @SuppressWarnings({"unused"})
     protected java.lang.Object newInstance(
         UnusedPrivateParameter unused) {
-      return new Map();
+      return new SceneData();
     }
 
     @java.lang.Override
@@ -6548,7 +2989,7 @@ public final class Protocol {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private Map(
+    private SceneData(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -6556,7 +2997,6 @@ public final class Protocol {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -6584,15 +3024,6 @@ public final class Protocol {
               description_ = s;
               break;
             }
-            case 34: {
-              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                ways_ = new java.util.ArrayList<com.game.protocol.Protocol.Map>();
-                mutable_bitField0_ |= 0x00000001;
-              }
-              ways_.add(
-                  input.readMessage(com.game.protocol.Protocol.Map.parser(), extensionRegistry));
-              break;
-            }
             default: {
               if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
@@ -6608,24 +3039,21 @@ public final class Protocol {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
-        if (((mutable_bitField0_ & 0x00000001) != 0)) {
-          ways_ = java.util.Collections.unmodifiableList(ways_);
-        }
         this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.game.protocol.Protocol.internal_static_Map_descriptor;
+      return com.game.protocol.Protocol.internal_static_SceneData_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.game.protocol.Protocol.internal_static_Map_fieldAccessorTable
+      return com.game.protocol.Protocol.internal_static_SceneData_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.game.protocol.Protocol.Map.class, com.game.protocol.Protocol.Map.Builder.class);
+              com.game.protocol.Protocol.SceneData.class, com.game.protocol.Protocol.SceneData.Builder.class);
     }
 
     public static final int ID_FIELD_NUMBER = 1;
@@ -6710,41 +3138,6 @@ public final class Protocol {
       }
     }
 
-    public static final int WAYS_FIELD_NUMBER = 4;
-    private java.util.List<com.game.protocol.Protocol.Map> ways_;
-    /**
-     * <code>repeated .Map ways = 4;</code>
-     */
-    public java.util.List<com.game.protocol.Protocol.Map> getWaysList() {
-      return ways_;
-    }
-    /**
-     * <code>repeated .Map ways = 4;</code>
-     */
-    public java.util.List<? extends com.game.protocol.Protocol.MapOrBuilder> 
-        getWaysOrBuilderList() {
-      return ways_;
-    }
-    /**
-     * <code>repeated .Map ways = 4;</code>
-     */
-    public int getWaysCount() {
-      return ways_.size();
-    }
-    /**
-     * <code>repeated .Map ways = 4;</code>
-     */
-    public com.game.protocol.Protocol.Map getWays(int index) {
-      return ways_.get(index);
-    }
-    /**
-     * <code>repeated .Map ways = 4;</code>
-     */
-    public com.game.protocol.Protocol.MapOrBuilder getWaysOrBuilder(
-        int index) {
-      return ways_.get(index);
-    }
-
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -6768,9 +3161,6 @@ public final class Protocol {
       if (!getDescriptionBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 3, description_);
       }
-      for (int i = 0; i < ways_.size(); i++) {
-        output.writeMessage(4, ways_.get(i));
-      }
       unknownFields.writeTo(output);
     }
 
@@ -6790,10 +3180,6 @@ public final class Protocol {
       if (!getDescriptionBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, description_);
       }
-      for (int i = 0; i < ways_.size(); i++) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(4, ways_.get(i));
-      }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
@@ -6804,10 +3190,10 @@ public final class Protocol {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof com.game.protocol.Protocol.Map)) {
+      if (!(obj instanceof com.game.protocol.Protocol.SceneData)) {
         return super.equals(obj);
       }
-      com.game.protocol.Protocol.Map other = (com.game.protocol.Protocol.Map) obj;
+      com.game.protocol.Protocol.SceneData other = (com.game.protocol.Protocol.SceneData) obj;
 
       if (getId()
           != other.getId()) return false;
@@ -6815,8 +3201,6 @@ public final class Protocol {
           .equals(other.getName())) return false;
       if (!getDescription()
           .equals(other.getDescription())) return false;
-      if (!getWaysList()
-          .equals(other.getWaysList())) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -6834,78 +3218,74 @@ public final class Protocol {
       hash = (53 * hash) + getName().hashCode();
       hash = (37 * hash) + DESCRIPTION_FIELD_NUMBER;
       hash = (53 * hash) + getDescription().hashCode();
-      if (getWaysCount() > 0) {
-        hash = (37 * hash) + WAYS_FIELD_NUMBER;
-        hash = (53 * hash) + getWaysList().hashCode();
-      }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
     }
 
-    public static com.game.protocol.Protocol.Map parseFrom(
+    public static com.game.protocol.Protocol.SceneData parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.game.protocol.Protocol.Map parseFrom(
+    public static com.game.protocol.Protocol.SceneData parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.game.protocol.Protocol.Map parseFrom(
+    public static com.game.protocol.Protocol.SceneData parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.game.protocol.Protocol.Map parseFrom(
+    public static com.game.protocol.Protocol.SceneData parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.game.protocol.Protocol.Map parseFrom(byte[] data)
+    public static com.game.protocol.Protocol.SceneData parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.game.protocol.Protocol.Map parseFrom(
+    public static com.game.protocol.Protocol.SceneData parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.game.protocol.Protocol.Map parseFrom(java.io.InputStream input)
+    public static com.game.protocol.Protocol.SceneData parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.game.protocol.Protocol.Map parseFrom(
+    public static com.game.protocol.Protocol.SceneData parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.game.protocol.Protocol.Map parseDelimitedFrom(java.io.InputStream input)
+    public static com.game.protocol.Protocol.SceneData parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static com.game.protocol.Protocol.Map parseDelimitedFrom(
+    public static com.game.protocol.Protocol.SceneData parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.game.protocol.Protocol.Map parseFrom(
+    public static com.game.protocol.Protocol.SceneData parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.game.protocol.Protocol.Map parseFrom(
+    public static com.game.protocol.Protocol.SceneData parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -6918,7 +3298,7 @@ public final class Protocol {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.game.protocol.Protocol.Map prototype) {
+    public static Builder newBuilder(com.game.protocol.Protocol.SceneData prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     @java.lang.Override
@@ -6934,26 +3314,26 @@ public final class Protocol {
       return builder;
     }
     /**
-     * Protobuf type {@code Map}
+     * Protobuf type {@code SceneData}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:Map)
-        com.game.protocol.Protocol.MapOrBuilder {
+        // @@protoc_insertion_point(builder_implements:SceneData)
+        com.game.protocol.Protocol.SceneDataOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.game.protocol.Protocol.internal_static_Map_descriptor;
+        return com.game.protocol.Protocol.internal_static_SceneData_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.game.protocol.Protocol.internal_static_Map_fieldAccessorTable
+        return com.game.protocol.Protocol.internal_static_SceneData_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.game.protocol.Protocol.Map.class, com.game.protocol.Protocol.Map.Builder.class);
+                com.game.protocol.Protocol.SceneData.class, com.game.protocol.Protocol.SceneData.Builder.class);
       }
 
-      // Construct using com.game.protocol.Protocol.Map.newBuilder()
+      // Construct using com.game.protocol.Protocol.SceneData.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -6966,7 +3346,6 @@ public final class Protocol {
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessageV3
                 .alwaysUseFieldBuilders) {
-          getWaysFieldBuilder();
         }
       }
       @java.lang.Override
@@ -6978,29 +3357,23 @@ public final class Protocol {
 
         description_ = "";
 
-        if (waysBuilder_ == null) {
-          ways_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
-        } else {
-          waysBuilder_.clear();
-        }
         return this;
       }
 
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.game.protocol.Protocol.internal_static_Map_descriptor;
+        return com.game.protocol.Protocol.internal_static_SceneData_descriptor;
       }
 
       @java.lang.Override
-      public com.game.protocol.Protocol.Map getDefaultInstanceForType() {
-        return com.game.protocol.Protocol.Map.getDefaultInstance();
+      public com.game.protocol.Protocol.SceneData getDefaultInstanceForType() {
+        return com.game.protocol.Protocol.SceneData.getDefaultInstance();
       }
 
       @java.lang.Override
-      public com.game.protocol.Protocol.Map build() {
-        com.game.protocol.Protocol.Map result = buildPartial();
+      public com.game.protocol.Protocol.SceneData build() {
+        com.game.protocol.Protocol.SceneData result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
@@ -7008,21 +3381,11 @@ public final class Protocol {
       }
 
       @java.lang.Override
-      public com.game.protocol.Protocol.Map buildPartial() {
-        com.game.protocol.Protocol.Map result = new com.game.protocol.Protocol.Map(this);
-        int from_bitField0_ = bitField0_;
+      public com.game.protocol.Protocol.SceneData buildPartial() {
+        com.game.protocol.Protocol.SceneData result = new com.game.protocol.Protocol.SceneData(this);
         result.id_ = id_;
         result.name_ = name_;
         result.description_ = description_;
-        if (waysBuilder_ == null) {
-          if (((bitField0_ & 0x00000001) != 0)) {
-            ways_ = java.util.Collections.unmodifiableList(ways_);
-            bitField0_ = (bitField0_ & ~0x00000001);
-          }
-          result.ways_ = ways_;
-        } else {
-          result.ways_ = waysBuilder_.build();
-        }
         onBuilt();
         return result;
       }
@@ -7061,16 +3424,16 @@ public final class Protocol {
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.game.protocol.Protocol.Map) {
-          return mergeFrom((com.game.protocol.Protocol.Map)other);
+        if (other instanceof com.game.protocol.Protocol.SceneData) {
+          return mergeFrom((com.game.protocol.Protocol.SceneData)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(com.game.protocol.Protocol.Map other) {
-        if (other == com.game.protocol.Protocol.Map.getDefaultInstance()) return this;
+      public Builder mergeFrom(com.game.protocol.Protocol.SceneData other) {
+        if (other == com.game.protocol.Protocol.SceneData.getDefaultInstance()) return this;
         if (other.getId() != 0) {
           setId(other.getId());
         }
@@ -7081,32 +3444,6 @@ public final class Protocol {
         if (!other.getDescription().isEmpty()) {
           description_ = other.description_;
           onChanged();
-        }
-        if (waysBuilder_ == null) {
-          if (!other.ways_.isEmpty()) {
-            if (ways_.isEmpty()) {
-              ways_ = other.ways_;
-              bitField0_ = (bitField0_ & ~0x00000001);
-            } else {
-              ensureWaysIsMutable();
-              ways_.addAll(other.ways_);
-            }
-            onChanged();
-          }
-        } else {
-          if (!other.ways_.isEmpty()) {
-            if (waysBuilder_.isEmpty()) {
-              waysBuilder_.dispose();
-              waysBuilder_ = null;
-              ways_ = other.ways_;
-              bitField0_ = (bitField0_ & ~0x00000001);
-              waysBuilder_ = 
-                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
-                   getWaysFieldBuilder() : null;
-            } else {
-              waysBuilder_.addAllMessages(other.ways_);
-            }
-          }
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -7123,11 +3460,11 @@ public final class Protocol {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.game.protocol.Protocol.Map parsedMessage = null;
+        com.game.protocol.Protocol.SceneData parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.game.protocol.Protocol.Map) e.getUnfinishedMessage();
+          parsedMessage = (com.game.protocol.Protocol.SceneData) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -7136,7 +3473,6 @@ public final class Protocol {
         }
         return this;
       }
-      private int bitField0_;
 
       private int id_ ;
       /**
@@ -7319,246 +3655,6 @@ public final class Protocol {
         onChanged();
         return this;
       }
-
-      private java.util.List<com.game.protocol.Protocol.Map> ways_ =
-        java.util.Collections.emptyList();
-      private void ensureWaysIsMutable() {
-        if (!((bitField0_ & 0x00000001) != 0)) {
-          ways_ = new java.util.ArrayList<com.game.protocol.Protocol.Map>(ways_);
-          bitField0_ |= 0x00000001;
-         }
-      }
-
-      private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.game.protocol.Protocol.Map, com.game.protocol.Protocol.Map.Builder, com.game.protocol.Protocol.MapOrBuilder> waysBuilder_;
-
-      /**
-       * <code>repeated .Map ways = 4;</code>
-       */
-      public java.util.List<com.game.protocol.Protocol.Map> getWaysList() {
-        if (waysBuilder_ == null) {
-          return java.util.Collections.unmodifiableList(ways_);
-        } else {
-          return waysBuilder_.getMessageList();
-        }
-      }
-      /**
-       * <code>repeated .Map ways = 4;</code>
-       */
-      public int getWaysCount() {
-        if (waysBuilder_ == null) {
-          return ways_.size();
-        } else {
-          return waysBuilder_.getCount();
-        }
-      }
-      /**
-       * <code>repeated .Map ways = 4;</code>
-       */
-      public com.game.protocol.Protocol.Map getWays(int index) {
-        if (waysBuilder_ == null) {
-          return ways_.get(index);
-        } else {
-          return waysBuilder_.getMessage(index);
-        }
-      }
-      /**
-       * <code>repeated .Map ways = 4;</code>
-       */
-      public Builder setWays(
-          int index, com.game.protocol.Protocol.Map value) {
-        if (waysBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureWaysIsMutable();
-          ways_.set(index, value);
-          onChanged();
-        } else {
-          waysBuilder_.setMessage(index, value);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .Map ways = 4;</code>
-       */
-      public Builder setWays(
-          int index, com.game.protocol.Protocol.Map.Builder builderForValue) {
-        if (waysBuilder_ == null) {
-          ensureWaysIsMutable();
-          ways_.set(index, builderForValue.build());
-          onChanged();
-        } else {
-          waysBuilder_.setMessage(index, builderForValue.build());
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .Map ways = 4;</code>
-       */
-      public Builder addWays(com.game.protocol.Protocol.Map value) {
-        if (waysBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureWaysIsMutable();
-          ways_.add(value);
-          onChanged();
-        } else {
-          waysBuilder_.addMessage(value);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .Map ways = 4;</code>
-       */
-      public Builder addWays(
-          int index, com.game.protocol.Protocol.Map value) {
-        if (waysBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureWaysIsMutable();
-          ways_.add(index, value);
-          onChanged();
-        } else {
-          waysBuilder_.addMessage(index, value);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .Map ways = 4;</code>
-       */
-      public Builder addWays(
-          com.game.protocol.Protocol.Map.Builder builderForValue) {
-        if (waysBuilder_ == null) {
-          ensureWaysIsMutable();
-          ways_.add(builderForValue.build());
-          onChanged();
-        } else {
-          waysBuilder_.addMessage(builderForValue.build());
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .Map ways = 4;</code>
-       */
-      public Builder addWays(
-          int index, com.game.protocol.Protocol.Map.Builder builderForValue) {
-        if (waysBuilder_ == null) {
-          ensureWaysIsMutable();
-          ways_.add(index, builderForValue.build());
-          onChanged();
-        } else {
-          waysBuilder_.addMessage(index, builderForValue.build());
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .Map ways = 4;</code>
-       */
-      public Builder addAllWays(
-          java.lang.Iterable<? extends com.game.protocol.Protocol.Map> values) {
-        if (waysBuilder_ == null) {
-          ensureWaysIsMutable();
-          com.google.protobuf.AbstractMessageLite.Builder.addAll(
-              values, ways_);
-          onChanged();
-        } else {
-          waysBuilder_.addAllMessages(values);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .Map ways = 4;</code>
-       */
-      public Builder clearWays() {
-        if (waysBuilder_ == null) {
-          ways_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
-          onChanged();
-        } else {
-          waysBuilder_.clear();
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .Map ways = 4;</code>
-       */
-      public Builder removeWays(int index) {
-        if (waysBuilder_ == null) {
-          ensureWaysIsMutable();
-          ways_.remove(index);
-          onChanged();
-        } else {
-          waysBuilder_.remove(index);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .Map ways = 4;</code>
-       */
-      public com.game.protocol.Protocol.Map.Builder getWaysBuilder(
-          int index) {
-        return getWaysFieldBuilder().getBuilder(index);
-      }
-      /**
-       * <code>repeated .Map ways = 4;</code>
-       */
-      public com.game.protocol.Protocol.MapOrBuilder getWaysOrBuilder(
-          int index) {
-        if (waysBuilder_ == null) {
-          return ways_.get(index);  } else {
-          return waysBuilder_.getMessageOrBuilder(index);
-        }
-      }
-      /**
-       * <code>repeated .Map ways = 4;</code>
-       */
-      public java.util.List<? extends com.game.protocol.Protocol.MapOrBuilder> 
-           getWaysOrBuilderList() {
-        if (waysBuilder_ != null) {
-          return waysBuilder_.getMessageOrBuilderList();
-        } else {
-          return java.util.Collections.unmodifiableList(ways_);
-        }
-      }
-      /**
-       * <code>repeated .Map ways = 4;</code>
-       */
-      public com.game.protocol.Protocol.Map.Builder addWaysBuilder() {
-        return getWaysFieldBuilder().addBuilder(
-            com.game.protocol.Protocol.Map.getDefaultInstance());
-      }
-      /**
-       * <code>repeated .Map ways = 4;</code>
-       */
-      public com.game.protocol.Protocol.Map.Builder addWaysBuilder(
-          int index) {
-        return getWaysFieldBuilder().addBuilder(
-            index, com.game.protocol.Protocol.Map.getDefaultInstance());
-      }
-      /**
-       * <code>repeated .Map ways = 4;</code>
-       */
-      public java.util.List<com.game.protocol.Protocol.Map.Builder> 
-           getWaysBuilderList() {
-        return getWaysFieldBuilder().getBuilderList();
-      }
-      private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.game.protocol.Protocol.Map, com.game.protocol.Protocol.Map.Builder, com.game.protocol.Protocol.MapOrBuilder> 
-          getWaysFieldBuilder() {
-        if (waysBuilder_ == null) {
-          waysBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.game.protocol.Protocol.Map, com.game.protocol.Protocol.Map.Builder, com.game.protocol.Protocol.MapOrBuilder>(
-                  ways_,
-                  ((bitField0_ & 0x00000001) != 0),
-                  getParentForChildren(),
-                  isClean());
-          ways_ = null;
-        }
-        return waysBuilder_;
-      }
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -7572,48 +3668,48 @@ public final class Protocol {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:Map)
+      // @@protoc_insertion_point(builder_scope:SceneData)
     }
 
-    // @@protoc_insertion_point(class_scope:Map)
-    private static final com.game.protocol.Protocol.Map DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:SceneData)
+    private static final com.game.protocol.Protocol.SceneData DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new com.game.protocol.Protocol.Map();
+      DEFAULT_INSTANCE = new com.game.protocol.Protocol.SceneData();
     }
 
-    public static com.game.protocol.Protocol.Map getDefaultInstance() {
+    public static com.game.protocol.Protocol.SceneData getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static final com.google.protobuf.Parser<Map>
-        PARSER = new com.google.protobuf.AbstractParser<Map>() {
+    private static final com.google.protobuf.Parser<SceneData>
+        PARSER = new com.google.protobuf.AbstractParser<SceneData>() {
       @java.lang.Override
-      public Map parsePartialFrom(
+      public SceneData parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new Map(input, extensionRegistry);
+        return new SceneData(input, extensionRegistry);
       }
     };
 
-    public static com.google.protobuf.Parser<Map> parser() {
+    public static com.google.protobuf.Parser<SceneData> parser() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<Map> getParserForType() {
+    public com.google.protobuf.Parser<SceneData> getParserForType() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.game.protocol.Protocol.Map getDefaultInstanceForType() {
+    public com.game.protocol.Protocol.SceneData getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
   }
 
-  public interface SceneOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:Scene)
+  public interface PlayerDataOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:PlayerData)
       com.google.protobuf.MessageOrBuilder {
 
     /**
@@ -7623,142 +3719,44 @@ public final class Protocol {
     int getId();
 
     /**
-     * <code>.Map map = 2;</code>
-     * @return Whether the map field is set.
+     * <code>string name = 2;</code>
+     * @return The name.
      */
-    boolean hasMap();
+    java.lang.String getName();
     /**
-     * <code>.Map map = 2;</code>
-     * @return The map.
+     * <code>string name = 2;</code>
+     * @return The bytes for name.
      */
-    com.game.protocol.Protocol.Map getMap();
-    /**
-     * <code>.Map map = 2;</code>
-     */
-    com.game.protocol.Protocol.MapOrBuilder getMapOrBuilder();
+    com.google.protobuf.ByteString
+        getNameBytes();
 
     /**
-     * <code>map&lt;int32, .Role&gt; roles = 3;</code>
+     * <code>int32 worldId = 3;</code>
+     * @return The worldId.
      */
-    int getRolesCount();
-    /**
-     * <code>map&lt;int32, .Role&gt; roles = 3;</code>
-     */
-    boolean containsRoles(
-        int key);
-    /**
-     * Use {@link #getRolesMap()} instead.
-     */
-    @java.lang.Deprecated
-    java.util.Map<java.lang.Integer, com.game.protocol.Protocol.Role>
-    getRoles();
-    /**
-     * <code>map&lt;int32, .Role&gt; roles = 3;</code>
-     */
-    java.util.Map<java.lang.Integer, com.game.protocol.Protocol.Role>
-    getRolesMap();
-    /**
-     * <code>map&lt;int32, .Role&gt; roles = 3;</code>
-     */
-
-    com.game.protocol.Protocol.Role getRolesOrDefault(
-        int key,
-        com.game.protocol.Protocol.Role defaultValue);
-    /**
-     * <code>map&lt;int32, .Role&gt; roles = 3;</code>
-     */
-
-    com.game.protocol.Protocol.Role getRolesOrThrow(
-        int key);
-
-    /**
-     * <code>map&lt;int32, .Npc&gt; npc = 4;</code>
-     */
-    int getNpcCount();
-    /**
-     * <code>map&lt;int32, .Npc&gt; npc = 4;</code>
-     */
-    boolean containsNpc(
-        int key);
-    /**
-     * Use {@link #getNpcMap()} instead.
-     */
-    @java.lang.Deprecated
-    java.util.Map<java.lang.Integer, com.game.protocol.Protocol.Npc>
-    getNpc();
-    /**
-     * <code>map&lt;int32, .Npc&gt; npc = 4;</code>
-     */
-    java.util.Map<java.lang.Integer, com.game.protocol.Protocol.Npc>
-    getNpcMap();
-    /**
-     * <code>map&lt;int32, .Npc&gt; npc = 4;</code>
-     */
-
-    com.game.protocol.Protocol.Npc getNpcOrDefault(
-        int key,
-        com.game.protocol.Protocol.Npc defaultValue);
-    /**
-     * <code>map&lt;int32, .Npc&gt; npc = 4;</code>
-     */
-
-    com.game.protocol.Protocol.Npc getNpcOrThrow(
-        int key);
-
-    /**
-     * <code>map&lt;int32, .Monster&gt; monster = 5;</code>
-     */
-    int getMonsterCount();
-    /**
-     * <code>map&lt;int32, .Monster&gt; monster = 5;</code>
-     */
-    boolean containsMonster(
-        int key);
-    /**
-     * Use {@link #getMonsterMap()} instead.
-     */
-    @java.lang.Deprecated
-    java.util.Map<java.lang.Integer, com.game.protocol.Protocol.Monster>
-    getMonster();
-    /**
-     * <code>map&lt;int32, .Monster&gt; monster = 5;</code>
-     */
-    java.util.Map<java.lang.Integer, com.game.protocol.Protocol.Monster>
-    getMonsterMap();
-    /**
-     * <code>map&lt;int32, .Monster&gt; monster = 5;</code>
-     */
-
-    com.game.protocol.Protocol.Monster getMonsterOrDefault(
-        int key,
-        com.game.protocol.Protocol.Monster defaultValue);
-    /**
-     * <code>map&lt;int32, .Monster&gt; monster = 5;</code>
-     */
-
-    com.game.protocol.Protocol.Monster getMonsterOrThrow(
-        int key);
+    int getWorldId();
   }
   /**
-   * Protobuf type {@code Scene}
+   * Protobuf type {@code PlayerData}
    */
-  public  static final class Scene extends
+  public  static final class PlayerData extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:Scene)
-      SceneOrBuilder {
+      // @@protoc_insertion_point(message_implements:PlayerData)
+      PlayerDataOrBuilder {
   private static final long serialVersionUID = 0L;
-    // Use Scene.newBuilder() to construct.
-    private Scene(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    // Use PlayerData.newBuilder() to construct.
+    private PlayerData(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-    private Scene() {
+    private PlayerData() {
+      name_ = "";
     }
 
     @java.lang.Override
     @SuppressWarnings({"unused"})
     protected java.lang.Object newInstance(
         UnusedPrivateParameter unused) {
-      return new Scene();
+      return new PlayerData();
     }
 
     @java.lang.Override
@@ -7766,7 +3764,7 @@ public final class Protocol {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private Scene(
+    private PlayerData(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -7774,7 +3772,6 @@ public final class Protocol {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -7791,55 +3788,14 @@ public final class Protocol {
               break;
             }
             case 18: {
-              com.game.protocol.Protocol.Map.Builder subBuilder = null;
-              if (map_ != null) {
-                subBuilder = map_.toBuilder();
-              }
-              map_ = input.readMessage(com.game.protocol.Protocol.Map.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(map_);
-                map_ = subBuilder.buildPartial();
-              }
+              java.lang.String s = input.readStringRequireUtf8();
 
+              name_ = s;
               break;
             }
-            case 26: {
-              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                roles_ = com.google.protobuf.MapField.newMapField(
-                    RolesDefaultEntryHolder.defaultEntry);
-                mutable_bitField0_ |= 0x00000001;
-              }
-              com.google.protobuf.MapEntry<java.lang.Integer, com.game.protocol.Protocol.Role>
-              roles__ = input.readMessage(
-                  RolesDefaultEntryHolder.defaultEntry.getParserForType(), extensionRegistry);
-              roles_.getMutableMap().put(
-                  roles__.getKey(), roles__.getValue());
-              break;
-            }
-            case 34: {
-              if (!((mutable_bitField0_ & 0x00000002) != 0)) {
-                npc_ = com.google.protobuf.MapField.newMapField(
-                    NpcDefaultEntryHolder.defaultEntry);
-                mutable_bitField0_ |= 0x00000002;
-              }
-              com.google.protobuf.MapEntry<java.lang.Integer, com.game.protocol.Protocol.Npc>
-              npc__ = input.readMessage(
-                  NpcDefaultEntryHolder.defaultEntry.getParserForType(), extensionRegistry);
-              npc_.getMutableMap().put(
-                  npc__.getKey(), npc__.getValue());
-              break;
-            }
-            case 42: {
-              if (!((mutable_bitField0_ & 0x00000004) != 0)) {
-                monster_ = com.google.protobuf.MapField.newMapField(
-                    MonsterDefaultEntryHolder.defaultEntry);
-                mutable_bitField0_ |= 0x00000004;
-              }
-              com.google.protobuf.MapEntry<java.lang.Integer, com.game.protocol.Protocol.Monster>
-              monster__ = input.readMessage(
-                  MonsterDefaultEntryHolder.defaultEntry.getParserForType(), extensionRegistry);
-              monster_.getMutableMap().put(
-                  monster__.getKey(), monster__.getValue());
+            case 24: {
+
+              worldId_ = input.readInt32();
               break;
             }
             default: {
@@ -7863,31 +3819,15 @@ public final class Protocol {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.game.protocol.Protocol.internal_static_Scene_descriptor;
+      return com.game.protocol.Protocol.internal_static_PlayerData_descriptor;
     }
 
-    @SuppressWarnings({"rawtypes"})
-    @java.lang.Override
-    protected com.google.protobuf.MapField internalGetMapField(
-        int number) {
-      switch (number) {
-        case 3:
-          return internalGetRoles();
-        case 4:
-          return internalGetNpc();
-        case 5:
-          return internalGetMonster();
-        default:
-          throw new RuntimeException(
-              "Invalid map field number: " + number);
-      }
-    }
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.game.protocol.Protocol.internal_static_Scene_fieldAccessorTable
+      return com.game.protocol.Protocol.internal_static_PlayerData_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.game.protocol.Protocol.Scene.class, com.game.protocol.Protocol.Scene.Builder.class);
+              com.game.protocol.Protocol.PlayerData.class, com.game.protocol.Protocol.PlayerData.Builder.class);
     }
 
     public static final int ID_FIELD_NUMBER = 1;
@@ -7900,255 +3840,50 @@ public final class Protocol {
       return id_;
     }
 
-    public static final int MAP_FIELD_NUMBER = 2;
-    private com.game.protocol.Protocol.Map map_;
+    public static final int NAME_FIELD_NUMBER = 2;
+    private volatile java.lang.Object name_;
     /**
-     * <code>.Map map = 2;</code>
-     * @return Whether the map field is set.
+     * <code>string name = 2;</code>
+     * @return The name.
      */
-    public boolean hasMap() {
-      return map_ != null;
-    }
-    /**
-     * <code>.Map map = 2;</code>
-     * @return The map.
-     */
-    public com.game.protocol.Protocol.Map getMap() {
-      return map_ == null ? com.game.protocol.Protocol.Map.getDefaultInstance() : map_;
-    }
-    /**
-     * <code>.Map map = 2;</code>
-     */
-    public com.game.protocol.Protocol.MapOrBuilder getMapOrBuilder() {
-      return getMap();
-    }
-
-    public static final int ROLES_FIELD_NUMBER = 3;
-    private static final class RolesDefaultEntryHolder {
-      static final com.google.protobuf.MapEntry<
-          java.lang.Integer, com.game.protocol.Protocol.Role> defaultEntry =
-              com.google.protobuf.MapEntry
-              .<java.lang.Integer, com.game.protocol.Protocol.Role>newDefaultInstance(
-                  com.game.protocol.Protocol.internal_static_Scene_RolesEntry_descriptor, 
-                  com.google.protobuf.WireFormat.FieldType.INT32,
-                  0,
-                  com.google.protobuf.WireFormat.FieldType.MESSAGE,
-                  com.game.protocol.Protocol.Role.getDefaultInstance());
-    }
-    private com.google.protobuf.MapField<
-        java.lang.Integer, com.game.protocol.Protocol.Role> roles_;
-    private com.google.protobuf.MapField<java.lang.Integer, com.game.protocol.Protocol.Role>
-    internalGetRoles() {
-      if (roles_ == null) {
-        return com.google.protobuf.MapField.emptyMapField(
-            RolesDefaultEntryHolder.defaultEntry);
+    public java.lang.String getName() {
+      java.lang.Object ref = name_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        name_ = s;
+        return s;
       }
-      return roles_;
-    }
-
-    public int getRolesCount() {
-      return internalGetRoles().getMap().size();
     }
     /**
-     * <code>map&lt;int32, .Role&gt; roles = 3;</code>
+     * <code>string name = 2;</code>
+     * @return The bytes for name.
      */
-
-    public boolean containsRoles(
-        int key) {
-      
-      return internalGetRoles().getMap().containsKey(key);
-    }
-    /**
-     * Use {@link #getRolesMap()} instead.
-     */
-    @java.lang.Deprecated
-    public java.util.Map<java.lang.Integer, com.game.protocol.Protocol.Role> getRoles() {
-      return getRolesMap();
-    }
-    /**
-     * <code>map&lt;int32, .Role&gt; roles = 3;</code>
-     */
-
-    public java.util.Map<java.lang.Integer, com.game.protocol.Protocol.Role> getRolesMap() {
-      return internalGetRoles().getMap();
-    }
-    /**
-     * <code>map&lt;int32, .Role&gt; roles = 3;</code>
-     */
-
-    public com.game.protocol.Protocol.Role getRolesOrDefault(
-        int key,
-        com.game.protocol.Protocol.Role defaultValue) {
-      
-      java.util.Map<java.lang.Integer, com.game.protocol.Protocol.Role> map =
-          internalGetRoles().getMap();
-      return map.containsKey(key) ? map.get(key) : defaultValue;
-    }
-    /**
-     * <code>map&lt;int32, .Role&gt; roles = 3;</code>
-     */
-
-    public com.game.protocol.Protocol.Role getRolesOrThrow(
-        int key) {
-      
-      java.util.Map<java.lang.Integer, com.game.protocol.Protocol.Role> map =
-          internalGetRoles().getMap();
-      if (!map.containsKey(key)) {
-        throw new java.lang.IllegalArgumentException();
+    public com.google.protobuf.ByteString
+        getNameBytes() {
+      java.lang.Object ref = name_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        name_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
       }
-      return map.get(key);
     }
 
-    public static final int NPC_FIELD_NUMBER = 4;
-    private static final class NpcDefaultEntryHolder {
-      static final com.google.protobuf.MapEntry<
-          java.lang.Integer, com.game.protocol.Protocol.Npc> defaultEntry =
-              com.google.protobuf.MapEntry
-              .<java.lang.Integer, com.game.protocol.Protocol.Npc>newDefaultInstance(
-                  com.game.protocol.Protocol.internal_static_Scene_NpcEntry_descriptor, 
-                  com.google.protobuf.WireFormat.FieldType.INT32,
-                  0,
-                  com.google.protobuf.WireFormat.FieldType.MESSAGE,
-                  com.game.protocol.Protocol.Npc.getDefaultInstance());
-    }
-    private com.google.protobuf.MapField<
-        java.lang.Integer, com.game.protocol.Protocol.Npc> npc_;
-    private com.google.protobuf.MapField<java.lang.Integer, com.game.protocol.Protocol.Npc>
-    internalGetNpc() {
-      if (npc_ == null) {
-        return com.google.protobuf.MapField.emptyMapField(
-            NpcDefaultEntryHolder.defaultEntry);
-      }
-      return npc_;
-    }
-
-    public int getNpcCount() {
-      return internalGetNpc().getMap().size();
-    }
+    public static final int WORLDID_FIELD_NUMBER = 3;
+    private int worldId_;
     /**
-     * <code>map&lt;int32, .Npc&gt; npc = 4;</code>
+     * <code>int32 worldId = 3;</code>
+     * @return The worldId.
      */
-
-    public boolean containsNpc(
-        int key) {
-      
-      return internalGetNpc().getMap().containsKey(key);
-    }
-    /**
-     * Use {@link #getNpcMap()} instead.
-     */
-    @java.lang.Deprecated
-    public java.util.Map<java.lang.Integer, com.game.protocol.Protocol.Npc> getNpc() {
-      return getNpcMap();
-    }
-    /**
-     * <code>map&lt;int32, .Npc&gt; npc = 4;</code>
-     */
-
-    public java.util.Map<java.lang.Integer, com.game.protocol.Protocol.Npc> getNpcMap() {
-      return internalGetNpc().getMap();
-    }
-    /**
-     * <code>map&lt;int32, .Npc&gt; npc = 4;</code>
-     */
-
-    public com.game.protocol.Protocol.Npc getNpcOrDefault(
-        int key,
-        com.game.protocol.Protocol.Npc defaultValue) {
-      
-      java.util.Map<java.lang.Integer, com.game.protocol.Protocol.Npc> map =
-          internalGetNpc().getMap();
-      return map.containsKey(key) ? map.get(key) : defaultValue;
-    }
-    /**
-     * <code>map&lt;int32, .Npc&gt; npc = 4;</code>
-     */
-
-    public com.game.protocol.Protocol.Npc getNpcOrThrow(
-        int key) {
-      
-      java.util.Map<java.lang.Integer, com.game.protocol.Protocol.Npc> map =
-          internalGetNpc().getMap();
-      if (!map.containsKey(key)) {
-        throw new java.lang.IllegalArgumentException();
-      }
-      return map.get(key);
-    }
-
-    public static final int MONSTER_FIELD_NUMBER = 5;
-    private static final class MonsterDefaultEntryHolder {
-      static final com.google.protobuf.MapEntry<
-          java.lang.Integer, com.game.protocol.Protocol.Monster> defaultEntry =
-              com.google.protobuf.MapEntry
-              .<java.lang.Integer, com.game.protocol.Protocol.Monster>newDefaultInstance(
-                  com.game.protocol.Protocol.internal_static_Scene_MonsterEntry_descriptor, 
-                  com.google.protobuf.WireFormat.FieldType.INT32,
-                  0,
-                  com.google.protobuf.WireFormat.FieldType.MESSAGE,
-                  com.game.protocol.Protocol.Monster.getDefaultInstance());
-    }
-    private com.google.protobuf.MapField<
-        java.lang.Integer, com.game.protocol.Protocol.Monster> monster_;
-    private com.google.protobuf.MapField<java.lang.Integer, com.game.protocol.Protocol.Monster>
-    internalGetMonster() {
-      if (monster_ == null) {
-        return com.google.protobuf.MapField.emptyMapField(
-            MonsterDefaultEntryHolder.defaultEntry);
-      }
-      return monster_;
-    }
-
-    public int getMonsterCount() {
-      return internalGetMonster().getMap().size();
-    }
-    /**
-     * <code>map&lt;int32, .Monster&gt; monster = 5;</code>
-     */
-
-    public boolean containsMonster(
-        int key) {
-      
-      return internalGetMonster().getMap().containsKey(key);
-    }
-    /**
-     * Use {@link #getMonsterMap()} instead.
-     */
-    @java.lang.Deprecated
-    public java.util.Map<java.lang.Integer, com.game.protocol.Protocol.Monster> getMonster() {
-      return getMonsterMap();
-    }
-    /**
-     * <code>map&lt;int32, .Monster&gt; monster = 5;</code>
-     */
-
-    public java.util.Map<java.lang.Integer, com.game.protocol.Protocol.Monster> getMonsterMap() {
-      return internalGetMonster().getMap();
-    }
-    /**
-     * <code>map&lt;int32, .Monster&gt; monster = 5;</code>
-     */
-
-    public com.game.protocol.Protocol.Monster getMonsterOrDefault(
-        int key,
-        com.game.protocol.Protocol.Monster defaultValue) {
-      
-      java.util.Map<java.lang.Integer, com.game.protocol.Protocol.Monster> map =
-          internalGetMonster().getMap();
-      return map.containsKey(key) ? map.get(key) : defaultValue;
-    }
-    /**
-     * <code>map&lt;int32, .Monster&gt; monster = 5;</code>
-     */
-
-    public com.game.protocol.Protocol.Monster getMonsterOrThrow(
-        int key) {
-      
-      java.util.Map<java.lang.Integer, com.game.protocol.Protocol.Monster> map =
-          internalGetMonster().getMap();
-      if (!map.containsKey(key)) {
-        throw new java.lang.IllegalArgumentException();
-      }
-      return map.get(key);
+    public int getWorldId() {
+      return worldId_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -8168,27 +3903,12 @@ public final class Protocol {
       if (id_ != 0) {
         output.writeInt32(1, id_);
       }
-      if (map_ != null) {
-        output.writeMessage(2, getMap());
+      if (!getNameBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, name_);
       }
-      com.google.protobuf.GeneratedMessageV3
-        .serializeIntegerMapTo(
-          output,
-          internalGetRoles(),
-          RolesDefaultEntryHolder.defaultEntry,
-          3);
-      com.google.protobuf.GeneratedMessageV3
-        .serializeIntegerMapTo(
-          output,
-          internalGetNpc(),
-          NpcDefaultEntryHolder.defaultEntry,
-          4);
-      com.google.protobuf.GeneratedMessageV3
-        .serializeIntegerMapTo(
-          output,
-          internalGetMonster(),
-          MonsterDefaultEntryHolder.defaultEntry,
-          5);
+      if (worldId_ != 0) {
+        output.writeInt32(3, worldId_);
+      }
       unknownFields.writeTo(output);
     }
 
@@ -8202,39 +3922,12 @@ public final class Protocol {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(1, id_);
       }
-      if (map_ != null) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(2, getMap());
+      if (!getNameBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, name_);
       }
-      for (java.util.Map.Entry<java.lang.Integer, com.game.protocol.Protocol.Role> entry
-           : internalGetRoles().getMap().entrySet()) {
-        com.google.protobuf.MapEntry<java.lang.Integer, com.game.protocol.Protocol.Role>
-        roles__ = RolesDefaultEntryHolder.defaultEntry.newBuilderForType()
-            .setKey(entry.getKey())
-            .setValue(entry.getValue())
-            .build();
+      if (worldId_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-            .computeMessageSize(3, roles__);
-      }
-      for (java.util.Map.Entry<java.lang.Integer, com.game.protocol.Protocol.Npc> entry
-           : internalGetNpc().getMap().entrySet()) {
-        com.google.protobuf.MapEntry<java.lang.Integer, com.game.protocol.Protocol.Npc>
-        npc__ = NpcDefaultEntryHolder.defaultEntry.newBuilderForType()
-            .setKey(entry.getKey())
-            .setValue(entry.getValue())
-            .build();
-        size += com.google.protobuf.CodedOutputStream
-            .computeMessageSize(4, npc__);
-      }
-      for (java.util.Map.Entry<java.lang.Integer, com.game.protocol.Protocol.Monster> entry
-           : internalGetMonster().getMap().entrySet()) {
-        com.google.protobuf.MapEntry<java.lang.Integer, com.game.protocol.Protocol.Monster>
-        monster__ = MonsterDefaultEntryHolder.defaultEntry.newBuilderForType()
-            .setKey(entry.getKey())
-            .setValue(entry.getValue())
-            .build();
-        size += com.google.protobuf.CodedOutputStream
-            .computeMessageSize(5, monster__);
+          .computeInt32Size(3, worldId_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -8246,24 +3939,17 @@ public final class Protocol {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof com.game.protocol.Protocol.Scene)) {
+      if (!(obj instanceof com.game.protocol.Protocol.PlayerData)) {
         return super.equals(obj);
       }
-      com.game.protocol.Protocol.Scene other = (com.game.protocol.Protocol.Scene) obj;
+      com.game.protocol.Protocol.PlayerData other = (com.game.protocol.Protocol.PlayerData) obj;
 
       if (getId()
           != other.getId()) return false;
-      if (hasMap() != other.hasMap()) return false;
-      if (hasMap()) {
-        if (!getMap()
-            .equals(other.getMap())) return false;
-      }
-      if (!internalGetRoles().equals(
-          other.internalGetRoles())) return false;
-      if (!internalGetNpc().equals(
-          other.internalGetNpc())) return false;
-      if (!internalGetMonster().equals(
-          other.internalGetMonster())) return false;
+      if (!getName()
+          .equals(other.getName())) return false;
+      if (getWorldId()
+          != other.getWorldId()) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -8277,90 +3963,78 @@ public final class Protocol {
       hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + ID_FIELD_NUMBER;
       hash = (53 * hash) + getId();
-      if (hasMap()) {
-        hash = (37 * hash) + MAP_FIELD_NUMBER;
-        hash = (53 * hash) + getMap().hashCode();
-      }
-      if (!internalGetRoles().getMap().isEmpty()) {
-        hash = (37 * hash) + ROLES_FIELD_NUMBER;
-        hash = (53 * hash) + internalGetRoles().hashCode();
-      }
-      if (!internalGetNpc().getMap().isEmpty()) {
-        hash = (37 * hash) + NPC_FIELD_NUMBER;
-        hash = (53 * hash) + internalGetNpc().hashCode();
-      }
-      if (!internalGetMonster().getMap().isEmpty()) {
-        hash = (37 * hash) + MONSTER_FIELD_NUMBER;
-        hash = (53 * hash) + internalGetMonster().hashCode();
-      }
+      hash = (37 * hash) + NAME_FIELD_NUMBER;
+      hash = (53 * hash) + getName().hashCode();
+      hash = (37 * hash) + WORLDID_FIELD_NUMBER;
+      hash = (53 * hash) + getWorldId();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
     }
 
-    public static com.game.protocol.Protocol.Scene parseFrom(
+    public static com.game.protocol.Protocol.PlayerData parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.game.protocol.Protocol.Scene parseFrom(
+    public static com.game.protocol.Protocol.PlayerData parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.game.protocol.Protocol.Scene parseFrom(
+    public static com.game.protocol.Protocol.PlayerData parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.game.protocol.Protocol.Scene parseFrom(
+    public static com.game.protocol.Protocol.PlayerData parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.game.protocol.Protocol.Scene parseFrom(byte[] data)
+    public static com.game.protocol.Protocol.PlayerData parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.game.protocol.Protocol.Scene parseFrom(
+    public static com.game.protocol.Protocol.PlayerData parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.game.protocol.Protocol.Scene parseFrom(java.io.InputStream input)
+    public static com.game.protocol.Protocol.PlayerData parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.game.protocol.Protocol.Scene parseFrom(
+    public static com.game.protocol.Protocol.PlayerData parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.game.protocol.Protocol.Scene parseDelimitedFrom(java.io.InputStream input)
+    public static com.game.protocol.Protocol.PlayerData parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static com.game.protocol.Protocol.Scene parseDelimitedFrom(
+    public static com.game.protocol.Protocol.PlayerData parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.game.protocol.Protocol.Scene parseFrom(
+    public static com.game.protocol.Protocol.PlayerData parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.game.protocol.Protocol.Scene parseFrom(
+    public static com.game.protocol.Protocol.PlayerData parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -8373,7 +4047,7 @@ public final class Protocol {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.game.protocol.Protocol.Scene prototype) {
+    public static Builder newBuilder(com.game.protocol.Protocol.PlayerData prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     @java.lang.Override
@@ -8389,56 +4063,26 @@ public final class Protocol {
       return builder;
     }
     /**
-     * Protobuf type {@code Scene}
+     * Protobuf type {@code PlayerData}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:Scene)
-        com.game.protocol.Protocol.SceneOrBuilder {
+        // @@protoc_insertion_point(builder_implements:PlayerData)
+        com.game.protocol.Protocol.PlayerDataOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.game.protocol.Protocol.internal_static_Scene_descriptor;
+        return com.game.protocol.Protocol.internal_static_PlayerData_descriptor;
       }
 
-      @SuppressWarnings({"rawtypes"})
-      protected com.google.protobuf.MapField internalGetMapField(
-          int number) {
-        switch (number) {
-          case 3:
-            return internalGetRoles();
-          case 4:
-            return internalGetNpc();
-          case 5:
-            return internalGetMonster();
-          default:
-            throw new RuntimeException(
-                "Invalid map field number: " + number);
-        }
-      }
-      @SuppressWarnings({"rawtypes"})
-      protected com.google.protobuf.MapField internalGetMutableMapField(
-          int number) {
-        switch (number) {
-          case 3:
-            return internalGetMutableRoles();
-          case 4:
-            return internalGetMutableNpc();
-          case 5:
-            return internalGetMutableMonster();
-          default:
-            throw new RuntimeException(
-                "Invalid map field number: " + number);
-        }
-      }
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.game.protocol.Protocol.internal_static_Scene_fieldAccessorTable
+        return com.game.protocol.Protocol.internal_static_PlayerData_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.game.protocol.Protocol.Scene.class, com.game.protocol.Protocol.Scene.Builder.class);
+                com.game.protocol.Protocol.PlayerData.class, com.game.protocol.Protocol.PlayerData.Builder.class);
       }
 
-      // Construct using com.game.protocol.Protocol.Scene.newBuilder()
+      // Construct using com.game.protocol.Protocol.PlayerData.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -8458,32 +4102,27 @@ public final class Protocol {
         super.clear();
         id_ = 0;
 
-        if (mapBuilder_ == null) {
-          map_ = null;
-        } else {
-          map_ = null;
-          mapBuilder_ = null;
-        }
-        internalGetMutableRoles().clear();
-        internalGetMutableNpc().clear();
-        internalGetMutableMonster().clear();
+        name_ = "";
+
+        worldId_ = 0;
+
         return this;
       }
 
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.game.protocol.Protocol.internal_static_Scene_descriptor;
+        return com.game.protocol.Protocol.internal_static_PlayerData_descriptor;
       }
 
       @java.lang.Override
-      public com.game.protocol.Protocol.Scene getDefaultInstanceForType() {
-        return com.game.protocol.Protocol.Scene.getDefaultInstance();
+      public com.game.protocol.Protocol.PlayerData getDefaultInstanceForType() {
+        return com.game.protocol.Protocol.PlayerData.getDefaultInstance();
       }
 
       @java.lang.Override
-      public com.game.protocol.Protocol.Scene build() {
-        com.game.protocol.Protocol.Scene result = buildPartial();
+      public com.game.protocol.Protocol.PlayerData build() {
+        com.game.protocol.Protocol.PlayerData result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
@@ -8491,21 +4130,11 @@ public final class Protocol {
       }
 
       @java.lang.Override
-      public com.game.protocol.Protocol.Scene buildPartial() {
-        com.game.protocol.Protocol.Scene result = new com.game.protocol.Protocol.Scene(this);
-        int from_bitField0_ = bitField0_;
+      public com.game.protocol.Protocol.PlayerData buildPartial() {
+        com.game.protocol.Protocol.PlayerData result = new com.game.protocol.Protocol.PlayerData(this);
         result.id_ = id_;
-        if (mapBuilder_ == null) {
-          result.map_ = map_;
-        } else {
-          result.map_ = mapBuilder_.build();
-        }
-        result.roles_ = internalGetRoles();
-        result.roles_.makeImmutable();
-        result.npc_ = internalGetNpc();
-        result.npc_.makeImmutable();
-        result.monster_ = internalGetMonster();
-        result.monster_.makeImmutable();
+        result.name_ = name_;
+        result.worldId_ = worldId_;
         onBuilt();
         return result;
       }
@@ -8544,28 +4173,26 @@ public final class Protocol {
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.game.protocol.Protocol.Scene) {
-          return mergeFrom((com.game.protocol.Protocol.Scene)other);
+        if (other instanceof com.game.protocol.Protocol.PlayerData) {
+          return mergeFrom((com.game.protocol.Protocol.PlayerData)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(com.game.protocol.Protocol.Scene other) {
-        if (other == com.game.protocol.Protocol.Scene.getDefaultInstance()) return this;
+      public Builder mergeFrom(com.game.protocol.Protocol.PlayerData other) {
+        if (other == com.game.protocol.Protocol.PlayerData.getDefaultInstance()) return this;
         if (other.getId() != 0) {
           setId(other.getId());
         }
-        if (other.hasMap()) {
-          mergeMap(other.getMap());
+        if (!other.getName().isEmpty()) {
+          name_ = other.name_;
+          onChanged();
         }
-        internalGetMutableRoles().mergeFrom(
-            other.internalGetRoles());
-        internalGetMutableNpc().mergeFrom(
-            other.internalGetNpc());
-        internalGetMutableMonster().mergeFrom(
-            other.internalGetMonster());
+        if (other.getWorldId() != 0) {
+          setWorldId(other.getWorldId());
+        }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
@@ -8581,11 +4208,11 @@ public final class Protocol {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.game.protocol.Protocol.Scene parsedMessage = null;
+        com.game.protocol.Protocol.PlayerData parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.game.protocol.Protocol.Scene) e.getUnfinishedMessage();
+          parsedMessage = (com.game.protocol.Protocol.PlayerData) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -8594,7 +4221,6 @@ public final class Protocol {
         }
         return this;
       }
-      private int bitField0_;
 
       private int id_ ;
       /**
@@ -8626,1124 +4252,108 @@ public final class Protocol {
         return this;
       }
 
-      private com.game.protocol.Protocol.Map map_;
-      private com.google.protobuf.SingleFieldBuilderV3<
-          com.game.protocol.Protocol.Map, com.game.protocol.Protocol.Map.Builder, com.game.protocol.Protocol.MapOrBuilder> mapBuilder_;
+      private java.lang.Object name_ = "";
       /**
-       * <code>.Map map = 2;</code>
-       * @return Whether the map field is set.
+       * <code>string name = 2;</code>
+       * @return The name.
        */
-      public boolean hasMap() {
-        return mapBuilder_ != null || map_ != null;
-      }
-      /**
-       * <code>.Map map = 2;</code>
-       * @return The map.
-       */
-      public com.game.protocol.Protocol.Map getMap() {
-        if (mapBuilder_ == null) {
-          return map_ == null ? com.game.protocol.Protocol.Map.getDefaultInstance() : map_;
-        } else {
-          return mapBuilder_.getMessage();
-        }
-      }
-      /**
-       * <code>.Map map = 2;</code>
-       */
-      public Builder setMap(com.game.protocol.Protocol.Map value) {
-        if (mapBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          map_ = value;
-          onChanged();
-        } else {
-          mapBuilder_.setMessage(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>.Map map = 2;</code>
-       */
-      public Builder setMap(
-          com.game.protocol.Protocol.Map.Builder builderForValue) {
-        if (mapBuilder_ == null) {
-          map_ = builderForValue.build();
-          onChanged();
-        } else {
-          mapBuilder_.setMessage(builderForValue.build());
-        }
-
-        return this;
-      }
-      /**
-       * <code>.Map map = 2;</code>
-       */
-      public Builder mergeMap(com.game.protocol.Protocol.Map value) {
-        if (mapBuilder_ == null) {
-          if (map_ != null) {
-            map_ =
-              com.game.protocol.Protocol.Map.newBuilder(map_).mergeFrom(value).buildPartial();
-          } else {
-            map_ = value;
-          }
-          onChanged();
-        } else {
-          mapBuilder_.mergeFrom(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>.Map map = 2;</code>
-       */
-      public Builder clearMap() {
-        if (mapBuilder_ == null) {
-          map_ = null;
-          onChanged();
-        } else {
-          map_ = null;
-          mapBuilder_ = null;
-        }
-
-        return this;
-      }
-      /**
-       * <code>.Map map = 2;</code>
-       */
-      public com.game.protocol.Protocol.Map.Builder getMapBuilder() {
-        
-        onChanged();
-        return getMapFieldBuilder().getBuilder();
-      }
-      /**
-       * <code>.Map map = 2;</code>
-       */
-      public com.game.protocol.Protocol.MapOrBuilder getMapOrBuilder() {
-        if (mapBuilder_ != null) {
-          return mapBuilder_.getMessageOrBuilder();
-        } else {
-          return map_ == null ?
-              com.game.protocol.Protocol.Map.getDefaultInstance() : map_;
-        }
-      }
-      /**
-       * <code>.Map map = 2;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilderV3<
-          com.game.protocol.Protocol.Map, com.game.protocol.Protocol.Map.Builder, com.game.protocol.Protocol.MapOrBuilder> 
-          getMapFieldBuilder() {
-        if (mapBuilder_ == null) {
-          mapBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.game.protocol.Protocol.Map, com.game.protocol.Protocol.Map.Builder, com.game.protocol.Protocol.MapOrBuilder>(
-                  getMap(),
-                  getParentForChildren(),
-                  isClean());
-          map_ = null;
-        }
-        return mapBuilder_;
-      }
-
-      private com.google.protobuf.MapField<
-          java.lang.Integer, com.game.protocol.Protocol.Role> roles_;
-      private com.google.protobuf.MapField<java.lang.Integer, com.game.protocol.Protocol.Role>
-      internalGetRoles() {
-        if (roles_ == null) {
-          return com.google.protobuf.MapField.emptyMapField(
-              RolesDefaultEntryHolder.defaultEntry);
-        }
-        return roles_;
-      }
-      private com.google.protobuf.MapField<java.lang.Integer, com.game.protocol.Protocol.Role>
-      internalGetMutableRoles() {
-        onChanged();;
-        if (roles_ == null) {
-          roles_ = com.google.protobuf.MapField.newMapField(
-              RolesDefaultEntryHolder.defaultEntry);
-        }
-        if (!roles_.isMutable()) {
-          roles_ = roles_.copy();
-        }
-        return roles_;
-      }
-
-      public int getRolesCount() {
-        return internalGetRoles().getMap().size();
-      }
-      /**
-       * <code>map&lt;int32, .Role&gt; roles = 3;</code>
-       */
-
-      public boolean containsRoles(
-          int key) {
-        
-        return internalGetRoles().getMap().containsKey(key);
-      }
-      /**
-       * Use {@link #getRolesMap()} instead.
-       */
-      @java.lang.Deprecated
-      public java.util.Map<java.lang.Integer, com.game.protocol.Protocol.Role> getRoles() {
-        return getRolesMap();
-      }
-      /**
-       * <code>map&lt;int32, .Role&gt; roles = 3;</code>
-       */
-
-      public java.util.Map<java.lang.Integer, com.game.protocol.Protocol.Role> getRolesMap() {
-        return internalGetRoles().getMap();
-      }
-      /**
-       * <code>map&lt;int32, .Role&gt; roles = 3;</code>
-       */
-
-      public com.game.protocol.Protocol.Role getRolesOrDefault(
-          int key,
-          com.game.protocol.Protocol.Role defaultValue) {
-        
-        java.util.Map<java.lang.Integer, com.game.protocol.Protocol.Role> map =
-            internalGetRoles().getMap();
-        return map.containsKey(key) ? map.get(key) : defaultValue;
-      }
-      /**
-       * <code>map&lt;int32, .Role&gt; roles = 3;</code>
-       */
-
-      public com.game.protocol.Protocol.Role getRolesOrThrow(
-          int key) {
-        
-        java.util.Map<java.lang.Integer, com.game.protocol.Protocol.Role> map =
-            internalGetRoles().getMap();
-        if (!map.containsKey(key)) {
-          throw new java.lang.IllegalArgumentException();
-        }
-        return map.get(key);
-      }
-
-      public Builder clearRoles() {
-        internalGetMutableRoles().getMutableMap()
-            .clear();
-        return this;
-      }
-      /**
-       * <code>map&lt;int32, .Role&gt; roles = 3;</code>
-       */
-
-      public Builder removeRoles(
-          int key) {
-        
-        internalGetMutableRoles().getMutableMap()
-            .remove(key);
-        return this;
-      }
-      /**
-       * Use alternate mutation accessors instead.
-       */
-      @java.lang.Deprecated
-      public java.util.Map<java.lang.Integer, com.game.protocol.Protocol.Role>
-      getMutableRoles() {
-        return internalGetMutableRoles().getMutableMap();
-      }
-      /**
-       * <code>map&lt;int32, .Role&gt; roles = 3;</code>
-       */
-      public Builder putRoles(
-          int key,
-          com.game.protocol.Protocol.Role value) {
-        
-        if (value == null) { throw new java.lang.NullPointerException(); }
-        internalGetMutableRoles().getMutableMap()
-            .put(key, value);
-        return this;
-      }
-      /**
-       * <code>map&lt;int32, .Role&gt; roles = 3;</code>
-       */
-
-      public Builder putAllRoles(
-          java.util.Map<java.lang.Integer, com.game.protocol.Protocol.Role> values) {
-        internalGetMutableRoles().getMutableMap()
-            .putAll(values);
-        return this;
-      }
-
-      private com.google.protobuf.MapField<
-          java.lang.Integer, com.game.protocol.Protocol.Npc> npc_;
-      private com.google.protobuf.MapField<java.lang.Integer, com.game.protocol.Protocol.Npc>
-      internalGetNpc() {
-        if (npc_ == null) {
-          return com.google.protobuf.MapField.emptyMapField(
-              NpcDefaultEntryHolder.defaultEntry);
-        }
-        return npc_;
-      }
-      private com.google.protobuf.MapField<java.lang.Integer, com.game.protocol.Protocol.Npc>
-      internalGetMutableNpc() {
-        onChanged();;
-        if (npc_ == null) {
-          npc_ = com.google.protobuf.MapField.newMapField(
-              NpcDefaultEntryHolder.defaultEntry);
-        }
-        if (!npc_.isMutable()) {
-          npc_ = npc_.copy();
-        }
-        return npc_;
-      }
-
-      public int getNpcCount() {
-        return internalGetNpc().getMap().size();
-      }
-      /**
-       * <code>map&lt;int32, .Npc&gt; npc = 4;</code>
-       */
-
-      public boolean containsNpc(
-          int key) {
-        
-        return internalGetNpc().getMap().containsKey(key);
-      }
-      /**
-       * Use {@link #getNpcMap()} instead.
-       */
-      @java.lang.Deprecated
-      public java.util.Map<java.lang.Integer, com.game.protocol.Protocol.Npc> getNpc() {
-        return getNpcMap();
-      }
-      /**
-       * <code>map&lt;int32, .Npc&gt; npc = 4;</code>
-       */
-
-      public java.util.Map<java.lang.Integer, com.game.protocol.Protocol.Npc> getNpcMap() {
-        return internalGetNpc().getMap();
-      }
-      /**
-       * <code>map&lt;int32, .Npc&gt; npc = 4;</code>
-       */
-
-      public com.game.protocol.Protocol.Npc getNpcOrDefault(
-          int key,
-          com.game.protocol.Protocol.Npc defaultValue) {
-        
-        java.util.Map<java.lang.Integer, com.game.protocol.Protocol.Npc> map =
-            internalGetNpc().getMap();
-        return map.containsKey(key) ? map.get(key) : defaultValue;
-      }
-      /**
-       * <code>map&lt;int32, .Npc&gt; npc = 4;</code>
-       */
-
-      public com.game.protocol.Protocol.Npc getNpcOrThrow(
-          int key) {
-        
-        java.util.Map<java.lang.Integer, com.game.protocol.Protocol.Npc> map =
-            internalGetNpc().getMap();
-        if (!map.containsKey(key)) {
-          throw new java.lang.IllegalArgumentException();
-        }
-        return map.get(key);
-      }
-
-      public Builder clearNpc() {
-        internalGetMutableNpc().getMutableMap()
-            .clear();
-        return this;
-      }
-      /**
-       * <code>map&lt;int32, .Npc&gt; npc = 4;</code>
-       */
-
-      public Builder removeNpc(
-          int key) {
-        
-        internalGetMutableNpc().getMutableMap()
-            .remove(key);
-        return this;
-      }
-      /**
-       * Use alternate mutation accessors instead.
-       */
-      @java.lang.Deprecated
-      public java.util.Map<java.lang.Integer, com.game.protocol.Protocol.Npc>
-      getMutableNpc() {
-        return internalGetMutableNpc().getMutableMap();
-      }
-      /**
-       * <code>map&lt;int32, .Npc&gt; npc = 4;</code>
-       */
-      public Builder putNpc(
-          int key,
-          com.game.protocol.Protocol.Npc value) {
-        
-        if (value == null) { throw new java.lang.NullPointerException(); }
-        internalGetMutableNpc().getMutableMap()
-            .put(key, value);
-        return this;
-      }
-      /**
-       * <code>map&lt;int32, .Npc&gt; npc = 4;</code>
-       */
-
-      public Builder putAllNpc(
-          java.util.Map<java.lang.Integer, com.game.protocol.Protocol.Npc> values) {
-        internalGetMutableNpc().getMutableMap()
-            .putAll(values);
-        return this;
-      }
-
-      private com.google.protobuf.MapField<
-          java.lang.Integer, com.game.protocol.Protocol.Monster> monster_;
-      private com.google.protobuf.MapField<java.lang.Integer, com.game.protocol.Protocol.Monster>
-      internalGetMonster() {
-        if (monster_ == null) {
-          return com.google.protobuf.MapField.emptyMapField(
-              MonsterDefaultEntryHolder.defaultEntry);
-        }
-        return monster_;
-      }
-      private com.google.protobuf.MapField<java.lang.Integer, com.game.protocol.Protocol.Monster>
-      internalGetMutableMonster() {
-        onChanged();;
-        if (monster_ == null) {
-          monster_ = com.google.protobuf.MapField.newMapField(
-              MonsterDefaultEntryHolder.defaultEntry);
-        }
-        if (!monster_.isMutable()) {
-          monster_ = monster_.copy();
-        }
-        return monster_;
-      }
-
-      public int getMonsterCount() {
-        return internalGetMonster().getMap().size();
-      }
-      /**
-       * <code>map&lt;int32, .Monster&gt; monster = 5;</code>
-       */
-
-      public boolean containsMonster(
-          int key) {
-        
-        return internalGetMonster().getMap().containsKey(key);
-      }
-      /**
-       * Use {@link #getMonsterMap()} instead.
-       */
-      @java.lang.Deprecated
-      public java.util.Map<java.lang.Integer, com.game.protocol.Protocol.Monster> getMonster() {
-        return getMonsterMap();
-      }
-      /**
-       * <code>map&lt;int32, .Monster&gt; monster = 5;</code>
-       */
-
-      public java.util.Map<java.lang.Integer, com.game.protocol.Protocol.Monster> getMonsterMap() {
-        return internalGetMonster().getMap();
-      }
-      /**
-       * <code>map&lt;int32, .Monster&gt; monster = 5;</code>
-       */
-
-      public com.game.protocol.Protocol.Monster getMonsterOrDefault(
-          int key,
-          com.game.protocol.Protocol.Monster defaultValue) {
-        
-        java.util.Map<java.lang.Integer, com.game.protocol.Protocol.Monster> map =
-            internalGetMonster().getMap();
-        return map.containsKey(key) ? map.get(key) : defaultValue;
-      }
-      /**
-       * <code>map&lt;int32, .Monster&gt; monster = 5;</code>
-       */
-
-      public com.game.protocol.Protocol.Monster getMonsterOrThrow(
-          int key) {
-        
-        java.util.Map<java.lang.Integer, com.game.protocol.Protocol.Monster> map =
-            internalGetMonster().getMap();
-        if (!map.containsKey(key)) {
-          throw new java.lang.IllegalArgumentException();
-        }
-        return map.get(key);
-      }
-
-      public Builder clearMonster() {
-        internalGetMutableMonster().getMutableMap()
-            .clear();
-        return this;
-      }
-      /**
-       * <code>map&lt;int32, .Monster&gt; monster = 5;</code>
-       */
-
-      public Builder removeMonster(
-          int key) {
-        
-        internalGetMutableMonster().getMutableMap()
-            .remove(key);
-        return this;
-      }
-      /**
-       * Use alternate mutation accessors instead.
-       */
-      @java.lang.Deprecated
-      public java.util.Map<java.lang.Integer, com.game.protocol.Protocol.Monster>
-      getMutableMonster() {
-        return internalGetMutableMonster().getMutableMap();
-      }
-      /**
-       * <code>map&lt;int32, .Monster&gt; monster = 5;</code>
-       */
-      public Builder putMonster(
-          int key,
-          com.game.protocol.Protocol.Monster value) {
-        
-        if (value == null) { throw new java.lang.NullPointerException(); }
-        internalGetMutableMonster().getMutableMap()
-            .put(key, value);
-        return this;
-      }
-      /**
-       * <code>map&lt;int32, .Monster&gt; monster = 5;</code>
-       */
-
-      public Builder putAllMonster(
-          java.util.Map<java.lang.Integer, com.game.protocol.Protocol.Monster> values) {
-        internalGetMutableMonster().getMutableMap()
-            .putAll(values);
-        return this;
-      }
-      @java.lang.Override
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFields(unknownFields);
-      }
-
-      @java.lang.Override
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:Scene)
-    }
-
-    // @@protoc_insertion_point(class_scope:Scene)
-    private static final com.game.protocol.Protocol.Scene DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new com.game.protocol.Protocol.Scene();
-    }
-
-    public static com.game.protocol.Protocol.Scene getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<Scene>
-        PARSER = new com.google.protobuf.AbstractParser<Scene>() {
-      @java.lang.Override
-      public Scene parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new Scene(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<Scene> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<Scene> getParserForType() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.game.protocol.Protocol.Scene getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
-  public interface MoveSceneOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:MoveScene)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>int32 sceneId = 1;</code>
-     * @return The sceneId.
-     */
-    int getSceneId();
-
-    /**
-     * <code>string mapName = 2;</code>
-     * @return The mapName.
-     */
-    java.lang.String getMapName();
-    /**
-     * <code>string mapName = 2;</code>
-     * @return The bytes for mapName.
-     */
-    com.google.protobuf.ByteString
-        getMapNameBytes();
-  }
-  /**
-   * Protobuf type {@code MoveScene}
-   */
-  public  static final class MoveScene extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:MoveScene)
-      MoveSceneOrBuilder {
-  private static final long serialVersionUID = 0L;
-    // Use MoveScene.newBuilder() to construct.
-    private MoveScene(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private MoveScene() {
-      mapName_ = "";
-    }
-
-    @java.lang.Override
-    @SuppressWarnings({"unused"})
-    protected java.lang.Object newInstance(
-        UnusedPrivateParameter unused) {
-      return new MoveScene();
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private MoveScene(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 8: {
-
-              sceneId_ = input.readInt32();
-              break;
-            }
-            case 18: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              mapName_ = s;
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return com.game.protocol.Protocol.internal_static_MoveScene_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return com.game.protocol.Protocol.internal_static_MoveScene_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              com.game.protocol.Protocol.MoveScene.class, com.game.protocol.Protocol.MoveScene.Builder.class);
-    }
-
-    public static final int SCENEID_FIELD_NUMBER = 1;
-    private int sceneId_;
-    /**
-     * <code>int32 sceneId = 1;</code>
-     * @return The sceneId.
-     */
-    public int getSceneId() {
-      return sceneId_;
-    }
-
-    public static final int MAPNAME_FIELD_NUMBER = 2;
-    private volatile java.lang.Object mapName_;
-    /**
-     * <code>string mapName = 2;</code>
-     * @return The mapName.
-     */
-    public java.lang.String getMapName() {
-      java.lang.Object ref = mapName_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        mapName_ = s;
-        return s;
-      }
-    }
-    /**
-     * <code>string mapName = 2;</code>
-     * @return The bytes for mapName.
-     */
-    public com.google.protobuf.ByteString
-        getMapNameBytes() {
-      java.lang.Object ref = mapName_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        mapName_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    private byte memoizedIsInitialized = -1;
-    @java.lang.Override
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    @java.lang.Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (sceneId_ != 0) {
-        output.writeInt32(1, sceneId_);
-      }
-      if (!getMapNameBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, mapName_);
-      }
-      unknownFields.writeTo(output);
-    }
-
-    @java.lang.Override
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (sceneId_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(1, sceneId_);
-      }
-      if (!getMapNameBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, mapName_);
-      }
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof com.game.protocol.Protocol.MoveScene)) {
-        return super.equals(obj);
-      }
-      com.game.protocol.Protocol.MoveScene other = (com.game.protocol.Protocol.MoveScene) obj;
-
-      if (getSceneId()
-          != other.getSceneId()) return false;
-      if (!getMapName()
-          .equals(other.getMapName())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
-      return true;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + SCENEID_FIELD_NUMBER;
-      hash = (53 * hash) + getSceneId();
-      hash = (37 * hash) + MAPNAME_FIELD_NUMBER;
-      hash = (53 * hash) + getMapName().hashCode();
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static com.game.protocol.Protocol.MoveScene parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.game.protocol.Protocol.MoveScene parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.game.protocol.Protocol.MoveScene parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.game.protocol.Protocol.MoveScene parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.game.protocol.Protocol.MoveScene parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.game.protocol.Protocol.MoveScene parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.game.protocol.Protocol.MoveScene parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.game.protocol.Protocol.MoveScene parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static com.game.protocol.Protocol.MoveScene parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static com.game.protocol.Protocol.MoveScene parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static com.game.protocol.Protocol.MoveScene parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.game.protocol.Protocol.MoveScene parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(com.game.protocol.Protocol.MoveScene prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    @java.lang.Override
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * Protobuf type {@code MoveScene}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:MoveScene)
-        com.game.protocol.Protocol.MoveSceneOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return com.game.protocol.Protocol.internal_static_MoveScene_descriptor;
-      }
-
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return com.game.protocol.Protocol.internal_static_MoveScene_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                com.game.protocol.Protocol.MoveScene.class, com.game.protocol.Protocol.MoveScene.Builder.class);
-      }
-
-      // Construct using com.game.protocol.Protocol.MoveScene.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
-      }
-      @java.lang.Override
-      public Builder clear() {
-        super.clear();
-        sceneId_ = 0;
-
-        mapName_ = "";
-
-        return this;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return com.game.protocol.Protocol.internal_static_MoveScene_descriptor;
-      }
-
-      @java.lang.Override
-      public com.game.protocol.Protocol.MoveScene getDefaultInstanceForType() {
-        return com.game.protocol.Protocol.MoveScene.getDefaultInstance();
-      }
-
-      @java.lang.Override
-      public com.game.protocol.Protocol.MoveScene build() {
-        com.game.protocol.Protocol.MoveScene result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      @java.lang.Override
-      public com.game.protocol.Protocol.MoveScene buildPartial() {
-        com.game.protocol.Protocol.MoveScene result = new com.game.protocol.Protocol.MoveScene(this);
-        result.sceneId_ = sceneId_;
-        result.mapName_ = mapName_;
-        onBuilt();
-        return result;
-      }
-
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
-      }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
-      @java.lang.Override
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.game.protocol.Protocol.MoveScene) {
-          return mergeFrom((com.game.protocol.Protocol.MoveScene)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(com.game.protocol.Protocol.MoveScene other) {
-        if (other == com.game.protocol.Protocol.MoveScene.getDefaultInstance()) return this;
-        if (other.getSceneId() != 0) {
-          setSceneId(other.getSceneId());
-        }
-        if (!other.getMapName().isEmpty()) {
-          mapName_ = other.mapName_;
-          onChanged();
-        }
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
-        return this;
-      }
-
-      @java.lang.Override
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        com.game.protocol.Protocol.MoveScene parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.game.protocol.Protocol.MoveScene) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-
-      private int sceneId_ ;
-      /**
-       * <code>int32 sceneId = 1;</code>
-       * @return The sceneId.
-       */
-      public int getSceneId() {
-        return sceneId_;
-      }
-      /**
-       * <code>int32 sceneId = 1;</code>
-       * @param value The sceneId to set.
-       * @return This builder for chaining.
-       */
-      public Builder setSceneId(int value) {
-        
-        sceneId_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>int32 sceneId = 1;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearSceneId() {
-        
-        sceneId_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private java.lang.Object mapName_ = "";
-      /**
-       * <code>string mapName = 2;</code>
-       * @return The mapName.
-       */
-      public java.lang.String getMapName() {
-        java.lang.Object ref = mapName_;
+      public java.lang.String getName() {
+        java.lang.Object ref = name_;
         if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
           java.lang.String s = bs.toStringUtf8();
-          mapName_ = s;
+          name_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
         }
       }
       /**
-       * <code>string mapName = 2;</code>
-       * @return The bytes for mapName.
+       * <code>string name = 2;</code>
+       * @return The bytes for name.
        */
       public com.google.protobuf.ByteString
-          getMapNameBytes() {
-        java.lang.Object ref = mapName_;
+          getNameBytes() {
+        java.lang.Object ref = name_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
                   (java.lang.String) ref);
-          mapName_ = b;
+          name_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
       /**
-       * <code>string mapName = 2;</code>
-       * @param value The mapName to set.
+       * <code>string name = 2;</code>
+       * @param value The name to set.
        * @return This builder for chaining.
        */
-      public Builder setMapName(
+      public Builder setName(
           java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
   
-        mapName_ = value;
+        name_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>string mapName = 2;</code>
+       * <code>string name = 2;</code>
        * @return This builder for chaining.
        */
-      public Builder clearMapName() {
+      public Builder clearName() {
         
-        mapName_ = getDefaultInstance().getMapName();
+        name_ = getDefaultInstance().getName();
         onChanged();
         return this;
       }
       /**
-       * <code>string mapName = 2;</code>
-       * @param value The bytes for mapName to set.
+       * <code>string name = 2;</code>
+       * @param value The bytes for name to set.
        * @return This builder for chaining.
        */
-      public Builder setMapNameBytes(
+      public Builder setNameBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
         
-        mapName_ = value;
+        name_ = value;
+        onChanged();
+        return this;
+      }
+
+      private int worldId_ ;
+      /**
+       * <code>int32 worldId = 3;</code>
+       * @return The worldId.
+       */
+      public int getWorldId() {
+        return worldId_;
+      }
+      /**
+       * <code>int32 worldId = 3;</code>
+       * @param value The worldId to set.
+       * @return This builder for chaining.
+       */
+      public Builder setWorldId(int value) {
+        
+        worldId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 worldId = 3;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearWorldId() {
+        
+        worldId_ = 0;
         onChanged();
         return this;
       }
@@ -9760,41 +4370,41 @@ public final class Protocol {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:MoveScene)
+      // @@protoc_insertion_point(builder_scope:PlayerData)
     }
 
-    // @@protoc_insertion_point(class_scope:MoveScene)
-    private static final com.game.protocol.Protocol.MoveScene DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:PlayerData)
+    private static final com.game.protocol.Protocol.PlayerData DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new com.game.protocol.Protocol.MoveScene();
+      DEFAULT_INSTANCE = new com.game.protocol.Protocol.PlayerData();
     }
 
-    public static com.game.protocol.Protocol.MoveScene getDefaultInstance() {
+    public static com.game.protocol.Protocol.PlayerData getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static final com.google.protobuf.Parser<MoveScene>
-        PARSER = new com.google.protobuf.AbstractParser<MoveScene>() {
+    private static final com.google.protobuf.Parser<PlayerData>
+        PARSER = new com.google.protobuf.AbstractParser<PlayerData>() {
       @java.lang.Override
-      public MoveScene parsePartialFrom(
+      public PlayerData parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new MoveScene(input, extensionRegistry);
+        return new PlayerData(input, extensionRegistry);
       }
     };
 
-    public static com.google.protobuf.Parser<MoveScene> parser() {
+    public static com.google.protobuf.Parser<PlayerData> parser() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<MoveScene> getParserForType() {
+    public com.google.protobuf.Parser<PlayerData> getParserForType() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.game.protocol.Protocol.MoveScene getDefaultInstanceForType() {
+    public com.game.protocol.Protocol.PlayerData getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -9821,50 +4431,15 @@ public final class Protocol {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_LoginRes_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_Role_descriptor;
+    internal_static_SceneData_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_Role_fieldAccessorTable;
+      internal_static_SceneData_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_Npc_descriptor;
+    internal_static_PlayerData_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_Npc_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_Monster_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_Monster_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_Map_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_Map_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_Scene_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_Scene_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_Scene_RolesEntry_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_Scene_RolesEntry_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_Scene_NpcEntry_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_Scene_NpcEntry_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_Scene_MonsterEntry_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_Scene_MonsterEntry_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_MoveScene_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_MoveScene_fieldAccessorTable;
+      internal_static_PlayerData_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -9879,32 +4454,11 @@ public final class Protocol {
       "s\022\014\n\004code\030\001 \001(\005\022\013\n\003msg\030\002 \001(\t\"-\n\010LoginReq" +
       "\022\017\n\007loginId\030\001 \001(\t\022\020\n\010password\030\002 \001(\t\"@\n\010L" +
       "oginRes\022\014\n\004code\030\001 \001(\005\022\013\n\003msg\030\002 \001(\t\022\r\n\005to" +
-      "ken\030\003 \001(\t\022\n\n\002id\030\004 \001(\005\"\251\001\n\004Role\022\n\n\002id\030\001 \001" +
-      "(\005\022\014\n\004name\030\002 \001(\t\022\n\n\002ph\030\003 \001(\005\022\n\n\002mp\030\004 \001(\005" +
-      "\022\021\n\tphyAttack\030\005 \001(\005\022\023\n\013magicAttack\030\006 \001(\005" +
-      "\022\022\n\nphyDefense\030\007 \001(\005\022\024\n\014magicDefense\030\010 \001" +
-      "(\005\022\r\n\005mapId\030\t \001(\005\022\016\n\006status\030\n \001(\005\"\250\001\n\003Np" +
-      "c\022\n\n\002id\030\001 \001(\005\022\014\n\004name\030\002 \001(\t\022\n\n\002ph\030\003 \001(\005\022" +
-      "\n\n\002mp\030\004 \001(\005\022\021\n\tphyAttack\030\005 \001(\005\022\023\n\013magicA" +
-      "ttack\030\006 \001(\005\022\022\n\nphyDefense\030\007 \001(\005\022\024\n\014magic" +
-      "Defense\030\010 \001(\005\022\r\n\005mapId\030\t \001(\005\022\016\n\006status\030\n" +
-      " \001(\005\"\254\001\n\007Monster\022\n\n\002id\030\001 \001(\005\022\014\n\004name\030\002 \001" +
-      "(\t\022\n\n\002ph\030\003 \001(\005\022\n\n\002mp\030\004 \001(\005\022\021\n\tphyAttack\030" +
-      "\005 \001(\005\022\023\n\013magicAttack\030\006 \001(\005\022\022\n\nphyDefense" +
-      "\030\007 \001(\005\022\024\n\014magicDefense\030\010 \001(\005\022\r\n\005mapId\030\t " +
-      "\001(\005\022\016\n\006status\030\n \001(\005\"H\n\003Map\022\n\n\002id\030\001 \001(\005\022\014" +
-      "\n\004name\030\002 \001(\t\022\023\n\013description\030\003 \001(\t\022\022\n\004way" +
-      "s\030\004 \003(\0132\004.Map\"\255\002\n\005Scene\022\n\n\002id\030\001 \001(\005\022\021\n\003m" +
-      "ap\030\002 \001(\0132\004.Map\022 \n\005roles\030\003 \003(\0132\021.Scene.Ro" +
-      "lesEntry\022\034\n\003npc\030\004 \003(\0132\017.Scene.NpcEntry\022$" +
-      "\n\007monster\030\005 \003(\0132\023.Scene.MonsterEntry\0323\n\n" +
-      "RolesEntry\022\013\n\003key\030\001 \001(\005\022\024\n\005value\030\002 \001(\0132\005" +
-      ".Role:\0028\001\0320\n\010NpcEntry\022\013\n\003key\030\001 \001(\005\022\023\n\005va" +
-      "lue\030\002 \001(\0132\004.Npc:\0028\001\0328\n\014MonsterEntry\022\013\n\003k" +
-      "ey\030\001 \001(\005\022\027\n\005value\030\002 \001(\0132\010.Monster:\0028\001\"-\n" +
-      "\tMoveScene\022\017\n\007sceneId\030\001 \001(\005\022\017\n\007mapName\030\002" +
-      " \001(\tB\035\n\021com.game.protocolB\010Protocolb\006pro" +
-      "to3"
+      "ken\030\003 \001(\t\022\n\n\002id\030\004 \001(\005\":\n\tSceneData\022\n\n\002id" +
+      "\030\001 \001(\005\022\014\n\004name\030\002 \001(\t\022\023\n\013description\030\003 \001(" +
+      "\t\"7\n\nPlayerData\022\n\n\002id\030\001 \001(\005\022\014\n\004name\030\002 \001(" +
+      "\t\022\017\n\007worldId\030\003 \001(\005B\035\n\021com.game.protocolB" +
+      "\010Protocolb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -9934,60 +4488,18 @@ public final class Protocol {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_LoginRes_descriptor,
         new java.lang.String[] { "Code", "Msg", "Token", "Id", });
-    internal_static_Role_descriptor =
+    internal_static_SceneData_descriptor =
       getDescriptor().getMessageTypes().get(4);
-    internal_static_Role_fieldAccessorTable = new
+    internal_static_SceneData_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_Role_descriptor,
-        new java.lang.String[] { "Id", "Name", "Ph", "Mp", "PhyAttack", "MagicAttack", "PhyDefense", "MagicDefense", "MapId", "Status", });
-    internal_static_Npc_descriptor =
+        internal_static_SceneData_descriptor,
+        new java.lang.String[] { "Id", "Name", "Description", });
+    internal_static_PlayerData_descriptor =
       getDescriptor().getMessageTypes().get(5);
-    internal_static_Npc_fieldAccessorTable = new
+    internal_static_PlayerData_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_Npc_descriptor,
-        new java.lang.String[] { "Id", "Name", "Ph", "Mp", "PhyAttack", "MagicAttack", "PhyDefense", "MagicDefense", "MapId", "Status", });
-    internal_static_Monster_descriptor =
-      getDescriptor().getMessageTypes().get(6);
-    internal_static_Monster_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_Monster_descriptor,
-        new java.lang.String[] { "Id", "Name", "Ph", "Mp", "PhyAttack", "MagicAttack", "PhyDefense", "MagicDefense", "MapId", "Status", });
-    internal_static_Map_descriptor =
-      getDescriptor().getMessageTypes().get(7);
-    internal_static_Map_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_Map_descriptor,
-        new java.lang.String[] { "Id", "Name", "Description", "Ways", });
-    internal_static_Scene_descriptor =
-      getDescriptor().getMessageTypes().get(8);
-    internal_static_Scene_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_Scene_descriptor,
-        new java.lang.String[] { "Id", "Map", "Roles", "Npc", "Monster", });
-    internal_static_Scene_RolesEntry_descriptor =
-      internal_static_Scene_descriptor.getNestedTypes().get(0);
-    internal_static_Scene_RolesEntry_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_Scene_RolesEntry_descriptor,
-        new java.lang.String[] { "Key", "Value", });
-    internal_static_Scene_NpcEntry_descriptor =
-      internal_static_Scene_descriptor.getNestedTypes().get(1);
-    internal_static_Scene_NpcEntry_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_Scene_NpcEntry_descriptor,
-        new java.lang.String[] { "Key", "Value", });
-    internal_static_Scene_MonsterEntry_descriptor =
-      internal_static_Scene_descriptor.getNestedTypes().get(2);
-    internal_static_Scene_MonsterEntry_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_Scene_MonsterEntry_descriptor,
-        new java.lang.String[] { "Key", "Value", });
-    internal_static_MoveScene_descriptor =
-      getDescriptor().getMessageTypes().get(9);
-    internal_static_MoveScene_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_MoveScene_descriptor,
-        new java.lang.String[] { "SceneId", "MapName", });
+        internal_static_PlayerData_descriptor,
+        new java.lang.String[] { "Id", "Name", "WorldId", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)
