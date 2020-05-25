@@ -1,0 +1,41 @@
+syntax = "proto3";
+option java_package = "com.game.protocol";
+option java_outer_classname = "AccountProtocol";
+
+// 注册请求
+message RegisterReq{
+    string loginId =1;
+    string password = 2;
+}
+
+// 注册响应
+message RegisterRes{
+    int32 code = 1;
+    string msg = 2;
+}
+
+// 登录请求
+message LoginReq{
+    string loginId = 1;
+    string password = 2;
+}
+
+// 登录响应
+message LoginRes{
+    int32 code = 1;
+    int32 id = 2;
+    string token = 3;
+    repeated RoleInfo roles = 4;
+}
+
+// 角色信息 用于角色选择
+message RoleInfo{
+    // id
+    int32 id = 1;
+    // 职业
+    int32 career = 2;
+    // 等级
+    int32 level = 3;
+    // 姓名
+    string name = 4;
+}

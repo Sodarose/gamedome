@@ -1,0 +1,33 @@
+syntax = "proto3";
+option java_package = "com.game.protocol";
+option java_outer_classname = "PlayerProtocol";
+
+// 角色信息 用于角色选择
+message RoleInfo{
+    // id
+    int32 id = 1;
+    // 职业
+    string career = 2;
+    // 等级
+    int32 level = 3;
+    // 姓名
+    string name = 4;
+}
+
+// 登录角色
+message LoginRole{
+    int32 id = 1;
+}
+
+// 角色实体信息
+message PlayerEntity{
+
+}
+
+
+// 角色列表
+message RoleInfoList{
+    repeated RoleInfo roles = 1;
+}
+
+

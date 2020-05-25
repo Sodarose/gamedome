@@ -1,0 +1,3 @@
+syntax = "proto3";
+option java_package = "com.game.protocol";
+option java_outer_classname = "ItemProtocol";

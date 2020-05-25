@@ -1,0 +1,21 @@
+syntax = "proto3";
+option java_package = "com.game.protocol";
+option java_outer_classname = "Scene";
+
+message SceneMessage{
+    int32 id = 1;
+    string name = 2;
+    string description = 3;
+    int32 playerCount = 4;
+    map<int32,string> players = 5;
+    map<int32,string> monsters = 6;
+    map<int32,string> npcs = 7;
+}
+
+message SceneNpc{
+
+}
+
+message SceneMonster{
+
+}

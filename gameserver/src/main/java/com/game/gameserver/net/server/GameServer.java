@@ -1,7 +1,6 @@
 package com.game.gameserver.net.server;
 
-import com.game.gameserver.game.Platform;
-import com.game.gameserver.net.handler.ServerChannelInitializer;
+import com.game.gameserver.context.Platform;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;

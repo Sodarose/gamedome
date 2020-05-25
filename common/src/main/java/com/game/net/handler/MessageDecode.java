@@ -18,8 +18,8 @@ public class MessageDecode extends LengthFieldBasedFrameDecoder {
 
 
     /**
-     * messageLength | cmd      | data
-     * Integer       | Short    | byte[]
+     * messageLength | module | cmd      | data
+     * Integer       | Short  | Short   | byte[]
      * */
     @Override
     protected Object decode(ChannelHandlerContext ctx, ByteBuf in) throws Exception {
@@ -28,8 +28,9 @@ public class MessageDecode extends LengthFieldBasedFrameDecoder {
             return null;
         }
         int length = farm.readInt();
+        short module = farm.readShort();
         short cmd = farm.readShort();
         byte []bytes = ByteBufUtil.getBytes(farm);
-        return new Message(length,cmd,bytes);
+        return new Message(length,module,cmd,bytes);
     }
 }

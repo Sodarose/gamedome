@@ -1,8 +1,6 @@
 package com.game.net.client;
 
-import com.game.game.gui.GameClientPage;
-import com.game.game.gui.LoadPage;
-import com.game.game.gui.TextPage;
+import com.game.module.gui.GameClientPage;
 import com.game.net.handler.ClientChannelInitializer;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.*;

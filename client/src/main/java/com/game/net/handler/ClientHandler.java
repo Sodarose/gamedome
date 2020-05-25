@@ -1,6 +1,7 @@
 package com.game.net.handler;
 
-import com.game.game.context.ClientSpringContext;
+import com.game.context.ClientGameContext;
+import com.game.context.ClientSpringContext;
 import com.game.protocol.Message;
 import com.game.task.MessageDispatcher;
 import io.netty.channel.ChannelHandlerContext;
@@ -19,15 +20,14 @@ public class ClientHandler extends ChannelInboundHandlerAdapter {
     private final static Logger logger = LoggerFactory.getLogger(ClientHandler.class);
 
     @Autowired
-    ClientSpringContext clientSpringContext;
-
+    private ClientGameContext gameContext;
     @Autowired
     private MessageDispatcher messageDispatcher;
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         logger.info("连接已接通 Channel ID {}",ctx.channel().id());
-        clientSpringContext.setChannel(ctx.channel());
+        gameContext.setChannel(ctx.channel());
         super.channelActive(ctx);
     }
 
