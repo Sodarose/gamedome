@@ -1,6 +1,6 @@
 package com.game.gameserver.module.player.manager;
 
-import com.game.gameserver.module.player.entity.PlayerEntity;
+import com.game.gameserver.module.player.entity.Player;
 import org.springframework.stereotype.Component;
 
 import java.util.Map;
@@ -12,7 +12,12 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 @Component
 public class PlayerManager {
-    private Map<Integer, PlayerEntity> playerEntityMap = new ConcurrentHashMap<>(16);
+    private Map<Integer, Player> playerEntityMap = new ConcurrentHashMap<>(16);
+    public void putPlayer(Player player){
+        playerEntityMap.put(player.getId(), player);
+    }
 
-
+    public Player getPlayer(Integer id){
+        return playerEntityMap.get(id);
+    }
 }

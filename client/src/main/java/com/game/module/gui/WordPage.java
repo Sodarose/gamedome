@@ -1,6 +1,10 @@
 package com.game.module.gui;
 
-import com.game.module.game.model.Role;
+import com.game.module.equip.entity.Equip;
+import com.game.module.equip.entity.EquipBar;
+import com.game.module.player.StaticData;
+import com.game.module.player.entity.Player;
+import com.game.module.player.model.Role;
 import org.springframework.stereotype.Component;
 
 import javax.swing.*;
@@ -65,5 +69,47 @@ public class WordPage extends JTextArea {
         }
         builder.append("\n");
         refresh();
+    }
+
+    /**
+     * 打印角色信息
+     * @param player
+     * @return void
+     */
+    public void print(Player player){
+        builder.append("姓名：\t").append(player.getName()).append("\n");
+        builder.append("职业：\t").append(StaticData.careerMap.get(player.getCareer())).append("\n");
+        builder.append("等级: \t").append(player.getLevel()).append("\n");
+        builder.append("\n");
+        builder.append("生命值：").append(player.getProperty().getHp()).append("\t");
+        builder.append("魔法值：").append(player.getProperty().getMp()).append("\t");
+        builder.append("\n");
+        builder.append("物理攻击力：").append(player.getProperty().getPhyAttack()).append("\n");
+        builder.append("物理防御力：").append(player.getProperty().getPhyDefense()).append("\n");
+        builder.append("魔法攻击力：").append(player.getProperty().getMagicAttack()).append("\n");
+        builder.append("魔法防御力：").append(player.getProperty().getMagicDefense()).append("\n");
+        builder.append("攻击速度：").append(player.getProperty().getMagicDefense()).append("\n");
+        builder.append("移动速度：").append(player.getProperty().getMagicDefense()).append("\n");
+        builder.append("\n");
+        refresh();
+        print(player.getEquipBar());
+    }
+
+    /**
+     * 打印装备栏
+     * @param equipBar
+     * @return void
+     */
+    public void print(EquipBar equipBar){
+        for(int i=0;i<EquipBar.MAX_EQUIP_LENGTH;i++){
+            Equip equip = equipBar.getEquips()[i];
+            builder.append(StaticData.equipPart.get(i)).append(":\t")
+                    .append(equip==null?"空":equip.getName()).append("\n");
+        }
+        refresh();
+    }
+
+    public void print(Equip equip){
+
     }
 }

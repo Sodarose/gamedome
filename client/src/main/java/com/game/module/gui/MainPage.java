@@ -3,6 +3,7 @@ package com.game.module.gui;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import javax.swing.*;
 import java.awt.*;
 
@@ -12,15 +13,18 @@ import java.awt.*;
  */
 @Component
 public class MainPage extends JPanel {
-
     @Autowired
-    private WordPage wordPage ;
+    private WordPage wordPage;
     @Autowired
-    private CmdPage cmdPage ;
+    private CmdPage cmdPage  ;
 
     public MainPage(){
         setBackground(Color.BLACK);
         setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
+    }
+
+    @PostConstruct
+    protected void init(){
         add(wordPage);
         add(cmdPage);
     }

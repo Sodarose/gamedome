@@ -1,5 +1,6 @@
 package com.game.module.gui;
 
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -24,7 +25,7 @@ public class GameClientPage extends JFrame{
     private LoadPage loadPage = new LoadPage();
     private TextPage textPage = new TextPage("");
     @Autowired
-    private MainPage mainPage ;
+    private MainPage mainPage;
 
     public GameClientPage(){
         setTitle(GAME_TITLE);
@@ -80,7 +81,5 @@ public class GameClientPage extends JFrame{
             currentPanel.validate();
         }
     }
-
-
 
 }

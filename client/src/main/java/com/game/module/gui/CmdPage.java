@@ -1,9 +1,11 @@
 package com.game.module.gui;
 
 import com.game.module.order.service.CmdService;
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
@@ -29,6 +31,15 @@ public class CmdPage extends JTextField {
         setFont(new Font("宋体", Font.PLAIN, 24));
         setForeground(Color.white);
         setMaximumSize(new Dimension(Integer.MAX_VALUE,100));
+    }
+
+    public void refresh(){
+        repaint();
+        validate();
+    }
+
+    @PostConstruct
+    protected void init(){
         this.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
@@ -46,10 +57,4 @@ public class CmdPage extends JTextField {
         });
     }
 
-
-
-    public void refresh(){
-        repaint();
-        validate();
-    }
 }

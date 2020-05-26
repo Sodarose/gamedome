@@ -13,10 +13,6 @@ public class DictMonster {
     private Integer type;
     private Integer hp;
     private Integer mp;
-    private Integer power;
-    private Integer brains;
-    private Integer strength;
-    private Integer spirit;
     private Integer phyAttack;
     private Integer magicAttack;
     private Integer phyDefense;

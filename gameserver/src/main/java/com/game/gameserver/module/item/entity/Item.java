@@ -1,15 +1,17 @@
 package com.game.gameserver.module.item.entity;
 
+import com.game.gameserver.dictionary.dict.DictItem;
+import lombok.Data;
+
 /**
- * 道具接口
+ * 道具实体
  * @author xuewenkang
- * @date 2020/5/25 17:53
+ * @date 2020/5/25 17:52
  */
-public interface Item {
-    /** 使用前 */
-    void beforeUse();
-    /** 使用中 */
-    void using();
-    /** 使用后 */
-    void afterUse();
+@Data
+public class Item implements UseAble {
+    private Integer id;
+    private DictItem dictItem;
+    private Integer itemType;
+    private Integer roleId;
 }

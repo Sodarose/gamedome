@@ -2127,30 +2127,6 @@ public final class AccountProtocol {
      */
     com.google.protobuf.ByteString
         getTokenBytes();
-
-    /**
-     * <code>repeated .RoleInfo roles = 4;</code>
-     */
-    java.util.List<com.game.protocol.PlayerProtocol.RoleInfo> 
-        getRolesList();
-    /**
-     * <code>repeated .RoleInfo roles = 4;</code>
-     */
-    com.game.protocol.PlayerProtocol.RoleInfo getRoles(int index);
-    /**
-     * <code>repeated .RoleInfo roles = 4;</code>
-     */
-    int getRolesCount();
-    /**
-     * <code>repeated .RoleInfo roles = 4;</code>
-     */
-    java.util.List<? extends com.game.protocol.PlayerProtocol.RoleInfoOrBuilder> 
-        getRolesOrBuilderList();
-    /**
-     * <code>repeated .RoleInfo roles = 4;</code>
-     */
-    com.game.protocol.PlayerProtocol.RoleInfoOrBuilder getRolesOrBuilder(
-        int index);
   }
   /**
    * <pre>
@@ -2170,7 +2146,6 @@ public final class AccountProtocol {
     }
     private LoginRes() {
       token_ = "";
-      roles_ = java.util.Collections.emptyList();
     }
 
     @java.lang.Override
@@ -2193,7 +2168,6 @@ public final class AccountProtocol {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -2220,15 +2194,6 @@ public final class AccountProtocol {
               token_ = s;
               break;
             }
-            case 34: {
-              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                roles_ = new java.util.ArrayList<com.game.protocol.PlayerProtocol.RoleInfo>();
-                mutable_bitField0_ |= 0x00000001;
-              }
-              roles_.add(
-                  input.readMessage(com.game.protocol.PlayerProtocol.RoleInfo.parser(), extensionRegistry));
-              break;
-            }
             default: {
               if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
@@ -2244,9 +2209,6 @@ public final class AccountProtocol {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
-        if (((mutable_bitField0_ & 0x00000001) != 0)) {
-          roles_ = java.util.Collections.unmodifiableList(roles_);
-        }
         this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
@@ -2320,41 +2282,6 @@ public final class AccountProtocol {
       }
     }
 
-    public static final int ROLES_FIELD_NUMBER = 4;
-    private java.util.List<com.game.protocol.PlayerProtocol.RoleInfo> roles_;
-    /**
-     * <code>repeated .RoleInfo roles = 4;</code>
-     */
-    public java.util.List<com.game.protocol.PlayerProtocol.RoleInfo> getRolesList() {
-      return roles_;
-    }
-    /**
-     * <code>repeated .RoleInfo roles = 4;</code>
-     */
-    public java.util.List<? extends com.game.protocol.PlayerProtocol.RoleInfoOrBuilder> 
-        getRolesOrBuilderList() {
-      return roles_;
-    }
-    /**
-     * <code>repeated .RoleInfo roles = 4;</code>
-     */
-    public int getRolesCount() {
-      return roles_.size();
-    }
-    /**
-     * <code>repeated .RoleInfo roles = 4;</code>
-     */
-    public com.game.protocol.PlayerProtocol.RoleInfo getRoles(int index) {
-      return roles_.get(index);
-    }
-    /**
-     * <code>repeated .RoleInfo roles = 4;</code>
-     */
-    public com.game.protocol.PlayerProtocol.RoleInfoOrBuilder getRolesOrBuilder(
-        int index) {
-      return roles_.get(index);
-    }
-
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -2378,9 +2305,6 @@ public final class AccountProtocol {
       if (!getTokenBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 3, token_);
       }
-      for (int i = 0; i < roles_.size(); i++) {
-        output.writeMessage(4, roles_.get(i));
-      }
       unknownFields.writeTo(output);
     }
 
@@ -2400,10 +2324,6 @@ public final class AccountProtocol {
       }
       if (!getTokenBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, token_);
-      }
-      for (int i = 0; i < roles_.size(); i++) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(4, roles_.get(i));
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -2426,8 +2346,6 @@ public final class AccountProtocol {
           != other.getId()) return false;
       if (!getToken()
           .equals(other.getToken())) return false;
-      if (!getRolesList()
-          .equals(other.getRolesList())) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -2445,10 +2363,6 @@ public final class AccountProtocol {
       hash = (53 * hash) + getId();
       hash = (37 * hash) + TOKEN_FIELD_NUMBER;
       hash = (53 * hash) + getToken().hashCode();
-      if (getRolesCount() > 0) {
-        hash = (37 * hash) + ROLES_FIELD_NUMBER;
-        hash = (53 * hash) + getRolesList().hashCode();
-      }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -2581,7 +2495,6 @@ public final class AccountProtocol {
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessageV3
                 .alwaysUseFieldBuilders) {
-          getRolesFieldBuilder();
         }
       }
       @java.lang.Override
@@ -2593,12 +2506,6 @@ public final class AccountProtocol {
 
         token_ = "";
 
-        if (rolesBuilder_ == null) {
-          roles_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
-        } else {
-          rolesBuilder_.clear();
-        }
         return this;
       }
 
@@ -2625,19 +2532,9 @@ public final class AccountProtocol {
       @java.lang.Override
       public com.game.protocol.AccountProtocol.LoginRes buildPartial() {
         com.game.protocol.AccountProtocol.LoginRes result = new com.game.protocol.AccountProtocol.LoginRes(this);
-        int from_bitField0_ = bitField0_;
         result.code_ = code_;
         result.id_ = id_;
         result.token_ = token_;
-        if (rolesBuilder_ == null) {
-          if (((bitField0_ & 0x00000001) != 0)) {
-            roles_ = java.util.Collections.unmodifiableList(roles_);
-            bitField0_ = (bitField0_ & ~0x00000001);
-          }
-          result.roles_ = roles_;
-        } else {
-          result.roles_ = rolesBuilder_.build();
-        }
         onBuilt();
         return result;
       }
@@ -2696,32 +2593,6 @@ public final class AccountProtocol {
           token_ = other.token_;
           onChanged();
         }
-        if (rolesBuilder_ == null) {
-          if (!other.roles_.isEmpty()) {
-            if (roles_.isEmpty()) {
-              roles_ = other.roles_;
-              bitField0_ = (bitField0_ & ~0x00000001);
-            } else {
-              ensureRolesIsMutable();
-              roles_.addAll(other.roles_);
-            }
-            onChanged();
-          }
-        } else {
-          if (!other.roles_.isEmpty()) {
-            if (rolesBuilder_.isEmpty()) {
-              rolesBuilder_.dispose();
-              rolesBuilder_ = null;
-              roles_ = other.roles_;
-              bitField0_ = (bitField0_ & ~0x00000001);
-              rolesBuilder_ = 
-                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
-                   getRolesFieldBuilder() : null;
-            } else {
-              rolesBuilder_.addAllMessages(other.roles_);
-            }
-          }
-        }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
@@ -2750,7 +2621,6 @@ public final class AccountProtocol {
         }
         return this;
       }
-      private int bitField0_;
 
       private int code_ ;
       /**
@@ -2887,246 +2757,6 @@ public final class AccountProtocol {
         onChanged();
         return this;
       }
-
-      private java.util.List<com.game.protocol.PlayerProtocol.RoleInfo> roles_ =
-        java.util.Collections.emptyList();
-      private void ensureRolesIsMutable() {
-        if (!((bitField0_ & 0x00000001) != 0)) {
-          roles_ = new java.util.ArrayList<com.game.protocol.PlayerProtocol.RoleInfo>(roles_);
-          bitField0_ |= 0x00000001;
-         }
-      }
-
-      private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.game.protocol.PlayerProtocol.RoleInfo, com.game.protocol.PlayerProtocol.RoleInfo.Builder, com.game.protocol.PlayerProtocol.RoleInfoOrBuilder> rolesBuilder_;
-
-      /**
-       * <code>repeated .RoleInfo roles = 4;</code>
-       */
-      public java.util.List<com.game.protocol.PlayerProtocol.RoleInfo> getRolesList() {
-        if (rolesBuilder_ == null) {
-          return java.util.Collections.unmodifiableList(roles_);
-        } else {
-          return rolesBuilder_.getMessageList();
-        }
-      }
-      /**
-       * <code>repeated .RoleInfo roles = 4;</code>
-       */
-      public int getRolesCount() {
-        if (rolesBuilder_ == null) {
-          return roles_.size();
-        } else {
-          return rolesBuilder_.getCount();
-        }
-      }
-      /**
-       * <code>repeated .RoleInfo roles = 4;</code>
-       */
-      public com.game.protocol.PlayerProtocol.RoleInfo getRoles(int index) {
-        if (rolesBuilder_ == null) {
-          return roles_.get(index);
-        } else {
-          return rolesBuilder_.getMessage(index);
-        }
-      }
-      /**
-       * <code>repeated .RoleInfo roles = 4;</code>
-       */
-      public Builder setRoles(
-          int index, com.game.protocol.PlayerProtocol.RoleInfo value) {
-        if (rolesBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureRolesIsMutable();
-          roles_.set(index, value);
-          onChanged();
-        } else {
-          rolesBuilder_.setMessage(index, value);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .RoleInfo roles = 4;</code>
-       */
-      public Builder setRoles(
-          int index, com.game.protocol.PlayerProtocol.RoleInfo.Builder builderForValue) {
-        if (rolesBuilder_ == null) {
-          ensureRolesIsMutable();
-          roles_.set(index, builderForValue.build());
-          onChanged();
-        } else {
-          rolesBuilder_.setMessage(index, builderForValue.build());
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .RoleInfo roles = 4;</code>
-       */
-      public Builder addRoles(com.game.protocol.PlayerProtocol.RoleInfo value) {
-        if (rolesBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureRolesIsMutable();
-          roles_.add(value);
-          onChanged();
-        } else {
-          rolesBuilder_.addMessage(value);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .RoleInfo roles = 4;</code>
-       */
-      public Builder addRoles(
-          int index, com.game.protocol.PlayerProtocol.RoleInfo value) {
-        if (rolesBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureRolesIsMutable();
-          roles_.add(index, value);
-          onChanged();
-        } else {
-          rolesBuilder_.addMessage(index, value);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .RoleInfo roles = 4;</code>
-       */
-      public Builder addRoles(
-          com.game.protocol.PlayerProtocol.RoleInfo.Builder builderForValue) {
-        if (rolesBuilder_ == null) {
-          ensureRolesIsMutable();
-          roles_.add(builderForValue.build());
-          onChanged();
-        } else {
-          rolesBuilder_.addMessage(builderForValue.build());
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .RoleInfo roles = 4;</code>
-       */
-      public Builder addRoles(
-          int index, com.game.protocol.PlayerProtocol.RoleInfo.Builder builderForValue) {
-        if (rolesBuilder_ == null) {
-          ensureRolesIsMutable();
-          roles_.add(index, builderForValue.build());
-          onChanged();
-        } else {
-          rolesBuilder_.addMessage(index, builderForValue.build());
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .RoleInfo roles = 4;</code>
-       */
-      public Builder addAllRoles(
-          java.lang.Iterable<? extends com.game.protocol.PlayerProtocol.RoleInfo> values) {
-        if (rolesBuilder_ == null) {
-          ensureRolesIsMutable();
-          com.google.protobuf.AbstractMessageLite.Builder.addAll(
-              values, roles_);
-          onChanged();
-        } else {
-          rolesBuilder_.addAllMessages(values);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .RoleInfo roles = 4;</code>
-       */
-      public Builder clearRoles() {
-        if (rolesBuilder_ == null) {
-          roles_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
-          onChanged();
-        } else {
-          rolesBuilder_.clear();
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .RoleInfo roles = 4;</code>
-       */
-      public Builder removeRoles(int index) {
-        if (rolesBuilder_ == null) {
-          ensureRolesIsMutable();
-          roles_.remove(index);
-          onChanged();
-        } else {
-          rolesBuilder_.remove(index);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .RoleInfo roles = 4;</code>
-       */
-      public com.game.protocol.PlayerProtocol.RoleInfo.Builder getRolesBuilder(
-          int index) {
-        return getRolesFieldBuilder().getBuilder(index);
-      }
-      /**
-       * <code>repeated .RoleInfo roles = 4;</code>
-       */
-      public com.game.protocol.PlayerProtocol.RoleInfoOrBuilder getRolesOrBuilder(
-          int index) {
-        if (rolesBuilder_ == null) {
-          return roles_.get(index);  } else {
-          return rolesBuilder_.getMessageOrBuilder(index);
-        }
-      }
-      /**
-       * <code>repeated .RoleInfo roles = 4;</code>
-       */
-      public java.util.List<? extends com.game.protocol.PlayerProtocol.RoleInfoOrBuilder> 
-           getRolesOrBuilderList() {
-        if (rolesBuilder_ != null) {
-          return rolesBuilder_.getMessageOrBuilderList();
-        } else {
-          return java.util.Collections.unmodifiableList(roles_);
-        }
-      }
-      /**
-       * <code>repeated .RoleInfo roles = 4;</code>
-       */
-      public com.game.protocol.PlayerProtocol.RoleInfo.Builder addRolesBuilder() {
-        return getRolesFieldBuilder().addBuilder(
-            com.game.protocol.PlayerProtocol.RoleInfo.getDefaultInstance());
-      }
-      /**
-       * <code>repeated .RoleInfo roles = 4;</code>
-       */
-      public com.game.protocol.PlayerProtocol.RoleInfo.Builder addRolesBuilder(
-          int index) {
-        return getRolesFieldBuilder().addBuilder(
-            index, com.game.protocol.PlayerProtocol.RoleInfo.getDefaultInstance());
-      }
-      /**
-       * <code>repeated .RoleInfo roles = 4;</code>
-       */
-      public java.util.List<com.game.protocol.PlayerProtocol.RoleInfo.Builder> 
-           getRolesBuilderList() {
-        return getRolesFieldBuilder().getBuilderList();
-      }
-      private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.game.protocol.PlayerProtocol.RoleInfo, com.game.protocol.PlayerProtocol.RoleInfo.Builder, com.game.protocol.PlayerProtocol.RoleInfoOrBuilder> 
-          getRolesFieldBuilder() {
-        if (rolesBuilder_ == null) {
-          rolesBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.game.protocol.PlayerProtocol.RoleInfo, com.game.protocol.PlayerProtocol.RoleInfo.Builder, com.game.protocol.PlayerProtocol.RoleInfoOrBuilder>(
-                  roles_,
-                  ((bitField0_ & 0x00000001) != 0),
-                  getParentForChildren(),
-                  isClean());
-          roles_ = null;
-        }
-        return rolesBuilder_;
-      }
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -3209,19 +2839,17 @@ public final class AccountProtocol {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\rAccount.proto\032\014Player.proto\"0\n\013Registe" +
-      "rReq\022\017\n\007loginId\030\001 \001(\t\022\020\n\010password\030\002 \001(\t\"" +
-      "(\n\013RegisterRes\022\014\n\004code\030\001 \001(\005\022\013\n\003msg\030\002 \001(" +
-      "\t\"-\n\010LoginReq\022\017\n\007loginId\030\001 \001(\t\022\020\n\010passwo" +
-      "rd\030\002 \001(\t\"M\n\010LoginRes\022\014\n\004code\030\001 \001(\005\022\n\n\002id" +
-      "\030\002 \001(\005\022\r\n\005token\030\003 \001(\t\022\030\n\005roles\030\004 \003(\0132\t.R" +
-      "oleInfoB$\n\021com.game.protocolB\017AccountPro" +
+      "\n\rAccount.proto\"0\n\013RegisterReq\022\017\n\007loginI" +
+      "d\030\001 \001(\t\022\020\n\010password\030\002 \001(\t\"(\n\013RegisterRes" +
+      "\022\014\n\004code\030\001 \001(\005\022\013\n\003msg\030\002 \001(\t\"-\n\010LoginReq\022" +
+      "\017\n\007loginId\030\001 \001(\t\022\020\n\010password\030\002 \001(\t\"3\n\010Lo" +
+      "ginRes\022\014\n\004code\030\001 \001(\005\022\n\n\002id\030\002 \001(\005\022\r\n\005toke" +
+      "n\030\003 \001(\tB$\n\021com.game.protocolB\017AccountPro" +
       "tocolb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
-          com.game.protocol.PlayerProtocol.getDescriptor(),
         });
     internal_static_RegisterReq_descriptor =
       getDescriptor().getMessageTypes().get(0);
@@ -3246,8 +2874,7 @@ public final class AccountProtocol {
     internal_static_LoginRes_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_LoginRes_descriptor,
-        new java.lang.String[] { "Code", "Id", "Token", "Roles", });
-    com.game.protocol.PlayerProtocol.getDescriptor();
+        new java.lang.String[] { "Code", "Id", "Token", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

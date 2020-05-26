@@ -27,7 +27,7 @@ public class DictionaryData {
     private List<DictBuffer> dictBuffers = new ArrayList<>();
     private List<DictBufferType> dictBufferTypes = new ArrayList<>();
     private List<DictEffect> dictEffects = new ArrayList<>();
-    private List<DictEquip> equips = new ArrayList<>();
+    private List<DictEquip> dictEquips = new ArrayList<>();
     private List<DictEquipPart> dictEquipParts = new ArrayList<>();
     private List<DictItem> dictItems = new ArrayList<>();
     private List<DictItemType> dictItemTypes = new ArrayList<>();
@@ -43,6 +43,7 @@ public class DictionaryData {
 
 
     public void loadConfig(){
+        logger.info("读取本地配置表");
         ClassLoader loader = this.getClass().getClassLoader();
         URL url = loader.getResource(TABLE_PATH);
         if(url==null){
@@ -50,42 +51,34 @@ public class DictionaryData {
             return;
         }
         String path = url.getFile();
-        loadDictNpc(path);
-        loadDictMonster(path);
-        loadDictScene(path);
-        loadDictRoleCareer(path);
-        loadDictRoleLevelProperty(path);
-        loadDictRoleProperty(path);
-
-        /*loadDictBuff(path);
+        loadDictBuff(path);
         loadDictBuffType(path);
-        loadDictConsumable(path);
-        loadDictEffect(path);
+        //loadDictEffect(path);
         loadDictEquip(path);
-        loadDictEquipType(path);
+        loadDictEquipParts(path);
         loadDictItem(path);
-        loadDictItemQuality(path);
         loadDictItemType(path);
+        loadDictQuality(path);
         loadDictMonster(path);
         loadDictMonsterType(path);
         loadDictNpc(path);
-        loadRoleCareer(path);
-        loadRoleLevelProperty(path);
-        loadRoleProperty(path);
+        loadDictRoleCareer(path);
+        loadDictRoleLevelProperty(path);
+        loadDictRoleProperty(path);
         loadDictScene(path);
-        loadDictSkill(path);*/
+        loadDictSkill(path);
     }
 
     private void loadDictBuff(String path){
         path += "/DictBuff.xlsx";
         logger.info("load DictBuff by {} ",path);
-        ExcelUtil.parseExcel(path,DictBuffer.class);
+        dictBuffers = ExcelUtil.parseExcel(path,DictBuffer.class);
     }
 
     private void loadDictBuffType(String path){
         path += "/DictBuffType.xlsx";
         logger.info("load ictBuffType by {} ",path);
-        ExcelUtil.parseExcel(path,DictBufferType.class);
+        dictBufferTypes = ExcelUtil.parseExcel(path,DictBufferType.class);
     }
 
 
@@ -98,67 +91,67 @@ public class DictionaryData {
     private void loadDictEquip(String path){
         path += "/DictEquip.xlsx";
         logger.info("load DictEquip by {} ",path);
-        ExcelUtil.parseExcel(path,DictEquip.class);
+        dictEquips = ExcelUtil.parseExcel(path,DictEquip.class);
     }
 
-    private void loadDictEquipType(String path){
+    private void loadDictEquipParts(String path){
         path += "/DictEquipPart.xlsx";;
         logger.info("load DictEquipType by {} ",path);
-        ExcelUtil.parseExcel(path, DictEquipPart.class);
+        dictEquipParts = ExcelUtil.parseExcel(path, DictEquipPart.class);
     }
 
     private void loadDictItem(String path){
         path += "/DictItem.xlsx";;
         logger.info("load DictItem by {} ",path);
-        ExcelUtil.parseExcel(path,DictItem.class);
+        dictItems = ExcelUtil.parseExcel(path,DictItem.class);
     }
 
-    private void loadDictItemQuality(String path){
+    private void loadDictQuality(String path){
         path += "/DictQuality.xlsx";;
         logger.info("load DictQuality by {} ",path);
-        ExcelUtil.parseExcel(path,DictQuality.class);
+        dictQualities = ExcelUtil.parseExcel(path,DictQuality.class);
     }
 
     private void loadDictItemType(String path){
         path += "/DictItemType.xlsx";;
         logger.info("load DictItemType by {} ",path);
-        ExcelUtil.parseExcel(path,DictItemType.class);
+        dictItemTypes = ExcelUtil.parseExcel(path,DictItemType.class);
     }
 
     private void loadDictMonster(String path){
         path += "/DictMonster.xlsx";;
         logger.info("load DictMonster by {} ",path);
-        ExcelUtil.parseExcel(path,DictMonster.class);
+        dictMonsters = ExcelUtil.parseExcel(path,DictMonster.class);
     }
 
     private void loadDictMonsterType(String path){
         path += "/DictMonsterType.xlsx";;
         logger.info("load DictMonsterType by {} ",path);
-        ExcelUtil.parseExcel(path,DictMonsterType.class);
+        dictMonsterTypes = ExcelUtil.parseExcel(path,DictMonsterType.class);
     }
 
     private void loadDictNpc(String path){
         path += "/DictNpc.xlsx";;
         logger.info("load DictNpc by {} ",path);
-        ExcelUtil.parseExcel(path,DictNpc.class);
+        dictNpcs = ExcelUtil.parseExcel(path,DictNpc.class);
     }
 
     private void loadDictRoleCareer(String path){
         path += "/DictRoleCareer.xlsx";;
         logger.info("load DictRoleCareer by {} ",path);
-        ExcelUtil.parseExcel(path,DictRoleCareer.class);
+        dictRoleCareers = ExcelUtil.parseExcel(path,DictRoleCareer.class);
     }
 
     private void loadDictRoleLevelProperty(String path){
         path += "/DictRoleLevelProperty.xlsx";;
         logger.info("load DictRoleLevelProperty by {} ",path);
-        ExcelUtil.parseExcel(path,DictRoleLevelProperty.class);
+        dictRoleLevelProperties =  ExcelUtil.parseExcel(path,DictRoleLevelProperty.class);
     }
 
     private void loadDictRoleProperty(String path){
         path += "/DictRoleProperty.xlsx";;
         logger.info("load DictRoleProperty by {} ",path);
-        ExcelUtil.parseExcel(path,DictRoleProperty.class);
+        dictRoleProperties = ExcelUtil.parseExcel(path,DictRoleProperty.class);
     }
 
     private void loadDictScene(String path){

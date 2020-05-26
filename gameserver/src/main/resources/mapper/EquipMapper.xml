@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.game.gameserver.module.account.dao.AccountMapper">
-    <resultMap id="userResultMap" type="com.game.gameserver.module.account.model.Account">
+<mapper namespace="com.game.gameserver.module.equip.dao.EquipMapper">
+    <resultMap id="equipResultMap" type="com.game.gameserver.module.equip.model.EquipModel">
         <id column="id" property="id"/>
-        <result column="login_id" property="loginId"/>
-        <result column="password" property="password"/>
+        <result column="itemId" property="itemId"/>
+        <result column="itemType" property="itemType"/>
+        <result column="roleId" property="roleId"/>
+        <result column="equipId" property="equipId"/>
+        <result column="durability"  property="durability"/>
+        <result column="equipment"  property="equipment"/>
     </resultMap>
+    <select id="getIsEquipmentEquipByRoleId" resultMap="equipResultMap">
+        SELECT game_equip.id,itemId,itemType,roleId,equipId,durability,equipment
+        FROM game_equip INNER JOIN game_item ON game_equip.id = game_item.id WHERE roleId = #{roleId} AND equipment = 1
+    </select>
 </mapper>

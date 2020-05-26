@@ -1,5 +1,7 @@
 package com.game.gameserver.module.scene.facade;
 
+import com.game.gameserver.module.scene.vo.SceneVo;
+
 /**
  * 场景接口
  * @author xuewenkang
@@ -7,9 +9,10 @@ package com.game.gameserver.module.scene.facade;
  */
 public interface SceneFacade {
     /**
-     * 根据Id 获得场景数据
-     * @param id
+     * 进入指定的场景
+     * @param playerId
+     * @param sceneId
      * @return void
      */
-    void getSceneMessage(Integer id);
+    SceneVo entrySceneById(Integer playerId, Integer sceneId);
 }

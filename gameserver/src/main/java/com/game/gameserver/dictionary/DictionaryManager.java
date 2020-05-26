@@ -49,4 +49,50 @@ public class DictionaryManager {
         }
         return null;
     }
+
+    /**
+     * 根据装备ID 返回装备资料
+     * @param id id
+     * @return com.game.gameserver.dictionary.dict.DictEquip
+     */
+    public DictEquip getDictEquipById(Integer id){
+        List<DictEquip> dictEquips = data.getDictEquips();
+        for(DictEquip dictEquip:dictEquips){
+            if(dictEquip.getId().equals(id)){
+                return dictEquip;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * 根据ID查找道具
+     * @param id
+     * @return com.game.gameserver.dictionary.dict.DictItem
+     */
+    public DictItem getDictItemById(Integer id){
+        List<DictItem> dictItems = data.getDictItems();
+        for(DictItem dictItem:dictItems){
+            if(dictItem.getId().equals(id)){
+                return dictItem;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * 根据职业和等级 返回对应的基础属性
+     * @param career 职业
+     * @param level 等级
+     * @return com.game.gameserver.dictionary.dict.DictRoleLevelProperty
+     */
+    public DictRoleLevelProperty getDictRoleLevelProperty(Integer career,Integer level){
+        List<DictRoleLevelProperty> dictRoleLevelProperties = data.getDictRoleLevelProperties();
+        for(DictRoleLevelProperty property:dictRoleLevelProperties){
+            if(property.getCareerId().equals(career)&&property.getLevel().equals(level)){
+                return property;
+            }
+        }
+        return null;
+    }
 }

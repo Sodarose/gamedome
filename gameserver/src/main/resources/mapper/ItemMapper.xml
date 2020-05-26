@@ -3,7 +3,10 @@
 <mapper namespace="com.game.gameserver.module.item.dao.ItemMapper">
     <resultMap id="userResultMap" type="com.game.gameserver.module.item.model.ItemModel">
         <id column="id" property="id"/>
-        <result column="login_id" property="loginId"/>
-        <result column="password" property="password"/>
+        <result column="itemId" property="itemId"/>
+        <result column="itemType" property="itemType"/>
+        <result column="count" property="count"/>
+        <result column="roleId" property="roleId"/>
     </resultMap>
+
 </mapper>

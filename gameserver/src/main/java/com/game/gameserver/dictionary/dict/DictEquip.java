@@ -12,10 +12,12 @@ public class DictEquip {
     private Integer id;
     private Integer part;
     private Integer maxDurability;
-    private String property1;
-    private String property2;
-    private String property3;
-    private String property4;
-    private String property5;
-    private String property6;
+    private Integer hp;
+    private Integer mp;
+    private Integer phyAttack;
+    private Integer magicAttack;
+    private Integer phyDefense;
+    private Integer magicDefense;
+    private Double attackSpeed;
+    private Double moveSpeed;
 }

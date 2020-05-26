@@ -10,7 +10,7 @@ message RegisterReq{
 
 // 注册响应
 message RegisterRes{
-    int32 code = 1;
+    int32  code = 1;
     string msg = 2;
 }
 
@@ -22,20 +22,8 @@ message LoginReq{
 
 // 登录响应
 message LoginRes{
-    int32 code = 1;
-    int32 id = 2;
-    string token = 3;
-    repeated RoleInfo roles = 4;
+    int32    code = 1;
+    int32    id = 2;
+    string   token = 3;
 }
 
-// 角色信息 用于角色选择
-message RoleInfo{
-    // id
-    int32 id = 1;
-    // 职业
-    int32 career = 2;
-    // 等级
-    int32 level = 3;
-    // 姓名
-    string name = 4;
-}

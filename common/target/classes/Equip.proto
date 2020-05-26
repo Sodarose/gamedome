@@ -1,0 +1,21 @@
+syntax = "proto3";
+option java_package = "com.game.protocol";
+option java_outer_classname = "EquipProtocol";
+
+message EquipInfo{
+    int32  id = 1;
+    string name = 2;
+    int32  level = 3;
+    int32  quality = 4;
+    int32  part = 5;
+    int32  durability = 6;
+    int32  maxDurability = 7;
+    int32  hp = 8;
+    int32  mp = 9;
+    int32  phyAttack = 10;
+    int32  magicAttack = 11;
+    int32  phyDefense = 12;
+    int32  magicDefense = 13;
+    double attackSpeed = 14;
+    double moveSpeed = 15;
+}

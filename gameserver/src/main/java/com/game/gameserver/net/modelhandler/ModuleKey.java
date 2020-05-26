@@ -8,4 +8,6 @@ package com.game.gameserver.net.modelhandler;
 public interface ModuleKey {
     short ACCOUNT_MODULE = 1001;
     short PLAYER_MODULE = 1002;
+    short EQUIP_MODEL = 1003;
+    short BAG_MODEL = 1004;
 }

@@ -2,7 +2,7 @@ package com.game.module.order.service;
 
 import com.game.context.ClientGameContext;
 import com.game.module.ModuleKey;
-import com.game.module.game.GameCmd;
+import com.game.module.player.PlayerCmd;
 import com.game.module.gui.WordPage;
 import com.game.module.order.CmdType;
 import com.game.protocol.Message;
@@ -24,7 +24,7 @@ import java.util.Map;
 @Service
 public class CmdService {
     private final static Logger logger = LoggerFactory.getLogger(CmdService.class);
-    private final static Map<String, Invoke> cmdInvokeMap = new HashMap<>();
+    private final static Map<String, Invoke> CMD_INVOKE_MAP = new HashMap<>();
 
     @Autowired
     private WordPage wordPage;
@@ -39,7 +39,7 @@ public class CmdService {
             return;
         }
         String cmd = frags[0].toUpperCase();
-        Invoke invoke = cmdInvokeMap.get(cmd);
+        Invoke invoke = CMD_INVOKE_MAP.get(cmd);
         if(invoke==null){
             return;
         }
@@ -53,7 +53,7 @@ public class CmdService {
     @PostConstruct
     public void init(){
         // clean
-        cmdInvokeMap.put(CmdType.CMD_CLEAN, new Invoke() {
+        CMD_INVOKE_MAP.put(CmdType.CMD_CLEAN, new Invoke() {
             @Override
             public void invoke(String[] flags) {
                 wordPage.clean();
@@ -61,7 +61,7 @@ public class CmdService {
         });
 
         // list role
-        cmdInvokeMap.put(CmdType.LIST_ROLES, new Invoke() {
+        CMD_INVOKE_MAP.put(CmdType.LIST_ROLES, new Invoke() {
             @Override
             public void invoke(String[] flags) {
                 listRoles(flags);
@@ -69,7 +69,7 @@ public class CmdService {
         });
 
         // confirm role
-        cmdInvokeMap.put(CmdType.CONFIRM_ROLE, new Invoke() {
+        CMD_INVOKE_MAP.put(CmdType.CONFIRM_ROLE, new Invoke() {
             @Override
             public void invoke(String[] flags) {
                 confirmRole(flags);
@@ -77,7 +77,7 @@ public class CmdService {
         });
 
         // self message
-        cmdInvokeMap.put(CmdType.SELF_MESSAGE, new Invoke() {
+        CMD_INVOKE_MAP.put(CmdType.SELF_MESSAGE, new Invoke() {
             @Override
             public void invoke(String[] flags) {
                 selfMessage(flags);
@@ -86,7 +86,7 @@ public class CmdService {
     }
 
     private void listRoles(String[] flags){
-        Message message = MessageUtil.createMessage(ModuleKey.PLAYER_MODULE, GameCmd.LIST_ROLES,null);
+        Message message = MessageUtil.createMessage(ModuleKey.PLAYER_MODULE, PlayerCmd.LIST_ROLES,null);
         gameContext.getChannel().writeAndFlush(message);
         logger.info("发送请求角色列表命令");
     }
@@ -108,19 +108,17 @@ public class CmdService {
         }
         PlayerProtocol.LoginRole.Builder builder = PlayerProtocol.LoginRole.newBuilder();
         builder.setId(roleId);
-        Message message = MessageUtil.createMessage(ModuleKey.PLAYER_MODULE,GameCmd.LOGIN_ROLE,builder.build()
+        Message message = MessageUtil.createMessage(ModuleKey.PLAYER_MODULE, PlayerCmd.LOGIN_ROLE,builder.build()
                 .toByteArray());
         gameContext.getChannel().writeAndFlush(message);
         logger.info("登录角色请求 id {} , name {}",roleId,name);
     }
 
     /** 产看自己的角色信息 */
-    public void selfMessage(String[] flags){
-        Message message  = MessageUtil.createMessage(ModuleKey.PLAYER_MODULE,GameCmd.PLAYER_INFO,null);
+    private void selfMessage(String[] flags){
+        Message message  = MessageUtil.createMessage(ModuleKey.PLAYER_MODULE, PlayerCmd.PLAYER_INFO,null);
         gameContext.getChannel().writeAndFlush(message);
         logger.info("查询登录的角色信息");
     }
-
-
 
 }

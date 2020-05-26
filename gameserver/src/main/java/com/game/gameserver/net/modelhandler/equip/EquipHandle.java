@@ -1,0 +1,92 @@
+package com.game.gameserver.net.modelhandler.equip;
+
+import com.game.gameserver.module.equip.entity.Equip;
+import com.game.gameserver.module.equip.facade.EquipFacade;
+import com.game.gameserver.net.annotation.CmdHandler;
+import com.game.gameserver.net.annotation.ModuleHandler;
+import com.game.gameserver.net.handler.BaseHandler;
+import com.game.gameserver.net.modelhandler.ModuleKey;
+import com.game.gameserver.util.TransFromUtil;
+import com.game.protocol.EquipProtocol;
+import com.game.protocol.Message;
+import com.game.util.MessageUtil;
+import com.google.protobuf.InvalidProtocolBufferException;
+import io.netty.channel.Channel;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+/**
+ * 装备Handle
+ * @author xuewenkang
+ * @date 2020/5/26 21:16
+ */
+@ModuleHandler(module = ModuleKey.EQUIP_MODEL)
+@Component
+public class EquipHandle extends BaseHandler {
+    private final static Logger logger = LoggerFactory.getLogger(EquipHandle.class);
+
+    @Autowired
+    private EquipFacade equipFacade;
+
+    /**
+     * 查看当前角色穿的某件装备
+     * @param message 消息 {equipId}
+     * @param channel channel
+     * @return void
+     */
+    @CmdHandler(cmd = EquipCmd.CHECK_EQUIP)
+    public void checkEquip(Message message, Channel channel){
+        try {
+            EquipProtocol.CheckEquip checkEquip = EquipProtocol.CheckEquip.parseFrom(message.getData());
+            Equip equip = equipFacade.getEquipByEquipId(checkEquip.getEquipId(),checkEquip.getPart());
+            if(equip==null){
+                EquipProtocol.EquipError.Builder builder = EquipProtocol.EquipError.newBuilder();
+                builder.setCode(EquipCode.EQUIP_NULL_EXISTS);
+                Message res = MessageUtil.createMessage(ModuleKey.EQUIP_MODEL,EquipCmd.EQUIP_ERROR,
+                        builder.build().toByteArray());
+                channel.writeAndFlush(res);
+                return;
+            }
+            EquipProtocol.EquipInfo equipInfo = TransFromUtil.equipTransFromEquipProtocolEquipInfo(equip);
+            Message res = MessageUtil.createMessage(ModuleKey.EQUIP_MODEL,EquipCmd.CHECK_EQUIP,equipInfo.toByteArray());
+            channel.writeAndFlush(res);
+        } catch (InvalidProtocolBufferException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 卸下装备
+     * @param message
+     * @param channel
+     * @return void
+     */
+    @CmdHandler(cmd = EquipCmd.PUT_EQUIP)
+    public void takeEquip(Message message,Channel channel){
+
+    }
+
+    /**
+     * 穿上装备
+     * @param message
+     * @param channel
+     * @return void
+     */
+    @CmdHandler(cmd = EquipCmd.TAKE_EQUIP)
+    public void putEquip(Message message,Channel channel){
+
+    }
+
+    /**
+     * 搜索装备
+     * @param message
+     * @param channel
+     * @return void
+     */
+    @CmdHandler(cmd = EquipCmd.SEARCH_EQUIP)
+    public void searchEquip(Message message,Channel channel){
+
+    }
+}

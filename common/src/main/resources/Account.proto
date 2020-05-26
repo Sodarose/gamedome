@@ -1,7 +1,6 @@
 syntax = "proto3";
 option java_package = "com.game.protocol";
 option java_outer_classname = "AccountProtocol";
-import "Player.proto";
 
 // 注册请求
 message RegisterReq{
@@ -11,7 +10,7 @@ message RegisterReq{
 
 // 注册响应
 message RegisterRes{
-    int32 code = 1;
+    int32  code = 1;
     string msg = 2;
 }
 
@@ -23,9 +22,8 @@ message LoginReq{
 
 // 登录响应
 message LoginRes{
-    int32 code = 1;
-    int32 id = 2;
-    string token = 3;
-    repeated RoleInfo roles = 4;
+    int32    code = 1;
+    int32    id = 2;
+    string   token = 3;
 }
 

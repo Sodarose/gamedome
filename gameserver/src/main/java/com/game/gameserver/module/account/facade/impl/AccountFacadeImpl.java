@@ -4,12 +4,11 @@ import com.game.gameserver.module.account.dao.AccountMapper;
 import com.game.gameserver.module.account.model.Account;
 import com.game.gameserver.module.account.facade.AccountFacade;
 import com.game.gameserver.module.player.facade.PlayerFacade;
-import com.game.gameserver.module.player.model.Role;
+import com.game.gameserver.module.player.model.PlayerModel;
 import com.game.gameserver.util.TransFromUtil;
 import com.game.protocol.AccountProtocol;
 import com.game.protocol.CodeType;
 import io.netty.channel.Channel;
-import io.netty.util.AttributeKey;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,12 +55,6 @@ public class AccountFacadeImpl implements AccountFacade {
         builder.setId(account.getId());
         // 模拟Token
         builder.setToken(UUID.randomUUID().toString());
-
-        // 获取用户角色列表
-        List<Role> roles = playerFacade.getPlayListByAccountId(account.getId());
-        for(Role role : roles){
-            builder.addRoles(TransFromUtil.roleTransFromPlayerProtocolRoleInfo(role));
-        }
         channel.attr(ACCOUNT_ATTRIBUTE_KEY).compareAndSet(null,account);
         return builder.build();
     }
