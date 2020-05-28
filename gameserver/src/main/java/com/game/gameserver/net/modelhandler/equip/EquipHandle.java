@@ -40,18 +40,7 @@ public class EquipHandle extends BaseHandler {
     public void checkEquip(Message message, Channel channel){
         try {
             EquipProtocol.CheckEquip checkEquip = EquipProtocol.CheckEquip.parseFrom(message.getData());
-            Equip equip = equipFacade.getEquipByEquipId(checkEquip.getEquipId(),checkEquip.getPart());
-            if(equip==null){
-                EquipProtocol.EquipError.Builder builder = EquipProtocol.EquipError.newBuilder();
-                builder.setCode(EquipCode.EQUIP_NULL_EXISTS);
-                Message res = MessageUtil.createMessage(ModuleKey.EQUIP_MODEL,EquipCmd.EQUIP_ERROR,
-                        builder.build().toByteArray());
-                channel.writeAndFlush(res);
-                return;
-            }
-            EquipProtocol.EquipInfo equipInfo = TransFromUtil.equipTransFromEquipProtocolEquipInfo(equip);
-            Message res = MessageUtil.createMessage(ModuleKey.EQUIP_MODEL,EquipCmd.CHECK_EQUIP,equipInfo.toByteArray());
-            channel.writeAndFlush(res);
+            
         } catch (InvalidProtocolBufferException e) {
             e.printStackTrace();
         }

@@ -2,6 +2,7 @@ package com.game.gameserver.module.player.entity;
 
 import com.game.gameserver.dictionary.dict.DictRoleLevelProperty;
 import com.game.gameserver.module.account.model.Account;
+import com.game.gameserver.module.bag.entity.Bag;
 import com.game.gameserver.module.equip.entity.EquipBar;
 import com.game.gameserver.module.player.model.Property;
 import io.netty.channel.Channel;
@@ -37,6 +38,9 @@ public class Player {
     /** 装备栏 */
     private EquipBar equipBar;
 
+    /** 背包 */
+    private Bag bag;
+
     public Player(){
 
     }
@@ -45,8 +49,7 @@ public class Player {
      * 初始化角色
      */
     public void init(){
-        this.property = new Property(levelProperty);
-        this.equipBar = new EquipBar(this);
+
     }
 
     /**

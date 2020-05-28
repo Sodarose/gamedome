@@ -12,4 +12,8 @@ public interface CmdType {
     String CONFIRM_ROLE = "CONFIRM_ROLE";
     /** 产看角色信息 */
     String SELF_MESSAGE = "SELF";
+    /** 打开背包 */
+    String OPEN_BAG = "OPEN_BAG";
+    /** 关闭背包*/
+    String CLOSE_BAG = "CLOSE_BAG";
 }

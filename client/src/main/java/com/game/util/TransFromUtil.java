@@ -1,9 +1,12 @@
 package com.game.util;
+import com.game.module.bag.entity.Bag;
+import com.game.module.bag.entity.Cell;
 import com.game.module.equip.entity.Equip;
 import com.game.module.equip.entity.EquipBar;
 import com.game.module.player.entity.Player;
 import com.game.module.player.model.Property;
 import com.game.module.player.model.Role;
+import com.game.protocol.BagProtocol;
 import com.game.protocol.EquipProtocol;
 import com.game.protocol.PlayerProtocol;
 
@@ -88,5 +91,26 @@ public class TransFromUtil {
         equip.setAttackSpeed(equipInfo.getAttackSpeed());
         equip.setMoveSpeed(equipInfo.getMoveSpeed());
         return equip;
+    }
+
+    public static Bag bagProtocolBagInfoTransFromBag(BagProtocol.BagInfo bagInfo){
+        Bag bag = new Bag();
+        bag.setId(bagInfo.getBagId());
+        bag.setName(bagInfo.getBagName());
+        List<Cell> cells = new ArrayList<>();
+        for(BagProtocol.CellInfo cellInfo:bagInfo.getCellInfoList()){
+            cells.add(bagProtocolCellInfoTransFromCell(cellInfo));
+        }
+        bag.init(cells);
+        return bag;
+    }
+
+    public static Cell bagProtocolCellInfoTransFromCell(BagProtocol.CellInfo cellInfo){
+        Cell cell = new Cell();
+        cell.setBagIndex(cellInfo.getBagIndex());
+        cell.setItemId(cellInfo.getItemId());
+        cell.setItemName(cellInfo.getItemName());
+        cell.setCount(cellInfo.getCount());
+        return cell;
     }
 }

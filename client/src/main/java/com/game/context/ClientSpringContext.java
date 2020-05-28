@@ -1,9 +1,10 @@
 package com.game.context;
 
 
-import com.game.module.order.service.CmdService;
-import com.game.module.player.service.PlayerService;
-import com.game.module.account.service.AccountService;
+import com.game.module.bag.handle.BagHandle;
+import com.game.module.order.handle.CmdHandle;
+import com.game.module.player.handle.PlayerHandle;
+import com.game.module.account.handle.AccountHandle;
 import com.game.task.MessageDispatcher;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,11 +22,14 @@ public class ClientSpringContext implements ApplicationContextAware {
     @Autowired
     private MessageDispatcher messageDispatcher;
     @Autowired
-    private AccountService accountService;
+    private AccountHandle accountHandle;
     @Autowired
-    private PlayerService playerService;
+    private PlayerHandle playerHandle;
     @Autowired
-    private CmdService cmdService;
+    private CmdHandle cmdHandle;
+    @Autowired
+    private BagHandle bagHandle;
+
 
 
     public static ApplicationContext application;

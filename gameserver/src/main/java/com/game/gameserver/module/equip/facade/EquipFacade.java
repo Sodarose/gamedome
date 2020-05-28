@@ -1,5 +1,6 @@
 package com.game.gameserver.module.equip.facade;
 
+import com.game.gameserver.dictionary.dict.DictItem;
 import com.game.gameserver.module.equip.entity.EquipBar;
 import com.game.gameserver.module.equip.entity.Equip;
 
@@ -18,33 +19,27 @@ public interface EquipFacade {
     List<Equip> getEquipListByRoleId(Integer roleId);
 
     /**
-     * 返回装备栏 装备属性
-     * @param equipId 装备ID
-     * @param part 装备栏位置
+     * 根据角色ID 返回角色装备栏
+     * @param roleId
+     * @return com.game.gameserver.module.equip.entity.EquipBar
+     */
+    EquipBar getEquipBarByRoleId(Integer roleId);
+
+
+    /**
+     * 查询装备
+     * @param playerId
+     * @param checkWay
+     * @param bagId
+     * @param bagIndex
      * @return com.game.gameserver.module.equip.entity.Equip
      */
-    Equip getEquipByEquipId(Integer equipId,Integer part);
+    Equip checkItem(Integer playerId,int checkWay,Integer bagId,Integer bagIndex);
 
     /**
-     * 卸下装备
-     * @param equipId 装备ID
-     * @param part 装备栏位置
-     * @return void
-     */
-    void takeEquip(Integer equipId,Integer part);
-
-    /**
-     * 穿上装备
-     * @param equipId 装备ID
-     * @param bagIndex 装备在背包的位置 Cell Id
-     * @return void
-     */
-    void putEquip(Integer equipId,Integer bagIndex);
-
-    /**
-     * 查看装备属性(包括未拥有)
-     * @param dictEquipId 装备ID
+     * 根据道具ID 返回装备数据
+     * @param itemId
      * @return com.game.gameserver.module.equip.entity.Equip
      */
-    Equip searchEquipByDictEquipId(Integer dictEquipId);
+    Equip getEquipByItemId(Integer itemId);
 }

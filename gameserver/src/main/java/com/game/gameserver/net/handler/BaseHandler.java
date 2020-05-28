@@ -26,20 +26,6 @@ public abstract class BaseHandler implements Handler {
     }
 
     /**
-     * 得到模块key值
-     * @param
-     * @return int
-     */
-    protected  int getModuleKey(){
-        Class clazz = getClass();
-        ModuleHandler moduleHandler = (ModuleHandler) clazz.getAnnotation(ModuleHandler.class);
-        if(moduleHandler==null){
-            return -1;
-        }
-        return moduleHandler.module();
-    };
-
-    /**
      * 初始化
      * @param
      * @return void

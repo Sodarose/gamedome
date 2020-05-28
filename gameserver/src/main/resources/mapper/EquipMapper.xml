@@ -12,6 +12,10 @@
     </resultMap>
     <select id="getIsEquipmentEquipByRoleId" resultMap="equipResultMap">
         SELECT game_equip.id,itemId,itemType,roleId,equipId,durability,equipment
-        FROM game_equip INNER JOIN game_item ON game_equip.id = game_item.id WHERE roleId = #{roleId} AND equipment = 1
+        FROM game_equip LEFT JOIN game_item ON game_equip.id = game_item.id WHERE roleId = #{roleId} AND equipment = 1
+    </select>
+    <select id="getEquipByItemId" resultMap="equipResultMap" >
+        SELECT game_equip.id,itemId,itemType,roleId,equipId,durability,equipment FROM game_equip
+        LEFT JOIN game_item ON game_equip.id = game_item.id WHERE game_equip.id = #{itemId}
     </select>
 </mapper>

@@ -1,7 +1,7 @@
 package com.game.module.gui;
 
 import com.game.context.ClientSpringContext;
-import com.game.module.account.service.AccountService;
+import com.game.module.account.handle.AccountHandle;
 
 import javax.swing.*;
 import java.awt.*;
@@ -59,9 +59,9 @@ public class LoginRegisterPage extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 String loginId = accountField.getText();
                 String password = passwordField.getText();
-                AccountService accountService = ClientSpringContext.application.getBean(AccountService.class);
+                AccountHandle accountHandle = ClientSpringContext.application.getBean(AccountHandle.class);
                 if(type==LOGIN_PAGE){
-                    accountService.login(loginId,password);
+                    accountHandle.login(loginId,password);
                 }else{
 
                 }

@@ -19,3 +19,36 @@ message EquipInfo{
     double attackSpeed = 14;
     double moveSpeed = 15;
 }
+
+// 查看装备信息
+message CheckEquip{
+    int32 equipId = 1;
+    int32 part = 2;
+}
+
+// 卸下装备
+// equipId 装备Id
+// part 装备位置
+message TakeEquip{
+    int32 equipId = 1;
+    int32 part = 2;
+}
+
+// 穿上装备
+// equipId 装备Id
+// bagIndex 装备在背包中的位置
+message PutEquip{
+    int32 equipId = 1;
+    int32 bagIndex = 2;
+}
+
+// 搜索装备信息
+message SearchEquip{
+    int32 equipId = 1;
+}
+
+// 错误
+message EquipError{
+    int32 code = 1;
+}
+

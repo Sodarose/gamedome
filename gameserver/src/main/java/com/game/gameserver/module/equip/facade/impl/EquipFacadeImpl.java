@@ -39,22 +39,18 @@ public class EquipFacadeImpl implements EquipFacade {
     }
 
     @Override
-    public Equip getEquipByEquipId(Integer equipId, Integer part) {
-        return null;
+    public EquipBar getEquipBarByRoleId(Integer roleId) {
+        EquipBar equipBar = new EquipBar();
+        List<Equip> equips = getEquipListByRoleId(roleId);
+        equipBar.init(equips);
+        return equipBar;
     }
 
-    @Override
-    public void takeEquip(Integer equipId, Integer part) {
 
-    }
 
     @Override
-    public void putEquip(Integer equipId, Integer bagIndex) {
-
-    }
-
-    @Override
-    public Equip searchEquipByDictEquipId(Integer dictEquipId) {
-        return null;
+    public Equip getEquipByItemId(Integer itemId) {
+        EquipModel equipModel = equipMapper.getEquipByItemId(itemId);
+        return EquipEntityFactory.createEquipEntity(equipModel);
     }
 }

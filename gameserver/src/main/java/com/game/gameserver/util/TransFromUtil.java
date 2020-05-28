@@ -2,10 +2,15 @@ package com.game.gameserver.util;
 
 import com.game.gameserver.context.ServerContext;
 import com.game.gameserver.dictionary.DictionaryManager;
+import com.game.gameserver.module.bag.entity.Bag;
+import com.game.gameserver.module.bag.entity.Cell;
 import com.game.gameserver.module.equip.entity.Equip;
+import com.game.gameserver.module.item.entity.Item;
 import com.game.gameserver.module.player.entity.Player;
 import com.game.gameserver.module.player.model.PlayerModel;
+import com.game.protocol.BagProtocol;
 import com.game.protocol.EquipProtocol;
+import com.game.protocol.ItemProtocol;
 import com.game.protocol.PlayerProtocol;
 import org.springframework.context.ApplicationContext;
 
@@ -72,6 +77,25 @@ public class TransFromUtil {
         builder.setMagicDefense(equip.getDictEquip().getMagicDefense());
         builder.setAttackSpeed(equip.getDictEquip().getAttackSpeed());
         builder.setMoveSpeed(equip.getDictEquip().getMoveSpeed());
+        return builder.build();
+    }
+
+    public static BagProtocol.BagInfo bagTransFromBagProtocolBagInfo(Bag bag){
+        return null;
+    }
+
+    public static BagProtocol.CellInfo cellTransFromBafProtocolCellInfo(Cell cell){
+        BagProtocol.CellInfo.Builder builder = BagProtocol.CellInfo.newBuilder();
+        builder.setBagIndex(cell.getBagIndex());
+        builder.setItemId(cell.getItem().getId());
+        builder.setItemName(cell.getItem().getDictItem().getName());
+        builder.setCount(cell.getCount());
+        return builder.build();
+    }
+
+    public static ItemProtocol.ItemInfo  itemTransFromItemProtocolItemInfo(Item item){
+        ItemProtocol.ItemInfo.Builder builder = ItemProtocol.ItemInfo.newBuilder();
+
         return builder.build();
     }
 }

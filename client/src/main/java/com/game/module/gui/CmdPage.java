@@ -1,7 +1,6 @@
 package com.game.module.gui;
 
-import com.game.module.order.service.CmdService;
-import lombok.Data;
+import com.game.module.order.handle.CmdHandle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -23,7 +22,7 @@ public class CmdPage extends JTextField {
     @Autowired
     private WordPage wordPage;
     @Autowired
-    private CmdService cmdService;
+    private CmdHandle cmdHandle;
 
     public CmdPage(){
         setText(DEFAULT_TEXT);
@@ -49,7 +48,7 @@ public class CmdPage extends JTextField {
                         return;
                     }
                     wordPage.print(order);
-                    cmdService.submitCmd(order);
+                    cmdHandle.submitCmd(order);
                     setText("");
                     refresh();
                 }

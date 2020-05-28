@@ -1,5 +1,6 @@
 package com.game.gameserver.module.equip.dao;
 
+import com.game.gameserver.module.equip.entity.Equip;
 import com.game.gameserver.module.equip.model.EquipModel;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
@@ -19,4 +20,11 @@ public interface EquipMapper {
      * @return java.util.List<com.game.gameserver.module.equip.model.Equip>
      */
     List<EquipModel> getIsEquipmentEquipByRoleId(Integer roleId);
+
+    /**
+     * 根据道具ID 返回装备
+     * @param itemId 道具Id
+     * @return com.game.gameserver.module.equip.entity.Equip
+     */
+    EquipModel getEquipByItemId(Integer itemId);
 }

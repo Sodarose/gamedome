@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.game.gameserver.module.bag.dao.BagMapper">
+    <resultMap id="bagResultMap" type="com.game.gameserver.module.bag.model.BagModel">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="type" property="type"/>
+        <result column="roleId" property="roleId"/>
+    </resultMap>
+
+    <resultMap id="cellResultMap" type="com.game.gameserver.module.bag.model.CellModel">
+        <id column="id" property="id" />
+        <result column="itemId" property="itemId" />
+        <result column="bagId" property="bagId"/>
+        <result column="bagIndex" property="bagIndex"/>
+        <result column="count" property="count" />
+    </resultMap>
+
+    <select id="getBagByRoleId" resultMap="bagResultMap">
+        SELECT id,name,type,roleId FROM game_bag WHERE game_bag.roleId = #{roleId} AND type = #{type}
+    </select>
+    
+    <select id="getCellByBagId" resultMap="cellResultMap">
+        SELECT id,itemId,bagId,bagIndex,count FROM game_bag_item WHERE bagId = #{bagId}
+    </select>
+</mapper>

@@ -17,6 +17,10 @@ public class EquipBar {
 
     private Player player;
 
+    public EquipBar(){
+
+    }
+
     public EquipBar(Player player){
         this.player = player;
     }
@@ -25,7 +29,22 @@ public class EquipBar {
         return equips;
     }
 
-    private boolean first = true;
+
+    /**
+     * 绑定用户
+     * @param player 用户
+     * @return void
+     */
+    public void bind(Player player){
+        this.player = player;
+        // 绑定时 更新属性
+        for(Equip equip:equips){
+            if(equip==null){
+                continue;
+            }
+            this.player.getProperty().addEquipProperty(equip);
+        }
+    }
 
     /**
      * 初始化
@@ -37,9 +56,8 @@ public class EquipBar {
             return;
         }
         for(Equip equip :equipEntities){
-            putEquip(equip);
+            equips[equip.getDictEquip().getPart()] = equip;
         }
-        first = false;
     }
 
     /**
@@ -55,7 +73,6 @@ public class EquipBar {
             player.getProperty().removeEquipProperty(takeEquip);
         }
         player.getProperty().addEquipProperty(equip);
-        updatePlayer();
         return  takeEquip;
     }
 
@@ -69,15 +86,7 @@ public class EquipBar {
        equips[equip.getDictEquip().getPart()] = null;
        if(takeEquip!=null){
            player.getProperty().removeEquipProperty(equip);
-           updatePlayer();
        }
        return takeEquip;
-    }
-
-    private void updatePlayer(){
-        if(first){
-            return;
-        }
-        player.update();
     }
 }

@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.game.gameserver.module.item.dao.ItemMapper">
-    <resultMap id="userResultMap" type="com.game.gameserver.module.item.model.ItemModel">
+    <resultMap id="itemResultMap" type="com.game.gameserver.module.item.model.ItemModel">
         <id column="id" property="id"/>
         <result column="itemId" property="itemId"/>
         <result column="itemType" property="itemType"/>
-        <result column="count" property="count"/>
         <result column="roleId" property="roleId"/>
     </resultMap>
-
+    <select id="getItemMapByItemList" resultMap="itemResultMap" >
+        SELECT id,itemId,itemType,roleId FROM game_item WHERE  id IN
+        <foreach collection="list" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
 </mapper>

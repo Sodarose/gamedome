@@ -2,6 +2,8 @@ package com.game.gameserver.module.player.facade.impl;
 
 import com.game.gameserver.module.account.facade.AccountFacade;
 import com.game.gameserver.module.account.model.Account;
+import com.game.gameserver.module.bag.entity.Bag;
+import com.game.gameserver.module.bag.facade.BagFacade;
 import com.game.gameserver.module.equip.entity.Equip;
 import com.game.gameserver.module.equip.entity.EquipBar;
 import com.game.gameserver.module.equip.facade.EquipFacade;
@@ -40,6 +42,8 @@ public class PlayerFacadeImpl implements PlayerFacade {
     private PlayerManager playerManager;
     @Autowired
     private SceneFacade sceneFacade;
+    @Autowired
+    private BagFacade bagFacade;
 
     /**
      * 返回账户上的所有角色
@@ -66,16 +70,25 @@ public class PlayerFacadeImpl implements PlayerFacade {
             return null;
         }
         PlayerModel playerModel = playerMapper.getRoleByRoleId(roleId);
+        if(playerModel==null){
+            logger.error("该玩家没有该角色{}",roleId);
+            return null;
+        }
         Player player = PlayerFactory.createPlayerEntity(playerModel);
 
         // 加载玩家 装备
-        EquipBar equipBar = player.getEquipBar();
-        List<Equip> equips = equipFacade.getEquipListByRoleId(roleId);
-        equipBar.init(equips);
+        EquipBar equipBar = equipFacade.getEquipBarByRoleId(roleId);
+        equipBar.bind(player);
+        player.setEquipBar(equipBar);
+
+        // 加载玩家 背包
+        Bag bag = bagFacade.getBagByRoleId(roleId,0);
+        bag.bind(player);
+        player.setBag(bag);
+
+        // 加载玩家 快捷道具栏
 
         // 加载玩家 技能栏
-        // 加载玩家 快捷道具栏
-        // 加载玩家 背包
         player.setAccount(account);
         player.setChannel(channel);
         // 将玩家放入管理器

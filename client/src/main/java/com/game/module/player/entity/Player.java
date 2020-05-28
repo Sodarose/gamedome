@@ -1,5 +1,6 @@
 package com.game.module.player.entity;
 
+import com.game.module.bag.entity.Bag;
 import com.game.module.equip.entity.EquipBar;
 import com.game.module.player.model.Property;
 import lombok.Data;
@@ -23,4 +24,7 @@ public class Player {
 
     /** 装备栏 */
     private EquipBar equipBar;
+
+    /** 背包 */
+    private Bag bag;
 }

@@ -3,7 +3,6 @@ option java_package = "com.game.protocol";
 option java_outer_classname = "EquipProtocol";
 
 message EquipInfo{
-    int32  id = 1;
     string name = 2;
     int32  level = 3;
     int32  quality = 4;
@@ -23,7 +22,16 @@ message EquipInfo{
 // 查看装备信息
 message CheckEquip{
     int32 equipId = 1;
-    int32 part = 2;
+    CheckWay checkWay = 2;
+    int32 bagId = 3;
+    int32 bagIndex = 4;
+    int32 playerId = 5;
+}
+
+enum CheckWay{
+    BAG = 0;
+    DICT = 1;
+    EQUIP_BAR = 2;
 }
 
 // 卸下装备

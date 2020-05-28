@@ -1,5 +1,7 @@
 package com.game.module.gui;
 
+import com.game.module.bag.entity.Bag;
+import com.game.module.bag.entity.Cell;
 import com.game.module.equip.entity.Equip;
 import com.game.module.equip.entity.EquipBar;
 import com.game.module.player.StaticData;
@@ -111,5 +113,25 @@ public class WordPage extends JTextArea {
 
     public void print(Equip equip){
 
+    }
+
+    /***
+     * 打印背包信息
+     * @param bag 背包
+     * @return void
+     */
+    public void print(Bag bag){
+        clean();
+        builder.append(bag.getName()).append("\n");
+        Cell[] cells = bag.getCells();
+        for(int i=0;i<cells.length;i++){
+            if(i%6==0){
+                builder.append("\n");
+            }
+            Cell cell = cells[i];
+            builder.append("【").append(cell.getItemId()==null?"空":cell.getItemName()+":"+(cell.getCount()==1?"":cell.getCount()))
+                    .append("】").append("\t");
+        }
+        refresh();
     }
 }

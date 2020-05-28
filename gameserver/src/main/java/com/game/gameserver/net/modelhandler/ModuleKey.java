@@ -10,4 +10,5 @@ public interface ModuleKey {
     short PLAYER_MODULE = 1002;
     short EQUIP_MODEL = 1003;
     short BAG_MODEL = 1004;
+    short ITEM_MODEL = 1005;
 }

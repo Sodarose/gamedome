@@ -28,12 +28,11 @@ public class AccountFacadeImpl implements AccountFacade {
 
     @Autowired
     private AccountMapper accountMapper;
-    @Autowired
-    private PlayerFacade playerFacade;
 
     /**
      * 登录接口
-     * @param loginId 账号
+     *
+     * @param loginId  账号
      * @param password 密码
      * @return com.game.protocol.Account.LoginRes
      */
@@ -42,12 +41,12 @@ public class AccountFacadeImpl implements AccountFacade {
         AccountProtocol.LoginRes.Builder builder = AccountProtocol.LoginRes.newBuilder();
         Account account = accountMapper.findUserByLoginId(loginId);
         // 账户不存在
-        if(account==null){
+        if (account == null) {
             builder.setCode(CodeType.USER_NULL_EXISTS);
             return builder.build();
         }
         // 比较密码是否正确
-        if(!account.getPassword().equals(password)){
+        if (!account.getPassword().equals(password)) {
             builder.setCode(CodeType.USER_ACCOUNT_ERROR);
             return builder.build();
         }
@@ -55,7 +54,7 @@ public class AccountFacadeImpl implements AccountFacade {
         builder.setId(account.getId());
         // 模拟Token
         builder.setToken(UUID.randomUUID().toString());
-        channel.attr(ACCOUNT_ATTRIBUTE_KEY).compareAndSet(null,account);
+        channel.attr(ACCOUNT_ATTRIBUTE_KEY).compareAndSet(null, account);
         return builder.build();
     }
 

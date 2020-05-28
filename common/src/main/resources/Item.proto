@@ -2,6 +2,43 @@ syntax = "proto3";
 option java_package = "com.game.protocol";
 option java_outer_classname = "ItemProtocol";
 
-message ItemInfo{
-
+message DictItemInfo{
+    string name = 1;
+    int32  level = 2;
+    int32  quality = 3;
+    int32  type = 4;
+    string description = 6;
 }
+
+
+message ItemInfo{
+    int32 id = 1;
+    DictItemInfo dictItemInfo = 2;
+}
+
+message CheckItem{
+    int32 itemId = 1;
+}
+
+// 使用道具
+message UseItem{
+    int32 playerId = 1;
+    int32 itemId = 2;
+    int32 bagId = 3;
+    int32 bagIndex = 4;
+}
+
+// 道具来源
+enum ItemSourceType{
+    BAG = 0; // 背包中
+    SYSTEM = 1 ; // 系统的
+    NPC = 2; // NPC的
+}
+
+// 使用道具通知
+// 使用了itemNam 获得了 effectMsg
+message UseItemNotify{
+    string itemName = 1;
+    string effectMsg = 2;
+}
+

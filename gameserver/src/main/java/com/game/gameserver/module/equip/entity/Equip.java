@@ -18,8 +18,9 @@ public class Equip extends Item {
     private Integer equipment;
     private DictEquip dictEquip;
 
-    public void use(){
-
+    @Override
+    public void setId(Integer id){
+        super.setId(id);
+        this.id = id;
     }
-
 }

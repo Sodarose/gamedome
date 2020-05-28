@@ -1,6 +1,7 @@
 package com.game.gameserver.module.item.entity;
 
 import com.game.gameserver.dictionary.dict.DictItem;
+import com.game.gameserver.module.cooltime.entity.CoolTime;
 import lombok.Data;
 
 /**
@@ -14,4 +15,6 @@ public class Item implements UseAble {
     private DictItem dictItem;
     private Integer itemType;
     private Integer roleId;
+
+    private CoolTime coolTime;
 }

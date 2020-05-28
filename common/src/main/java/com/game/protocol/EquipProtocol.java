@@ -14,15 +14,122 @@ public final class EquipProtocol {
     registerAllExtensions(
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
+  /**
+   * Protobuf enum {@code CheckWay}
+   */
+  public enum CheckWay
+      implements com.google.protobuf.ProtocolMessageEnum {
+    /**
+     * <code>BAG = 0;</code>
+     */
+    BAG(0),
+    /**
+     * <code>DICT = 1;</code>
+     */
+    DICT(1),
+    /**
+     * <code>EQUIP_BAR = 2;</code>
+     */
+    EQUIP_BAR(2),
+    UNRECOGNIZED(-1),
+    ;
+
+    /**
+     * <code>BAG = 0;</code>
+     */
+    public static final int BAG_VALUE = 0;
+    /**
+     * <code>DICT = 1;</code>
+     */
+    public static final int DICT_VALUE = 1;
+    /**
+     * <code>EQUIP_BAR = 2;</code>
+     */
+    public static final int EQUIP_BAR_VALUE = 2;
+
+
+    public final int getNumber() {
+      if (this == UNRECOGNIZED) {
+        throw new java.lang.IllegalArgumentException(
+            "Can't get the number of an unknown enum value.");
+      }
+      return value;
+    }
+
+    /**
+     * @param value The numeric wire value of the corresponding enum entry.
+     * @return The enum associated with the given numeric wire value.
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @java.lang.Deprecated
+    public static CheckWay valueOf(int value) {
+      return forNumber(value);
+    }
+
+    /**
+     * @param value The numeric wire value of the corresponding enum entry.
+     * @return The enum associated with the given numeric wire value.
+     */
+    public static CheckWay forNumber(int value) {
+      switch (value) {
+        case 0: return BAG;
+        case 1: return DICT;
+        case 2: return EQUIP_BAR;
+        default: return null;
+      }
+    }
+
+    public static com.google.protobuf.Internal.EnumLiteMap<CheckWay>
+        internalGetValueMap() {
+      return internalValueMap;
+    }
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+        CheckWay> internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<CheckWay>() {
+            public CheckWay findValueByNumber(int number) {
+              return CheckWay.forNumber(number);
+            }
+          };
+
+    public final com.google.protobuf.Descriptors.EnumValueDescriptor
+        getValueDescriptor() {
+      return getDescriptor().getValues().get(ordinal());
+    }
+    public final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptorForType() {
+      return getDescriptor();
+    }
+    public static final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptor() {
+      return com.game.protocol.EquipProtocol.getDescriptor().getEnumTypes().get(0);
+    }
+
+    private static final CheckWay[] VALUES = values();
+
+    public static CheckWay valueOf(
+        com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+      if (desc.getType() != getDescriptor()) {
+        throw new java.lang.IllegalArgumentException(
+          "EnumValueDescriptor is not for this type.");
+      }
+      if (desc.getIndex() == -1) {
+        return UNRECOGNIZED;
+      }
+      return VALUES[desc.getIndex()];
+    }
+
+    private final int value;
+
+    private CheckWay(int value) {
+      this.value = value;
+    }
+
+    // @@protoc_insertion_point(enum_scope:CheckWay)
+  }
+
   public interface EquipInfoOrBuilder extends
       // @@protoc_insertion_point(interface_extends:EquipInfo)
       com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>int32 id = 1;</code>
-     * @return The id.
-     */
-    int getId();
 
     /**
      * <code>string name = 2;</code>
@@ -160,11 +267,6 @@ public final class EquipProtocol {
             case 0:
               done = true;
               break;
-            case 8: {
-
-              id_ = input.readInt32();
-              break;
-            }
             case 18: {
               java.lang.String s = input.readStringRequireUtf8();
 
@@ -266,16 +368,6 @@ public final class EquipProtocol {
       return com.game.protocol.EquipProtocol.internal_static_EquipInfo_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
               com.game.protocol.EquipProtocol.EquipInfo.class, com.game.protocol.EquipProtocol.EquipInfo.Builder.class);
-    }
-
-    public static final int ID_FIELD_NUMBER = 1;
-    private int id_;
-    /**
-     * <code>int32 id = 1;</code>
-     * @return The id.
-     */
-    public int getId() {
-      return id_;
     }
 
     public static final int NAME_FIELD_NUMBER = 2;
@@ -458,9 +550,6 @@ public final class EquipProtocol {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (id_ != 0) {
-        output.writeInt32(1, id_);
-      }
       if (!getNameBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, name_);
       }
@@ -512,10 +601,6 @@ public final class EquipProtocol {
       if (size != -1) return size;
 
       size = 0;
-      if (id_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(1, id_);
-      }
       if (!getNameBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, name_);
       }
@@ -586,8 +671,6 @@ public final class EquipProtocol {
       }
       com.game.protocol.EquipProtocol.EquipInfo other = (com.game.protocol.EquipProtocol.EquipInfo) obj;
 
-      if (getId()
-          != other.getId()) return false;
       if (!getName()
           .equals(other.getName())) return false;
       if (getLevel()
@@ -629,8 +712,6 @@ public final class EquipProtocol {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + ID_FIELD_NUMBER;
-      hash = (53 * hash) + getId();
       hash = (37 * hash) + NAME_FIELD_NUMBER;
       hash = (53 * hash) + getName().hashCode();
       hash = (37 * hash) + LEVEL_FIELD_NUMBER;
@@ -794,8 +875,6 @@ public final class EquipProtocol {
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        id_ = 0;
-
         name_ = "";
 
         level_ = 0;
@@ -850,7 +929,6 @@ public final class EquipProtocol {
       @java.lang.Override
       public com.game.protocol.EquipProtocol.EquipInfo buildPartial() {
         com.game.protocol.EquipProtocol.EquipInfo result = new com.game.protocol.EquipProtocol.EquipInfo(this);
-        result.id_ = id_;
         result.name_ = name_;
         result.level_ = level_;
         result.quality_ = quality_;
@@ -913,9 +991,6 @@ public final class EquipProtocol {
 
       public Builder mergeFrom(com.game.protocol.EquipProtocol.EquipInfo other) {
         if (other == com.game.protocol.EquipProtocol.EquipInfo.getDefaultInstance()) return this;
-        if (other.getId() != 0) {
-          setId(other.getId());
-        }
         if (!other.getName().isEmpty()) {
           name_ = other.name_;
           onChanged();
@@ -985,36 +1060,6 @@ public final class EquipProtocol {
             mergeFrom(parsedMessage);
           }
         }
-        return this;
-      }
-
-      private int id_ ;
-      /**
-       * <code>int32 id = 1;</code>
-       * @return The id.
-       */
-      public int getId() {
-        return id_;
-      }
-      /**
-       * <code>int32 id = 1;</code>
-       * @param value The id to set.
-       * @return This builder for chaining.
-       */
-      public Builder setId(int value) {
-        
-        id_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>int32 id = 1;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearId() {
-        
-        id_ = 0;
-        onChanged();
         return this;
       }
 
@@ -1547,10 +1592,27 @@ public final class EquipProtocol {
     int getEquipId();
 
     /**
-     * <code>int32 part = 2;</code>
-     * @return The part.
+     * <code>.CheckWay checkWay = 2;</code>
+     * @return The enum numeric value on the wire for checkWay.
      */
-    int getPart();
+    int getCheckWayValue();
+    /**
+     * <code>.CheckWay checkWay = 2;</code>
+     * @return The checkWay.
+     */
+    com.game.protocol.EquipProtocol.CheckWay getCheckWay();
+
+    /**
+     * <code>int32 bagId = 3;</code>
+     * @return The bagId.
+     */
+    int getBagId();
+
+    /**
+     * <code>int32 bagIndex = 4;</code>
+     * @return The bagIndex.
+     */
+    int getBagIndex();
   }
   /**
    * <pre>
@@ -1569,6 +1631,7 @@ public final class EquipProtocol {
       super(builder);
     }
     private CheckEquip() {
+      checkWay_ = 0;
     }
 
     @java.lang.Override
@@ -1607,8 +1670,19 @@ public final class EquipProtocol {
               break;
             }
             case 16: {
+              int rawValue = input.readEnum();
 
-              part_ = input.readInt32();
+              checkWay_ = rawValue;
+              break;
+            }
+            case 24: {
+
+              bagId_ = input.readInt32();
+              break;
+            }
+            case 32: {
+
+              bagIndex_ = input.readInt32();
               break;
             }
             default: {
@@ -1653,14 +1727,43 @@ public final class EquipProtocol {
       return equipId_;
     }
 
-    public static final int PART_FIELD_NUMBER = 2;
-    private int part_;
+    public static final int CHECKWAY_FIELD_NUMBER = 2;
+    private int checkWay_;
     /**
-     * <code>int32 part = 2;</code>
-     * @return The part.
+     * <code>.CheckWay checkWay = 2;</code>
+     * @return The enum numeric value on the wire for checkWay.
      */
-    public int getPart() {
-      return part_;
+    public int getCheckWayValue() {
+      return checkWay_;
+    }
+    /**
+     * <code>.CheckWay checkWay = 2;</code>
+     * @return The checkWay.
+     */
+    public com.game.protocol.EquipProtocol.CheckWay getCheckWay() {
+      @SuppressWarnings("deprecation")
+      com.game.protocol.EquipProtocol.CheckWay result = com.game.protocol.EquipProtocol.CheckWay.valueOf(checkWay_);
+      return result == null ? com.game.protocol.EquipProtocol.CheckWay.UNRECOGNIZED : result;
+    }
+
+    public static final int BAGID_FIELD_NUMBER = 3;
+    private int bagId_;
+    /**
+     * <code>int32 bagId = 3;</code>
+     * @return The bagId.
+     */
+    public int getBagId() {
+      return bagId_;
+    }
+
+    public static final int BAGINDEX_FIELD_NUMBER = 4;
+    private int bagIndex_;
+    /**
+     * <code>int32 bagIndex = 4;</code>
+     * @return The bagIndex.
+     */
+    public int getBagIndex() {
+      return bagIndex_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -1680,8 +1783,14 @@ public final class EquipProtocol {
       if (equipId_ != 0) {
         output.writeInt32(1, equipId_);
       }
-      if (part_ != 0) {
-        output.writeInt32(2, part_);
+      if (checkWay_ != com.game.protocol.EquipProtocol.CheckWay.BAG.getNumber()) {
+        output.writeEnum(2, checkWay_);
+      }
+      if (bagId_ != 0) {
+        output.writeInt32(3, bagId_);
+      }
+      if (bagIndex_ != 0) {
+        output.writeInt32(4, bagIndex_);
       }
       unknownFields.writeTo(output);
     }
@@ -1696,9 +1805,17 @@ public final class EquipProtocol {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(1, equipId_);
       }
-      if (part_ != 0) {
+      if (checkWay_ != com.game.protocol.EquipProtocol.CheckWay.BAG.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(2, part_);
+          .computeEnumSize(2, checkWay_);
+      }
+      if (bagId_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(3, bagId_);
+      }
+      if (bagIndex_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(4, bagIndex_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -1717,8 +1834,11 @@ public final class EquipProtocol {
 
       if (getEquipId()
           != other.getEquipId()) return false;
-      if (getPart()
-          != other.getPart()) return false;
+      if (checkWay_ != other.checkWay_) return false;
+      if (getBagId()
+          != other.getBagId()) return false;
+      if (getBagIndex()
+          != other.getBagIndex()) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -1732,8 +1852,12 @@ public final class EquipProtocol {
       hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + EQUIPID_FIELD_NUMBER;
       hash = (53 * hash) + getEquipId();
-      hash = (37 * hash) + PART_FIELD_NUMBER;
-      hash = (53 * hash) + getPart();
+      hash = (37 * hash) + CHECKWAY_FIELD_NUMBER;
+      hash = (53 * hash) + checkWay_;
+      hash = (37 * hash) + BAGID_FIELD_NUMBER;
+      hash = (53 * hash) + getBagId();
+      hash = (37 * hash) + BAGINDEX_FIELD_NUMBER;
+      hash = (53 * hash) + getBagIndex();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -1873,7 +1997,11 @@ public final class EquipProtocol {
         super.clear();
         equipId_ = 0;
 
-        part_ = 0;
+        checkWay_ = 0;
+
+        bagId_ = 0;
+
+        bagIndex_ = 0;
 
         return this;
       }
@@ -1902,7 +2030,9 @@ public final class EquipProtocol {
       public com.game.protocol.EquipProtocol.CheckEquip buildPartial() {
         com.game.protocol.EquipProtocol.CheckEquip result = new com.game.protocol.EquipProtocol.CheckEquip(this);
         result.equipId_ = equipId_;
-        result.part_ = part_;
+        result.checkWay_ = checkWay_;
+        result.bagId_ = bagId_;
+        result.bagIndex_ = bagIndex_;
         onBuilt();
         return result;
       }
@@ -1954,8 +2084,14 @@ public final class EquipProtocol {
         if (other.getEquipId() != 0) {
           setEquipId(other.getEquipId());
         }
-        if (other.getPart() != 0) {
-          setPart(other.getPart());
+        if (other.checkWay_ != 0) {
+          setCheckWayValue(other.getCheckWayValue());
+        }
+        if (other.getBagId() != 0) {
+          setBagId(other.getBagId());
+        }
+        if (other.getBagIndex() != 0) {
+          setBagIndex(other.getBagIndex());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -2016,32 +2152,114 @@ public final class EquipProtocol {
         return this;
       }
 
-      private int part_ ;
+      private int checkWay_ = 0;
       /**
-       * <code>int32 part = 2;</code>
-       * @return The part.
+       * <code>.CheckWay checkWay = 2;</code>
+       * @return The enum numeric value on the wire for checkWay.
        */
-      public int getPart() {
-        return part_;
+      public int getCheckWayValue() {
+        return checkWay_;
       }
       /**
-       * <code>int32 part = 2;</code>
-       * @param value The part to set.
+       * <code>.CheckWay checkWay = 2;</code>
+       * @param value The enum numeric value on the wire for checkWay to set.
        * @return This builder for chaining.
        */
-      public Builder setPart(int value) {
-        
-        part_ = value;
+      public Builder setCheckWayValue(int value) {
+        checkWay_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>int32 part = 2;</code>
+       * <code>.CheckWay checkWay = 2;</code>
+       * @return The checkWay.
+       */
+      public com.game.protocol.EquipProtocol.CheckWay getCheckWay() {
+        @SuppressWarnings("deprecation")
+        com.game.protocol.EquipProtocol.CheckWay result = com.game.protocol.EquipProtocol.CheckWay.valueOf(checkWay_);
+        return result == null ? com.game.protocol.EquipProtocol.CheckWay.UNRECOGNIZED : result;
+      }
+      /**
+       * <code>.CheckWay checkWay = 2;</code>
+       * @param value The checkWay to set.
        * @return This builder for chaining.
        */
-      public Builder clearPart() {
+      public Builder setCheckWay(com.game.protocol.EquipProtocol.CheckWay value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
         
-        part_ = 0;
+        checkWay_ = value.getNumber();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.CheckWay checkWay = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearCheckWay() {
+        
+        checkWay_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int bagId_ ;
+      /**
+       * <code>int32 bagId = 3;</code>
+       * @return The bagId.
+       */
+      public int getBagId() {
+        return bagId_;
+      }
+      /**
+       * <code>int32 bagId = 3;</code>
+       * @param value The bagId to set.
+       * @return This builder for chaining.
+       */
+      public Builder setBagId(int value) {
+        
+        bagId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 bagId = 3;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearBagId() {
+        
+        bagId_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int bagIndex_ ;
+      /**
+       * <code>int32 bagIndex = 4;</code>
+       * @return The bagIndex.
+       */
+      public int getBagIndex() {
+        return bagIndex_;
+      }
+      /**
+       * <code>int32 bagIndex = 4;</code>
+       * @param value The bagIndex to set.
+       * @return This builder for chaining.
+       */
+      public Builder setBagIndex(int value) {
+        
+        bagIndex_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 bagIndex = 4;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearBagIndex() {
+        
+        bagIndex_ = 0;
         onChanged();
         return this;
       }
@@ -3735,6 +3953,10 @@ public final class EquipProtocol {
     int getCode();
   }
   /**
+   * <pre>
+   * 错误
+   * </pre>
+   *
    * Protobuf type {@code EquipError}
    */
   public  static final class EquipError extends
@@ -3982,6 +4204,10 @@ public final class EquipProtocol {
       return builder;
     }
     /**
+     * <pre>
+     * 错误
+     * </pre>
+     *
      * Protobuf type {@code EquipError}
      */
     public static final class Builder extends
@@ -4249,20 +4475,22 @@ public final class EquipProtocol {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\013Equip.proto\"\220\002\n\tEquipInfo\022\n\n\002id\030\001 \001(\005\022" +
-      "\014\n\004name\030\002 \001(\t\022\r\n\005level\030\003 \001(\005\022\017\n\007quality\030" +
-      "\004 \001(\005\022\014\n\004part\030\005 \001(\005\022\022\n\ndurability\030\006 \001(\005\022" +
-      "\025\n\rmaxDurability\030\007 \001(\005\022\n\n\002hp\030\010 \001(\005\022\n\n\002mp" +
-      "\030\t \001(\005\022\021\n\tphyAttack\030\n \001(\005\022\023\n\013magicAttack" +
-      "\030\013 \001(\005\022\022\n\nphyDefense\030\014 \001(\005\022\024\n\014magicDefen" +
-      "se\030\r \001(\005\022\023\n\013attackSpeed\030\016 \001(\001\022\021\n\tmoveSpe" +
-      "ed\030\017 \001(\001\"+\n\nCheckEquip\022\017\n\007equipId\030\001 \001(\005\022" +
-      "\014\n\004part\030\002 \001(\005\"*\n\tTakeEquip\022\017\n\007equipId\030\001 " +
-      "\001(\005\022\014\n\004part\030\002 \001(\005\"-\n\010PutEquip\022\017\n\007equipId" +
-      "\030\001 \001(\005\022\020\n\010bagIndex\030\002 \001(\005\"\036\n\013SearchEquip\022" +
-      "\017\n\007equipId\030\001 \001(\005\"\032\n\nEquipError\022\014\n\004code\030\001" +
-      " \001(\005B\"\n\021com.game.protocolB\rEquipProtocol" +
-      "b\006proto3"
+      "\n\013Equip.proto\"\204\002\n\tEquipInfo\022\014\n\004name\030\002 \001(" +
+      "\t\022\r\n\005level\030\003 \001(\005\022\017\n\007quality\030\004 \001(\005\022\014\n\004par" +
+      "t\030\005 \001(\005\022\022\n\ndurability\030\006 \001(\005\022\025\n\rmaxDurabi" +
+      "lity\030\007 \001(\005\022\n\n\002hp\030\010 \001(\005\022\n\n\002mp\030\t \001(\005\022\021\n\tph" +
+      "yAttack\030\n \001(\005\022\023\n\013magicAttack\030\013 \001(\005\022\022\n\nph" +
+      "yDefense\030\014 \001(\005\022\024\n\014magicDefense\030\r \001(\005\022\023\n\013" +
+      "attackSpeed\030\016 \001(\001\022\021\n\tmoveSpeed\030\017 \001(\001\"[\n\n" +
+      "CheckEquip\022\017\n\007equipId\030\001 \001(\005\022\033\n\010checkWay\030" +
+      "\002 \001(\0162\t.CheckWay\022\r\n\005bagId\030\003 \001(\005\022\020\n\010bagIn" +
+      "dex\030\004 \001(\005\"*\n\tTakeEquip\022\017\n\007equipId\030\001 \001(\005\022" +
+      "\014\n\004part\030\002 \001(\005\"-\n\010PutEquip\022\017\n\007equipId\030\001 \001" +
+      "(\005\022\020\n\010bagIndex\030\002 \001(\005\"\036\n\013SearchEquip\022\017\n\007e" +
+      "quipId\030\001 \001(\005\"\032\n\nEquipError\022\014\n\004code\030\001 \001(\005" +
+      "*,\n\010CheckWay\022\007\n\003BAG\020\000\022\010\n\004DICT\020\001\022\r\n\tEQUIP" +
+      "_BAR\020\002B\"\n\021com.game.protocolB\rEquipProtoc" +
+      "olb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -4273,13 +4501,13 @@ public final class EquipProtocol {
     internal_static_EquipInfo_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_EquipInfo_descriptor,
-        new java.lang.String[] { "Id", "Name", "Level", "Quality", "Part", "Durability", "MaxDurability", "Hp", "Mp", "PhyAttack", "MagicAttack", "PhyDefense", "MagicDefense", "AttackSpeed", "MoveSpeed", });
+        new java.lang.String[] { "Name", "Level", "Quality", "Part", "Durability", "MaxDurability", "Hp", "Mp", "PhyAttack", "MagicAttack", "PhyDefense", "MagicDefense", "AttackSpeed", "MoveSpeed", });
     internal_static_CheckEquip_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_CheckEquip_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_CheckEquip_descriptor,
-        new java.lang.String[] { "EquipId", "Part", });
+        new java.lang.String[] { "EquipId", "CheckWay", "BagId", "BagIndex", });
     internal_static_TakeEquip_descriptor =
       getDescriptor().getMessageTypes().get(2);
     internal_static_TakeEquip_fieldAccessorTable = new

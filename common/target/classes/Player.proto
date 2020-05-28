@@ -47,4 +47,16 @@ message RoleInfoList{
     repeated RoleInfo roles = 1;
 }
 
+// 同步玩家数据
+message SyncPlayerData{
 
+}
+
+// 同步玩家属性数据
+message SyncPlayerProperty{
+
+}
+// 属性变更通知
+message PropertyChangeNotify{
+
+}

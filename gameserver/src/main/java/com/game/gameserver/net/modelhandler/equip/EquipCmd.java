@@ -8,7 +8,7 @@ package com.game.gameserver.net.modelhandler.equip;
 public interface EquipCmd {
     /** 出现错误 */
     short EQUIP_ERROR = 0;
-    /** 查询装备栏中的装备 */
+    /** 查看装备 */
     short CHECK_EQUIP = 1000;
     /** 卸下装备 */
     short TAKE_EQUIP = 1001;
