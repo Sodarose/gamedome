@@ -3,24 +3,14 @@
 <mapper namespace="com.game.gameserver.module.bag.dao.BagMapper">
     <resultMap id="bagResultMap" type="com.game.gameserver.module.bag.model.BagModel">
         <id column="id" property="id"/>
-        <result column="name" property="name"/>
-        <result column="type" property="type"/>
+        <result column="bagName" property="bagName"/>
+        <result column="bagType" property="bagType"/>
         <result column="roleId" property="roleId"/>
     </resultMap>
 
-    <resultMap id="cellResultMap" type="com.game.gameserver.module.bag.model.CellModel">
-        <id column="id" property="id" />
-        <result column="itemId" property="itemId" />
-        <result column="bagId" property="bagId"/>
-        <result column="bagIndex" property="bagIndex"/>
-        <result column="count" property="count" />
-    </resultMap>
 
     <select id="getBagByRoleId" resultMap="bagResultMap">
-        SELECT id,name,type,roleId FROM game_bag WHERE game_bag.roleId = #{roleId} AND type = #{type}
+        SELECT id,bagName,bagType,roleId FROM game_bag WHERE game_bag.roleId = #{roleId} AND bagType = #{bagType}
     </select>
-    
-    <select id="getCellByBagId" resultMap="cellResultMap">
-        SELECT id,itemId,bagId,bagIndex,count FROM game_bag_item WHERE bagId = #{bagId}
-    </select>
+
 </mapper>

@@ -15,6 +15,10 @@ public class Item implements UseAble {
     private DictItem dictItem;
     private Integer itemType;
     private Integer roleId;
+    private Integer bagId;
+    private Integer bagIndex;
+    private Integer itemCount;
 
+    /** cd 实体 */
     private CoolTime coolTime;
 }

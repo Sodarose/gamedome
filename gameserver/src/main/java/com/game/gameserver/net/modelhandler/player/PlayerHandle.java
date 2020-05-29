@@ -28,7 +28,7 @@ import java.util.List;
 @Component
 public class PlayerHandle extends BaseHandler {
     @Autowired
-    private PlayerFacade facade;
+    private PlayerFacade playerFacade;
 
     @CmdHandler(cmd = PlayerCmd.LIST_ROLES)
     public void getRoleList(Message message, Channel channel){
@@ -36,7 +36,7 @@ public class PlayerHandle extends BaseHandler {
         if(account==null){
             return;
         }
-        List<PlayerModel> playerModels = facade.getPlayListByAccountId(account.getId());
+        List<PlayerModel> playerModels = playerFacade.getPlayListByAccountId(account.getId());
         PlayerProtocol.RoleInfoList.Builder builder = PlayerProtocol.RoleInfoList.newBuilder();
         for(PlayerModel playerModel : playerModels){
             builder.addRoles(TransFromUtil.roleTransFromPlayerProtocolRoleInfo(playerModel));
@@ -56,7 +56,7 @@ public class PlayerHandle extends BaseHandler {
         try {
             PlayerProtocol.LoginRole loginRole = PlayerProtocol
                     .LoginRole.parseFrom(message.getData());
-            PlayerProtocol.PlayerInfo playerInfo = facade
+            PlayerProtocol.PlayerInfo playerInfo = playerFacade
                     .loginRoleByRoleId(loginRole.getId(),channel);
             Message msg = MessageUtil.createMessage(ModuleKey.PLAYER_MODULE,PlayerCmd.LOGIN_ROLE,
                     playerInfo.toByteArray());

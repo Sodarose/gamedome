@@ -14,18 +14,12 @@ public final class BagProtocol {
     registerAllExtensions(
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
-  public interface OpenBagReqOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:OpenBagReq)
+  public interface OpenBagOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:OpenBag)
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>int32 roleId = 1;</code>
-     * @return The roleId.
-     */
-    int getRoleId();
-
-    /**
-     * <code>int32 bagId = 2;</code>
+     * <code>int32 bagId = 1;</code>
      * @return The bagId.
      */
     int getBagId();
@@ -35,25 +29,25 @@ public final class BagProtocol {
    * 打开背包请求
    * </pre>
    *
-   * Protobuf type {@code OpenBagReq}
+   * Protobuf type {@code OpenBag}
    */
-  public  static final class OpenBagReq extends
+  public  static final class OpenBag extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:OpenBagReq)
-      OpenBagReqOrBuilder {
+      // @@protoc_insertion_point(message_implements:OpenBag)
+      OpenBagOrBuilder {
   private static final long serialVersionUID = 0L;
-    // Use OpenBagReq.newBuilder() to construct.
-    private OpenBagReq(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    // Use OpenBag.newBuilder() to construct.
+    private OpenBag(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-    private OpenBagReq() {
+    private OpenBag() {
     }
 
     @java.lang.Override
     @SuppressWarnings({"unused"})
     protected java.lang.Object newInstance(
         UnusedPrivateParameter unused) {
-      return new OpenBagReq();
+      return new OpenBag();
     }
 
     @java.lang.Override
@@ -61,7 +55,7 @@ public final class BagProtocol {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private OpenBagReq(
+    private OpenBag(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -80,11 +74,6 @@ public final class BagProtocol {
               done = true;
               break;
             case 8: {
-
-              roleId_ = input.readInt32();
-              break;
-            }
-            case 16: {
 
               bagId_ = input.readInt32();
               break;
@@ -110,31 +99,21 @@ public final class BagProtocol {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.game.protocol.BagProtocol.internal_static_OpenBagReq_descriptor;
+      return com.game.protocol.BagProtocol.internal_static_OpenBag_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.game.protocol.BagProtocol.internal_static_OpenBagReq_fieldAccessorTable
+      return com.game.protocol.BagProtocol.internal_static_OpenBag_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.game.protocol.BagProtocol.OpenBagReq.class, com.game.protocol.BagProtocol.OpenBagReq.Builder.class);
+              com.game.protocol.BagProtocol.OpenBag.class, com.game.protocol.BagProtocol.OpenBag.Builder.class);
     }
 
-    public static final int ROLEID_FIELD_NUMBER = 1;
-    private int roleId_;
-    /**
-     * <code>int32 roleId = 1;</code>
-     * @return The roleId.
-     */
-    public int getRoleId() {
-      return roleId_;
-    }
-
-    public static final int BAGID_FIELD_NUMBER = 2;
+    public static final int BAGID_FIELD_NUMBER = 1;
     private int bagId_;
     /**
-     * <code>int32 bagId = 2;</code>
+     * <code>int32 bagId = 1;</code>
      * @return The bagId.
      */
     public int getBagId() {
@@ -155,11 +134,8 @@ public final class BagProtocol {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (roleId_ != 0) {
-        output.writeInt32(1, roleId_);
-      }
       if (bagId_ != 0) {
-        output.writeInt32(2, bagId_);
+        output.writeInt32(1, bagId_);
       }
       unknownFields.writeTo(output);
     }
@@ -170,13 +146,9 @@ public final class BagProtocol {
       if (size != -1) return size;
 
       size = 0;
-      if (roleId_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(1, roleId_);
-      }
       if (bagId_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(2, bagId_);
+          .computeInt32Size(1, bagId_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -188,13 +160,11 @@ public final class BagProtocol {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof com.game.protocol.BagProtocol.OpenBagReq)) {
+      if (!(obj instanceof com.game.protocol.BagProtocol.OpenBag)) {
         return super.equals(obj);
       }
-      com.game.protocol.BagProtocol.OpenBagReq other = (com.game.protocol.BagProtocol.OpenBagReq) obj;
+      com.game.protocol.BagProtocol.OpenBag other = (com.game.protocol.BagProtocol.OpenBag) obj;
 
-      if (getRoleId()
-          != other.getRoleId()) return false;
       if (getBagId()
           != other.getBagId()) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
@@ -208,8 +178,6 @@ public final class BagProtocol {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + ROLEID_FIELD_NUMBER;
-      hash = (53 * hash) + getRoleId();
       hash = (37 * hash) + BAGID_FIELD_NUMBER;
       hash = (53 * hash) + getBagId();
       hash = (29 * hash) + unknownFields.hashCode();
@@ -217,69 +185,69 @@ public final class BagProtocol {
       return hash;
     }
 
-    public static com.game.protocol.BagProtocol.OpenBagReq parseFrom(
+    public static com.game.protocol.BagProtocol.OpenBag parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.game.protocol.BagProtocol.OpenBagReq parseFrom(
+    public static com.game.protocol.BagProtocol.OpenBag parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.game.protocol.BagProtocol.OpenBagReq parseFrom(
+    public static com.game.protocol.BagProtocol.OpenBag parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.game.protocol.BagProtocol.OpenBagReq parseFrom(
+    public static com.game.protocol.BagProtocol.OpenBag parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.game.protocol.BagProtocol.OpenBagReq parseFrom(byte[] data)
+    public static com.game.protocol.BagProtocol.OpenBag parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.game.protocol.BagProtocol.OpenBagReq parseFrom(
+    public static com.game.protocol.BagProtocol.OpenBag parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.game.protocol.BagProtocol.OpenBagReq parseFrom(java.io.InputStream input)
+    public static com.game.protocol.BagProtocol.OpenBag parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.game.protocol.BagProtocol.OpenBagReq parseFrom(
+    public static com.game.protocol.BagProtocol.OpenBag parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.game.protocol.BagProtocol.OpenBagReq parseDelimitedFrom(java.io.InputStream input)
+    public static com.game.protocol.BagProtocol.OpenBag parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static com.game.protocol.BagProtocol.OpenBagReq parseDelimitedFrom(
+    public static com.game.protocol.BagProtocol.OpenBag parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.game.protocol.BagProtocol.OpenBagReq parseFrom(
+    public static com.game.protocol.BagProtocol.OpenBag parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.game.protocol.BagProtocol.OpenBagReq parseFrom(
+    public static com.game.protocol.BagProtocol.OpenBag parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -292,7 +260,7 @@ public final class BagProtocol {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.game.protocol.BagProtocol.OpenBagReq prototype) {
+    public static Builder newBuilder(com.game.protocol.BagProtocol.OpenBag prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     @java.lang.Override
@@ -312,26 +280,26 @@ public final class BagProtocol {
      * 打开背包请求
      * </pre>
      *
-     * Protobuf type {@code OpenBagReq}
+     * Protobuf type {@code OpenBag}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:OpenBagReq)
-        com.game.protocol.BagProtocol.OpenBagReqOrBuilder {
+        // @@protoc_insertion_point(builder_implements:OpenBag)
+        com.game.protocol.BagProtocol.OpenBagOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.game.protocol.BagProtocol.internal_static_OpenBagReq_descriptor;
+        return com.game.protocol.BagProtocol.internal_static_OpenBag_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.game.protocol.BagProtocol.internal_static_OpenBagReq_fieldAccessorTable
+        return com.game.protocol.BagProtocol.internal_static_OpenBag_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.game.protocol.BagProtocol.OpenBagReq.class, com.game.protocol.BagProtocol.OpenBagReq.Builder.class);
+                com.game.protocol.BagProtocol.OpenBag.class, com.game.protocol.BagProtocol.OpenBag.Builder.class);
       }
 
-      // Construct using com.game.protocol.BagProtocol.OpenBagReq.newBuilder()
+      // Construct using com.game.protocol.BagProtocol.OpenBag.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -349,8 +317,6 @@ public final class BagProtocol {
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        roleId_ = 0;
-
         bagId_ = 0;
 
         return this;
@@ -359,17 +325,17 @@ public final class BagProtocol {
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.game.protocol.BagProtocol.internal_static_OpenBagReq_descriptor;
+        return com.game.protocol.BagProtocol.internal_static_OpenBag_descriptor;
       }
 
       @java.lang.Override
-      public com.game.protocol.BagProtocol.OpenBagReq getDefaultInstanceForType() {
-        return com.game.protocol.BagProtocol.OpenBagReq.getDefaultInstance();
+      public com.game.protocol.BagProtocol.OpenBag getDefaultInstanceForType() {
+        return com.game.protocol.BagProtocol.OpenBag.getDefaultInstance();
       }
 
       @java.lang.Override
-      public com.game.protocol.BagProtocol.OpenBagReq build() {
-        com.game.protocol.BagProtocol.OpenBagReq result = buildPartial();
+      public com.game.protocol.BagProtocol.OpenBag build() {
+        com.game.protocol.BagProtocol.OpenBag result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
@@ -377,9 +343,8 @@ public final class BagProtocol {
       }
 
       @java.lang.Override
-      public com.game.protocol.BagProtocol.OpenBagReq buildPartial() {
-        com.game.protocol.BagProtocol.OpenBagReq result = new com.game.protocol.BagProtocol.OpenBagReq(this);
-        result.roleId_ = roleId_;
+      public com.game.protocol.BagProtocol.OpenBag buildPartial() {
+        com.game.protocol.BagProtocol.OpenBag result = new com.game.protocol.BagProtocol.OpenBag(this);
         result.bagId_ = bagId_;
         onBuilt();
         return result;
@@ -419,19 +384,16 @@ public final class BagProtocol {
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.game.protocol.BagProtocol.OpenBagReq) {
-          return mergeFrom((com.game.protocol.BagProtocol.OpenBagReq)other);
+        if (other instanceof com.game.protocol.BagProtocol.OpenBag) {
+          return mergeFrom((com.game.protocol.BagProtocol.OpenBag)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(com.game.protocol.BagProtocol.OpenBagReq other) {
-        if (other == com.game.protocol.BagProtocol.OpenBagReq.getDefaultInstance()) return this;
-        if (other.getRoleId() != 0) {
-          setRoleId(other.getRoleId());
-        }
+      public Builder mergeFrom(com.game.protocol.BagProtocol.OpenBag other) {
+        if (other == com.game.protocol.BagProtocol.OpenBag.getDefaultInstance()) return this;
         if (other.getBagId() != 0) {
           setBagId(other.getBagId());
         }
@@ -450,11 +412,11 @@ public final class BagProtocol {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.game.protocol.BagProtocol.OpenBagReq parsedMessage = null;
+        com.game.protocol.BagProtocol.OpenBag parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.game.protocol.BagProtocol.OpenBagReq) e.getUnfinishedMessage();
+          parsedMessage = (com.game.protocol.BagProtocol.OpenBag) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -464,46 +426,16 @@ public final class BagProtocol {
         return this;
       }
 
-      private int roleId_ ;
-      /**
-       * <code>int32 roleId = 1;</code>
-       * @return The roleId.
-       */
-      public int getRoleId() {
-        return roleId_;
-      }
-      /**
-       * <code>int32 roleId = 1;</code>
-       * @param value The roleId to set.
-       * @return This builder for chaining.
-       */
-      public Builder setRoleId(int value) {
-        
-        roleId_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>int32 roleId = 1;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearRoleId() {
-        
-        roleId_ = 0;
-        onChanged();
-        return this;
-      }
-
       private int bagId_ ;
       /**
-       * <code>int32 bagId = 2;</code>
+       * <code>int32 bagId = 1;</code>
        * @return The bagId.
        */
       public int getBagId() {
         return bagId_;
       }
       /**
-       * <code>int32 bagId = 2;</code>
+       * <code>int32 bagId = 1;</code>
        * @param value The bagId to set.
        * @return This builder for chaining.
        */
@@ -514,7 +446,7 @@ public final class BagProtocol {
         return this;
       }
       /**
-       * <code>int32 bagId = 2;</code>
+       * <code>int32 bagId = 1;</code>
        * @return This builder for chaining.
        */
       public Builder clearBagId() {
@@ -536,659 +468,41 @@ public final class BagProtocol {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:OpenBagReq)
+      // @@protoc_insertion_point(builder_scope:OpenBag)
     }
 
-    // @@protoc_insertion_point(class_scope:OpenBagReq)
-    private static final com.game.protocol.BagProtocol.OpenBagReq DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:OpenBag)
+    private static final com.game.protocol.BagProtocol.OpenBag DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new com.game.protocol.BagProtocol.OpenBagReq();
+      DEFAULT_INSTANCE = new com.game.protocol.BagProtocol.OpenBag();
     }
 
-    public static com.game.protocol.BagProtocol.OpenBagReq getDefaultInstance() {
+    public static com.game.protocol.BagProtocol.OpenBag getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static final com.google.protobuf.Parser<OpenBagReq>
-        PARSER = new com.google.protobuf.AbstractParser<OpenBagReq>() {
+    private static final com.google.protobuf.Parser<OpenBag>
+        PARSER = new com.google.protobuf.AbstractParser<OpenBag>() {
       @java.lang.Override
-      public OpenBagReq parsePartialFrom(
+      public OpenBag parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new OpenBagReq(input, extensionRegistry);
+        return new OpenBag(input, extensionRegistry);
       }
     };
 
-    public static com.google.protobuf.Parser<OpenBagReq> parser() {
+    public static com.google.protobuf.Parser<OpenBag> parser() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<OpenBagReq> getParserForType() {
+    public com.google.protobuf.Parser<OpenBag> getParserForType() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.game.protocol.BagProtocol.OpenBagReq getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
-  public interface OpenBagResOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:OpenBagRes)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>.BagInfo bagInfo = 1;</code>
-     * @return Whether the bagInfo field is set.
-     */
-    boolean hasBagInfo();
-    /**
-     * <code>.BagInfo bagInfo = 1;</code>
-     * @return The bagInfo.
-     */
-    com.game.protocol.BagProtocol.BagInfo getBagInfo();
-    /**
-     * <code>.BagInfo bagInfo = 1;</code>
-     */
-    com.game.protocol.BagProtocol.BagInfoOrBuilder getBagInfoOrBuilder();
-  }
-  /**
-   * Protobuf type {@code OpenBagRes}
-   */
-  public  static final class OpenBagRes extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:OpenBagRes)
-      OpenBagResOrBuilder {
-  private static final long serialVersionUID = 0L;
-    // Use OpenBagRes.newBuilder() to construct.
-    private OpenBagRes(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private OpenBagRes() {
-    }
-
-    @java.lang.Override
-    @SuppressWarnings({"unused"})
-    protected java.lang.Object newInstance(
-        UnusedPrivateParameter unused) {
-      return new OpenBagRes();
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private OpenBagRes(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              com.game.protocol.BagProtocol.BagInfo.Builder subBuilder = null;
-              if (bagInfo_ != null) {
-                subBuilder = bagInfo_.toBuilder();
-              }
-              bagInfo_ = input.readMessage(com.game.protocol.BagProtocol.BagInfo.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(bagInfo_);
-                bagInfo_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return com.game.protocol.BagProtocol.internal_static_OpenBagRes_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return com.game.protocol.BagProtocol.internal_static_OpenBagRes_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              com.game.protocol.BagProtocol.OpenBagRes.class, com.game.protocol.BagProtocol.OpenBagRes.Builder.class);
-    }
-
-    public static final int BAGINFO_FIELD_NUMBER = 1;
-    private com.game.protocol.BagProtocol.BagInfo bagInfo_;
-    /**
-     * <code>.BagInfo bagInfo = 1;</code>
-     * @return Whether the bagInfo field is set.
-     */
-    public boolean hasBagInfo() {
-      return bagInfo_ != null;
-    }
-    /**
-     * <code>.BagInfo bagInfo = 1;</code>
-     * @return The bagInfo.
-     */
-    public com.game.protocol.BagProtocol.BagInfo getBagInfo() {
-      return bagInfo_ == null ? com.game.protocol.BagProtocol.BagInfo.getDefaultInstance() : bagInfo_;
-    }
-    /**
-     * <code>.BagInfo bagInfo = 1;</code>
-     */
-    public com.game.protocol.BagProtocol.BagInfoOrBuilder getBagInfoOrBuilder() {
-      return getBagInfo();
-    }
-
-    private byte memoizedIsInitialized = -1;
-    @java.lang.Override
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    @java.lang.Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (bagInfo_ != null) {
-        output.writeMessage(1, getBagInfo());
-      }
-      unknownFields.writeTo(output);
-    }
-
-    @java.lang.Override
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (bagInfo_ != null) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1, getBagInfo());
-      }
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof com.game.protocol.BagProtocol.OpenBagRes)) {
-        return super.equals(obj);
-      }
-      com.game.protocol.BagProtocol.OpenBagRes other = (com.game.protocol.BagProtocol.OpenBagRes) obj;
-
-      if (hasBagInfo() != other.hasBagInfo()) return false;
-      if (hasBagInfo()) {
-        if (!getBagInfo()
-            .equals(other.getBagInfo())) return false;
-      }
-      if (!unknownFields.equals(other.unknownFields)) return false;
-      return true;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      if (hasBagInfo()) {
-        hash = (37 * hash) + BAGINFO_FIELD_NUMBER;
-        hash = (53 * hash) + getBagInfo().hashCode();
-      }
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static com.game.protocol.BagProtocol.OpenBagRes parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.game.protocol.BagProtocol.OpenBagRes parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.game.protocol.BagProtocol.OpenBagRes parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.game.protocol.BagProtocol.OpenBagRes parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.game.protocol.BagProtocol.OpenBagRes parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.game.protocol.BagProtocol.OpenBagRes parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.game.protocol.BagProtocol.OpenBagRes parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.game.protocol.BagProtocol.OpenBagRes parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static com.game.protocol.BagProtocol.OpenBagRes parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static com.game.protocol.BagProtocol.OpenBagRes parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static com.game.protocol.BagProtocol.OpenBagRes parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.game.protocol.BagProtocol.OpenBagRes parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(com.game.protocol.BagProtocol.OpenBagRes prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    @java.lang.Override
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * Protobuf type {@code OpenBagRes}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:OpenBagRes)
-        com.game.protocol.BagProtocol.OpenBagResOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return com.game.protocol.BagProtocol.internal_static_OpenBagRes_descriptor;
-      }
-
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return com.game.protocol.BagProtocol.internal_static_OpenBagRes_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                com.game.protocol.BagProtocol.OpenBagRes.class, com.game.protocol.BagProtocol.OpenBagRes.Builder.class);
-      }
-
-      // Construct using com.game.protocol.BagProtocol.OpenBagRes.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
-      }
-      @java.lang.Override
-      public Builder clear() {
-        super.clear();
-        if (bagInfoBuilder_ == null) {
-          bagInfo_ = null;
-        } else {
-          bagInfo_ = null;
-          bagInfoBuilder_ = null;
-        }
-        return this;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return com.game.protocol.BagProtocol.internal_static_OpenBagRes_descriptor;
-      }
-
-      @java.lang.Override
-      public com.game.protocol.BagProtocol.OpenBagRes getDefaultInstanceForType() {
-        return com.game.protocol.BagProtocol.OpenBagRes.getDefaultInstance();
-      }
-
-      @java.lang.Override
-      public com.game.protocol.BagProtocol.OpenBagRes build() {
-        com.game.protocol.BagProtocol.OpenBagRes result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      @java.lang.Override
-      public com.game.protocol.BagProtocol.OpenBagRes buildPartial() {
-        com.game.protocol.BagProtocol.OpenBagRes result = new com.game.protocol.BagProtocol.OpenBagRes(this);
-        if (bagInfoBuilder_ == null) {
-          result.bagInfo_ = bagInfo_;
-        } else {
-          result.bagInfo_ = bagInfoBuilder_.build();
-        }
-        onBuilt();
-        return result;
-      }
-
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
-      }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
-      @java.lang.Override
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.game.protocol.BagProtocol.OpenBagRes) {
-          return mergeFrom((com.game.protocol.BagProtocol.OpenBagRes)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(com.game.protocol.BagProtocol.OpenBagRes other) {
-        if (other == com.game.protocol.BagProtocol.OpenBagRes.getDefaultInstance()) return this;
-        if (other.hasBagInfo()) {
-          mergeBagInfo(other.getBagInfo());
-        }
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
-        return this;
-      }
-
-      @java.lang.Override
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        com.game.protocol.BagProtocol.OpenBagRes parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.game.protocol.BagProtocol.OpenBagRes) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-
-      private com.game.protocol.BagProtocol.BagInfo bagInfo_;
-      private com.google.protobuf.SingleFieldBuilderV3<
-          com.game.protocol.BagProtocol.BagInfo, com.game.protocol.BagProtocol.BagInfo.Builder, com.game.protocol.BagProtocol.BagInfoOrBuilder> bagInfoBuilder_;
-      /**
-       * <code>.BagInfo bagInfo = 1;</code>
-       * @return Whether the bagInfo field is set.
-       */
-      public boolean hasBagInfo() {
-        return bagInfoBuilder_ != null || bagInfo_ != null;
-      }
-      /**
-       * <code>.BagInfo bagInfo = 1;</code>
-       * @return The bagInfo.
-       */
-      public com.game.protocol.BagProtocol.BagInfo getBagInfo() {
-        if (bagInfoBuilder_ == null) {
-          return bagInfo_ == null ? com.game.protocol.BagProtocol.BagInfo.getDefaultInstance() : bagInfo_;
-        } else {
-          return bagInfoBuilder_.getMessage();
-        }
-      }
-      /**
-       * <code>.BagInfo bagInfo = 1;</code>
-       */
-      public Builder setBagInfo(com.game.protocol.BagProtocol.BagInfo value) {
-        if (bagInfoBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          bagInfo_ = value;
-          onChanged();
-        } else {
-          bagInfoBuilder_.setMessage(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>.BagInfo bagInfo = 1;</code>
-       */
-      public Builder setBagInfo(
-          com.game.protocol.BagProtocol.BagInfo.Builder builderForValue) {
-        if (bagInfoBuilder_ == null) {
-          bagInfo_ = builderForValue.build();
-          onChanged();
-        } else {
-          bagInfoBuilder_.setMessage(builderForValue.build());
-        }
-
-        return this;
-      }
-      /**
-       * <code>.BagInfo bagInfo = 1;</code>
-       */
-      public Builder mergeBagInfo(com.game.protocol.BagProtocol.BagInfo value) {
-        if (bagInfoBuilder_ == null) {
-          if (bagInfo_ != null) {
-            bagInfo_ =
-              com.game.protocol.BagProtocol.BagInfo.newBuilder(bagInfo_).mergeFrom(value).buildPartial();
-          } else {
-            bagInfo_ = value;
-          }
-          onChanged();
-        } else {
-          bagInfoBuilder_.mergeFrom(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>.BagInfo bagInfo = 1;</code>
-       */
-      public Builder clearBagInfo() {
-        if (bagInfoBuilder_ == null) {
-          bagInfo_ = null;
-          onChanged();
-        } else {
-          bagInfo_ = null;
-          bagInfoBuilder_ = null;
-        }
-
-        return this;
-      }
-      /**
-       * <code>.BagInfo bagInfo = 1;</code>
-       */
-      public com.game.protocol.BagProtocol.BagInfo.Builder getBagInfoBuilder() {
-        
-        onChanged();
-        return getBagInfoFieldBuilder().getBuilder();
-      }
-      /**
-       * <code>.BagInfo bagInfo = 1;</code>
-       */
-      public com.game.protocol.BagProtocol.BagInfoOrBuilder getBagInfoOrBuilder() {
-        if (bagInfoBuilder_ != null) {
-          return bagInfoBuilder_.getMessageOrBuilder();
-        } else {
-          return bagInfo_ == null ?
-              com.game.protocol.BagProtocol.BagInfo.getDefaultInstance() : bagInfo_;
-        }
-      }
-      /**
-       * <code>.BagInfo bagInfo = 1;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilderV3<
-          com.game.protocol.BagProtocol.BagInfo, com.game.protocol.BagProtocol.BagInfo.Builder, com.game.protocol.BagProtocol.BagInfoOrBuilder> 
-          getBagInfoFieldBuilder() {
-        if (bagInfoBuilder_ == null) {
-          bagInfoBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.game.protocol.BagProtocol.BagInfo, com.game.protocol.BagProtocol.BagInfo.Builder, com.game.protocol.BagProtocol.BagInfoOrBuilder>(
-                  getBagInfo(),
-                  getParentForChildren(),
-                  isClean());
-          bagInfo_ = null;
-        }
-        return bagInfoBuilder_;
-      }
-      @java.lang.Override
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFields(unknownFields);
-      }
-
-      @java.lang.Override
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:OpenBagRes)
-    }
-
-    // @@protoc_insertion_point(class_scope:OpenBagRes)
-    private static final com.game.protocol.BagProtocol.OpenBagRes DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new com.game.protocol.BagProtocol.OpenBagRes();
-    }
-
-    public static com.game.protocol.BagProtocol.OpenBagRes getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<OpenBagRes>
-        PARSER = new com.google.protobuf.AbstractParser<OpenBagRes>() {
-      @java.lang.Override
-      public OpenBagRes parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new OpenBagRes(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<OpenBagRes> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<OpenBagRes> getParserForType() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.game.protocol.BagProtocol.OpenBagRes getDefaultInstanceForType() {
+    public com.game.protocol.BagProtocol.OpenBag getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -2211,34 +1525,40 @@ public final class BagProtocol {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>int32 bagIndex = 1;</code>
-     * @return The bagIndex.
+     * <code>int32 id = 1;</code>
+     * @return The id.
      */
-    int getBagIndex();
+    int getId();
 
     /**
-     * <code>int32 itemId = 2;</code>
-     * @return The itemId.
-     */
-    int getItemId();
-
-    /**
-     * <code>string itemName = 3;</code>
+     * <code>string itemName = 2;</code>
      * @return The itemName.
      */
     java.lang.String getItemName();
     /**
-     * <code>string itemName = 3;</code>
+     * <code>string itemName = 2;</code>
      * @return The bytes for itemName.
      */
     com.google.protobuf.ByteString
         getItemNameBytes();
 
     /**
-     * <code>int32 count = 4;</code>
-     * @return The count.
+     * <code>int32 itemType = 3;</code>
+     * @return The itemType.
      */
-    int getCount();
+    int getItemType();
+
+    /**
+     * <code>int32 itemCount = 4;</code>
+     * @return The itemCount.
+     */
+    int getItemCount();
+
+    /**
+     * <code>int32 bagIndex = 5;</code>
+     * @return The bagIndex.
+     */
+    int getBagIndex();
   }
   /**
    * <pre>
@@ -2292,23 +1612,28 @@ public final class BagProtocol {
               break;
             case 8: {
 
-              bagIndex_ = input.readInt32();
+              id_ = input.readInt32();
               break;
             }
-            case 16: {
-
-              itemId_ = input.readInt32();
-              break;
-            }
-            case 26: {
+            case 18: {
               java.lang.String s = input.readStringRequireUtf8();
 
               itemName_ = s;
               break;
             }
+            case 24: {
+
+              itemType_ = input.readInt32();
+              break;
+            }
             case 32: {
 
-              count_ = input.readInt32();
+              itemCount_ = input.readInt32();
+              break;
+            }
+            case 40: {
+
+              bagIndex_ = input.readInt32();
               break;
             }
             default: {
@@ -2343,30 +1668,20 @@ public final class BagProtocol {
               com.game.protocol.BagProtocol.CellInfo.class, com.game.protocol.BagProtocol.CellInfo.Builder.class);
     }
 
-    public static final int BAGINDEX_FIELD_NUMBER = 1;
-    private int bagIndex_;
+    public static final int ID_FIELD_NUMBER = 1;
+    private int id_;
     /**
-     * <code>int32 bagIndex = 1;</code>
-     * @return The bagIndex.
+     * <code>int32 id = 1;</code>
+     * @return The id.
      */
-    public int getBagIndex() {
-      return bagIndex_;
+    public int getId() {
+      return id_;
     }
 
-    public static final int ITEMID_FIELD_NUMBER = 2;
-    private int itemId_;
-    /**
-     * <code>int32 itemId = 2;</code>
-     * @return The itemId.
-     */
-    public int getItemId() {
-      return itemId_;
-    }
-
-    public static final int ITEMNAME_FIELD_NUMBER = 3;
+    public static final int ITEMNAME_FIELD_NUMBER = 2;
     private volatile java.lang.Object itemName_;
     /**
-     * <code>string itemName = 3;</code>
+     * <code>string itemName = 2;</code>
      * @return The itemName.
      */
     public java.lang.String getItemName() {
@@ -2382,7 +1697,7 @@ public final class BagProtocol {
       }
     }
     /**
-     * <code>string itemName = 3;</code>
+     * <code>string itemName = 2;</code>
      * @return The bytes for itemName.
      */
     public com.google.protobuf.ByteString
@@ -2399,14 +1714,34 @@ public final class BagProtocol {
       }
     }
 
-    public static final int COUNT_FIELD_NUMBER = 4;
-    private int count_;
+    public static final int ITEMTYPE_FIELD_NUMBER = 3;
+    private int itemType_;
     /**
-     * <code>int32 count = 4;</code>
-     * @return The count.
+     * <code>int32 itemType = 3;</code>
+     * @return The itemType.
      */
-    public int getCount() {
-      return count_;
+    public int getItemType() {
+      return itemType_;
+    }
+
+    public static final int ITEMCOUNT_FIELD_NUMBER = 4;
+    private int itemCount_;
+    /**
+     * <code>int32 itemCount = 4;</code>
+     * @return The itemCount.
+     */
+    public int getItemCount() {
+      return itemCount_;
+    }
+
+    public static final int BAGINDEX_FIELD_NUMBER = 5;
+    private int bagIndex_;
+    /**
+     * <code>int32 bagIndex = 5;</code>
+     * @return The bagIndex.
+     */
+    public int getBagIndex() {
+      return bagIndex_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -2423,17 +1758,20 @@ public final class BagProtocol {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (bagIndex_ != 0) {
-        output.writeInt32(1, bagIndex_);
-      }
-      if (itemId_ != 0) {
-        output.writeInt32(2, itemId_);
+      if (id_ != 0) {
+        output.writeInt32(1, id_);
       }
       if (!getItemNameBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, itemName_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, itemName_);
       }
-      if (count_ != 0) {
-        output.writeInt32(4, count_);
+      if (itemType_ != 0) {
+        output.writeInt32(3, itemType_);
+      }
+      if (itemCount_ != 0) {
+        output.writeInt32(4, itemCount_);
+      }
+      if (bagIndex_ != 0) {
+        output.writeInt32(5, bagIndex_);
       }
       unknownFields.writeTo(output);
     }
@@ -2444,20 +1782,24 @@ public final class BagProtocol {
       if (size != -1) return size;
 
       size = 0;
-      if (bagIndex_ != 0) {
+      if (id_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(1, bagIndex_);
-      }
-      if (itemId_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(2, itemId_);
+          .computeInt32Size(1, id_);
       }
       if (!getItemNameBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, itemName_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, itemName_);
       }
-      if (count_ != 0) {
+      if (itemType_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(4, count_);
+          .computeInt32Size(3, itemType_);
+      }
+      if (itemCount_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(4, itemCount_);
+      }
+      if (bagIndex_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(5, bagIndex_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -2474,14 +1816,16 @@ public final class BagProtocol {
       }
       com.game.protocol.BagProtocol.CellInfo other = (com.game.protocol.BagProtocol.CellInfo) obj;
 
-      if (getBagIndex()
-          != other.getBagIndex()) return false;
-      if (getItemId()
-          != other.getItemId()) return false;
+      if (getId()
+          != other.getId()) return false;
       if (!getItemName()
           .equals(other.getItemName())) return false;
-      if (getCount()
-          != other.getCount()) return false;
+      if (getItemType()
+          != other.getItemType()) return false;
+      if (getItemCount()
+          != other.getItemCount()) return false;
+      if (getBagIndex()
+          != other.getBagIndex()) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -2493,14 +1837,16 @@ public final class BagProtocol {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + BAGINDEX_FIELD_NUMBER;
-      hash = (53 * hash) + getBagIndex();
-      hash = (37 * hash) + ITEMID_FIELD_NUMBER;
-      hash = (53 * hash) + getItemId();
+      hash = (37 * hash) + ID_FIELD_NUMBER;
+      hash = (53 * hash) + getId();
       hash = (37 * hash) + ITEMNAME_FIELD_NUMBER;
       hash = (53 * hash) + getItemName().hashCode();
-      hash = (37 * hash) + COUNT_FIELD_NUMBER;
-      hash = (53 * hash) + getCount();
+      hash = (37 * hash) + ITEMTYPE_FIELD_NUMBER;
+      hash = (53 * hash) + getItemType();
+      hash = (37 * hash) + ITEMCOUNT_FIELD_NUMBER;
+      hash = (53 * hash) + getItemCount();
+      hash = (37 * hash) + BAGINDEX_FIELD_NUMBER;
+      hash = (53 * hash) + getBagIndex();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -2638,13 +1984,15 @@ public final class BagProtocol {
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        bagIndex_ = 0;
-
-        itemId_ = 0;
+        id_ = 0;
 
         itemName_ = "";
 
-        count_ = 0;
+        itemType_ = 0;
+
+        itemCount_ = 0;
+
+        bagIndex_ = 0;
 
         return this;
       }
@@ -2672,10 +2020,11 @@ public final class BagProtocol {
       @java.lang.Override
       public com.game.protocol.BagProtocol.CellInfo buildPartial() {
         com.game.protocol.BagProtocol.CellInfo result = new com.game.protocol.BagProtocol.CellInfo(this);
-        result.bagIndex_ = bagIndex_;
-        result.itemId_ = itemId_;
+        result.id_ = id_;
         result.itemName_ = itemName_;
-        result.count_ = count_;
+        result.itemType_ = itemType_;
+        result.itemCount_ = itemCount_;
+        result.bagIndex_ = bagIndex_;
         onBuilt();
         return result;
       }
@@ -2724,18 +2073,21 @@ public final class BagProtocol {
 
       public Builder mergeFrom(com.game.protocol.BagProtocol.CellInfo other) {
         if (other == com.game.protocol.BagProtocol.CellInfo.getDefaultInstance()) return this;
-        if (other.getBagIndex() != 0) {
-          setBagIndex(other.getBagIndex());
-        }
-        if (other.getItemId() != 0) {
-          setItemId(other.getItemId());
+        if (other.getId() != 0) {
+          setId(other.getId());
         }
         if (!other.getItemName().isEmpty()) {
           itemName_ = other.itemName_;
           onChanged();
         }
-        if (other.getCount() != 0) {
-          setCount(other.getCount());
+        if (other.getItemType() != 0) {
+          setItemType(other.getItemType());
+        }
+        if (other.getItemCount() != 0) {
+          setItemCount(other.getItemCount());
+        }
+        if (other.getBagIndex() != 0) {
+          setBagIndex(other.getBagIndex());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -2766,69 +2118,39 @@ public final class BagProtocol {
         return this;
       }
 
-      private int bagIndex_ ;
+      private int id_ ;
       /**
-       * <code>int32 bagIndex = 1;</code>
-       * @return The bagIndex.
+       * <code>int32 id = 1;</code>
+       * @return The id.
        */
-      public int getBagIndex() {
-        return bagIndex_;
+      public int getId() {
+        return id_;
       }
       /**
-       * <code>int32 bagIndex = 1;</code>
-       * @param value The bagIndex to set.
+       * <code>int32 id = 1;</code>
+       * @param value The id to set.
        * @return This builder for chaining.
        */
-      public Builder setBagIndex(int value) {
+      public Builder setId(int value) {
         
-        bagIndex_ = value;
+        id_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>int32 bagIndex = 1;</code>
+       * <code>int32 id = 1;</code>
        * @return This builder for chaining.
        */
-      public Builder clearBagIndex() {
+      public Builder clearId() {
         
-        bagIndex_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private int itemId_ ;
-      /**
-       * <code>int32 itemId = 2;</code>
-       * @return The itemId.
-       */
-      public int getItemId() {
-        return itemId_;
-      }
-      /**
-       * <code>int32 itemId = 2;</code>
-       * @param value The itemId to set.
-       * @return This builder for chaining.
-       */
-      public Builder setItemId(int value) {
-        
-        itemId_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>int32 itemId = 2;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearItemId() {
-        
-        itemId_ = 0;
+        id_ = 0;
         onChanged();
         return this;
       }
 
       private java.lang.Object itemName_ = "";
       /**
-       * <code>string itemName = 3;</code>
+       * <code>string itemName = 2;</code>
        * @return The itemName.
        */
       public java.lang.String getItemName() {
@@ -2844,7 +2166,7 @@ public final class BagProtocol {
         }
       }
       /**
-       * <code>string itemName = 3;</code>
+       * <code>string itemName = 2;</code>
        * @return The bytes for itemName.
        */
       public com.google.protobuf.ByteString
@@ -2861,7 +2183,7 @@ public final class BagProtocol {
         }
       }
       /**
-       * <code>string itemName = 3;</code>
+       * <code>string itemName = 2;</code>
        * @param value The itemName to set.
        * @return This builder for chaining.
        */
@@ -2876,7 +2198,7 @@ public final class BagProtocol {
         return this;
       }
       /**
-       * <code>string itemName = 3;</code>
+       * <code>string itemName = 2;</code>
        * @return This builder for chaining.
        */
       public Builder clearItemName() {
@@ -2886,7 +2208,7 @@ public final class BagProtocol {
         return this;
       }
       /**
-       * <code>string itemName = 3;</code>
+       * <code>string itemName = 2;</code>
        * @param value The bytes for itemName to set.
        * @return This builder for chaining.
        */
@@ -2902,32 +2224,92 @@ public final class BagProtocol {
         return this;
       }
 
-      private int count_ ;
+      private int itemType_ ;
       /**
-       * <code>int32 count = 4;</code>
-       * @return The count.
+       * <code>int32 itemType = 3;</code>
+       * @return The itemType.
        */
-      public int getCount() {
-        return count_;
+      public int getItemType() {
+        return itemType_;
       }
       /**
-       * <code>int32 count = 4;</code>
-       * @param value The count to set.
+       * <code>int32 itemType = 3;</code>
+       * @param value The itemType to set.
        * @return This builder for chaining.
        */
-      public Builder setCount(int value) {
+      public Builder setItemType(int value) {
         
-        count_ = value;
+        itemType_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>int32 count = 4;</code>
+       * <code>int32 itemType = 3;</code>
        * @return This builder for chaining.
        */
-      public Builder clearCount() {
+      public Builder clearItemType() {
         
-        count_ = 0;
+        itemType_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int itemCount_ ;
+      /**
+       * <code>int32 itemCount = 4;</code>
+       * @return The itemCount.
+       */
+      public int getItemCount() {
+        return itemCount_;
+      }
+      /**
+       * <code>int32 itemCount = 4;</code>
+       * @param value The itemCount to set.
+       * @return This builder for chaining.
+       */
+      public Builder setItemCount(int value) {
+        
+        itemCount_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 itemCount = 4;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearItemCount() {
+        
+        itemCount_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int bagIndex_ ;
+      /**
+       * <code>int32 bagIndex = 5;</code>
+       * @return The bagIndex.
+       */
+      public int getBagIndex() {
+        return bagIndex_;
+      }
+      /**
+       * <code>int32 bagIndex = 5;</code>
+       * @param value The bagIndex to set.
+       * @return This builder for chaining.
+       */
+      public Builder setBagIndex(int value) {
+        
+        bagIndex_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 bagIndex = 5;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearBagIndex() {
+        
+        bagIndex_ = 0;
         onChanged();
         return this;
       }
@@ -2984,440 +2366,11 @@ public final class BagProtocol {
 
   }
 
-  public interface CloseBagOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:CloseBag)
-      com.google.protobuf.MessageOrBuilder {
-  }
-  /**
-   * <pre>
-   * </pre>
-   *
-   * Protobuf type {@code CloseBag}
-   */
-  public  static final class CloseBag extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:CloseBag)
-      CloseBagOrBuilder {
-  private static final long serialVersionUID = 0L;
-    // Use CloseBag.newBuilder() to construct.
-    private CloseBag(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private CloseBag() {
-    }
-
-    @java.lang.Override
-    @SuppressWarnings({"unused"})
-    protected java.lang.Object newInstance(
-        UnusedPrivateParameter unused) {
-      return new CloseBag();
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private CloseBag(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return com.game.protocol.BagProtocol.internal_static_CloseBag_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return com.game.protocol.BagProtocol.internal_static_CloseBag_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              com.game.protocol.BagProtocol.CloseBag.class, com.game.protocol.BagProtocol.CloseBag.Builder.class);
-    }
-
-    private byte memoizedIsInitialized = -1;
-    @java.lang.Override
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    @java.lang.Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      unknownFields.writeTo(output);
-    }
-
-    @java.lang.Override
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof com.game.protocol.BagProtocol.CloseBag)) {
-        return super.equals(obj);
-      }
-      com.game.protocol.BagProtocol.CloseBag other = (com.game.protocol.BagProtocol.CloseBag) obj;
-
-      if (!unknownFields.equals(other.unknownFields)) return false;
-      return true;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static com.game.protocol.BagProtocol.CloseBag parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.game.protocol.BagProtocol.CloseBag parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.game.protocol.BagProtocol.CloseBag parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.game.protocol.BagProtocol.CloseBag parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.game.protocol.BagProtocol.CloseBag parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.game.protocol.BagProtocol.CloseBag parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.game.protocol.BagProtocol.CloseBag parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.game.protocol.BagProtocol.CloseBag parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static com.game.protocol.BagProtocol.CloseBag parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static com.game.protocol.BagProtocol.CloseBag parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static com.game.protocol.BagProtocol.CloseBag parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.game.protocol.BagProtocol.CloseBag parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(com.game.protocol.BagProtocol.CloseBag prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    @java.lang.Override
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * <pre>
-     * </pre>
-     *
-     * Protobuf type {@code CloseBag}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:CloseBag)
-        com.game.protocol.BagProtocol.CloseBagOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return com.game.protocol.BagProtocol.internal_static_CloseBag_descriptor;
-      }
-
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return com.game.protocol.BagProtocol.internal_static_CloseBag_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                com.game.protocol.BagProtocol.CloseBag.class, com.game.protocol.BagProtocol.CloseBag.Builder.class);
-      }
-
-      // Construct using com.game.protocol.BagProtocol.CloseBag.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
-      }
-      @java.lang.Override
-      public Builder clear() {
-        super.clear();
-        return this;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return com.game.protocol.BagProtocol.internal_static_CloseBag_descriptor;
-      }
-
-      @java.lang.Override
-      public com.game.protocol.BagProtocol.CloseBag getDefaultInstanceForType() {
-        return com.game.protocol.BagProtocol.CloseBag.getDefaultInstance();
-      }
-
-      @java.lang.Override
-      public com.game.protocol.BagProtocol.CloseBag build() {
-        com.game.protocol.BagProtocol.CloseBag result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      @java.lang.Override
-      public com.game.protocol.BagProtocol.CloseBag buildPartial() {
-        com.game.protocol.BagProtocol.CloseBag result = new com.game.protocol.BagProtocol.CloseBag(this);
-        onBuilt();
-        return result;
-      }
-
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
-      }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
-      @java.lang.Override
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.game.protocol.BagProtocol.CloseBag) {
-          return mergeFrom((com.game.protocol.BagProtocol.CloseBag)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(com.game.protocol.BagProtocol.CloseBag other) {
-        if (other == com.game.protocol.BagProtocol.CloseBag.getDefaultInstance()) return this;
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
-        return this;
-      }
-
-      @java.lang.Override
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        com.game.protocol.BagProtocol.CloseBag parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.game.protocol.BagProtocol.CloseBag) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-      @java.lang.Override
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFields(unknownFields);
-      }
-
-      @java.lang.Override
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:CloseBag)
-    }
-
-    // @@protoc_insertion_point(class_scope:CloseBag)
-    private static final com.game.protocol.BagProtocol.CloseBag DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new com.game.protocol.BagProtocol.CloseBag();
-    }
-
-    public static com.game.protocol.BagProtocol.CloseBag getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<CloseBag>
-        PARSER = new com.google.protobuf.AbstractParser<CloseBag>() {
-      @java.lang.Override
-      public CloseBag parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new CloseBag(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<CloseBag> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<CloseBag> getParserForType() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.game.protocol.BagProtocol.CloseBag getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_OpenBagReq_descriptor;
+    internal_static_OpenBag_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_OpenBagReq_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_OpenBagRes_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_OpenBagRes_fieldAccessorTable;
+      internal_static_OpenBag_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_BagInfo_descriptor;
   private static final 
@@ -3428,11 +2381,6 @@ public final class BagProtocol {
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_CellInfo_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_CloseBag_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_CloseBag_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -3442,49 +2390,36 @@ public final class BagProtocol {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\tBag.proto\"+\n\nOpenBagReq\022\016\n\006roleId\030\001 \001(" +
-      "\005\022\r\n\005bagId\030\002 \001(\005\"\'\n\nOpenBagRes\022\031\n\007bagInf" +
-      "o\030\001 \001(\0132\010.BagInfo\"F\n\007BagInfo\022\r\n\005bagId\030\001 " +
-      "\001(\005\022\017\n\007bagName\030\002 \001(\t\022\033\n\010cellInfo\030\003 \003(\0132\t" +
-      ".CellInfo\"M\n\010CellInfo\022\020\n\010bagIndex\030\001 \001(\005\022" +
-      "\016\n\006itemId\030\002 \001(\005\022\020\n\010itemName\030\003 \001(\t\022\r\n\005cou" +
-      "nt\030\004 \001(\005\"\n\n\010CloseBagB \n\021com.game.protoco" +
-      "lB\013BagProtocolb\006proto3"
+      "\n\tBag.proto\"\030\n\007OpenBag\022\r\n\005bagId\030\001 \001(\005\"F\n" +
+      "\007BagInfo\022\r\n\005bagId\030\001 \001(\005\022\017\n\007bagName\030\002 \001(\t" +
+      "\022\033\n\010cellInfo\030\003 \003(\0132\t.CellInfo\"_\n\010CellInf" +
+      "o\022\n\n\002id\030\001 \001(\005\022\020\n\010itemName\030\002 \001(\t\022\020\n\010itemT" +
+      "ype\030\003 \001(\005\022\021\n\titemCount\030\004 \001(\005\022\020\n\010bagIndex" +
+      "\030\005 \001(\005B \n\021com.game.protocolB\013BagProtocol" +
+      "b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
         });
-    internal_static_OpenBagReq_descriptor =
+    internal_static_OpenBag_descriptor =
       getDescriptor().getMessageTypes().get(0);
-    internal_static_OpenBagReq_fieldAccessorTable = new
+    internal_static_OpenBag_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_OpenBagReq_descriptor,
-        new java.lang.String[] { "RoleId", "BagId", });
-    internal_static_OpenBagRes_descriptor =
-      getDescriptor().getMessageTypes().get(1);
-    internal_static_OpenBagRes_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_OpenBagRes_descriptor,
-        new java.lang.String[] { "BagInfo", });
+        internal_static_OpenBag_descriptor,
+        new java.lang.String[] { "BagId", });
     internal_static_BagInfo_descriptor =
-      getDescriptor().getMessageTypes().get(2);
+      getDescriptor().getMessageTypes().get(1);
     internal_static_BagInfo_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_BagInfo_descriptor,
         new java.lang.String[] { "BagId", "BagName", "CellInfo", });
     internal_static_CellInfo_descriptor =
-      getDescriptor().getMessageTypes().get(3);
+      getDescriptor().getMessageTypes().get(2);
     internal_static_CellInfo_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_CellInfo_descriptor,
-        new java.lang.String[] { "BagIndex", "ItemId", "ItemName", "Count", });
-    internal_static_CloseBag_descriptor =
-      getDescriptor().getMessageTypes().get(4);
-    internal_static_CloseBag_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_CloseBag_descriptor,
-        new java.lang.String[] { });
+        new java.lang.String[] { "Id", "ItemName", "ItemType", "ItemCount", "BagIndex", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

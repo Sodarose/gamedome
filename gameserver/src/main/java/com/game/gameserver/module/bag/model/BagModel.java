@@ -10,7 +10,7 @@ import lombok.Data;
 @Data
 public class BagModel {
     private Integer id;
-    private String  name;
-    private Integer type;
+    private String  bagName;
+    private Integer bagType;
     private Integer roleId;
 }

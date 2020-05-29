@@ -17,15 +17,9 @@ public interface BagMapper {
     /**
      * 根据角色Id 获得角色背包数据
      * @param roleId 角色ID
-     * @param type 背包类型{0:普通背包 1:道具快捷栏}
+     * @param bagType 背包类型{0:普通背包 1:道具快捷栏}
      * @return com.game.gameserver.module.bag.model.BagModel
      */
-    BagModel getBagByRoleId(Integer roleId,Integer type);
+    BagModel getBagByRoleId(Integer roleId,Integer bagType);
 
-    /**
-     * 根据背包Id获得用户背包的内容数据
-     * @param bagId 背包Id
-     * @return java.util.List<com.game.gameserver.module.bag.model.CellModel>
-     */
-    List<CellModel> getCellByBagId(Integer bagId);
 }

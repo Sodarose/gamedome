@@ -89,4 +89,13 @@ public class EquipBar {
        }
        return takeEquip;
     }
+
+    public Equip getEquip(Integer equipId){
+        for(Equip equip:equips){
+            if(equip.getId().equals(equipId)){
+                return equip;
+            }
+        }
+        return null;
+    }
 }

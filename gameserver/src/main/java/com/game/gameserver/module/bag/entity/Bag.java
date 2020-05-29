@@ -1,11 +1,12 @@
 package com.game.gameserver.module.bag.entity;
 
+import ch.qos.logback.classic.spi.IThrowableProxy;
+import com.game.gameserver.module.equip.entity.Equip;
 import com.game.gameserver.module.item.entity.Item;
+import com.game.gameserver.module.item.model.ItemType;
 import com.game.gameserver.module.player.entity.Player;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 /**
  * 背包实体
@@ -14,31 +15,19 @@ import java.util.List;
  * @date 2020/5/25 18:11
  */
 public class Bag {
-    /**
-     * 最大格子数目
-     */
+
     private final static int MAX_CELL_LENGTH = 36;
 
-    /**
-     * 背包格子
-     */
     private Cell[] cells = new Cell[MAX_CELL_LENGTH];
 
-    /**
-     * 背包ID
-     */
     private Integer id;
     private String  name;
     private Integer type;
     private Integer roleId;
     private Player  player;
 
-    /** 是否打开 */
-    private boolean open = false;
-
-    public Bag() {
-
-    }
+    private Map<Integer,Item> itemMap = new HashMap<>(16);
+    private Map<Integer,Equip> equipMap = new HashMap<>(16);
 
     public Bag(Integer id, String name, Integer type, Integer roleId) {
         this.id = id;
@@ -51,30 +40,26 @@ public class Bag {
         this.player = player;
     }
 
-    /**
-     * 初始化格子
-     * @param cellList 道具列表
-     */
-    public void init(List<Cell> cellList) {
-        for (int i = 0; i < cells.length; i++) {
-            Cell cell = new Cell(id, i);
-            cells[i] = cell;
+    /** 初始话背包 */
+    public void init(List<Item> items,List<Equip> equips) {
+        for(int i=0;i<cells.length;i++){
+            cells[i] = new Cell();
         }
-        for(Cell cell:cellList){
-            cells[cell.getBagIndex()] = cell;
+
+        for(Item item:items){
+            itemMap.put(item.getId(),item);
+            cells[item.getBagIndex()].setItem(item);
         }
+
+        for(Equip equip:equips){
+            equipMap.put(equip.getId(),equip);
+            cells[equip.getBagIndex()].setItem(equip);
+        }
+
     }
 
     public Integer getId(){
         return id;
-    }
-
-    /**
-     * 返回所有的各自列表（不管有没有物品）
-     * @return java.util.List<com.game.gameserver.module.bag.entity.Cell>
-     */
-    public List<Cell> getAllCellList(){
-        return Arrays.asList(cells);
     }
 
     /**
@@ -104,15 +89,33 @@ public class Bag {
         return name;
     }
 
-    public void open(){
-        open = true;
+    public boolean hasEquip(Integer equipId){
+        return equipMap.containsKey(equipId);
     }
 
-    public void close(){
-        open = false;
+    public boolean hasItem(Integer itemId){
+        return itemMap.containsKey(itemId);
     }
 
-    public boolean isOpen(){
-        return open;
+    public Equip getEquip(Integer equipId){
+        return  equipMap.get(equipId);
+    }
+
+    public Item getItem(Integer itemId){
+        return itemMap.get(itemId);
+    }
+
+    public void putInEquip(Equip equip){
+        if(equip.getBagIndex()!=null){
+            cells[equip.getBagIndex()].setItem(equip);
+            return;
+        }
+        for(int i=0;i<cells.length;i++){
+            Cell cell = cells[i];
+            if(cell.getItem()==null){
+                cell.setItem(equip);
+                return;
+            }
+        }
     }
 }

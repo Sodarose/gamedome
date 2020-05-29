@@ -31,6 +31,9 @@ public class EquipEntityFactory {
         equip.setDictItem(dictItem);
         equip.setItemType(equipModel.getItemType());
         equip.setRoleId(equipModel.getRoleId());
+        equip.setBagId(equipModel.getBagId());
+        equip.setBagIndex(equipModel.getBagIndex());
+        equip.setItemCount(equipModel.getItemCount());
 
         DictEquip dictEquip = dictionaryManager.getDictEquipById(equipModel.getEquipId());
         if(dictEquip==null){
@@ -39,7 +42,7 @@ public class EquipEntityFactory {
         }
         equip.setDictEquip(dictEquip);
         equip.setDurability(equipModel.getDurability());
-        equip.setEquipment(equip.getEquipment());
+        equip.setEquipment(equipModel.getEquipment());
         return equip;
     }
 }

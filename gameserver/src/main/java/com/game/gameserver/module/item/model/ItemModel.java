@@ -14,4 +14,7 @@ public class ItemModel {
     private Integer itemId;
     private Integer itemType;
     private Integer roleId;
+    private Integer bagId;
+    private Integer bagIndex;
+    private Integer itemCount;
 }

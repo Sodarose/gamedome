@@ -44,18 +44,7 @@ public class ItemHandle {
     public void checkItem(Message message, Channel channel){
         try {
             ItemProtocol.CheckItem checkItem = ItemProtocol.CheckItem.parseFrom(message.getData());
-            DictItem item = itemFacade.checkItem(checkItem.getItemId());
-            if(item==null){
-                return;
-            }
-            ItemProtocol.DictItemInfo.Builder builder = ItemProtocol.DictItemInfo.newBuilder();
-            builder.setName(item.getName());
-            builder.setLevel(item.getLevel());
-            builder.setQuality(item.getQuality());
-            builder.setDescription(item.getDescription());
-            Message res = MessageUtil.createMessage(ModuleKey.ITEM_MODEL,ItemCmd.CHECK_ITEM,
-                    builder.build().toByteArray());
-            channel.writeAndFlush(res);
+
         } catch (InvalidProtocolBufferException e) {
             e.printStackTrace();
         }

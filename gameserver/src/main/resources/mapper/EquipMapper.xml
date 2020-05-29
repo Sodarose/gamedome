@@ -6,16 +6,21 @@
         <result column="itemId" property="itemId"/>
         <result column="itemType" property="itemType"/>
         <result column="roleId" property="roleId"/>
+        <result column="bagId" property="bagId"/>
+        <result column="bagIndex" property="bagIndex"/>
+        <result column="itemCount" property="itemCount"/>
         <result column="equipId" property="equipId"/>
         <result column="durability"  property="durability"/>
         <result column="equipment"  property="equipment"/>
     </resultMap>
     <select id="getIsEquipmentEquipByRoleId" resultMap="equipResultMap">
-        SELECT game_equip.id,itemId,itemType,roleId,equipId,durability,equipment
-        FROM game_equip LEFT JOIN game_item ON game_equip.id = game_item.id WHERE roleId = #{roleId} AND equipment = 1
+        SELECT game_equip.id,itemId,itemType,roleId,bagId,bagIndex,itemCount,equipId,durability,equipment
+        FROM game_equip LEFT JOIN game_item ON game_equip.id = game_item.id WHERE
+        roleId = #{roleId} AND equipment = 1
     </select>
-    <select id="getEquipByItemId" resultMap="equipResultMap" >
-        SELECT game_equip.id,itemId,itemType,roleId,equipId,durability,equipment FROM game_equip
-        LEFT JOIN game_item ON game_equip.id = game_item.id WHERE game_equip.id = #{itemId}
+    <select id="getEquipListByBagId" resultMap="equipResultMap" >
+        SELECT game_equip.id,itemId,itemType,roleId,bagId,bagIndex,itemCount,equipId,durability,
+        equipment FROM game_equip LEFT JOIN game_item ON game_equip.id = game_item.id WHERE
+        bagId = #{bagId} AND  equipment = 0
     </select>
 </mapper>

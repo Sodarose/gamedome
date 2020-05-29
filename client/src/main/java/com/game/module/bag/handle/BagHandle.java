@@ -39,8 +39,7 @@ public class BagHandle extends BaseHandler {
     @CmdHandler(cmd = BagCmd.OPEN_BAG)
     public void receiveOpenRes(Message message){
         try {
-            BagProtocol.OpenBagRes openBagRes = BagProtocol.OpenBagRes.parseFrom(message.getData());
-            BagProtocol.BagInfo bagInfo = openBagRes.getBagInfo();
+            BagProtocol.BagInfo bagInfo = BagProtocol.BagInfo.parseFrom(message.getData());
             Bag bag = TransFromUtil.bagProtocolBagInfoTransFromBag(bagInfo);
             gameContext.getPlayer().setBag(bag);
             wordPage.print(bag);

@@ -3,13 +3,8 @@ option java_package = "com.game.protocol";
 option java_outer_classname = "BagProtocol";
 
 // 打开背包请求
-message OpenBagReq{
-    int32 roleId = 1;
-    int32 bagId = 2;
-}
-
-message OpenBagRes{
-    BagInfo bagInfo = 1;
+message OpenBag{
+    int32 bagId = 1;
 }
 
 // 背包信息
@@ -21,17 +16,10 @@ message BagInfo{
 
 // 格子信息（只包含简单信息）
 message CellInfo{
-    int32  bagIndex = 1;
-    int32  itemId = 2;
-    string itemName = 3;
-    int32  count = 4;
+    int32  id = 1;
+    string itemName = 2;
+    int32  itemType = 3;
+    int32  itemCount = 4;
+    int32  bagIndex = 5;
 }
 
-//
-message CloseBag{
-
-}
-
-message BagError{
-    int32 code = 1;
-}

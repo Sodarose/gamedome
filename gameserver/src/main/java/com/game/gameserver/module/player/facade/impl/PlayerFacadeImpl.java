@@ -86,7 +86,6 @@ public class PlayerFacadeImpl implements PlayerFacade {
         bag.bind(player);
         player.setBag(bag);
 
-        // 加载玩家 快捷道具栏
 
         // 加载玩家 技能栏
         player.setAccount(account);

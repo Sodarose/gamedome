@@ -6,6 +6,7 @@ import com.game.gameserver.module.bag.entity.Bag;
 import com.game.gameserver.module.bag.entity.Cell;
 import com.game.gameserver.module.equip.entity.Equip;
 import com.game.gameserver.module.item.entity.Item;
+import com.game.gameserver.module.item.model.ItemType;
 import com.game.gameserver.module.player.entity.Player;
 import com.game.gameserver.module.player.model.PlayerModel;
 import com.game.protocol.BagProtocol;
@@ -62,7 +63,6 @@ public class TransFromUtil {
 
     public static EquipProtocol.EquipInfo equipTransFromEquipProtocolEquipInfo(Equip equip){
         EquipProtocol.EquipInfo.Builder builder = EquipProtocol.EquipInfo.newBuilder();
-        builder.setId(equip.getId());
         builder.setName(equip.getDictItem().getName());
         builder.setLevel(equip.getDictItem().getLevel());
         builder.setQuality(equip.getDictItem().getQuality());
@@ -81,21 +81,23 @@ public class TransFromUtil {
     }
 
     public static BagProtocol.BagInfo bagTransFromBagProtocolBagInfo(Bag bag){
-        return null;
+        BagProtocol.BagInfo.Builder bagBuilder = BagProtocol.BagInfo.newBuilder();
+        bagBuilder.setBagId(bag.getId());
+        bagBuilder.setBagName(bag.getName());
+        for(Cell cell:bag.getNotNullCellList()){
+            bagBuilder.addCellInfo(cellTransFromBagProtocolCellInfo(cell));
+        }
+        return bagBuilder.build();
     }
 
-    public static BagProtocol.CellInfo cellTransFromBafProtocolCellInfo(Cell cell){
+    public static BagProtocol.CellInfo cellTransFromBagProtocolCellInfo(Cell cell){
         BagProtocol.CellInfo.Builder builder = BagProtocol.CellInfo.newBuilder();
-        builder.setBagIndex(cell.getBagIndex());
-        builder.setItemId(cell.getItem().getId());
+        builder.setId(cell.getItem().getId());
+        builder.setItemType(cell.getItem().getItemType());
         builder.setItemName(cell.getItem().getDictItem().getName());
-        builder.setCount(cell.getCount());
+        builder.setItemCount(cell.getItem().getItemCount());
+        builder.setBagIndex(cell.getItem().getBagIndex());
         return builder.build();
     }
 
-    public static ItemProtocol.ItemInfo  itemTransFromItemProtocolItemInfo(Item item){
-        ItemProtocol.ItemInfo.Builder builder = ItemProtocol.ItemInfo.newBuilder();
-
-        return builder.build();
-    }
 }

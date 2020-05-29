@@ -1,7 +1,10 @@
 package com.game.gameserver.net.modelhandler.equip;
 
+import com.game.gameserver.module.bag.entity.Bag;
 import com.game.gameserver.module.equip.entity.Equip;
 import com.game.gameserver.module.equip.facade.EquipFacade;
+import com.game.gameserver.module.player.entity.Player;
+import com.game.gameserver.module.player.facade.PlayerFacade;
 import com.game.gameserver.net.annotation.CmdHandler;
 import com.game.gameserver.net.annotation.ModuleHandler;
 import com.game.gameserver.net.handler.BaseHandler;
@@ -38,12 +41,7 @@ public class EquipHandle extends BaseHandler {
      */
     @CmdHandler(cmd = EquipCmd.CHECK_EQUIP)
     public void checkEquip(Message message, Channel channel){
-        try {
-            EquipProtocol.CheckEquip checkEquip = EquipProtocol.CheckEquip.parseFrom(message.getData());
-            
-        } catch (InvalidProtocolBufferException e) {
-            e.printStackTrace();
-        }
+
     }
 
     /**
@@ -65,6 +63,17 @@ public class EquipHandle extends BaseHandler {
      */
     @CmdHandler(cmd = EquipCmd.TAKE_EQUIP)
     public void putEquip(Message message,Channel channel){
+        try {
+            EquipProtocol.PutEquip putEquip = EquipProtocol.PutEquip.parseFrom(message.getData());
+            Player player = channel.attr(PlayerFacade.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
+            if(player==null){
+                return;
+            }
+
+
+        } catch (InvalidProtocolBufferException e) {
+            e.printStackTrace();
+        }
 
     }
 

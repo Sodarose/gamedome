@@ -3,10 +3,14 @@ package com.game.gameserver.module.player.entity;
 import com.game.gameserver.dictionary.dict.DictRoleLevelProperty;
 import com.game.gameserver.module.account.model.Account;
 import com.game.gameserver.module.bag.entity.Bag;
+import com.game.gameserver.module.equip.entity.Equip;
 import com.game.gameserver.module.equip.entity.EquipBar;
+import com.game.gameserver.module.item.entity.Item;
 import com.game.gameserver.module.player.model.Property;
 import io.netty.channel.Channel;
 import lombok.Data;
+
+import java.util.List;
 
 /**
  * 玩家角色实体
@@ -35,36 +39,31 @@ public class Player {
     /** channel */
     private Channel channel;
 
-    /** 装备栏 */
+    /** 装备栏（已经穿戴在身上的） */
     private EquipBar equipBar;
 
     /** 背包 */
     private Bag bag;
 
+
     public Player(){
 
     }
 
-    /**
-     * 初始化角色
-     */
-    public void init(){
-
+    public boolean putEquip(Integer equipId){
+        if(bag==null){
+            return false;
+        }
+        Equip equip = bag.getEquip(equipId);
+        if(equip==null){
+            return false;
+        }
+        Equip takeEquip = equipBar.putEquip(equip);
+        if(takeEquip!=null){
+            takeEquip.setBagIndex(equip.getBagIndex());
+            bag.putInEquip(equip);
+        }
+        return true;
     }
 
-    /**
-     * 重新计算自身属性
-     */
-    public void reCalculateProperty(){
-
-    }
-
-    /**
-     * 同步属性
-     * @param
-     * @return void
-     */
-    public void update(){
-
-    }
 }

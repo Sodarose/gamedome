@@ -16,4 +16,6 @@ public interface CmdType {
     String OPEN_BAG = "OPEN_BAG";
     /** 关闭背包*/
     String CLOSE_BAG = "CLOSE_BAG";
+    /** 使用后道具 */
+    String USER_ITEM = "USE_ITEM";
 }

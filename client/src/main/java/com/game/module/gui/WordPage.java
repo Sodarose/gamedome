@@ -129,7 +129,7 @@ public class WordPage extends JTextArea {
                 builder.append("\n");
             }
             Cell cell = cells[i];
-            builder.append("【").append(cell.getItemId()==null?"空":cell.getItemName()+":"+(cell.getCount()==1?"":cell.getCount()))
+            builder.append("【").append(cell.getId()==null?"空":cell.getItemName()+":"+(cell.getItemCount()==1?"":cell.getItemCount()))
                     .append("】").append("\t");
         }
         refresh();

@@ -1,11 +1,19 @@
 package com.game.gameserver.module.equip.facade.impl;
 
+import com.game.gameserver.dictionary.DictionaryManager;
+import com.game.gameserver.dictionary.dict.DictEquip;
+import com.game.gameserver.dictionary.dict.DictItem;
+import com.game.gameserver.module.bag.entity.Bag;
 import com.game.gameserver.module.equip.dao.EquipMapper;
 import com.game.gameserver.module.equip.entity.EquipBar;
 import com.game.gameserver.module.equip.entity.Equip;
 import com.game.gameserver.module.equip.facade.EquipFacade;
 import com.game.gameserver.module.equip.factory.EquipEntityFactory;
 import com.game.gameserver.module.equip.model.EquipModel;
+import com.game.gameserver.module.item.entity.Item;
+import com.game.gameserver.module.item.model.ItemType;
+import com.game.gameserver.module.player.entity.Player;
+import com.game.gameserver.module.player.manager.PlayerManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +32,10 @@ public class EquipFacadeImpl implements EquipFacade {
 
     @Autowired
     private EquipMapper equipMapper;
+    @Autowired
+    private PlayerManager playerManager;
+    @Autowired
+    private DictionaryManager dictionaryManager;
 
     @Override
     public List<Equip> getEquipListByRoleId(Integer roleId) {
@@ -46,11 +58,20 @@ public class EquipFacadeImpl implements EquipFacade {
         return equipBar;
     }
 
-
-
+    /**
+     * 获得背包内的装备列表
+     *
+     * @param bagId
+     * @return java.util.Map<java.lang.Integer, com.game.gameserver.module.equip.entity.Equip>
+     */
     @Override
-    public Equip getEquipByItemId(Integer itemId) {
-        EquipModel equipModel = equipMapper.getEquipByItemId(itemId);
-        return EquipEntityFactory.createEquipEntity(equipModel);
+    public List<Equip> getEquipMapByBagId(Integer bagId) {
+        List<EquipModel> equipModels = equipMapper.getEquipListByBagId(bagId);
+        List<Equip> equips = new ArrayList<>();
+        for(EquipModel equipModel:equipModels){
+           equips.add(EquipEntityFactory.createEquipEntity(equipModel));
+        }
+        return equips;
     }
+
 }

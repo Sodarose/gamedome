@@ -75,7 +75,6 @@ public class TransFromUtil {
 
     public static Equip equipProtocolEquipInfoTransFromEquip(EquipProtocol.EquipInfo equipInfo){
         Equip equip = new Equip();
-        equip.setId(equipInfo.getId());
         equip.setName(equipInfo.getName());
         equip.setLevel(equipInfo.getLevel());
         equip.setQuality(equipInfo.getQuality());
@@ -106,11 +105,7 @@ public class TransFromUtil {
     }
 
     public static Cell bagProtocolCellInfoTransFromCell(BagProtocol.CellInfo cellInfo){
-        Cell cell = new Cell();
-        cell.setBagIndex(cellInfo.getBagIndex());
-        cell.setItemId(cellInfo.getItemId());
-        cell.setItemName(cellInfo.getItemName());
-        cell.setCount(cellInfo.getCount());
+        Cell cell = new Cell(cellInfo.getId(),cellInfo.getItemName(),cellInfo.getItemType(),cellInfo.getItemCount(),cellInfo.getBagIndex());
         return cell;
     }
 }

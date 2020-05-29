@@ -2,10 +2,13 @@ package com.game.gameserver.net.modelhandler.bag;
 
 import com.game.gameserver.module.bag.entity.Bag;
 import com.game.gameserver.module.bag.facade.BagFacade;
+import com.game.gameserver.module.player.entity.Player;
+import com.game.gameserver.module.player.facade.PlayerFacade;
 import com.game.gameserver.net.annotation.CmdHandler;
 import com.game.gameserver.net.annotation.ModuleHandler;
 import com.game.gameserver.net.handler.BaseHandler;
 import com.game.gameserver.net.modelhandler.ModuleKey;
+import com.game.gameserver.util.TransFromUtil;
 import com.game.protocol.BagProtocol;
 import com.game.protocol.Message;
 import com.game.util.MessageUtil;
@@ -30,23 +33,28 @@ public class BagHandle extends BaseHandler {
     /**
      * 打开背包
      *
-     * @param message 消息 {roleId,bagId}
+     * @param message 消息
      * @param channel channel
      * @return void
      */
     @CmdHandler(cmd = BagCmd.OPEN_BAG)
     public void openBag(Message message, Channel channel) {
         try {
-            BagProtocol.OpenBagReq openBagReq = BagProtocol.OpenBagReq.parseFrom(message.getData());
-            BagProtocol.BagInfo bagInfo = bagFacade.openBag(openBagReq.getRoleId(),openBagReq.getBagId());
-            if(bagInfo==null){
+            BagProtocol.OpenBag openBag = BagProtocol.OpenBag.parseFrom(message.getData());
+            Player player = channel.attr(PlayerFacade.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
+            if(player==null){
                 return;
             }
-            BagProtocol.OpenBagRes.Builder resBuilder = BagProtocol.OpenBagRes.newBuilder();
-            resBuilder.setBagInfo(bagInfo);
-            Message res = MessageUtil.createMessage(ModuleKey.BAG_MODEL,BagCmd.OPEN_BAG,resBuilder.build()
-                    .toByteArray());
-            channel.writeAndFlush(res);
+            Bag bag = player.getBag();
+            if(bag==null){
+                return;
+            }
+            if(!bag.getId().equals(openBag.getBagId())){
+                return;
+            }
+            BagProtocol.BagInfo bagInfo = TransFromUtil.bagTransFromBagProtocolBagInfo(bag);
+            Message msg = MessageUtil.createMessage(ModuleKey.BAG_MODEL,BagCmd.OPEN_BAG,bagInfo.toByteArray());
+            channel.writeAndFlush(msg);
         } catch (InvalidProtocolBufferException e) {
             e.printStackTrace();
         }

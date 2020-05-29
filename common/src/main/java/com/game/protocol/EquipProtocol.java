@@ -14,119 +14,6 @@ public final class EquipProtocol {
     registerAllExtensions(
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
-  /**
-   * Protobuf enum {@code CheckWay}
-   */
-  public enum CheckWay
-      implements com.google.protobuf.ProtocolMessageEnum {
-    /**
-     * <code>BAG = 0;</code>
-     */
-    BAG(0),
-    /**
-     * <code>DICT = 1;</code>
-     */
-    DICT(1),
-    /**
-     * <code>EQUIP_BAR = 2;</code>
-     */
-    EQUIP_BAR(2),
-    UNRECOGNIZED(-1),
-    ;
-
-    /**
-     * <code>BAG = 0;</code>
-     */
-    public static final int BAG_VALUE = 0;
-    /**
-     * <code>DICT = 1;</code>
-     */
-    public static final int DICT_VALUE = 1;
-    /**
-     * <code>EQUIP_BAR = 2;</code>
-     */
-    public static final int EQUIP_BAR_VALUE = 2;
-
-
-    public final int getNumber() {
-      if (this == UNRECOGNIZED) {
-        throw new java.lang.IllegalArgumentException(
-            "Can't get the number of an unknown enum value.");
-      }
-      return value;
-    }
-
-    /**
-     * @param value The numeric wire value of the corresponding enum entry.
-     * @return The enum associated with the given numeric wire value.
-     * @deprecated Use {@link #forNumber(int)} instead.
-     */
-    @java.lang.Deprecated
-    public static CheckWay valueOf(int value) {
-      return forNumber(value);
-    }
-
-    /**
-     * @param value The numeric wire value of the corresponding enum entry.
-     * @return The enum associated with the given numeric wire value.
-     */
-    public static CheckWay forNumber(int value) {
-      switch (value) {
-        case 0: return BAG;
-        case 1: return DICT;
-        case 2: return EQUIP_BAR;
-        default: return null;
-      }
-    }
-
-    public static com.google.protobuf.Internal.EnumLiteMap<CheckWay>
-        internalGetValueMap() {
-      return internalValueMap;
-    }
-    private static final com.google.protobuf.Internal.EnumLiteMap<
-        CheckWay> internalValueMap =
-          new com.google.protobuf.Internal.EnumLiteMap<CheckWay>() {
-            public CheckWay findValueByNumber(int number) {
-              return CheckWay.forNumber(number);
-            }
-          };
-
-    public final com.google.protobuf.Descriptors.EnumValueDescriptor
-        getValueDescriptor() {
-      return getDescriptor().getValues().get(ordinal());
-    }
-    public final com.google.protobuf.Descriptors.EnumDescriptor
-        getDescriptorForType() {
-      return getDescriptor();
-    }
-    public static final com.google.protobuf.Descriptors.EnumDescriptor
-        getDescriptor() {
-      return com.game.protocol.EquipProtocol.getDescriptor().getEnumTypes().get(0);
-    }
-
-    private static final CheckWay[] VALUES = values();
-
-    public static CheckWay valueOf(
-        com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
-      if (desc.getType() != getDescriptor()) {
-        throw new java.lang.IllegalArgumentException(
-          "EnumValueDescriptor is not for this type.");
-      }
-      if (desc.getIndex() == -1) {
-        return UNRECOGNIZED;
-      }
-      return VALUES[desc.getIndex()];
-    }
-
-    private final int value;
-
-    private CheckWay(int value) {
-      this.value = value;
-    }
-
-    // @@protoc_insertion_point(enum_scope:CheckWay)
-  }
-
   public interface EquipInfoOrBuilder extends
       // @@protoc_insertion_point(interface_extends:EquipInfo)
       com.google.protobuf.MessageOrBuilder {
@@ -1581,741 +1468,6 @@ public final class EquipProtocol {
 
   }
 
-  public interface CheckEquipOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:CheckEquip)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>int32 equipId = 1;</code>
-     * @return The equipId.
-     */
-    int getEquipId();
-
-    /**
-     * <code>.CheckWay checkWay = 2;</code>
-     * @return The enum numeric value on the wire for checkWay.
-     */
-    int getCheckWayValue();
-    /**
-     * <code>.CheckWay checkWay = 2;</code>
-     * @return The checkWay.
-     */
-    com.game.protocol.EquipProtocol.CheckWay getCheckWay();
-
-    /**
-     * <code>int32 bagId = 3;</code>
-     * @return The bagId.
-     */
-    int getBagId();
-
-    /**
-     * <code>int32 bagIndex = 4;</code>
-     * @return The bagIndex.
-     */
-    int getBagIndex();
-  }
-  /**
-   * <pre>
-   * 查看装备信息
-   * </pre>
-   *
-   * Protobuf type {@code CheckEquip}
-   */
-  public  static final class CheckEquip extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:CheckEquip)
-      CheckEquipOrBuilder {
-  private static final long serialVersionUID = 0L;
-    // Use CheckEquip.newBuilder() to construct.
-    private CheckEquip(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private CheckEquip() {
-      checkWay_ = 0;
-    }
-
-    @java.lang.Override
-    @SuppressWarnings({"unused"})
-    protected java.lang.Object newInstance(
-        UnusedPrivateParameter unused) {
-      return new CheckEquip();
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private CheckEquip(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 8: {
-
-              equipId_ = input.readInt32();
-              break;
-            }
-            case 16: {
-              int rawValue = input.readEnum();
-
-              checkWay_ = rawValue;
-              break;
-            }
-            case 24: {
-
-              bagId_ = input.readInt32();
-              break;
-            }
-            case 32: {
-
-              bagIndex_ = input.readInt32();
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return com.game.protocol.EquipProtocol.internal_static_CheckEquip_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return com.game.protocol.EquipProtocol.internal_static_CheckEquip_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              com.game.protocol.EquipProtocol.CheckEquip.class, com.game.protocol.EquipProtocol.CheckEquip.Builder.class);
-    }
-
-    public static final int EQUIPID_FIELD_NUMBER = 1;
-    private int equipId_;
-    /**
-     * <code>int32 equipId = 1;</code>
-     * @return The equipId.
-     */
-    public int getEquipId() {
-      return equipId_;
-    }
-
-    public static final int CHECKWAY_FIELD_NUMBER = 2;
-    private int checkWay_;
-    /**
-     * <code>.CheckWay checkWay = 2;</code>
-     * @return The enum numeric value on the wire for checkWay.
-     */
-    public int getCheckWayValue() {
-      return checkWay_;
-    }
-    /**
-     * <code>.CheckWay checkWay = 2;</code>
-     * @return The checkWay.
-     */
-    public com.game.protocol.EquipProtocol.CheckWay getCheckWay() {
-      @SuppressWarnings("deprecation")
-      com.game.protocol.EquipProtocol.CheckWay result = com.game.protocol.EquipProtocol.CheckWay.valueOf(checkWay_);
-      return result == null ? com.game.protocol.EquipProtocol.CheckWay.UNRECOGNIZED : result;
-    }
-
-    public static final int BAGID_FIELD_NUMBER = 3;
-    private int bagId_;
-    /**
-     * <code>int32 bagId = 3;</code>
-     * @return The bagId.
-     */
-    public int getBagId() {
-      return bagId_;
-    }
-
-    public static final int BAGINDEX_FIELD_NUMBER = 4;
-    private int bagIndex_;
-    /**
-     * <code>int32 bagIndex = 4;</code>
-     * @return The bagIndex.
-     */
-    public int getBagIndex() {
-      return bagIndex_;
-    }
-
-    private byte memoizedIsInitialized = -1;
-    @java.lang.Override
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    @java.lang.Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (equipId_ != 0) {
-        output.writeInt32(1, equipId_);
-      }
-      if (checkWay_ != com.game.protocol.EquipProtocol.CheckWay.BAG.getNumber()) {
-        output.writeEnum(2, checkWay_);
-      }
-      if (bagId_ != 0) {
-        output.writeInt32(3, bagId_);
-      }
-      if (bagIndex_ != 0) {
-        output.writeInt32(4, bagIndex_);
-      }
-      unknownFields.writeTo(output);
-    }
-
-    @java.lang.Override
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (equipId_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(1, equipId_);
-      }
-      if (checkWay_ != com.game.protocol.EquipProtocol.CheckWay.BAG.getNumber()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(2, checkWay_);
-      }
-      if (bagId_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(3, bagId_);
-      }
-      if (bagIndex_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(4, bagIndex_);
-      }
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof com.game.protocol.EquipProtocol.CheckEquip)) {
-        return super.equals(obj);
-      }
-      com.game.protocol.EquipProtocol.CheckEquip other = (com.game.protocol.EquipProtocol.CheckEquip) obj;
-
-      if (getEquipId()
-          != other.getEquipId()) return false;
-      if (checkWay_ != other.checkWay_) return false;
-      if (getBagId()
-          != other.getBagId()) return false;
-      if (getBagIndex()
-          != other.getBagIndex()) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
-      return true;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + EQUIPID_FIELD_NUMBER;
-      hash = (53 * hash) + getEquipId();
-      hash = (37 * hash) + CHECKWAY_FIELD_NUMBER;
-      hash = (53 * hash) + checkWay_;
-      hash = (37 * hash) + BAGID_FIELD_NUMBER;
-      hash = (53 * hash) + getBagId();
-      hash = (37 * hash) + BAGINDEX_FIELD_NUMBER;
-      hash = (53 * hash) + getBagIndex();
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static com.game.protocol.EquipProtocol.CheckEquip parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.game.protocol.EquipProtocol.CheckEquip parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.game.protocol.EquipProtocol.CheckEquip parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.game.protocol.EquipProtocol.CheckEquip parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.game.protocol.EquipProtocol.CheckEquip parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.game.protocol.EquipProtocol.CheckEquip parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.game.protocol.EquipProtocol.CheckEquip parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.game.protocol.EquipProtocol.CheckEquip parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static com.game.protocol.EquipProtocol.CheckEquip parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static com.game.protocol.EquipProtocol.CheckEquip parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static com.game.protocol.EquipProtocol.CheckEquip parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.game.protocol.EquipProtocol.CheckEquip parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(com.game.protocol.EquipProtocol.CheckEquip prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    @java.lang.Override
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * <pre>
-     * 查看装备信息
-     * </pre>
-     *
-     * Protobuf type {@code CheckEquip}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:CheckEquip)
-        com.game.protocol.EquipProtocol.CheckEquipOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return com.game.protocol.EquipProtocol.internal_static_CheckEquip_descriptor;
-      }
-
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return com.game.protocol.EquipProtocol.internal_static_CheckEquip_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                com.game.protocol.EquipProtocol.CheckEquip.class, com.game.protocol.EquipProtocol.CheckEquip.Builder.class);
-      }
-
-      // Construct using com.game.protocol.EquipProtocol.CheckEquip.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
-      }
-      @java.lang.Override
-      public Builder clear() {
-        super.clear();
-        equipId_ = 0;
-
-        checkWay_ = 0;
-
-        bagId_ = 0;
-
-        bagIndex_ = 0;
-
-        return this;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return com.game.protocol.EquipProtocol.internal_static_CheckEquip_descriptor;
-      }
-
-      @java.lang.Override
-      public com.game.protocol.EquipProtocol.CheckEquip getDefaultInstanceForType() {
-        return com.game.protocol.EquipProtocol.CheckEquip.getDefaultInstance();
-      }
-
-      @java.lang.Override
-      public com.game.protocol.EquipProtocol.CheckEquip build() {
-        com.game.protocol.EquipProtocol.CheckEquip result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      @java.lang.Override
-      public com.game.protocol.EquipProtocol.CheckEquip buildPartial() {
-        com.game.protocol.EquipProtocol.CheckEquip result = new com.game.protocol.EquipProtocol.CheckEquip(this);
-        result.equipId_ = equipId_;
-        result.checkWay_ = checkWay_;
-        result.bagId_ = bagId_;
-        result.bagIndex_ = bagIndex_;
-        onBuilt();
-        return result;
-      }
-
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
-      }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
-      @java.lang.Override
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.game.protocol.EquipProtocol.CheckEquip) {
-          return mergeFrom((com.game.protocol.EquipProtocol.CheckEquip)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(com.game.protocol.EquipProtocol.CheckEquip other) {
-        if (other == com.game.protocol.EquipProtocol.CheckEquip.getDefaultInstance()) return this;
-        if (other.getEquipId() != 0) {
-          setEquipId(other.getEquipId());
-        }
-        if (other.checkWay_ != 0) {
-          setCheckWayValue(other.getCheckWayValue());
-        }
-        if (other.getBagId() != 0) {
-          setBagId(other.getBagId());
-        }
-        if (other.getBagIndex() != 0) {
-          setBagIndex(other.getBagIndex());
-        }
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
-        return this;
-      }
-
-      @java.lang.Override
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        com.game.protocol.EquipProtocol.CheckEquip parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.game.protocol.EquipProtocol.CheckEquip) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-
-      private int equipId_ ;
-      /**
-       * <code>int32 equipId = 1;</code>
-       * @return The equipId.
-       */
-      public int getEquipId() {
-        return equipId_;
-      }
-      /**
-       * <code>int32 equipId = 1;</code>
-       * @param value The equipId to set.
-       * @return This builder for chaining.
-       */
-      public Builder setEquipId(int value) {
-        
-        equipId_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>int32 equipId = 1;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearEquipId() {
-        
-        equipId_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private int checkWay_ = 0;
-      /**
-       * <code>.CheckWay checkWay = 2;</code>
-       * @return The enum numeric value on the wire for checkWay.
-       */
-      public int getCheckWayValue() {
-        return checkWay_;
-      }
-      /**
-       * <code>.CheckWay checkWay = 2;</code>
-       * @param value The enum numeric value on the wire for checkWay to set.
-       * @return This builder for chaining.
-       */
-      public Builder setCheckWayValue(int value) {
-        checkWay_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>.CheckWay checkWay = 2;</code>
-       * @return The checkWay.
-       */
-      public com.game.protocol.EquipProtocol.CheckWay getCheckWay() {
-        @SuppressWarnings("deprecation")
-        com.game.protocol.EquipProtocol.CheckWay result = com.game.protocol.EquipProtocol.CheckWay.valueOf(checkWay_);
-        return result == null ? com.game.protocol.EquipProtocol.CheckWay.UNRECOGNIZED : result;
-      }
-      /**
-       * <code>.CheckWay checkWay = 2;</code>
-       * @param value The checkWay to set.
-       * @return This builder for chaining.
-       */
-      public Builder setCheckWay(com.game.protocol.EquipProtocol.CheckWay value) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        
-        checkWay_ = value.getNumber();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>.CheckWay checkWay = 2;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearCheckWay() {
-        
-        checkWay_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private int bagId_ ;
-      /**
-       * <code>int32 bagId = 3;</code>
-       * @return The bagId.
-       */
-      public int getBagId() {
-        return bagId_;
-      }
-      /**
-       * <code>int32 bagId = 3;</code>
-       * @param value The bagId to set.
-       * @return This builder for chaining.
-       */
-      public Builder setBagId(int value) {
-        
-        bagId_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>int32 bagId = 3;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearBagId() {
-        
-        bagId_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private int bagIndex_ ;
-      /**
-       * <code>int32 bagIndex = 4;</code>
-       * @return The bagIndex.
-       */
-      public int getBagIndex() {
-        return bagIndex_;
-      }
-      /**
-       * <code>int32 bagIndex = 4;</code>
-       * @param value The bagIndex to set.
-       * @return This builder for chaining.
-       */
-      public Builder setBagIndex(int value) {
-        
-        bagIndex_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>int32 bagIndex = 4;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearBagIndex() {
-        
-        bagIndex_ = 0;
-        onChanged();
-        return this;
-      }
-      @java.lang.Override
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFields(unknownFields);
-      }
-
-      @java.lang.Override
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:CheckEquip)
-    }
-
-    // @@protoc_insertion_point(class_scope:CheckEquip)
-    private static final com.game.protocol.EquipProtocol.CheckEquip DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new com.game.protocol.EquipProtocol.CheckEquip();
-    }
-
-    public static com.game.protocol.EquipProtocol.CheckEquip getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<CheckEquip>
-        PARSER = new com.google.protobuf.AbstractParser<CheckEquip>() {
-      @java.lang.Override
-      public CheckEquip parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new CheckEquip(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<CheckEquip> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<CheckEquip> getParserForType() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.game.protocol.EquipProtocol.CheckEquip getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
   public interface TakeEquipOrBuilder extends
       // @@protoc_insertion_point(interface_extends:TakeEquip)
       com.google.protobuf.MessageOrBuilder {
@@ -2325,20 +1477,8 @@ public final class EquipProtocol {
      * @return The equipId.
      */
     int getEquipId();
-
-    /**
-     * <code>int32 part = 2;</code>
-     * @return The part.
-     */
-    int getPart();
   }
   /**
-   * <pre>
-   * 卸下装备
-   * equipId 装备Id
-   * part 装备位置
-   * </pre>
-   *
    * Protobuf type {@code TakeEquip}
    */
   public  static final class TakeEquip extends
@@ -2388,11 +1528,6 @@ public final class EquipProtocol {
               equipId_ = input.readInt32();
               break;
             }
-            case 16: {
-
-              part_ = input.readInt32();
-              break;
-            }
             default: {
               if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
@@ -2435,16 +1570,6 @@ public final class EquipProtocol {
       return equipId_;
     }
 
-    public static final int PART_FIELD_NUMBER = 2;
-    private int part_;
-    /**
-     * <code>int32 part = 2;</code>
-     * @return The part.
-     */
-    public int getPart() {
-      return part_;
-    }
-
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -2462,9 +1587,6 @@ public final class EquipProtocol {
       if (equipId_ != 0) {
         output.writeInt32(1, equipId_);
       }
-      if (part_ != 0) {
-        output.writeInt32(2, part_);
-      }
       unknownFields.writeTo(output);
     }
 
@@ -2477,10 +1599,6 @@ public final class EquipProtocol {
       if (equipId_ != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(1, equipId_);
-      }
-      if (part_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(2, part_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -2499,8 +1617,6 @@ public final class EquipProtocol {
 
       if (getEquipId()
           != other.getEquipId()) return false;
-      if (getPart()
-          != other.getPart()) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -2514,8 +1630,6 @@ public final class EquipProtocol {
       hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + EQUIPID_FIELD_NUMBER;
       hash = (53 * hash) + getEquipId();
-      hash = (37 * hash) + PART_FIELD_NUMBER;
-      hash = (53 * hash) + getPart();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -2612,12 +1726,6 @@ public final class EquipProtocol {
       return builder;
     }
     /**
-     * <pre>
-     * 卸下装备
-     * equipId 装备Id
-     * part 装备位置
-     * </pre>
-     *
      * Protobuf type {@code TakeEquip}
      */
     public static final class Builder extends
@@ -2657,8 +1765,6 @@ public final class EquipProtocol {
         super.clear();
         equipId_ = 0;
 
-        part_ = 0;
-
         return this;
       }
 
@@ -2686,7 +1792,6 @@ public final class EquipProtocol {
       public com.game.protocol.EquipProtocol.TakeEquip buildPartial() {
         com.game.protocol.EquipProtocol.TakeEquip result = new com.game.protocol.EquipProtocol.TakeEquip(this);
         result.equipId_ = equipId_;
-        result.part_ = part_;
         onBuilt();
         return result;
       }
@@ -2737,9 +1842,6 @@ public final class EquipProtocol {
         if (other == com.game.protocol.EquipProtocol.TakeEquip.getDefaultInstance()) return this;
         if (other.getEquipId() != 0) {
           setEquipId(other.getEquipId());
-        }
-        if (other.getPart() != 0) {
-          setPart(other.getPart());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -2796,36 +1898,6 @@ public final class EquipProtocol {
       public Builder clearEquipId() {
         
         equipId_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private int part_ ;
-      /**
-       * <code>int32 part = 2;</code>
-       * @return The part.
-       */
-      public int getPart() {
-        return part_;
-      }
-      /**
-       * <code>int32 part = 2;</code>
-       * @param value The part to set.
-       * @return This builder for chaining.
-       */
-      public Builder setPart(int value) {
-        
-        part_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>int32 part = 2;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearPart() {
-        
-        part_ = 0;
         onChanged();
         return this;
       }
@@ -2891,20 +1963,8 @@ public final class EquipProtocol {
      * @return The equipId.
      */
     int getEquipId();
-
-    /**
-     * <code>int32 bagIndex = 2;</code>
-     * @return The bagIndex.
-     */
-    int getBagIndex();
   }
   /**
-   * <pre>
-   * 穿上装备
-   * equipId 装备Id
-   * bagIndex 装备在背包中的位置
-   * </pre>
-   *
    * Protobuf type {@code PutEquip}
    */
   public  static final class PutEquip extends
@@ -2954,11 +2014,6 @@ public final class EquipProtocol {
               equipId_ = input.readInt32();
               break;
             }
-            case 16: {
-
-              bagIndex_ = input.readInt32();
-              break;
-            }
             default: {
               if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
@@ -3001,16 +2056,6 @@ public final class EquipProtocol {
       return equipId_;
     }
 
-    public static final int BAGINDEX_FIELD_NUMBER = 2;
-    private int bagIndex_;
-    /**
-     * <code>int32 bagIndex = 2;</code>
-     * @return The bagIndex.
-     */
-    public int getBagIndex() {
-      return bagIndex_;
-    }
-
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -3028,9 +2073,6 @@ public final class EquipProtocol {
       if (equipId_ != 0) {
         output.writeInt32(1, equipId_);
       }
-      if (bagIndex_ != 0) {
-        output.writeInt32(2, bagIndex_);
-      }
       unknownFields.writeTo(output);
     }
 
@@ -3043,10 +2085,6 @@ public final class EquipProtocol {
       if (equipId_ != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(1, equipId_);
-      }
-      if (bagIndex_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(2, bagIndex_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -3065,8 +2103,6 @@ public final class EquipProtocol {
 
       if (getEquipId()
           != other.getEquipId()) return false;
-      if (getBagIndex()
-          != other.getBagIndex()) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -3080,8 +2116,6 @@ public final class EquipProtocol {
       hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + EQUIPID_FIELD_NUMBER;
       hash = (53 * hash) + getEquipId();
-      hash = (37 * hash) + BAGINDEX_FIELD_NUMBER;
-      hash = (53 * hash) + getBagIndex();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -3178,12 +2212,6 @@ public final class EquipProtocol {
       return builder;
     }
     /**
-     * <pre>
-     * 穿上装备
-     * equipId 装备Id
-     * bagIndex 装备在背包中的位置
-     * </pre>
-     *
      * Protobuf type {@code PutEquip}
      */
     public static final class Builder extends
@@ -3223,8 +2251,6 @@ public final class EquipProtocol {
         super.clear();
         equipId_ = 0;
 
-        bagIndex_ = 0;
-
         return this;
       }
 
@@ -3252,7 +2278,6 @@ public final class EquipProtocol {
       public com.game.protocol.EquipProtocol.PutEquip buildPartial() {
         com.game.protocol.EquipProtocol.PutEquip result = new com.game.protocol.EquipProtocol.PutEquip(this);
         result.equipId_ = equipId_;
-        result.bagIndex_ = bagIndex_;
         onBuilt();
         return result;
       }
@@ -3303,9 +2328,6 @@ public final class EquipProtocol {
         if (other == com.game.protocol.EquipProtocol.PutEquip.getDefaultInstance()) return this;
         if (other.getEquipId() != 0) {
           setEquipId(other.getEquipId());
-        }
-        if (other.getBagIndex() != 0) {
-          setBagIndex(other.getBagIndex());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -3365,36 +2387,6 @@ public final class EquipProtocol {
         onChanged();
         return this;
       }
-
-      private int bagIndex_ ;
-      /**
-       * <code>int32 bagIndex = 2;</code>
-       * @return The bagIndex.
-       */
-      public int getBagIndex() {
-        return bagIndex_;
-      }
-      /**
-       * <code>int32 bagIndex = 2;</code>
-       * @param value The bagIndex to set.
-       * @return This builder for chaining.
-       */
-      public Builder setBagIndex(int value) {
-        
-        bagIndex_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>int32 bagIndex = 2;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearBagIndex() {
-        
-        bagIndex_ = 0;
-        onChanged();
-        return this;
-      }
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -3448,1004 +2440,11 @@ public final class EquipProtocol {
 
   }
 
-  public interface SearchEquipOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:SearchEquip)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>int32 equipId = 1;</code>
-     * @return The equipId.
-     */
-    int getEquipId();
-  }
-  /**
-   * <pre>
-   * 搜索装备信息
-   * </pre>
-   *
-   * Protobuf type {@code SearchEquip}
-   */
-  public  static final class SearchEquip extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:SearchEquip)
-      SearchEquipOrBuilder {
-  private static final long serialVersionUID = 0L;
-    // Use SearchEquip.newBuilder() to construct.
-    private SearchEquip(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private SearchEquip() {
-    }
-
-    @java.lang.Override
-    @SuppressWarnings({"unused"})
-    protected java.lang.Object newInstance(
-        UnusedPrivateParameter unused) {
-      return new SearchEquip();
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private SearchEquip(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 8: {
-
-              equipId_ = input.readInt32();
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return com.game.protocol.EquipProtocol.internal_static_SearchEquip_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return com.game.protocol.EquipProtocol.internal_static_SearchEquip_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              com.game.protocol.EquipProtocol.SearchEquip.class, com.game.protocol.EquipProtocol.SearchEquip.Builder.class);
-    }
-
-    public static final int EQUIPID_FIELD_NUMBER = 1;
-    private int equipId_;
-    /**
-     * <code>int32 equipId = 1;</code>
-     * @return The equipId.
-     */
-    public int getEquipId() {
-      return equipId_;
-    }
-
-    private byte memoizedIsInitialized = -1;
-    @java.lang.Override
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    @java.lang.Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (equipId_ != 0) {
-        output.writeInt32(1, equipId_);
-      }
-      unknownFields.writeTo(output);
-    }
-
-    @java.lang.Override
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (equipId_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(1, equipId_);
-      }
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof com.game.protocol.EquipProtocol.SearchEquip)) {
-        return super.equals(obj);
-      }
-      com.game.protocol.EquipProtocol.SearchEquip other = (com.game.protocol.EquipProtocol.SearchEquip) obj;
-
-      if (getEquipId()
-          != other.getEquipId()) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
-      return true;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + EQUIPID_FIELD_NUMBER;
-      hash = (53 * hash) + getEquipId();
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static com.game.protocol.EquipProtocol.SearchEquip parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.game.protocol.EquipProtocol.SearchEquip parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.game.protocol.EquipProtocol.SearchEquip parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.game.protocol.EquipProtocol.SearchEquip parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.game.protocol.EquipProtocol.SearchEquip parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.game.protocol.EquipProtocol.SearchEquip parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.game.protocol.EquipProtocol.SearchEquip parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.game.protocol.EquipProtocol.SearchEquip parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static com.game.protocol.EquipProtocol.SearchEquip parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static com.game.protocol.EquipProtocol.SearchEquip parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static com.game.protocol.EquipProtocol.SearchEquip parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.game.protocol.EquipProtocol.SearchEquip parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(com.game.protocol.EquipProtocol.SearchEquip prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    @java.lang.Override
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * <pre>
-     * 搜索装备信息
-     * </pre>
-     *
-     * Protobuf type {@code SearchEquip}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:SearchEquip)
-        com.game.protocol.EquipProtocol.SearchEquipOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return com.game.protocol.EquipProtocol.internal_static_SearchEquip_descriptor;
-      }
-
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return com.game.protocol.EquipProtocol.internal_static_SearchEquip_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                com.game.protocol.EquipProtocol.SearchEquip.class, com.game.protocol.EquipProtocol.SearchEquip.Builder.class);
-      }
-
-      // Construct using com.game.protocol.EquipProtocol.SearchEquip.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
-      }
-      @java.lang.Override
-      public Builder clear() {
-        super.clear();
-        equipId_ = 0;
-
-        return this;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return com.game.protocol.EquipProtocol.internal_static_SearchEquip_descriptor;
-      }
-
-      @java.lang.Override
-      public com.game.protocol.EquipProtocol.SearchEquip getDefaultInstanceForType() {
-        return com.game.protocol.EquipProtocol.SearchEquip.getDefaultInstance();
-      }
-
-      @java.lang.Override
-      public com.game.protocol.EquipProtocol.SearchEquip build() {
-        com.game.protocol.EquipProtocol.SearchEquip result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      @java.lang.Override
-      public com.game.protocol.EquipProtocol.SearchEquip buildPartial() {
-        com.game.protocol.EquipProtocol.SearchEquip result = new com.game.protocol.EquipProtocol.SearchEquip(this);
-        result.equipId_ = equipId_;
-        onBuilt();
-        return result;
-      }
-
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
-      }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
-      @java.lang.Override
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.game.protocol.EquipProtocol.SearchEquip) {
-          return mergeFrom((com.game.protocol.EquipProtocol.SearchEquip)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(com.game.protocol.EquipProtocol.SearchEquip other) {
-        if (other == com.game.protocol.EquipProtocol.SearchEquip.getDefaultInstance()) return this;
-        if (other.getEquipId() != 0) {
-          setEquipId(other.getEquipId());
-        }
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
-        return this;
-      }
-
-      @java.lang.Override
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        com.game.protocol.EquipProtocol.SearchEquip parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.game.protocol.EquipProtocol.SearchEquip) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-
-      private int equipId_ ;
-      /**
-       * <code>int32 equipId = 1;</code>
-       * @return The equipId.
-       */
-      public int getEquipId() {
-        return equipId_;
-      }
-      /**
-       * <code>int32 equipId = 1;</code>
-       * @param value The equipId to set.
-       * @return This builder for chaining.
-       */
-      public Builder setEquipId(int value) {
-        
-        equipId_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>int32 equipId = 1;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearEquipId() {
-        
-        equipId_ = 0;
-        onChanged();
-        return this;
-      }
-      @java.lang.Override
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFields(unknownFields);
-      }
-
-      @java.lang.Override
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:SearchEquip)
-    }
-
-    // @@protoc_insertion_point(class_scope:SearchEquip)
-    private static final com.game.protocol.EquipProtocol.SearchEquip DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new com.game.protocol.EquipProtocol.SearchEquip();
-    }
-
-    public static com.game.protocol.EquipProtocol.SearchEquip getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<SearchEquip>
-        PARSER = new com.google.protobuf.AbstractParser<SearchEquip>() {
-      @java.lang.Override
-      public SearchEquip parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new SearchEquip(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<SearchEquip> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<SearchEquip> getParserForType() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.game.protocol.EquipProtocol.SearchEquip getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
-  public interface EquipErrorOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:EquipError)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>int32 code = 1;</code>
-     * @return The code.
-     */
-    int getCode();
-  }
-  /**
-   * <pre>
-   * 错误
-   * </pre>
-   *
-   * Protobuf type {@code EquipError}
-   */
-  public  static final class EquipError extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:EquipError)
-      EquipErrorOrBuilder {
-  private static final long serialVersionUID = 0L;
-    // Use EquipError.newBuilder() to construct.
-    private EquipError(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private EquipError() {
-    }
-
-    @java.lang.Override
-    @SuppressWarnings({"unused"})
-    protected java.lang.Object newInstance(
-        UnusedPrivateParameter unused) {
-      return new EquipError();
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private EquipError(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 8: {
-
-              code_ = input.readInt32();
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return com.game.protocol.EquipProtocol.internal_static_EquipError_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return com.game.protocol.EquipProtocol.internal_static_EquipError_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              com.game.protocol.EquipProtocol.EquipError.class, com.game.protocol.EquipProtocol.EquipError.Builder.class);
-    }
-
-    public static final int CODE_FIELD_NUMBER = 1;
-    private int code_;
-    /**
-     * <code>int32 code = 1;</code>
-     * @return The code.
-     */
-    public int getCode() {
-      return code_;
-    }
-
-    private byte memoizedIsInitialized = -1;
-    @java.lang.Override
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    @java.lang.Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (code_ != 0) {
-        output.writeInt32(1, code_);
-      }
-      unknownFields.writeTo(output);
-    }
-
-    @java.lang.Override
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (code_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(1, code_);
-      }
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof com.game.protocol.EquipProtocol.EquipError)) {
-        return super.equals(obj);
-      }
-      com.game.protocol.EquipProtocol.EquipError other = (com.game.protocol.EquipProtocol.EquipError) obj;
-
-      if (getCode()
-          != other.getCode()) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
-      return true;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + CODE_FIELD_NUMBER;
-      hash = (53 * hash) + getCode();
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static com.game.protocol.EquipProtocol.EquipError parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.game.protocol.EquipProtocol.EquipError parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.game.protocol.EquipProtocol.EquipError parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.game.protocol.EquipProtocol.EquipError parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.game.protocol.EquipProtocol.EquipError parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.game.protocol.EquipProtocol.EquipError parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.game.protocol.EquipProtocol.EquipError parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.game.protocol.EquipProtocol.EquipError parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static com.game.protocol.EquipProtocol.EquipError parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static com.game.protocol.EquipProtocol.EquipError parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static com.game.protocol.EquipProtocol.EquipError parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.game.protocol.EquipProtocol.EquipError parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(com.game.protocol.EquipProtocol.EquipError prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    @java.lang.Override
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * <pre>
-     * 错误
-     * </pre>
-     *
-     * Protobuf type {@code EquipError}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:EquipError)
-        com.game.protocol.EquipProtocol.EquipErrorOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return com.game.protocol.EquipProtocol.internal_static_EquipError_descriptor;
-      }
-
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return com.game.protocol.EquipProtocol.internal_static_EquipError_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                com.game.protocol.EquipProtocol.EquipError.class, com.game.protocol.EquipProtocol.EquipError.Builder.class);
-      }
-
-      // Construct using com.game.protocol.EquipProtocol.EquipError.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
-      }
-      @java.lang.Override
-      public Builder clear() {
-        super.clear();
-        code_ = 0;
-
-        return this;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return com.game.protocol.EquipProtocol.internal_static_EquipError_descriptor;
-      }
-
-      @java.lang.Override
-      public com.game.protocol.EquipProtocol.EquipError getDefaultInstanceForType() {
-        return com.game.protocol.EquipProtocol.EquipError.getDefaultInstance();
-      }
-
-      @java.lang.Override
-      public com.game.protocol.EquipProtocol.EquipError build() {
-        com.game.protocol.EquipProtocol.EquipError result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      @java.lang.Override
-      public com.game.protocol.EquipProtocol.EquipError buildPartial() {
-        com.game.protocol.EquipProtocol.EquipError result = new com.game.protocol.EquipProtocol.EquipError(this);
-        result.code_ = code_;
-        onBuilt();
-        return result;
-      }
-
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
-      }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
-      @java.lang.Override
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.game.protocol.EquipProtocol.EquipError) {
-          return mergeFrom((com.game.protocol.EquipProtocol.EquipError)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(com.game.protocol.EquipProtocol.EquipError other) {
-        if (other == com.game.protocol.EquipProtocol.EquipError.getDefaultInstance()) return this;
-        if (other.getCode() != 0) {
-          setCode(other.getCode());
-        }
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
-        return this;
-      }
-
-      @java.lang.Override
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        com.game.protocol.EquipProtocol.EquipError parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.game.protocol.EquipProtocol.EquipError) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-
-      private int code_ ;
-      /**
-       * <code>int32 code = 1;</code>
-       * @return The code.
-       */
-      public int getCode() {
-        return code_;
-      }
-      /**
-       * <code>int32 code = 1;</code>
-       * @param value The code to set.
-       * @return This builder for chaining.
-       */
-      public Builder setCode(int value) {
-        
-        code_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>int32 code = 1;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearCode() {
-        
-        code_ = 0;
-        onChanged();
-        return this;
-      }
-      @java.lang.Override
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFields(unknownFields);
-      }
-
-      @java.lang.Override
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:EquipError)
-    }
-
-    // @@protoc_insertion_point(class_scope:EquipError)
-    private static final com.game.protocol.EquipProtocol.EquipError DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new com.game.protocol.EquipProtocol.EquipError();
-    }
-
-    public static com.game.protocol.EquipProtocol.EquipError getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<EquipError>
-        PARSER = new com.google.protobuf.AbstractParser<EquipError>() {
-      @java.lang.Override
-      public EquipError parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new EquipError(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<EquipError> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<EquipError> getParserForType() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.game.protocol.EquipProtocol.EquipError getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_EquipInfo_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_EquipInfo_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_CheckEquip_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_CheckEquip_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_TakeEquip_descriptor;
   private static final 
@@ -4456,16 +2455,6 @@ public final class EquipProtocol {
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_PutEquip_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_SearchEquip_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_SearchEquip_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_EquipError_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_EquipError_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -4481,16 +2470,10 @@ public final class EquipProtocol {
       "lity\030\007 \001(\005\022\n\n\002hp\030\010 \001(\005\022\n\n\002mp\030\t \001(\005\022\021\n\tph" +
       "yAttack\030\n \001(\005\022\023\n\013magicAttack\030\013 \001(\005\022\022\n\nph" +
       "yDefense\030\014 \001(\005\022\024\n\014magicDefense\030\r \001(\005\022\023\n\013" +
-      "attackSpeed\030\016 \001(\001\022\021\n\tmoveSpeed\030\017 \001(\001\"[\n\n" +
-      "CheckEquip\022\017\n\007equipId\030\001 \001(\005\022\033\n\010checkWay\030" +
-      "\002 \001(\0162\t.CheckWay\022\r\n\005bagId\030\003 \001(\005\022\020\n\010bagIn" +
-      "dex\030\004 \001(\005\"*\n\tTakeEquip\022\017\n\007equipId\030\001 \001(\005\022" +
-      "\014\n\004part\030\002 \001(\005\"-\n\010PutEquip\022\017\n\007equipId\030\001 \001" +
-      "(\005\022\020\n\010bagIndex\030\002 \001(\005\"\036\n\013SearchEquip\022\017\n\007e" +
-      "quipId\030\001 \001(\005\"\032\n\nEquipError\022\014\n\004code\030\001 \001(\005" +
-      "*,\n\010CheckWay\022\007\n\003BAG\020\000\022\010\n\004DICT\020\001\022\r\n\tEQUIP" +
-      "_BAR\020\002B\"\n\021com.game.protocolB\rEquipProtoc" +
-      "olb\006proto3"
+      "attackSpeed\030\016 \001(\001\022\021\n\tmoveSpeed\030\017 \001(\001\"\034\n\t" +
+      "TakeEquip\022\017\n\007equipId\030\001 \001(\005\"\033\n\010PutEquip\022\017" +
+      "\n\007equipId\030\001 \001(\005B\"\n\021com.game.protocolB\rEq" +
+      "uipProtocolb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -4502,36 +2485,18 @@ public final class EquipProtocol {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_EquipInfo_descriptor,
         new java.lang.String[] { "Name", "Level", "Quality", "Part", "Durability", "MaxDurability", "Hp", "Mp", "PhyAttack", "MagicAttack", "PhyDefense", "MagicDefense", "AttackSpeed", "MoveSpeed", });
-    internal_static_CheckEquip_descriptor =
-      getDescriptor().getMessageTypes().get(1);
-    internal_static_CheckEquip_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_CheckEquip_descriptor,
-        new java.lang.String[] { "EquipId", "CheckWay", "BagId", "BagIndex", });
     internal_static_TakeEquip_descriptor =
-      getDescriptor().getMessageTypes().get(2);
+      getDescriptor().getMessageTypes().get(1);
     internal_static_TakeEquip_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_TakeEquip_descriptor,
-        new java.lang.String[] { "EquipId", "Part", });
+        new java.lang.String[] { "EquipId", });
     internal_static_PutEquip_descriptor =
-      getDescriptor().getMessageTypes().get(3);
+      getDescriptor().getMessageTypes().get(2);
     internal_static_PutEquip_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_PutEquip_descriptor,
-        new java.lang.String[] { "EquipId", "BagIndex", });
-    internal_static_SearchEquip_descriptor =
-      getDescriptor().getMessageTypes().get(4);
-    internal_static_SearchEquip_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_SearchEquip_descriptor,
         new java.lang.String[] { "EquipId", });
-    internal_static_EquipError_descriptor =
-      getDescriptor().getMessageTypes().get(5);
-    internal_static_EquipError_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_EquipError_descriptor,
-        new java.lang.String[] { "Code", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

@@ -31,4 +31,13 @@ public class Bag {
             cells[cell.getBagIndex()] = cell;
         }
     }
+
+    public Cell getCellByItemName(String itemName){
+        for(Cell cell:cells){
+            if(cell.getItemName().equals(itemName)){
+                return cell;
+            }
+        }
+        return null;
+    }
 }

@@ -1,5 +1,6 @@
 package com.game.module.bag.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.util.concurrent.atomic.AtomicInteger;
@@ -10,20 +11,26 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 @Data
 public class Cell {
-    /** 格子在背包中的位置*/
-    private Integer bagIndex;
-    /** 装载的道具 */
-    private Integer itemId;
-    /** 装载的道具 */
+    private Integer id;
     private String itemName;
-    /** 道具的数量 */
-    private Integer count;
+    private Integer itemType;
+    private Integer itemCount;
+    private Integer bagIndex;
 
-    public Cell(){
+    public Cell() {
 
     }
 
-    public Cell(int bagIndex){
+    public Cell(Integer bagIndex){
         this.bagIndex = bagIndex;
     }
+
+    public Cell(Integer id, String itemName, Integer itemType, Integer itemCount, Integer bagIndex) {
+        this.id = id;
+        this.itemName = itemName;
+        this.itemType = itemType;
+        this.itemCount = itemCount;
+        this.bagIndex = bagIndex;
+    }
+
 }

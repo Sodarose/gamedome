@@ -22,4 +22,11 @@ public interface ItemMapper {
      */
     @MapKey("id")
     Map<Integer, ItemModel> getItemMapByItemList(List<Integer> itemIds);
+
+    /**
+     *根据背包Id 获得背包内道具列表
+     * @param bagId 背包id
+     * @return java.util.Map<java.lang.Integer,com.game.gameserver.module.item.model.ItemModel>
+     */
+    List<ItemModel> getItemMapByBagId(Integer bagId);
 }

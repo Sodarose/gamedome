@@ -5,6 +5,7 @@ import com.game.gameserver.module.equip.entity.EquipBar;
 import com.game.gameserver.module.equip.entity.Equip;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author xuewenkang
@@ -25,21 +26,20 @@ public interface EquipFacade {
      */
     EquipBar getEquipBarByRoleId(Integer roleId);
 
-
     /**
-     * 查询装备
-     * @param playerId
-     * @param checkWay
+     * 获得背包内的装备列表
      * @param bagId
-     * @param bagIndex
-     * @return com.game.gameserver.module.equip.entity.Equip
+     * @return java.util.Map<java.lang.Integer,com.game.gameserver.module.equip.entity.Equip>
      */
-    Equip checkItem(Integer playerId,int checkWay,Integer bagId,Integer bagIndex);
+    List<Equip> getEquipMapByBagId(Integer bagId);
+
 
     /**
-     * 根据道具ID 返回装备数据
-     * @param itemId
-     * @return com.game.gameserver.module.equip.entity.Equip
+     * 穿上装备
+     * @param playerId
+     * @param equipId
+     * @return void
      */
-    Equip getEquipByItemId(Integer itemId);
+    void putEquip(Integer playerId,Integer equipId);
+
 }

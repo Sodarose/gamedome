@@ -6,11 +6,18 @@
         <result column="itemId" property="itemId"/>
         <result column="itemType" property="itemType"/>
         <result column="roleId" property="roleId"/>
+        <result column="bagId" property="bagId"/>
+        <result column="bagIndex" property="bagIndex"/>
+        <result column="itemCount" property="itemCount"/>
     </resultMap>
     <select id="getItemMapByItemList" resultMap="itemResultMap" >
-        SELECT id,itemId,itemType,roleId FROM game_item WHERE  id IN
+        SELECT id,itemId,itemType,roleId,bagId,bagIndex,itemCount FROM game_item WHERE  id IN
         <foreach collection="list" index="index" item="item" open="(" separator="," close=")">
             #{item}
         </foreach>
+    </select>
+
+    <select id="getItemMapByBagId" resultMap="itemResultMap" >
+        SELECT id,itemId,itemType,roleId,bagId,bagIndex,itemCount FROM game_item WHERE bagId = #{bagId}
     </select>
 </mapper>

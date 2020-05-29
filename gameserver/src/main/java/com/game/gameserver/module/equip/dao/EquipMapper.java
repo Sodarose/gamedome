@@ -22,9 +22,9 @@ public interface EquipMapper {
     List<EquipModel> getIsEquipmentEquipByRoleId(Integer roleId);
 
     /**
-     * 根据道具ID 返回装备
-     * @param itemId 道具Id
-     * @return com.game.gameserver.module.equip.entity.Equip
+     * 根据bagId获得在背包中的装备
+     * @param bagId
+     * @return java.util.List<com.game.gameserver.module.equip.model.EquipModel>
      */
-    EquipModel getEquipByItemId(Integer itemId);
+    List<EquipModel> getEquipListByBagId(Integer bagId);
 }

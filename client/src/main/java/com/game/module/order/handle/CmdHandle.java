@@ -3,6 +3,8 @@ package com.game.module.order.handle;
 import com.game.context.ClientGameContext;
 import com.game.module.ModuleKey;
 import com.game.module.bag.BagCmd;
+import com.game.module.bag.entity.Bag;
+import com.game.module.bag.entity.Cell;
 import com.game.module.player.PlayerCmd;
 import com.game.module.gui.WordPage;
 import com.game.module.order.CmdType;
@@ -93,6 +95,13 @@ public class CmdHandle {
                 openBag(flags);
             }
         });
+
+        CMD_INVOKE_MAP.put(CmdType.USER_ITEM, new Invoke() {
+            @Override
+            public void invoke(String[] flags) {
+                useItem(flags);
+            }
+        });
     }
 
     private void listRoles(String[] flags){
@@ -132,12 +141,33 @@ public class CmdHandle {
     }
 
     private void openBag(String[] flags){
-        Integer roleId = gameContext.getPlayer().getId();
-        BagProtocol.OpenBagReq.Builder builder = BagProtocol.OpenBagReq.newBuilder();
-        builder.setRoleId(roleId);
-        builder.setBagId(0);
+        BagProtocol.OpenBag.Builder builder = BagProtocol.OpenBag.newBuilder();
+        builder.setBagId(1);
         Message message = MessageUtil.createMessage(ModuleKey.BAG_MODEL, BagCmd.OPEN_BAG,builder.build().toByteArray());
         gameContext.getChannel().writeAndFlush(message);
     }
 
+    private void useItem(String[] flags){
+        String itemName = flags[1];
+        Bag bag = gameContext.getPlayer().getBag();
+        Cell cell = bag.getCellByItemName(itemName);
+        if(cell==null){
+            wordPage.print("背包没有该道具");
+            return;
+        }
+        if(cell.getItemType().equals(1)){
+            useEquip(cell.getId());
+        }else{
+            useItem(cell.getId());
+        }
+
+    }
+
+    private void useEquip(Integer equipId){
+        
+    }
+
+    private void useItem(Integer itemId){
+
+    }
 }
