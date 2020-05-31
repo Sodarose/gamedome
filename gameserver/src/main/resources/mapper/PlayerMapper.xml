@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.game.gameserver.module.player.dao.PlayerMapper">
-    <resultMap id="playerResultMap" type="com.game.gameserver.module.player.model.PlayerModel">
+<mapper namespace="com.game.gameserver.module.playerObject.dao.PlayerMapper">
+    <resultMap id="playerResultMap" type="com.game.gameserver.module.playerObject.model.PlayerModel">
         <id column="id" property="id"/>
         <result column="name" property="name"/>
         <result column="level" property="level"/>
@@ -15,7 +15,7 @@
         SELECT id,name,level,career,sceneId,userId FROM game_role WHERE userId = #{accountId};
     </select>
 
-    <select id="getRoleByRoleId" resultMap="playerResultMap" parameterType="int">
+    <select id="findPlayerByPlayerId" resultMap="playerResultMap" parameterType="int">
         SELECT id,name,level,career,sceneId,userId,createTime,updateTime FROM game_role WHERE id = #{roleId}
     </select>
 </mapper>

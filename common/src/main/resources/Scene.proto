@@ -1,21 +1,41 @@
 syntax = "proto3";
 option java_package = "com.game.protocol";
-option java_outer_classname = "Scene";
+option java_outer_classname = "SceneProtocol";
+import "Player.proto";
+import "Actor.proto";
 
 message SceneMessage{
     int32 id = 1;
     string name = 2;
     string description = 3;
     int32 playerCount = 4;
-    map<int32,string> players = 5;
-    map<int32,string> monsters = 6;
-    map<int32,string> npcs = 7;
+    map<int32,SimplePlayerInfo> players = 5;
+    map<int32,SimpleMonsterInfo> monsters = 6;
+    map<int32,SimpleNpcInfo> npcs = 7;
 }
 
-message SceneNpc{
-
+// 场景提示
+message SceneTip{
+    int32  code = 1;
+    string msg = 2;
 }
 
-message SceneMonster{
-
+// 同步场景数据
+message SyncSceneMessage{
+    int32 id = 1;
+    int32 playerCount = 2;
+    map<int32,SimplePlayerInfo> players = 3;
+    map<int32,SimpleMonsterInfo> monsters = 4;
+    map<int32,SimpleNpcInfo> npcs = 5;
 }
+
+// 玩家进入场景同步消息(场景中的其余玩家接收消息)
+message SyncEntryScene{
+    SimplePlayerInfo player = 1;
+}
+
+// 玩家退出场景
+message ExitScene{
+    int32 playerId = 1;
+}
+

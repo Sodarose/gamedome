@@ -14,8 +14,6 @@ public class DictItem {
     private Integer quality;
     private Integer type;
     private Integer overlay;
-    private Integer effectId;
-    private Integer equipId;
-    private Integer limit;
+    private Integer attachId;
     private String description;
 }

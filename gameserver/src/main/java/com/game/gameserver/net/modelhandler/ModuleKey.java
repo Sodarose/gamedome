@@ -11,4 +11,6 @@ public interface ModuleKey {
     short EQUIP_MODEL = 1003;
     short BAG_MODEL = 1004;
     short ITEM_MODEL = 1005;
+    short TIP_MODEL = 1006;
+    short SCENE_MODEL = 1007;
 }

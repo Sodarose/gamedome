@@ -1,8 +1,11 @@
 package com.game.gameserver.module.player.model;
 
 import com.game.gameserver.dictionary.dict.DictRoleLevelProperty;
-import com.game.gameserver.module.equip.entity.Equip;
+import com.game.gameserver.module.item.entity.Equip;
+import com.game.gameserver.module.player.vo.ChangeInfo;
 import lombok.Data;
+
+import java.util.List;
 
 /**
  * 属性
@@ -38,35 +41,41 @@ public class Property {
         this.moveSpeed = property.getMoveSpeed();
     }
 
-    /**
-     * 增加目标装备属性
-     * @param equip 目标装备
-     * @return void
-     */
-    public void addEquipProperty(Equip equip){
-        this.hp +=equip.getDictEquip().getHp();
-        this.mp +=equip.getDictEquip().getMp();
-        this.phyAttack +=equip.getDictEquip().getPhyAttack();
-        this.phyDefense +=equip.getDictEquip().getPhyDefense();
-        this.magicAttack +=equip.getDictEquip().getMagicAttack();
-        this.magicDefense +=equip.getDictEquip().getMagicDefense();
-        this.attackSpeed +=equip.getDictEquip().getAttackSpeed();
-        this.moveSpeed +=equip.getDictEquip().getMoveSpeed();
+    public void init(Equip[] equips){
+        for(Equip equip:equips){
+            if(equip!=null){
+                addEquipProperty(equip);
+            }
+        }
     }
 
     /**
-     * 移除该目标装备属性
-     * @param equip 目标装备
-     * @return void
-     */
-    public void removeEquipProperty(Equip equip){
-        this.hp -=equip.getDictEquip().getHp();
-        this.mp -=equip.getDictEquip().getMp();
-        this.phyAttack -=equip.getDictEquip().getPhyAttack();
-        this.phyDefense -=equip.getDictEquip().getPhyDefense();
-        this.magicAttack -=equip.getDictEquip().getMagicAttack();
-        this.magicDefense -=equip.getDictEquip().getMagicDefense();
-        this.attackSpeed -=equip.getDictEquip().getAttackSpeed();
-        this.moveSpeed -=equip.getDictEquip().getMoveSpeed();
+     * 增加一个装备的属性
+     * */
+    public ChangeInfo addEquipProperty(Equip equip){
+        this.hp += equip.getDictEquip().getHp();
+        this.mp += equip.getDictEquip().getMp();
+        this.phyAttack += equip.getDictEquip().getPhyAttack();
+        this.phyDefense += equip.getDictEquip().getPhyDefense();
+        this.magicAttack += equip.getDictEquip().getMagicAttack();
+        this.magicDefense += equip.getDictEquip().getMagicDefense();
+        this.attackSpeed += equip.getDictEquip().getAttackSpeed();
+        this.moveSpeed += equip.getDictEquip().getMoveSpeed();
+        return null;
     }
+
+    /**
+     * 删除一个装备的属性
+     * */
+    public void removeEquipProperty(Equip equip){
+        this.hp -= equip.getDictEquip().getHp();
+        this.mp -= equip.getDictEquip().getMp();
+        this.phyAttack -= equip.getDictEquip().getPhyAttack();
+        this.phyDefense -= equip.getDictEquip().getPhyDefense();
+        this.magicAttack -= equip.getDictEquip().getMagicAttack();
+        this.magicDefense -= equip.getDictEquip().getMagicDefense();
+        this.attackSpeed -= equip.getDictEquip().getAttackSpeed();
+        this.moveSpeed -= equip.getDictEquip().getMoveSpeed();
+    }
+
 }

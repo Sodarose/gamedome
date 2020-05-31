@@ -2,8 +2,6 @@ package com.game.gameserver.module.account.model;
 
 import lombok.Data;
 
-import java.time.LocalDate;
-
 /**
  * 账号信息
  * @author xuewenkang

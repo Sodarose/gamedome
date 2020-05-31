@@ -14,110 +14,79 @@ public final class PlayerProtocol {
     registerAllExtensions(
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
-  public interface RoleInfoOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:RoleInfo)
+  public interface SimplePlayerInfoOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:SimplePlayerInfo)
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <pre>
-     * id
-     * </pre>
-     *
      * <code>int32 id = 1;</code>
      * @return The id.
      */
     int getId();
 
     /**
-     * <pre>
-     * 职业
-     * </pre>
-     *
-     * <code>string career = 2;</code>
-     * @return The career.
+     * <code>string name = 2;</code>
+     * @return The name.
      */
-    String getCareer();
+    java.lang.String getName();
     /**
-     * <pre>
-     * 职业
-     * </pre>
-     *
-     * <code>string career = 2;</code>
-     * @return The bytes for career.
+     * <code>string name = 2;</code>
+     * @return The bytes for name.
      */
     com.google.protobuf.ByteString
-        getCareerBytes();
+        getNameBytes();
 
     /**
-     * <pre>
-     * 等级
-     * </pre>
-     *
      * <code>int32 level = 3;</code>
      * @return The level.
      */
     int getLevel();
 
     /**
-     * <pre>
-     * 姓名
-     * </pre>
-     *
-     * <code>string name = 4;</code>
-     * @return The name.
+     * <code>int32 career = 4;</code>
+     * @return The career.
      */
-    String getName();
-    /**
-     * <pre>
-     * 姓名
-     * </pre>
-     *
-     * <code>string name = 4;</code>
-     * @return The bytes for name.
-     */
-    com.google.protobuf.ByteString
-        getNameBytes();
+    int getCareer();
   }
   /**
    * <pre>
-   * 角色信息 用于角色选择
+   * 简单角色信息
    * </pre>
    *
-   * Protobuf type {@code RoleInfo}
+   * Protobuf type {@code SimplePlayerInfo}
    */
-  public  static final class RoleInfo extends
+  public  static final class SimplePlayerInfo extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:RoleInfo)
-      RoleInfoOrBuilder {
+      // @@protoc_insertion_point(message_implements:SimplePlayerInfo)
+      SimplePlayerInfoOrBuilder {
   private static final long serialVersionUID = 0L;
-    // Use RoleInfo.newBuilder() to construct.
-    private RoleInfo(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    // Use SimplePlayerInfo.newBuilder() to construct.
+    private SimplePlayerInfo(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-    private RoleInfo() {
-      career_ = "";
+    private SimplePlayerInfo() {
       name_ = "";
     }
 
-    @Override
+    @java.lang.Override
     @SuppressWarnings({"unused"})
-    protected Object newInstance(
+    protected java.lang.Object newInstance(
         UnusedPrivateParameter unused) {
-      return new RoleInfo();
+      return new SimplePlayerInfo();
     }
 
-    @Override
+    @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
-    private RoleInfo(
+    private SimplePlayerInfo(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       if (extensionRegistry == null) {
-        throw new NullPointerException();
+        throw new java.lang.NullPointerException();
       }
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
@@ -135,9 +104,9 @@ public final class PlayerProtocol {
               break;
             }
             case 18: {
-              String s = input.readStringRequireUtf8();
+              java.lang.String s = input.readStringRequireUtf8();
 
-              career_ = s;
+              name_ = s;
               break;
             }
             case 24: {
@@ -145,10 +114,9 @@ public final class PlayerProtocol {
               level_ = input.readInt32();
               break;
             }
-            case 34: {
-              String s = input.readStringRequireUtf8();
+            case 32: {
 
-              name_ = s;
+              career_ = input.readInt32();
               break;
             }
             default: {
@@ -172,24 +140,20 @@ public final class PlayerProtocol {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return PlayerProtocol.internal_static_RoleInfo_descriptor;
+      return com.game.protocol.PlayerProtocol.internal_static_SimplePlayerInfo_descriptor;
     }
 
-    @Override
-    protected FieldAccessorTable
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return PlayerProtocol.internal_static_RoleInfo_fieldAccessorTable
+      return com.game.protocol.PlayerProtocol.internal_static_SimplePlayerInfo_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              RoleInfo.class, Builder.class);
+              com.game.protocol.PlayerProtocol.SimplePlayerInfo.class, com.game.protocol.PlayerProtocol.SimplePlayerInfo.Builder.class);
     }
 
     public static final int ID_FIELD_NUMBER = 1;
     private int id_;
     /**
-     * <pre>
-     * id
-     * </pre>
-     *
      * <code>int32 id = 1;</code>
      * @return The id.
      */
@@ -197,44 +161,36 @@ public final class PlayerProtocol {
       return id_;
     }
 
-    public static final int CAREER_FIELD_NUMBER = 2;
-    private volatile Object career_;
+    public static final int NAME_FIELD_NUMBER = 2;
+    private volatile java.lang.Object name_;
     /**
-     * <pre>
-     * 职业
-     * </pre>
-     *
-     * <code>string career = 2;</code>
-     * @return The career.
+     * <code>string name = 2;</code>
+     * @return The name.
      */
-    public String getCareer() {
-      Object ref = career_;
-      if (ref instanceof String) {
-        return (String) ref;
+    public java.lang.String getName() {
+      java.lang.Object ref = name_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
-        career_ = s;
+        java.lang.String s = bs.toStringUtf8();
+        name_ = s;
         return s;
       }
     }
     /**
-     * <pre>
-     * 职业
-     * </pre>
-     *
-     * <code>string career = 2;</code>
-     * @return The bytes for career.
+     * <code>string name = 2;</code>
+     * @return The bytes for name.
      */
     public com.google.protobuf.ByteString
-        getCareerBytes() {
-      Object ref = career_;
-      if (ref instanceof String) {
+        getNameBytes() {
+      java.lang.Object ref = name_;
+      if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
-        career_ = b;
+                (java.lang.String) ref);
+        name_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
@@ -244,10 +200,6 @@ public final class PlayerProtocol {
     public static final int LEVEL_FIELD_NUMBER = 3;
     private int level_;
     /**
-     * <pre>
-     * 等级
-     * </pre>
-     *
      * <code>int32 level = 3;</code>
      * @return The level.
      */
@@ -255,52 +207,18 @@ public final class PlayerProtocol {
       return level_;
     }
 
-    public static final int NAME_FIELD_NUMBER = 4;
-    private volatile Object name_;
+    public static final int CAREER_FIELD_NUMBER = 4;
+    private int career_;
     /**
-     * <pre>
-     * 姓名
-     * </pre>
-     *
-     * <code>string name = 4;</code>
-     * @return The name.
+     * <code>int32 career = 4;</code>
+     * @return The career.
      */
-    public String getName() {
-      Object ref = name_;
-      if (ref instanceof String) {
-        return (String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
-        name_ = s;
-        return s;
-      }
-    }
-    /**
-     * <pre>
-     * 姓名
-     * </pre>
-     *
-     * <code>string name = 4;</code>
-     * @return The bytes for name.
-     */
-    public com.google.protobuf.ByteString
-        getNameBytes() {
-      Object ref = name_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
-        name_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
+    public int getCareer() {
+      return career_;
     }
 
     private byte memoizedIsInitialized = -1;
-    @Override
+    @java.lang.Override
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
@@ -310,25 +228,25 @@ public final class PlayerProtocol {
       return true;
     }
 
-    @Override
+    @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (id_ != 0) {
         output.writeInt32(1, id_);
       }
-      if (!getCareerBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, career_);
+      if (!getNameBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, name_);
       }
       if (level_ != 0) {
         output.writeInt32(3, level_);
       }
-      if (!getNameBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, name_);
+      if (career_ != 0) {
+        output.writeInt32(4, career_);
       }
       unknownFields.writeTo(output);
     }
 
-    @Override
+    @java.lang.Override
     public int getSerializedSize() {
       int size = memoizedSize;
       if (size != -1) return size;
@@ -338,44 +256,45 @@ public final class PlayerProtocol {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(1, id_);
       }
-      if (!getCareerBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, career_);
+      if (!getNameBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, name_);
       }
       if (level_ != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(3, level_);
       }
-      if (!getNameBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, name_);
+      if (career_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(4, career_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
     }
 
-    @Override
-    public boolean equals(final Object obj) {
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof RoleInfo)) {
+      if (!(obj instanceof com.game.protocol.PlayerProtocol.SimplePlayerInfo)) {
         return super.equals(obj);
       }
-      RoleInfo other = (RoleInfo) obj;
+      com.game.protocol.PlayerProtocol.SimplePlayerInfo other = (com.game.protocol.PlayerProtocol.SimplePlayerInfo) obj;
 
       if (getId()
           != other.getId()) return false;
-      if (!getCareer()
-          .equals(other.getCareer())) return false;
-      if (getLevel()
-          != other.getLevel()) return false;
       if (!getName()
           .equals(other.getName())) return false;
+      if (getLevel()
+          != other.getLevel()) return false;
+      if (getCareer()
+          != other.getCareer()) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
       if (memoizedHashCode != 0) {
         return memoizedHashCode;
@@ -384,80 +303,80 @@ public final class PlayerProtocol {
       hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + ID_FIELD_NUMBER;
       hash = (53 * hash) + getId();
-      hash = (37 * hash) + CAREER_FIELD_NUMBER;
-      hash = (53 * hash) + getCareer().hashCode();
-      hash = (37 * hash) + LEVEL_FIELD_NUMBER;
-      hash = (53 * hash) + getLevel();
       hash = (37 * hash) + NAME_FIELD_NUMBER;
       hash = (53 * hash) + getName().hashCode();
+      hash = (37 * hash) + LEVEL_FIELD_NUMBER;
+      hash = (53 * hash) + getLevel();
+      hash = (37 * hash) + CAREER_FIELD_NUMBER;
+      hash = (53 * hash) + getCareer();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
     }
 
-    public static RoleInfo parseFrom(
+    public static com.game.protocol.PlayerProtocol.SimplePlayerInfo parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static RoleInfo parseFrom(
+    public static com.game.protocol.PlayerProtocol.SimplePlayerInfo parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static RoleInfo parseFrom(
+    public static com.game.protocol.PlayerProtocol.SimplePlayerInfo parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static RoleInfo parseFrom(
+    public static com.game.protocol.PlayerProtocol.SimplePlayerInfo parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static RoleInfo parseFrom(byte[] data)
+    public static com.game.protocol.PlayerProtocol.SimplePlayerInfo parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static RoleInfo parseFrom(
+    public static com.game.protocol.PlayerProtocol.SimplePlayerInfo parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static RoleInfo parseFrom(java.io.InputStream input)
+    public static com.game.protocol.PlayerProtocol.SimplePlayerInfo parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static RoleInfo parseFrom(
+    public static com.game.protocol.PlayerProtocol.SimplePlayerInfo parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static RoleInfo parseDelimitedFrom(java.io.InputStream input)
+    public static com.game.protocol.PlayerProtocol.SimplePlayerInfo parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static RoleInfo parseDelimitedFrom(
+    public static com.game.protocol.PlayerProtocol.SimplePlayerInfo parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static RoleInfo parseFrom(
+    public static com.game.protocol.PlayerProtocol.SimplePlayerInfo parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static RoleInfo parseFrom(
+    public static com.game.protocol.PlayerProtocol.SimplePlayerInfo parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -465,57 +384,57 @@ public final class PlayerProtocol {
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    @Override
+    @java.lang.Override
     public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(RoleInfo prototype) {
+    public static Builder newBuilder(com.game.protocol.PlayerProtocol.SimplePlayerInfo prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
-    @Override
+    @java.lang.Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
           ? new Builder() : new Builder().mergeFrom(this);
     }
 
-    @Override
+    @java.lang.Override
     protected Builder newBuilderForType(
-        BuilderParent parent) {
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
     /**
      * <pre>
-     * 角色信息 用于角色选择
+     * 简单角色信息
      * </pre>
      *
-     * Protobuf type {@code RoleInfo}
+     * Protobuf type {@code SimplePlayerInfo}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:RoleInfo)
-        RoleInfoOrBuilder {
+        // @@protoc_insertion_point(builder_implements:SimplePlayerInfo)
+        com.game.protocol.PlayerProtocol.SimplePlayerInfoOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return PlayerProtocol.internal_static_RoleInfo_descriptor;
+        return com.game.protocol.PlayerProtocol.internal_static_SimplePlayerInfo_descriptor;
       }
 
-      @Override
-      protected FieldAccessorTable
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return PlayerProtocol.internal_static_RoleInfo_fieldAccessorTable
+        return com.game.protocol.PlayerProtocol.internal_static_SimplePlayerInfo_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                RoleInfo.class, Builder.class);
+                com.game.protocol.PlayerProtocol.SimplePlayerInfo.class, com.game.protocol.PlayerProtocol.SimplePlayerInfo.Builder.class);
       }
 
-      // Construct using com.game.protocol.PlayerProtocol.RoleInfo.newBuilder()
+      // Construct using com.game.protocol.PlayerProtocol.SimplePlayerInfo.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
 
       private Builder(
-          BuilderParent parent) {
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -524,129 +443,128 @@ public final class PlayerProtocol {
                 .alwaysUseFieldBuilders) {
         }
       }
-      @Override
+      @java.lang.Override
       public Builder clear() {
         super.clear();
         id_ = 0;
 
-        career_ = "";
+        name_ = "";
 
         level_ = 0;
 
-        name_ = "";
+        career_ = 0;
 
         return this;
       }
 
-      @Override
+      @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return PlayerProtocol.internal_static_RoleInfo_descriptor;
+        return com.game.protocol.PlayerProtocol.internal_static_SimplePlayerInfo_descriptor;
       }
 
-      @Override
-      public RoleInfo getDefaultInstanceForType() {
-        return RoleInfo.getDefaultInstance();
+      @java.lang.Override
+      public com.game.protocol.PlayerProtocol.SimplePlayerInfo getDefaultInstanceForType() {
+        return com.game.protocol.PlayerProtocol.SimplePlayerInfo.getDefaultInstance();
       }
 
-      @Override
-      public RoleInfo build() {
-        RoleInfo result = buildPartial();
+      @java.lang.Override
+      public com.game.protocol.PlayerProtocol.SimplePlayerInfo build() {
+        com.game.protocol.PlayerProtocol.SimplePlayerInfo result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      @Override
-      public RoleInfo buildPartial() {
-        RoleInfo result = new RoleInfo(this);
+      @java.lang.Override
+      public com.game.protocol.PlayerProtocol.SimplePlayerInfo buildPartial() {
+        com.game.protocol.PlayerProtocol.SimplePlayerInfo result = new com.game.protocol.PlayerProtocol.SimplePlayerInfo(this);
         result.id_ = id_;
-        result.career_ = career_;
-        result.level_ = level_;
         result.name_ = name_;
+        result.level_ = level_;
+        result.career_ = career_;
         onBuilt();
         return result;
       }
 
-      @Override
+      @java.lang.Override
       public Builder clone() {
         return super.clone();
       }
-      @Override
+      @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return super.setField(field, value);
       }
-      @Override
+      @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
         return super.clearField(field);
       }
-      @Override
+      @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
         return super.clearOneof(oneof);
       }
-      @Override
+      @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
+          int index, java.lang.Object value) {
         return super.setRepeatedField(field, index, value);
       }
-      @Override
+      @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return super.addRepeatedField(field, value);
       }
-      @Override
+      @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof RoleInfo) {
-          return mergeFrom((RoleInfo)other);
+        if (other instanceof com.game.protocol.PlayerProtocol.SimplePlayerInfo) {
+          return mergeFrom((com.game.protocol.PlayerProtocol.SimplePlayerInfo)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(RoleInfo other) {
-        if (other == RoleInfo.getDefaultInstance()) return this;
+      public Builder mergeFrom(com.game.protocol.PlayerProtocol.SimplePlayerInfo other) {
+        if (other == com.game.protocol.PlayerProtocol.SimplePlayerInfo.getDefaultInstance()) return this;
         if (other.getId() != 0) {
           setId(other.getId());
         }
-        if (!other.getCareer().isEmpty()) {
-          career_ = other.career_;
+        if (!other.getName().isEmpty()) {
+          name_ = other.name_;
           onChanged();
         }
         if (other.getLevel() != 0) {
           setLevel(other.getLevel());
         }
-        if (!other.getName().isEmpty()) {
-          name_ = other.name_;
-          onChanged();
+        if (other.getCareer() != 0) {
+          setCareer(other.getCareer());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
       }
 
-      @Override
+      @java.lang.Override
       public final boolean isInitialized() {
         return true;
       }
 
-      @Override
+      @java.lang.Override
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        RoleInfo parsedMessage = null;
+        com.game.protocol.PlayerProtocol.SimplePlayerInfo parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (RoleInfo) e.getUnfinishedMessage();
+          parsedMessage = (com.game.protocol.PlayerProtocol.SimplePlayerInfo) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -658,10 +576,6 @@ public final class PlayerProtocol {
 
       private int id_ ;
       /**
-       * <pre>
-       * id
-       * </pre>
-       *
        * <code>int32 id = 1;</code>
        * @return The id.
        */
@@ -669,10 +583,6 @@ public final class PlayerProtocol {
         return id_;
       }
       /**
-       * <pre>
-       * id
-       * </pre>
-       *
        * <code>int32 id = 1;</code>
        * @param value The id to set.
        * @return This builder for chaining.
@@ -684,10 +594,6 @@ public final class PlayerProtocol {
         return this;
       }
       /**
-       * <pre>
-       * id
-       * </pre>
-       *
        * <code>int32 id = 1;</code>
        * @return This builder for chaining.
        */
@@ -698,180 +604,34 @@ public final class PlayerProtocol {
         return this;
       }
 
-      private Object career_ = "";
+      private java.lang.Object name_ = "";
       /**
-       * <pre>
-       * 职业
-       * </pre>
-       *
-       * <code>string career = 2;</code>
-       * @return The career.
-       */
-      public String getCareer() {
-        Object ref = career_;
-        if (!(ref instanceof String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          String s = bs.toStringUtf8();
-          career_ = s;
-          return s;
-        } else {
-          return (String) ref;
-        }
-      }
-      /**
-       * <pre>
-       * 职业
-       * </pre>
-       *
-       * <code>string career = 2;</code>
-       * @return The bytes for career.
-       */
-      public com.google.protobuf.ByteString
-          getCareerBytes() {
-        Object ref = career_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
-          career_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <pre>
-       * 职业
-       * </pre>
-       *
-       * <code>string career = 2;</code>
-       * @param value The career to set.
-       * @return This builder for chaining.
-       */
-      public Builder setCareer(
-          String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        career_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * 职业
-       * </pre>
-       *
-       * <code>string career = 2;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearCareer() {
-        
-        career_ = getDefaultInstance().getCareer();
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * 职业
-       * </pre>
-       *
-       * <code>string career = 2;</code>
-       * @param value The bytes for career to set.
-       * @return This builder for chaining.
-       */
-      public Builder setCareerBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        career_ = value;
-        onChanged();
-        return this;
-      }
-
-      private int level_ ;
-      /**
-       * <pre>
-       * 等级
-       * </pre>
-       *
-       * <code>int32 level = 3;</code>
-       * @return The level.
-       */
-      public int getLevel() {
-        return level_;
-      }
-      /**
-       * <pre>
-       * 等级
-       * </pre>
-       *
-       * <code>int32 level = 3;</code>
-       * @param value The level to set.
-       * @return This builder for chaining.
-       */
-      public Builder setLevel(int value) {
-        
-        level_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * 等级
-       * </pre>
-       *
-       * <code>int32 level = 3;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearLevel() {
-        
-        level_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private Object name_ = "";
-      /**
-       * <pre>
-       * 姓名
-       * </pre>
-       *
-       * <code>string name = 4;</code>
+       * <code>string name = 2;</code>
        * @return The name.
        */
-      public String getName() {
-        Object ref = name_;
-        if (!(ref instanceof String)) {
+      public java.lang.String getName() {
+        java.lang.Object ref = name_;
+        if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
-          String s = bs.toStringUtf8();
+          java.lang.String s = bs.toStringUtf8();
           name_ = s;
           return s;
         } else {
-          return (String) ref;
+          return (java.lang.String) ref;
         }
       }
       /**
-       * <pre>
-       * 姓名
-       * </pre>
-       *
-       * <code>string name = 4;</code>
+       * <code>string name = 2;</code>
        * @return The bytes for name.
        */
       public com.google.protobuf.ByteString
           getNameBytes() {
-        Object ref = name_;
+        java.lang.Object ref = name_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           name_ = b;
           return b;
         } else {
@@ -879,16 +639,12 @@ public final class PlayerProtocol {
         }
       }
       /**
-       * <pre>
-       * 姓名
-       * </pre>
-       *
-       * <code>string name = 4;</code>
+       * <code>string name = 2;</code>
        * @param value The name to set.
        * @return This builder for chaining.
        */
       public Builder setName(
-          String value) {
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -898,11 +654,7 @@ public final class PlayerProtocol {
         return this;
       }
       /**
-       * <pre>
-       * 姓名
-       * </pre>
-       *
-       * <code>string name = 4;</code>
+       * <code>string name = 2;</code>
        * @return This builder for chaining.
        */
       public Builder clearName() {
@@ -912,11 +664,7 @@ public final class PlayerProtocol {
         return this;
       }
       /**
-       * <pre>
-       * 姓名
-       * </pre>
-       *
-       * <code>string name = 4;</code>
+       * <code>string name = 2;</code>
        * @param value The bytes for name to set.
        * @return This builder for chaining.
        */
@@ -931,54 +679,902 @@ public final class PlayerProtocol {
         onChanged();
         return this;
       }
-      @Override
+
+      private int level_ ;
+      /**
+       * <code>int32 level = 3;</code>
+       * @return The level.
+       */
+      public int getLevel() {
+        return level_;
+      }
+      /**
+       * <code>int32 level = 3;</code>
+       * @param value The level to set.
+       * @return This builder for chaining.
+       */
+      public Builder setLevel(int value) {
+        
+        level_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 level = 3;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearLevel() {
+        
+        level_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int career_ ;
+      /**
+       * <code>int32 career = 4;</code>
+       * @return The career.
+       */
+      public int getCareer() {
+        return career_;
+      }
+      /**
+       * <code>int32 career = 4;</code>
+       * @param value The career to set.
+       * @return This builder for chaining.
+       */
+      public Builder setCareer(int value) {
+        
+        career_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 career = 4;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearCareer() {
+        
+        career_ = 0;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
-      @Override
+      @java.lang.Override
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
 
 
-      // @@protoc_insertion_point(builder_scope:RoleInfo)
+      // @@protoc_insertion_point(builder_scope:SimplePlayerInfo)
     }
 
-    // @@protoc_insertion_point(class_scope:RoleInfo)
-    private static final RoleInfo DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:SimplePlayerInfo)
+    private static final com.game.protocol.PlayerProtocol.SimplePlayerInfo DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new RoleInfo();
+      DEFAULT_INSTANCE = new com.game.protocol.PlayerProtocol.SimplePlayerInfo();
     }
 
-    public static RoleInfo getDefaultInstance() {
+    public static com.game.protocol.PlayerProtocol.SimplePlayerInfo getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static final com.google.protobuf.Parser<RoleInfo>
-        PARSER = new com.google.protobuf.AbstractParser<RoleInfo>() {
-      @Override
-      public RoleInfo parsePartialFrom(
+    private static final com.google.protobuf.Parser<SimplePlayerInfo>
+        PARSER = new com.google.protobuf.AbstractParser<SimplePlayerInfo>() {
+      @java.lang.Override
+      public SimplePlayerInfo parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new RoleInfo(input, extensionRegistry);
+        return new SimplePlayerInfo(input, extensionRegistry);
       }
     };
 
-    public static com.google.protobuf.Parser<RoleInfo> parser() {
+    public static com.google.protobuf.Parser<SimplePlayerInfo> parser() {
       return PARSER;
     }
 
-    @Override
-    public com.google.protobuf.Parser<RoleInfo> getParserForType() {
+    @java.lang.Override
+    public com.google.protobuf.Parser<SimplePlayerInfo> getParserForType() {
       return PARSER;
     }
 
-    @Override
-    public RoleInfo getDefaultInstanceForType() {
+    @java.lang.Override
+    public com.game.protocol.PlayerProtocol.SimplePlayerInfo getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface PlayerListOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:PlayerList)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>repeated .SimplePlayerInfo playerInfo = 1;</code>
+     */
+    java.util.List<com.game.protocol.PlayerProtocol.SimplePlayerInfo> 
+        getPlayerInfoList();
+    /**
+     * <code>repeated .SimplePlayerInfo playerInfo = 1;</code>
+     */
+    com.game.protocol.PlayerProtocol.SimplePlayerInfo getPlayerInfo(int index);
+    /**
+     * <code>repeated .SimplePlayerInfo playerInfo = 1;</code>
+     */
+    int getPlayerInfoCount();
+    /**
+     * <code>repeated .SimplePlayerInfo playerInfo = 1;</code>
+     */
+    java.util.List<? extends com.game.protocol.PlayerProtocol.SimplePlayerInfoOrBuilder> 
+        getPlayerInfoOrBuilderList();
+    /**
+     * <code>repeated .SimplePlayerInfo playerInfo = 1;</code>
+     */
+    com.game.protocol.PlayerProtocol.SimplePlayerInfoOrBuilder getPlayerInfoOrBuilder(
+        int index);
+  }
+  /**
+   * Protobuf type {@code PlayerList}
+   */
+  public  static final class PlayerList extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:PlayerList)
+      PlayerListOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use PlayerList.newBuilder() to construct.
+    private PlayerList(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private PlayerList() {
+      playerInfo_ = java.util.Collections.emptyList();
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new PlayerList();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private PlayerList(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
+                playerInfo_ = new java.util.ArrayList<com.game.protocol.PlayerProtocol.SimplePlayerInfo>();
+                mutable_bitField0_ |= 0x00000001;
+              }
+              playerInfo_.add(
+                  input.readMessage(com.game.protocol.PlayerProtocol.SimplePlayerInfo.parser(), extensionRegistry));
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        if (((mutable_bitField0_ & 0x00000001) != 0)) {
+          playerInfo_ = java.util.Collections.unmodifiableList(playerInfo_);
+        }
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.game.protocol.PlayerProtocol.internal_static_PlayerList_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.game.protocol.PlayerProtocol.internal_static_PlayerList_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.game.protocol.PlayerProtocol.PlayerList.class, com.game.protocol.PlayerProtocol.PlayerList.Builder.class);
+    }
+
+    public static final int PLAYERINFO_FIELD_NUMBER = 1;
+    private java.util.List<com.game.protocol.PlayerProtocol.SimplePlayerInfo> playerInfo_;
+    /**
+     * <code>repeated .SimplePlayerInfo playerInfo = 1;</code>
+     */
+    public java.util.List<com.game.protocol.PlayerProtocol.SimplePlayerInfo> getPlayerInfoList() {
+      return playerInfo_;
+    }
+    /**
+     * <code>repeated .SimplePlayerInfo playerInfo = 1;</code>
+     */
+    public java.util.List<? extends com.game.protocol.PlayerProtocol.SimplePlayerInfoOrBuilder> 
+        getPlayerInfoOrBuilderList() {
+      return playerInfo_;
+    }
+    /**
+     * <code>repeated .SimplePlayerInfo playerInfo = 1;</code>
+     */
+    public int getPlayerInfoCount() {
+      return playerInfo_.size();
+    }
+    /**
+     * <code>repeated .SimplePlayerInfo playerInfo = 1;</code>
+     */
+    public com.game.protocol.PlayerProtocol.SimplePlayerInfo getPlayerInfo(int index) {
+      return playerInfo_.get(index);
+    }
+    /**
+     * <code>repeated .SimplePlayerInfo playerInfo = 1;</code>
+     */
+    public com.game.protocol.PlayerProtocol.SimplePlayerInfoOrBuilder getPlayerInfoOrBuilder(
+        int index) {
+      return playerInfo_.get(index);
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      for (int i = 0; i < playerInfo_.size(); i++) {
+        output.writeMessage(1, playerInfo_.get(i));
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      for (int i = 0; i < playerInfo_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, playerInfo_.get(i));
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.game.protocol.PlayerProtocol.PlayerList)) {
+        return super.equals(obj);
+      }
+      com.game.protocol.PlayerProtocol.PlayerList other = (com.game.protocol.PlayerProtocol.PlayerList) obj;
+
+      if (!getPlayerInfoList()
+          .equals(other.getPlayerInfoList())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      if (getPlayerInfoCount() > 0) {
+        hash = (37 * hash) + PLAYERINFO_FIELD_NUMBER;
+        hash = (53 * hash) + getPlayerInfoList().hashCode();
+      }
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.game.protocol.PlayerProtocol.PlayerList parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.game.protocol.PlayerProtocol.PlayerList parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.game.protocol.PlayerProtocol.PlayerList parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.game.protocol.PlayerProtocol.PlayerList parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.game.protocol.PlayerProtocol.PlayerList parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.game.protocol.PlayerProtocol.PlayerList parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.game.protocol.PlayerProtocol.PlayerList parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.game.protocol.PlayerProtocol.PlayerList parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.game.protocol.PlayerProtocol.PlayerList parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.game.protocol.PlayerProtocol.PlayerList parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.game.protocol.PlayerProtocol.PlayerList parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.game.protocol.PlayerProtocol.PlayerList parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.game.protocol.PlayerProtocol.PlayerList prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code PlayerList}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:PlayerList)
+        com.game.protocol.PlayerProtocol.PlayerListOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.game.protocol.PlayerProtocol.internal_static_PlayerList_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.game.protocol.PlayerProtocol.internal_static_PlayerList_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.game.protocol.PlayerProtocol.PlayerList.class, com.game.protocol.PlayerProtocol.PlayerList.Builder.class);
+      }
+
+      // Construct using com.game.protocol.PlayerProtocol.PlayerList.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+          getPlayerInfoFieldBuilder();
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        if (playerInfoBuilder_ == null) {
+          playerInfo_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+        } else {
+          playerInfoBuilder_.clear();
+        }
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.game.protocol.PlayerProtocol.internal_static_PlayerList_descriptor;
+      }
+
+      @java.lang.Override
+      public com.game.protocol.PlayerProtocol.PlayerList getDefaultInstanceForType() {
+        return com.game.protocol.PlayerProtocol.PlayerList.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.game.protocol.PlayerProtocol.PlayerList build() {
+        com.game.protocol.PlayerProtocol.PlayerList result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.game.protocol.PlayerProtocol.PlayerList buildPartial() {
+        com.game.protocol.PlayerProtocol.PlayerList result = new com.game.protocol.PlayerProtocol.PlayerList(this);
+        int from_bitField0_ = bitField0_;
+        if (playerInfoBuilder_ == null) {
+          if (((bitField0_ & 0x00000001) != 0)) {
+            playerInfo_ = java.util.Collections.unmodifiableList(playerInfo_);
+            bitField0_ = (bitField0_ & ~0x00000001);
+          }
+          result.playerInfo_ = playerInfo_;
+        } else {
+          result.playerInfo_ = playerInfoBuilder_.build();
+        }
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.game.protocol.PlayerProtocol.PlayerList) {
+          return mergeFrom((com.game.protocol.PlayerProtocol.PlayerList)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.game.protocol.PlayerProtocol.PlayerList other) {
+        if (other == com.game.protocol.PlayerProtocol.PlayerList.getDefaultInstance()) return this;
+        if (playerInfoBuilder_ == null) {
+          if (!other.playerInfo_.isEmpty()) {
+            if (playerInfo_.isEmpty()) {
+              playerInfo_ = other.playerInfo_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+            } else {
+              ensurePlayerInfoIsMutable();
+              playerInfo_.addAll(other.playerInfo_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.playerInfo_.isEmpty()) {
+            if (playerInfoBuilder_.isEmpty()) {
+              playerInfoBuilder_.dispose();
+              playerInfoBuilder_ = null;
+              playerInfo_ = other.playerInfo_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+              playerInfoBuilder_ = 
+                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                   getPlayerInfoFieldBuilder() : null;
+            } else {
+              playerInfoBuilder_.addAllMessages(other.playerInfo_);
+            }
+          }
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.game.protocol.PlayerProtocol.PlayerList parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.game.protocol.PlayerProtocol.PlayerList) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      private java.util.List<com.game.protocol.PlayerProtocol.SimplePlayerInfo> playerInfo_ =
+        java.util.Collections.emptyList();
+      private void ensurePlayerInfoIsMutable() {
+        if (!((bitField0_ & 0x00000001) != 0)) {
+          playerInfo_ = new java.util.ArrayList<com.game.protocol.PlayerProtocol.SimplePlayerInfo>(playerInfo_);
+          bitField0_ |= 0x00000001;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          com.game.protocol.PlayerProtocol.SimplePlayerInfo, com.game.protocol.PlayerProtocol.SimplePlayerInfo.Builder, com.game.protocol.PlayerProtocol.SimplePlayerInfoOrBuilder> playerInfoBuilder_;
+
+      /**
+       * <code>repeated .SimplePlayerInfo playerInfo = 1;</code>
+       */
+      public java.util.List<com.game.protocol.PlayerProtocol.SimplePlayerInfo> getPlayerInfoList() {
+        if (playerInfoBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(playerInfo_);
+        } else {
+          return playerInfoBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <code>repeated .SimplePlayerInfo playerInfo = 1;</code>
+       */
+      public int getPlayerInfoCount() {
+        if (playerInfoBuilder_ == null) {
+          return playerInfo_.size();
+        } else {
+          return playerInfoBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .SimplePlayerInfo playerInfo = 1;</code>
+       */
+      public com.game.protocol.PlayerProtocol.SimplePlayerInfo getPlayerInfo(int index) {
+        if (playerInfoBuilder_ == null) {
+          return playerInfo_.get(index);
+        } else {
+          return playerInfoBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .SimplePlayerInfo playerInfo = 1;</code>
+       */
+      public Builder setPlayerInfo(
+          int index, com.game.protocol.PlayerProtocol.SimplePlayerInfo value) {
+        if (playerInfoBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensurePlayerInfoIsMutable();
+          playerInfo_.set(index, value);
+          onChanged();
+        } else {
+          playerInfoBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .SimplePlayerInfo playerInfo = 1;</code>
+       */
+      public Builder setPlayerInfo(
+          int index, com.game.protocol.PlayerProtocol.SimplePlayerInfo.Builder builderForValue) {
+        if (playerInfoBuilder_ == null) {
+          ensurePlayerInfoIsMutable();
+          playerInfo_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          playerInfoBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .SimplePlayerInfo playerInfo = 1;</code>
+       */
+      public Builder addPlayerInfo(com.game.protocol.PlayerProtocol.SimplePlayerInfo value) {
+        if (playerInfoBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensurePlayerInfoIsMutable();
+          playerInfo_.add(value);
+          onChanged();
+        } else {
+          playerInfoBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .SimplePlayerInfo playerInfo = 1;</code>
+       */
+      public Builder addPlayerInfo(
+          int index, com.game.protocol.PlayerProtocol.SimplePlayerInfo value) {
+        if (playerInfoBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensurePlayerInfoIsMutable();
+          playerInfo_.add(index, value);
+          onChanged();
+        } else {
+          playerInfoBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .SimplePlayerInfo playerInfo = 1;</code>
+       */
+      public Builder addPlayerInfo(
+          com.game.protocol.PlayerProtocol.SimplePlayerInfo.Builder builderForValue) {
+        if (playerInfoBuilder_ == null) {
+          ensurePlayerInfoIsMutable();
+          playerInfo_.add(builderForValue.build());
+          onChanged();
+        } else {
+          playerInfoBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .SimplePlayerInfo playerInfo = 1;</code>
+       */
+      public Builder addPlayerInfo(
+          int index, com.game.protocol.PlayerProtocol.SimplePlayerInfo.Builder builderForValue) {
+        if (playerInfoBuilder_ == null) {
+          ensurePlayerInfoIsMutable();
+          playerInfo_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          playerInfoBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .SimplePlayerInfo playerInfo = 1;</code>
+       */
+      public Builder addAllPlayerInfo(
+          java.lang.Iterable<? extends com.game.protocol.PlayerProtocol.SimplePlayerInfo> values) {
+        if (playerInfoBuilder_ == null) {
+          ensurePlayerInfoIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, playerInfo_);
+          onChanged();
+        } else {
+          playerInfoBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .SimplePlayerInfo playerInfo = 1;</code>
+       */
+      public Builder clearPlayerInfo() {
+        if (playerInfoBuilder_ == null) {
+          playerInfo_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+          onChanged();
+        } else {
+          playerInfoBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .SimplePlayerInfo playerInfo = 1;</code>
+       */
+      public Builder removePlayerInfo(int index) {
+        if (playerInfoBuilder_ == null) {
+          ensurePlayerInfoIsMutable();
+          playerInfo_.remove(index);
+          onChanged();
+        } else {
+          playerInfoBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .SimplePlayerInfo playerInfo = 1;</code>
+       */
+      public com.game.protocol.PlayerProtocol.SimplePlayerInfo.Builder getPlayerInfoBuilder(
+          int index) {
+        return getPlayerInfoFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .SimplePlayerInfo playerInfo = 1;</code>
+       */
+      public com.game.protocol.PlayerProtocol.SimplePlayerInfoOrBuilder getPlayerInfoOrBuilder(
+          int index) {
+        if (playerInfoBuilder_ == null) {
+          return playerInfo_.get(index);  } else {
+          return playerInfoBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .SimplePlayerInfo playerInfo = 1;</code>
+       */
+      public java.util.List<? extends com.game.protocol.PlayerProtocol.SimplePlayerInfoOrBuilder> 
+           getPlayerInfoOrBuilderList() {
+        if (playerInfoBuilder_ != null) {
+          return playerInfoBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(playerInfo_);
+        }
+      }
+      /**
+       * <code>repeated .SimplePlayerInfo playerInfo = 1;</code>
+       */
+      public com.game.protocol.PlayerProtocol.SimplePlayerInfo.Builder addPlayerInfoBuilder() {
+        return getPlayerInfoFieldBuilder().addBuilder(
+            com.game.protocol.PlayerProtocol.SimplePlayerInfo.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .SimplePlayerInfo playerInfo = 1;</code>
+       */
+      public com.game.protocol.PlayerProtocol.SimplePlayerInfo.Builder addPlayerInfoBuilder(
+          int index) {
+        return getPlayerInfoFieldBuilder().addBuilder(
+            index, com.game.protocol.PlayerProtocol.SimplePlayerInfo.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .SimplePlayerInfo playerInfo = 1;</code>
+       */
+      public java.util.List<com.game.protocol.PlayerProtocol.SimplePlayerInfo.Builder> 
+           getPlayerInfoBuilderList() {
+        return getPlayerInfoFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          com.game.protocol.PlayerProtocol.SimplePlayerInfo, com.game.protocol.PlayerProtocol.SimplePlayerInfo.Builder, com.game.protocol.PlayerProtocol.SimplePlayerInfoOrBuilder> 
+          getPlayerInfoFieldBuilder() {
+        if (playerInfoBuilder_ == null) {
+          playerInfoBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.game.protocol.PlayerProtocol.SimplePlayerInfo, com.game.protocol.PlayerProtocol.SimplePlayerInfo.Builder, com.game.protocol.PlayerProtocol.SimplePlayerInfoOrBuilder>(
+                  playerInfo_,
+                  ((bitField0_ & 0x00000001) != 0),
+                  getParentForChildren(),
+                  isClean());
+          playerInfo_ = null;
+        }
+        return playerInfoBuilder_;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:PlayerList)
+    }
+
+    // @@protoc_insertion_point(class_scope:PlayerList)
+    private static final com.game.protocol.PlayerProtocol.PlayerList DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.game.protocol.PlayerProtocol.PlayerList();
+    }
+
+    public static com.game.protocol.PlayerProtocol.PlayerList getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<PlayerList>
+        PARSER = new com.google.protobuf.AbstractParser<PlayerList>() {
+      @java.lang.Override
+      public PlayerList parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new PlayerList(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<PlayerList> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<PlayerList> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.game.protocol.PlayerProtocol.PlayerList getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -1013,14 +1609,14 @@ public final class PlayerProtocol {
     private LoginRole() {
     }
 
-    @Override
+    @java.lang.Override
     @SuppressWarnings({"unused"})
-    protected Object newInstance(
+    protected java.lang.Object newInstance(
         UnusedPrivateParameter unused) {
       return new LoginRole();
     }
 
-    @Override
+    @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
@@ -1031,7 +1627,7 @@ public final class PlayerProtocol {
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       if (extensionRegistry == null) {
-        throw new NullPointerException();
+        throw new java.lang.NullPointerException();
       }
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
@@ -1069,15 +1665,15 @@ public final class PlayerProtocol {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return PlayerProtocol.internal_static_LoginRole_descriptor;
+      return com.game.protocol.PlayerProtocol.internal_static_LoginRole_descriptor;
     }
 
-    @Override
-    protected FieldAccessorTable
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return PlayerProtocol.internal_static_LoginRole_fieldAccessorTable
+      return com.game.protocol.PlayerProtocol.internal_static_LoginRole_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              LoginRole.class, Builder.class);
+              com.game.protocol.PlayerProtocol.LoginRole.class, com.game.protocol.PlayerProtocol.LoginRole.Builder.class);
     }
 
     public static final int ID_FIELD_NUMBER = 1;
@@ -1091,7 +1687,7 @@ public final class PlayerProtocol {
     }
 
     private byte memoizedIsInitialized = -1;
-    @Override
+    @java.lang.Override
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
@@ -1101,7 +1697,7 @@ public final class PlayerProtocol {
       return true;
     }
 
-    @Override
+    @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (id_ != 0) {
@@ -1110,7 +1706,7 @@ public final class PlayerProtocol {
       unknownFields.writeTo(output);
     }
 
-    @Override
+    @java.lang.Override
     public int getSerializedSize() {
       int size = memoizedSize;
       if (size != -1) return size;
@@ -1125,15 +1721,15 @@ public final class PlayerProtocol {
       return size;
     }
 
-    @Override
-    public boolean equals(final Object obj) {
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof LoginRole)) {
+      if (!(obj instanceof com.game.protocol.PlayerProtocol.LoginRole)) {
         return super.equals(obj);
       }
-      LoginRole other = (LoginRole) obj;
+      com.game.protocol.PlayerProtocol.LoginRole other = (com.game.protocol.PlayerProtocol.LoginRole) obj;
 
       if (getId()
           != other.getId()) return false;
@@ -1141,7 +1737,7 @@ public final class PlayerProtocol {
       return true;
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
       if (memoizedHashCode != 0) {
         return memoizedHashCode;
@@ -1155,69 +1751,69 @@ public final class PlayerProtocol {
       return hash;
     }
 
-    public static LoginRole parseFrom(
+    public static com.game.protocol.PlayerProtocol.LoginRole parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static LoginRole parseFrom(
+    public static com.game.protocol.PlayerProtocol.LoginRole parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static LoginRole parseFrom(
+    public static com.game.protocol.PlayerProtocol.LoginRole parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static LoginRole parseFrom(
+    public static com.game.protocol.PlayerProtocol.LoginRole parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static LoginRole parseFrom(byte[] data)
+    public static com.game.protocol.PlayerProtocol.LoginRole parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static LoginRole parseFrom(
+    public static com.game.protocol.PlayerProtocol.LoginRole parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static LoginRole parseFrom(java.io.InputStream input)
+    public static com.game.protocol.PlayerProtocol.LoginRole parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static LoginRole parseFrom(
+    public static com.game.protocol.PlayerProtocol.LoginRole parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static LoginRole parseDelimitedFrom(java.io.InputStream input)
+    public static com.game.protocol.PlayerProtocol.LoginRole parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static LoginRole parseDelimitedFrom(
+    public static com.game.protocol.PlayerProtocol.LoginRole parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static LoginRole parseFrom(
+    public static com.game.protocol.PlayerProtocol.LoginRole parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static LoginRole parseFrom(
+    public static com.game.protocol.PlayerProtocol.LoginRole parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -1225,23 +1821,23 @@ public final class PlayerProtocol {
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    @Override
+    @java.lang.Override
     public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(LoginRole prototype) {
+    public static Builder newBuilder(com.game.protocol.PlayerProtocol.LoginRole prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
-    @Override
+    @java.lang.Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
           ? new Builder() : new Builder().mergeFrom(this);
     }
 
-    @Override
+    @java.lang.Override
     protected Builder newBuilderForType(
-        BuilderParent parent) {
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -1255,18 +1851,18 @@ public final class PlayerProtocol {
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:LoginRole)
-        LoginRoleOrBuilder {
+        com.game.protocol.PlayerProtocol.LoginRoleOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return PlayerProtocol.internal_static_LoginRole_descriptor;
+        return com.game.protocol.PlayerProtocol.internal_static_LoginRole_descriptor;
       }
 
-      @Override
-      protected FieldAccessorTable
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return PlayerProtocol.internal_static_LoginRole_fieldAccessorTable
+        return com.game.protocol.PlayerProtocol.internal_static_LoginRole_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                LoginRole.class, Builder.class);
+                com.game.protocol.PlayerProtocol.LoginRole.class, com.game.protocol.PlayerProtocol.LoginRole.Builder.class);
       }
 
       // Construct using com.game.protocol.PlayerProtocol.LoginRole.newBuilder()
@@ -1275,7 +1871,7 @@ public final class PlayerProtocol {
       }
 
       private Builder(
-          BuilderParent parent) {
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -1284,7 +1880,7 @@ public final class PlayerProtocol {
                 .alwaysUseFieldBuilders) {
         }
       }
-      @Override
+      @java.lang.Override
       public Builder clear() {
         super.clear();
         id_ = 0;
@@ -1292,78 +1888,78 @@ public final class PlayerProtocol {
         return this;
       }
 
-      @Override
+      @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return PlayerProtocol.internal_static_LoginRole_descriptor;
+        return com.game.protocol.PlayerProtocol.internal_static_LoginRole_descriptor;
       }
 
-      @Override
-      public LoginRole getDefaultInstanceForType() {
-        return LoginRole.getDefaultInstance();
+      @java.lang.Override
+      public com.game.protocol.PlayerProtocol.LoginRole getDefaultInstanceForType() {
+        return com.game.protocol.PlayerProtocol.LoginRole.getDefaultInstance();
       }
 
-      @Override
-      public LoginRole build() {
-        LoginRole result = buildPartial();
+      @java.lang.Override
+      public com.game.protocol.PlayerProtocol.LoginRole build() {
+        com.game.protocol.PlayerProtocol.LoginRole result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      @Override
-      public LoginRole buildPartial() {
-        LoginRole result = new LoginRole(this);
+      @java.lang.Override
+      public com.game.protocol.PlayerProtocol.LoginRole buildPartial() {
+        com.game.protocol.PlayerProtocol.LoginRole result = new com.game.protocol.PlayerProtocol.LoginRole(this);
         result.id_ = id_;
         onBuilt();
         return result;
       }
 
-      @Override
+      @java.lang.Override
       public Builder clone() {
         return super.clone();
       }
-      @Override
+      @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return super.setField(field, value);
       }
-      @Override
+      @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
         return super.clearField(field);
       }
-      @Override
+      @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
         return super.clearOneof(oneof);
       }
-      @Override
+      @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
+          int index, java.lang.Object value) {
         return super.setRepeatedField(field, index, value);
       }
-      @Override
+      @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return super.addRepeatedField(field, value);
       }
-      @Override
+      @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof LoginRole) {
-          return mergeFrom((LoginRole)other);
+        if (other instanceof com.game.protocol.PlayerProtocol.LoginRole) {
+          return mergeFrom((com.game.protocol.PlayerProtocol.LoginRole)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(LoginRole other) {
-        if (other == LoginRole.getDefaultInstance()) return this;
+      public Builder mergeFrom(com.game.protocol.PlayerProtocol.LoginRole other) {
+        if (other == com.game.protocol.PlayerProtocol.LoginRole.getDefaultInstance()) return this;
         if (other.getId() != 0) {
           setId(other.getId());
         }
@@ -1372,21 +1968,21 @@ public final class PlayerProtocol {
         return this;
       }
 
-      @Override
+      @java.lang.Override
       public final boolean isInitialized() {
         return true;
       }
 
-      @Override
+      @java.lang.Override
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        LoginRole parsedMessage = null;
+        com.game.protocol.PlayerProtocol.LoginRole parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (LoginRole) e.getUnfinishedMessage();
+          parsedMessage = (com.game.protocol.PlayerProtocol.LoginRole) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -1425,13 +2021,13 @@ public final class PlayerProtocol {
         onChanged();
         return this;
       }
-      @Override
+      @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
-      @Override
+      @java.lang.Override
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
@@ -1442,18 +2038,18 @@ public final class PlayerProtocol {
     }
 
     // @@protoc_insertion_point(class_scope:LoginRole)
-    private static final LoginRole DEFAULT_INSTANCE;
+    private static final com.game.protocol.PlayerProtocol.LoginRole DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new LoginRole();
+      DEFAULT_INSTANCE = new com.game.protocol.PlayerProtocol.LoginRole();
     }
 
-    public static LoginRole getDefaultInstance() {
+    public static com.game.protocol.PlayerProtocol.LoginRole getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
     private static final com.google.protobuf.Parser<LoginRole>
         PARSER = new com.google.protobuf.AbstractParser<LoginRole>() {
-      @Override
+      @java.lang.Override
       public LoginRole parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -1466,13 +2062,13 @@ public final class PlayerProtocol {
       return PARSER;
     }
 
-    @Override
+    @java.lang.Override
     public com.google.protobuf.Parser<LoginRole> getParserForType() {
       return PARSER;
     }
 
-    @Override
-    public LoginRole getDefaultInstanceForType() {
+    @java.lang.Override
+    public com.game.protocol.PlayerProtocol.LoginRole getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -1492,7 +2088,7 @@ public final class PlayerProtocol {
      * <code>string name = 2;</code>
      * @return The name.
      */
-    String getName();
+    java.lang.String getName();
     /**
      * <code>string name = 2;</code>
      * @return The bytes for name.
@@ -1527,11 +2123,11 @@ public final class PlayerProtocol {
      * <code>.PropertyInfo property = 6;</code>
      * @return The property.
      */
-    PropertyInfo getProperty();
+    com.game.protocol.PlayerProtocol.PropertyInfo getProperty();
     /**
      * <code>.PropertyInfo property = 6;</code>
      */
-    PropertyInfoOrBuilder getPropertyOrBuilder();
+    com.game.protocol.PlayerProtocol.PropertyInfoOrBuilder getPropertyOrBuilder();
 
     /**
      * <code>repeated .EquipInfo equip = 7;</code>
@@ -1555,7 +2151,7 @@ public final class PlayerProtocol {
      * <code>repeated .EquipInfo equip = 7;</code>
      */
     com.game.protocol.EquipProtocol.EquipInfoOrBuilder getEquipOrBuilder(
-            int index);
+        int index);
   }
   /**
    * <pre>
@@ -1578,14 +2174,14 @@ public final class PlayerProtocol {
       equip_ = java.util.Collections.emptyList();
     }
 
-    @Override
+    @java.lang.Override
     @SuppressWarnings({"unused"})
-    protected Object newInstance(
+    protected java.lang.Object newInstance(
         UnusedPrivateParameter unused) {
       return new PlayerInfo();
     }
 
-    @Override
+    @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
@@ -1596,7 +2192,7 @@ public final class PlayerProtocol {
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       if (extensionRegistry == null) {
-        throw new NullPointerException();
+        throw new java.lang.NullPointerException();
       }
       int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
@@ -1615,7 +2211,7 @@ public final class PlayerProtocol {
               break;
             }
             case 18: {
-              String s = input.readStringRequireUtf8();
+              java.lang.String s = input.readStringRequireUtf8();
 
               name_ = s;
               break;
@@ -1636,11 +2232,11 @@ public final class PlayerProtocol {
               break;
             }
             case 50: {
-              PropertyInfo.Builder subBuilder = null;
+              com.game.protocol.PlayerProtocol.PropertyInfo.Builder subBuilder = null;
               if (property_ != null) {
                 subBuilder = property_.toBuilder();
               }
-              property_ = input.readMessage(PropertyInfo.parser(), extensionRegistry);
+              property_ = input.readMessage(com.game.protocol.PlayerProtocol.PropertyInfo.parser(), extensionRegistry);
               if (subBuilder != null) {
                 subBuilder.mergeFrom(property_);
                 property_ = subBuilder.buildPartial();
@@ -1681,15 +2277,15 @@ public final class PlayerProtocol {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return PlayerProtocol.internal_static_PlayerInfo_descriptor;
+      return com.game.protocol.PlayerProtocol.internal_static_PlayerInfo_descriptor;
     }
 
-    @Override
-    protected FieldAccessorTable
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return PlayerProtocol.internal_static_PlayerInfo_fieldAccessorTable
+      return com.game.protocol.PlayerProtocol.internal_static_PlayerInfo_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              PlayerInfo.class, Builder.class);
+              com.game.protocol.PlayerProtocol.PlayerInfo.class, com.game.protocol.PlayerProtocol.PlayerInfo.Builder.class);
     }
 
     public static final int ID_FIELD_NUMBER = 1;
@@ -1703,19 +2299,19 @@ public final class PlayerProtocol {
     }
 
     public static final int NAME_FIELD_NUMBER = 2;
-    private volatile Object name_;
+    private volatile java.lang.Object name_;
     /**
      * <code>string name = 2;</code>
      * @return The name.
      */
-    public String getName() {
-      Object ref = name_;
-      if (ref instanceof String) {
-        return (String) ref;
+    public java.lang.String getName() {
+      java.lang.Object ref = name_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
+        java.lang.String s = bs.toStringUtf8();
         name_ = s;
         return s;
       }
@@ -1726,11 +2322,11 @@ public final class PlayerProtocol {
      */
     public com.google.protobuf.ByteString
         getNameBytes() {
-      Object ref = name_;
-      if (ref instanceof String) {
+      java.lang.Object ref = name_;
+      if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
+                (java.lang.String) ref);
         name_ = b;
         return b;
       } else {
@@ -1769,7 +2365,7 @@ public final class PlayerProtocol {
     }
 
     public static final int PROPERTY_FIELD_NUMBER = 6;
-    private PropertyInfo property_;
+    private com.game.protocol.PlayerProtocol.PropertyInfo property_;
     /**
      * <code>.PropertyInfo property = 6;</code>
      * @return Whether the property field is set.
@@ -1781,13 +2377,13 @@ public final class PlayerProtocol {
      * <code>.PropertyInfo property = 6;</code>
      * @return The property.
      */
-    public PropertyInfo getProperty() {
-      return property_ == null ? PropertyInfo.getDefaultInstance() : property_;
+    public com.game.protocol.PlayerProtocol.PropertyInfo getProperty() {
+      return property_ == null ? com.game.protocol.PlayerProtocol.PropertyInfo.getDefaultInstance() : property_;
     }
     /**
      * <code>.PropertyInfo property = 6;</code>
      */
-    public PropertyInfoOrBuilder getPropertyOrBuilder() {
+    public com.game.protocol.PlayerProtocol.PropertyInfoOrBuilder getPropertyOrBuilder() {
       return getProperty();
     }
 
@@ -1827,7 +2423,7 @@ public final class PlayerProtocol {
     }
 
     private byte memoizedIsInitialized = -1;
-    @Override
+    @java.lang.Override
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
@@ -1837,7 +2433,7 @@ public final class PlayerProtocol {
       return true;
     }
 
-    @Override
+    @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (id_ != 0) {
@@ -1864,7 +2460,7 @@ public final class PlayerProtocol {
       unknownFields.writeTo(output);
     }
 
-    @Override
+    @java.lang.Override
     public int getSerializedSize() {
       int size = memoizedSize;
       if (size != -1) return size;
@@ -1902,15 +2498,15 @@ public final class PlayerProtocol {
       return size;
     }
 
-    @Override
-    public boolean equals(final Object obj) {
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof PlayerInfo)) {
+      if (!(obj instanceof com.game.protocol.PlayerProtocol.PlayerInfo)) {
         return super.equals(obj);
       }
-      PlayerInfo other = (PlayerInfo) obj;
+      com.game.protocol.PlayerProtocol.PlayerInfo other = (com.game.protocol.PlayerProtocol.PlayerInfo) obj;
 
       if (getId()
           != other.getId()) return false;
@@ -1933,7 +2529,7 @@ public final class PlayerProtocol {
       return true;
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
       if (memoizedHashCode != 0) {
         return memoizedHashCode;
@@ -1963,69 +2559,69 @@ public final class PlayerProtocol {
       return hash;
     }
 
-    public static PlayerInfo parseFrom(
+    public static com.game.protocol.PlayerProtocol.PlayerInfo parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static PlayerInfo parseFrom(
+    public static com.game.protocol.PlayerProtocol.PlayerInfo parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static PlayerInfo parseFrom(
+    public static com.game.protocol.PlayerProtocol.PlayerInfo parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static PlayerInfo parseFrom(
+    public static com.game.protocol.PlayerProtocol.PlayerInfo parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static PlayerInfo parseFrom(byte[] data)
+    public static com.game.protocol.PlayerProtocol.PlayerInfo parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static PlayerInfo parseFrom(
+    public static com.game.protocol.PlayerProtocol.PlayerInfo parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static PlayerInfo parseFrom(java.io.InputStream input)
+    public static com.game.protocol.PlayerProtocol.PlayerInfo parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static PlayerInfo parseFrom(
+    public static com.game.protocol.PlayerProtocol.PlayerInfo parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static PlayerInfo parseDelimitedFrom(java.io.InputStream input)
+    public static com.game.protocol.PlayerProtocol.PlayerInfo parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static PlayerInfo parseDelimitedFrom(
+    public static com.game.protocol.PlayerProtocol.PlayerInfo parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static PlayerInfo parseFrom(
+    public static com.game.protocol.PlayerProtocol.PlayerInfo parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static PlayerInfo parseFrom(
+    public static com.game.protocol.PlayerProtocol.PlayerInfo parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -2033,23 +2629,23 @@ public final class PlayerProtocol {
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    @Override
+    @java.lang.Override
     public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(PlayerInfo prototype) {
+    public static Builder newBuilder(com.game.protocol.PlayerProtocol.PlayerInfo prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
-    @Override
+    @java.lang.Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
           ? new Builder() : new Builder().mergeFrom(this);
     }
 
-    @Override
+    @java.lang.Override
     protected Builder newBuilderForType(
-        BuilderParent parent) {
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -2063,18 +2659,18 @@ public final class PlayerProtocol {
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:PlayerInfo)
-        PlayerInfoOrBuilder {
+        com.game.protocol.PlayerProtocol.PlayerInfoOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return PlayerProtocol.internal_static_PlayerInfo_descriptor;
+        return com.game.protocol.PlayerProtocol.internal_static_PlayerInfo_descriptor;
       }
 
-      @Override
-      protected FieldAccessorTable
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return PlayerProtocol.internal_static_PlayerInfo_fieldAccessorTable
+        return com.game.protocol.PlayerProtocol.internal_static_PlayerInfo_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                PlayerInfo.class, Builder.class);
+                com.game.protocol.PlayerProtocol.PlayerInfo.class, com.game.protocol.PlayerProtocol.PlayerInfo.Builder.class);
       }
 
       // Construct using com.game.protocol.PlayerProtocol.PlayerInfo.newBuilder()
@@ -2083,7 +2679,7 @@ public final class PlayerProtocol {
       }
 
       private Builder(
-          BuilderParent parent) {
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -2093,7 +2689,7 @@ public final class PlayerProtocol {
           getEquipFieldBuilder();
         }
       }
-      @Override
+      @java.lang.Override
       public Builder clear() {
         super.clear();
         id_ = 0;
@@ -2121,29 +2717,29 @@ public final class PlayerProtocol {
         return this;
       }
 
-      @Override
+      @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return PlayerProtocol.internal_static_PlayerInfo_descriptor;
+        return com.game.protocol.PlayerProtocol.internal_static_PlayerInfo_descriptor;
       }
 
-      @Override
-      public PlayerInfo getDefaultInstanceForType() {
-        return PlayerInfo.getDefaultInstance();
+      @java.lang.Override
+      public com.game.protocol.PlayerProtocol.PlayerInfo getDefaultInstanceForType() {
+        return com.game.protocol.PlayerProtocol.PlayerInfo.getDefaultInstance();
       }
 
-      @Override
-      public PlayerInfo build() {
-        PlayerInfo result = buildPartial();
+      @java.lang.Override
+      public com.game.protocol.PlayerProtocol.PlayerInfo build() {
+        com.game.protocol.PlayerProtocol.PlayerInfo result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      @Override
-      public PlayerInfo buildPartial() {
-        PlayerInfo result = new PlayerInfo(this);
+      @java.lang.Override
+      public com.game.protocol.PlayerProtocol.PlayerInfo buildPartial() {
+        com.game.protocol.PlayerProtocol.PlayerInfo result = new com.game.protocol.PlayerProtocol.PlayerInfo(this);
         int from_bitField0_ = bitField0_;
         result.id_ = id_;
         result.name_ = name_;
@@ -2168,50 +2764,50 @@ public final class PlayerProtocol {
         return result;
       }
 
-      @Override
+      @java.lang.Override
       public Builder clone() {
         return super.clone();
       }
-      @Override
+      @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return super.setField(field, value);
       }
-      @Override
+      @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
         return super.clearField(field);
       }
-      @Override
+      @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
         return super.clearOneof(oneof);
       }
-      @Override
+      @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
+          int index, java.lang.Object value) {
         return super.setRepeatedField(field, index, value);
       }
-      @Override
+      @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return super.addRepeatedField(field, value);
       }
-      @Override
+      @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof PlayerInfo) {
-          return mergeFrom((PlayerInfo)other);
+        if (other instanceof com.game.protocol.PlayerProtocol.PlayerInfo) {
+          return mergeFrom((com.game.protocol.PlayerProtocol.PlayerInfo)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(PlayerInfo other) {
-        if (other == PlayerInfo.getDefaultInstance()) return this;
+      public Builder mergeFrom(com.game.protocol.PlayerProtocol.PlayerInfo other) {
+        if (other == com.game.protocol.PlayerProtocol.PlayerInfo.getDefaultInstance()) return this;
         if (other.getId() != 0) {
           setId(other.getId());
         }
@@ -2262,21 +2858,21 @@ public final class PlayerProtocol {
         return this;
       }
 
-      @Override
+      @java.lang.Override
       public final boolean isInitialized() {
         return true;
       }
 
-      @Override
+      @java.lang.Override
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        PlayerInfo parsedMessage = null;
+        com.game.protocol.PlayerProtocol.PlayerInfo parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (PlayerInfo) e.getUnfinishedMessage();
+          parsedMessage = (com.game.protocol.PlayerProtocol.PlayerInfo) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -2317,21 +2913,21 @@ public final class PlayerProtocol {
         return this;
       }
 
-      private Object name_ = "";
+      private java.lang.Object name_ = "";
       /**
        * <code>string name = 2;</code>
        * @return The name.
        */
-      public String getName() {
-        Object ref = name_;
-        if (!(ref instanceof String)) {
+      public java.lang.String getName() {
+        java.lang.Object ref = name_;
+        if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
-          String s = bs.toStringUtf8();
+          java.lang.String s = bs.toStringUtf8();
           name_ = s;
           return s;
         } else {
-          return (String) ref;
+          return (java.lang.String) ref;
         }
       }
       /**
@@ -2340,11 +2936,11 @@ public final class PlayerProtocol {
        */
       public com.google.protobuf.ByteString
           getNameBytes() {
-        Object ref = name_;
+        java.lang.Object ref = name_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           name_ = b;
           return b;
         } else {
@@ -2357,7 +2953,7 @@ public final class PlayerProtocol {
        * @return This builder for chaining.
        */
       public Builder setName(
-          String value) {
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -2483,9 +3079,9 @@ public final class PlayerProtocol {
         return this;
       }
 
-      private PropertyInfo property_;
+      private com.game.protocol.PlayerProtocol.PropertyInfo property_;
       private com.google.protobuf.SingleFieldBuilderV3<
-          PropertyInfo, PropertyInfo.Builder, PropertyInfoOrBuilder> propertyBuilder_;
+          com.game.protocol.PlayerProtocol.PropertyInfo, com.game.protocol.PlayerProtocol.PropertyInfo.Builder, com.game.protocol.PlayerProtocol.PropertyInfoOrBuilder> propertyBuilder_;
       /**
        * <code>.PropertyInfo property = 6;</code>
        * @return Whether the property field is set.
@@ -2497,9 +3093,9 @@ public final class PlayerProtocol {
        * <code>.PropertyInfo property = 6;</code>
        * @return The property.
        */
-      public PropertyInfo getProperty() {
+      public com.game.protocol.PlayerProtocol.PropertyInfo getProperty() {
         if (propertyBuilder_ == null) {
-          return property_ == null ? PropertyInfo.getDefaultInstance() : property_;
+          return property_ == null ? com.game.protocol.PlayerProtocol.PropertyInfo.getDefaultInstance() : property_;
         } else {
           return propertyBuilder_.getMessage();
         }
@@ -2507,7 +3103,7 @@ public final class PlayerProtocol {
       /**
        * <code>.PropertyInfo property = 6;</code>
        */
-      public Builder setProperty(PropertyInfo value) {
+      public Builder setProperty(com.game.protocol.PlayerProtocol.PropertyInfo value) {
         if (propertyBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -2524,7 +3120,7 @@ public final class PlayerProtocol {
        * <code>.PropertyInfo property = 6;</code>
        */
       public Builder setProperty(
-          PropertyInfo.Builder builderForValue) {
+          com.game.protocol.PlayerProtocol.PropertyInfo.Builder builderForValue) {
         if (propertyBuilder_ == null) {
           property_ = builderForValue.build();
           onChanged();
@@ -2537,11 +3133,11 @@ public final class PlayerProtocol {
       /**
        * <code>.PropertyInfo property = 6;</code>
        */
-      public Builder mergeProperty(PropertyInfo value) {
+      public Builder mergeProperty(com.game.protocol.PlayerProtocol.PropertyInfo value) {
         if (propertyBuilder_ == null) {
           if (property_ != null) {
             property_ =
-              PropertyInfo.newBuilder(property_).mergeFrom(value).buildPartial();
+              com.game.protocol.PlayerProtocol.PropertyInfo.newBuilder(property_).mergeFrom(value).buildPartial();
           } else {
             property_ = value;
           }
@@ -2569,7 +3165,7 @@ public final class PlayerProtocol {
       /**
        * <code>.PropertyInfo property = 6;</code>
        */
-      public PropertyInfo.Builder getPropertyBuilder() {
+      public com.game.protocol.PlayerProtocol.PropertyInfo.Builder getPropertyBuilder() {
         
         onChanged();
         return getPropertyFieldBuilder().getBuilder();
@@ -2577,23 +3173,23 @@ public final class PlayerProtocol {
       /**
        * <code>.PropertyInfo property = 6;</code>
        */
-      public PropertyInfoOrBuilder getPropertyOrBuilder() {
+      public com.game.protocol.PlayerProtocol.PropertyInfoOrBuilder getPropertyOrBuilder() {
         if (propertyBuilder_ != null) {
           return propertyBuilder_.getMessageOrBuilder();
         } else {
           return property_ == null ?
-              PropertyInfo.getDefaultInstance() : property_;
+              com.game.protocol.PlayerProtocol.PropertyInfo.getDefaultInstance() : property_;
         }
       }
       /**
        * <code>.PropertyInfo property = 6;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
-          PropertyInfo, PropertyInfo.Builder, PropertyInfoOrBuilder>
+          com.game.protocol.PlayerProtocol.PropertyInfo, com.game.protocol.PlayerProtocol.PropertyInfo.Builder, com.game.protocol.PlayerProtocol.PropertyInfoOrBuilder> 
           getPropertyFieldBuilder() {
         if (propertyBuilder_ == null) {
           propertyBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              PropertyInfo, PropertyInfo.Builder, PropertyInfoOrBuilder>(
+              com.game.protocol.PlayerProtocol.PropertyInfo, com.game.protocol.PlayerProtocol.PropertyInfo.Builder, com.game.protocol.PlayerProtocol.PropertyInfoOrBuilder>(
                   getProperty(),
                   getParentForChildren(),
                   isClean());
@@ -2740,7 +3336,7 @@ public final class PlayerProtocol {
        * <code>repeated .EquipInfo equip = 7;</code>
        */
       public Builder addAllEquip(
-          Iterable<? extends com.game.protocol.EquipProtocol.EquipInfo> values) {
+          java.lang.Iterable<? extends com.game.protocol.EquipProtocol.EquipInfo> values) {
         if (equipBuilder_ == null) {
           ensureEquipIsMutable();
           com.google.protobuf.AbstractMessageLite.Builder.addAll(
@@ -2841,13 +3437,13 @@ public final class PlayerProtocol {
         }
         return equipBuilder_;
       }
-      @Override
+      @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
-      @Override
+      @java.lang.Override
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
@@ -2858,18 +3454,18 @@ public final class PlayerProtocol {
     }
 
     // @@protoc_insertion_point(class_scope:PlayerInfo)
-    private static final PlayerInfo DEFAULT_INSTANCE;
+    private static final com.game.protocol.PlayerProtocol.PlayerInfo DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new PlayerInfo();
+      DEFAULT_INSTANCE = new com.game.protocol.PlayerProtocol.PlayerInfo();
     }
 
-    public static PlayerInfo getDefaultInstance() {
+    public static com.game.protocol.PlayerProtocol.PlayerInfo getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
     private static final com.google.protobuf.Parser<PlayerInfo>
         PARSER = new com.google.protobuf.AbstractParser<PlayerInfo>() {
-      @Override
+      @java.lang.Override
       public PlayerInfo parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -2882,13 +3478,13 @@ public final class PlayerProtocol {
       return PARSER;
     }
 
-    @Override
+    @java.lang.Override
     public com.google.protobuf.Parser<PlayerInfo> getParserForType() {
       return PARSER;
     }
 
-    @Override
-    public PlayerInfo getDefaultInstanceForType() {
+    @java.lang.Override
+    public com.game.protocol.PlayerProtocol.PlayerInfo getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -2961,14 +3557,14 @@ public final class PlayerProtocol {
     private PropertyInfo() {
     }
 
-    @Override
+    @java.lang.Override
     @SuppressWarnings({"unused"})
-    protected Object newInstance(
+    protected java.lang.Object newInstance(
         UnusedPrivateParameter unused) {
       return new PropertyInfo();
     }
 
-    @Override
+    @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
@@ -2979,7 +3575,7 @@ public final class PlayerProtocol {
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       if (extensionRegistry == null) {
-        throw new NullPointerException();
+        throw new java.lang.NullPointerException();
       }
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
@@ -3052,15 +3648,15 @@ public final class PlayerProtocol {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return PlayerProtocol.internal_static_PropertyInfo_descriptor;
+      return com.game.protocol.PlayerProtocol.internal_static_PropertyInfo_descriptor;
     }
 
-    @Override
-    protected FieldAccessorTable
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return PlayerProtocol.internal_static_PropertyInfo_fieldAccessorTable
+      return com.game.protocol.PlayerProtocol.internal_static_PropertyInfo_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              PropertyInfo.class, Builder.class);
+              com.game.protocol.PlayerProtocol.PropertyInfo.class, com.game.protocol.PlayerProtocol.PropertyInfo.Builder.class);
     }
 
     public static final int HP_FIELD_NUMBER = 1;
@@ -3144,7 +3740,7 @@ public final class PlayerProtocol {
     }
 
     private byte memoizedIsInitialized = -1;
-    @Override
+    @java.lang.Override
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
@@ -3154,7 +3750,7 @@ public final class PlayerProtocol {
       return true;
     }
 
-    @Override
+    @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (hp_ != 0) {
@@ -3184,7 +3780,7 @@ public final class PlayerProtocol {
       unknownFields.writeTo(output);
     }
 
-    @Override
+    @java.lang.Override
     public int getSerializedSize() {
       int size = memoizedSize;
       if (size != -1) return size;
@@ -3227,15 +3823,15 @@ public final class PlayerProtocol {
       return size;
     }
 
-    @Override
-    public boolean equals(final Object obj) {
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof PropertyInfo)) {
+      if (!(obj instanceof com.game.protocol.PlayerProtocol.PropertyInfo)) {
         return super.equals(obj);
       }
-      PropertyInfo other = (PropertyInfo) obj;
+      com.game.protocol.PlayerProtocol.PropertyInfo other = (com.game.protocol.PlayerProtocol.PropertyInfo) obj;
 
       if (getHp()
           != other.getHp()) return false;
@@ -3249,17 +3845,17 @@ public final class PlayerProtocol {
           != other.getPhyDefense()) return false;
       if (getMagicDefense()
           != other.getMagicDefense()) return false;
-      if (Double.doubleToLongBits(getAttackSpeed())
-          != Double.doubleToLongBits(
+      if (java.lang.Double.doubleToLongBits(getAttackSpeed())
+          != java.lang.Double.doubleToLongBits(
               other.getAttackSpeed())) return false;
-      if (Double.doubleToLongBits(getMoveSpeed())
-          != Double.doubleToLongBits(
+      if (java.lang.Double.doubleToLongBits(getMoveSpeed())
+          != java.lang.Double.doubleToLongBits(
               other.getMoveSpeed())) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
       if (memoizedHashCode != 0) {
         return memoizedHashCode;
@@ -3280,78 +3876,78 @@ public final class PlayerProtocol {
       hash = (53 * hash) + getMagicDefense();
       hash = (37 * hash) + ATTACKSPEED_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-          Double.doubleToLongBits(getAttackSpeed()));
+          java.lang.Double.doubleToLongBits(getAttackSpeed()));
       hash = (37 * hash) + MOVESPEED_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-          Double.doubleToLongBits(getMoveSpeed()));
+          java.lang.Double.doubleToLongBits(getMoveSpeed()));
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
     }
 
-    public static PropertyInfo parseFrom(
+    public static com.game.protocol.PlayerProtocol.PropertyInfo parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static PropertyInfo parseFrom(
+    public static com.game.protocol.PlayerProtocol.PropertyInfo parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static PropertyInfo parseFrom(
+    public static com.game.protocol.PlayerProtocol.PropertyInfo parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static PropertyInfo parseFrom(
+    public static com.game.protocol.PlayerProtocol.PropertyInfo parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static PropertyInfo parseFrom(byte[] data)
+    public static com.game.protocol.PlayerProtocol.PropertyInfo parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static PropertyInfo parseFrom(
+    public static com.game.protocol.PlayerProtocol.PropertyInfo parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static PropertyInfo parseFrom(java.io.InputStream input)
+    public static com.game.protocol.PlayerProtocol.PropertyInfo parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static PropertyInfo parseFrom(
+    public static com.game.protocol.PlayerProtocol.PropertyInfo parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static PropertyInfo parseDelimitedFrom(java.io.InputStream input)
+    public static com.game.protocol.PlayerProtocol.PropertyInfo parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static PropertyInfo parseDelimitedFrom(
+    public static com.game.protocol.PlayerProtocol.PropertyInfo parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static PropertyInfo parseFrom(
+    public static com.game.protocol.PlayerProtocol.PropertyInfo parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static PropertyInfo parseFrom(
+    public static com.game.protocol.PlayerProtocol.PropertyInfo parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -3359,23 +3955,23 @@ public final class PlayerProtocol {
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    @Override
+    @java.lang.Override
     public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(PropertyInfo prototype) {
+    public static Builder newBuilder(com.game.protocol.PlayerProtocol.PropertyInfo prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
-    @Override
+    @java.lang.Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
           ? new Builder() : new Builder().mergeFrom(this);
     }
 
-    @Override
+    @java.lang.Override
     protected Builder newBuilderForType(
-        BuilderParent parent) {
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -3385,18 +3981,18 @@ public final class PlayerProtocol {
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:PropertyInfo)
-        PropertyInfoOrBuilder {
+        com.game.protocol.PlayerProtocol.PropertyInfoOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return PlayerProtocol.internal_static_PropertyInfo_descriptor;
+        return com.game.protocol.PlayerProtocol.internal_static_PropertyInfo_descriptor;
       }
 
-      @Override
-      protected FieldAccessorTable
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return PlayerProtocol.internal_static_PropertyInfo_fieldAccessorTable
+        return com.game.protocol.PlayerProtocol.internal_static_PropertyInfo_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                PropertyInfo.class, Builder.class);
+                com.game.protocol.PlayerProtocol.PropertyInfo.class, com.game.protocol.PlayerProtocol.PropertyInfo.Builder.class);
       }
 
       // Construct using com.game.protocol.PlayerProtocol.PropertyInfo.newBuilder()
@@ -3405,7 +4001,7 @@ public final class PlayerProtocol {
       }
 
       private Builder(
-          BuilderParent parent) {
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -3414,7 +4010,7 @@ public final class PlayerProtocol {
                 .alwaysUseFieldBuilders) {
         }
       }
-      @Override
+      @java.lang.Override
       public Builder clear() {
         super.clear();
         hp_ = 0;
@@ -3436,29 +4032,29 @@ public final class PlayerProtocol {
         return this;
       }
 
-      @Override
+      @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return PlayerProtocol.internal_static_PropertyInfo_descriptor;
+        return com.game.protocol.PlayerProtocol.internal_static_PropertyInfo_descriptor;
       }
 
-      @Override
-      public PropertyInfo getDefaultInstanceForType() {
-        return PropertyInfo.getDefaultInstance();
+      @java.lang.Override
+      public com.game.protocol.PlayerProtocol.PropertyInfo getDefaultInstanceForType() {
+        return com.game.protocol.PlayerProtocol.PropertyInfo.getDefaultInstance();
       }
 
-      @Override
-      public PropertyInfo build() {
-        PropertyInfo result = buildPartial();
+      @java.lang.Override
+      public com.game.protocol.PlayerProtocol.PropertyInfo build() {
+        com.game.protocol.PlayerProtocol.PropertyInfo result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      @Override
-      public PropertyInfo buildPartial() {
-        PropertyInfo result = new PropertyInfo(this);
+      @java.lang.Override
+      public com.game.protocol.PlayerProtocol.PropertyInfo buildPartial() {
+        com.game.protocol.PlayerProtocol.PropertyInfo result = new com.game.protocol.PlayerProtocol.PropertyInfo(this);
         result.hp_ = hp_;
         result.mp_ = mp_;
         result.phyAttack_ = phyAttack_;
@@ -3471,50 +4067,50 @@ public final class PlayerProtocol {
         return result;
       }
 
-      @Override
+      @java.lang.Override
       public Builder clone() {
         return super.clone();
       }
-      @Override
+      @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return super.setField(field, value);
       }
-      @Override
+      @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
         return super.clearField(field);
       }
-      @Override
+      @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
         return super.clearOneof(oneof);
       }
-      @Override
+      @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
+          int index, java.lang.Object value) {
         return super.setRepeatedField(field, index, value);
       }
-      @Override
+      @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return super.addRepeatedField(field, value);
       }
-      @Override
+      @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof PropertyInfo) {
-          return mergeFrom((PropertyInfo)other);
+        if (other instanceof com.game.protocol.PlayerProtocol.PropertyInfo) {
+          return mergeFrom((com.game.protocol.PlayerProtocol.PropertyInfo)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(PropertyInfo other) {
-        if (other == PropertyInfo.getDefaultInstance()) return this;
+      public Builder mergeFrom(com.game.protocol.PlayerProtocol.PropertyInfo other) {
+        if (other == com.game.protocol.PlayerProtocol.PropertyInfo.getDefaultInstance()) return this;
         if (other.getHp() != 0) {
           setHp(other.getHp());
         }
@@ -3544,21 +4140,21 @@ public final class PlayerProtocol {
         return this;
       }
 
-      @Override
+      @java.lang.Override
       public final boolean isInitialized() {
         return true;
       }
 
-      @Override
+      @java.lang.Override
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        PropertyInfo parsedMessage = null;
+        com.game.protocol.PlayerProtocol.PropertyInfo parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (PropertyInfo) e.getUnfinishedMessage();
+          parsedMessage = (com.game.protocol.PlayerProtocol.PropertyInfo) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -3807,13 +4403,13 @@ public final class PlayerProtocol {
         onChanged();
         return this;
       }
-      @Override
+      @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
-      @Override
+      @java.lang.Override
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
@@ -3824,18 +4420,18 @@ public final class PlayerProtocol {
     }
 
     // @@protoc_insertion_point(class_scope:PropertyInfo)
-    private static final PropertyInfo DEFAULT_INSTANCE;
+    private static final com.game.protocol.PlayerProtocol.PropertyInfo DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new PropertyInfo();
+      DEFAULT_INSTANCE = new com.game.protocol.PlayerProtocol.PropertyInfo();
     }
 
-    public static PropertyInfo getDefaultInstance() {
+    public static com.game.protocol.PlayerProtocol.PropertyInfo getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
     private static final com.google.protobuf.Parser<PropertyInfo>
         PARSER = new com.google.protobuf.AbstractParser<PropertyInfo>() {
-      @Override
+      @java.lang.Override
       public PropertyInfo parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -3848,87 +4444,61 @@ public final class PlayerProtocol {
       return PARSER;
     }
 
-    @Override
+    @java.lang.Override
     public com.google.protobuf.Parser<PropertyInfo> getParserForType() {
       return PARSER;
     }
 
-    @Override
-    public PropertyInfo getDefaultInstanceForType() {
+    @java.lang.Override
+    public com.game.protocol.PlayerProtocol.PropertyInfo getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
   }
 
-  public interface RoleInfoListOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:RoleInfoList)
+  public interface SyncPlayerDataOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:SyncPlayerData)
       com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>repeated .RoleInfo roles = 1;</code>
-     */
-    java.util.List<RoleInfo>
-        getRolesList();
-    /**
-     * <code>repeated .RoleInfo roles = 1;</code>
-     */
-    RoleInfo getRoles(int index);
-    /**
-     * <code>repeated .RoleInfo roles = 1;</code>
-     */
-    int getRolesCount();
-    /**
-     * <code>repeated .RoleInfo roles = 1;</code>
-     */
-    java.util.List<? extends RoleInfoOrBuilder>
-        getRolesOrBuilderList();
-    /**
-     * <code>repeated .RoleInfo roles = 1;</code>
-     */
-    RoleInfoOrBuilder getRolesOrBuilder(
-            int index);
   }
   /**
    * <pre>
-   * 角色列表
+   * 同步玩家数据
    * </pre>
    *
-   * Protobuf type {@code RoleInfoList}
+   * Protobuf type {@code SyncPlayerData}
    */
-  public  static final class RoleInfoList extends
+  public  static final class SyncPlayerData extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:RoleInfoList)
-      RoleInfoListOrBuilder {
+      // @@protoc_insertion_point(message_implements:SyncPlayerData)
+      SyncPlayerDataOrBuilder {
   private static final long serialVersionUID = 0L;
-    // Use RoleInfoList.newBuilder() to construct.
-    private RoleInfoList(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    // Use SyncPlayerData.newBuilder() to construct.
+    private SyncPlayerData(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-    private RoleInfoList() {
-      roles_ = java.util.Collections.emptyList();
+    private SyncPlayerData() {
     }
 
-    @Override
+    @java.lang.Override
     @SuppressWarnings({"unused"})
-    protected Object newInstance(
+    protected java.lang.Object newInstance(
         UnusedPrivateParameter unused) {
-      return new RoleInfoList();
+      return new SyncPlayerData();
     }
 
-    @Override
+    @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
-    private RoleInfoList(
+    private SyncPlayerData(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       if (extensionRegistry == null) {
-        throw new NullPointerException();
+        throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -3939,15 +4509,6 @@ public final class PlayerProtocol {
             case 0:
               done = true;
               break;
-            case 10: {
-              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                roles_ = new java.util.ArrayList<RoleInfo>();
-                mutable_bitField0_ |= 0x00000001;
-              }
-              roles_.add(
-                  input.readMessage(RoleInfo.parser(), extensionRegistry));
-              break;
-            }
             default: {
               if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
@@ -3963,63 +4524,25 @@ public final class PlayerProtocol {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
-        if (((mutable_bitField0_ & 0x00000001) != 0)) {
-          roles_ = java.util.Collections.unmodifiableList(roles_);
-        }
         this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return PlayerProtocol.internal_static_RoleInfoList_descriptor;
+      return com.game.protocol.PlayerProtocol.internal_static_SyncPlayerData_descriptor;
     }
 
-    @Override
-    protected FieldAccessorTable
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return PlayerProtocol.internal_static_RoleInfoList_fieldAccessorTable
+      return com.game.protocol.PlayerProtocol.internal_static_SyncPlayerData_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              RoleInfoList.class, Builder.class);
-    }
-
-    public static final int ROLES_FIELD_NUMBER = 1;
-    private java.util.List<RoleInfo> roles_;
-    /**
-     * <code>repeated .RoleInfo roles = 1;</code>
-     */
-    public java.util.List<RoleInfo> getRolesList() {
-      return roles_;
-    }
-    /**
-     * <code>repeated .RoleInfo roles = 1;</code>
-     */
-    public java.util.List<? extends RoleInfoOrBuilder>
-        getRolesOrBuilderList() {
-      return roles_;
-    }
-    /**
-     * <code>repeated .RoleInfo roles = 1;</code>
-     */
-    public int getRolesCount() {
-      return roles_.size();
-    }
-    /**
-     * <code>repeated .RoleInfo roles = 1;</code>
-     */
-    public RoleInfo getRoles(int index) {
-      return roles_.get(index);
-    }
-    /**
-     * <code>repeated .RoleInfo roles = 1;</code>
-     */
-    public RoleInfoOrBuilder getRolesOrBuilder(
-        int index) {
-      return roles_.get(index);
+              com.game.protocol.PlayerProtocol.SyncPlayerData.class, com.game.protocol.PlayerProtocol.SyncPlayerData.Builder.class);
     }
 
     private byte memoizedIsInitialized = -1;
-    @Override
+    @java.lang.Override
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
@@ -4029,125 +4552,112 @@ public final class PlayerProtocol {
       return true;
     }
 
-    @Override
+    @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      for (int i = 0; i < roles_.size(); i++) {
-        output.writeMessage(1, roles_.get(i));
-      }
       unknownFields.writeTo(output);
     }
 
-    @Override
+    @java.lang.Override
     public int getSerializedSize() {
       int size = memoizedSize;
       if (size != -1) return size;
 
       size = 0;
-      for (int i = 0; i < roles_.size(); i++) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1, roles_.get(i));
-      }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
     }
 
-    @Override
-    public boolean equals(final Object obj) {
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof RoleInfoList)) {
+      if (!(obj instanceof com.game.protocol.PlayerProtocol.SyncPlayerData)) {
         return super.equals(obj);
       }
-      RoleInfoList other = (RoleInfoList) obj;
+      com.game.protocol.PlayerProtocol.SyncPlayerData other = (com.game.protocol.PlayerProtocol.SyncPlayerData) obj;
 
-      if (!getRolesList()
-          .equals(other.getRolesList())) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
       if (memoizedHashCode != 0) {
         return memoizedHashCode;
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      if (getRolesCount() > 0) {
-        hash = (37 * hash) + ROLES_FIELD_NUMBER;
-        hash = (53 * hash) + getRolesList().hashCode();
-      }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
     }
 
-    public static RoleInfoList parseFrom(
+    public static com.game.protocol.PlayerProtocol.SyncPlayerData parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static RoleInfoList parseFrom(
+    public static com.game.protocol.PlayerProtocol.SyncPlayerData parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static RoleInfoList parseFrom(
+    public static com.game.protocol.PlayerProtocol.SyncPlayerData parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static RoleInfoList parseFrom(
+    public static com.game.protocol.PlayerProtocol.SyncPlayerData parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static RoleInfoList parseFrom(byte[] data)
+    public static com.game.protocol.PlayerProtocol.SyncPlayerData parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static RoleInfoList parseFrom(
+    public static com.game.protocol.PlayerProtocol.SyncPlayerData parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static RoleInfoList parseFrom(java.io.InputStream input)
+    public static com.game.protocol.PlayerProtocol.SyncPlayerData parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static RoleInfoList parseFrom(
+    public static com.game.protocol.PlayerProtocol.SyncPlayerData parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static RoleInfoList parseDelimitedFrom(java.io.InputStream input)
+    public static com.game.protocol.PlayerProtocol.SyncPlayerData parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static RoleInfoList parseDelimitedFrom(
+    public static com.game.protocol.PlayerProtocol.SyncPlayerData parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static RoleInfoList parseFrom(
+    public static com.game.protocol.PlayerProtocol.SyncPlayerData parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static RoleInfoList parseFrom(
+    public static com.game.protocol.PlayerProtocol.SyncPlayerData parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -4155,205 +4665,162 @@ public final class PlayerProtocol {
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    @Override
+    @java.lang.Override
     public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(RoleInfoList prototype) {
+    public static Builder newBuilder(com.game.protocol.PlayerProtocol.SyncPlayerData prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
-    @Override
+    @java.lang.Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
           ? new Builder() : new Builder().mergeFrom(this);
     }
 
-    @Override
+    @java.lang.Override
     protected Builder newBuilderForType(
-        BuilderParent parent) {
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
     /**
      * <pre>
-     * 角色列表
+     * 同步玩家数据
      * </pre>
      *
-     * Protobuf type {@code RoleInfoList}
+     * Protobuf type {@code SyncPlayerData}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:RoleInfoList)
-        RoleInfoListOrBuilder {
+        // @@protoc_insertion_point(builder_implements:SyncPlayerData)
+        com.game.protocol.PlayerProtocol.SyncPlayerDataOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return PlayerProtocol.internal_static_RoleInfoList_descriptor;
+        return com.game.protocol.PlayerProtocol.internal_static_SyncPlayerData_descriptor;
       }
 
-      @Override
-      protected FieldAccessorTable
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return PlayerProtocol.internal_static_RoleInfoList_fieldAccessorTable
+        return com.game.protocol.PlayerProtocol.internal_static_SyncPlayerData_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                RoleInfoList.class, Builder.class);
+                com.game.protocol.PlayerProtocol.SyncPlayerData.class, com.game.protocol.PlayerProtocol.SyncPlayerData.Builder.class);
       }
 
-      // Construct using com.game.protocol.PlayerProtocol.RoleInfoList.newBuilder()
+      // Construct using com.game.protocol.PlayerProtocol.SyncPlayerData.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
 
       private Builder(
-          BuilderParent parent) {
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessageV3
                 .alwaysUseFieldBuilders) {
-          getRolesFieldBuilder();
         }
       }
-      @Override
+      @java.lang.Override
       public Builder clear() {
         super.clear();
-        if (rolesBuilder_ == null) {
-          roles_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
-        } else {
-          rolesBuilder_.clear();
-        }
         return this;
       }
 
-      @Override
+      @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return PlayerProtocol.internal_static_RoleInfoList_descriptor;
+        return com.game.protocol.PlayerProtocol.internal_static_SyncPlayerData_descriptor;
       }
 
-      @Override
-      public RoleInfoList getDefaultInstanceForType() {
-        return RoleInfoList.getDefaultInstance();
+      @java.lang.Override
+      public com.game.protocol.PlayerProtocol.SyncPlayerData getDefaultInstanceForType() {
+        return com.game.protocol.PlayerProtocol.SyncPlayerData.getDefaultInstance();
       }
 
-      @Override
-      public RoleInfoList build() {
-        RoleInfoList result = buildPartial();
+      @java.lang.Override
+      public com.game.protocol.PlayerProtocol.SyncPlayerData build() {
+        com.game.protocol.PlayerProtocol.SyncPlayerData result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      @Override
-      public RoleInfoList buildPartial() {
-        RoleInfoList result = new RoleInfoList(this);
-        int from_bitField0_ = bitField0_;
-        if (rolesBuilder_ == null) {
-          if (((bitField0_ & 0x00000001) != 0)) {
-            roles_ = java.util.Collections.unmodifiableList(roles_);
-            bitField0_ = (bitField0_ & ~0x00000001);
-          }
-          result.roles_ = roles_;
-        } else {
-          result.roles_ = rolesBuilder_.build();
-        }
+      @java.lang.Override
+      public com.game.protocol.PlayerProtocol.SyncPlayerData buildPartial() {
+        com.game.protocol.PlayerProtocol.SyncPlayerData result = new com.game.protocol.PlayerProtocol.SyncPlayerData(this);
         onBuilt();
         return result;
       }
 
-      @Override
+      @java.lang.Override
       public Builder clone() {
         return super.clone();
       }
-      @Override
+      @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return super.setField(field, value);
       }
-      @Override
+      @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
         return super.clearField(field);
       }
-      @Override
+      @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
         return super.clearOneof(oneof);
       }
-      @Override
+      @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
+          int index, java.lang.Object value) {
         return super.setRepeatedField(field, index, value);
       }
-      @Override
+      @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return super.addRepeatedField(field, value);
       }
-      @Override
+      @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof RoleInfoList) {
-          return mergeFrom((RoleInfoList)other);
+        if (other instanceof com.game.protocol.PlayerProtocol.SyncPlayerData) {
+          return mergeFrom((com.game.protocol.PlayerProtocol.SyncPlayerData)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(RoleInfoList other) {
-        if (other == RoleInfoList.getDefaultInstance()) return this;
-        if (rolesBuilder_ == null) {
-          if (!other.roles_.isEmpty()) {
-            if (roles_.isEmpty()) {
-              roles_ = other.roles_;
-              bitField0_ = (bitField0_ & ~0x00000001);
-            } else {
-              ensureRolesIsMutable();
-              roles_.addAll(other.roles_);
-            }
-            onChanged();
-          }
-        } else {
-          if (!other.roles_.isEmpty()) {
-            if (rolesBuilder_.isEmpty()) {
-              rolesBuilder_.dispose();
-              rolesBuilder_ = null;
-              roles_ = other.roles_;
-              bitField0_ = (bitField0_ & ~0x00000001);
-              rolesBuilder_ = 
-                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
-                   getRolesFieldBuilder() : null;
-            } else {
-              rolesBuilder_.addAllMessages(other.roles_);
-            }
-          }
-        }
+      public Builder mergeFrom(com.game.protocol.PlayerProtocol.SyncPlayerData other) {
+        if (other == com.game.protocol.PlayerProtocol.SyncPlayerData.getDefaultInstance()) return this;
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
       }
 
-      @Override
+      @java.lang.Override
       public final boolean isInitialized() {
         return true;
       }
 
-      @Override
+      @java.lang.Override
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        RoleInfoList parsedMessage = null;
+        com.game.protocol.PlayerProtocol.SyncPlayerData parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (RoleInfoList) e.getUnfinishedMessage();
+          parsedMessage = (com.game.protocol.PlayerProtocol.SyncPlayerData) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -4362,305 +4829,921 @@ public final class PlayerProtocol {
         }
         return this;
       }
-      private int bitField0_;
-
-      private java.util.List<RoleInfo> roles_ =
-        java.util.Collections.emptyList();
-      private void ensureRolesIsMutable() {
-        if (!((bitField0_ & 0x00000001) != 0)) {
-          roles_ = new java.util.ArrayList<RoleInfo>(roles_);
-          bitField0_ |= 0x00000001;
-         }
-      }
-
-      private com.google.protobuf.RepeatedFieldBuilderV3<
-          RoleInfo, RoleInfo.Builder, RoleInfoOrBuilder> rolesBuilder_;
-
-      /**
-       * <code>repeated .RoleInfo roles = 1;</code>
-       */
-      public java.util.List<RoleInfo> getRolesList() {
-        if (rolesBuilder_ == null) {
-          return java.util.Collections.unmodifiableList(roles_);
-        } else {
-          return rolesBuilder_.getMessageList();
-        }
-      }
-      /**
-       * <code>repeated .RoleInfo roles = 1;</code>
-       */
-      public int getRolesCount() {
-        if (rolesBuilder_ == null) {
-          return roles_.size();
-        } else {
-          return rolesBuilder_.getCount();
-        }
-      }
-      /**
-       * <code>repeated .RoleInfo roles = 1;</code>
-       */
-      public RoleInfo getRoles(int index) {
-        if (rolesBuilder_ == null) {
-          return roles_.get(index);
-        } else {
-          return rolesBuilder_.getMessage(index);
-        }
-      }
-      /**
-       * <code>repeated .RoleInfo roles = 1;</code>
-       */
-      public Builder setRoles(
-          int index, RoleInfo value) {
-        if (rolesBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureRolesIsMutable();
-          roles_.set(index, value);
-          onChanged();
-        } else {
-          rolesBuilder_.setMessage(index, value);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .RoleInfo roles = 1;</code>
-       */
-      public Builder setRoles(
-          int index, RoleInfo.Builder builderForValue) {
-        if (rolesBuilder_ == null) {
-          ensureRolesIsMutable();
-          roles_.set(index, builderForValue.build());
-          onChanged();
-        } else {
-          rolesBuilder_.setMessage(index, builderForValue.build());
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .RoleInfo roles = 1;</code>
-       */
-      public Builder addRoles(RoleInfo value) {
-        if (rolesBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureRolesIsMutable();
-          roles_.add(value);
-          onChanged();
-        } else {
-          rolesBuilder_.addMessage(value);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .RoleInfo roles = 1;</code>
-       */
-      public Builder addRoles(
-          int index, RoleInfo value) {
-        if (rolesBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureRolesIsMutable();
-          roles_.add(index, value);
-          onChanged();
-        } else {
-          rolesBuilder_.addMessage(index, value);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .RoleInfo roles = 1;</code>
-       */
-      public Builder addRoles(
-          RoleInfo.Builder builderForValue) {
-        if (rolesBuilder_ == null) {
-          ensureRolesIsMutable();
-          roles_.add(builderForValue.build());
-          onChanged();
-        } else {
-          rolesBuilder_.addMessage(builderForValue.build());
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .RoleInfo roles = 1;</code>
-       */
-      public Builder addRoles(
-          int index, RoleInfo.Builder builderForValue) {
-        if (rolesBuilder_ == null) {
-          ensureRolesIsMutable();
-          roles_.add(index, builderForValue.build());
-          onChanged();
-        } else {
-          rolesBuilder_.addMessage(index, builderForValue.build());
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .RoleInfo roles = 1;</code>
-       */
-      public Builder addAllRoles(
-          Iterable<? extends RoleInfo> values) {
-        if (rolesBuilder_ == null) {
-          ensureRolesIsMutable();
-          com.google.protobuf.AbstractMessageLite.Builder.addAll(
-              values, roles_);
-          onChanged();
-        } else {
-          rolesBuilder_.addAllMessages(values);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .RoleInfo roles = 1;</code>
-       */
-      public Builder clearRoles() {
-        if (rolesBuilder_ == null) {
-          roles_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
-          onChanged();
-        } else {
-          rolesBuilder_.clear();
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .RoleInfo roles = 1;</code>
-       */
-      public Builder removeRoles(int index) {
-        if (rolesBuilder_ == null) {
-          ensureRolesIsMutable();
-          roles_.remove(index);
-          onChanged();
-        } else {
-          rolesBuilder_.remove(index);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .RoleInfo roles = 1;</code>
-       */
-      public RoleInfo.Builder getRolesBuilder(
-          int index) {
-        return getRolesFieldBuilder().getBuilder(index);
-      }
-      /**
-       * <code>repeated .RoleInfo roles = 1;</code>
-       */
-      public RoleInfoOrBuilder getRolesOrBuilder(
-          int index) {
-        if (rolesBuilder_ == null) {
-          return roles_.get(index);  } else {
-          return rolesBuilder_.getMessageOrBuilder(index);
-        }
-      }
-      /**
-       * <code>repeated .RoleInfo roles = 1;</code>
-       */
-      public java.util.List<? extends RoleInfoOrBuilder>
-           getRolesOrBuilderList() {
-        if (rolesBuilder_ != null) {
-          return rolesBuilder_.getMessageOrBuilderList();
-        } else {
-          return java.util.Collections.unmodifiableList(roles_);
-        }
-      }
-      /**
-       * <code>repeated .RoleInfo roles = 1;</code>
-       */
-      public RoleInfo.Builder addRolesBuilder() {
-        return getRolesFieldBuilder().addBuilder(
-            RoleInfo.getDefaultInstance());
-      }
-      /**
-       * <code>repeated .RoleInfo roles = 1;</code>
-       */
-      public RoleInfo.Builder addRolesBuilder(
-          int index) {
-        return getRolesFieldBuilder().addBuilder(
-            index, RoleInfo.getDefaultInstance());
-      }
-      /**
-       * <code>repeated .RoleInfo roles = 1;</code>
-       */
-      public java.util.List<RoleInfo.Builder>
-           getRolesBuilderList() {
-        return getRolesFieldBuilder().getBuilderList();
-      }
-      private com.google.protobuf.RepeatedFieldBuilderV3<
-          RoleInfo, RoleInfo.Builder, RoleInfoOrBuilder>
-          getRolesFieldBuilder() {
-        if (rolesBuilder_ == null) {
-          rolesBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              RoleInfo, RoleInfo.Builder, RoleInfoOrBuilder>(
-                  roles_,
-                  ((bitField0_ & 0x00000001) != 0),
-                  getParentForChildren(),
-                  isClean());
-          roles_ = null;
-        }
-        return rolesBuilder_;
-      }
-      @Override
+      @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
-      @Override
+      @java.lang.Override
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
 
 
-      // @@protoc_insertion_point(builder_scope:RoleInfoList)
+      // @@protoc_insertion_point(builder_scope:SyncPlayerData)
     }
 
-    // @@protoc_insertion_point(class_scope:RoleInfoList)
-    private static final RoleInfoList DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:SyncPlayerData)
+    private static final com.game.protocol.PlayerProtocol.SyncPlayerData DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new RoleInfoList();
+      DEFAULT_INSTANCE = new com.game.protocol.PlayerProtocol.SyncPlayerData();
     }
 
-    public static RoleInfoList getDefaultInstance() {
+    public static com.game.protocol.PlayerProtocol.SyncPlayerData getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static final com.google.protobuf.Parser<RoleInfoList>
-        PARSER = new com.google.protobuf.AbstractParser<RoleInfoList>() {
-      @Override
-      public RoleInfoList parsePartialFrom(
+    private static final com.google.protobuf.Parser<SyncPlayerData>
+        PARSER = new com.google.protobuf.AbstractParser<SyncPlayerData>() {
+      @java.lang.Override
+      public SyncPlayerData parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new RoleInfoList(input, extensionRegistry);
+        return new SyncPlayerData(input, extensionRegistry);
       }
     };
 
-    public static com.google.protobuf.Parser<RoleInfoList> parser() {
+    public static com.google.protobuf.Parser<SyncPlayerData> parser() {
       return PARSER;
     }
 
-    @Override
-    public com.google.protobuf.Parser<RoleInfoList> getParserForType() {
+    @java.lang.Override
+    public com.google.protobuf.Parser<SyncPlayerData> getParserForType() {
       return PARSER;
     }
 
-    @Override
-    public RoleInfoList getDefaultInstanceForType() {
+    @java.lang.Override
+    public com.game.protocol.PlayerProtocol.SyncPlayerData getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface SyncPlayerPropertyOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:SyncPlayerProperty)
+      com.google.protobuf.MessageOrBuilder {
+  }
+  /**
+   * <pre>
+   * 同步玩家属性数据
+   * </pre>
+   *
+   * Protobuf type {@code SyncPlayerProperty}
+   */
+  public  static final class SyncPlayerProperty extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:SyncPlayerProperty)
+      SyncPlayerPropertyOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use SyncPlayerProperty.newBuilder() to construct.
+    private SyncPlayerProperty(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private SyncPlayerProperty() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new SyncPlayerProperty();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private SyncPlayerProperty(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.game.protocol.PlayerProtocol.internal_static_SyncPlayerProperty_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.game.protocol.PlayerProtocol.internal_static_SyncPlayerProperty_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.game.protocol.PlayerProtocol.SyncPlayerProperty.class, com.game.protocol.PlayerProtocol.SyncPlayerProperty.Builder.class);
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.game.protocol.PlayerProtocol.SyncPlayerProperty)) {
+        return super.equals(obj);
+      }
+      com.game.protocol.PlayerProtocol.SyncPlayerProperty other = (com.game.protocol.PlayerProtocol.SyncPlayerProperty) obj;
+
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.game.protocol.PlayerProtocol.SyncPlayerProperty parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.game.protocol.PlayerProtocol.SyncPlayerProperty parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.game.protocol.PlayerProtocol.SyncPlayerProperty parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.game.protocol.PlayerProtocol.SyncPlayerProperty parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.game.protocol.PlayerProtocol.SyncPlayerProperty parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.game.protocol.PlayerProtocol.SyncPlayerProperty parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.game.protocol.PlayerProtocol.SyncPlayerProperty parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.game.protocol.PlayerProtocol.SyncPlayerProperty parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.game.protocol.PlayerProtocol.SyncPlayerProperty parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.game.protocol.PlayerProtocol.SyncPlayerProperty parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.game.protocol.PlayerProtocol.SyncPlayerProperty parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.game.protocol.PlayerProtocol.SyncPlayerProperty parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.game.protocol.PlayerProtocol.SyncPlayerProperty prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * <pre>
+     * 同步玩家属性数据
+     * </pre>
+     *
+     * Protobuf type {@code SyncPlayerProperty}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:SyncPlayerProperty)
+        com.game.protocol.PlayerProtocol.SyncPlayerPropertyOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.game.protocol.PlayerProtocol.internal_static_SyncPlayerProperty_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.game.protocol.PlayerProtocol.internal_static_SyncPlayerProperty_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.game.protocol.PlayerProtocol.SyncPlayerProperty.class, com.game.protocol.PlayerProtocol.SyncPlayerProperty.Builder.class);
+      }
+
+      // Construct using com.game.protocol.PlayerProtocol.SyncPlayerProperty.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.game.protocol.PlayerProtocol.internal_static_SyncPlayerProperty_descriptor;
+      }
+
+      @java.lang.Override
+      public com.game.protocol.PlayerProtocol.SyncPlayerProperty getDefaultInstanceForType() {
+        return com.game.protocol.PlayerProtocol.SyncPlayerProperty.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.game.protocol.PlayerProtocol.SyncPlayerProperty build() {
+        com.game.protocol.PlayerProtocol.SyncPlayerProperty result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.game.protocol.PlayerProtocol.SyncPlayerProperty buildPartial() {
+        com.game.protocol.PlayerProtocol.SyncPlayerProperty result = new com.game.protocol.PlayerProtocol.SyncPlayerProperty(this);
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.game.protocol.PlayerProtocol.SyncPlayerProperty) {
+          return mergeFrom((com.game.protocol.PlayerProtocol.SyncPlayerProperty)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.game.protocol.PlayerProtocol.SyncPlayerProperty other) {
+        if (other == com.game.protocol.PlayerProtocol.SyncPlayerProperty.getDefaultInstance()) return this;
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.game.protocol.PlayerProtocol.SyncPlayerProperty parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.game.protocol.PlayerProtocol.SyncPlayerProperty) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:SyncPlayerProperty)
+    }
+
+    // @@protoc_insertion_point(class_scope:SyncPlayerProperty)
+    private static final com.game.protocol.PlayerProtocol.SyncPlayerProperty DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.game.protocol.PlayerProtocol.SyncPlayerProperty();
+    }
+
+    public static com.game.protocol.PlayerProtocol.SyncPlayerProperty getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<SyncPlayerProperty>
+        PARSER = new com.google.protobuf.AbstractParser<SyncPlayerProperty>() {
+      @java.lang.Override
+      public SyncPlayerProperty parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new SyncPlayerProperty(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<SyncPlayerProperty> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<SyncPlayerProperty> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.game.protocol.PlayerProtocol.SyncPlayerProperty getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface PropertyChangeNotifyOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:PropertyChangeNotify)
+      com.google.protobuf.MessageOrBuilder {
+  }
+  /**
+   * <pre>
+   * 属性变更通知
+   * </pre>
+   *
+   * Protobuf type {@code PropertyChangeNotify}
+   */
+  public  static final class PropertyChangeNotify extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:PropertyChangeNotify)
+      PropertyChangeNotifyOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use PropertyChangeNotify.newBuilder() to construct.
+    private PropertyChangeNotify(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private PropertyChangeNotify() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new PropertyChangeNotify();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private PropertyChangeNotify(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.game.protocol.PlayerProtocol.internal_static_PropertyChangeNotify_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.game.protocol.PlayerProtocol.internal_static_PropertyChangeNotify_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.game.protocol.PlayerProtocol.PropertyChangeNotify.class, com.game.protocol.PlayerProtocol.PropertyChangeNotify.Builder.class);
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.game.protocol.PlayerProtocol.PropertyChangeNotify)) {
+        return super.equals(obj);
+      }
+      com.game.protocol.PlayerProtocol.PropertyChangeNotify other = (com.game.protocol.PlayerProtocol.PropertyChangeNotify) obj;
+
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.game.protocol.PlayerProtocol.PropertyChangeNotify parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.game.protocol.PlayerProtocol.PropertyChangeNotify parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.game.protocol.PlayerProtocol.PropertyChangeNotify parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.game.protocol.PlayerProtocol.PropertyChangeNotify parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.game.protocol.PlayerProtocol.PropertyChangeNotify parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.game.protocol.PlayerProtocol.PropertyChangeNotify parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.game.protocol.PlayerProtocol.PropertyChangeNotify parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.game.protocol.PlayerProtocol.PropertyChangeNotify parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.game.protocol.PlayerProtocol.PropertyChangeNotify parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.game.protocol.PlayerProtocol.PropertyChangeNotify parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.game.protocol.PlayerProtocol.PropertyChangeNotify parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.game.protocol.PlayerProtocol.PropertyChangeNotify parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.game.protocol.PlayerProtocol.PropertyChangeNotify prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * <pre>
+     * 属性变更通知
+     * </pre>
+     *
+     * Protobuf type {@code PropertyChangeNotify}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:PropertyChangeNotify)
+        com.game.protocol.PlayerProtocol.PropertyChangeNotifyOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.game.protocol.PlayerProtocol.internal_static_PropertyChangeNotify_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.game.protocol.PlayerProtocol.internal_static_PropertyChangeNotify_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.game.protocol.PlayerProtocol.PropertyChangeNotify.class, com.game.protocol.PlayerProtocol.PropertyChangeNotify.Builder.class);
+      }
+
+      // Construct using com.game.protocol.PlayerProtocol.PropertyChangeNotify.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.game.protocol.PlayerProtocol.internal_static_PropertyChangeNotify_descriptor;
+      }
+
+      @java.lang.Override
+      public com.game.protocol.PlayerProtocol.PropertyChangeNotify getDefaultInstanceForType() {
+        return com.game.protocol.PlayerProtocol.PropertyChangeNotify.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.game.protocol.PlayerProtocol.PropertyChangeNotify build() {
+        com.game.protocol.PlayerProtocol.PropertyChangeNotify result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.game.protocol.PlayerProtocol.PropertyChangeNotify buildPartial() {
+        com.game.protocol.PlayerProtocol.PropertyChangeNotify result = new com.game.protocol.PlayerProtocol.PropertyChangeNotify(this);
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.game.protocol.PlayerProtocol.PropertyChangeNotify) {
+          return mergeFrom((com.game.protocol.PlayerProtocol.PropertyChangeNotify)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.game.protocol.PlayerProtocol.PropertyChangeNotify other) {
+        if (other == com.game.protocol.PlayerProtocol.PropertyChangeNotify.getDefaultInstance()) return this;
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.game.protocol.PlayerProtocol.PropertyChangeNotify parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.game.protocol.PlayerProtocol.PropertyChangeNotify) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:PropertyChangeNotify)
+    }
+
+    // @@protoc_insertion_point(class_scope:PropertyChangeNotify)
+    private static final com.game.protocol.PlayerProtocol.PropertyChangeNotify DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.game.protocol.PlayerProtocol.PropertyChangeNotify();
+    }
+
+    public static com.game.protocol.PlayerProtocol.PropertyChangeNotify getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<PropertyChangeNotify>
+        PARSER = new com.google.protobuf.AbstractParser<PropertyChangeNotify>() {
+      @java.lang.Override
+      public PropertyChangeNotify parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new PropertyChangeNotify(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<PropertyChangeNotify> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<PropertyChangeNotify> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.game.protocol.PlayerProtocol.PropertyChangeNotify getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
   }
 
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_RoleInfo_descriptor;
+    internal_static_SimplePlayerInfo_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_RoleInfo_fieldAccessorTable;
+      internal_static_SimplePlayerInfo_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_PlayerList_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_PlayerList_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_LoginRole_descriptor;
   private static final 
@@ -4677,10 +5760,20 @@ public final class PlayerProtocol {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_PropertyInfo_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_RoleInfoList_descriptor;
+    internal_static_SyncPlayerData_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_RoleInfoList_fieldAccessorTable;
+      internal_static_SyncPlayerData_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_SyncPlayerProperty_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_SyncPlayerProperty_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_PropertyChangeNotify_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_PropertyChangeNotify_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -4689,56 +5782,77 @@ public final class PlayerProtocol {
   private static  com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
-    String[] descriptorData = {
-      "\n\014Player.proto\032\013Equip.proto\"C\n\010RoleInfo\022" +
-      "\n\n\002id\030\001 \001(\005\022\016\n\006career\030\002 \001(\t\022\r\n\005level\030\003 \001" +
-      "(\005\022\014\n\004name\030\004 \001(\t\"\027\n\tLoginRole\022\n\n\002id\030\001 \001(" +
-      "\005\"\222\001\n\nPlayerInfo\022\n\n\002id\030\001 \001(\005\022\014\n\004name\030\002 \001" +
-      "(\t\022\r\n\005level\030\003 \001(\005\022\016\n\006career\030\004 \001(\005\022\017\n\007sce" +
-      "neId\030\005 \001(\005\022\037\n\010property\030\006 \001(\0132\r.PropertyI" +
-      "nfo\022\031\n\005equip\030\007 \003(\0132\n.EquipInfo\"\240\001\n\014Prope" +
-      "rtyInfo\022\n\n\002hp\030\001 \001(\005\022\n\n\002mp\030\002 \001(\005\022\021\n\tphyAt" +
-      "tack\030\003 \001(\005\022\023\n\013magicAttack\030\004 \001(\005\022\022\n\nphyDe" +
-      "fense\030\005 \001(\005\022\024\n\014magicDefense\030\006 \001(\005\022\023\n\013att" +
-      "ackSpeed\030\007 \001(\001\022\021\n\tmoveSpeed\030\010 \001(\001\"(\n\014Rol" +
-      "eInfoList\022\030\n\005roles\030\001 \003(\0132\t.RoleInfoB#\n\021c" +
-      "om.game.protocolB\016PlayerProtocolb\006proto3"
+    java.lang.String[] descriptorData = {
+      "\n\014Player.proto\032\013Equip.proto\"K\n\020SimplePla" +
+      "yerInfo\022\n\n\002id\030\001 \001(\005\022\014\n\004name\030\002 \001(\t\022\r\n\005lev" +
+      "el\030\003 \001(\005\022\016\n\006career\030\004 \001(\005\"3\n\nPlayerList\022%" +
+      "\n\nplayerInfo\030\001 \003(\0132\021.SimplePlayerInfo\"\027\n" +
+      "\tLoginRole\022\n\n\002id\030\001 \001(\005\"\222\001\n\nPlayerInfo\022\n\n" +
+      "\002id\030\001 \001(\005\022\014\n\004name\030\002 \001(\t\022\r\n\005level\030\003 \001(\005\022\016" +
+      "\n\006career\030\004 \001(\005\022\017\n\007sceneId\030\005 \001(\005\022\037\n\010prope" +
+      "rty\030\006 \001(\0132\r.PropertyInfo\022\031\n\005equip\030\007 \003(\0132" +
+      "\n.EquipInfo\"\240\001\n\014PropertyInfo\022\n\n\002hp\030\001 \001(\005" +
+      "\022\n\n\002mp\030\002 \001(\005\022\021\n\tphyAttack\030\003 \001(\005\022\023\n\013magic" +
+      "Attack\030\004 \001(\005\022\022\n\nphyDefense\030\005 \001(\005\022\024\n\014magi" +
+      "cDefense\030\006 \001(\005\022\023\n\013attackSpeed\030\007 \001(\001\022\021\n\tm" +
+      "oveSpeed\030\010 \001(\001\"\020\n\016SyncPlayerData\"\024\n\022Sync" +
+      "PlayerProperty\"\026\n\024PropertyChangeNotifyB#" +
+      "\n\021com.game.protocolB\016PlayerProtocolb\006pro" +
+      "to3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
           com.game.protocol.EquipProtocol.getDescriptor(),
         });
-    internal_static_RoleInfo_descriptor =
+    internal_static_SimplePlayerInfo_descriptor =
       getDescriptor().getMessageTypes().get(0);
-    internal_static_RoleInfo_fieldAccessorTable = new
+    internal_static_SimplePlayerInfo_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_RoleInfo_descriptor,
-        new String[] { "Id", "Career", "Level", "Name", });
-    internal_static_LoginRole_descriptor =
+        internal_static_SimplePlayerInfo_descriptor,
+        new java.lang.String[] { "Id", "Name", "Level", "Career", });
+    internal_static_PlayerList_descriptor =
       getDescriptor().getMessageTypes().get(1);
+    internal_static_PlayerList_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_PlayerList_descriptor,
+        new java.lang.String[] { "PlayerInfo", });
+    internal_static_LoginRole_descriptor =
+      getDescriptor().getMessageTypes().get(2);
     internal_static_LoginRole_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_LoginRole_descriptor,
-        new String[] { "Id", });
+        new java.lang.String[] { "Id", });
     internal_static_PlayerInfo_descriptor =
-      getDescriptor().getMessageTypes().get(2);
+      getDescriptor().getMessageTypes().get(3);
     internal_static_PlayerInfo_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_PlayerInfo_descriptor,
-        new String[] { "Id", "Name", "Level", "Career", "SceneId", "Property", "Equip", });
+        new java.lang.String[] { "Id", "Name", "Level", "Career", "SceneId", "Property", "Equip", });
     internal_static_PropertyInfo_descriptor =
-      getDescriptor().getMessageTypes().get(3);
+      getDescriptor().getMessageTypes().get(4);
     internal_static_PropertyInfo_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_PropertyInfo_descriptor,
-        new String[] { "Hp", "Mp", "PhyAttack", "MagicAttack", "PhyDefense", "MagicDefense", "AttackSpeed", "MoveSpeed", });
-    internal_static_RoleInfoList_descriptor =
-      getDescriptor().getMessageTypes().get(4);
-    internal_static_RoleInfoList_fieldAccessorTable = new
+        new java.lang.String[] { "Hp", "Mp", "PhyAttack", "MagicAttack", "PhyDefense", "MagicDefense", "AttackSpeed", "MoveSpeed", });
+    internal_static_SyncPlayerData_descriptor =
+      getDescriptor().getMessageTypes().get(5);
+    internal_static_SyncPlayerData_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_RoleInfoList_descriptor,
-        new String[] { "Roles", });
+        internal_static_SyncPlayerData_descriptor,
+        new java.lang.String[] { });
+    internal_static_SyncPlayerProperty_descriptor =
+      getDescriptor().getMessageTypes().get(6);
+    internal_static_SyncPlayerProperty_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_SyncPlayerProperty_descriptor,
+        new java.lang.String[] { });
+    internal_static_PropertyChangeNotify_descriptor =
+      getDescriptor().getMessageTypes().get(7);
+    internal_static_PropertyChangeNotify_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_PropertyChangeNotify_descriptor,
+        new java.lang.String[] { });
     com.game.protocol.EquipProtocol.getDescriptor();
   }
 

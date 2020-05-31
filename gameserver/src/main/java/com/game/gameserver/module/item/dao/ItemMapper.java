@@ -1,7 +1,7 @@
 package com.game.gameserver.module.item.dao;
 
+import com.game.gameserver.module.item.model.EquipModel;
 import com.game.gameserver.module.item.model.ItemModel;
-import org.apache.ibatis.annotations.MapKey;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -16,17 +16,13 @@ import java.util.Map;
 @Mapper
 public interface ItemMapper {
     /**
-     * 从数据批量获取道具数据 以Map<Integer,ItemModel>的形式返回
-     * @param itemIds 道具列表Id
-     * @return java.util.Map<java.lang.Integer,com.game.gameserver.module.item.model.ItemModel>
-     */
-    @MapKey("id")
-    Map<Integer, ItemModel> getItemMapByItemList(List<Integer> itemIds);
+     * 根据角色Id 获得角色背包中的道具
+     * @param playerId 角色Id
+     * @param place 道具保存的位置
+     * @return List<ItemModel> 道具数据列表
+     * */
+    List<ItemModel> getItemList(Integer playerId, Integer place);
 
-    /**
-     *根据背包Id 获得背包内道具列表
-     * @param bagId 背包id
-     * @return java.util.Map<java.lang.Integer,com.game.gameserver.module.item.model.ItemModel>
-     */
-    List<ItemModel> getItemMapByBagId(Integer bagId);
+    List<EquipModel> getEquipList(Integer playerId, Integer place);
+
 }

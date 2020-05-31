@@ -2,16 +2,12 @@ package com.game.gameserver.util;
 
 import com.game.gameserver.context.ServerContext;
 import com.game.gameserver.dictionary.DictionaryManager;
-import com.game.gameserver.module.bag.entity.Bag;
-import com.game.gameserver.module.bag.entity.Cell;
-import com.game.gameserver.module.equip.entity.Equip;
-import com.game.gameserver.module.item.entity.Item;
-import com.game.gameserver.module.item.model.ItemType;
-import com.game.gameserver.module.player.entity.Player;
-import com.game.gameserver.module.player.model.PlayerModel;
+import com.game.gameserver.module.item.entity.Bag;
+import com.game.gameserver.module.item.entity.Cell;
+import com.game.gameserver.module.player.object.PlayerObject;
+import com.game.gameserver.module.player.model.Player;
 import com.game.protocol.BagProtocol;
 import com.game.protocol.EquipProtocol;
-import com.game.protocol.ItemProtocol;
 import com.game.protocol.PlayerProtocol;
 import org.springframework.context.ApplicationContext;
 
@@ -21,37 +17,37 @@ import org.springframework.context.ApplicationContext;
  * @date 2020/5/25 13:15
  */
 public class TransFromUtil {
-    public static PlayerProtocol.RoleInfo roleTransFromPlayerProtocolRoleInfo(PlayerModel playerModel){
+    public static PlayerProtocol.RoleInfo roleTransFromPlayerProtocolRoleInfo(Player player){
         ApplicationContext applicationContext = ServerContext.getApplication();
         DictionaryManager dictionaryManager = applicationContext.getBean(DictionaryManager.class);
         PlayerProtocol.RoleInfo.Builder builder = PlayerProtocol.RoleInfo.newBuilder();
-        builder.setId(playerModel.getId());
-        builder.setName(playerModel.getName());
-        builder.setLevel(playerModel.getLevel());
-        builder.setCareer(dictionaryManager.getRoleCareerName(playerModel.getId()));
-        return builder.build();
-    }
-
-    public static PlayerProtocol.PlayerInfo playerTransFromPlayerProtocolPlayerInfo(Player player){
-        PlayerProtocol.PlayerInfo.Builder builder = PlayerProtocol.PlayerInfo.newBuilder();
         builder.setId(player.getId());
         builder.setName(player.getName());
         builder.setLevel(player.getLevel());
-        builder.setCareer(player.getCareer());
-        builder.setSceneId(player.getSceneId());
+        builder.setCareer(dictionaryManager.getRoleCareerName(player.getId()));
+        return builder.build();
+    }
+
+    public static PlayerProtocol.PlayerInfo playerTransFromPlayerProtocolPlayerInfo(PlayerObject playerObject){
+        PlayerProtocol.PlayerInfo.Builder builder = PlayerProtocol.PlayerInfo.newBuilder();
+        builder.setId(playerObject.getId());
+        builder.setName(playerObject.getName());
+        builder.setLevel(playerObject.getLevel());
+        builder.setCareer(playerObject.getCareer());
+        builder.setSceneId(playerObject.getSceneId());
 
         // 属性
         PlayerProtocol.PropertyInfo.Builder propertyBuilder = PlayerProtocol.PropertyInfo.newBuilder();
-        propertyBuilder.setHp(player.getProperty().getHp());
-        propertyBuilder.setMp(player.getProperty().getMagicAttack());
-        propertyBuilder.setPhyAttack(player.getProperty().getPhyAttack());
-        propertyBuilder.setMagicAttack(player.getProperty().getMagicAttack());
-        propertyBuilder.setPhyDefense(player.getProperty().getPhyDefense());
-        propertyBuilder.setMagicDefense(player.getProperty().getMagicDefense());
+        propertyBuilder.setHp(playerObject.getProperty().getHp());
+        propertyBuilder.setMp(playerObject.getProperty().getMagicAttack());
+        propertyBuilder.setPhyAttack(playerObject.getProperty().getPhyAttack());
+        propertyBuilder.setMagicAttack(playerObject.getProperty().getMagicAttack());
+        propertyBuilder.setPhyDefense(playerObject.getProperty().getPhyDefense());
+        propertyBuilder.setMagicDefense(playerObject.getProperty().getMagicDefense());
         builder.setProperty(propertyBuilder.build());
 
         // 装备
-        for(Equip equip : player.getEquipBar().getEquipEntities()){
+        for(Equip equip : playerObject.getEquipBar().getEquipEntities()){
             if(equip ==null){
                 continue;
             }
