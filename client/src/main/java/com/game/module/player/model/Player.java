@@ -1,8 +1,5 @@
-package com.game.module.player.entity;
+package com.game.module.player.model;
 
-import com.game.module.bag.entity.Bag;
-import com.game.module.equip.entity.EquipBar;
-import com.game.module.player.model.Property;
 import com.game.protocol.PlayerProtocol;
 import lombok.Data;
 

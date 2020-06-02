@@ -1,12 +1,13 @@
 package com.game.module.gui;
 
-import com.game.module.bag.entity.Bag;
-import com.game.module.bag.entity.Cell;
-import com.game.module.equip.entity.Equip;
-import com.game.module.equip.entity.EquipBar;
-import com.game.module.player.StaticData;
-import com.game.module.player.entity.Player;
-import com.game.module.player.model.Role;
+import com.game.module.item.entity.Bag;
+import com.game.module.item.entity.Cell;
+import com.game.module.item.entity.EquipBar;
+import com.game.module.player.entity.PlayerObject;
+import com.game.module.player.model.Player;
+import com.game.protocol.ItemProtocol;
+import com.game.protocol.PlayerProtocol;
+import com.game.util.StaticData;
 import org.springframework.stereotype.Component;
 
 import javax.swing.*;
@@ -31,6 +32,8 @@ public class WordPage extends JTextArea {
         setFont(new Font("宋体", Font.PLAIN, 16));
         setBackground(Color.BLACK);
         setForeground(Color.white);
+        setLineWrap(true);
+        setWrapStyleWord(true);
         setText(builder.toString());
     }
 
@@ -53,21 +56,21 @@ public class WordPage extends JTextArea {
 
     /**
      * 展示角色选择
-     * @param roleList
+     * @param playerList
      * @return void
      */
-    public void print(List<Role> roleList){
+    public void print(List<Player> playerList){
         builder.append("\n");
-        for(Role role:roleList){
-            builder.append("角色名：").append(role.getName()).append("\t");
+        for(Player player : playerList){
+            builder.append("角色名：").append(player.getName()).append("\t");
         }
         builder.append("\n");
-        for(Role role:roleList){
-            builder.append("职业：").append(role.getCareer()).append("\t");
+        for(Player player : playerList){
+            builder.append("职业：").append(player.getCareer()).append("\t");
         }
         builder.append("\n");
-        for(Role role:roleList){
-            builder.append("等级：").append(role.getLevel()).append("\t");
+        for(Player player : playerList){
+            builder.append("等级：").append(player.getLevel()).append("\t");
         }
         builder.append("\n");
         refresh();
@@ -75,51 +78,28 @@ public class WordPage extends JTextArea {
 
     /**
      * 打印角色信息
-     * @param player
+     * @param playerObject
      * @return void
      */
-    public void print(Player player){
-        builder.append("姓名：\t").append(player.getName()).append("\n");
-        builder.append("职业：\t").append(StaticData.careerMap.get(player.getCareer())).append("\n");
-        builder.append("等级: \t").append(player.getLevel()).append("\n");
+    public void print(PlayerObject playerObject){
+        clean();
+        builder.append("姓名：\t").append(playerObject.getName()).append("\n");
+        builder.append("职业：\t").append(StaticData.careerMap.get(playerObject.getCareer())).append("\n");
+        builder.append("等级: \t").append(playerObject.getLevel()).append("\n");
         builder.append("\n");
-        builder.append("生命值：").append(player.getProperty().getHp()).append("\t");
-        builder.append("魔法值：").append(player.getProperty().getMp()).append("\t");
+        builder.append("生命值：").append(playerObject.getPropertyInfo().getHp()).append("\t");
+        builder.append("魔法值：").append(playerObject.getPropertyInfo().getMp()).append("\t");
         builder.append("\n");
-        builder.append("物理攻击力：").append(player.getProperty().getPhyAttack()).append("\n");
-        builder.append("物理防御力：").append(player.getProperty().getPhyDefense()).append("\n");
-        builder.append("魔法攻击力：").append(player.getProperty().getMagicAttack()).append("\n");
-        builder.append("魔法防御力：").append(player.getProperty().getMagicDefense()).append("\n");
-        builder.append("攻击速度：").append(player.getProperty().getMagicDefense()).append("\n");
-        builder.append("移动速度：").append(player.getProperty().getMagicDefense()).append("\n");
+        builder.append("物理攻击力：").append(playerObject.getPropertyInfo().getPhyAttack()).append("\n");
+        builder.append("物理防御力：").append(playerObject.getPropertyInfo().getPhyDefense()).append("\n");
+        builder.append("魔法攻击力：").append(playerObject.getPropertyInfo().getMagicAttack()).append("\n");
+        builder.append("魔法防御力：").append(playerObject.getPropertyInfo().getMagicDefense()).append("\n");
+        builder.append("攻击速度：").append(playerObject.getPropertyInfo().getMagicDefense()).append("\n");
+        builder.append("移动速度：").append(playerObject.getPropertyInfo().getMagicDefense()).append("\n");
         builder.append("\n");
-        refresh();
-        print(player.getEquipBar());
-    }
-
-    /**
-     * 打印装备栏
-     * @param equipBar
-     * @return void
-     */
-    public void print(EquipBar equipBar){
-        for(int i=0;i<EquipBar.MAX_EQUIP_LENGTH;i++){
-            Equip equip = equipBar.getEquips()[i];
-            builder.append(StaticData.equipPart.get(i)).append(":\t")
-                    .append(equip==null?"空":equip.getName()).append("\n");
-        }
         refresh();
     }
 
-    public void print(Equip equip){
-
-    }
-
-    /***
-     * 打印背包信息
-     * @param bag 背包
-     * @return void
-     */
     public void print(Bag bag){
         clean();
         builder.append(bag.getName()).append("\n");
@@ -129,8 +109,18 @@ public class WordPage extends JTextArea {
                 builder.append("\n");
             }
             Cell cell = cells[i];
-            builder.append("【").append(cell.getId()==null?"空":cell.getItemName()+":"+(cell.getItemCount()==1?"":cell.getItemCount()))
+            ItemProtocol.ItemInfo itemInfo = cell.getItemInfo();
+            builder.append("【").append(itemInfo==null?"空":itemInfo.getName()+":"+(itemInfo.getCount()==1?"":itemInfo.getCount()))
                     .append("】").append("\t");
+        }
+        refresh();
+    }
+
+    public void print(EquipBar equipBar){
+        for(int i = 0; i< EquipBar.MAX_EQUIP_LENGTH; i++){
+            ItemProtocol.ItemInfo itemInfo = equipBar.getItemInfos()[i];
+            builder.append(StaticData.equipPart.get(i)).append(":\t")
+                    .append(itemInfo==null?"空":itemInfo.getName()).append("\n");
         }
         refresh();
     }

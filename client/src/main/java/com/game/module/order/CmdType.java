@@ -14,8 +14,11 @@ public interface CmdType {
     String SELF_MESSAGE = "SELF";
     /** 打开背包 */
     String OPEN_BAG = "OPEN_BAG";
+    /** 打开装备栏 */
+    String OPEN_EQUIP = "OPEN_EQUIP_BAR";
     /** 关闭背包*/
     String CLOSE_BAG = "CLOSE_BAG";
     /** 使用后道具 */
     String USER_ITEM = "USE_ITEM";
+
 }

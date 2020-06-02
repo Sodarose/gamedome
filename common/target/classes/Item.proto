@@ -2,43 +2,57 @@ syntax = "proto3";
 option java_package = "com.game.protocol";
 option java_outer_classname = "ItemProtocol";
 
-message DictItemInfo{
-    string name = 1;
-    int32  level = 2;
-    int32  quality = 3;
-    int32  type = 4;
-    string description = 6;
-}
 
+message EquipInfo{
+    int32 durability = 1;
+    EquipProperty property = 2;
+}
 
 message ItemInfo{
-    int32 id = 1;
-    DictItemInfo dictItemInfo = 2;
+    int32  id = 1;
+    string name = 2;
+    int32  level = 3;
+    int32  quality = 4;
+    int32  itemType = 5;
+    int32  overlay = 6;
+    string description = 7;
+    int32  count = 8;
+    int32  bagIndex = 9;
+    EquipInfo dictEquipInfo = 10;
 }
 
-message CheckItem{
-    int32 itemId = 1;
+message BagInfo{
+    repeated CellInfo cellInfo = 1;
 }
 
-// 使用道具
-message UseItem{
-    int32 playerId = 1;
-    int32 itemId = 2;
-    int32 bagId = 3;
-    int32 bagIndex = 4;
+message CellInfo{
+    int32 bagIndex = 1;
+    ItemInfo itemInfo = 2;
 }
 
-// 道具来源
-enum ItemSourceType{
-    BAG = 0; // 背包中
-    SYSTEM = 1 ; // 系统的
-    NPC = 2; // NPC的
+message EquipProperty{
+    int32  hp = 1;
+    int32  mp = 2;
+    int32  phyAttack = 3;
+    int32  magicAttack = 4;
+    int32  phyDefense = 5;
+    int32  magicDefense = 6;
+    double attackSpeed = 7;
+    double moveSpeed = 8;
+    int32  part = 9;
+    int32  maxDurability = 10;
 }
 
-// 使用道具通知
-// 使用了itemNam 获得了 effectMsg
-message UseItemNotify{
-    string itemName = 1;
-    string effectMsg = 2;
+message EquipBarInfo{
+    repeated ItemInfo itemInfo = 1;
 }
 
+message SyncBagMessage{
+    int32   playerId = 1;
+    BagInfo bagInfo = 2;
+}
+
+message SyncEquipBarMessage{
+    int32    playerId = 1;
+    EquipBarInfo equipBar = 2;
+}

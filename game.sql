@@ -105,7 +105,7 @@ CREATE TABLE `game_role` (
   `id` int NOT NULL AUTO_INCREMENT COMMENT '唯一ID',
   `name` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '角色名',
   `level` int DEFAULT NULL COMMENT '等级',
-  `career` int DEFAULT NULL COMMENT '职业',
+  `careerData` int DEFAULT NULL COMMENT '职业',
   `sceneId` int NOT NULL DEFAULT '1' COMMENT '地图ID',
   `userId` int NOT NULL,
   `createTime` datetime DEFAULT NULL,

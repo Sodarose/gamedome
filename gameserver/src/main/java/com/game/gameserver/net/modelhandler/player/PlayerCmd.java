@@ -11,4 +11,6 @@ public interface PlayerCmd {
     short LOGIN_ROLE = 1001;
     /** 返回角色信息 */
     short PLAYER_INFO = 1002;
+    /** 同步角色信息 */
+    short SYNC_PLAYER_DATA = 1003;
 }

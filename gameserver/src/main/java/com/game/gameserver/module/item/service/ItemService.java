@@ -1,16 +1,10 @@
 package com.game.gameserver.module.item.service;
 
-import com.game.gameserver.dictionary.DictionaryManager;
-import com.game.gameserver.dictionary.dict.DictEquip;
-import com.game.gameserver.dictionary.dict.DictItem;
 import com.game.gameserver.module.item.dao.ItemMapper;
-import com.game.gameserver.module.item.entity.Bag;
-import com.game.gameserver.module.item.entity.Equip;
-import com.game.gameserver.module.item.entity.EquipBar;
+import com.game.gameserver.module.item.entity.BagEntity;
+import com.game.gameserver.module.item.entity.EquipBarEntity;
 import com.game.gameserver.module.item.entity.Item;
-import com.game.gameserver.module.item.model.EquipModel;
 import com.game.gameserver.module.item.model.ItemModel;
-import org.apache.commons.collections4.queue.PredicatedQueue;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -30,55 +24,39 @@ public class ItemService {
 
     @Autowired
     private ItemMapper itemMapper;
-    @Autowired
-    private DictionaryManager dictionaryManager;
 
     /**
      * 读取用户背包数据
      * */
-    public Bag loadBagItem(Integer playerId){
-        List<EquipModel> equipModels = itemMapper.getEquipList(playerId,BAG); // 获得背包中的装备数据
-        List<ItemModel> itemModels = itemMapper.getItemList(playerId,BAG); // 获得背包中的道具数据
+    public BagEntity loadBagItem(Integer playerId) {
+        // 获取背包中的数据
+        List<ItemModel> itemList = itemMapper.getItemList(playerId,BAG);
         List<Item> items = new ArrayList<>();
-        for(EquipModel equipModel:equipModels){
-            Equip equip = new Equip(equipModel);
-            DictItem dictItem = dictionaryManager.getDictItemById(equipModel.getItemId());
-            DictEquip dictEquip = dictionaryManager.getDictEquipById(dictItem.getAttachId());
-            equip.setDictItem(dictItem);
-            equip.setDictEquip(dictEquip);
-            items.add(equip);
-        }
-
-        for(ItemModel itemModel:itemModels){
+        for(ItemModel itemModel:itemList){
             Item item = new Item(itemModel);
-            DictItem dictItem = dictionaryManager.getDictItemById(itemModel.getItemId());
-            item.setDictItem(dictItem);
-            items.add(item);
-        }
-        Bag bag = new Bag();
-        bag.init(items);
-        return bag;
+            }
+        Item item = null;
+        items.add(item);
+
+        BagEntity bagEntity = new BagEntity();
+
+        return bagEntity;
     }
-
-
 
     /**
      * 读取用户装备栏数据
      * */
-    public EquipBar loadEquipBar(Integer playerId){
-        EquipBar equipBar = new EquipBar();
-        List<EquipModel> equipModels = itemMapper.getEquipList(playerId,EQUIP_BAR);
-        List<Equip> equips = new ArrayList<>();
-        for(EquipModel equipModel:equipModels){
-            Equip equip = new Equip(equipModel);
-            DictItem dictItem = dictionaryManager.getDictItemById(equipModel.getItemId());
-            DictEquip dictEquip = dictionaryManager.getDictEquipById(dictItem.getAttachId());
-            equip.setDictItem(dictItem);
-            equip.setDictEquip(dictEquip);
-            equips.add(equip);
+    public EquipBarEntity loadEquipBar(Integer playerId) {
+        List<ItemModel> itemList = itemMapper.getItemList(playerId,EQUIP_BAR);
+        EquipBarEntity equipBarEntity = new EquipBarEntity();
+        List<Item> items = new ArrayList<>();
+        for(ItemModel itemModel:itemList){
+            Item item = new Item(itemModel);
+
         }
-        equipBar.init(equips);
-        return equipBar;
+        equipBarEntity.init(items);
+        return equipBarEntity;
     }
+
 
 }

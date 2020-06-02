@@ -16,17 +16,25 @@ public class MainPage extends JPanel {
     @Autowired
     private WordPage wordPage;
     @Autowired
-    private CmdPage cmdPage  ;
+    private CmdPage cmdPage ;
+    @Autowired
+    private TipPage tipPage;
+    @Autowired
+    private ScenePage scenePage;
+
 
     public MainPage(){
         setBackground(Color.BLACK);
-        setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
+        setLayout(new BorderLayout(0,0));
+
     }
 
     @PostConstruct
     protected void init(){
-        add(wordPage);
-        add(cmdPage);
+        this.add(new JScrollPane(wordPage),BorderLayout.CENTER);
+        this.add(cmdPage,BorderLayout.SOUTH);
+        this.add(new JScrollPane(tipPage),BorderLayout.WEST);
+        this.add(new JScrollPane(scenePage),BorderLayout.NORTH);
     }
 }
 

@@ -1,0 +1,110 @@
+[
+  {
+    "id": 1001,
+    "npcConfig": [
+      {
+        "npcId": 1000,
+        "count": 1
+      }
+    ],
+    "monsterConfig": [
+      {
+        "monsterId": 1000,
+        "count": 5
+      },
+      {
+        "monsterId": 1001,
+        "count": 5
+      },
+      {
+        "monsterId": 1002,
+        "count": 2
+      }
+    ]
+  },
+  {
+    "id": 1002,
+    "npcConfig": [
+      {
+        "npcId": 1001,
+        "count": 5
+      },
+      {
+        "npcId": 1002,
+        "count": 1
+      }
+    ],
+    "monsterConfig": [
+      {
+        "monsterId": 1003,
+        "count": 5
+      },
+      {
+        "monsterId": 1004,
+        "count": 5
+      },
+      {
+        "monsterId": 1005,
+        "count": 2
+      }
+    ]
+  },
+  {
+    "id": 1003,
+    "npcConfig": [
+      {
+        "npcId": 1003,
+        "count": 5
+      },
+      {
+        "npcId": 1004,
+        "count": 1
+      },
+      {
+        "npcId": 1005,
+        "count": 1
+      }
+    ],
+    "monsterConfig": [
+      {
+        "monsterId": 1006,
+        "count": 5
+      },
+      {
+        "monsterId": 1007,
+        "count": 5
+      },
+      {
+        "monsterId": 1008,
+        "count": 2
+      }
+    ]
+  },
+  {
+    "id": 1004,
+    "npcConfig": [
+      {
+        "npcId": 1006,
+        "count": 5
+      },
+      {
+        "npcId": 1007,
+        "count": 1
+      }
+    ],
+    "monsterConfig": [
+      {
+        "monsterId": 1000,
+        "count": 5
+      },
+      {
+        "monsterId": 1001,
+        "count": 5
+      },
+      {
+        "monsterId": 1002,
+        "count": 2
+      }
+    ]
+  }
+]

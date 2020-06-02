@@ -5,14 +5,13 @@ import org.springframework.stereotype.Component;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentMap;
 
 
 @Component
 public class PlayerManager {
     private Map<Integer, PlayerObject> playerObjectMap = new ConcurrentHashMap<>(1);
     public void addPlayerObject(PlayerObject playerObject){
-        playerObjectMap.put(playerObject.getPlayer().getId(),playerObject);
+        playerObjectMap.put(playerObject.getPlayerEntity().getId(),playerObject);
     }
 
     public void removePlayerObject(Integer playerId){

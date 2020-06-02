@@ -173,7 +173,7 @@ public class TimeWheelTimer {
                 if (deadLine > 0) {
                     int idx = (int) (tick % ticksPerWheel);
                     Slot slot = wheels[idx];
-                    logger.info("当前可刻度{} 任务数{}", idx, print());
+                   // logger.info("当前可刻度{} 任务数{}", idx, print());
                     processedTimeouts(slot, deadLine);
                 }
                 tick++;

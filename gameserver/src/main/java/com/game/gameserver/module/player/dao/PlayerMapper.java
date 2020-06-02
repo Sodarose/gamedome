@@ -1,6 +1,6 @@
 package com.game.gameserver.module.player.dao;
 
-import com.game.gameserver.module.player.model.Player;
+import com.game.gameserver.module.player.entity.PlayerEntity;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -18,12 +18,12 @@ public interface PlayerMapper {
      * @param accountId 账户Id
      * @return java.util.List<com.game.gameserver.module.player.model.Player>
      */
-    List<Player> findPlayerListByAccountId(Integer accountId);
+    List<PlayerEntity> findPlayerListByAccountId(Integer accountId);
 
     /**
      * 根据id返回角色信息
      * @param playerId 角色Id
      * @return com.game.gameserver.module.player.model.Role
      */
-    Player findPlayerByPlayerId(Integer playerId);
+    PlayerEntity findPlayerByPlayerId(Integer playerId);
 }

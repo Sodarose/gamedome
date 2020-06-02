@@ -2,15 +2,11 @@ package com.game.gameserver.net.modelhandler.player;
 
 import com.game.gameserver.module.account.manager.AccountManager;
 import com.game.gameserver.module.account.model.Account;
-import com.game.gameserver.module.player.model.Player;
-import com.game.gameserver.module.player.object.PlayerObject;
-import com.game.gameserver.module.player.facade.PlayerFacade;
 import com.game.gameserver.module.player.service.PlayerService;
 import com.game.gameserver.net.annotation.CmdHandler;
 import com.game.gameserver.net.annotation.ModuleHandler;
 import com.game.gameserver.net.handler.BaseHandler;
 import com.game.gameserver.net.modelhandler.ModuleKey;
-import com.game.gameserver.util.TransFromUtil;
 import com.game.protocol.Message;
 import com.game.protocol.PlayerProtocol;
 import com.game.util.MessageUtil;
@@ -61,13 +57,12 @@ public class PlayerHandle extends BaseHandler {
     @CmdHandler(cmd = PlayerCmd.LOGIN_ROLE)
     public void loginRole(Message message,Channel channel){
         try {
-            PlayerProtocol.LoginRole loginRole = PlayerProtocol
-                    .LoginRole.parseFrom(message.getData());
-            PlayerProtocol.PlayerInfo playerInfo = playerFacade
-                    .loginRoleByRoleId(loginRole.getId(),channel);
-            Message msg = MessageUtil.createMessage(ModuleKey.PLAYER_MODULE,PlayerCmd.LOGIN_ROLE,
-                    playerInfo.toByteArray());
-            channel.writeAndFlush(msg);
+            Account account = channel.attr(AccountManager.ACCOUNT_ATTRIBUTE_KEY).get();
+            if(account==null){
+                return;
+            }
+            PlayerProtocol.LoginRole loginRole = PlayerProtocol.LoginRole.parseFrom(message.getData());
+            playerService.login(loginRole.getId(),channel);
         } catch (InvalidProtocolBufferException e) {
             e.printStackTrace();
         }
@@ -75,12 +70,7 @@ public class PlayerHandle extends BaseHandler {
 
     @CmdHandler(cmd = PlayerCmd.PLAYER_INFO)
     public void getPlayerInfo(Message message,Channel channel){
-        PlayerObject playerObject = channel.attr(PlayerFacade.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
-        PlayerProtocol.PlayerInfo playerInfo = TransFromUtil
-                .playerTransFromPlayerProtocolPlayerInfo(playerObject);
-        Message msg = MessageUtil.createMessage(ModuleKey.PLAYER_MODULE,PlayerCmd.LOGIN_ROLE,
-                playerInfo.toByteArray());
-        channel.writeAndFlush(msg);
+
     }
 
 }

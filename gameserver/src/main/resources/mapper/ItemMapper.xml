@@ -1,23 +1,21 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.game.gameserver.module.item.dao.ItemMapper">
-    <resultMap id="itemResultMap" type="com.game.gameserver.module.item.model.ItemModel">
-        <id column="id" property="id"/>
-        <result column="itemId" property="itemId"/>
-        <result column="itemType" property="itemType"/>
-        <result column="roleId" property="roleId"/>
-        <result column="bagId" property="bagId"/>
-        <result column="bagIndex" property="bagIndex"/>
-        <result column="itemCount" property="itemCount"/>
+<mapper namespace="com.game.gameserver.module.itemData.dao.ItemMapper">
+    <resultMap id="itemResultMap" type="com.game.gameserver.module.itemData.model.ItemModel">
+        <id column="id" propertyEntity="id"/>
+        <result column="itemId" propertyEntity="itemId"/>
+        <result column="itemType" propertyEntity="itemType"/>
+        <result column="playerId" propertyEntity="playerId"/>
+        <result column="place" propertyEntity="place"/>
+        <result column="propertyData" propertyEntity="propertyData" typeHandler="com.game.gameserver.util.BlobTypeHandle"/>
     </resultMap>
-    <select id="getItemMapByItemList" resultMap="itemResultMap" >
-        SELECT id,itemId,itemType,roleId,bagId,bagIndex,itemCount FROM game_item WHERE  id IN
-        <foreach collection="list" index="index" item="item" open="(" separator="," close=")">
-            #{item}
-        </foreach>
+    <select id="getItemList" resultMap="itemResultMap" >
+        SELECT id,itemId,itemType,playerId,place,propertyData FROM
+        game_item WHERE playerId = #{playerId} AND place = #{place};
     </select>
 
-    <select id="getItemMapByBagId" resultMap="itemResultMap" >
-        SELECT id,itemId,itemType,roleId,bagId,bagIndex,itemCount FROM game_item WHERE bagId = #{bagId}
-    </select>
+    <insert id="insertItem" parameterType="com.game.gameserver.module.itemData.model.ItemModel">
+        INSERT INTO game_item SET id=NULL,itemId = #{itemId},itemType = #{itemType},
+        playerId = #{playerId},place = #{place} ,propertyData = #{propertyData}
+    </insert>
 </mapper>

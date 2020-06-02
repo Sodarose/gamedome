@@ -1,7 +1,5 @@
 package com.game.gameserver.net.modelhandler.item;
 
-import com.game.gameserver.dictionary.dict.DictItem;
-import com.game.gameserver.module.item.facade.ItemFacade;
 import com.game.gameserver.net.annotation.CmdHandler;
 import com.game.gameserver.net.annotation.ModuleHandler;
 import com.game.gameserver.net.modelhandler.ModuleKey;
@@ -20,8 +18,6 @@ import org.springframework.stereotype.Component;
 @ModuleHandler(module = ModuleKey.ITEM_MODEL)
 @Component
 public class ItemHandle {
-    @Autowired
-    private ItemFacade itemFacade;
 
     /**
      * 搜索道具
@@ -42,12 +38,6 @@ public class ItemHandle {
      */
     @CmdHandler(cmd = ItemCmd.CHECK_ITEM)
     public void checkItem(Message message, Channel channel){
-        try {
-            ItemProtocol.CheckItem checkItem = ItemProtocol.CheckItem.parseFrom(message.getData());
-
-        } catch (InvalidProtocolBufferException e) {
-            e.printStackTrace();
-        }
 
     }
 
@@ -60,12 +50,7 @@ public class ItemHandle {
      */
     @CmdHandler(cmd = ItemCmd.USE_ITEM)
     public void useItem(Message message,Channel channel){
-        try {
-            ItemProtocol.UseItem useItem = ItemProtocol.UseItem.parseFrom(message.getData());
 
-        } catch (InvalidProtocolBufferException e) {
-            e.printStackTrace();
-        }
     }
 
     /**

@@ -1,17 +1,20 @@
 package com.game.gameserver.module.player.service;
 
-import com.game.gameserver.dictionary.DictionaryManager;
-import com.game.gameserver.dictionary.dict.DictRoleLevelProperty;
-import com.game.gameserver.module.item.entity.Bag;
-import com.game.gameserver.module.item.entity.EquipBar;
+import com.game.gameserver.module.item.entity.BagEntity;
+import com.game.gameserver.module.item.entity.EquipBarEntity;
+import com.game.gameserver.module.item.entity.Item;
 import com.game.gameserver.module.item.service.ItemService;
 import com.game.gameserver.module.player.dao.PlayerMapper;
+import com.game.gameserver.module.player.entity.PropertyEntity;
 import com.game.gameserver.module.player.manager.PlayerManager;
-import com.game.gameserver.module.player.model.Player;
-import com.game.gameserver.module.player.model.Property;
+import com.game.gameserver.module.player.entity.PlayerEntity;
 import com.game.gameserver.module.player.object.PlayerObject;
 import com.game.gameserver.module.scene.service.SceneService;
+import com.game.gameserver.net.modelhandler.ModuleKey;
+import com.game.gameserver.net.modelhandler.player.PlayerCmd;
+import com.game.protocol.Message;
 import com.game.protocol.PlayerProtocol;
+import com.game.util.MessageUtil;
 import io.netty.channel.Channel;
 import io.netty.util.AttributeKey;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,9 +39,6 @@ public class PlayerService {
     private SceneService sceneService;
     @Autowired
     private PlayerManager playerManager;
-    @Autowired
-    private DictionaryManager dictionaryManager;
-
 
     /**
      * 返回账户角色列表
@@ -46,10 +46,10 @@ public class PlayerService {
      * @return List<PlayerProtocol.SimplePlayerInfo> 角色信息
      * */
     public List<PlayerProtocol.SimplePlayerInfo> getPlayerList(Integer accountId){
-        List<Player> players = playerMapper.findPlayerListByAccountId(accountId);
+        List<PlayerEntity> playerEntities = playerMapper.findPlayerListByAccountId(accountId);
         List<PlayerProtocol.SimplePlayerInfo> playerInfos = new ArrayList<>();
-        for(Player player:players){
-            playerInfos.add(createSimplePlayerInfo(player));
+        for(PlayerEntity playerEntity : playerEntities){
+            playerInfos.add(createSimplePlayerInfo(playerEntity));
         }
         return playerInfos;
     }
@@ -60,48 +60,57 @@ public class PlayerService {
      * @param channel 角色连接数据
      * @return void
      * */
-    public void login(Integer playerId, Channel channel){
+    public void login(Integer playerId, Channel channel) {
         // 获得角色数据库信息
-        Player player = playerMapper.findPlayerByPlayerId(playerId);
+        PlayerEntity playerEntity = playerMapper.findPlayerByPlayerId(playerId);
         // 创建角色对象 并加载数据
         PlayerObject playerObject = new PlayerObject();
         // 基本信息
-        playerObject.setPlayer(player);
+        playerObject.setPlayerEntity(playerEntity);
         playerObject.setChannel(channel);
         // 加载装备
-        EquipBar equipBar = itemService.loadEquipBar(playerId);
-        playerObject.setEquipBar(equipBar);
+        EquipBarEntity equipBarEntity = itemService.loadEquipBar(playerId);
+        playerObject.setEquipBarEntity(equipBarEntity);
         // 加载背包
-        Bag bag = itemService.loadBagItem(playerId);
-        playerObject.setBag(bag);
+        BagEntity bagEntity = itemService.loadBagItem(playerId);
+        playerObject.setBagEntity(bagEntity);
         // 初始化基础属性
         initProperty(playerObject);
         // 放入管理器
         playerManager.addPlayerObject(playerObject);
         // 进入场景
-        sceneService.entryScene(playerObject,playerObject.getPlayer().getSceneId());
-        // 同步角色数据
-
+        sceneService.entryScene(playerObject,playerObject.getPlayerEntity().getSceneId());
+        // 发送角色数据
+        PlayerProtocol.PlayerInfo playerInfo =  playerObject.getPlayerInfo();
+        Message syncMsg = MessageUtil.createMessage(ModuleKey.PLAYER_MODULE, PlayerCmd.LOGIN_ROLE,
+                playerInfo.toByteArray());
+        playerObject.getChannel().writeAndFlush(syncMsg);
     }
 
     /**
      * 初始化属性
      * */
     private void initProperty(PlayerObject playerObject){
-        int level = playerObject.getPlayer().getLevel();
-        int career = playerObject.getPlayer().getCareer();
-        DictRoleLevelProperty roleLevelProperty = dictionaryManager.getDictRoleLevelProperty(career,level);
-        Property property = new Property(roleLevelProperty);
-        EquipBar equipBar = playerObject.getEquipBar();
-        property.init(equipBar.getEquips());
+        int level = playerObject.getPlayerEntity().getLevel();
+        int career = playerObject.getPlayerEntity().getCareer();
+        PropertyEntity propertyEntity = null;
+        EquipBarEntity equipBarEntity = playerObject.getEquipBarEntity();
+        Item[] items = equipBarEntity.getItems();
+        for(Item item:items){
+            if(item==null){
+                continue;
+            }
+            propertyEntity.addEquipProperty(item);
+        }
+        playerObject.setPropertyEntity(propertyEntity);
     }
 
-    private PlayerProtocol.SimplePlayerInfo createSimplePlayerInfo(Player player){
+    private PlayerProtocol.SimplePlayerInfo createSimplePlayerInfo(PlayerEntity playerEntity){
         PlayerProtocol.SimplePlayerInfo.Builder builder = PlayerProtocol.SimplePlayerInfo.newBuilder();
-        builder.setId(player.getId());
-        builder.setName(player.getName());
-        builder.setCareer(player.getCareer());
-        builder.setLevel(player.getLevel());
+        builder.setId(playerEntity.getId());
+        builder.setName(playerEntity.getName());
+        builder.setCareer(playerEntity.getCareer());
+        builder.setLevel(playerEntity.getLevel());
         return builder.build();
     }
 

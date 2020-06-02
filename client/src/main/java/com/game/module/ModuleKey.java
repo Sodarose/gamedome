@@ -8,6 +8,8 @@ package com.game.module;
 public interface ModuleKey {
     short ACCOUNT_MODULE = 1001;
     short PLAYER_MODULE = 1002;
-    short EQUIP_MODEL = 1003;
-    short BAG_MODEL = 1004;
+    short ITEM_MODEL = 1003;
+    short TIP_MODEL = 1004;
+    short SCENE_MODEL = 1005;
+    short FIGHTER_MODEL = 1006;
 }

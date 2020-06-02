@@ -16,8 +16,8 @@ import java.awt.*;
 public class GameClientPage extends JFrame{
 
     private final static String  GAME_TITLE = "game client";
-    private final static Integer WIN_HEIGHT = 600;
-    private final static Integer WIN_WIDTH = 800;
+    private final static Integer WIN_HEIGHT = 800;
+    private final static Integer WIN_WIDTH = 1000;
 
     private JPanel currentPanel;
 

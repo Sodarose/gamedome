@@ -1,12 +1,10 @@
 package com.game.gameserver.module.item.dao;
 
-import com.game.gameserver.module.item.model.EquipModel;
 import com.game.gameserver.module.item.model.ItemModel;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author xuewenkang
@@ -23,6 +21,10 @@ public interface ItemMapper {
      * */
     List<ItemModel> getItemList(Integer playerId, Integer place);
 
-    List<EquipModel> getEquipList(Integer playerId, Integer place);
-
+    /**
+     * 插入一个数据
+     * @param itemModel 道具数据
+     * @return java.lang.Integer
+     */
+    Integer insertItem(ItemModel itemModel);
 }

@@ -2,9 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.game.gameserver.module.account.dao.AccountMapper">
     <resultMap id="userResultMap" type="com.game.gameserver.module.account.model.Account">
-        <id column="id" property="id"/>
-        <result column="login_id" property="loginId"/>
-        <result column="password" property="password"/>
+        <id column="id" propertyEntity="id"/>
+        <result column="login_id" propertyEntity="loginId"/>
+        <result column="password" propertyEntity="password"/>
     </resultMap>
     <select id="findUserByLoginId" resultMap="userResultMap" parameterType="string">
         SELECT id,login_id,password FROM game_user WHERE login_id = #{loginId}

@@ -1,11 +1,14 @@
 package com.game.gameserver.module.scene.service;
 
 import com.game.gameserver.module.player.object.PlayerObject;
-import com.game.gameserver.module.scene.entity.Scene;
+import com.game.gameserver.module.scene.entity.SceneEntity2;
 import com.game.gameserver.module.scene.manager.SceneManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+/**
+ * @author xuewenkang
+ */
 @Component
 public class SceneService {
     @Autowired
@@ -17,11 +20,11 @@ public class SceneService {
      * @param targetSceneId 目标场景
      * */
     public void entryScene(PlayerObject playerObject,Integer targetSceneId){
-        Scene targetScene = sceneManager.getScene(targetSceneId);
-        if(targetScene==null){
+        SceneEntity2 targetSceneEntity2 = sceneManager.getScene(targetSceneId);
+        if(targetSceneEntity2 ==null){
             return;
         }
-        targetScene.entry(playerObject);
+        targetSceneEntity2.entry(playerObject);
     }
 
     /**
@@ -29,11 +32,11 @@ public class SceneService {
      * @param playerObject 角色对象
      * */
     public void exitScene(PlayerObject playerObject){
-        Scene scene = sceneManager.getScene(playerObject.getPlayer().getSceneId());
-        if(scene==null){
+        SceneEntity2 sceneEntity2 = sceneManager.getScene(playerObject.getPlayerEntity().getSceneId());
+        if(sceneEntity2 ==null){
             return;
         }
-        scene.exit(playerObject);
+        sceneEntity2.exit(playerObject);
     }
 
     /**
@@ -42,8 +45,8 @@ public class SceneService {
      * @param targetSceneId 目标场景
      * */
     public void changeScene(PlayerObject playerObject,Integer targetSceneId){
-        Scene sourceScene = sceneManager.getScene(playerObject.getPlayer().getSceneId());
-        if(!sourceScene.getWays().contains(targetSceneId)){
+        SceneEntity2 sourceSceneEntity2 = sceneManager.getScene(playerObject.getPlayerEntity().getSceneId());
+        if(!sourceSceneEntity2.getWays().contains(targetSceneId)){
             return;
         }
         exitScene(playerObject);

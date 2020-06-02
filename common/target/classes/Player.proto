@@ -1,35 +1,26 @@
 syntax = "proto3";
 option java_package = "com.game.protocol";
 option java_outer_classname = "PlayerProtocol";
-import "Equip.proto";
+import "Item.proto";
 
-// 角色信息 用于角色选择
-message RoleInfo{
-    // id
-    int32 id = 1;
-    // 职业
-    string career = 2;
-    // 等级
-    int32 level = 3;
-    // 姓名
-    string name = 4;
+// 简单角色信息
+message SimplePlayerInfo{
+    int32  id = 1;
+    string name = 2;
+    int32  level = 3;
+    int32  career = 4;
 }
+
+message PlayerList{
+    repeated SimplePlayerInfo playerInfo = 1;
+}
+
 
 // 登录角色
 message LoginRole{
     int32 id = 1;
 }
 
-// 角色实体信息
-message PlayerInfo{
-    int32 id = 1;
-    string name = 2;
-    int32 level = 3;
-    int32 career = 4;
-    int32 sceneId = 5;
-    PropertyInfo property = 6;
-    repeated EquipInfo equip = 7;
-}
 
 message PropertyInfo{
     int32  hp = 1;
@@ -42,20 +33,25 @@ message PropertyInfo{
     double moveSpeed = 8;
 }
 
-// 角色列表
-message RoleInfoList{
-    repeated RoleInfo roles = 1;
-}
 
 // 同步玩家数据
-message SyncPlayerData{
-
+message PlayerInfo{
+    int32 id = 1;
+    string name = 2;
+    int32 level = 3;
+    int32 career = 4;
+    int32 sceneId = 5;
+    PropertyInfo    propertyInfo = 6;
+    EquipBarInfo    equipBar = 7;
+    BagInfo         bagInfo = 8;
 }
 
 // 同步玩家属性数据
 message SyncPlayerProperty{
-
+    int32        playerId = 1;
+    PropertyInfo property = 2;
 }
+
 // 属性变更通知
 message PropertyChangeNotify{
 

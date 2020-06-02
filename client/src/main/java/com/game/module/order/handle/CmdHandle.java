@@ -2,13 +2,10 @@ package com.game.module.order.handle;
 
 import com.game.context.ClientGameContext;
 import com.game.module.ModuleKey;
-import com.game.module.bag.BagCmd;
-import com.game.module.bag.entity.Bag;
-import com.game.module.bag.entity.Cell;
 import com.game.module.player.PlayerCmd;
 import com.game.module.gui.WordPage;
 import com.game.module.order.CmdType;
-import com.game.protocol.BagProtocol;
+import com.game.module.player.entity.PlayerObject;
 import com.game.protocol.Message;
 import com.game.protocol.PlayerProtocol;
 import com.game.util.MessageUtil;
@@ -16,7 +13,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import javax.annotation.PostConstruct;
 import java.util.HashMap;
 import java.util.Map;
@@ -102,6 +98,13 @@ public class CmdHandle {
                 useItem(flags);
             }
         });
+
+        CMD_INVOKE_MAP.put(CmdType.OPEN_EQUIP, new Invoke() {
+            @Override
+            public void invoke(String[] flags) {
+                openEquipBar(flags);
+            }
+        });
     }
 
     private void listRoles(String[] flags){
@@ -135,31 +138,35 @@ public class CmdHandle {
 
     /** 产看自己的角色信息 */
     private void selfMessage(String[] flags){
-        Message message  = MessageUtil.createMessage(ModuleKey.PLAYER_MODULE, PlayerCmd.PLAYER_INFO,null);
-        gameContext.getChannel().writeAndFlush(message);
+        PlayerObject playerObject = gameContext.getPlayerObject();
+        if(playerObject==null){
+            wordPage.print("您还没有登录角色");
+            return;
+        }
+        wordPage.print(playerObject);
         logger.info("查询登录的角色信息");
     }
 
     private void openBag(String[] flags){
-        BagProtocol.OpenBag.Builder builder = BagProtocol.OpenBag.newBuilder();
-        builder.setBagId(1);
-        Message message = MessageUtil.createMessage(ModuleKey.BAG_MODEL, BagCmd.OPEN_BAG,builder.build().toByteArray());
-        gameContext.getChannel().writeAndFlush(message);
+        PlayerObject playerObject = gameContext.getPlayerObject();
+        if(playerObject==null){
+            wordPage.print("您还没有登录角色");
+            return;
+        }
+        wordPage.print(playerObject.getBag());
+    }
+
+    private void openEquipBar(String[] flags){
+        PlayerObject playerObject = gameContext.getPlayerObject();
+        if(playerObject==null){
+            wordPage.print("您还没有登录角色");
+            return;
+        }
+        wordPage.print(playerObject.getEquipBar());
     }
 
     private void useItem(String[] flags){
-        String itemName = flags[1];
-        Bag bag = gameContext.getPlayer().getBag();
-        Cell cell = bag.getCellByItemName(itemName);
-        if(cell==null){
-            wordPage.print("背包没有该道具");
-            return;
-        }
-        if(cell.getItemType().equals(1)){
-            useEquip(cell.getId());
-        }else{
-            useItem(cell.getId());
-        }
+
 
     }
 

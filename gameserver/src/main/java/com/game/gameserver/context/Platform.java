@@ -1,6 +1,5 @@
 package com.game.gameserver.context;
 
-import com.game.gameserver.dictionary.DictionaryManager;
 import com.game.gameserver.module.scene.manager.SceneManager;
 import com.game.gameserver.module.timewheel.manager.TimeWheelTimeManager;
 import org.slf4j.Logger;
@@ -18,8 +17,7 @@ public class Platform {
 
     private final static Logger logger = LoggerFactory.getLogger(Platform.class);
 
-    @Autowired
-    private DictionaryManager dictionaryManager;
+
     @Autowired
     private SceneManager sceneManager;
     @Autowired
@@ -28,7 +26,7 @@ public class Platform {
     public void startUp(){
         logger.info("platform start up ......");
         timeWheelTimeManager.start();
-        dictionaryManager.loadConfig();
+
         sceneManager.loadScene();
     }
 

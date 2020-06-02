@@ -1,0 +1,74 @@
+[
+    {
+      "id": 0,
+      "name": "崩山击",
+      "career": 1000,
+      "level": 10,
+      "coolTime": 3,
+      "formula": "${0}+(${0}*1.2)",
+      "desc": "向前猛击"
+    },
+    {
+      "id": 1,
+      "name": "十字斩",
+      "career": 1000,
+      "level": 5,
+      "coolTime": 3,
+      "formula": "${0}+1000",
+      "desc": "十字斩"
+    },
+    {
+      "id": 2,
+      "name": "破军",
+      "career": 1001,
+      "level": 5,
+      "coolTime": 3,
+      "formula": "${0}+1000",
+      "desc": "破军"
+    },
+    {
+      "id": 3,
+      "name": "流星*跃",
+      "career": 1001,
+      "level": 10,
+      "coolTime": 3,
+      "formula": "${0}+1000",
+      "desc": "流星*跃"
+    },
+    {
+      "id": 4,
+      "name": "红阵",
+      "career": 1002,
+      "level": 5,
+      "coolTime": 3,
+      "formula": "${0}+1000",
+      "desc": "红阵"
+    },
+    {
+      "id": 5,
+      "name": "绿阵",
+      "career": 1002,
+      "level": 10,
+      "coolTime": 3,
+      "formula": "${0}+1000",
+      "desc": "绿阵"
+    },
+    {
+      "id": 6,
+      "name": "裂波斩",
+      "career": 1003,
+      "level": 5,
+      "coolTime": 3,
+      "formula": "${0}+1000",
+      "desc": "红阵"
+    },
+    {
+      "id": 7,
+      "name": "极冰斩",
+      "career": 1003,
+      "level": 10,
+      "coolTime": 3,
+      "formula": "${0}+1000",
+      "desc": "绿阵"
+    }
+  ]

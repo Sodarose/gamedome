@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "itemId": 3,
+    "part": 1,
+    "maxDurability": 45,
+    "property": {
+      "hp": 1000,
+      "mp": 1000,
+      "attack": 99,
+      "defense": 99
+    }
+  },
+  {
+    "id": 2,
+    "itemId": 4,
+    "part": 2,
+    "maxDurability": 45,
+    "property": {
+      "hp": 1000,
+      "mp": 1000,
+      "attack": 99,
+      "defense": 99
+    }
+  },
+  {
+    "id": 3,
+    "itemId": 5,
+    "part": 3,
+    "maxDurability": 45,
+    "property": {
+      "hp": 1000,
+      "mp": 1000,
+      "attack": 99,
+      "defense": 99
+    }
+  },
+  {
+    "id": 4,
+    "itemId": 6,
+    "part": 4,
+    "maxDurability": 45,
+    "property": {
+      "hp": 1000,
+      "mp": 1000,
+      "attack": 99,
+      "defense": 99
+    }
+  },
+  {
+    "id": 5,
+    "itemId": 7,
+    "part": 5,
+    "maxDurability": 45,
+    "property": {
+      "hp": 1000,
+      "mp": 1000,
+      "attack": 99,
+      "defense": 99
+    }
+  },
+  {
+    "id": 6,
+    "itemId": 8,
+    "part": 6,
+    "maxDurability": 45,
+    "property": {
+      "hp": 1000,
+      "mp": 1000,
+      "attack": 99,
+      "defense": 99
+    }
+  }
+]
