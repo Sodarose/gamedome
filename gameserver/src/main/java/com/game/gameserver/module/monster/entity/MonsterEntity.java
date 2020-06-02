@@ -10,4 +10,5 @@ import lombok.Data;
 @Data
 public class MonsterEntity {
     private MonsterData monsterData;
+
 }

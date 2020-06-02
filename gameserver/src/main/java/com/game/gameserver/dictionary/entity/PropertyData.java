@@ -8,8 +8,8 @@ import lombok.Data;
  */
 @Data
 public class PropertyData {
-    private long hp;
-    private long mp;
-    private long attack;
-    private long defense;
+    private int hp;
+    private int mp;
+    private int attack;
+    private int defense;
 }

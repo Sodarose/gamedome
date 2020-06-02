@@ -55,7 +55,7 @@ public class SceneManager {
     }
 
     private void initScene(SceneObject sceneObject){
-
+        sceneObject.initialize();
     }
 
     /**
