@@ -2,57 +2,72 @@ syntax = "proto3";
 option java_package = "com.game.protocol";
 option java_outer_classname = "PlayerProtocol";
 import "Item.proto";
+import "Skill.proto";
+import "Common.proto";
 
 // 简单角色信息
-message SimplePlayerInfo{
-    int32  id = 1;
+message SimplePlayerInfo {
+    int32 id = 1;
     string name = 2;
-    int32  level = 3;
-    int32  career = 4;
+    int32 level = 3;
+    int32 career = 4;
 }
 
-message PlayerList{
+message PlayerMessage {
+    int32 id = 1;
+    string name = 2;
+    int32 level = 3;
+    int32 career = 4;
+    Property property = 5;
+}
+
+// 角色列表
+message PlayerList {
     repeated SimplePlayerInfo playerInfo = 1;
 }
 
-
 // 登录角色
-message LoginRole{
+message LoginRole {
     int32 id = 1;
 }
 
 
-message PropertyInfo{
-    int32  hp = 1;
-    int32  mp = 2;
-    int32  phyAttack = 3;
-    int32  magicAttack = 4;
-    int32  phyDefense = 5;
-    int32  magicDefense = 6;
-    double attackSpeed = 7;
-    double moveSpeed = 8;
+message PlayerInfo {
+    int32 id = 1;
+    string name = 2;
+    int32 level = 3;
+    int32 career = 4;
+    int32 state = 5;
+    Property property = 6;
+    EquipBar equipBar = 7;
 }
 
-
-// 同步玩家数据
-message PlayerInfo{
+// 属性
+message PlayerObject {
     int32 id = 1;
     string name = 2;
     int32 level = 3;
     int32 career = 4;
     int32 sceneId = 5;
-    PropertyInfo    propertyInfo = 6;
-    EquipBarInfo    equipBar = 7;
-    BagInfo         bagInfo = 8;
+    int32 state = 6;
+    Property property = 7;
+    Bag bag = 8;
+    EquipBar equipBar = 9;
+    SkillBar skillBar = 10;
+}
+// 因为装备变更引起的属性变化 同步
+message SyncProperty {
+    // 什么原因导致的属性变更
+    int32 cause = 1;
+    Property property = 2;
 }
 
-// 同步玩家属性数据
-message SyncPlayerProperty{
-    int32        playerId = 1;
-    PropertyInfo property = 2;
+message TalkNpc {
+    int32 npcId = 1;
 }
 
-// 属性变更通知
-message PropertyChangeNotify{
-
+message Talk {
+    int32 npcId = 1;
+    string name = 2;
+    string msg = 3;
 }

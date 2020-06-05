@@ -1,55 +1,108 @@
 package com.game.gameserver.module.player.object;
 
-import com.game.gameserver.module.account.model.Account;
+import com.game.gameserver.module.buffer.entity.BufferBarEntity;
 import com.game.gameserver.module.item.entity.BagEntity;
+import com.game.gameserver.module.item.entity.Equip;
 import com.game.gameserver.module.item.entity.EquipBarEntity;
-import com.game.gameserver.module.player.entity.PlayerEntity;
-import com.game.gameserver.module.player.entity.PropertyEntity;
-import com.game.protocol.ItemProtocol;
-import com.game.protocol.PlayerProtocol;
-import io.netty.channel.Channel;
-import lombok.Data;
+import com.game.gameserver.module.player.entity.Career;
+import com.game.gameserver.module.player.model.PlayerModel;
+import com.game.gameserver.module.player.entity.Property;
+import com.game.gameserver.module.skill.entity.SkillBarEntity;
+import org.springframework.beans.BeanUtils;
 
 /**
- * 玩家角色实体
  * @author xuewenkang
- * @date 2020/5/25 0:10
+ * @date 2020/6/2 21:35
  */
-@Data
-public class PlayerObject {
-
-    /** 角色基本属性 */
-    PlayerEntity playerEntity;
-    /** 可变的 角色属性 */
-    private PropertyEntity propertyEntity;
-    /** account */
-    private Account account;
-    /** channel */
-    private Channel channel;
-    /** 装备栏*/
+public class NewPlayerObject {
+    /** 角色唯一ID */
+    private final int id;
+    /** 基本信息 */
+    private final PlayerModel playerModel;
+    private Career career;
+    /** 属性 */
+    private Property property;
+    /** 装备栏 */
     private EquipBarEntity equipBarEntity;
     /** 背包 */
     private BagEntity bagEntity;
+    /** 技能 */
+    private SkillBarEntity skillBarEntity;
+    /** buff*/
+    private BufferBarEntity bufferBarEntity;
 
-    /**
-     * 得到玩家同步数据
-     * */
-    public PlayerProtocol.PlayerInfo getPlayerInfo(){
-        PlayerProtocol.PlayerInfo.Builder builder = PlayerProtocol.PlayerInfo.newBuilder();
-        builder.setId(playerEntity.getId());
-        builder.setLevel(playerEntity.getLevel());
-        builder.setName(playerEntity.getName());
-        builder.setCareer(playerEntity.getCareer());
-        builder.setSceneId(playerEntity.getSceneId());
-        PlayerProtocol.PropertyInfo propertyInfo = propertyEntity.getProperInfo();
-        ItemProtocol.EquipBarInfo equipBarInfo = equipBarEntity.getEquipBarInfo();
-        ItemProtocol.BagInfo bagInfo = bagEntity.getBagInfo();
-
-        builder.setPropertyInfo(propertyInfo);
-        builder.setEquipBar(equipBarInfo);
-        builder.setBagInfo(bagInfo);
-        return  builder.build();
+    public NewPlayerObject(int id,PlayerModel playerModel){
+        this.id = id;
+        this.playerModel = playerModel;
     }
 
+    public void initProperty(){
+        property = new Property();
+        BeanUtils.copyProperties(career.getLevelProperty().getPropertyData(),property);
+    }
 
+    /** 调整属性 该方法将初始化所有属性 */
+    public void adjustProperty(){
+        initProperty();
+        Equip[] equips = equipBarEntity.getEquips();
+        for(Equip equip:equips){
+            property.addEquipProperty(equip);
+        }
+    }
+
+    public void setCareer(Career career) {
+        this.career = career;
+    }
+
+    public Career getCareer() {
+        return career;
+    }
+
+    public BagEntity getBagEntity() {
+        return bagEntity;
+    }
+
+    public void setBagEntity(BagEntity bagEntity) {
+        this.bagEntity = bagEntity;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public BufferBarEntity getBufferBarEntity() {
+        return bufferBarEntity;
+    }
+
+    public void setBufferBarEntity(BufferBarEntity bufferBarEntity) {
+        this.bufferBarEntity = bufferBarEntity;
+    }
+
+    public EquipBarEntity getEquipBarEntity() {
+        return equipBarEntity;
+    }
+
+    public void setEquipBarEntity(EquipBarEntity equipBarEntity) {
+        this.equipBarEntity = equipBarEntity;
+    }
+
+    public void setSkillBarEntity(SkillBarEntity skillBarEntity) {
+        this.skillBarEntity = skillBarEntity;
+    }
+
+    public SkillBarEntity getSkillBarEntity() {
+        return skillBarEntity;
+    }
+
+    public PlayerModel getPlayerModel() {
+        return playerModel;
+    }
+
+    public Property getProperty() {
+        return property;
+    }
+
+    public void setProperty(Property property) {
+        this.property = property;
+    }
 }

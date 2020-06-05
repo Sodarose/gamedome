@@ -2,9 +2,7 @@ package com.game.gameserver.module.item.model;
 
 /**
  * @author xuewenkang
- * @date 2020/6/1 10:44
+ * @date 2020/6/3 10:39
  */
-public interface ItemProperty {
-    String BAG_INDEX ="BAG_INDEX";
-    String ITEM_COUNT = "ITEM_COUNT";
+public class ItemProperty {
 }

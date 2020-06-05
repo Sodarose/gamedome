@@ -1,0 +1,20 @@
+syntax = "proto3";
+option java_package = "com.game.protocol";
+option java_outer_classname = "CommonProtocol";
+
+
+message Tip{
+    int32  code = 1;
+    string msg = 2;
+}
+
+message Property {
+    int32 hp = 1;
+    int32 mp = 2;
+    int32 attack = 3;
+    int32 defense = 4;
+    int32 currHp = 5;
+    int32 currMp = 6;
+    int32 currAttack = 7;
+    int32 currDefense = 8;
+}

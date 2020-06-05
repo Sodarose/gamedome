@@ -14,426 +14,8 @@ public final class ActorProtocol {
     registerAllExtensions(
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
-  public interface NpcInfoOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:NpcInfo)
-      com.google.protobuf.MessageOrBuilder {
-  }
-  /**
-   * Protobuf type {@code NpcInfo}
-   */
-  public  static final class NpcInfo extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:NpcInfo)
-      NpcInfoOrBuilder {
-  private static final long serialVersionUID = 0L;
-    // Use NpcInfo.newBuilder() to construct.
-    private NpcInfo(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private NpcInfo() {
-    }
-
-    @java.lang.Override
-    @SuppressWarnings({"unused"})
-    protected java.lang.Object newInstance(
-        UnusedPrivateParameter unused) {
-      return new NpcInfo();
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private NpcInfo(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return com.game.protocol.ActorProtocol.internal_static_NpcInfo_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return com.game.protocol.ActorProtocol.internal_static_NpcInfo_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              com.game.protocol.ActorProtocol.NpcInfo.class, com.game.protocol.ActorProtocol.NpcInfo.Builder.class);
-    }
-
-    private byte memoizedIsInitialized = -1;
-    @java.lang.Override
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    @java.lang.Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      unknownFields.writeTo(output);
-    }
-
-    @java.lang.Override
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof com.game.protocol.ActorProtocol.NpcInfo)) {
-        return super.equals(obj);
-      }
-      com.game.protocol.ActorProtocol.NpcInfo other = (com.game.protocol.ActorProtocol.NpcInfo) obj;
-
-      if (!unknownFields.equals(other.unknownFields)) return false;
-      return true;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static com.game.protocol.ActorProtocol.NpcInfo parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.game.protocol.ActorProtocol.NpcInfo parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.game.protocol.ActorProtocol.NpcInfo parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.game.protocol.ActorProtocol.NpcInfo parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.game.protocol.ActorProtocol.NpcInfo parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.game.protocol.ActorProtocol.NpcInfo parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.game.protocol.ActorProtocol.NpcInfo parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.game.protocol.ActorProtocol.NpcInfo parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static com.game.protocol.ActorProtocol.NpcInfo parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static com.game.protocol.ActorProtocol.NpcInfo parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static com.game.protocol.ActorProtocol.NpcInfo parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.game.protocol.ActorProtocol.NpcInfo parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(com.game.protocol.ActorProtocol.NpcInfo prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    @java.lang.Override
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * Protobuf type {@code NpcInfo}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:NpcInfo)
-        com.game.protocol.ActorProtocol.NpcInfoOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return com.game.protocol.ActorProtocol.internal_static_NpcInfo_descriptor;
-      }
-
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return com.game.protocol.ActorProtocol.internal_static_NpcInfo_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                com.game.protocol.ActorProtocol.NpcInfo.class, com.game.protocol.ActorProtocol.NpcInfo.Builder.class);
-      }
-
-      // Construct using com.game.protocol.ActorProtocol.NpcInfo.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
-      }
-      @java.lang.Override
-      public Builder clear() {
-        super.clear();
-        return this;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return com.game.protocol.ActorProtocol.internal_static_NpcInfo_descriptor;
-      }
-
-      @java.lang.Override
-      public com.game.protocol.ActorProtocol.NpcInfo getDefaultInstanceForType() {
-        return com.game.protocol.ActorProtocol.NpcInfo.getDefaultInstance();
-      }
-
-      @java.lang.Override
-      public com.game.protocol.ActorProtocol.NpcInfo build() {
-        com.game.protocol.ActorProtocol.NpcInfo result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      @java.lang.Override
-      public com.game.protocol.ActorProtocol.NpcInfo buildPartial() {
-        com.game.protocol.ActorProtocol.NpcInfo result = new com.game.protocol.ActorProtocol.NpcInfo(this);
-        onBuilt();
-        return result;
-      }
-
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
-      }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
-      @java.lang.Override
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.game.protocol.ActorProtocol.NpcInfo) {
-          return mergeFrom((com.game.protocol.ActorProtocol.NpcInfo)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(com.game.protocol.ActorProtocol.NpcInfo other) {
-        if (other == com.game.protocol.ActorProtocol.NpcInfo.getDefaultInstance()) return this;
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
-        return this;
-      }
-
-      @java.lang.Override
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        com.game.protocol.ActorProtocol.NpcInfo parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.game.protocol.ActorProtocol.NpcInfo) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-      @java.lang.Override
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFields(unknownFields);
-      }
-
-      @java.lang.Override
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:NpcInfo)
-    }
-
-    // @@protoc_insertion_point(class_scope:NpcInfo)
-    private static final com.game.protocol.ActorProtocol.NpcInfo DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new com.game.protocol.ActorProtocol.NpcInfo();
-    }
-
-    public static com.game.protocol.ActorProtocol.NpcInfo getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<NpcInfo>
-        PARSER = new com.google.protobuf.AbstractParser<NpcInfo>() {
-      @java.lang.Override
-      public NpcInfo parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new NpcInfo(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<NpcInfo> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<NpcInfo> getParserForType() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.game.protocol.ActorProtocol.NpcInfo getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
-  public interface SimpleNpcInfoOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:SimpleNpcInfo)
+  public interface MonsterOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:Monster)
       com.google.protobuf.MessageOrBuilder {
 
     /**
@@ -461,24 +43,39 @@ public final class ActorProtocol {
     int getLevel();
 
     /**
-     * <code>int32 career = 4;</code>
-     * @return The career.
+     * <code>int32 state = 4;</code>
+     * @return The state.
      */
-    int getCareer();
+    int getState();
+
+    /**
+     * <code>.Property property = 5;</code>
+     * @return Whether the property field is set.
+     */
+    boolean hasProperty();
+    /**
+     * <code>.Property property = 5;</code>
+     * @return The property.
+     */
+    com.game.protocol.CommonProtocol.Property getProperty();
+    /**
+     * <code>.Property property = 5;</code>
+     */
+    com.game.protocol.CommonProtocol.PropertyOrBuilder getPropertyOrBuilder();
   }
   /**
-   * Protobuf type {@code SimpleNpcInfo}
+   * Protobuf type {@code Monster}
    */
-  public  static final class SimpleNpcInfo extends
+  public  static final class Monster extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:SimpleNpcInfo)
-      SimpleNpcInfoOrBuilder {
+      // @@protoc_insertion_point(message_implements:Monster)
+      MonsterOrBuilder {
   private static final long serialVersionUID = 0L;
-    // Use SimpleNpcInfo.newBuilder() to construct.
-    private SimpleNpcInfo(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    // Use Monster.newBuilder() to construct.
+    private Monster(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-    private SimpleNpcInfo() {
+    private Monster() {
       name_ = "";
     }
 
@@ -486,7 +83,7 @@ public final class ActorProtocol {
     @SuppressWarnings({"unused"})
     protected java.lang.Object newInstance(
         UnusedPrivateParameter unused) {
-      return new SimpleNpcInfo();
+      return new Monster();
     }
 
     @java.lang.Override
@@ -494,7 +91,7 @@ public final class ActorProtocol {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private SimpleNpcInfo(
+    private Monster(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -530,7 +127,20 @@ public final class ActorProtocol {
             }
             case 32: {
 
-              career_ = input.readInt32();
+              state_ = input.readInt32();
+              break;
+            }
+            case 42: {
+              com.game.protocol.CommonProtocol.Property.Builder subBuilder = null;
+              if (property_ != null) {
+                subBuilder = property_.toBuilder();
+              }
+              property_ = input.readMessage(com.game.protocol.CommonProtocol.Property.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(property_);
+                property_ = subBuilder.buildPartial();
+              }
+
               break;
             }
             default: {
@@ -554,15 +164,15 @@ public final class ActorProtocol {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.game.protocol.ActorProtocol.internal_static_SimpleNpcInfo_descriptor;
+      return com.game.protocol.ActorProtocol.internal_static_Monster_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.game.protocol.ActorProtocol.internal_static_SimpleNpcInfo_fieldAccessorTable
+      return com.game.protocol.ActorProtocol.internal_static_Monster_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.game.protocol.ActorProtocol.SimpleNpcInfo.class, com.game.protocol.ActorProtocol.SimpleNpcInfo.Builder.class);
+              com.game.protocol.ActorProtocol.Monster.class, com.game.protocol.ActorProtocol.Monster.Builder.class);
     }
 
     public static final int ID_FIELD_NUMBER = 1;
@@ -621,14 +231,37 @@ public final class ActorProtocol {
       return level_;
     }
 
-    public static final int CAREER_FIELD_NUMBER = 4;
-    private int career_;
+    public static final int STATE_FIELD_NUMBER = 4;
+    private int state_;
     /**
-     * <code>int32 career = 4;</code>
-     * @return The career.
+     * <code>int32 state = 4;</code>
+     * @return The state.
      */
-    public int getCareer() {
-      return career_;
+    public int getState() {
+      return state_;
+    }
+
+    public static final int PROPERTY_FIELD_NUMBER = 5;
+    private com.game.protocol.CommonProtocol.Property property_;
+    /**
+     * <code>.Property property = 5;</code>
+     * @return Whether the property field is set.
+     */
+    public boolean hasProperty() {
+      return property_ != null;
+    }
+    /**
+     * <code>.Property property = 5;</code>
+     * @return The property.
+     */
+    public com.game.protocol.CommonProtocol.Property getProperty() {
+      return property_ == null ? com.game.protocol.CommonProtocol.Property.getDefaultInstance() : property_;
+    }
+    /**
+     * <code>.Property property = 5;</code>
+     */
+    public com.game.protocol.CommonProtocol.PropertyOrBuilder getPropertyOrBuilder() {
+      return getProperty();
     }
 
     private byte memoizedIsInitialized = -1;
@@ -654,8 +287,11 @@ public final class ActorProtocol {
       if (level_ != 0) {
         output.writeInt32(3, level_);
       }
-      if (career_ != 0) {
-        output.writeInt32(4, career_);
+      if (state_ != 0) {
+        output.writeInt32(4, state_);
+      }
+      if (property_ != null) {
+        output.writeMessage(5, getProperty());
       }
       unknownFields.writeTo(output);
     }
@@ -677,9 +313,13 @@ public final class ActorProtocol {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(3, level_);
       }
-      if (career_ != 0) {
+      if (state_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(4, career_);
+          .computeInt32Size(4, state_);
+      }
+      if (property_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(5, getProperty());
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -691,10 +331,10 @@ public final class ActorProtocol {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof com.game.protocol.ActorProtocol.SimpleNpcInfo)) {
+      if (!(obj instanceof com.game.protocol.ActorProtocol.Monster)) {
         return super.equals(obj);
       }
-      com.game.protocol.ActorProtocol.SimpleNpcInfo other = (com.game.protocol.ActorProtocol.SimpleNpcInfo) obj;
+      com.game.protocol.ActorProtocol.Monster other = (com.game.protocol.ActorProtocol.Monster) obj;
 
       if (getId()
           != other.getId()) return false;
@@ -702,8 +342,13 @@ public final class ActorProtocol {
           .equals(other.getName())) return false;
       if (getLevel()
           != other.getLevel()) return false;
-      if (getCareer()
-          != other.getCareer()) return false;
+      if (getState()
+          != other.getState()) return false;
+      if (hasProperty() != other.hasProperty()) return false;
+      if (hasProperty()) {
+        if (!getProperty()
+            .equals(other.getProperty())) return false;
+      }
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -721,76 +366,80 @@ public final class ActorProtocol {
       hash = (53 * hash) + getName().hashCode();
       hash = (37 * hash) + LEVEL_FIELD_NUMBER;
       hash = (53 * hash) + getLevel();
-      hash = (37 * hash) + CAREER_FIELD_NUMBER;
-      hash = (53 * hash) + getCareer();
+      hash = (37 * hash) + STATE_FIELD_NUMBER;
+      hash = (53 * hash) + getState();
+      if (hasProperty()) {
+        hash = (37 * hash) + PROPERTY_FIELD_NUMBER;
+        hash = (53 * hash) + getProperty().hashCode();
+      }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
     }
 
-    public static com.game.protocol.ActorProtocol.SimpleNpcInfo parseFrom(
+    public static com.game.protocol.ActorProtocol.Monster parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.game.protocol.ActorProtocol.SimpleNpcInfo parseFrom(
+    public static com.game.protocol.ActorProtocol.Monster parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.game.protocol.ActorProtocol.SimpleNpcInfo parseFrom(
+    public static com.game.protocol.ActorProtocol.Monster parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.game.protocol.ActorProtocol.SimpleNpcInfo parseFrom(
+    public static com.game.protocol.ActorProtocol.Monster parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.game.protocol.ActorProtocol.SimpleNpcInfo parseFrom(byte[] data)
+    public static com.game.protocol.ActorProtocol.Monster parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.game.protocol.ActorProtocol.SimpleNpcInfo parseFrom(
+    public static com.game.protocol.ActorProtocol.Monster parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.game.protocol.ActorProtocol.SimpleNpcInfo parseFrom(java.io.InputStream input)
+    public static com.game.protocol.ActorProtocol.Monster parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.game.protocol.ActorProtocol.SimpleNpcInfo parseFrom(
+    public static com.game.protocol.ActorProtocol.Monster parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.game.protocol.ActorProtocol.SimpleNpcInfo parseDelimitedFrom(java.io.InputStream input)
+    public static com.game.protocol.ActorProtocol.Monster parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static com.game.protocol.ActorProtocol.SimpleNpcInfo parseDelimitedFrom(
+    public static com.game.protocol.ActorProtocol.Monster parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.game.protocol.ActorProtocol.SimpleNpcInfo parseFrom(
+    public static com.game.protocol.ActorProtocol.Monster parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.game.protocol.ActorProtocol.SimpleNpcInfo parseFrom(
+    public static com.game.protocol.ActorProtocol.Monster parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -803,7 +452,7 @@ public final class ActorProtocol {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.game.protocol.ActorProtocol.SimpleNpcInfo prototype) {
+    public static Builder newBuilder(com.game.protocol.ActorProtocol.Monster prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     @java.lang.Override
@@ -819,26 +468,26 @@ public final class ActorProtocol {
       return builder;
     }
     /**
-     * Protobuf type {@code SimpleNpcInfo}
+     * Protobuf type {@code Monster}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:SimpleNpcInfo)
-        com.game.protocol.ActorProtocol.SimpleNpcInfoOrBuilder {
+        // @@protoc_insertion_point(builder_implements:Monster)
+        com.game.protocol.ActorProtocol.MonsterOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.game.protocol.ActorProtocol.internal_static_SimpleNpcInfo_descriptor;
+        return com.game.protocol.ActorProtocol.internal_static_Monster_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.game.protocol.ActorProtocol.internal_static_SimpleNpcInfo_fieldAccessorTable
+        return com.game.protocol.ActorProtocol.internal_static_Monster_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.game.protocol.ActorProtocol.SimpleNpcInfo.class, com.game.protocol.ActorProtocol.SimpleNpcInfo.Builder.class);
+                com.game.protocol.ActorProtocol.Monster.class, com.game.protocol.ActorProtocol.Monster.Builder.class);
       }
 
-      // Construct using com.game.protocol.ActorProtocol.SimpleNpcInfo.newBuilder()
+      // Construct using com.game.protocol.ActorProtocol.Monster.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -862,25 +511,31 @@ public final class ActorProtocol {
 
         level_ = 0;
 
-        career_ = 0;
+        state_ = 0;
 
+        if (propertyBuilder_ == null) {
+          property_ = null;
+        } else {
+          property_ = null;
+          propertyBuilder_ = null;
+        }
         return this;
       }
 
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.game.protocol.ActorProtocol.internal_static_SimpleNpcInfo_descriptor;
+        return com.game.protocol.ActorProtocol.internal_static_Monster_descriptor;
       }
 
       @java.lang.Override
-      public com.game.protocol.ActorProtocol.SimpleNpcInfo getDefaultInstanceForType() {
-        return com.game.protocol.ActorProtocol.SimpleNpcInfo.getDefaultInstance();
+      public com.game.protocol.ActorProtocol.Monster getDefaultInstanceForType() {
+        return com.game.protocol.ActorProtocol.Monster.getDefaultInstance();
       }
 
       @java.lang.Override
-      public com.game.protocol.ActorProtocol.SimpleNpcInfo build() {
-        com.game.protocol.ActorProtocol.SimpleNpcInfo result = buildPartial();
+      public com.game.protocol.ActorProtocol.Monster build() {
+        com.game.protocol.ActorProtocol.Monster result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
@@ -888,12 +543,17 @@ public final class ActorProtocol {
       }
 
       @java.lang.Override
-      public com.game.protocol.ActorProtocol.SimpleNpcInfo buildPartial() {
-        com.game.protocol.ActorProtocol.SimpleNpcInfo result = new com.game.protocol.ActorProtocol.SimpleNpcInfo(this);
+      public com.game.protocol.ActorProtocol.Monster buildPartial() {
+        com.game.protocol.ActorProtocol.Monster result = new com.game.protocol.ActorProtocol.Monster(this);
         result.id_ = id_;
         result.name_ = name_;
         result.level_ = level_;
-        result.career_ = career_;
+        result.state_ = state_;
+        if (propertyBuilder_ == null) {
+          result.property_ = property_;
+        } else {
+          result.property_ = propertyBuilder_.build();
+        }
         onBuilt();
         return result;
       }
@@ -932,16 +592,16 @@ public final class ActorProtocol {
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.game.protocol.ActorProtocol.SimpleNpcInfo) {
-          return mergeFrom((com.game.protocol.ActorProtocol.SimpleNpcInfo)other);
+        if (other instanceof com.game.protocol.ActorProtocol.Monster) {
+          return mergeFrom((com.game.protocol.ActorProtocol.Monster)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(com.game.protocol.ActorProtocol.SimpleNpcInfo other) {
-        if (other == com.game.protocol.ActorProtocol.SimpleNpcInfo.getDefaultInstance()) return this;
+      public Builder mergeFrom(com.game.protocol.ActorProtocol.Monster other) {
+        if (other == com.game.protocol.ActorProtocol.Monster.getDefaultInstance()) return this;
         if (other.getId() != 0) {
           setId(other.getId());
         }
@@ -952,8 +612,11 @@ public final class ActorProtocol {
         if (other.getLevel() != 0) {
           setLevel(other.getLevel());
         }
-        if (other.getCareer() != 0) {
-          setCareer(other.getCareer());
+        if (other.getState() != 0) {
+          setState(other.getState());
+        }
+        if (other.hasProperty()) {
+          mergeProperty(other.getProperty());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -970,11 +633,11 @@ public final class ActorProtocol {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.game.protocol.ActorProtocol.SimpleNpcInfo parsedMessage = null;
+        com.game.protocol.ActorProtocol.Monster parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.game.protocol.ActorProtocol.SimpleNpcInfo) e.getUnfinishedMessage();
+          parsedMessage = (com.game.protocol.ActorProtocol.Monster) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -1120,34 +783,153 @@ public final class ActorProtocol {
         return this;
       }
 
-      private int career_ ;
+      private int state_ ;
       /**
-       * <code>int32 career = 4;</code>
-       * @return The career.
+       * <code>int32 state = 4;</code>
+       * @return The state.
        */
-      public int getCareer() {
-        return career_;
+      public int getState() {
+        return state_;
       }
       /**
-       * <code>int32 career = 4;</code>
-       * @param value The career to set.
+       * <code>int32 state = 4;</code>
+       * @param value The state to set.
        * @return This builder for chaining.
        */
-      public Builder setCareer(int value) {
+      public Builder setState(int value) {
         
-        career_ = value;
+        state_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>int32 career = 4;</code>
+       * <code>int32 state = 4;</code>
        * @return This builder for chaining.
        */
-      public Builder clearCareer() {
+      public Builder clearState() {
         
-        career_ = 0;
+        state_ = 0;
         onChanged();
         return this;
+      }
+
+      private com.game.protocol.CommonProtocol.Property property_;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.game.protocol.CommonProtocol.Property, com.game.protocol.CommonProtocol.Property.Builder, com.game.protocol.CommonProtocol.PropertyOrBuilder> propertyBuilder_;
+      /**
+       * <code>.Property property = 5;</code>
+       * @return Whether the property field is set.
+       */
+      public boolean hasProperty() {
+        return propertyBuilder_ != null || property_ != null;
+      }
+      /**
+       * <code>.Property property = 5;</code>
+       * @return The property.
+       */
+      public com.game.protocol.CommonProtocol.Property getProperty() {
+        if (propertyBuilder_ == null) {
+          return property_ == null ? com.game.protocol.CommonProtocol.Property.getDefaultInstance() : property_;
+        } else {
+          return propertyBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.Property property = 5;</code>
+       */
+      public Builder setProperty(com.game.protocol.CommonProtocol.Property value) {
+        if (propertyBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          property_ = value;
+          onChanged();
+        } else {
+          propertyBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.Property property = 5;</code>
+       */
+      public Builder setProperty(
+          com.game.protocol.CommonProtocol.Property.Builder builderForValue) {
+        if (propertyBuilder_ == null) {
+          property_ = builderForValue.build();
+          onChanged();
+        } else {
+          propertyBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>.Property property = 5;</code>
+       */
+      public Builder mergeProperty(com.game.protocol.CommonProtocol.Property value) {
+        if (propertyBuilder_ == null) {
+          if (property_ != null) {
+            property_ =
+              com.game.protocol.CommonProtocol.Property.newBuilder(property_).mergeFrom(value).buildPartial();
+          } else {
+            property_ = value;
+          }
+          onChanged();
+        } else {
+          propertyBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.Property property = 5;</code>
+       */
+      public Builder clearProperty() {
+        if (propertyBuilder_ == null) {
+          property_ = null;
+          onChanged();
+        } else {
+          property_ = null;
+          propertyBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>.Property property = 5;</code>
+       */
+      public com.game.protocol.CommonProtocol.Property.Builder getPropertyBuilder() {
+        
+        onChanged();
+        return getPropertyFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.Property property = 5;</code>
+       */
+      public com.game.protocol.CommonProtocol.PropertyOrBuilder getPropertyOrBuilder() {
+        if (propertyBuilder_ != null) {
+          return propertyBuilder_.getMessageOrBuilder();
+        } else {
+          return property_ == null ?
+              com.game.protocol.CommonProtocol.Property.getDefaultInstance() : property_;
+        }
+      }
+      /**
+       * <code>.Property property = 5;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.game.protocol.CommonProtocol.Property, com.game.protocol.CommonProtocol.Property.Builder, com.game.protocol.CommonProtocol.PropertyOrBuilder> 
+          getPropertyFieldBuilder() {
+        if (propertyBuilder_ == null) {
+          propertyBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.game.protocol.CommonProtocol.Property, com.game.protocol.CommonProtocol.Property.Builder, com.game.protocol.CommonProtocol.PropertyOrBuilder>(
+                  getProperty(),
+                  getParentForChildren(),
+                  isClean());
+          property_ = null;
+        }
+        return propertyBuilder_;
       }
       @java.lang.Override
       public final Builder setUnknownFields(
@@ -1162,48 +944,48 @@ public final class ActorProtocol {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:SimpleNpcInfo)
+      // @@protoc_insertion_point(builder_scope:Monster)
     }
 
-    // @@protoc_insertion_point(class_scope:SimpleNpcInfo)
-    private static final com.game.protocol.ActorProtocol.SimpleNpcInfo DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:Monster)
+    private static final com.game.protocol.ActorProtocol.Monster DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new com.game.protocol.ActorProtocol.SimpleNpcInfo();
+      DEFAULT_INSTANCE = new com.game.protocol.ActorProtocol.Monster();
     }
 
-    public static com.game.protocol.ActorProtocol.SimpleNpcInfo getDefaultInstance() {
+    public static com.game.protocol.ActorProtocol.Monster getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static final com.google.protobuf.Parser<SimpleNpcInfo>
-        PARSER = new com.google.protobuf.AbstractParser<SimpleNpcInfo>() {
+    private static final com.google.protobuf.Parser<Monster>
+        PARSER = new com.google.protobuf.AbstractParser<Monster>() {
       @java.lang.Override
-      public SimpleNpcInfo parsePartialFrom(
+      public Monster parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new SimpleNpcInfo(input, extensionRegistry);
+        return new Monster(input, extensionRegistry);
       }
     };
 
-    public static com.google.protobuf.Parser<SimpleNpcInfo> parser() {
+    public static com.google.protobuf.Parser<Monster> parser() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<SimpleNpcInfo> getParserForType() {
+    public com.google.protobuf.Parser<Monster> getParserForType() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.game.protocol.ActorProtocol.SimpleNpcInfo getDefaultInstanceForType() {
+    public com.game.protocol.ActorProtocol.Monster getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
   }
 
-  public interface MonsterInfoOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:MonsterInfo)
+  public interface NpcOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:Npc)
       com.google.protobuf.MessageOrBuilder {
 
     /**
@@ -1229,20 +1011,41 @@ public final class ActorProtocol {
      * @return The level.
      */
     int getLevel();
+
+    /**
+     * <code>int32 state = 4;</code>
+     * @return The state.
+     */
+    int getState();
+
+    /**
+     * <code>.Property property = 5;</code>
+     * @return Whether the property field is set.
+     */
+    boolean hasProperty();
+    /**
+     * <code>.Property property = 5;</code>
+     * @return The property.
+     */
+    com.game.protocol.CommonProtocol.Property getProperty();
+    /**
+     * <code>.Property property = 5;</code>
+     */
+    com.game.protocol.CommonProtocol.PropertyOrBuilder getPropertyOrBuilder();
   }
   /**
-   * Protobuf type {@code MonsterInfo}
+   * Protobuf type {@code Npc}
    */
-  public  static final class MonsterInfo extends
+  public  static final class Npc extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:MonsterInfo)
-      MonsterInfoOrBuilder {
+      // @@protoc_insertion_point(message_implements:Npc)
+      NpcOrBuilder {
   private static final long serialVersionUID = 0L;
-    // Use MonsterInfo.newBuilder() to construct.
-    private MonsterInfo(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    // Use Npc.newBuilder() to construct.
+    private Npc(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-    private MonsterInfo() {
+    private Npc() {
       name_ = "";
     }
 
@@ -1250,7 +1053,7 @@ public final class ActorProtocol {
     @SuppressWarnings({"unused"})
     protected java.lang.Object newInstance(
         UnusedPrivateParameter unused) {
-      return new MonsterInfo();
+      return new Npc();
     }
 
     @java.lang.Override
@@ -1258,7 +1061,7 @@ public final class ActorProtocol {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private MonsterInfo(
+    private Npc(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -1292,6 +1095,24 @@ public final class ActorProtocol {
               level_ = input.readInt32();
               break;
             }
+            case 32: {
+
+              state_ = input.readInt32();
+              break;
+            }
+            case 42: {
+              com.game.protocol.CommonProtocol.Property.Builder subBuilder = null;
+              if (property_ != null) {
+                subBuilder = property_.toBuilder();
+              }
+              property_ = input.readMessage(com.game.protocol.CommonProtocol.Property.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(property_);
+                property_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
             default: {
               if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
@@ -1313,15 +1134,15 @@ public final class ActorProtocol {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.game.protocol.ActorProtocol.internal_static_MonsterInfo_descriptor;
+      return com.game.protocol.ActorProtocol.internal_static_Npc_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.game.protocol.ActorProtocol.internal_static_MonsterInfo_fieldAccessorTable
+      return com.game.protocol.ActorProtocol.internal_static_Npc_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.game.protocol.ActorProtocol.MonsterInfo.class, com.game.protocol.ActorProtocol.MonsterInfo.Builder.class);
+              com.game.protocol.ActorProtocol.Npc.class, com.game.protocol.ActorProtocol.Npc.Builder.class);
     }
 
     public static final int ID_FIELD_NUMBER = 1;
@@ -1380,6 +1201,39 @@ public final class ActorProtocol {
       return level_;
     }
 
+    public static final int STATE_FIELD_NUMBER = 4;
+    private int state_;
+    /**
+     * <code>int32 state = 4;</code>
+     * @return The state.
+     */
+    public int getState() {
+      return state_;
+    }
+
+    public static final int PROPERTY_FIELD_NUMBER = 5;
+    private com.game.protocol.CommonProtocol.Property property_;
+    /**
+     * <code>.Property property = 5;</code>
+     * @return Whether the property field is set.
+     */
+    public boolean hasProperty() {
+      return property_ != null;
+    }
+    /**
+     * <code>.Property property = 5;</code>
+     * @return The property.
+     */
+    public com.game.protocol.CommonProtocol.Property getProperty() {
+      return property_ == null ? com.game.protocol.CommonProtocol.Property.getDefaultInstance() : property_;
+    }
+    /**
+     * <code>.Property property = 5;</code>
+     */
+    public com.game.protocol.CommonProtocol.PropertyOrBuilder getPropertyOrBuilder() {
+      return getProperty();
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -1403,6 +1257,12 @@ public final class ActorProtocol {
       if (level_ != 0) {
         output.writeInt32(3, level_);
       }
+      if (state_ != 0) {
+        output.writeInt32(4, state_);
+      }
+      if (property_ != null) {
+        output.writeMessage(5, getProperty());
+      }
       unknownFields.writeTo(output);
     }
 
@@ -1423,6 +1283,14 @@ public final class ActorProtocol {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(3, level_);
       }
+      if (state_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(4, state_);
+      }
+      if (property_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(5, getProperty());
+      }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
@@ -1433,10 +1301,10 @@ public final class ActorProtocol {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof com.game.protocol.ActorProtocol.MonsterInfo)) {
+      if (!(obj instanceof com.game.protocol.ActorProtocol.Npc)) {
         return super.equals(obj);
       }
-      com.game.protocol.ActorProtocol.MonsterInfo other = (com.game.protocol.ActorProtocol.MonsterInfo) obj;
+      com.game.protocol.ActorProtocol.Npc other = (com.game.protocol.ActorProtocol.Npc) obj;
 
       if (getId()
           != other.getId()) return false;
@@ -1444,6 +1312,13 @@ public final class ActorProtocol {
           .equals(other.getName())) return false;
       if (getLevel()
           != other.getLevel()) return false;
+      if (getState()
+          != other.getState()) return false;
+      if (hasProperty() != other.hasProperty()) return false;
+      if (hasProperty()) {
+        if (!getProperty()
+            .equals(other.getProperty())) return false;
+      }
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -1461,74 +1336,80 @@ public final class ActorProtocol {
       hash = (53 * hash) + getName().hashCode();
       hash = (37 * hash) + LEVEL_FIELD_NUMBER;
       hash = (53 * hash) + getLevel();
+      hash = (37 * hash) + STATE_FIELD_NUMBER;
+      hash = (53 * hash) + getState();
+      if (hasProperty()) {
+        hash = (37 * hash) + PROPERTY_FIELD_NUMBER;
+        hash = (53 * hash) + getProperty().hashCode();
+      }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
     }
 
-    public static com.game.protocol.ActorProtocol.MonsterInfo parseFrom(
+    public static com.game.protocol.ActorProtocol.Npc parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.game.protocol.ActorProtocol.MonsterInfo parseFrom(
+    public static com.game.protocol.ActorProtocol.Npc parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.game.protocol.ActorProtocol.MonsterInfo parseFrom(
+    public static com.game.protocol.ActorProtocol.Npc parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.game.protocol.ActorProtocol.MonsterInfo parseFrom(
+    public static com.game.protocol.ActorProtocol.Npc parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.game.protocol.ActorProtocol.MonsterInfo parseFrom(byte[] data)
+    public static com.game.protocol.ActorProtocol.Npc parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.game.protocol.ActorProtocol.MonsterInfo parseFrom(
+    public static com.game.protocol.ActorProtocol.Npc parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.game.protocol.ActorProtocol.MonsterInfo parseFrom(java.io.InputStream input)
+    public static com.game.protocol.ActorProtocol.Npc parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.game.protocol.ActorProtocol.MonsterInfo parseFrom(
+    public static com.game.protocol.ActorProtocol.Npc parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.game.protocol.ActorProtocol.MonsterInfo parseDelimitedFrom(java.io.InputStream input)
+    public static com.game.protocol.ActorProtocol.Npc parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static com.game.protocol.ActorProtocol.MonsterInfo parseDelimitedFrom(
+    public static com.game.protocol.ActorProtocol.Npc parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.game.protocol.ActorProtocol.MonsterInfo parseFrom(
+    public static com.game.protocol.ActorProtocol.Npc parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.game.protocol.ActorProtocol.MonsterInfo parseFrom(
+    public static com.game.protocol.ActorProtocol.Npc parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -1541,7 +1422,7 @@ public final class ActorProtocol {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.game.protocol.ActorProtocol.MonsterInfo prototype) {
+    public static Builder newBuilder(com.game.protocol.ActorProtocol.Npc prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     @java.lang.Override
@@ -1557,26 +1438,26 @@ public final class ActorProtocol {
       return builder;
     }
     /**
-     * Protobuf type {@code MonsterInfo}
+     * Protobuf type {@code Npc}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:MonsterInfo)
-        com.game.protocol.ActorProtocol.MonsterInfoOrBuilder {
+        // @@protoc_insertion_point(builder_implements:Npc)
+        com.game.protocol.ActorProtocol.NpcOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.game.protocol.ActorProtocol.internal_static_MonsterInfo_descriptor;
+        return com.game.protocol.ActorProtocol.internal_static_Npc_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.game.protocol.ActorProtocol.internal_static_MonsterInfo_fieldAccessorTable
+        return com.game.protocol.ActorProtocol.internal_static_Npc_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.game.protocol.ActorProtocol.MonsterInfo.class, com.game.protocol.ActorProtocol.MonsterInfo.Builder.class);
+                com.game.protocol.ActorProtocol.Npc.class, com.game.protocol.ActorProtocol.Npc.Builder.class);
       }
 
-      // Construct using com.game.protocol.ActorProtocol.MonsterInfo.newBuilder()
+      // Construct using com.game.protocol.ActorProtocol.Npc.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -1600,23 +1481,31 @@ public final class ActorProtocol {
 
         level_ = 0;
 
+        state_ = 0;
+
+        if (propertyBuilder_ == null) {
+          property_ = null;
+        } else {
+          property_ = null;
+          propertyBuilder_ = null;
+        }
         return this;
       }
 
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.game.protocol.ActorProtocol.internal_static_MonsterInfo_descriptor;
+        return com.game.protocol.ActorProtocol.internal_static_Npc_descriptor;
       }
 
       @java.lang.Override
-      public com.game.protocol.ActorProtocol.MonsterInfo getDefaultInstanceForType() {
-        return com.game.protocol.ActorProtocol.MonsterInfo.getDefaultInstance();
+      public com.game.protocol.ActorProtocol.Npc getDefaultInstanceForType() {
+        return com.game.protocol.ActorProtocol.Npc.getDefaultInstance();
       }
 
       @java.lang.Override
-      public com.game.protocol.ActorProtocol.MonsterInfo build() {
-        com.game.protocol.ActorProtocol.MonsterInfo result = buildPartial();
+      public com.game.protocol.ActorProtocol.Npc build() {
+        com.game.protocol.ActorProtocol.Npc result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
@@ -1624,11 +1513,17 @@ public final class ActorProtocol {
       }
 
       @java.lang.Override
-      public com.game.protocol.ActorProtocol.MonsterInfo buildPartial() {
-        com.game.protocol.ActorProtocol.MonsterInfo result = new com.game.protocol.ActorProtocol.MonsterInfo(this);
+      public com.game.protocol.ActorProtocol.Npc buildPartial() {
+        com.game.protocol.ActorProtocol.Npc result = new com.game.protocol.ActorProtocol.Npc(this);
         result.id_ = id_;
         result.name_ = name_;
         result.level_ = level_;
+        result.state_ = state_;
+        if (propertyBuilder_ == null) {
+          result.property_ = property_;
+        } else {
+          result.property_ = propertyBuilder_.build();
+        }
         onBuilt();
         return result;
       }
@@ -1667,16 +1562,16 @@ public final class ActorProtocol {
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.game.protocol.ActorProtocol.MonsterInfo) {
-          return mergeFrom((com.game.protocol.ActorProtocol.MonsterInfo)other);
+        if (other instanceof com.game.protocol.ActorProtocol.Npc) {
+          return mergeFrom((com.game.protocol.ActorProtocol.Npc)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(com.game.protocol.ActorProtocol.MonsterInfo other) {
-        if (other == com.game.protocol.ActorProtocol.MonsterInfo.getDefaultInstance()) return this;
+      public Builder mergeFrom(com.game.protocol.ActorProtocol.Npc other) {
+        if (other == com.game.protocol.ActorProtocol.Npc.getDefaultInstance()) return this;
         if (other.getId() != 0) {
           setId(other.getId());
         }
@@ -1686,6 +1581,12 @@ public final class ActorProtocol {
         }
         if (other.getLevel() != 0) {
           setLevel(other.getLevel());
+        }
+        if (other.getState() != 0) {
+          setState(other.getState());
+        }
+        if (other.hasProperty()) {
+          mergeProperty(other.getProperty());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -1702,11 +1603,11 @@ public final class ActorProtocol {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.game.protocol.ActorProtocol.MonsterInfo parsedMessage = null;
+        com.game.protocol.ActorProtocol.Npc parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.game.protocol.ActorProtocol.MonsterInfo) e.getUnfinishedMessage();
+          parsedMessage = (com.game.protocol.ActorProtocol.Npc) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -1851,707 +1752,154 @@ public final class ActorProtocol {
         onChanged();
         return this;
       }
-      @java.lang.Override
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFields(unknownFields);
+
+      private int state_ ;
+      /**
+       * <code>int32 state = 4;</code>
+       * @return The state.
+       */
+      public int getState() {
+        return state_;
       }
-
-      @java.lang.Override
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
+      /**
+       * <code>int32 state = 4;</code>
+       * @param value The state to set.
+       * @return This builder for chaining.
+       */
+      public Builder setState(int value) {
+        
+        state_ = value;
+        onChanged();
+        return this;
       }
-
-
-      // @@protoc_insertion_point(builder_scope:MonsterInfo)
-    }
-
-    // @@protoc_insertion_point(class_scope:MonsterInfo)
-    private static final com.game.protocol.ActorProtocol.MonsterInfo DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new com.game.protocol.ActorProtocol.MonsterInfo();
-    }
-
-    public static com.game.protocol.ActorProtocol.MonsterInfo getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<MonsterInfo>
-        PARSER = new com.google.protobuf.AbstractParser<MonsterInfo>() {
-      @java.lang.Override
-      public MonsterInfo parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new MonsterInfo(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<MonsterInfo> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<MonsterInfo> getParserForType() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.game.protocol.ActorProtocol.MonsterInfo getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
-  public interface SimpleMonsterInfoOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:SimpleMonsterInfo)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>int32 id = 1;</code>
-     * @return The id.
-     */
-    int getId();
-
-    /**
-     * <code>string name = 2;</code>
-     * @return The name.
-     */
-    java.lang.String getName();
-    /**
-     * <code>string name = 2;</code>
-     * @return The bytes for name.
-     */
-    com.google.protobuf.ByteString
-        getNameBytes();
-
-    /**
-     * <code>int32 level = 3;</code>
-     * @return The level.
-     */
-    int getLevel();
-  }
-  /**
-   * Protobuf type {@code SimpleMonsterInfo}
-   */
-  public  static final class SimpleMonsterInfo extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:SimpleMonsterInfo)
-      SimpleMonsterInfoOrBuilder {
-  private static final long serialVersionUID = 0L;
-    // Use SimpleMonsterInfo.newBuilder() to construct.
-    private SimpleMonsterInfo(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private SimpleMonsterInfo() {
-      name_ = "";
-    }
-
-    @java.lang.Override
-    @SuppressWarnings({"unused"})
-    protected java.lang.Object newInstance(
-        UnusedPrivateParameter unused) {
-      return new SimpleMonsterInfo();
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private SimpleMonsterInfo(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 8: {
-
-              id_ = input.readInt32();
-              break;
-            }
-            case 18: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              name_ = s;
-              break;
-            }
-            case 24: {
-
-              level_ = input.readInt32();
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return com.game.protocol.ActorProtocol.internal_static_SimpleMonsterInfo_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return com.game.protocol.ActorProtocol.internal_static_SimpleMonsterInfo_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              com.game.protocol.ActorProtocol.SimpleMonsterInfo.class, com.game.protocol.ActorProtocol.SimpleMonsterInfo.Builder.class);
-    }
-
-    public static final int ID_FIELD_NUMBER = 1;
-    private int id_;
-    /**
-     * <code>int32 id = 1;</code>
-     * @return The id.
-     */
-    public int getId() {
-      return id_;
-    }
-
-    public static final int NAME_FIELD_NUMBER = 2;
-    private volatile java.lang.Object name_;
-    /**
-     * <code>string name = 2;</code>
-     * @return The name.
-     */
-    public java.lang.String getName() {
-      java.lang.Object ref = name_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        name_ = s;
-        return s;
-      }
-    }
-    /**
-     * <code>string name = 2;</code>
-     * @return The bytes for name.
-     */
-    public com.google.protobuf.ByteString
-        getNameBytes() {
-      java.lang.Object ref = name_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        name_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    public static final int LEVEL_FIELD_NUMBER = 3;
-    private int level_;
-    /**
-     * <code>int32 level = 3;</code>
-     * @return The level.
-     */
-    public int getLevel() {
-      return level_;
-    }
-
-    private byte memoizedIsInitialized = -1;
-    @java.lang.Override
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    @java.lang.Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (id_ != 0) {
-        output.writeInt32(1, id_);
-      }
-      if (!getNameBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, name_);
-      }
-      if (level_ != 0) {
-        output.writeInt32(3, level_);
-      }
-      unknownFields.writeTo(output);
-    }
-
-    @java.lang.Override
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (id_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(1, id_);
-      }
-      if (!getNameBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, name_);
-      }
-      if (level_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(3, level_);
-      }
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof com.game.protocol.ActorProtocol.SimpleMonsterInfo)) {
-        return super.equals(obj);
-      }
-      com.game.protocol.ActorProtocol.SimpleMonsterInfo other = (com.game.protocol.ActorProtocol.SimpleMonsterInfo) obj;
-
-      if (getId()
-          != other.getId()) return false;
-      if (!getName()
-          .equals(other.getName())) return false;
-      if (getLevel()
-          != other.getLevel()) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
-      return true;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + ID_FIELD_NUMBER;
-      hash = (53 * hash) + getId();
-      hash = (37 * hash) + NAME_FIELD_NUMBER;
-      hash = (53 * hash) + getName().hashCode();
-      hash = (37 * hash) + LEVEL_FIELD_NUMBER;
-      hash = (53 * hash) + getLevel();
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static com.game.protocol.ActorProtocol.SimpleMonsterInfo parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.game.protocol.ActorProtocol.SimpleMonsterInfo parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.game.protocol.ActorProtocol.SimpleMonsterInfo parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.game.protocol.ActorProtocol.SimpleMonsterInfo parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.game.protocol.ActorProtocol.SimpleMonsterInfo parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.game.protocol.ActorProtocol.SimpleMonsterInfo parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.game.protocol.ActorProtocol.SimpleMonsterInfo parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.game.protocol.ActorProtocol.SimpleMonsterInfo parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static com.game.protocol.ActorProtocol.SimpleMonsterInfo parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static com.game.protocol.ActorProtocol.SimpleMonsterInfo parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static com.game.protocol.ActorProtocol.SimpleMonsterInfo parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.game.protocol.ActorProtocol.SimpleMonsterInfo parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(com.game.protocol.ActorProtocol.SimpleMonsterInfo prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    @java.lang.Override
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * Protobuf type {@code SimpleMonsterInfo}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:SimpleMonsterInfo)
-        com.game.protocol.ActorProtocol.SimpleMonsterInfoOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return com.game.protocol.ActorProtocol.internal_static_SimpleMonsterInfo_descriptor;
-      }
-
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return com.game.protocol.ActorProtocol.internal_static_SimpleMonsterInfo_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                com.game.protocol.ActorProtocol.SimpleMonsterInfo.class, com.game.protocol.ActorProtocol.SimpleMonsterInfo.Builder.class);
-      }
-
-      // Construct using com.game.protocol.ActorProtocol.SimpleMonsterInfo.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
-      }
-      @java.lang.Override
-      public Builder clear() {
-        super.clear();
-        id_ = 0;
-
-        name_ = "";
-
-        level_ = 0;
-
+      /**
+       * <code>int32 state = 4;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearState() {
+        
+        state_ = 0;
+        onChanged();
         return this;
       }
 
-      @java.lang.Override
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return com.game.protocol.ActorProtocol.internal_static_SimpleMonsterInfo_descriptor;
+      private com.game.protocol.CommonProtocol.Property property_;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.game.protocol.CommonProtocol.Property, com.game.protocol.CommonProtocol.Property.Builder, com.game.protocol.CommonProtocol.PropertyOrBuilder> propertyBuilder_;
+      /**
+       * <code>.Property property = 5;</code>
+       * @return Whether the property field is set.
+       */
+      public boolean hasProperty() {
+        return propertyBuilder_ != null || property_ != null;
       }
-
-      @java.lang.Override
-      public com.game.protocol.ActorProtocol.SimpleMonsterInfo getDefaultInstanceForType() {
-        return com.game.protocol.ActorProtocol.SimpleMonsterInfo.getDefaultInstance();
-      }
-
-      @java.lang.Override
-      public com.game.protocol.ActorProtocol.SimpleMonsterInfo build() {
-        com.game.protocol.ActorProtocol.SimpleMonsterInfo result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      @java.lang.Override
-      public com.game.protocol.ActorProtocol.SimpleMonsterInfo buildPartial() {
-        com.game.protocol.ActorProtocol.SimpleMonsterInfo result = new com.game.protocol.ActorProtocol.SimpleMonsterInfo(this);
-        result.id_ = id_;
-        result.name_ = name_;
-        result.level_ = level_;
-        onBuilt();
-        return result;
-      }
-
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
-      }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
-      @java.lang.Override
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.game.protocol.ActorProtocol.SimpleMonsterInfo) {
-          return mergeFrom((com.game.protocol.ActorProtocol.SimpleMonsterInfo)other);
+      /**
+       * <code>.Property property = 5;</code>
+       * @return The property.
+       */
+      public com.game.protocol.CommonProtocol.Property getProperty() {
+        if (propertyBuilder_ == null) {
+          return property_ == null ? com.game.protocol.CommonProtocol.Property.getDefaultInstance() : property_;
         } else {
-          super.mergeFrom(other);
-          return this;
+          return propertyBuilder_.getMessage();
         }
       }
-
-      public Builder mergeFrom(com.game.protocol.ActorProtocol.SimpleMonsterInfo other) {
-        if (other == com.game.protocol.ActorProtocol.SimpleMonsterInfo.getDefaultInstance()) return this;
-        if (other.getId() != 0) {
-          setId(other.getId());
-        }
-        if (!other.getName().isEmpty()) {
-          name_ = other.name_;
+      /**
+       * <code>.Property property = 5;</code>
+       */
+      public Builder setProperty(com.game.protocol.CommonProtocol.Property value) {
+        if (propertyBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          property_ = value;
           onChanged();
+        } else {
+          propertyBuilder_.setMessage(value);
         }
-        if (other.getLevel() != 0) {
-          setLevel(other.getLevel());
-        }
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
+
         return this;
       }
+      /**
+       * <code>.Property property = 5;</code>
+       */
+      public Builder setProperty(
+          com.game.protocol.CommonProtocol.Property.Builder builderForValue) {
+        if (propertyBuilder_ == null) {
+          property_ = builderForValue.build();
+          onChanged();
+        } else {
+          propertyBuilder_.setMessage(builderForValue.build());
+        }
 
-      @java.lang.Override
-      public final boolean isInitialized() {
-        return true;
+        return this;
       }
-
-      @java.lang.Override
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        com.game.protocol.ActorProtocol.SimpleMonsterInfo parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.game.protocol.ActorProtocol.SimpleMonsterInfo) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
+      /**
+       * <code>.Property property = 5;</code>
+       */
+      public Builder mergeProperty(com.game.protocol.CommonProtocol.Property value) {
+        if (propertyBuilder_ == null) {
+          if (property_ != null) {
+            property_ =
+              com.game.protocol.CommonProtocol.Property.newBuilder(property_).mergeFrom(value).buildPartial();
+          } else {
+            property_ = value;
           }
-        }
-        return this;
-      }
-
-      private int id_ ;
-      /**
-       * <code>int32 id = 1;</code>
-       * @return The id.
-       */
-      public int getId() {
-        return id_;
-      }
-      /**
-       * <code>int32 id = 1;</code>
-       * @param value The id to set.
-       * @return This builder for chaining.
-       */
-      public Builder setId(int value) {
-        
-        id_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>int32 id = 1;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearId() {
-        
-        id_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private java.lang.Object name_ = "";
-      /**
-       * <code>string name = 2;</code>
-       * @return The name.
-       */
-      public java.lang.String getName() {
-        java.lang.Object ref = name_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          name_ = s;
-          return s;
+          onChanged();
         } else {
-          return (java.lang.String) ref;
+          propertyBuilder_.mergeFrom(value);
         }
-      }
-      /**
-       * <code>string name = 2;</code>
-       * @return The bytes for name.
-       */
-      public com.google.protobuf.ByteString
-          getNameBytes() {
-        java.lang.Object ref = name_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          name_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>string name = 2;</code>
-       * @param value The name to set.
-       * @return This builder for chaining.
-       */
-      public Builder setName(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        name_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string name = 2;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearName() {
-        
-        name_ = getDefaultInstance().getName();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string name = 2;</code>
-       * @param value The bytes for name to set.
-       * @return This builder for chaining.
-       */
-      public Builder setNameBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        name_ = value;
-        onChanged();
-        return this;
-      }
 
-      private int level_ ;
-      /**
-       * <code>int32 level = 3;</code>
-       * @return The level.
-       */
-      public int getLevel() {
-        return level_;
-      }
-      /**
-       * <code>int32 level = 3;</code>
-       * @param value The level to set.
-       * @return This builder for chaining.
-       */
-      public Builder setLevel(int value) {
-        
-        level_ = value;
-        onChanged();
         return this;
       }
       /**
-       * <code>int32 level = 3;</code>
-       * @return This builder for chaining.
+       * <code>.Property property = 5;</code>
        */
-      public Builder clearLevel() {
-        
-        level_ = 0;
-        onChanged();
+      public Builder clearProperty() {
+        if (propertyBuilder_ == null) {
+          property_ = null;
+          onChanged();
+        } else {
+          property_ = null;
+          propertyBuilder_ = null;
+        }
+
         return this;
+      }
+      /**
+       * <code>.Property property = 5;</code>
+       */
+      public com.game.protocol.CommonProtocol.Property.Builder getPropertyBuilder() {
+        
+        onChanged();
+        return getPropertyFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.Property property = 5;</code>
+       */
+      public com.game.protocol.CommonProtocol.PropertyOrBuilder getPropertyOrBuilder() {
+        if (propertyBuilder_ != null) {
+          return propertyBuilder_.getMessageOrBuilder();
+        } else {
+          return property_ == null ?
+              com.game.protocol.CommonProtocol.Property.getDefaultInstance() : property_;
+        }
+      }
+      /**
+       * <code>.Property property = 5;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.game.protocol.CommonProtocol.Property, com.game.protocol.CommonProtocol.Property.Builder, com.game.protocol.CommonProtocol.PropertyOrBuilder> 
+          getPropertyFieldBuilder() {
+        if (propertyBuilder_ == null) {
+          propertyBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.game.protocol.CommonProtocol.Property, com.game.protocol.CommonProtocol.Property.Builder, com.game.protocol.CommonProtocol.PropertyOrBuilder>(
+                  getProperty(),
+                  getParentForChildren(),
+                  isClean());
+          property_ = null;
+        }
+        return propertyBuilder_;
       }
       @java.lang.Override
       public final Builder setUnknownFields(
@@ -2566,66 +1914,56 @@ public final class ActorProtocol {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:SimpleMonsterInfo)
+      // @@protoc_insertion_point(builder_scope:Npc)
     }
 
-    // @@protoc_insertion_point(class_scope:SimpleMonsterInfo)
-    private static final com.game.protocol.ActorProtocol.SimpleMonsterInfo DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:Npc)
+    private static final com.game.protocol.ActorProtocol.Npc DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new com.game.protocol.ActorProtocol.SimpleMonsterInfo();
+      DEFAULT_INSTANCE = new com.game.protocol.ActorProtocol.Npc();
     }
 
-    public static com.game.protocol.ActorProtocol.SimpleMonsterInfo getDefaultInstance() {
+    public static com.game.protocol.ActorProtocol.Npc getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static final com.google.protobuf.Parser<SimpleMonsterInfo>
-        PARSER = new com.google.protobuf.AbstractParser<SimpleMonsterInfo>() {
+    private static final com.google.protobuf.Parser<Npc>
+        PARSER = new com.google.protobuf.AbstractParser<Npc>() {
       @java.lang.Override
-      public SimpleMonsterInfo parsePartialFrom(
+      public Npc parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new SimpleMonsterInfo(input, extensionRegistry);
+        return new Npc(input, extensionRegistry);
       }
     };
 
-    public static com.google.protobuf.Parser<SimpleMonsterInfo> parser() {
+    public static com.google.protobuf.Parser<Npc> parser() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<SimpleMonsterInfo> getParserForType() {
+    public com.google.protobuf.Parser<Npc> getParserForType() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.game.protocol.ActorProtocol.SimpleMonsterInfo getDefaultInstanceForType() {
+    public com.game.protocol.ActorProtocol.Npc getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
   }
 
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_NpcInfo_descriptor;
+    internal_static_Monster_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_NpcInfo_fieldAccessorTable;
+      internal_static_Monster_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_SimpleNpcInfo_descriptor;
+    internal_static_Npc_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_SimpleNpcInfo_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_MonsterInfo_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_MonsterInfo_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_SimpleMonsterInfo_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_SimpleMonsterInfo_fieldAccessorTable;
+      internal_static_Npc_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -2635,42 +1973,32 @@ public final class ActorProtocol {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\013Actor.proto\"\t\n\007NpcInfo\"H\n\rSimpleNpcInf" +
-      "o\022\n\n\002id\030\001 \001(\005\022\014\n\004name\030\002 \001(\t\022\r\n\005level\030\003 \001" +
-      "(\005\022\016\n\006career\030\004 \001(\005\"6\n\013MonsterInfo\022\n\n\002id\030" +
-      "\001 \001(\005\022\014\n\004name\030\002 \001(\t\022\r\n\005level\030\003 \001(\005\"<\n\021Si" +
-      "mpleMonsterInfo\022\n\n\002id\030\001 \001(\005\022\014\n\004name\030\002 \001(" +
-      "\t\022\r\n\005level\030\003 \001(\005B\"\n\021com.game.protocolB\rA" +
-      "ctorProtocolb\006proto3"
+      "\n\013Actor.proto\032\014Common.proto\"^\n\007Monster\022\n" +
+      "\n\002id\030\001 \001(\005\022\014\n\004name\030\002 \001(\t\022\r\n\005level\030\003 \001(\005\022" +
+      "\r\n\005state\030\004 \001(\005\022\033\n\010property\030\005 \001(\0132\t.Prope" +
+      "rty\"Z\n\003Npc\022\n\n\002id\030\001 \001(\005\022\014\n\004name\030\002 \001(\t\022\r\n\005" +
+      "level\030\003 \001(\005\022\r\n\005state\030\004 \001(\005\022\033\n\010property\030\005" +
+      " \001(\0132\t.PropertyB\"\n\021com.game.protocolB\rAc" +
+      "torProtocolb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
+          com.game.protocol.CommonProtocol.getDescriptor(),
         });
-    internal_static_NpcInfo_descriptor =
+    internal_static_Monster_descriptor =
       getDescriptor().getMessageTypes().get(0);
-    internal_static_NpcInfo_fieldAccessorTable = new
+    internal_static_Monster_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_NpcInfo_descriptor,
-        new java.lang.String[] { });
-    internal_static_SimpleNpcInfo_descriptor =
+        internal_static_Monster_descriptor,
+        new java.lang.String[] { "Id", "Name", "Level", "State", "Property", });
+    internal_static_Npc_descriptor =
       getDescriptor().getMessageTypes().get(1);
-    internal_static_SimpleNpcInfo_fieldAccessorTable = new
+    internal_static_Npc_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_SimpleNpcInfo_descriptor,
-        new java.lang.String[] { "Id", "Name", "Level", "Career", });
-    internal_static_MonsterInfo_descriptor =
-      getDescriptor().getMessageTypes().get(2);
-    internal_static_MonsterInfo_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_MonsterInfo_descriptor,
-        new java.lang.String[] { "Id", "Name", "Level", });
-    internal_static_SimpleMonsterInfo_descriptor =
-      getDescriptor().getMessageTypes().get(3);
-    internal_static_SimpleMonsterInfo_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_SimpleMonsterInfo_descriptor,
-        new java.lang.String[] { "Id", "Name", "Level", });
+        internal_static_Npc_descriptor,
+        new java.lang.String[] { "Id", "Name", "Level", "State", "Property", });
+    com.game.protocol.CommonProtocol.getDescriptor();
   }
 
   // @@protoc_insertion_point(outer_class_scope)
