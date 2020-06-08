@@ -23,14 +23,4 @@ public class Property {
 
     }
 
-    public Property(PlayerProtocol.PropertyInfo propertyInfo){
-        this.hp = propertyInfo.getHp();
-        this.mp = propertyInfo.getMp();
-        this.phyAttack = propertyInfo.getPhyAttack();
-        this.phyDefense = propertyInfo.getPhyDefense();
-        this.magicAttack = propertyInfo.getMagicAttack();
-        this.magicDefense = propertyInfo.getMagicDefense();
-        this.attackSpeed = propertyInfo.getAttackSpeed();
-        this.moveSpeed = propertyInfo.getMoveSpeed();
-    }
 }

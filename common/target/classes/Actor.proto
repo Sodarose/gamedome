@@ -1,26 +1,22 @@
 syntax = "proto3";
 option java_package = "com.game.protocol";
 option java_outer_classname = "ActorProtocol";
+import "Common.proto";
 
-message NpcInfo{
-
-}
-
-message SimpleNpcInfo{
-    int32  id = 1;
+message Monster {
+    int32 id = 1;
     string name = 2;
-    int32  level = 3;
-    int32  career = 4;
+    int32 level = 3;
+    int32 state = 4;
+    Property property = 5;
 }
 
-message MonsterInfo{
-    int32  id = 1;
+message Npc {
+    int32 id = 1;
     string name = 2;
-    int32  level = 3;
+    int32 level = 3;
+    int32 state = 4;
+    Property property = 5;
 }
 
-message SimpleMonsterInfo{
-    int32  id = 1;
-    string name = 2;
-    int32  level = 3;
-}
+

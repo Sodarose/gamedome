@@ -153,7 +153,7 @@ public class CmdHandle {
             wordPage.print("您还没有登录角色");
             return;
         }
-        wordPage.print(playerObject.getBag());
+        /*wordPage.print(playerObject.getBag());*/
     }
 
     private void openEquipBar(String[] flags){
@@ -162,7 +162,7 @@ public class CmdHandle {
             wordPage.print("您还没有登录角色");
             return;
         }
-        wordPage.print(playerObject.getEquipBar());
+       /* wordPage.print(playerObject.getEquipBar());*/
     }
 
     private void useItem(String[] flags){

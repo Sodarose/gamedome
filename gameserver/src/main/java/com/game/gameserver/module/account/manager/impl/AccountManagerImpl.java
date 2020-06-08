@@ -1,7 +1,7 @@
 package com.game.gameserver.module.account.manager.impl;
 
 import com.game.gameserver.module.account.dao.AccountMapper;
-import com.game.gameserver.module.account.model.Account;
+import com.game.gameserver.module.account.entity.Account;
 import com.game.gameserver.module.account.manager.AccountManager;
 import com.game.protocol.AccountProtocol;
 import com.game.protocol.CodeType;

@@ -145,7 +145,7 @@ public class StaticDataManager {
     }
 
     private void loadStaticMonster(String path){
-        String fileName = "Monster.json";
+        String fileName = "MonsterConfig.json";
         path+="/"+fileName;
         try {
             JSONReader jsonReader = new JSONReader(new InputStreamReader(new FileInputStream(path)));
@@ -160,7 +160,7 @@ public class StaticDataManager {
     }
 
     private void loadStaticNpc(String path){
-        String fileName = "Npc.json";
+        String fileName = "NpcConfig.json";
         path+="/"+fileName;
         try {
             JSONReader jsonReader = new JSONReader(new InputStreamReader(new FileInputStream(path)));
@@ -175,7 +175,7 @@ public class StaticDataManager {
     }
 
     private void loadStaticScene(String path){
-        String fileName = "Scene.json";
+        String fileName = "SceneConfig.json";
         path+="/"+fileName;
         try {
             JSONReader jsonReader = new JSONReader(new InputStreamReader(new FileInputStream(path)));

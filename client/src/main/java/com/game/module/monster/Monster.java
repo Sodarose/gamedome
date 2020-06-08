@@ -17,11 +17,4 @@ public class Monster {
 
     public Monster(){}
 
-    public Monster(ActorProtocol.SimpleMonsterInfo simpleMonsterInfo){
-        this.id = simpleMonsterInfo.getId();
-        this.level = simpleMonsterInfo.getLevel();
-        this.name = simpleMonsterInfo.getName();
-    }
-
-
 }

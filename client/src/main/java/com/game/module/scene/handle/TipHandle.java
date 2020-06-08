@@ -4,7 +4,6 @@ import com.game.module.BaseHandler;
 import com.game.module.ModuleKey;
 import com.game.module.gui.TipPage;
 import com.game.module.scene.SceneCmd;
-import com.game.module.scene.entity.Scene;
 import com.game.protocol.Message;
 import com.game.protocol.SceneProtocol;
 import com.game.task.annotation.CmdHandler;
@@ -24,13 +23,4 @@ public class TipHandle extends BaseHandler {
     @Autowired
     private TipPage tipPage;
 
-    @CmdHandler(cmd = SceneCmd.SCENE_TIP)
-    public void sceneTip(Message message){
-        try {
-            SceneProtocol.SceneTip sceneTip = SceneProtocol.SceneTip.parseFrom(message.getData());
-            tipPage.print(sceneTip.getMsg());
-        } catch (InvalidProtocolBufferException e) {
-            e.printStackTrace();
-        }
-    }
 }

@@ -1,99 +1,42 @@
 package com.game.gameserver.module.scene.object;
 
-import com.game.gameserver.common.DefaultThreadFactory;
-import com.game.gameserver.context.ServerContext;
-import com.game.gameserver.dictionary.entity.MonsterConfigData;
-import com.game.gameserver.dictionary.entity.NpcConfig;
-import com.game.gameserver.dictionary.entity.SceneConfig;
-import com.game.gameserver.module.monster.manager.MonsterManger;
-import com.game.gameserver.module.monster.object.MonsterObject;
-import com.game.gameserver.module.npc.manager.NpcManager;
-import com.game.gameserver.module.npc.objcet.NpcObject;
-import com.game.gameserver.module.player.object.NewPlayerObject;
+import com.game.gameserver.common.config.SceneConfig;
+import com.game.gameserver.common.config.SceneMonsterConfig;
+import com.game.gameserver.common.config.SceneNpcConfig;
+import com.game.gameserver.common.entity.Unit;
 import com.game.gameserver.module.player.object.PlayerObject;
-import com.game.gameserver.module.scene.entity.SceneEntity;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-import java.util.List;
 import java.util.Map;
-import java.util.concurrent.*;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
+ * 场景对象
+ *
  * @author xuewenkang
- * @date 2020/6/2 20:12
+ * @date 2020/6/8 16:15
  */
-public class SceneObject {
-    private final static Logger logger = LoggerFactory.getLogger(SceneObject.class);
+public class SceneObject implements Unit {
 
-    /**
-     * 场景唯一Id
-     */
-    private final int id;
-    /**
-     * 场景静态数据
-     */
-    private SceneEntity sceneEntity;
+    /** 唯一ID */
+    private int id;
+    /** 场景静态信息 */
+    private SceneConfig sceneConfig;
+    /** 场景怪物配置信息 */
+    private SceneMonsterConfig sceneMonsterConfig;
+    /** 场景Npc配置信息 */
+    private SceneNpcConfig sceneNpcConfig;
+    /** 场景内玩家Map */
+    private Map<Integer,Integer> playerMap;
+    /** 场景内怪物Map */
+    private Map<Integer,Integer> monsterMap;
+    /** 场景内Npc Map */
+    private Map<Integer,Integer> npcMap;
+    /** 场景内 副本入口Map */
+    private Map<Integer,Integer> instanceMap;
+    /** 场景内 出口Map */
+    private Map<Integer,Integer> exitWayMap;
 
-    /**
-     * 玩家列表
-     */
-    private Map<Integer, NewPlayerObject> playerMap = new ConcurrentHashMap<>(1);
-    /**
-     * NPC列表
-     */
-    private Map<Integer, NpcObject> npcMap = new ConcurrentHashMap<>(1);
-    /**
-     * 怪物列表
-     */
-    private Map<Integer, MonsterObject> monsterMap = new ConcurrentHashMap<>(1);
-
-    public SceneObject(int id, SceneEntity sceneEntity) {
-        this.id = id;
-        this.sceneEntity = sceneEntity;
-    }
-
-    public void initialize() {
-        loadSceneConfig();
-    }
-
-    private void loadSceneConfig() {
-        MonsterManger monsterManger = ServerContext.getApplication().getBean(MonsterManger.class);
-        NpcManager npcManager = ServerContext.getApplication().getBean(NpcManager.class);
-        logger.info("load SceneConfig ...............................................");
-        List<MonsterConfigData> monsterConfigData = sceneEntity.getSceneConfig().getMonsterConfig();
-        for (MonsterConfigData configData : monsterConfigData) {
-            List<MonsterObject> monsterObjects = monsterManger.createMonsterObjectList(configData.getMonsterId(),
-                    configData.getCount());
-            if (monsterObjects == null) {
-                continue;
-            }
-            monsterObjects.forEach(monsterObject -> {
-                monsterMap.put(monsterObject.getId(), monsterObject);
-            });
-        }
-
-        List<NpcConfig> npcConfigList = sceneEntity.getSceneConfig().getNpcConfig();
-        for (NpcConfig npcConfig : npcConfigList) {
-            List<NpcObject> npcObjects = npcManager.createNpcObjectList(npcConfig.getNpcId(),npcConfig.getCount());
-            if(npcObjects==null){
-                continue;
-            }
-            npcObjects.forEach(npcObject -> {
-                npcMap.put(npcObject.getId(),npcObject);
-            });
-        }
-    }
-
-
-    /**
-     * 玩家登录场景
-     *
-     * @param playerObject
-     * @return void
-     */
-    public void login(PlayerObject playerObject) {
+    @Override
+    public void update() {
 
     }
 
@@ -103,7 +46,7 @@ public class SceneObject {
      * @param playerObject
      * @return void
      */
-    public void entry(PlayerObject playerObject) {
+    public void onEntry(PlayerObject playerObject){
 
     }
 
@@ -113,10 +56,7 @@ public class SceneObject {
      * @param playerObject
      * @return void
      */
-    public void exit(PlayerObject playerObject) {
+    public void onExit(PlayerObject playerObject){
 
     }
-
-
-
 }

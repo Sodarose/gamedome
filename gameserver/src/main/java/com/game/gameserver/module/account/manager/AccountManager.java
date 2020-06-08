@@ -1,6 +1,6 @@
 package com.game.gameserver.module.account.manager;
 
-import com.game.gameserver.module.account.model.Account;
+import com.game.gameserver.module.account.entity.Account;
 import com.game.protocol.AccountProtocol;
 import io.netty.channel.Channel;
 import io.netty.util.AttributeKey;

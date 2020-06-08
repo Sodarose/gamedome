@@ -1,8 +1,7 @@
 package com.game.gameserver.net.modelhandler.player;
 
 import com.game.gameserver.module.account.manager.AccountManager;
-import com.game.gameserver.module.account.model.Account;
-import com.game.gameserver.module.player.service.PlayerService;
+import com.game.gameserver.module.account.entity.Account;
 import com.game.gameserver.net.annotation.CmdHandler;
 import com.game.gameserver.net.annotation.ModuleHandler;
 import com.game.gameserver.net.handler.BaseHandler;
@@ -25,52 +24,5 @@ import java.util.List;
 @Component
 public class PlayerHandle extends BaseHandler {
 
-    @Autowired
-    private PlayerService playerService;
-
-    /**
-     * 返回账户的角色列表 角色列表
-     * */
-    @CmdHandler(cmd = PlayerCmd.LIST_ROLES)
-    public void getRoleList(Message message, Channel channel){
-        Account account = channel.attr(AccountManager.ACCOUNT_ATTRIBUTE_KEY).get();
-        if(account==null){
-            return;
-        }
-        // 得到角色列表
-        List<PlayerProtocol.SimplePlayerInfo> playerInfos =  playerService.getPlayerList(account.getId());
-        if(playerInfos.size()==0){
-            return;
-        }
-        PlayerProtocol.PlayerList.Builder builder = PlayerProtocol.PlayerList.newBuilder();
-        builder.addAllPlayerInfo(playerInfos);
-        Message res = MessageUtil.createMessage(ModuleKey.PLAYER_MODULE,PlayerCmd.LIST_ROLES,builder.build().toByteArray());
-        channel.writeAndFlush(res);
-    }
-
-    /**
-     * 登录目标角色
-     * @param message 信息
-     * @param channel 通道
-     * @return void
-     */
-    @CmdHandler(cmd = PlayerCmd.LOGIN_ROLE)
-    public void loginRole(Message message,Channel channel){
-        try {
-            Account account = channel.attr(AccountManager.ACCOUNT_ATTRIBUTE_KEY).get();
-            if(account==null){
-                return;
-            }
-            PlayerProtocol.LoginRole loginRole = PlayerProtocol.LoginRole.parseFrom(message.getData());
-            playerService.login(loginRole.getId(),channel);
-        } catch (InvalidProtocolBufferException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @CmdHandler(cmd = PlayerCmd.PLAYER_INFO)
-    public void getPlayerInfo(Message message,Channel channel){
-
-    }
 
 }

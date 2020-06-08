@@ -1,0 +1,182 @@
+[
+  {
+    "id": 1000,
+    "name": "牛头怪",
+    "level": 5,
+    "type": 1,
+    "hp": 1000,
+    "mp": 500,
+    "attack": 100,
+    "defense": 200
+  },
+  {
+    "id": 1001,
+    "name": "牛头精英怪",
+    "level": 10,
+    "type": 2,
+    "hp": 1000,
+    "mp": 500,
+    "attack": 100,
+    "defense": 200
+  },
+  {
+    "id": 1002,
+    "name": "牛头Boss",
+    "level": 15,
+    "type": 3,
+    "hp": 1000,
+    "mp": 500,
+    "attack": 100,
+    "defense": 200
+  },
+  {
+    "id": 1003,
+    "name": "狗",
+    "level": 5,
+    "type": 1,
+    "hp": 1000,
+    "mp": 500,
+    "attack": 100,
+    "defense": 200
+  },
+  {
+    "id": 1004,
+    "name": "鸡",
+    "level": 5,
+    "type": 2,
+    "hp": 1000,
+    "mp": 500,
+    "attack": 100,
+    "defense": 200
+  },
+  {
+    "id": 1005,
+    "name": "隔壁老王",
+    "level": 15,
+    "type": 3,
+    "hp": 1000,
+    "mp": 500,
+    "attack": 100,
+    "defense": 200
+  },
+  {
+    "id": 1006,
+    "name": "幽灵",
+    "level": 10,
+    "type": 1,
+    "hp": 1000,
+    "mp": 500,
+    "attack": 100,
+    "defense": 200
+  },
+  {
+    "id": 1007,
+    "name": "幽灵精英怪",
+    "level": 15,
+    "type": 2,
+    "hp": 1000,
+    "mp": 500,
+    "attack": 100,
+    "defense": 200
+  },
+  {
+    "id": 1008,
+    "name": "幽灵Boss",
+    "level": 20,
+    "type": 3,
+    "hp": 1000,
+    "mp": 500,
+    "attack": 100,
+    "defense": 200
+  },
+  {
+    "id": 1009,
+    "name": "树精",
+    "level": 15,
+    "type": 1,
+    "hp": 1000,
+    "mp": 500,
+    "attack": 100,
+    "defense": 200
+  },
+  {
+    "id": 1010,
+    "name": "扭曲树精",
+    "level": 20,
+    "type": 2,
+    "hp": 1000,
+    "mp": 500,
+    "attack": 100,
+    "defense": 200
+  },
+  {
+    "id": 1011,
+    "name": "树精长老",
+    "level": 25,
+    "type": 3,
+    "hp": 1000,
+    "mp": 500,
+    "attack": 100,
+    "defense": 200
+  },
+  {
+    "id": 1012,
+    "name": "小火龙",
+    "level": 20,
+    "type": 1,
+    "hp": 1000,
+    "mp": 500,
+    "attack": 100,
+    "defense": 200
+  },
+  {
+    "id": 1013,
+    "name": "火龙",
+    "level": 30,
+    "type": 2,
+    "hp": 1000,
+    "mp": 500,
+    "attack": 100,
+    "defense": 200
+  },
+  {
+    "id": 1014,
+    "name": "龙窟王",
+    "level": 50,
+    "type": 3,
+    "hp": 1000,
+    "mp": 500,
+    "attack": 100,
+    "defense": 200
+  },
+  {
+    "id": 1015,
+    "name": "机器人1型号",
+    "level": 15,
+    "type": 1,
+    "hp": 1000,
+    "mp": 500,
+    "attack": 100,
+    "defense": 200
+  },
+  {
+    "id": 1016,
+    "name": "机器人2型号",
+    "level": 15,
+    "type": 2,
+    "hp": 1000,
+    "mp": 500,
+    "attack": 100,
+    "defense": 200
+  },
+  {
+    "id": 1017,
+    "name": "机器警长",
+    "level": 40,
+    "type": 3,
+    "hp": 1000,
+    "mp": 500,
+    "attack": 100,
+    "defense": 200
+  }
+]

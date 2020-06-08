@@ -1,0 +1,104 @@
+[
+  {
+    "id": 1001,
+    "sceneMonster": [
+      {
+        "id": 1000,
+        "initCount": 10
+      },
+      {
+        "id": 1001,
+        "initCount": 3
+      },
+      {
+        "id": 1002,
+        "initCount": 2
+      }
+    ]
+  },
+  {
+    "id": 1002,
+    "sceneMonster": [
+      {
+        "id": 1003,
+        "initCount": 10
+      },
+      {
+        "id": 1004,
+        "initCount": 3
+      },
+      {
+        "id": 1005,
+        "initCount": 2
+      }
+    ]
+  },
+  {
+    "id": 1003,
+    "sceneMonster": [
+      {
+        "id": 1006,
+        "initCount": 10
+      },
+      {
+        "id": 1007,
+        "initCount": 3
+      },
+      {
+        "id": 1008,
+        "initCount": 2
+      }
+    ]
+  },
+  {
+    "id": 1004,
+    "sceneMonster": [
+      {
+        "id": 1009,
+        "initCount": 10
+      },
+      {
+        "id": 1010,
+        "initCount": 3
+      },
+      {
+        "id": 1011,
+        "initCount": 2
+      }
+    ]
+  },
+  {
+    "id": 1005,
+    "sceneMonster": [
+      {
+        "id": 1012,
+        "initCount": 10
+      },
+      {
+        "id": 1013,
+        "initCount": 3
+      },
+      {
+        "id": 1014,
+        "initCount": 2
+      }
+    ]
+  },
+  {
+    "id": 1006,
+    "sceneMonster": [
+      {
+        "id": 1015,
+        "initCount": 10
+      },
+      {
+        "id": 1016,
+        "initCount": 3
+      },
+      {
+        "id": 1017,
+        "initCount": 2
+      }
+    ]
+  }
+]

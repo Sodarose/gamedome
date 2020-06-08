@@ -1,110 +1,54 @@
 [
   {
     "id": 1001,
-    "npcConfig": [
-      {
-        "npcId": 1000,
-        "count": 1
-      }
-    ],
-    "monsterConfig": [
-      {
-        "monsterId": 1000,
-        "count": 5
-      },
-      {
-        "monsterId": 1001,
-        "count": 5
-      },
-      {
-        "monsterId": 1002,
-        "count": 2
-      }
+    "name": "初始之地",
+    "desc": "一切开始的地方",
+    "exitWays": [
+      1002
     ]
   },
   {
     "id": 1002,
-    "npcConfig": [
-      {
-        "npcId": 1001,
-        "count": 5
-      },
-      {
-        "npcId": 1002,
-        "count": 1
-      }
-    ],
-    "monsterConfig": [
-      {
-        "monsterId": 1003,
-        "count": 5
-      },
-      {
-        "monsterId": 1004,
-        "count": 5
-      },
-      {
-        "monsterId": 1005,
-        "count": 2
-      }
+    "name": "村庄",
+    "desc": "宁静的村庄 隐藏着不为人知的秘密啊",
+    "exitWays": [
+      1001,
+      1003,
+      1004
     ]
   },
   {
     "id": 1003,
-    "npcConfig": [
-      {
-        "npcId": 1003,
-        "count": 5
-      },
-      {
-        "npcId": 1004,
-        "count": 1
-      },
-      {
-        "npcId": 1005,
-        "count": 1
-      }
-    ],
-    "monsterConfig": [
-      {
-        "monsterId": 1006,
-        "count": 5
-      },
-      {
-        "monsterId": 1007,
-        "count": 5
-      },
-      {
-        "monsterId": 1008,
-        "count": 2
-      }
+    "name": "城堡",
+    "desc": "城堡的主人似乎对你十分的感兴趣",
+    "exitWays": [
+      1002,
+      1006
     ]
   },
   {
     "id": 1004,
-    "npcConfig": [
-      {
-        "npcId": 1006,
-        "count": 5
-      },
-      {
-        "npcId": 1007,
-        "count": 1
-      }
-    ],
-    "monsterConfig": [
-      {
-        "monsterId": 1000,
-        "count": 5
-      },
-      {
-        "monsterId": 1001,
-        "count": 5
-      },
-      {
-        "monsterId": 1002,
-        "count": 2
-      }
+    "name": "森岭",
+    "desc": "阴森的森岭 传说，里面居住着巨龙",
+    "exitWays": [
+      1002,
+      1005
+    ]
+  },
+  {
+    "id": 1005,
+    "name": "龙窟",
+    "desc": "巨龙盘踞之地，小心头顶的火焰",
+    "exitWays": [
+      1004
+    ]
+  },
+  {
+    "id": 1006,
+    "name": "未来之地",
+    "desc": "你的未来，在何处？",
+    "exitWays": [
+      1003
     ]
   }
 ]

@@ -1,6 +1,5 @@
 package com.game.gameserver.context;
 
-import com.game.gameserver.module.monster.manager.MonsterManger;
 import com.game.gameserver.net.handler.MessageDispatcher;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +17,6 @@ public class ServerContext implements ApplicationContextAware {
 
     @Autowired
     private MessageDispatcher messageDispatcher;
-    @Autowired
-    private MonsterManger monsterManger;
-
 
     private static ApplicationContext application;
 

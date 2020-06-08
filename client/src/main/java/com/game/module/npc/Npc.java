@@ -17,11 +17,4 @@ public class Npc {
     public Npc(){
 
     }
-
-    public Npc(ActorProtocol.SimpleNpcInfo simpleNpcInfo) {
-        this.id = simpleNpcInfo.getId();
-        this.level = simpleNpcInfo.getLevel();
-        this.name = simpleNpcInfo.getName();
-        this.career = simpleNpcInfo.getCareer();
-    }
 }

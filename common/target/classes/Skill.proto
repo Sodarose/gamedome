@@ -1,0 +1,20 @@
+syntax = "proto3";
+option java_package = "com.game.protocol";
+option java_outer_classname = "SkillProtocol";
+
+message SkillBar {
+    repeated Skill skills = 1;
+}
+
+message Skill {
+    int32 id = 1;
+    string name = 2;
+    int32 career = 3;
+    int32 level = 4;
+    string formula = 5;
+    int32 consume = 6;
+    string desc = 7;
+    int32 bagIndex = 8;
+    int32 coolTimeResidue = 9;
+    int32 state = 10;
+}

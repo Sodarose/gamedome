@@ -9,6 +9,6 @@ import org.springframework.stereotype.Component;
  * @author kangkang
  */
 @Component
-@ModuleHandler(module = ModuleKey.SCENE_MODEL)
+@ModuleHandler(module = ModuleKey.SCENE_MODULE)
 public class SceneHandle extends BaseHandler {
 }

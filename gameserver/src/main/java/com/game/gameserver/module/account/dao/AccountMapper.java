@@ -1,6 +1,6 @@
 package com.game.gameserver.module.account.dao;
 
-import com.game.gameserver.module.account.model.Account;
+import com.game.gameserver.module.account.entity.Account;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 

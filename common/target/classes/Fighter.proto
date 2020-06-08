@@ -1,0 +1,12 @@
+syntax = "proto3";
+option java_package = "com.game.protocol";
+option java_outer_classname = "FighterProtocol";
+
+message Attack{
+    int32 monsterId = 1;
+}
+
+message UserSkill{
+    int32 monsterId = 1;
+    int32 skillId = 2;
+}

@@ -1,6 +1,5 @@
-package com.game.gameserver.context;
+package com.game.gameserver.thread;
 
-import com.game.gameserver.common.entity.BaseUnit;
 import io.netty.util.internal.PlatformDependent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -92,7 +91,7 @@ public class UnitTickThread implements Runnable {
     }
 
     private void update() {
-        synchronized (BaseUnit.UNIT_MAP) {
+    /*    synchronized (BaseUnit.UNIT_MAP) {
             BaseUnit.UNIT_MAP.forEach((integer, unit) -> {
                 try {
                     unit.update();
@@ -100,6 +99,6 @@ public class UnitTickThread implements Runnable {
                     e.printStackTrace();
                 }
             });
-        }
+        }*/
     }
 }

@@ -50,22 +50,4 @@ public class PlayerHandle extends BaseHandler {
             e.printStackTrace();
         }
     }
-
-    @CmdHandler(cmd = PlayerCmd.LOGIN_ROLE)
-    public void receiveLoginRole(Message message){
-        try {
-            PlayerProtocol.PlayerInfo playerInfo = PlayerProtocol.PlayerInfo.parseFrom(message.getData());
-            PlayerObject playerObject = new PlayerObject(playerInfo);
-            gameContext.setPlayerObject(playerObject);
-            wordPage.print(playerObject);
-        } catch (InvalidProtocolBufferException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @CmdHandler(cmd = PlayerCmd.PLAYER_INFO)
-    public void receivePlayerInfo(Message message){
-
-    }
-
 }

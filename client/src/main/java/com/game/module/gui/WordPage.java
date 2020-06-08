@@ -1,12 +1,8 @@
 package com.game.module.gui;
 
-import com.game.module.item.entity.Bag;
-import com.game.module.item.entity.Cell;
-import com.game.module.item.entity.EquipBar;
 import com.game.module.player.entity.PlayerObject;
 import com.game.module.player.model.Player;
 import com.game.protocol.ItemProtocol;
-import com.game.protocol.PlayerProtocol;
 import com.game.util.StaticData;
 import org.springframework.stereotype.Component;
 
@@ -27,8 +23,8 @@ public class WordPage extends JTextArea {
      */
     private StringBuilder builder = new StringBuilder(16);
 
-    public WordPage(){
-        setBorder(BorderFactory.createLineBorder(Color.white,3));
+    public WordPage() {
+        setBorder(BorderFactory.createLineBorder(Color.white, 3));
         setFont(new Font("宋体", Font.PLAIN, 16));
         setBackground(Color.BLACK);
         setForeground(Color.white);
@@ -37,39 +33,40 @@ public class WordPage extends JTextArea {
         setText(builder.toString());
     }
 
-    public void refresh(){
+    public void refresh() {
         setText(builder.toString());
         validate();
         repaint();
     }
 
-    public void print(String text){
+    public void print(String text) {
         builder.append(text);
         builder.append("\n");
         refresh();
     }
 
-    public void clean(){
+    public void clean() {
         builder = new StringBuilder();
         refresh();
     }
 
     /**
      * 展示角色选择
+     *
      * @param playerList
      * @return void
      */
-    public void print(List<Player> playerList){
+    public void print(List<Player> playerList) {
         builder.append("\n");
-        for(Player player : playerList){
+        for (Player player : playerList) {
             builder.append("角色名：").append(player.getName()).append("\t");
         }
         builder.append("\n");
-        for(Player player : playerList){
+        for (Player player : playerList) {
             builder.append("职业：").append(player.getCareer()).append("\t");
         }
         builder.append("\n");
-        for(Player player : playerList){
+        for (Player player : playerList) {
             builder.append("等级：").append(player.getLevel()).append("\t");
         }
         builder.append("\n");
@@ -78,12 +75,13 @@ public class WordPage extends JTextArea {
 
     /**
      * 打印角色信息
+     *
      * @param playerObject
      * @return void
      */
-    public void print(PlayerObject playerObject){
+    public void print(PlayerObject playerObject) {
         clean();
-        builder.append("姓名：\t").append(playerObject.getName()).append("\n");
+    /*    builder.append("姓名：\t").append(playerObject.getName()).append("\n");
         builder.append("职业：\t").append(StaticData.careerMap.get(playerObject.getCareer())).append("\n");
         builder.append("等级: \t").append(playerObject.getLevel()).append("\n");
         builder.append("\n");
@@ -96,13 +94,13 @@ public class WordPage extends JTextArea {
         builder.append("魔法防御力：").append(playerObject.getPropertyInfo().getMagicDefense()).append("\n");
         builder.append("攻击速度：").append(playerObject.getPropertyInfo().getMagicDefense()).append("\n");
         builder.append("移动速度：").append(playerObject.getPropertyInfo().getMagicDefense()).append("\n");
-        builder.append("\n");
+        builder.append("\n");*/
         refresh();
     }
 
-    public void print(Bag bag){
+    /*public void print(Bag bag){
         clean();
-        builder.append(bag.getName()).append("\n");
+    *//*    builder.append(bag.getName()).append("\n");
         Cell[] cells = bag.getCells();
         for(int i=0;i<cells.length;i++){
             if(i%6==0){
@@ -112,16 +110,16 @@ public class WordPage extends JTextArea {
             ItemProtocol.ItemInfo itemInfo = cell.getItemInfo();
             builder.append("【").append(itemInfo==null?"空":itemInfo.getName()+":"+(itemInfo.getCount()==1?"":itemInfo.getCount()))
                     .append("】").append("\t");
-        }
+        }*//*
         refresh();
-    }
+    }*/
 
-    public void print(EquipBar equipBar){
+   /* public void print(EquipBar equipBar){
         for(int i = 0; i< EquipBar.MAX_EQUIP_LENGTH; i++){
             ItemProtocol.ItemInfo itemInfo = equipBar.getItemInfos()[i];
             builder.append(StaticData.equipPart.get(i)).append(":\t")
                     .append(itemInfo==null?"空":itemInfo.getName()).append("\n");
         }
         refresh();
-    }
+    }*/
 }

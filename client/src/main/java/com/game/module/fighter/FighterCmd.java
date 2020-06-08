@@ -1,4 +1,4 @@
-package com.game.gameserver.net.modelhandler.fighter;
+package com.game.module.fighter;
 
 /**
  * @author xuewenkang
