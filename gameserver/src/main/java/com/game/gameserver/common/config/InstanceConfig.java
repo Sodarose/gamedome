@@ -35,4 +35,7 @@ public class InstanceConfig {
     private int exprAward;
     private int goodAward;
     private List<Integer> equipAward;
+
+    /** 副本Boss */
+    private int boss;
 }
