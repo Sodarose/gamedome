@@ -12,7 +12,9 @@ import java.util.List;
  */
 @Data
 public class InstanceConfig {
-    /** 简单副本信息 */
+    /**
+     * 简单副本信息
+     */
     private int id;
     private String name;
     private int type;
@@ -20,22 +22,32 @@ public class InstanceConfig {
     private int sceneId;
     private String desc;
 
-    /** 副本开放时间 0 全天开发 */
+    /**
+     * 副本开放时间 0 全天开发
+     */
     private int openDate;
-    /** 存在时间 */
+    /**
+     * 存在时间
+     */
     private int liveDate;
-    /** 通关 时间限制 */
+    /**
+     * 通关 时间限制
+     */
     private int limitDate;
     private int needGood;
     private int minNum;
     private int maxNum;
     private int minLevel;
 
-    /** 副本奖励 */
+    /**
+     * 副本奖励
+     */
     private int exprAward;
     private int goodAward;
     private List<Integer> equipAward;
 
-    /** 副本Boss */
+    /**
+     * 副本Boss
+     */
     private int boss;
 }
