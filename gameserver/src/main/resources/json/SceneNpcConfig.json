@@ -1,6 +1,7 @@
 [
   {
     "id": 1001,
+    "sceneId": 1001,
     "sceneNpc": [
       {
         "id": 1,
@@ -10,6 +11,7 @@
   },
   {
     "id": 1002,
+    "sceneId": 1002,
     "sceneNpc": [
       {
         "id": 1,
@@ -35,6 +37,7 @@
   },
   {
     "id": 1003,
+    "sceneId": 1003,
     "sceneNpc": [
       {
         "id": 1,
@@ -60,6 +63,7 @@
   },
   {
     "id": 1004,
+    "sceneId": 1004,
     "sceneNpc": [
       {
         "id": 1,
@@ -81,11 +85,13 @@
   },
   {
     "id": 1005,
+    "sceneId": 1005,
     "sceneNpc": [
     ]
   },
   {
     "id": 1006,
+    "sceneId": 1006,
     "sceneNpc": [
     ]
   }

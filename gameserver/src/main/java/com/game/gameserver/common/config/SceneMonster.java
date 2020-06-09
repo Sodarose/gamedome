@@ -9,8 +9,8 @@ import lombok.Data;
  */
 @Data
 public class SceneMonster {
-    @JSONField(name = "id")
-    private int id;
-    @JSONField(name = "initCount")
-    private int initCount;
+    @JSONField(name = "monsterId")
+    private int monsterId;
+    @JSONField(name = "count")
+    private int count;
 }

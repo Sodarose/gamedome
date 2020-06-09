@@ -21,4 +21,8 @@ public class SceneConfig {
     private String desc;
     @JSONField(name = "exitWays")
     private List<Integer> exitWays;
+    @JSONField(name = "monsterConfig")
+    private int monsterConfig;
+    @JSONField(name = "npcConfig")
+    private int npcConfig;
 }

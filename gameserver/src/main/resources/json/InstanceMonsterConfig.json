@@ -1,6 +1,62 @@
 [
   {
     "id": 1001,
-    "boss": 1001
+    "instanceId": 1001,
+    "instanceMonster": [
+      {
+        "monsterId": 1018,
+        "count": 1
+      }
+    ]
+  },
+  {
+    "id": 1002,
+    "instanceId": 1002,
+    "instanceMonster": [
+      {
+        "monsterId": 1019,
+        "count": 1
+      }
+    ]
+  },
+  {
+    "id": 1003,
+    "instanceId": 1003,
+    "instanceMonster": [
+      {
+        "monsterId": 1020,
+        "count": 1
+      }
+    ]
+  },
+  {
+    "id": 1004,
+    "instanceId": 1004,
+    "instanceMonster": [
+      {
+        "monsterId": 1021,
+        "count": 1
+      }
+    ]
+  },
+  {
+    "id": 1005,
+    "instanceId": 1005,
+    "instanceMonster": [
+      {
+        "monsterId": 1022,
+        "count": 1
+      }
+    ]
+  },
+  {
+    "id": 1006,
+    "instanceId": 1006,
+    "instanceMonster": [
+      {
+        "monsterId": 1023,
+        "count": 1
+      }
+    ]
   }
 ]

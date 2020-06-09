@@ -5,7 +5,9 @@
     "desc": "一切开始的地方",
     "exitWays": [
       1002
-    ]
+    ],
+    "monsterConfig": 1001,
+    "npcConfig": 1001
   },
   {
     "id": 1002,
@@ -15,7 +17,9 @@
       1001,
       1003,
       1004
-    ]
+    ],
+    "monsterConfig": 1002,
+    "npcConfig": 1002
   },
   {
     "id": 1003,
@@ -24,7 +28,9 @@
     "exitWays": [
       1002,
       1006
-    ]
+    ],
+    "monsterConfig": 1003,
+    "npcConfig": 1003
   },
   {
     "id": 1004,
@@ -33,7 +39,9 @@
     "exitWays": [
       1002,
       1005
-    ]
+    ],
+    "monsterConfig": 1004,
+    "npcConfig": 1004
   },
   {
     "id": 1005,
@@ -41,7 +49,9 @@
     "desc": "巨龙盘踞之地，小心头顶的火焰",
     "exitWays": [
       1004
-    ]
+    ],
+    "monsterConfig": 1005,
+    "npcConfig": 1005
   },
   {
     "id": 1006,
@@ -49,6 +59,8 @@
     "desc": "你的未来，在何处？",
     "exitWays": [
       1003
-    ]
+    ],
+    "monsterConfig": 1006,
+    "npcConfig": 1006
   }
 ]

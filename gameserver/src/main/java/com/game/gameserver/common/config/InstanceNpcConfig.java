@@ -6,17 +6,17 @@ import lombok.Data;
 import java.util.List;
 
 /**
- * 场景Npc配置
+ * 副本Npc配置
  *
  * @author xuewenkang
- * @date 2020/6/8 18:12
+ * @date 2020/6/9 14:32
  */
 @Data
-public class SceneNpcConfig {
+public class InstanceNpcConfig {
     @JSONField(name = "id")
     private int id;
-    @JSONField(name = "sceneId")
-    private int sceneId;
-    @JSONField(name = "sceneNpc")
-    private List<SceneNpc> sceneNpcList;
+    @JSONField(name = "instanceId")
+    private int instanceId;
+    @JSONField(name = "instanceNpc")
+    private List<InstanceNpc> instanceNpcList;
 }

@@ -1,5 +1,6 @@
 package com.game.gameserver.common.config;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import lombok.Data;
 
 /**
@@ -8,6 +9,8 @@ import lombok.Data;
  */
 @Data
 public class SceneNpc {
+    @JSONField(name = "id")
     private int id;
+    @JSONField(name = "npcId")
     private int npcId;
 }

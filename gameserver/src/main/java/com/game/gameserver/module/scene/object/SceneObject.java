@@ -1,12 +1,15 @@
 package com.game.gameserver.module.scene.object;
 
-import com.game.gameserver.common.config.SceneConfig;
-import com.game.gameserver.common.config.SceneMonsterConfig;
-import com.game.gameserver.common.config.SceneNpcConfig;
+import com.game.gameserver.common.config.*;
 import com.game.gameserver.common.entity.Unit;
-import com.game.gameserver.module.player.object.PlayerObject;
+import com.game.gameserver.module.monster.model.MonsterObject;
+import com.game.gameserver.module.npc.model.NpcObject;
+import com.game.gameserver.module.player.model.PlayerObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * 场景对象
@@ -16,24 +19,33 @@ import java.util.Map;
  */
 public class SceneObject implements Unit {
 
-    /** 唯一ID */
+    private final static Logger logger = LoggerFactory.getLogger(SceneObject.class);
+
+    /** id */
     private int id;
     /** 场景静态信息 */
-    private SceneConfig sceneConfig;
+    private final SceneConfig sceneConfig;
     /** 场景怪物配置信息 */
-    private SceneMonsterConfig sceneMonsterConfig;
+    private final SceneMonsterConfig sceneMonsterConfig;
     /** 场景Npc配置信息 */
-    private SceneNpcConfig sceneNpcConfig;
+    private final SceneNpcConfig sceneNpcConfig;
     /** 场景内玩家Map */
-    private Map<Integer,Integer> playerMap;
+    private final Map<Integer,PlayerObject> playerMap = new ConcurrentHashMap<>();
     /** 场景内怪物Map */
-    private Map<Integer,Integer> monsterMap;
+    private final Map<Integer,MonsterObject> monsterMap = new ConcurrentHashMap<>();
     /** 场景内Npc Map */
-    private Map<Integer,Integer> npcMap;
-    /** 场景内 副本入口Map */
-    private Map<Integer,Integer> instanceMap;
-    /** 场景内 出口Map */
-    private Map<Integer,Integer> exitWayMap;
+    private final Map<Integer, NpcObject> npcMap = new ConcurrentHashMap<>();
+
+    public SceneObject(SceneConfig sceneConfig,SceneMonsterConfig sceneMonsterConfig,SceneNpcConfig sceneNpcConfig){
+        this.id = sceneConfig.getId();
+        this.sceneConfig = sceneConfig;
+        this.sceneMonsterConfig = sceneMonsterConfig;
+        this.sceneNpcConfig = sceneNpcConfig;
+    }
+
+    public void initialize(){
+        logger.info("Scene {} initialize ",sceneConfig.getName());
+    }
 
     @Override
     public void update() {
@@ -41,22 +53,79 @@ public class SceneObject implements Unit {
     }
 
     /**
-     * 玩家进入场景
+     * 添加玩家对象
      *
      * @param playerObject
-     * @return void
+     * @return boolean
      */
-    public void onEntry(PlayerObject playerObject){
-
+    public void addPlayerObject(PlayerObject playerObject){
+       playerMap.put(playerObject.getId(),playerObject);
     }
 
     /**
-     * 玩家退出场景
+     * 移除玩家对象
      *
-     * @param playerObject
-     * @return void
+     * @param playerId
+     * @return com.game.gameserver.module.player.model.PlayerObject
      */
-    public void onExit(PlayerObject playerObject){
+    public PlayerObject removePlayerObject(int playerId){
+        return playerMap.remove(playerId);
+    }
 
+    /**
+     * 外部添加一个怪物对象
+     *
+     * @param monsterObject
+     * @return boolean
+     */
+    public void addMonsterObject(MonsterObject monsterObject){
+        monsterMap.put(monsterObject.getId(),monsterObject);
+    }
+
+    /**
+     * 移除一个怪物对象
+     *
+     * @param monsterId
+     * @return com.game.gameserver.module.monster.model.MonsterObject
+     */
+    public MonsterObject removeMonsterObject(int monsterId){
+        return monsterMap.remove(monsterId);
+    }
+
+    /**
+     * 增加一个NPC对象
+     *
+     * @param npcObject
+     * @return boolean
+     */
+    public void addNpcObject(NpcObject npcObject){
+        npcMap.put(npcObject.getId(),npcObject);
+    }
+
+
+    /**
+     * 移除一个Npc对象
+     *
+     * @param npcId
+     * @return com.game.gameserver.module.npc.model.NpcObject
+     */
+    public NpcObject removeNpcObject(int npcId){
+        return npcMap.remove(npcId);
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public SceneConfig getSceneConfig(){
+        return sceneConfig;
+    }
+
+    public SceneMonsterConfig getSceneMonsterConfig(){
+        return sceneMonsterConfig;
+    }
+
+    public SceneNpcConfig getSceneNpcConfig() {
+        return sceneNpcConfig;
     }
 }

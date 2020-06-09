@@ -15,6 +15,8 @@ import java.util.List;
 public class SceneMonsterConfig {
     @JSONField(name = "id")
     private int id;
+    @JSONField(name = "sceneId")
+    private int sceneId;
     @JSONField(name = "sceneMonster")
     private List<SceneMonster> sceneMonsterList;
 }
