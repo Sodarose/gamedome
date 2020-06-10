@@ -7,7 +7,7 @@
         <result column="itemType" property="itemType"/>
         <result column="playerId" property="playerId"/>
         <result column="place" property="place"/>
-        <result column="propertyData" property="propertyData" typeHandler="com.game.gameserver.util.BlobTypeHandle"/>
+
     </resultMap>
     <select id="getItemList" resultMap="itemResultMap">
         SELECT id,itemId,itemType,playerId,place,propertyData FROM

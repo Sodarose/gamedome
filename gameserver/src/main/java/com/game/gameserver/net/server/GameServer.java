@@ -39,6 +39,8 @@ public class GameServer {
     @PostConstruct
     public void start(){
         logger.info("game server start......");
+        // 临时做 后面会改动
+        platform.startUp();
         boss = new NioEventLoopGroup(1);
         worker = new NioEventLoopGroup(16);
         server = new ServerBootstrap();
@@ -53,7 +55,6 @@ public class GameServer {
             ChannelFuture future = server.bind(port).addListener((ChannelFutureListener) f->{
                 if(f.isSuccess()){
                     logger.info("game server is successfully to {},waiting connect....",port);
-                    platform.startUp();
                 }else{
                     logger.info("game server start failed");
                 }

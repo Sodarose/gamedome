@@ -1,6 +1,7 @@
 package com.game.module.gui;
 
 import com.game.module.player.entity.PlayerObject;
+import com.game.module.player.model.BriefPlayerInfo;
 import com.game.module.player.model.Player;
 import com.game.protocol.ItemProtocol;
 import com.game.util.StaticData;
@@ -53,23 +54,20 @@ public class WordPage extends JTextArea {
     /**
      * 展示角色选择
      *
-     * @param playerList
+     * @param briefPlayerInfos 角色列表
      * @return void
      */
-    public void print(List<Player> playerList) {
+    public void print(List<BriefPlayerInfo> briefPlayerInfos) {
         builder.append("\n");
-        for (Player player : playerList) {
-            builder.append("角色名：").append(player.getName()).append("\t");
+        if(briefPlayerInfos.size()==0){
+            builder.append("未拥有角色！请先创建角色！\n");
+            return;
         }
-        builder.append("\n");
-        for (Player player : playerList) {
-            builder.append("职业：").append(player.getCareer()).append("\t");
+        for (BriefPlayerInfo player : briefPlayerInfos) {
+            builder.append("角色名：").append(player.getName()).append("\n");
+            builder.append("职业：").append(player.getCareer()).append("\n");
+            builder.append("等级：").append(player.getLevel()).append("\n");
         }
-        builder.append("\n");
-        for (Player player : playerList) {
-            builder.append("等级：").append(player.getLevel()).append("\t");
-        }
-        builder.append("\n");
         refresh();
     }
 

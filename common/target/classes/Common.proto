@@ -15,6 +15,4 @@ message Property {
     int32 defense = 4;
     int32 currHp = 5;
     int32 currMp = 6;
-    int32 currAttack = 7;
-    int32 currDefense = 8;
 }

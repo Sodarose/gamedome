@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.game.gameserver.module.player.dao.PlayerMapper">
+    <resultMap id="playerResultMap" type="com.game.gameserver.module.player.entity.Player">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="level" property="level"/>
+        <result column="careerData" property="careerData"/>
+        <result column="sceneId" property="sceneId"/>
+        <result column="userId" property="userId"/>
+        <result column="createTime" property="createTime"/>
+        <result column="updateTime" property="updateTime"/>
+    </resultMap>
+    <select id=" getPlayerListByAccountId">
+
+    </select>
+    <select id="getPlayerById">
+
+    </select>
+    <insert id="createPlayer">
+
+    </insert>
+    <update id="savePlayer">
+
+    </update>
+</mapper>

@@ -1,6 +1,6 @@
 package com.game.gameserver.net.modelhandler.account;
 
-import com.game.gameserver.module.account.manager.AccountManager;
+import com.game.gameserver.module.account.service.AccountService;
 import com.game.gameserver.net.annotation.CmdHandler;
 import com.game.gameserver.net.annotation.ModuleHandler;
 import com.game.gameserver.net.handler.BaseHandler;
@@ -23,7 +23,7 @@ import org.springframework.stereotype.Component;
 public class AccountHandle extends BaseHandler {
 
     @Autowired
-    private AccountManager accountManager;
+    private AccountService accountService;
 
 
     /**
@@ -36,7 +36,7 @@ public class AccountHandle extends BaseHandler {
     public void accountLogin(Message message, Channel channel)  {
         try {
             AccountProtocol.LoginReq loginReq = AccountProtocol.LoginReq.parseFrom(message.getData());
-            AccountProtocol.LoginRes loginRes = accountManager.doLogin(loginReq.getLoginId(),loginReq.getPassword(),channel);
+            AccountProtocol.LoginRes loginRes = accountService.doLogin(loginReq.getLoginId(),loginReq.getPassword(),channel);
             if(loginRes==null){
                 return;
             }

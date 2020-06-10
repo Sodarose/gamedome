@@ -1,7 +1,6 @@
 package com.game.gameserver.module.monster.model;
 
 import com.game.gameserver.common.config.MonsterConfig;
-import com.game.gameserver.common.entity.Property;
 import com.game.gameserver.common.entity.Unit;
 import com.game.gameserver.util.GenIdUtil;
 

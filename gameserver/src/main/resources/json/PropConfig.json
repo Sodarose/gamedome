@@ -1,0 +1,28 @@
+[
+  {
+    "id": 1,
+    "type": 1,
+    "name": "普通hp恢复药剂",
+    "level": 0,
+    "overlay": true,
+    "maxOverlay": 99,
+    "price": 50,
+    "effect": "+|hp|50",
+    "coolTime": 1,
+    "limitCount": 0,
+    "desc": "恢复hp50点"
+  },
+  {
+    "id": 2,
+    "type": 1,
+    "name": "普通mp恢复药剂",
+    "level": 0,
+    "overlay": true,
+    "maxOverlay": 99,
+    "price": 50,
+    "effect": "+|mp|50",
+    "coolTime": 1,
+    "limitCount": 0,
+    "desc": "恢复mp50点"
+  }
+]

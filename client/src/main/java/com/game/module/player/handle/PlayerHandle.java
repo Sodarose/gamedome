@@ -5,6 +5,7 @@ import com.game.module.BaseHandler;
 import com.game.module.ModuleKey;
 import com.game.module.player.PlayerCmd;
 import com.game.module.player.entity.PlayerObject;
+import com.game.module.player.model.BriefPlayerInfo;
 import com.game.module.player.model.Player;
 import com.game.module.gui.WordPage;
 import com.game.protocol.Message;
@@ -39,13 +40,12 @@ public class PlayerHandle extends BaseHandler {
     public void receivePlayerList(Message message){
         try {
             PlayerProtocol.PlayerList playerList = PlayerProtocol.PlayerList.parseFrom(message.getData());
-            List<Player> players = new ArrayList<>();
-            for(PlayerProtocol.SimplePlayerInfo simplePlayerInfo:playerList.getPlayerInfoList()){
-                Player player = new Player(simplePlayerInfo);
-                players.add(player);
+            List<BriefPlayerInfo> briefPlayerInfos = new ArrayList<>();
+            for(PlayerProtocol.BriefPlayerInfo briefPlayerInfo:playerList.getPlayerListList()){
+                BriefPlayerInfo info = TransFromUtil.transFromBriefPlayerIn(briefPlayerInfo);
+                briefPlayerInfos.add(info);
             }
-            gameContext.setPlayerList(players);
-            wordPage.print(players);
+            wordPage.print(briefPlayerInfos);
         } catch (InvalidProtocolBufferException e) {
             e.printStackTrace();
         }

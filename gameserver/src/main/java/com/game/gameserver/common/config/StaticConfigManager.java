@@ -27,14 +27,17 @@ public class StaticConfigManager {
     private final static StaticConfigManager INSTANCE = new StaticConfigManager();
     private final static String JSON_FILE_PATH = "json";
 
-    private Map<Integer, SceneConfig> sceneConfigMap = new HashMap<>();
-    private Map<Integer, SceneNpcConfig> sceneNpcConfigMap = new HashMap<>();
-    private Map<Integer, SceneMonsterConfig> sceneMonsterConfigMap = new HashMap<>();
-    private Map<Integer, InstanceConfig> instanceConfigMap = new HashMap<>();
-    private Map<Integer, InstanceMonsterConfig> instanceMonsterConfigMap = new HashMap<>();
-    private Map<Integer, InstanceNpcConfig> instanceNpcConfigMap = new HashMap<>();
-    private Map<Integer, NpcConfig> npcConfigMap = new HashMap<>();
-    private Map<Integer, MonsterConfig> monsterConfigMap = new HashMap<>();
+    private Map<Integer, SceneConfig> sceneConfigMap = new HashMap<>(16);
+    private Map<Integer, SceneNpcConfig> sceneNpcConfigMap = new HashMap<>(16);
+    private Map<Integer, SceneMonsterConfig> sceneMonsterConfigMap = new HashMap<>(16);
+    private Map<Integer, InstanceConfig> instanceConfigMap = new HashMap<>(16);
+    private Map<Integer, InstanceMonsterConfig> instanceMonsterConfigMap = new HashMap<>(16);
+    private Map<Integer, InstanceNpcConfig> instanceNpcConfigMap = new HashMap<>(16);
+    private Map<Integer, NpcConfig> npcConfigMap = new HashMap<>(16);
+    private Map<Integer, MonsterConfig> monsterConfigMap = new HashMap<>(16);
+    private Map<Integer, EquipConfig> equipConfigMap = new HashMap<>(16);
+    private Map<Integer, PropConfig> propConfigMap = new HashMap<>(16);
+    private Map<Integer, CommodityConfig> commodityConfigMap = new HashMap<>(16);
 
     public static StaticConfigManager getInstance() {
         return INSTANCE;
@@ -65,6 +68,10 @@ public class StaticConfigManager {
         loadNpcConfig(path);
         loadInstanceMonsterConfig(path);
         loadInstanceNpcConfig(path);
+        loadEquipConfig(path);
+        loadPropConfig(path);
+        loadCommodityConfig(path);
+
     }
 
     private void loadSceneConfig(String path) {
@@ -166,7 +173,7 @@ public class StaticConfigManager {
         }
     }
 
-    public void loadInstanceMonsterConfig(String path) {
+    private void loadInstanceMonsterConfig(String path) {
         logger.info("load InstanceMonsterConfig.json");
         String fileName = "InstanceMonsterConfig.json";
         path += "/" + fileName;
@@ -182,7 +189,7 @@ public class StaticConfigManager {
         }
     }
 
-    public void loadInstanceNpcConfig(String path) {
+    private void loadInstanceNpcConfig(String path) {
         logger.info("load InstanceNpcConfig.json");
         String fileName = "InstanceNpcConfig.json";
         path += "/" + fileName;
@@ -192,6 +199,54 @@ public class StaticConfigManager {
             while (jsonReader.hasNext()) {
                 InstanceNpcConfig instanceNpcConfig = JSON.parseObject(jsonReader.readString(), InstanceNpcConfig.class);
                 instanceNpcConfigMap.put(instanceNpcConfig.getId(), instanceNpcConfig);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void loadEquipConfig(String path) {
+        logger.info("load EquipConfig.json");
+        String fileName = "EquipConfig.json";
+        path += "/" + fileName;
+        try {
+            JSONReader jsonReader = new JSONReader(new InputStreamReader(new FileInputStream(path)));
+            jsonReader.startArray();
+            while (jsonReader.hasNext()) {
+                EquipConfig equipConfig = JSON.parseObject(jsonReader.readString(), EquipConfig.class);
+                equipConfigMap.put(equipConfig.getId(), equipConfig);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void loadPropConfig(String path) {
+        logger.info("load PropConfig.json");
+        String fileName = "PropConfig.json";
+        path += "/" + fileName;
+        try {
+            JSONReader jsonReader = new JSONReader(new InputStreamReader(new FileInputStream(path)));
+            jsonReader.startArray();
+            while (jsonReader.hasNext()) {
+                PropConfig propConfig = JSON.parseObject(jsonReader.readString(), PropConfig.class);
+                propConfigMap.put(propConfig.getId(), propConfig);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void loadCommodityConfig(String path) {
+        logger.info("load CommodityConfig.json");
+        String fileName = "CommodityConfig.json";
+        path += "/" + fileName;
+        try {
+            JSONReader jsonReader = new JSONReader(new InputStreamReader(new FileInputStream(path)));
+            jsonReader.startArray();
+            while (jsonReader.hasNext()) {
+                CommodityConfig commodityConfig = JSON.parseObject(jsonReader.readString(), CommodityConfig.class);
+                commodityConfigMap.put(commodityConfig.getId(), commodityConfig);
             }
         } catch (IOException e) {
             e.printStackTrace();

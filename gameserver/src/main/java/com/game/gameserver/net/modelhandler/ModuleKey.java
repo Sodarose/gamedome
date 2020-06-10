@@ -13,4 +13,5 @@ public interface ModuleKey {
     short SCENE_MODULE = 1005;
     short FIGHTER_MODEL = 1006;
     short INSTANCE_MODULE = 1007;
+    short STORE_MODULE = 1008;
 }

@@ -5,6 +5,39 @@ import "Item.proto";
 import "Skill.proto";
 import "Common.proto";
 
+// 简要角色信息
+message BriefPlayerInfo {
+    int32 id = 1;
+    string name = 2;
+    int32 level = 3;
+    int32 career = 4;
+}
+
+// 角色列表
+message PlayerList {
+    repeated BriefPlayerInfo playerList = 1;
+}
+
+// 登录角色
+message LoginPlayer {
+    int32 playerId = 1;
+}
+
+// 登录结果
+message LoginRes {
+    int32 code = 1;
+    int32 message = 2;
+}
+
+// 角色信息
+message PlayerInfo{
+    int32 id = 1;
+    string name = 2;
+    int32 level = 3;
+    int32 career = 4;
+    int32 sceneId = 5;
+}
+
 // 简单角色信息
 message SimplePlayerInfo {
     int32 id = 1;
@@ -19,16 +52,6 @@ message PlayerMessage {
     int32 level = 3;
     int32 career = 4;
     Property property = 5;
-}
-
-// 角色列表
-message PlayerList {
-    repeated SimplePlayerInfo playerInfo = 1;
-}
-
-// 登录角色
-message LoginRole {
-    int32 id = 1;
 }
 
 

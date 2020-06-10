@@ -108,7 +108,7 @@ public class CmdHandle {
     }
 
     private void listRoles(String[] flags){
-        Message message = MessageUtil.createMessage(ModuleKey.PLAYER_MODULE, PlayerCmd.LIST_ROLES,null);
+        Message message = MessageUtil.createMessage(ModuleKey.PLAYER_MODULE, PlayerCmd.LIST_PLAYERS,null);
         gameContext.getChannel().writeAndFlush(message);
         logger.info("发送请求角色列表命令");
     }
@@ -128,9 +128,9 @@ public class CmdHandle {
             wordPage.print("请输入正确的角色名");
             return;
         }
-        PlayerProtocol.LoginRole.Builder builder = PlayerProtocol.LoginRole.newBuilder();
-        builder.setId(roleId);
-        Message message = MessageUtil.createMessage(ModuleKey.PLAYER_MODULE, PlayerCmd.LOGIN_ROLE,builder.build()
+        PlayerProtocol.LoginPlayer.Builder builder = PlayerProtocol.LoginPlayer.newBuilder();
+        builder.setPlayerId(roleId);
+        Message message = MessageUtil.createMessage(ModuleKey.PLAYER_MODULE, PlayerCmd.LOGIN_PLAYER,builder.build()
                 .toByteArray());
         gameContext.getChannel().writeAndFlush(message);
         logger.info("登录角色请求 id {} , name {}",roleId,name);

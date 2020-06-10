@@ -1,12 +1,32 @@
 package com.game.gameserver.module.player.service;
 
 import com.game.gameserver.module.player.model.PlayerObject;
+import com.game.protocol.PlayerProtocol;
+import io.netty.util.AttributeKey;
 
 /**
  * @author xuewenkang
  * @date 2020/6/9 20:00
  */
 public interface PlayerService {
+    AttributeKey<PlayerObject> PLAYER_ENTITY_ATTRIBUTE_KEY = AttributeKey.newInstance("PLAYER_ENTITY_ATTRIBUTE_KEY");
+
+    /**
+     * 登录用户角色
+     *
+     * @param playerId
+     * @return com.game.protocol.PlayerProtocol.LoginRes
+     */
+    PlayerProtocol.LoginRes loginPlayer(int playerId);
+
+    /**
+     * 根据账户获得该账户的角色列表
+     *
+     * @param account
+     * @return com.game.protocol.PlayerProtocol.PlayerList
+     */
+    PlayerProtocol.PlayerList getPlayerList(int account);
+
     /**
      * 根据Id 获取角色
      *

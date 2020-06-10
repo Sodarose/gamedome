@@ -1,7 +1,9 @@
 package com.game.gameserver.net.modelhandler.player;
 
-import com.game.gameserver.module.account.manager.AccountManager;
 import com.game.gameserver.module.account.entity.Account;
+import com.game.gameserver.module.account.service.AccountService;
+import com.game.gameserver.module.player.model.PlayerObject;
+import com.game.gameserver.module.player.service.PlayerService;
 import com.game.gameserver.net.annotation.CmdHandler;
 import com.game.gameserver.net.annotation.ModuleHandler;
 import com.game.gameserver.net.handler.BaseHandler;
@@ -14,8 +16,6 @@ import io.netty.channel.Channel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
-
 /**
  * @author xuewenkang
  * @date 2020/5/25 12:21
@@ -24,5 +24,59 @@ import java.util.List;
 @Component
 public class PlayerHandle extends BaseHandler {
 
+    @Autowired
+    private PlayerService playerService;
+
+    /**
+     * 获得账户角色列表
+     *
+     * @param message
+     * @param channel
+     * @return void
+     */
+    @CmdHandler(cmd = PlayerCmd.LIST_PLAYERS)
+    public void getPlayerList(Message message, Channel channel) {
+        // 验证连接
+        Account account = channel.attr(AccountService.ACCOUNT_ATTRIBUTE_KEY).get();
+        if(account==null){
+            return;
+        }
+        // 请求角色列表
+        PlayerProtocol.PlayerList playerList = playerService.getPlayerList(account.getId());
+        Message res = MessageUtil.createMessage(ModuleKey.PLAYER_MODULE,PlayerCmd.LIST_PLAYERS,playerList.toByteArray());
+        channel.writeAndFlush(res);
+    }
+
+    /**
+     * 登录角色操作
+     *
+     * @param message
+     * @param channel
+     * @return void
+     */
+    @CmdHandler(cmd = PlayerCmd.LOGIN_PLAYER)
+    public void loginPlayer(Message message,Channel channel){
+        // 验证连接
+        Account account = channel.attr(AccountService.ACCOUNT_ATTRIBUTE_KEY).get();
+        if(account==null){
+            return;
+        }
+        // 是否重复登录
+        PlayerObject playerObject = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
+        if(playerObject!=null){
+
+            return;
+        }
+        try {
+            // 登录角色
+            PlayerProtocol.LoginPlayer loginPlayer = PlayerProtocol.LoginPlayer.parseFrom(message.getData());
+            int playerId = loginPlayer.getPlayerId();
+            PlayerProtocol.LoginRes loginRes = playerService.loginPlayer(playerId);
+            Message res = MessageUtil.createMessage(ModuleKey.PLAYER_MODULE,PlayerCmd.LOGIN_PLAYER,loginRes.toByteArray());
+            channel.writeAndFlush(res);
+        } catch (InvalidProtocolBufferException e) {
+            e.printStackTrace();
+        }
+    }
 
 }
