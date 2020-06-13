@@ -4,7 +4,7 @@
     "sceneId": 1001,
     "sceneNpc": [
       {
-        "id": 1,
+        "addr": 1,
         "npcId": 1000
       }
     ]
@@ -14,23 +14,26 @@
     "sceneId": 1002,
     "sceneNpc": [
       {
-        "id": 1,
+
+        "addr": 1,
         "npcId": 1001
       },
       {
-        "id": 2,
+
+        "addr": 1,
+        "npcId": 1001
+
+      },
+      {
+        "addr": 1,
         "npcId": 1001
       },
       {
-        "id": 3,
+        "addr": 1,
         "npcId": 1001
       },
       {
-        "id": 4,
-        "npcId": 1001
-      },
-      {
-        "id": 5,
+        "addr": 1,
         "npcId": 1002
       }
     ]
@@ -40,23 +43,23 @@
     "sceneId": 1003,
     "sceneNpc": [
       {
-        "id": 1,
+        "addr": 1,
         "npcId": 1003
       },
       {
-        "id": 2,
+        "addr": 1,
         "npcId": 1003
       },
       {
-        "id": 3,
+        "addr": 1,
         "npcId": 1003
       },
       {
-        "id": 4,
+        "addr": 1,
         "npcId": 1004
       },
       {
-        "id": 5,
+        "addr": 1,
         "npcId": 1005
       }
     ]
@@ -66,19 +69,19 @@
     "sceneId": 1004,
     "sceneNpc": [
       {
-        "id": 1,
+        "addr": 1,
         "npcId": 1006
       },
       {
-        "id": 2,
+        "addr": 1,
         "npcId": 1006
       },
       {
-        "id": 3,
+        "addr": 1,
         "npcId": 1006
       },
       {
-        "id": 4,
+        "addr": 1,
         "npcId": 1007
       }
     ]

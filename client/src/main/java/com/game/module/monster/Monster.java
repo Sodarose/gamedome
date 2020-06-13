@@ -1,7 +1,6 @@
 package com.game.module.monster;
 
 import com.game.module.player.model.Property;
-import com.game.protocol.ActorProtocol;
 import lombok.Data;
 
 /**

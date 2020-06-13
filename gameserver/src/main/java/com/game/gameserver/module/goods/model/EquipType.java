@@ -13,6 +13,8 @@ public interface EquipType {
     int SHOULDER = 3;
     /** 腰带 */
     int BELT = 4;
+    /** 裤子 */
+    int TROUSER = 5;
     /** 鞋子 */
-    int SHOE = 5;
+    int SHOE = 6;
 }

@@ -1,6 +1,9 @@
 package com.game.gameserver.module.player.entity;
 
+import com.game.gameserver.common.config.CareerLevelProperty;
 import com.game.gameserver.module.buffer.model.Buffer;
+import com.game.gameserver.module.goods.entity.Equip;
+import com.game.gameserver.module.goods.model.EquipBar;
 import lombok.Data;
 
 import java.util.List;
@@ -13,18 +16,116 @@ import java.util.List;
  */
 @Data
 public class PlayerBattle {
-    /** hp */
+    /**
+     * hp
+     */
     private int hp;
-    /** 当前hp */
+    /**
+     * 当前hp
+     */
     private int currHp;
-    /** mp */
+    /**
+     * mp
+     */
     private int mp;
-    /** 当前mp */
+    /**
+     * 当前mp
+     */
     private int currMp;
-    /** 攻击力 */
+    /**
+     * 攻击力
+     */
     private int attack;
-    /** 防御力 */
+    /**
+     * 防御力
+     */
     private int defense;
-    /** buff列表 */
-    private List<Buffer> bufferList;
+
+    public void initialize(CareerLevelProperty careerLevelProperty) {
+        this.hp = careerLevelProperty.getHp();
+        this.mp = careerLevelProperty.getMp();
+        this.attack = careerLevelProperty.getAttack();
+        this.defense = careerLevelProperty.getDefense();
+    }
+
+    /**
+     * 添加装备栏属性
+     *
+     * @param equipBar
+     * @return void
+     */
+    public void addEquipBarProperty(EquipBar equipBar) {
+        Equip[] rawData = equipBar.getRawData();
+        for (Equip equip : rawData) {
+            if(equip==null){
+                continue;
+            }
+            addEquipProperty(equip);
+        }
+    }
+
+
+    /**
+     * 添加一个装备属性
+     *
+     * @param equip
+     * @return void
+     */
+    public void addEquipProperty(Equip equip){
+        this.hp += equip.getEquipConfig().getHp();
+        this.mp += equip.getEquipConfig().getMp();
+        this.attack+=equip.getEquipConfig().getAttack();
+        this.defense+=equip.getEquipConfig().getDefense();
+    }
+
+    /**
+     * 删除一件装备属性
+     *
+     * @param equip
+     * @return void
+     */
+    public void removeEquipProperty(Equip equip){
+        this.hp -= equip.getEquipConfig().getHp();
+        this.mp -= equip.getEquipConfig().getMp();
+        this.attack-=equip.getEquipConfig().getAttack();
+        this.defense-=equip.getEquipConfig().getDefense();
+    }
+
+    /**
+     * 复位 将血量回满
+     *
+     * @param
+     * @return void
+     */
+    public void reset(){
+        this.currHp = hp;
+        this.currMp = mp;
+    }
+
+    /**
+     * 调整属性
+     *
+     * @param
+     * @return void
+     */
+    public void adjust(){
+        if(currHp>hp){
+            currHp = hp;
+        }
+        if(currMp>mp){
+            currMp = mp;
+        }
+    }
+
+
+    /**
+     * 根据buffers 调整战斗属性
+     *
+     * @param buffers
+     * @return void
+     */
+    public void addBufferListProperty(List<Buffer> buffers) {
+
+    }
+
 }

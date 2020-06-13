@@ -1,7 +1,7 @@
 package com.game.util;
 
 
-import com.game.module.player.model.BriefPlayerInfo;
+import com.game.module.player.entity.SimplePlayerInfo;
 import com.game.protocol.PlayerProtocol;
 import org.springframework.beans.BeanUtils;
 
@@ -12,9 +12,12 @@ import org.springframework.beans.BeanUtils;
  * @date 2020/5/25 13:15
  */
 public class TransFromUtil {
-    public static BriefPlayerInfo transFromBriefPlayerIn(PlayerProtocol.BriefPlayerInfo protocol){
-        BriefPlayerInfo briefPlayerInfo = new BriefPlayerInfo();
-        BeanUtils.copyProperties(protocol,briefPlayerInfo);
-        return briefPlayerInfo;
+
+    public static SimplePlayerInfo transFromSimplePlayerInfo(PlayerProtocol.SimplePlayerInfo protocol){
+        SimplePlayerInfo simplePlayerInfo = new SimplePlayerInfo();
+        BeanUtils.copyProperties(protocol,simplePlayerInfo);
+        return simplePlayerInfo;
     }
+
+
 }

@@ -1,17 +1,14 @@
 package com.game.gameserver.module.scene.manager;
 
 import com.game.gameserver.common.config.*;
-import com.game.gameserver.module.monster.manager.MonsterManager;
-import com.game.gameserver.module.monster.model.MonsterObject;
 import com.game.gameserver.module.npc.manager.NpcManager;
-import com.game.gameserver.module.npc.model.NpcObject;
 import com.game.gameserver.module.scene.model.SceneObject;
+import javafx.scene.Scene;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -26,10 +23,11 @@ public class SceneManager {
 
     private final static Logger logger  = LoggerFactory.getLogger(SceneManager.class);
 
-    @Autowired
-    private MonsterManager monsterManager;
-    @Autowired
-    private NpcManager npcManager;
+    public static SceneManager  instance;
+
+    public SceneManager(){
+        instance = this;
+    }
 
     /** 已经创建的场景 */
     private Map<Integer, SceneObject> sceneObjectMap = new ConcurrentHashMap<>(4);
@@ -40,61 +38,26 @@ public class SceneManager {
         for(Map.Entry<Integer,SceneConfig> sceneConfig:sceneConfigMap.entrySet()){
             // 获取场景怪物配置
             SceneMonsterConfig sceneMonsterConfig = StaticConfigManager.getInstance()
-                    .getSceneMonsterConfigMap().get(sceneConfig.getValue().getMonsterConfig());
+                    .getSceneMonsterConfigMap().get(sceneConfig.getValue().getSceneMonsterConfigId());
             // 获取场景NPC配置
             SceneNpcConfig sceneNpcConfig = StaticConfigManager.getInstance()
-                    .getSceneNpcConfigMap().get(sceneConfig.getValue().getNpcConfig());
+                    .getSceneNpcConfigMap().get(sceneConfig.getValue().getSceneNpcConfigId());
             // 创建场景对象
             SceneObject sceneObject = new SceneObject(sceneConfig.getValue(),sceneMonsterConfig,sceneNpcConfig);
-            // 加载怪物配置
-            loadSceneMonsterConfig(sceneObject);
-            // 加载场景Npc配置
-            loadSceneNpcConfig(sceneObject);
             // 场景初始化
             sceneObject.initialize();
             sceneObjectMap.put(sceneObject.getId(),sceneObject);
         }
     }
 
-    /**
-     * 加载场景怪物配置
-     *
-     * @param sceneObject
-     * @return void
-     */
-    private void loadSceneMonsterConfig(SceneObject sceneObject){
-        SceneMonsterConfig sceneMonsterConfig = sceneObject.getSceneMonsterConfig();
-        if(sceneMonsterConfig==null){
-            logger.info("scene {} don't have SceneMonsterConfig ",sceneObject.getSceneConfig().getName());
-            return;
-        }
-        for(SceneMonster sceneMonster:sceneMonsterConfig.getSceneMonsterList()){
-            List<MonsterObject> monsterObjectList = monsterManager.createMonsterObjectList(sceneMonster.getMonsterId(),
-                    sceneMonster.getCount());
-            for(MonsterObject monsterObject:monsterObjectList){
-                sceneObject.addMonsterObject(monsterObject);
-            }
-        }
+    public SceneObject getSceneObject(int sceneId){
+        return sceneObjectMap.get(sceneId);
     }
 
-    /**
-     * 加载场景npc配置
-     *
-     * @param sceneObject
-     * @return void
-     */
-    private void loadSceneNpcConfig(SceneObject sceneObject){
-        SceneNpcConfig sceneNpcConfig = sceneObject.getSceneNpcConfig();
-        if(sceneNpcConfig==null){
-            logger.info("scene {} don't have SceneNpcConfig ",sceneObject.getSceneConfig().getName());
-            return;
-        }
-        for(SceneNpc sceneNpc:sceneNpcConfig.getSceneNpcList()){
-            NpcObject npcObject = npcManager.createNpcObject(sceneNpc.getNpcId());
-            if(npcObject==null){
-                continue;
-            }
-            sceneObject.addNpcObject(npcObject);
+    public void update(){
+        //logger.info("更新场景状态 驱动AI");
+        for(Map.Entry<Integer,SceneObject> entry:sceneObjectMap.entrySet()){
+                entry.getValue().update();
         }
     }
 }

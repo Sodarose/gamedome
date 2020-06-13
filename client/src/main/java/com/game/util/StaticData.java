@@ -49,10 +49,10 @@ public class StaticData {
      */
     public static Map<Integer,String> equipPart = new HashMap<>();
     static {
-        careerMap.put(1,"狂战士");
-        careerMap.put(2,"剑魂");
-        careerMap.put(3,"阿修罗");
-        careerMap.put(4,"鬼泣");
+        careerMap.put(1000,"狂战士");
+        careerMap.put(1001,"剑魂");
+        careerMap.put(1002,"阿修罗");
+        careerMap.put(1003,"鬼泣");
 
         qualityMap.put(1,"普通");
         qualityMap.put(2,"高级");

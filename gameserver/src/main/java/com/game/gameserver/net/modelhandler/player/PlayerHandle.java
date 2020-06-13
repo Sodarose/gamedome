@@ -36,13 +36,13 @@ public class PlayerHandle extends BaseHandler {
      */
     @CmdHandler(cmd = PlayerCmd.LIST_PLAYERS)
     public void getPlayerList(Message message, Channel channel) {
-        // 验证连接
+        // 验证账号是否已经登录
         Account account = channel.attr(AccountService.ACCOUNT_ATTRIBUTE_KEY).get();
         if(account==null){
             return;
         }
         // 请求角色列表
-        PlayerProtocol.PlayerList playerList = playerService.getPlayerList(account.getId());
+        PlayerProtocol.PlayerListRes playerList = playerService.getPlayerList(account.getId());
         Message res = MessageUtil.createMessage(ModuleKey.PLAYER_MODULE,PlayerCmd.LIST_PLAYERS,playerList.toByteArray());
         channel.writeAndFlush(res);
     }
@@ -64,18 +64,7 @@ public class PlayerHandle extends BaseHandler {
         // 是否重复登录
         PlayerObject playerObject = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
         if(playerObject!=null){
-
             return;
-        }
-        try {
-            // 登录角色
-            PlayerProtocol.LoginPlayer loginPlayer = PlayerProtocol.LoginPlayer.parseFrom(message.getData());
-            int playerId = loginPlayer.getPlayerId();
-            PlayerProtocol.LoginRes loginRes = playerService.loginPlayer(playerId);
-            Message res = MessageUtil.createMessage(ModuleKey.PLAYER_MODULE,PlayerCmd.LOGIN_PLAYER,loginRes.toByteArray());
-            channel.writeAndFlush(res);
-        } catch (InvalidProtocolBufferException e) {
-            e.printStackTrace();
         }
     }
 

@@ -1,5 +1,6 @@
 package com.game.gameserver.thread;
 
+import com.game.gameserver.module.scene.manager.SceneManager;
 import io.netty.util.internal.PlatformDependent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -91,14 +92,6 @@ public class UnitTickThread implements Runnable {
     }
 
     private void update() {
-    /*    synchronized (BaseUnit.UNIT_MAP) {
-            BaseUnit.UNIT_MAP.forEach((integer, unit) -> {
-                try {
-                    unit.update();
-                }catch (Exception e){
-                    e.printStackTrace();
-                }
-            });
-        }*/
+        SceneManager.instance.update();
     }
 }

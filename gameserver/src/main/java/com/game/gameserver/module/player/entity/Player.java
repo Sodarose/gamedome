@@ -19,7 +19,7 @@ public class Player {
     /** 等级 */
     private Integer level;
     /** 职业 */
-    private Integer career;
+    private Integer careerId;
     /** 场景Id */
     private Integer sceneId;
     /** 金币数量 */

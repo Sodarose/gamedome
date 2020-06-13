@@ -24,26 +24,11 @@ public interface PlayerMapper {
     List<Player> getPlayerListByAccountId(int accountId);
 
     /**
-     * 根据角色Id 获取角色列表
+     * 根据角色Id 获取角色
      *
      * @param playerId
      * @return java.util.List<com.game.gameserver.module.player.entity.Player>
      */
-    List<Player> getPlayerById(int playerId);
+    Player getPlayerById(int playerId);
 
-    /**
-     * 创建角色
-     *
-     * @param player
-     * @return int
-     */
-    int createPlayer(Player player);
-
-    /**
-     * 保存角色
-     *
-     * @param player
-     * @return int
-     */
-    int savePlayer(Player player);
 }

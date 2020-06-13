@@ -1,6 +1,5 @@
 package com.game.module.player.model;
 
-import com.game.protocol.PlayerProtocol;
 import lombok.Data;
 
 /**
@@ -12,14 +11,5 @@ public class Player {
     private Integer id;
     private String  name;
     private Integer level;
-    private Integer career;
-
-    public Player(){}
-
-    public Player(PlayerProtocol.SimplePlayerInfo simplePlayerInfo){
-        this.id = simplePlayerInfo.getId();
-        this.name = simplePlayerInfo.getName();
-        this.level = simplePlayerInfo.getLevel();
-        this.career = simplePlayerInfo.getCareer();
-    }
+    private Integer careerId;
 }

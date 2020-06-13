@@ -4,10 +4,8 @@ import com.game.context.ClientGameContext;
 import com.game.module.BaseHandler;
 import com.game.module.ModuleKey;
 import com.game.module.player.PlayerCmd;
-import com.game.module.player.entity.PlayerObject;
-import com.game.module.player.model.BriefPlayerInfo;
-import com.game.module.player.model.Player;
 import com.game.module.gui.WordPage;
+import com.game.module.player.entity.SimplePlayerInfo;
 import com.game.protocol.Message;
 import com.game.protocol.PlayerProtocol;
 import com.game.task.annotation.CmdHandler;
@@ -36,18 +34,21 @@ public class PlayerHandle extends BaseHandler {
     @Autowired
     private ClientGameContext gameContext;
 
-    @CmdHandler(cmd = PlayerCmd.LIST_ROLES)
+    @CmdHandler(cmd = PlayerCmd.LIST_PLAYERS)
     public void receivePlayerList(Message message){
         try {
-            PlayerProtocol.PlayerList playerList = PlayerProtocol.PlayerList.parseFrom(message.getData());
-            List<BriefPlayerInfo> briefPlayerInfos = new ArrayList<>();
-            for(PlayerProtocol.BriefPlayerInfo briefPlayerInfo:playerList.getPlayerListList()){
-                BriefPlayerInfo info = TransFromUtil.transFromBriefPlayerIn(briefPlayerInfo);
-                briefPlayerInfos.add(info);
+            PlayerProtocol.PlayerListRes res = PlayerProtocol.PlayerListRes.parseFrom(message.getData());
+            List<SimplePlayerInfo> playerList = new ArrayList<>();
+            for(PlayerProtocol.SimplePlayerInfo info:res.getPlayerInfoListList()){
+                SimplePlayerInfo simplePlayerInfo = TransFromUtil.transFromSimplePlayerInfo(info);
+                playerList.add(simplePlayerInfo);
             }
-            wordPage.print(briefPlayerInfos);
+            gameContext.setPlayerList(playerList);
+            wordPage.print(playerList);
         } catch (InvalidProtocolBufferException e) {
             e.printStackTrace();
         }
     }
+
+
 }

@@ -4,7 +4,7 @@ option java_outer_classname = "SceneProtocol";
 import "Actor.proto";
 import "Player.proto";
 
-message SceneObject{
+message SceneInfo{
     int32 id = 1;
     string name = 2;
     string description = 3;

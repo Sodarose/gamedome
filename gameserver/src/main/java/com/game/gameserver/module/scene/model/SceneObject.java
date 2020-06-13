@@ -2,12 +2,15 @@ package com.game.gameserver.module.scene.model;
 
 import com.game.gameserver.common.config.*;
 import com.game.gameserver.common.entity.Unit;
+import com.game.gameserver.module.monster.manager.MonsterManager;
 import com.game.gameserver.module.monster.model.MonsterObject;
+import com.game.gameserver.module.npc.manager.NpcManager;
 import com.game.gameserver.module.npc.model.NpcObject;
 import com.game.gameserver.module.player.model.PlayerObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -45,6 +48,51 @@ public class SceneObject implements Unit {
 
     public void initialize(){
         logger.info("Scene {} initialize ",sceneConfig.getName());
+        loadSceneMonsterConfig();
+        loadSceneNpcConfig();
+    }
+
+
+    /**
+     * 加载怪物
+     *
+     * @param
+     * @return void
+     */
+    private void loadSceneMonsterConfig(){
+        if(sceneMonsterConfig==null){
+            logger.info("scene {} don't have SceneMonsterConfig ",sceneConfig.getName());
+            return;
+        }
+        for(SceneMonster sceneMonster:sceneMonsterConfig.getSceneMonsterList()){
+            List<MonsterObject> monsterObjectList = MonsterManager.getInstance()
+                    .createMonsterObjectList(sceneMonster.getMonsterId(),
+                    sceneMonster.getCount());
+            for(MonsterObject monsterObject:monsterObjectList){
+                monsterMap.put(monsterObject.getId(),monsterObject);
+            }
+        }
+    }
+
+
+    /**
+     * 加载场景Npc
+     *
+     * @param
+     * @return void
+     */
+    private void loadSceneNpcConfig(){
+        if(sceneNpcConfig==null){
+            logger.info("scene {} don't have SceneNpcConfig ",sceneConfig.getName());
+            return;
+        }
+        for(SceneNpc sceneNpc:sceneNpcConfig.getSceneNpcList()){
+            NpcObject npcObject = NpcManager.instance.createNpcObject(sceneNpc.getNpcId());
+            if(npcObject==null){
+                continue;
+            }
+            npcMap.put(npcObject.getId(),npcObject);
+        }
     }
 
     @Override

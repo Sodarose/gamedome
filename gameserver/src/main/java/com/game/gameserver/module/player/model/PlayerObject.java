@@ -1,13 +1,19 @@
 package com.game.gameserver.module.player.model;
 
+import com.game.gameserver.common.config.CareerConfig;
+import com.game.gameserver.common.config.CareerLevelProperty;
+import com.game.gameserver.common.config.StaticConfigManager;
 import com.game.gameserver.common.entity.Unit;
-import com.game.gameserver.module.goods.model.EquipBag;
+import com.game.gameserver.module.buffer.model.Buffer;
+import com.game.gameserver.module.goods.model.EquipBar;
+import com.game.gameserver.module.goods.model.PlayerBag;
 import com.game.gameserver.module.player.entity.Player;
 import com.game.gameserver.module.player.entity.PlayerBattle;
-import com.game.gameserver.module.goods.model.PropsBag;
-import com.game.gameserver.module.skill.model.SkillBag;
+import com.game.gameserver.module.skill.model.PlayerSkill;
 import com.game.gameserver.util.GenIdUtil;
 import io.netty.channel.Channel;
+
+import java.util.List;
 
 /**
  * 玩家模型对象
@@ -18,26 +24,50 @@ import io.netty.channel.Channel;
 public class PlayerObject implements Unit {
 
     /** 生成的唯一Id */
-    private int id;
+    private final Integer id;
     /** 用户信息 */
-    private Player player;
+    private final Player player;
     /** 战斗属性 */
     private PlayerBattle playerBattle;
     /** 装备栏 */
-    private EquipBag equipBag;
-    /** 背包 */
-    private PropsBag propsBag;
-    /** 技能栏 */
-    private SkillBag skillBag;
+    private EquipBar equipBar;
+    /** 用户背包 */
+    private PlayerBag playerBag;
+    /** 技能 */
+    private PlayerSkill playerSkill;
+    /** buff列表 */
+    private List<Buffer> buffers;
 
     /** 当前所在的组队 队伍ID */
     private Integer teamId;
-
     /** 角色连接信息 */
     private Channel channel;
 
-    public PlayerObject(){
+
+    public PlayerObject(Player player){
         this.id = GenIdUtil.nextId();
+        this.player = player;
+    }
+
+    /**
+     * 初始化
+     *
+     * @param
+     * @return void
+     */
+    public void initialize(){
+        // 获得职业等级数据
+        CareerConfig careerConfig = StaticConfigManager.getInstance().getCareerConfigMap()
+                .get(player.getCareerId());
+        CareerLevelProperty property = careerConfig.getCareerLevelProperty()
+                .get(player.getLevel()/10);
+        playerBattle = new PlayerBattle();
+        playerBattle.initialize(property);
+        // 根据装备调整属性
+        playerBattle.addEquipBarProperty(equipBar);
+        // 根据buffer调整属性
+        playerBattle.addBufferListProperty(buffers);
+        playerBattle.reset();
     }
 
     @Override
@@ -45,7 +75,7 @@ public class PlayerObject implements Unit {
 
     }
 
-    public int getId(){
+    public Integer getId(){
         return id;
     }
 
@@ -57,20 +87,20 @@ public class PlayerObject implements Unit {
         return teamId;
     }
 
-    public void setSkillBag(SkillBag skillBag) {
-        this.skillBag = skillBag;
+    public void setPlayerSkill(PlayerSkill playerSkill) {
+        this.playerSkill = playerSkill;
     }
 
-    public SkillBag getSkillBag() {
-        return skillBag;
+    public PlayerSkill getPlayerSkill() {
+        return playerSkill;
     }
 
-    public PropsBag getPropsBag() {
-        return propsBag;
+    public PlayerBag getPlayerBag() {
+        return playerBag;
     }
 
-    public void setPropsBag(PropsBag propsBag) {
-        this.propsBag = propsBag;
+    public void setPlayerBag(PlayerBag playerBag) {
+        this.playerBag = playerBag;
     }
 
     public void setPlayerBattle(PlayerBattle playerBattle) {
@@ -81,20 +111,16 @@ public class PlayerObject implements Unit {
         return playerBattle;
     }
 
-    public void setPlayer(Player player) {
-        this.player = player;
-    }
-
     public Player getPlayer() {
         return player;
     }
 
-    public void setEquipBag(EquipBag equipBag) {
-        this.equipBag = equipBag;
+    public void setEquipBar(EquipBar equipBar) {
+        this.equipBar = equipBar;
     }
 
-    public EquipBag getEquipBag() {
-        return equipBag;
+    public EquipBar getEquipBar() {
+        return equipBar;
     }
 
     public void setChannel(Channel channel) {
@@ -103,5 +129,13 @@ public class PlayerObject implements Unit {
 
     public Channel getChannel() {
         return channel;
+    }
+
+    public void setBuffers(List<Buffer> buffers) {
+        this.buffers = buffers;
+    }
+
+    public List<Buffer> getBuffers(){
+        return buffers;
     }
 }

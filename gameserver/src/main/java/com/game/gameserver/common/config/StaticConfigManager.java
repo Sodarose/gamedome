@@ -38,6 +38,7 @@ public class StaticConfigManager {
     private Map<Integer, EquipConfig> equipConfigMap = new HashMap<>(16);
     private Map<Integer, PropConfig> propConfigMap = new HashMap<>(16);
     private Map<Integer, CommodityConfig> commodityConfigMap = new HashMap<>(16);
+    private Map<Integer, CareerConfig> careerConfigMap = new HashMap<>(16);
 
     public static StaticConfigManager getInstance() {
         return INSTANCE;
@@ -71,6 +72,7 @@ public class StaticConfigManager {
         loadEquipConfig(path);
         loadPropConfig(path);
         loadCommodityConfig(path);
+        loadCareerConfig(path);
 
     }
 
@@ -253,4 +255,19 @@ public class StaticConfigManager {
         }
     }
 
+    private void loadCareerConfig(String path) {
+        logger.info("load CareerConfig.json");
+        String fileName = "CareerConfig.json";
+        path += "/" + fileName;
+        try {
+            JSONReader jsonReader = new JSONReader(new InputStreamReader(new FileInputStream(path)));
+            jsonReader.startArray();
+            while (jsonReader.hasNext()) {
+                CareerConfig careerConfig = JSON.parseObject(jsonReader.readString(), CareerConfig.class);
+                careerConfigMap.put(careerConfig.getId(), careerConfig);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

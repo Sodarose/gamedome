@@ -19,7 +19,11 @@ public class PlayerManager {
 
     private final Map<Integer, PlayerObject> playerObjectMap = new ConcurrentHashMap<>(1);
 
-    public PlayerObject getPlayerObject(int playerId){
+    public PlayerObject getPlayerObject(int playerId) {
         return playerObjectMap.get(playerId);
+    }
+
+    public void putPlayerObject(PlayerObject playerObject) {
+        playerObjectMap.put(playerObject.getId(), playerObject);
     }
 }

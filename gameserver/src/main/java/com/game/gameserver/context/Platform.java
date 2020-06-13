@@ -3,10 +3,13 @@ package com.game.gameserver.context;
 import com.game.gameserver.common.config.StaticConfigManager;
 import com.game.gameserver.module.scene.manager.SceneManager;
 import com.game.gameserver.module.timewheel.manager.TimeWheelTimeManager;
+import com.game.gameserver.thread.UnitTickThread;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.util.concurrent.TimeUnit;
 
 /**
  * 管理平台 负责整个服务器资源的初始化
@@ -22,11 +25,13 @@ public class Platform {
 
     @Autowired
     private SceneManager sceneManager;
+    private UnitTickThread unitTickThread = new UnitTickThread(1, TimeUnit.SECONDS);
 
     public void startUp() {
         logger.info("platform start up ......");
         staticConfigManager.loadConfig();
         sceneManager.loadScene();
+        unitTickThread.start();
     }
 
 }

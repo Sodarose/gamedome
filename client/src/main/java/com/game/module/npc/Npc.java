@@ -1,6 +1,5 @@
 package com.game.module.npc;
 
-import com.game.protocol.ActorProtocol;
 import lombok.Data;
 
 /**

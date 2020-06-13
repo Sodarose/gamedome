@@ -5,22 +5,19 @@
         <id column="id" property="id"/>
         <result column="name" property="name"/>
         <result column="level" property="level"/>
-        <result column="careerData" property="careerData"/>
+        <result column="careerId" property="careerId"/>
+        <result column="golds" property="golds"/>
         <result column="sceneId" property="sceneId"/>
         <result column="userId" property="userId"/>
         <result column="createTime" property="createTime"/>
         <result column="updateTime" property="updateTime"/>
     </resultMap>
-    <select id=" getPlayerListByAccountId">
-
+    <select id="getPlayerListByAccountId" resultMap="playerResultMap">
+        SELECT id,name,level,careerId,golds,sceneId,userId,createTime,updateTime FROM game_player WHERE userId = #{accountId}
     </select>
-    <select id="getPlayerById">
 
+    <select id="getPlayerById" resultMap="playerResultMap">
+        SELECT id,name,level,careerId,golds,sceneId,userId,createTime,updateTime FROM game_player WHERE id = #{playerId}
     </select>
-    <insert id="createPlayer">
 
-    </insert>
-    <update id="savePlayer">
-
-    </update>
 </mapper>

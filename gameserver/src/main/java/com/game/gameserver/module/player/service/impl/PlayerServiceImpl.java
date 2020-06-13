@@ -1,11 +1,29 @@
 package com.game.gameserver.module.player.service.impl;
 
+import com.game.gameserver.common.Result;
+import com.game.gameserver.module.buffer.model.Buffer;
+import com.game.gameserver.module.buffer.service.BufferService;
+import com.game.gameserver.module.goods.model.EquipBar;
+import com.game.gameserver.module.goods.model.PlayerBag;
+import com.game.gameserver.module.goods.service.EquipService;
+import com.game.gameserver.module.goods.service.PropService;
+import com.game.gameserver.module.player.dao.PlayerMapper;
+import com.game.gameserver.module.player.entity.Player;
 import com.game.gameserver.module.player.manager.PlayerManager;
 import com.game.gameserver.module.player.model.PlayerObject;
 import com.game.gameserver.module.player.service.PlayerService;
+import com.game.gameserver.module.scene.service.SceneService;
+import com.game.gameserver.module.skill.model.PlayerSkill;
+import com.game.gameserver.module.skill.service.SkillService;
+import com.game.gameserver.util.TransFromUtil;
 import com.game.protocol.PlayerProtocol;
+import io.netty.channel.Channel;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @author xuewenkang
@@ -13,10 +31,23 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class PlayerServiceImpl implements PlayerService {
+    private final static Logger logger = LoggerFactory
+            .getLogger(PlayerServiceImpl.class);
 
     @Autowired
     private PlayerManager playerManager;
-
+    @Autowired
+    private PlayerMapper playerMapper;
+    @Autowired
+    private EquipService equipService;
+    @Autowired
+    private PropService propService;
+    @Autowired
+    private SceneService sceneService;
+    @Autowired
+    private SkillService skillService;
+    @Autowired
+    private BufferService bufferService;
 
     /**
      * 登录用户角色
@@ -25,19 +56,48 @@ public class PlayerServiceImpl implements PlayerService {
      * @return com.game.protocol.PlayerProtocol.LoginRes
      */
     @Override
-    public PlayerProtocol.LoginRes loginPlayer(int playerId) {
-        return null;
+    public void loginPlayer(int playerId, Channel channel) {
+        Player player = playerMapper.getPlayerById(playerId);
+        if (player == null) {
+            return;
+        }
+        // 创建角色
+        PlayerObject playerObject = new PlayerObject(player);
+        // 加载用户装备
+        EquipBar equipBar = equipService.loadEquipBar(playerId);
+        playerObject.setEquipBar(equipBar);
+        // 加载用户背包
+        PlayerBag propsBag = propService.loadPropsBag(playerId);
+        playerObject.setPlayerBag(propsBag);
+        // 加载当前角色技能
+        PlayerSkill playerSkill = skillService.loadPlayerSkill(playerId);
+        playerObject.setPlayerSkill(playerSkill);
+        // 加载当前角色buff
+        List<Buffer> buffers = bufferService.loadPlayerBuffer(playerId);
+        playerObject.setBuffers(buffers);
+        // 初始化
+        playerObject.initialize();
+        playerObject.setChannel(channel);
+        // 保存该角色数据
+        playerManager.putPlayerObject(playerObject);
+        channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).compareAndSet(null,
+                playerObject);
+        // 返回角色数据
+        
     }
 
     /**
      * 根据账户获得该账户的角色列表
      *
-     * @param account
+     * @param accountId 账户Id
      * @return com.game.protocol.PlayerProtocol.PlayerList
      */
     @Override
-    public PlayerProtocol.PlayerList getPlayerList(int account) {
-        return null;
+    public PlayerProtocol.PlayerListRes getPlayerList(int accountId) {
+        // 获得角色列表
+        List<Player> playerList = playerMapper.getPlayerListByAccountId(accountId);
+        // 转换成Protocol 返回
+        return TransFromUtil.transFromProtocolPlayerList(playerList);
     }
 
     /**

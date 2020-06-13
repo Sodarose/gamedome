@@ -25,8 +25,8 @@ public class PropConfig {
     private int maxOverlay;
     @JSONField(name = "price")
     private int price;
-    @JSONField(name = "effect")
-    private String effect;
+    @JSONField(name = "formula")
+    private String formula;
     @JSONField(name = "coolTime")
     private int coolTime;
     @JSONField(name = "limitCount")

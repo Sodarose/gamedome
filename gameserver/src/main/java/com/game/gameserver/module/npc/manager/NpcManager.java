@@ -20,6 +20,12 @@ import java.util.concurrent.ConcurrentHashMap;
 public class NpcManager {
     private final static Logger logger = LoggerFactory.getLogger(NpcManager.class);
 
+    public static NpcManager instance;
+
+    public NpcManager(){
+        instance = this;
+    }
+
     /** npc 表 */
     private final Map<Integer, NpcObject> npcObjectMap = new ConcurrentHashMap<>();
 

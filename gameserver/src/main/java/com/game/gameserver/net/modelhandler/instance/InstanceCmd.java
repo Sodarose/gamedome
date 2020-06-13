@@ -7,5 +7,8 @@ package com.game.gameserver.net.modelhandler.instance;
  * @date 2020/6/8 19:20
  */
 public interface InstanceCmd {
-
+    /** 查看副本列表 */
+    short INSTANCE_LIST = 1001;
+    /** 进入副本 */
+    short ENTRY_INSTANCE = 1002;
 }

@@ -7,7 +7,7 @@
     "overlay": true,
     "maxOverlay": 99,
     "price": 50,
-    "effect": "+|hp|50",
+    "formula": "+|HP|50",
     "coolTime": 1,
     "limitCount": 0,
     "desc": "恢复hp50点"
@@ -20,7 +20,7 @@
     "overlay": true,
     "maxOverlay": 99,
     "price": 50,
-    "effect": "+|mp|50",
+    "formula": "+|MP|50",
     "coolTime": 1,
     "limitCount": 0,
     "desc": "恢复mp50点"

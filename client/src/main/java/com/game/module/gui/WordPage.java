@@ -1,9 +1,7 @@
 package com.game.module.gui;
 
 import com.game.module.player.entity.PlayerObject;
-import com.game.module.player.model.BriefPlayerInfo;
-import com.game.module.player.model.Player;
-import com.game.protocol.ItemProtocol;
+import com.game.module.player.entity.SimplePlayerInfo;
 import com.game.util.StaticData;
 import org.springframework.stereotype.Component;
 
@@ -54,18 +52,18 @@ public class WordPage extends JTextArea {
     /**
      * 展示角色选择
      *
-     * @param briefPlayerInfos 角色列表
+     * @param playerList 角色列表
      * @return void
      */
-    public void print(List<BriefPlayerInfo> briefPlayerInfos) {
+    public void print(List<SimplePlayerInfo> playerList) {
         builder.append("\n");
-        if(briefPlayerInfos.size()==0){
+        if (playerList.size() == 0) {
             builder.append("未拥有角色！请先创建角色！\n");
             return;
         }
-        for (BriefPlayerInfo player : briefPlayerInfos) {
+        for (SimplePlayerInfo player : playerList) {
             builder.append("角色名：").append(player.getName()).append("\n");
-            builder.append("职业：").append(player.getCareer()).append("\n");
+            builder.append("职业：").append(StaticData.careerMap.get(player.getCareerId())).append("\n");
             builder.append("等级：").append(player.getLevel()).append("\n");
         }
         refresh();

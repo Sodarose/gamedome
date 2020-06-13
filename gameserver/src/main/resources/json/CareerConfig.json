@@ -1,0 +1,338 @@
+[
+  {
+    "id": 1000,
+    "name": "狂战士",
+    "desc": "垃圾红狗",
+    "careerLevelProperty": [
+      {
+        "level": 1,
+        "ph": 1000,
+        "mp": 1000,
+        "attack": 120,
+        "defense": 120
+      },
+      {
+        "level": 10,
+        "ph": 1100,
+        "mp": 1100,
+        "attack": 130,
+        "defense": 130
+      },
+      {
+        "level": 20,
+        "ph": 1200,
+        "mp": 1200,
+        "attack": 140,
+        "defense": 140
+      },
+      {
+        "level": 30,
+        "ph": 1300,
+        "mp": 1300,
+        "attack": 130,
+        "defense": 130
+      },
+      {
+        "level": 40,
+        "ph": 1400,
+        "mp": 1400,
+        "attack": 140,
+        "defense": 140
+      },
+      {
+        "level": 50,
+        "ph": 1500,
+        "mp": 1500,
+        "attack": 150,
+        "defense": 150
+      },
+      {
+        "level": 60,
+        "ph": 1600,
+        "mp": 1600,
+        "attack": 160,
+        "defense": 160
+      },
+      {
+        "level": 70,
+        "ph": 1700,
+        "mp": 1700,
+        "attack": 170,
+        "defense": 170
+      },
+      {
+        "level": 80,
+        "ph": 1800,
+        "mp": 1800,
+        "attack": 180,
+        "defense": 180
+      },
+      {
+        "level": 90,
+        "ph": 1900,
+        "mp": 1900,
+        "attack": 120,
+        "defense": 120
+      },
+      {
+        "level": 100,
+        "ph": 2000,
+        "mp": 2000,
+        "attack": 220,
+        "defense": 220
+      }
+    ]
+  },
+  {
+    "id": 1001,
+    "name": "剑魂",
+    "desc": "垃圾白手",
+    "careerLevelProperty": [
+      {
+        "level": 1,
+        "ph": 1000,
+        "mp": 1000,
+        "attack": 120,
+        "defense": 120
+      },
+      {
+        "level": 10,
+        "ph": 1100,
+        "mp": 1100,
+        "attack": 130,
+        "defense": 130
+      },
+      {
+        "level": 20,
+        "ph": 1200,
+        "mp": 1200,
+        "attack": 140,
+        "defense": 140
+      },
+      {
+        "level": 30,
+        "ph": 1300,
+        "mp": 1300,
+        "attack": 130,
+        "defense": 130
+      },
+      {
+        "level": 40,
+        "ph": 1400,
+        "mp": 1400,
+        "attack": 140,
+        "defense": 140
+      },
+      {
+        "level": 50,
+        "ph": 1500,
+        "mp": 1500,
+        "attack": 150,
+        "defense": 150
+      },
+      {
+        "level": 60,
+        "ph": 1600,
+        "mp": 1600,
+        "attack": 160,
+        "defense": 160
+      },
+      {
+        "level": 70,
+        "ph": 1700,
+        "mp": 1700,
+        "attack": 170,
+        "defense": 170
+      },
+      {
+        "level": 80,
+        "ph": 1800,
+        "mp": 1800,
+        "attack": 180,
+        "defense": 180
+      },
+      {
+        "level": 90,
+        "ph": 1900,
+        "mp": 1900,
+        "attack": 120,
+        "defense": 120
+      },
+      {
+        "level": 100,
+        "ph": 2000,
+        "mp": 2000,
+        "attack": 220,
+        "defense": 220
+      }
+    ]
+  },
+  {
+    "id": 1002,
+    "name": "鬼泣",
+    "desc": "非洲黑人",
+    "careerLevelProperty": [
+      {
+        "level": 1,
+        "ph": 1000,
+        "mp": 1000,
+        "attack": 120,
+        "defense": 120
+      },
+      {
+        "level": 10,
+        "ph": 1100,
+        "mp": 1100,
+        "attack": 130,
+        "defense": 130
+      },
+      {
+        "level": 20,
+        "ph": 1200,
+        "mp": 1200,
+        "attack": 140,
+        "defense": 140
+      },
+      {
+        "level": 30,
+        "ph": 1300,
+        "mp": 1300,
+        "attack": 130,
+        "defense": 130
+      },
+      {
+        "level": 40,
+        "ph": 1400,
+        "mp": 1400,
+        "attack": 140,
+        "defense": 140
+      },
+      {
+        "level": 50,
+        "ph": 1500,
+        "mp": 1500,
+        "attack": 150,
+        "defense": 150
+      },
+      {
+        "level": 60,
+        "ph": 1600,
+        "mp": 1600,
+        "attack": 160,
+        "defense": 160
+      },
+      {
+        "level": 70,
+        "ph": 1700,
+        "mp": 1700,
+        "attack": 170,
+        "defense": 170
+      },
+      {
+        "level": 80,
+        "ph": 1800,
+        "mp": 1800,
+        "attack": 180,
+        "defense": 180
+      },
+      {
+        "level": 90,
+        "ph": 1900,
+        "mp": 1900,
+        "attack": 120,
+        "defense": 120
+      },
+      {
+        "level": 100,
+        "ph": 2000,
+        "mp": 2000,
+        "attack": 220,
+        "defense": 220
+      }
+    ]
+  },
+  {
+    "id": 1003,
+    "name": "阿修罗",
+    "desc": "不锈钢",
+    "careerLevelProperty": [
+      {
+        "level": 1,
+        "ph": 1000,
+        "mp": 1000,
+        "attack": 120,
+        "defense": 120
+      },
+      {
+        "level": 10,
+        "ph": 1100,
+        "mp": 1100,
+        "attack": 130,
+        "defense": 130
+      },
+      {
+        "level": 20,
+        "ph": 1200,
+        "mp": 1200,
+        "attack": 140,
+        "defense": 140
+      },
+      {
+        "level": 30,
+        "ph": 1300,
+        "mp": 1300,
+        "attack": 130,
+        "defense": 130
+      },
+      {
+        "level": 40,
+        "ph": 1400,
+        "mp": 1400,
+        "attack": 140,
+        "defense": 140
+      },
+      {
+        "level": 50,
+        "ph": 1500,
+        "mp": 1500,
+        "attack": 150,
+        "defense": 150
+      },
+      {
+        "level": 60,
+        "ph": 1600,
+        "mp": 1600,
+        "attack": 160,
+        "defense": 160
+      },
+      {
+        "level": 70,
+        "ph": 1700,
+        "mp": 1700,
+        "attack": 170,
+        "defense": 170
+      },
+      {
+        "level": 80,
+        "ph": 1800,
+        "mp": 1800,
+        "attack": 180,
+        "defense": 180
+      },
+      {
+        "level": 90,
+        "ph": 1900,
+        "mp": 1900,
+        "attack": 120,
+        "defense": 120
+      },
+      {
+        "level": 100,
+        "ph": 2000,
+        "mp": 2000,
+        "attack": 220,
+        "defense": 220
+      }
+    ]
+  }
+]

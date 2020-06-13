@@ -1,96 +1,90 @@
 syntax = "proto3";
 option java_package = "com.game.protocol";
 option java_outer_classname = "PlayerProtocol";
-import "Item.proto";
-import "Skill.proto";
-import "Common.proto";
+import "Scene.proto";
 
-// 简要角色信息
-message BriefPlayerInfo {
-    int32 id = 1;
-    string name = 2;
-    int32 level = 3;
-    int32 career = 4;
+// 角色列表请求
+message PlayerListReq {
+
 }
 
-// 角色列表
-message PlayerList {
-    repeated BriefPlayerInfo playerList = 1;
+// 角色列表响应
+message PlayerListRes {
+    repeated SimplePlayerInfo playerInfoList = 1;
 }
 
-// 登录角色
-message LoginPlayer {
+// 角色登录请求
+message LoginPlayerReq {
     int32 playerId = 1;
 }
 
-// 登录结果
-message LoginRes {
+// 角色登录响应
+message LoginPlayerRes {
     int32 code = 1;
-    int32 message = 2;
+    string msg = 2;
+    PlayerInfo playerInfo = 3;
 }
 
-// 角色信息
-message PlayerInfo{
-    int32 id = 1;
-    string name = 2;
-    int32 level = 3;
-    int32 career = 4;
-    int32 sceneId = 5;
+// 角色信息请求
+message PlayerInfoReq {
+
 }
 
-// 简单角色信息
+// 角色响应请求
+message PlayerInfoRes {
+
+}
+
+// 同步角色信息
+message SyncPlayerInfo {
+
+}
+
+// 背包请求
+message OpenBagReq {
+
+}
+
+// 背包响应
+message OpenBagRes {
+
+}
+
+// 简要角色信息
 message SimplePlayerInfo {
     int32 id = 1;
     string name = 2;
     int32 level = 3;
-    int32 career = 4;
+    int32 careerId = 4;
 }
 
-message PlayerMessage {
-    int32 id = 1;
-    string name = 2;
-    int32 level = 3;
-    int32 career = 4;
-    Property property = 5;
-}
-
-
+// 角色信息
 message PlayerInfo {
-    int32 id = 1;
+    int32  id = 1;
     string name = 2;
-    int32 level = 3;
-    int32 career = 4;
-    int32 state = 5;
-    Property property = 6;
-    EquipBar equipBar = 7;
+    int32  level = 3;
+    int32  careerId = 4;
+    int32  golds = 5;
 }
 
-// 属性
-message PlayerObject {
-    int32 id = 1;
-    string name = 2;
-    int32 level = 3;
-    int32 career = 4;
-    int32 sceneId = 5;
-    int32 state = 6;
-    Property property = 7;
-    Bag bag = 8;
-    EquipBar equipBar = 9;
-    SkillBar skillBar = 10;
-}
-// 因为装备变更引起的属性变化 同步
-message SyncProperty {
-    // 什么原因导致的属性变更
-    int32 cause = 1;
-    Property property = 2;
+// 战斗属性
+message PlayerBattle{
+    int32 hp = 1;
+    int32 currHp = 2;
+    int32 mp = 3;
+    int32 currMp = 4;
+    int32 attack = 5;
+    int32 defense = 6;
 }
 
-message TalkNpc {
-    int32 npcId = 1;
+// 背包
+message PlayerBag{
+
 }
 
-message Talk {
-    int32 npcId = 1;
-    string name = 2;
-    string msg = 3;
+// 技能
+message PlayerSkill{
+
 }
+
+

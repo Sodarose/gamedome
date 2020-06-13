@@ -25,7 +25,7 @@ public class InstanceManager {
     /** 已经创建的副本对象 */
     private Map<Integer, InstanceObject> instanceObjectMap = new ConcurrentHashMap<>(1);
     /** 副本信息 */
-    private Map<Integer,InstanceInfo> instanceInfoMap = new HashMap<>();
+    private Map<Integer,InstanceInfo> instanceInfoMap = new ConcurrentHashMap<>(1);
 
     @Autowired
     private TeamManager teamManager;
@@ -48,24 +48,13 @@ public class InstanceManager {
                 .get(instanceConfig.getNpcConfig());
         // 创建副本
         InstanceObject instanceObject = new InstanceObject(instanceConfig,instanceMonsterConfig,instanceNpcConfig);
-        // 加载副本怪物配置
-        loadInstanceMonsterConfig(instanceObject);
-        // 加载副本Npc配置
-        loadInstanceNpcConfig(instanceObject);
+        // 初始化
+        instanceObject.initialize();
         instanceObjectMap.put(instanceObject.getId(),instanceObject);
         return instanceObject;
     }
 
 
-    /** 加载副本怪物配置 */
-    private void loadInstanceMonsterConfig(InstanceObject instanceObject){
-
-    }
-
-    /** 加载副本Npc配置 */
-    private void loadInstanceNpcConfig(InstanceObject instanceObject){
-
-    }
 
     /**
      * 移除副本
@@ -74,6 +63,6 @@ public class InstanceManager {
      * @return void
      */
     public void removeInstanceObject(int instanceId){
-
+        instanceObjectMap.remove(instanceId);
     }
 }

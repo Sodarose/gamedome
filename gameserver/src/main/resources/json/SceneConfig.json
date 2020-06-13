@@ -6,8 +6,8 @@
     "exitWays": [
       1002
     ],
-    "monsterConfig": 1001,
-    "npcConfig": 1001
+    "sceneMonsterConfigId": 1001,
+    "sceneNpcConfigId": 1001
   },
   {
     "id": 1002,
@@ -18,8 +18,8 @@
       1003,
       1004
     ],
-    "monsterConfig": 1002,
-    "npcConfig": 1002
+    "sceneMonsterConfigId": 1002,
+    "sceneNpcConfigId": 1002
   },
   {
     "id": 1003,
@@ -29,8 +29,8 @@
       1002,
       1006
     ],
-    "monsterConfig": 1003,
-    "npcConfig": 1003
+    "sceneMonsterConfigId": 1003,
+    "sceneNpcConfigId": 1003
   },
   {
     "id": 1004,
@@ -40,8 +40,8 @@
       1002,
       1005
     ],
-    "monsterConfig": 1004,
-    "npcConfig": 1004
+    "sceneMonsterConfigId": 1004,
+    "sceneNpcConfigId": 1004
   },
   {
     "id": 1005,
@@ -50,8 +50,8 @@
     "exitWays": [
       1004
     ],
-    "monsterConfig": 1005,
-    "npcConfig": 1005
+    "sceneMonsterConfigId": 1005,
+    "sceneNpcConfigId": 1005
   },
   {
     "id": 1006,
@@ -60,7 +60,7 @@
     "exitWays": [
       1003
     ],
-    "monsterConfig": 1006,
-    "npcConfig": 1006
+    "sceneMonsterConfigId": 1006,
+    "sceneNpcConfigId": 1006
   }
 ]

@@ -19,6 +19,12 @@ import java.util.concurrent.ConcurrentHashMap;
 @Component
 public class MonsterManager {
 
+    public static MonsterManager instance;
+
+    public MonsterManager() {
+        instance = this;
+    }
+
     private final static Logger logger = LoggerFactory.getLogger(MonsterManager.class);
     private final Map<Integer, MonsterObject> monsterObjectMap = new ConcurrentHashMap<>(1);
 
@@ -44,5 +50,9 @@ public class MonsterManager {
             monsterObjectList.add(monsterObject);
         }
         return monsterObjectList;
+    }
+
+    public static MonsterManager getInstance(){
+        return instance;
     }
 }
