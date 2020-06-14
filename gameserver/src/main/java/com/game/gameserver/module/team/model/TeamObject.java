@@ -31,7 +31,7 @@ public class TeamObject implements Unit {
     public TeamObject(PlayerObject playerObject,String teamName,int maxCount){
         this.id = GenIdUtil.nextId();
         this.teamName = teamName;
-        this.captainId = playerObject.getId();
+        this.captainId = playerObject.getUnitId();
         this.state = TeamState.NULL_FULL;
         this.maxCount = maxCount;
         members = new ArrayList<>();
@@ -71,7 +71,7 @@ public class TeamObject implements Unit {
         if(!members.contains(playerObject)){
             return;
         }
-        this.captainId = playerObject.getId();
+        this.captainId = playerObject.getUnitId();
     }
 
     public void setTeamName(String teamName){

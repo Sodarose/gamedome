@@ -11,12 +11,8 @@ import com.game.gameserver.util.GenIdUtil;
  */
 public class Equip extends Goods {
 
-    /** 装备静态属性 */
-    private EquipConfig equipConfig;
     /** 当前耐久度 */
     private int durability;
-    /** 装备类型 */
-    private int type;
 
     public Equip(){
         this.id = GenIdUtil.nextId();
@@ -50,19 +46,4 @@ public class Equip extends Goods {
         return durability;
     }
 
-    public int getType() {
-        return type;
-    }
-
-    public void setType(int type) {
-        this.type = type;
-    }
-
-    public EquipConfig getEquipConfig(){
-        return equipConfig;
-    }
-
-    public void setEquipConfig(EquipConfig equipConfig) {
-        this.equipConfig = equipConfig;
-    }
 }

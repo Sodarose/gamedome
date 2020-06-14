@@ -107,7 +107,7 @@ public class SceneObject implements Unit {
      * @return boolean
      */
     public void addPlayerObject(PlayerObject playerObject){
-       playerMap.put(playerObject.getId(),playerObject);
+       playerMap.put(playerObject.getUnitId(),playerObject);
     }
 
     /**

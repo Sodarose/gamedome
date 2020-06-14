@@ -3,7 +3,7 @@ package com.game.gameserver.module.goods.service.impl;
 import com.game.gameserver.module.goods.dao.EquipMapper;
 import com.game.gameserver.module.goods.entity.Equip;
 import com.game.gameserver.module.goods.model.BagType;
-import com.game.gameserver.module.goods.model.EquipBar;
+import com.game.gameserver.module.goods.model.EquipBag;
 import com.game.gameserver.module.goods.model.PlayerBag;
 import com.game.gameserver.module.goods.service.EquipService;
 import com.game.gameserver.module.player.entity.PlayerBattle;
@@ -39,11 +39,11 @@ public class EquipServiceImpl implements EquipService {
      * @return com.game.gameserver.module.goods.model.EquipBar
      */
     @Override
-    public EquipBar loadEquipBar(int playerId) {
-        EquipBar equipBar = new EquipBar(playerId,6);
-        List<Equip> equipList = equipMapper.getEquipEntityList(playerId, BagType.EQUIP_BAR);
-        equipBar.initialize(equipList);
-        return equipBar;
+    public EquipBag loadEquipBar(int playerId) {
+        EquipBag equipBag = new EquipBag(playerId,6);
+        List<Equip> equipList = equipMapper.getEquipEntityList(playerId, BagType.EQUIP_BAG);
+        equipBag.initialize(equipList);
+        return equipBag;
     }
 
     /**
@@ -74,14 +74,14 @@ public class EquipServiceImpl implements EquipService {
             return;
         }
         // 拿到装备栏
-        EquipBar equipBar = playerObject.getEquipBar();
-        if (equipBar == null) {
+        EquipBag equipBag = playerObject.getEquipBag();
+        if (equipBag == null) {
             return;
         }
         // 背包移除该装备
         playerBag.removeEquip(equip.getId());
         // 穿上装备 放入装备栏
-        Equip takeEquip = equipBar.put(equip);
+        Equip takeEquip = equipBag.put(equip);
         if (takeEquip != null) {
             // 减少该装备的属性
             playerBattle.removeEquipProperty(takeEquip);
@@ -106,12 +106,12 @@ public class EquipServiceImpl implements EquipService {
             return;
         }
         // 拿到装备栏
-        EquipBar equipBar = playerObject.getEquipBar();
-        if (equipBar == null) {
+        EquipBag equipBag = playerObject.getEquipBag();
+        if (equipBag == null) {
             return;
         }
         // 卸下装备
-        Equip takeEquip = equipBar.take(equipId);
+        Equip takeEquip = equipBag.take(equipId);
         if(takeEquip==null){
             return;
         }
@@ -144,11 +144,11 @@ public class EquipServiceImpl implements EquipService {
             return null;
         }
         // 拿到装备栏
-        EquipBar equipBar = playerObject.getEquipBar();
-        if (equipBar == null) {
+        EquipBag equipBag = playerObject.getEquipBag();
+        if (equipBag == null) {
             return null;
         }
-        return equipBar.getEquipList();
+        return equipBag.getEquipList();
     }
 
 

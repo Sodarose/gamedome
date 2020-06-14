@@ -1,9 +1,8 @@
 package com.game.gameserver.module.player.service.impl;
 
-import com.game.gameserver.common.Result;
 import com.game.gameserver.module.buffer.model.Buffer;
 import com.game.gameserver.module.buffer.service.BufferService;
-import com.game.gameserver.module.goods.model.EquipBar;
+import com.game.gameserver.module.goods.model.EquipBag;
 import com.game.gameserver.module.goods.model.PlayerBag;
 import com.game.gameserver.module.goods.service.EquipService;
 import com.game.gameserver.module.goods.service.PropService;
@@ -11,11 +10,12 @@ import com.game.gameserver.module.player.dao.PlayerMapper;
 import com.game.gameserver.module.player.entity.Player;
 import com.game.gameserver.module.player.manager.PlayerManager;
 import com.game.gameserver.module.player.model.PlayerObject;
+import com.game.gameserver.module.player.model.PlayerResultType;
 import com.game.gameserver.module.player.service.PlayerService;
 import com.game.gameserver.module.scene.service.SceneService;
 import com.game.gameserver.module.skill.model.PlayerSkill;
 import com.game.gameserver.module.skill.service.SkillService;
-import com.game.gameserver.util.TransFromUtil;
+import com.game.gameserver.util.ProtocolFactory;
 import com.game.protocol.PlayerProtocol;
 import io.netty.channel.Channel;
 import org.slf4j.Logger;
@@ -56,16 +56,16 @@ public class PlayerServiceImpl implements PlayerService {
      * @return com.game.protocol.PlayerProtocol.LoginRes
      */
     @Override
-    public void loginPlayer(int playerId, Channel channel) {
+    public PlayerProtocol.LoginPlayerRes loginPlayer(int playerId, Channel channel) {
         Player player = playerMapper.getPlayerById(playerId);
         if (player == null) {
-            return;
+            return ProtocolFactory.createLoginPlayerRes(PlayerResultType.LOGIN_FAILd,"登录失败",null);
         }
         // 创建角色
         PlayerObject playerObject = new PlayerObject(player);
         // 加载用户装备
-        EquipBar equipBar = equipService.loadEquipBar(playerId);
-        playerObject.setEquipBar(equipBar);
+        EquipBag equipBag = equipService.loadEquipBar(playerId);
+        playerObject.setEquipBag(equipBag);
         // 加载用户背包
         PlayerBag propsBag = propService.loadPropsBag(playerId);
         playerObject.setPlayerBag(propsBag);
@@ -83,7 +83,7 @@ public class PlayerServiceImpl implements PlayerService {
         channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).compareAndSet(null,
                 playerObject);
         // 返回角色数据
-        
+        return ProtocolFactory.createLoginPlayerRes(PlayerResultType.SUCCESS,"角色登录成功",playerObject);
     }
 
     /**
@@ -97,7 +97,7 @@ public class PlayerServiceImpl implements PlayerService {
         // 获得角色列表
         List<Player> playerList = playerMapper.getPlayerListByAccountId(accountId);
         // 转换成Protocol 返回
-        return TransFromUtil.transFromProtocolPlayerList(playerList);
+        return ProtocolFactory.createPlayerList(playerList);
     }
 
     /**

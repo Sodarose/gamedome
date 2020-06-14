@@ -1,6 +1,5 @@
 package com.game.gameserver.module.player.manager;
 
-import com.game.gameserver.module.player.entity.Player;
 import com.game.gameserver.module.player.model.PlayerObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,6 +23,6 @@ public class PlayerManager {
     }
 
     public void putPlayerObject(PlayerObject playerObject) {
-        playerObjectMap.put(playerObject.getId(), playerObject);
+        playerObjectMap.put(playerObject.getUnitId(), playerObject);
     }
 }

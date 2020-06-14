@@ -3,7 +3,7 @@ package com.game.gameserver.module.player.entity;
 import com.game.gameserver.common.config.CareerLevelProperty;
 import com.game.gameserver.module.buffer.model.Buffer;
 import com.game.gameserver.module.goods.entity.Equip;
-import com.game.gameserver.module.goods.model.EquipBar;
+import com.game.gameserver.module.goods.model.EquipBag;
 import lombok.Data;
 
 import java.util.List;
@@ -51,11 +51,11 @@ public class PlayerBattle {
     /**
      * 添加装备栏属性
      *
-     * @param equipBar
+     * @param equipBag
      * @return void
      */
-    public void addEquipBarProperty(EquipBar equipBar) {
-        Equip[] rawData = equipBar.getRawData();
+    public void addEquipBarProperty(EquipBag equipBag) {
+        Equip[] rawData = equipBag.getRawData();
         for (Equip equip : rawData) {
             if(equip==null){
                 continue;

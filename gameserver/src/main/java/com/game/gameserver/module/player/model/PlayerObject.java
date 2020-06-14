@@ -5,7 +5,7 @@ import com.game.gameserver.common.config.CareerLevelProperty;
 import com.game.gameserver.common.config.StaticConfigManager;
 import com.game.gameserver.common.entity.Unit;
 import com.game.gameserver.module.buffer.model.Buffer;
-import com.game.gameserver.module.goods.model.EquipBar;
+import com.game.gameserver.module.goods.model.EquipBag;
 import com.game.gameserver.module.goods.model.PlayerBag;
 import com.game.gameserver.module.player.entity.Player;
 import com.game.gameserver.module.player.entity.PlayerBattle;
@@ -23,29 +23,27 @@ import java.util.List;
  */
 public class PlayerObject implements Unit {
 
-    /** 生成的唯一Id */
-    private final Integer id;
+    /** 单位IdId */
+    private final Integer unitId;
     /** 用户信息 */
     private final Player player;
     /** 战斗属性 */
     private PlayerBattle playerBattle;
     /** 装备栏 */
-    private EquipBar equipBar;
+    private EquipBag equipBag;
     /** 用户背包 */
     private PlayerBag playerBag;
     /** 技能 */
     private PlayerSkill playerSkill;
     /** buff列表 */
     private List<Buffer> buffers;
-
     /** 当前所在的组队 队伍ID */
     private Integer teamId;
     /** 角色连接信息 */
     private Channel channel;
 
-
     public PlayerObject(Player player){
-        this.id = GenIdUtil.nextId();
+        this.unitId = GenIdUtil.nextId();
         this.player = player;
     }
 
@@ -64,7 +62,7 @@ public class PlayerObject implements Unit {
         playerBattle = new PlayerBattle();
         playerBattle.initialize(property);
         // 根据装备调整属性
-        playerBattle.addEquipBarProperty(equipBar);
+        playerBattle.addEquipBarProperty(equipBag);
         // 根据buffer调整属性
         playerBattle.addBufferListProperty(buffers);
         playerBattle.reset();
@@ -75,8 +73,9 @@ public class PlayerObject implements Unit {
 
     }
 
-    public Integer getId(){
-        return id;
+
+    public Integer getUnitId(){
+        return unitId;
     }
 
     public void setTeamId(Integer teamId) {
@@ -115,12 +114,12 @@ public class PlayerObject implements Unit {
         return player;
     }
 
-    public void setEquipBar(EquipBar equipBar) {
-        this.equipBar = equipBar;
+    public void setEquipBag(EquipBag equipBag) {
+        this.equipBag = equipBag;
     }
 
-    public EquipBar getEquipBar() {
-        return equipBar;
+    public EquipBag getEquipBag() {
+        return equipBag;
     }
 
     public void setChannel(Channel channel) {

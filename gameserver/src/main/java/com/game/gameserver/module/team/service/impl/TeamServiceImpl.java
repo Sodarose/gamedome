@@ -5,7 +5,6 @@ import com.game.gameserver.module.player.service.PlayerService;
 import com.game.gameserver.module.team.manager.TeamManager;
 import com.game.gameserver.module.team.model.TeamObject;
 import com.game.gameserver.module.team.service.TeamService;
-import com.game.gameserver.module.team.vo.TeamVo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +40,7 @@ public class TeamServiceImpl implements TeamService {
             return null;
         }
         if(playerObject.getTeamId()!=null){
-            logger.info("该用户 id:{} 已经存在队伍，禁止再此创建队伍",playerObject.getId());
+            logger.info("该用户 id:{} 已经存在队伍，禁止再此创建队伍",playerObject.getUnitId());
             return null;
         }
         TeamObject teamObject = teamManager.createTeamObject(playerObject,teamName,maxCount);

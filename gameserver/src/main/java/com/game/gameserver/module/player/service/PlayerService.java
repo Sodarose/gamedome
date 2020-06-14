@@ -29,7 +29,7 @@ public interface PlayerService {
      * @param channel
      * @return com.game.protocol.PlayerProtocol.LoginRes
      */
-    void loginPlayer(int playerId, Channel channel);
+    PlayerProtocol.LoginPlayerRes loginPlayer(int playerId, Channel channel);
 
 
     /**

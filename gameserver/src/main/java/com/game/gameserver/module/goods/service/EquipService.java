@@ -1,7 +1,7 @@
 package com.game.gameserver.module.goods.service;
 
 import com.game.gameserver.module.goods.entity.Equip;
-import com.game.gameserver.module.goods.model.EquipBar;
+import com.game.gameserver.module.goods.model.EquipBag;
 
 import java.util.List;
 
@@ -18,7 +18,7 @@ public interface EquipService {
      * @param playerId
      * @return com.game.gameserver.module.goods.model.EquipBar
      */
-    EquipBar loadEquipBar(int playerId);
+    EquipBag loadEquipBar(int playerId);
 
     /**
      * 穿上装备

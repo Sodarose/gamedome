@@ -8,7 +8,7 @@ package com.game.gameserver.module.goods.model;
  */
 public interface BagType {
     /** 装备栏 */
-    int EQUIP_BAR = 2;
+    int EQUIP_BAG = 0;
     /** 普通背包 */;
     int NORMAL_BAG = 1;
     /** 仓库 */
