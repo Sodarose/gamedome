@@ -3,7 +3,6 @@ package com.game.gameserver.module.skill.service;
 import com.game.gameserver.common.Result;
 import com.game.gameserver.module.skill.entity.Skill;
 import com.game.gameserver.module.skill.model.PlayerSkill;
-import com.game.gameserver.module.skill.vo.SkillVo;
 
 import java.util.List;
 

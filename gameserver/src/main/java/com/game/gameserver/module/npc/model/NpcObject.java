@@ -2,6 +2,7 @@ package com.game.gameserver.module.npc.model;
 
 import com.game.gameserver.common.config.NpcConfig;
 import com.game.gameserver.common.entity.Unit;
+import com.game.gameserver.util.GameUUID;
 import com.game.gameserver.util.GenIdUtil;
 
 /**
@@ -13,12 +14,12 @@ import com.game.gameserver.util.GenIdUtil;
 public class NpcObject implements Unit {
 
     /** id */
-    private final int id;
+    private final long id;
     /** npc数据静态配置 */
     private final NpcConfig npcConfig;
 
     public NpcObject(NpcConfig npcConfig){
-        this.id = GenIdUtil.nextId();
+        this.id = GameUUID.getInstance().generate();
         this.npcConfig = npcConfig;
     }
 
@@ -32,7 +33,11 @@ public class NpcObject implements Unit {
 
     }
 
-    public int getId() {
+    public long getId() {
         return id;
+    }
+
+    public NpcConfig getNpcConfig(){
+        return npcConfig;
     }
 }

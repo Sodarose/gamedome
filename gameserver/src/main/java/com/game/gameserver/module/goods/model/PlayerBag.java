@@ -19,17 +19,36 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
  */
 public class PlayerBag {
 
-    private int bagType;
-    private int capacity;
+    private final int bagType;
+    private final int capacity;
     /** key 表示位置 */
-    private Map<Integer,Goods> rawData;
-    private final ReentrantReadWriteLock lock = new ReentrantReadWriteLock();
-
-    private transient final List<Goods> ADD = new ArrayList<>();
-    private transient final List<Goods> UPDATE = new ArrayList<>();
-    private transient final List<Goods> REMOVE = new ArrayList<>();
+    private final Map<Integer,Goods> rawData;
+    private final ReentrantReadWriteLock lock;
 
     public PlayerBag(int capacity){
+        this.bagType = BagType.NORMAL_BAG;
+        this.capacity = capacity;
+        this.rawData = new ConcurrentHashMap<>(capacity);
+        this.lock = new ReentrantReadWriteLock();
+    }
 
+    public boolean add(Goods goods){
+        return false;
+    }
+
+    public boolean remove(int goodsId,int num){
+        return false;
+    }
+
+    public boolean remove(int bagIndex,int goodsId,int num){
+        return false;
+    }
+
+    public boolean hasSpace(){
+        return false;
+    }
+
+    public List<Goods> getGoodsList(){
+        return null;
     }
 }

@@ -1,6 +1,7 @@
 package com.game.gameserver.context;
 
 import com.game.gameserver.common.config.StaticConfigManager;
+import com.game.gameserver.module.chat.manager.ChatManager;
 import com.game.gameserver.module.scene.manager.SceneManager;
 import com.game.gameserver.module.timewheel.manager.TimeWheelTimeManager;
 import com.game.gameserver.thread.UnitTickThread;
@@ -25,12 +26,15 @@ public class Platform {
 
     @Autowired
     private SceneManager sceneManager;
+    @Autowired
+    private ChatManager chatManager;
     private UnitTickThread unitTickThread = new UnitTickThread(1, TimeUnit.SECONDS);
 
     public void startUp() {
         logger.info("platform start up ......");
         staticConfigManager.loadConfig();
         sceneManager.loadScene();
+        chatManager.initialize();
         unitTickThread.start();
     }
 

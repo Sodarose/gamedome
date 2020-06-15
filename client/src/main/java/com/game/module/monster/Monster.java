@@ -1,6 +1,5 @@
 package com.game.module.monster;
 
-import com.game.module.player.model.Property;
 import lombok.Data;
 
 /**
@@ -12,7 +11,6 @@ public class Monster {
     private Integer  id;
     private String   name;
     private Integer  level;
-    private Property property;
 
     public Monster(){}
 

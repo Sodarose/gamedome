@@ -6,6 +6,7 @@ import java.security.SecureRandom;
  *
  * | 41 bits: Timestamp | 3 bits:区域| 10 bits:机器编号| 10 bits:序列号|
  *
+ * // 暂时使用该ID生成器
  * @author xuewenkang
  * @date 2020/6/12 18:21
  */
@@ -34,6 +35,12 @@ public class GameUUID {
     private long sequence = 0L;
     private final long workerId;
     private final long regionId;
+
+    private static GameUUID INSTANCE = new GameUUID();
+
+    public static GameUUID getInstance(){
+        return INSTANCE;
+    }
 
     public GameUUID(long workerId, long regionId) {
         //如果超出范围就抛出异常
@@ -118,10 +125,5 @@ public class GameUUID {
     //获取当前的时间戳
     protected long timeGen() {
         return System.currentTimeMillis();
-    }
-
-    public static void main(String[] args){
-        GameUUID gameUUID = new GameUUID();
-        System.out.println(gameUUID.generate());
     }
 }

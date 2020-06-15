@@ -38,10 +38,10 @@ public class PlayerServiceImpl implements PlayerService {
     private PlayerManager playerManager;
     @Autowired
     private PlayerMapper playerMapper;
-    @Autowired
+/*    @Autowired
     private EquipService equipService;
     @Autowired
-    private PropService propService;
+    private PropService propService;*/
     @Autowired
     private SceneService sceneService;
     @Autowired
@@ -59,16 +59,16 @@ public class PlayerServiceImpl implements PlayerService {
     public PlayerProtocol.LoginPlayerRes loginPlayer(int playerId, Channel channel) {
         Player player = playerMapper.getPlayerById(playerId);
         if (player == null) {
-            return ProtocolFactory.createLoginPlayerRes(PlayerResultType.LOGIN_FAILd,"登录失败",null);
+            return ProtocolFactory.createLoginPlayerRes(PlayerResultType.LOGIN_FAILED,"登录失败");
         }
         // 创建角色
         PlayerObject playerObject = new PlayerObject(player);
-        // 加载用户装备
+     /*   // 加载用户装备
         EquipBag equipBag = equipService.loadEquipBar(playerId);
         playerObject.setEquipBag(equipBag);
         // 加载用户背包
         PlayerBag propsBag = propService.loadPropsBag(playerId);
-        playerObject.setPlayerBag(propsBag);
+        playerObject.setPlayerBag(propsBag);*/
         // 加载当前角色技能
         PlayerSkill playerSkill = skillService.loadPlayerSkill(playerId);
         playerObject.setPlayerSkill(playerSkill);
@@ -82,8 +82,8 @@ public class PlayerServiceImpl implements PlayerService {
         playerManager.putPlayerObject(playerObject);
         channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).compareAndSet(null,
                 playerObject);
-        // 返回角色数据
-        return ProtocolFactory.createLoginPlayerRes(PlayerResultType.SUCCESS,"角色登录成功",playerObject);
+        // 返回登录结果
+        return ProtocolFactory.createLoginPlayerRes(PlayerResultType.SUCCESS,"角色登录成功");
     }
 
     /**
@@ -109,5 +109,16 @@ public class PlayerServiceImpl implements PlayerService {
     @Override
     public PlayerObject getPlayerObject(int playerId) {
         return playerManager.getPlayerObject(playerId);
+    }
+
+    /**
+     * 获取当前角色信息
+     *
+     * @param playerId
+     * @return com.game.protocol.PlayerProtocol.PlayerInfoReq
+     */
+    @Override
+    public PlayerProtocol.PlayerInfoReq getPlayerInfo(int playerId) {
+        return null;
     }
 }

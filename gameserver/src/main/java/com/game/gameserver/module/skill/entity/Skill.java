@@ -11,11 +11,13 @@ import lombok.Data;
 @Data
 public class Skill {
     /** id */
-    private Integer id;
+    private Long id;
     /** 技能Id */
     private Integer skillId;
     /** 在快捷技能栏的位置 null则为不在快捷技能栏中 */
     private Integer bagIndex;
+    /** 已学习等级 */
+    private Integer learnLevel;
     /** 技能所属玩家 */
     private Integer playerId;
 }

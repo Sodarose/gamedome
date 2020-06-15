@@ -4,6 +4,9 @@ import com.game.context.ClientGameContext;
 import com.game.module.BaseHandler;
 import com.game.module.ModuleKey;
 import com.game.module.gui.ScenePage;
+import com.game.module.scene.SceneCmd;
+import com.game.protocol.Message;
+import com.game.task.annotation.CmdHandler;
 import com.game.task.annotation.ModuleHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -21,4 +24,14 @@ public class SceneHandle extends BaseHandler {
     @Autowired
     private ClientGameContext gameContext;
 
+    /**
+     * 同步场景数据
+     *
+     * @param message
+     * @return void
+     */
+    @CmdHandler(cmd = SceneCmd.SYNC_SCENE)
+    public void syncScene(Message message){
+
+    }
 }

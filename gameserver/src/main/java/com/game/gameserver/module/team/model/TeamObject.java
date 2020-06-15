@@ -2,6 +2,7 @@ package com.game.gameserver.module.team.model;
 
 import com.game.gameserver.common.entity.Unit;
 import com.game.gameserver.module.player.model.PlayerObject;
+import com.game.gameserver.util.GameUUID;
 import com.game.gameserver.util.GenIdUtil;
 
 import java.util.ArrayList;
@@ -16,9 +17,9 @@ import java.util.List;
 public class TeamObject implements Unit {
 
     /** 组队ID */
-    private int id;
+    private Long id;
     /** 队长ID */
-    private int captainId;
+    private Long captainId;
     /** 队伍名称 */
     private String teamName;
     /** 队伍状态 */
@@ -26,16 +27,18 @@ public class TeamObject implements Unit {
     /** 队伍最大人数 */
     private int maxCount;
     /** 团队成员 */
-    private List<PlayerObject> members;
+    private List<Long> members;
+    /** 团队频道 */
+    private Long channelId;
 
     public TeamObject(PlayerObject playerObject,String teamName,int maxCount){
-        this.id = GenIdUtil.nextId();
+        this.id = GameUUID.getInstance().generate();
         this.teamName = teamName;
-        this.captainId = playerObject.getUnitId();
+        this.captainId = playerObject.getPlayer().getId();
         this.state = TeamState.NULL_FULL;
         this.maxCount = maxCount;
         members = new ArrayList<>();
-        members.add(playerObject);
+        members.add(playerObject.getPlayer().getId());
     }
 
     /**
@@ -45,10 +48,7 @@ public class TeamObject implements Unit {
      * @return void
      */
     public void entryTeam(PlayerObject playerObject){
-        if(members.size()==maxCount){
-            return;
-        }
-        members.add(playerObject);
+
     }
 
     /**
@@ -78,11 +78,11 @@ public class TeamObject implements Unit {
         this.teamName = teamName;
     }
 
-    public List<PlayerObject> getMembers(){
+    public List<Long> getMembers(){
         return members;
     }
 
-    public int getCaptainId() {
+    public Long getCaptainId() {
         return captainId;
     }
 
@@ -94,7 +94,7 @@ public class TeamObject implements Unit {
         return state;
     }
 
-    public int getId(){
+    public Long getId(){
         return id;
     }
 

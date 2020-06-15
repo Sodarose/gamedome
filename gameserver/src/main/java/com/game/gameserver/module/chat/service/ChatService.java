@@ -1,28 +1,38 @@
 package com.game.gameserver.module.chat.service;
 
-import com.game.gameserver.common.Result;
+import com.game.gameserver.module.player.model.PlayerObject;
+import com.game.protocol.ChatProtocol;
 
 /**
  * @author xuewenkang
  * @date 2020/6/10 20:08
  */
 public interface ChatService {
-    /**
-     * 私聊
-     *
-     * @param playerId
-     * @param channelId
-     * @param msg
-     * @return com.game.gameserver.common.Result
-     */
-    Result talkChatChannel(int playerId,int channelId,String msg);
 
     /**
-     * 世界聊天
+     * 频道消息
      *
-     * @param playerId
-     * @param msg
-     * @return com.game.gameserver.common.Result
+     * @param playerObject
+     * @param channelMsg
+     * @return void
      */
-    Result talkWorldChannel(int playerId,String msg);
+    void sendChannelMsg(PlayerObject playerObject, ChatProtocol.ChannelMsg channelMsg);
+
+    /**
+     * 私聊消息
+     *
+     * @param playerObject
+     * @param privacyMsg
+     * @return void
+     */
+    void sendPrivacyMsg(PlayerObject playerObject, ChatProtocol.PrivacyMsg privacyMsg);
+
+    /**
+     * 普通消息
+     *
+     * @param playerObject
+     * @param commonMsg
+     * @return void
+     */
+    void sendCommonMsg(PlayerObject playerObject, ChatProtocol.CommonMsg commonMsg);
 }

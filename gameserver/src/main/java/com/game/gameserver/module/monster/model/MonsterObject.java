@@ -2,6 +2,7 @@ package com.game.gameserver.module.monster.model;
 
 import com.game.gameserver.common.config.MonsterConfig;
 import com.game.gameserver.common.entity.Unit;
+import com.game.gameserver.util.GameUUID;
 import com.game.gameserver.util.GenIdUtil;
 
 /**
@@ -13,14 +14,14 @@ import com.game.gameserver.util.GenIdUtil;
 public class MonsterObject implements Unit {
 
     /** 唯一id */
-    private final int id;
+    private final long id;
     /** 怪物静态数据 */
     private final MonsterConfig monsterConfig;
     /** 怪物动态属性 */
     private Property property;
 
     public MonsterObject(MonsterConfig monsterConfig){
-        this.id = GenIdUtil.nextId();
+        this.id = GameUUID.getInstance().generate();
         this.monsterConfig = monsterConfig;
     }
 
@@ -35,7 +36,15 @@ public class MonsterObject implements Unit {
 
     }
 
-    public int getId() {
+    public long getId() {
         return id;
+    }
+
+    public Property getProperty() {
+        return property;
+    }
+
+    public MonsterConfig getMonsterConfig(){
+        return monsterConfig;
     }
 }

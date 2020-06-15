@@ -2,6 +2,7 @@ package com.game.gameserver.common.config;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONReader;
+import com.game.gameserver.module.skill.entity.Skill;
 import lombok.Getter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,6 +40,7 @@ public class StaticConfigManager {
     private Map<Integer, PropConfig> propConfigMap = new HashMap<>(16);
     private Map<Integer, CommodityConfig> commodityConfigMap = new HashMap<>(16);
     private Map<Integer, CareerConfig> careerConfigMap = new HashMap<>(16);
+    private Map<Integer, SkillConfig>  skillConfigMap = new HashMap<>(16);
 
     public static StaticConfigManager getInstance() {
         return INSTANCE;
@@ -73,7 +75,7 @@ public class StaticConfigManager {
         loadPropConfig(path);
         loadCommodityConfig(path);
         loadCareerConfig(path);
-
+        loadSkillConfig(path);
     }
 
     private void loadSceneConfig(String path) {
@@ -265,6 +267,22 @@ public class StaticConfigManager {
             while (jsonReader.hasNext()) {
                 CareerConfig careerConfig = JSON.parseObject(jsonReader.readString(), CareerConfig.class);
                 careerConfigMap.put(careerConfig.getId(), careerConfig);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void loadSkillConfig(String path){
+        logger.info("load SkillConfig.json");
+        String fileName = "SkillConfig.json";
+        path += "/" + fileName;
+        try {
+            JSONReader jsonReader = new JSONReader(new InputStreamReader(new FileInputStream(path)));
+            jsonReader.startArray();
+            while (jsonReader.hasNext()) {
+                SkillConfig skillConfig = JSON.parseObject(jsonReader.readString(), SkillConfig.class);
+                skillConfigMap.put(skillConfig.getId(),skillConfig);
             }
         } catch (IOException e) {
             e.printStackTrace();

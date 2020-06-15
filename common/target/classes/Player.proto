@@ -1,7 +1,6 @@
 syntax = "proto3";
 option java_package = "com.game.protocol";
 option java_outer_classname = "PlayerProtocol";
-import "Scene.proto";
 
 // 角色列表请求
 message PlayerListReq {
@@ -22,16 +21,25 @@ message LoginPlayerReq {
 message LoginPlayerRes {
     int32 code = 1;
     string msg = 2;
-    PlayerInfo playerInfo = 3;
 }
 
-// 角色信息请求
+// 请求角色信息
 message PlayerInfoReq {
 
 }
 
-// 角色响应请求
+// 请求角色信息响应
 message PlayerInfoRes {
+    PlayerInfo playerInfo = 1;
+}
+
+// 进入场景
+message EntrySceneReq {
+
+}
+
+// 进入场景响应
+message EntrySceneRes {
 
 }
 
@@ -58,17 +66,87 @@ message SimplePlayerInfo {
     int32 careerId = 4;
 }
 
-// 角色信息
+// 个人角色全部信息
 message PlayerInfo {
-    int32  id = 1;
+    int32 id = 1;
     string name = 2;
-    int32  level = 3;
-    int32  careerId = 4;
-    int32  golds = 5;
+    int32 level = 3;
+    int32 careerId = 4;
+    int32 golds = 5;
+    int32 sceneId = 6;
+    // 战斗属性
+    PlayerBattle playerBattle = 7;
+    // 装备信息
+    repeated GoodsInfo equipInfo = 8;
+    // 背包物品
+    repeated GoodsInfo goodsInfo = 9;
+    // 技能数据
+    PlayerSkill playerSkill = 10;
+    // 角色Buffer信息
+    repeated BufferInfo bufferInfo = 11;
+}
+
+// buffer信息
+message BufferInfo {
+
+}
+
+message PlayerSkill{
+    repeated SkillInfo skillInfo = 10;
+}
+
+// 技能
+message SkillInfo {
+    int64 id = 1;
+    string name = 2;
+    int32 careerId = 3;
+    int32 limitLevel = 4;
+    int32 maxLearnLevel = 5;
+    int32 coolTime = 6;
+    string formula = 7;
+    string desc = 8;
+    int32 bagIndex = 9;
+    int32 learnLevel = 10;
+    int32 playerId = 11;
+}
+
+// 他人信息
+message OtherPlayerInfo {
+    int32 unitId = 1;
+    string name = 2;
+    int32 level = 3;
+    int32 careerId = 4;
+    int32 state = 5;
+    // 战斗属性
+    PlayerBattle playerBattle = 6;
+    // 装备信息
+    repeated GoodsInfo equipBag = 7;
+}
+
+// 物品信息
+message GoodsInfo {
+    // 物品ID
+    int32 goodsId = 1;
+    // 物品类型
+    int32 goodsType = 2;
+    // 物品名称
+    int32 goodsName = 3;
+    // 物品数量
+    int32 goodsCount = 4;
+    // 物品所在的背包
+    int32 bagPack = 5;
+    // 物品所在的背包位置
+    int32 bagIndex = 6;
+    // 是否绑定
+    bool bound = 7;
+    // 物品描述
+    string desc = 8;
+    // 物品属性 根据类型的不同而不同
+    map<int32, string> attribute = 9;
 }
 
 // 战斗属性
-message PlayerBattle{
+message PlayerBattle {
     int32 hp = 1;
     int32 currHp = 2;
     int32 mp = 3;
@@ -77,14 +155,5 @@ message PlayerBattle{
     int32 defense = 6;
 }
 
-// 背包
-message PlayerBag{
-
-}
-
-// 技能
-message PlayerSkill{
-
-}
 
 

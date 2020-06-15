@@ -15,7 +15,7 @@ public class Equip extends Goods {
     private int durability;
 
     public Equip(){
-        this.id = GenIdUtil.nextId();
+
     }
 
     /**

@@ -1,9 +1,10 @@
 package com.game.context;
 
 import com.game.module.account.entity.Account;
+import com.game.module.chat.ChatChannel;
 import com.game.module.player.entity.PlayerObject;
 import com.game.module.player.entity.SimplePlayerInfo;
-import com.game.module.player.model.Player;
+import com.game.module.scene.entity.SceneObject;
 import io.netty.channel.Channel;
 import javafx.scene.Scene;
 import lombok.Data;
@@ -26,8 +27,11 @@ public class ClientGameContext {
     private List<SimplePlayerInfo> playerList;
     /** 角色信息 */
     private PlayerObject playerObject;
-    /** 角色目前存在的场景 */
-    private Scene scene;
+    /** 角色目前所在的场景 */
+    private SceneObject sceneObject;
+    /** 客户端私聊通道 */
+    private List<ChatChannel> chatChannels;
+    /** 客户端世界聊天通道 */
 
     public Integer getRoleIdByRoleName(String roleName){
         for(SimplePlayerInfo info : playerList){

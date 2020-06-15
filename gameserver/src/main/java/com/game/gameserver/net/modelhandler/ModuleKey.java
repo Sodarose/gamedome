@@ -14,4 +14,6 @@ public interface ModuleKey {
     short FIGHTER_MODEL = 1006;
     short INSTANCE_MODULE = 1007;
     short STORE_MODULE = 1008;
+    short CHAT_MODULE = 1009;
+    short EMAIL_MODULE = 1010;
 }

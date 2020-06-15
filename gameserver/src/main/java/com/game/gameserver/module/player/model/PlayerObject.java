@@ -10,10 +10,13 @@ import com.game.gameserver.module.goods.model.PlayerBag;
 import com.game.gameserver.module.player.entity.Player;
 import com.game.gameserver.module.player.entity.PlayerBattle;
 import com.game.gameserver.module.skill.model.PlayerSkill;
-import com.game.gameserver.util.GenIdUtil;
+import com.game.gameserver.util.GameUUID;
 import io.netty.channel.Channel;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * 玩家模型对象
@@ -24,7 +27,7 @@ import java.util.List;
 public class PlayerObject implements Unit {
 
     /** 单位IdId */
-    private final Integer unitId;
+    private final Long unitId;
     /** 用户信息 */
     private final Player player;
     /** 战斗属性 */
@@ -39,11 +42,16 @@ public class PlayerObject implements Unit {
     private List<Buffer> buffers;
     /** 当前所在的组队 队伍ID */
     private Integer teamId;
+    /** 用户当前所在的场景 */
+    private Long sceneId;
     /** 角色连接信息 */
     private Channel channel;
 
+    /** 聊天频道  key 频道类型  value 频道Id*/
+    private final Map<Integer,Long> playerChannelMap = new ConcurrentHashMap<>(2);
+
     public PlayerObject(Player player){
-        this.unitId = GenIdUtil.nextId();
+        this.unitId = GameUUID.getInstance().generate();
         this.player = player;
     }
 
@@ -74,7 +82,7 @@ public class PlayerObject implements Unit {
     }
 
 
-    public Integer getUnitId(){
+    public Long getUnitId(){
         return unitId;
     }
 
@@ -136,5 +144,17 @@ public class PlayerObject implements Unit {
 
     public List<Buffer> getBuffers(){
         return buffers;
+    }
+
+    public Map<Integer, Long> getPlayerChannelMap() {
+        return playerChannelMap;
+    }
+
+    public void setSceneId(Long sceneId){
+        this.sceneId = sceneId;
+    }
+
+    public Long getSceneId(){
+        return sceneId;
     }
 }

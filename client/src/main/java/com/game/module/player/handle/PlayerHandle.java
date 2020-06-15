@@ -51,4 +51,30 @@ public class PlayerHandle extends BaseHandler {
     }
 
 
+    @CmdHandler(cmd = PlayerCmd.LOGIN_PLAYER)
+    public void handleLoginPlayer(Message message){
+
+    }
+
+    /**
+     * 角色信息响应
+     *
+     * @param message
+     * @return void
+     */
+    @CmdHandler(cmd = PlayerCmd.PLAYER_INFO_RES)
+    public void handlePlayerInfoRes(Message message){
+
+    }
+
+    /**
+     * 角色数据同步
+     *
+     * @param message
+     * @return void
+     */
+    @CmdHandler(cmd = PlayerCmd.SYNC_PLAYER_INFO)
+    public void handleSyncPlayerInfo(Message message){
+
+    }
 }

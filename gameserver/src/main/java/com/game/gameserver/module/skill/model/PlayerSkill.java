@@ -1,9 +1,6 @@
 package com.game.gameserver.module.skill.model;
 
 import com.game.gameserver.module.skill.entity.Skill;
-import com.game.gameserver.module.skill.vo.SkillVo;
-
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -24,11 +21,11 @@ public class PlayerSkill {
         return skillList;
     }
 
-    public boolean addSkill(Skill skill){
+    public boolean add(Skill skill){
         return false;
     }
 
-    public boolean removeSkill(int id){
+    public boolean remove(int id){
         return false;
     }
 
@@ -36,7 +33,4 @@ public class PlayerSkill {
         return null;
     }
 
-    public List<SkillVo> getSkillVoList(){
-        return null;
-    }
 }

@@ -3,15 +3,11 @@ package com.game.module.gui;
 import com.game.context.ClientGameContext;
 import com.game.module.monster.Monster;
 import com.game.module.npc.Npc;
-import com.game.module.player.model.Player;
-import com.game.module.scene.entity.Scene;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Map;
 
 /**
  * @author xuewenkang
@@ -42,7 +38,7 @@ public class ScenePage extends JTextArea {
 
     public void update(){
         clean();
-        Scene scene = clientGameContext.getScene();
+        /*Scene scene = clientGameContext.getScene();
         builder.append("场景信息:\n");
         builder.append("地图名：\t").append(scene.getName()).append("\n");
         builder.append("简介：\t").append(scene.getDescription()).append("\n");
@@ -64,7 +60,7 @@ public class ScenePage extends JTextArea {
             builder.append(entry.getValue().getName()).append("\t");
         }
         builder.append("\n");
-        builder.append("\n");
+        builder.append("\n");*/
         refresh();
     }
 

@@ -30,7 +30,9 @@ public class SkillServiceImpl implements SkillService {
      */
     @Override
     public PlayerSkill loadPlayerSkill(int playerId) {
-        return null;
+        List<Skill> skillList = skillMapper.getSkillList(playerId);
+        PlayerSkill playerSkill = new PlayerSkill(skillList);
+        return playerSkill;
     }
 
     /**

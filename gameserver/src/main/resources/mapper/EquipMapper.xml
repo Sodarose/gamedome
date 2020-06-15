@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.game.gameserver.module.goods.dao.EquipMapper">
+    <resultMap id="equipResultMap" type="com.game.gameserver.module.goods.entity.Equip">
+        <id column="id" property="id"/>
+        <result column="goodsType" property="goodsType"/>
+        <result column="goodsId" property="goodsId"/>
+        <result column="bagPack" property="bagPack"/>
+        <result column="bagIndex" property="bagIndex"/>
+        <result column="num" property="num"/>
+        <result column="bound" property="bound"/>
+        <result column="playerId" property="playerId"/>
+        <result column="expireTime" property="expireTime"/>
+        <result column="durability" property="durability"/>
+    </resultMap>
+
+</mapper>

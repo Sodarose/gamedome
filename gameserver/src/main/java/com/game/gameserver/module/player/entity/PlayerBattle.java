@@ -55,13 +55,13 @@ public class PlayerBattle {
      * @return void
      */
     public void addEquipBarProperty(EquipBag equipBag) {
-        Equip[] rawData = equipBag.getRawData();
+       /* Equip[] rawData = equipBag.getRawData();
         for (Equip equip : rawData) {
             if(equip==null){
                 continue;
             }
             addEquipProperty(equip);
-        }
+        }*/
     }
 
 
@@ -71,11 +71,11 @@ public class PlayerBattle {
      * @param equip
      * @return void
      */
-    public void addEquipProperty(Equip equip){
-        this.hp += equip.getEquipConfig().getHp();
+    public void addEquipProperty(Equip equip) {
+/*        this.hp += equip.getEquipConfig().getHp();
         this.mp += equip.getEquipConfig().getMp();
         this.attack+=equip.getEquipConfig().getAttack();
-        this.defense+=equip.getEquipConfig().getDefense();
+        this.defense+=equip.getEquipConfig().getDefense();*/
     }
 
     /**
@@ -84,11 +84,11 @@ public class PlayerBattle {
      * @param equip
      * @return void
      */
-    public void removeEquipProperty(Equip equip){
-        this.hp -= equip.getEquipConfig().getHp();
+    public void removeEquipProperty(Equip equip) {
+      /*  this.hp -= equip.getEquipConfig().getHp();
         this.mp -= equip.getEquipConfig().getMp();
         this.attack-=equip.getEquipConfig().getAttack();
-        this.defense-=equip.getEquipConfig().getDefense();
+        this.defense-=equip.getEquipConfig().getDefense();*/
     }
 
     /**
@@ -97,7 +97,7 @@ public class PlayerBattle {
      * @param
      * @return void
      */
-    public void reset(){
+    public void reset() {
         this.currHp = hp;
         this.currMp = mp;
     }
@@ -108,11 +108,11 @@ public class PlayerBattle {
      * @param
      * @return void
      */
-    public void adjust(){
-        if(currHp>hp){
+    public void adjust() {
+        if (currHp > hp) {
             currHp = hp;
         }
-        if(currMp>mp){
+        if (currMp > mp) {
             currMp = mp;
         }
     }

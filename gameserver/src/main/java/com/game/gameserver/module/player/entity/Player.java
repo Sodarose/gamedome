@@ -13,7 +13,7 @@ import java.time.LocalDate;
 @Data
 public class Player {
     /** id */
-    private Integer id;
+    private Long id;
     /** 姓名 */
     private String name;
     /** 等级 */

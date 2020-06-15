@@ -40,4 +40,11 @@ public interface PlayerService {
      */
     PlayerObject getPlayerObject(int playerId);
 
+    /**
+     * 获取当前角色信息
+     *
+     * @param playerId
+     * @return com.game.protocol.PlayerProtocol.PlayerInfoReq
+     */
+    PlayerProtocol.PlayerInfoReq getPlayerInfo(int playerId);
 }

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.game.gameserver.module.skill.dao.SkillMapper">
+    <resultMap id="skillResultMap" type="com.game.gameserver.module.skill.entity.Skill">
+        <id column="id" property="id"/>
+        <result column="skillId" property="skillId"/>
+        <result column="bagIndex" property="bagIndex"/>
+        <result column="playerId" property="playerId"/>
+    </resultMap>
+    <select id="getSkillList" resultMap="skillResultMap">
+        SELECT id,skillId,bagIndex,playerId FROM game_skill WHERE playerId = #{playerId}
+    </select>
+</mapper>

@@ -6,13 +6,17 @@ import com.game.gameserver.module.monster.manager.MonsterManager;
 import com.game.gameserver.module.monster.model.MonsterObject;
 import com.game.gameserver.module.npc.manager.NpcManager;
 import com.game.gameserver.module.npc.model.NpcObject;
+import com.game.gameserver.module.player.entity.Player;
 import com.game.gameserver.module.player.model.PlayerObject;
+import com.game.gameserver.util.GameUUID;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * 场景对象
@@ -25,22 +29,26 @@ public class SceneObject implements Unit {
     private final static Logger logger = LoggerFactory.getLogger(SceneObject.class);
 
     /** id */
-    private int id;
+    private Long id;
     /** 场景静态信息 */
     private final SceneConfig sceneConfig;
     /** 场景怪物配置信息 */
     private final SceneMonsterConfig sceneMonsterConfig;
     /** 场景Npc配置信息 */
     private final SceneNpcConfig sceneNpcConfig;
+    /** 玩家数量 */
+    private final AtomicInteger playerNum = new AtomicInteger(0);
     /** 场景内玩家Map */
-    private final Map<Integer,PlayerObject> playerMap = new ConcurrentHashMap<>();
+    private final Map<Long,PlayerObject> playerMap = new ConcurrentHashMap<>();
     /** 场景内怪物Map */
-    private final Map<Integer,MonsterObject> monsterMap = new ConcurrentHashMap<>();
+    private final Map<Long,MonsterObject> monsterMap = new ConcurrentHashMap<>();
     /** 场景内Npc Map */
-    private final Map<Integer, NpcObject> npcMap = new ConcurrentHashMap<>();
+    private final Map<Long, NpcObject> npcMap = new ConcurrentHashMap<>();
+    /** 场景出口 */
+    private final List<String> sceneExitWays = new ArrayList<>();
 
     public SceneObject(SceneConfig sceneConfig,SceneMonsterConfig sceneMonsterConfig,SceneNpcConfig sceneNpcConfig){
-        this.id = sceneConfig.getId();
+        this.id = GameUUID.getInstance().generate();
         this.sceneConfig = sceneConfig;
         this.sceneMonsterConfig = sceneMonsterConfig;
         this.sceneNpcConfig = sceneNpcConfig;
@@ -50,6 +58,14 @@ public class SceneObject implements Unit {
         logger.info("Scene {} initialize ",sceneConfig.getName());
         loadSceneMonsterConfig();
         loadSceneNpcConfig();
+        // 加载场景出口
+        for(Integer id:sceneConfig.getExitWays()){
+            SceneConfig sceneConfig = StaticConfigManager.getInstance().getSceneConfigMap().get(id);
+            if(sceneConfig==null){
+                continue;
+            }
+            sceneExitWays.add(sceneConfig.getName());
+        }
     }
 
 
@@ -94,6 +110,8 @@ public class SceneObject implements Unit {
             npcMap.put(npcObject.getId(),npcObject);
         }
     }
+
+
 
     @Override
     public void update() {
@@ -161,7 +179,7 @@ public class SceneObject implements Unit {
         return npcMap.remove(npcId);
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
@@ -175,5 +193,25 @@ public class SceneObject implements Unit {
 
     public SceneNpcConfig getSceneNpcConfig() {
         return sceneNpcConfig;
+    }
+
+    public List<String> getSceneExitWays(){
+        return sceneExitWays;
+    }
+
+    public int getPlayerNum(){
+        return playerNum.get();
+    }
+
+    public Map<Long, PlayerObject> getPlayerObjectMap(){
+        return playerMap;
+    }
+
+    public Map<Long,MonsterObject> getMonsterObjectMap(){
+        return monsterMap;
+    }
+
+    public Map<Long,NpcObject> getNpcObjectMap(){
+        return npcMap;
     }
 }

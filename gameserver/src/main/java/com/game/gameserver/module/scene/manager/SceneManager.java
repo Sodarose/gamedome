@@ -1,12 +1,9 @@
 package com.game.gameserver.module.scene.manager;
 
 import com.game.gameserver.common.config.*;
-import com.game.gameserver.module.npc.manager.NpcManager;
 import com.game.gameserver.module.scene.model.SceneObject;
-import javafx.scene.Scene;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.Map;
@@ -30,7 +27,7 @@ public class SceneManager {
     }
 
     /** 已经创建的场景 */
-    private Map<Integer, SceneObject> sceneObjectMap = new ConcurrentHashMap<>(4);
+    private Map<Long, SceneObject> sceneObjectMap = new ConcurrentHashMap<>(4);
 
     /** 读取场景配置 创建场景 */
     public void loadScene(){
@@ -50,13 +47,13 @@ public class SceneManager {
         }
     }
 
-    public SceneObject getSceneObject(int sceneId){
+    public SceneObject getSceneObject(Long sceneId){
         return sceneObjectMap.get(sceneId);
     }
 
     public void update(){
         //logger.info("更新场景状态 驱动AI");
-        for(Map.Entry<Integer,SceneObject> entry:sceneObjectMap.entrySet()){
+        for(Map.Entry<Long,SceneObject> entry:sceneObjectMap.entrySet()){
                 entry.getValue().update();
         }
     }

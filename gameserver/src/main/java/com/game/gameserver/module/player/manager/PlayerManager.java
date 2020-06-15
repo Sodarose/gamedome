@@ -16,13 +16,13 @@ import java.util.concurrent.ConcurrentHashMap;
 public class PlayerManager {
     private final static Logger logger = LoggerFactory.getLogger(PlayerManager.class);
 
-    private final Map<Integer, PlayerObject> playerObjectMap = new ConcurrentHashMap<>(1);
+    private final Map<Long, PlayerObject> playerObjectMap = new ConcurrentHashMap<>(1);
 
-    public PlayerObject getPlayerObject(int playerId) {
+    public PlayerObject getPlayerObject(Long playerId) {
         return playerObjectMap.get(playerId);
     }
 
     public void putPlayerObject(PlayerObject playerObject) {
-        playerObjectMap.put(playerObject.getUnitId(), playerObject);
+        playerObjectMap.put(playerObject.getPlayer().getId(), playerObject);
     }
 }

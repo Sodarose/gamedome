@@ -11,13 +11,13 @@ import lombok.Data;
 @Data
 public class Goods {
     /** 物品唯一Id */
-    protected Integer id;
+    protected Long id;
     /** 物品类型  */
     protected Integer goodsType;
     /** 基础物品Id */
     protected Integer goodsId;
     /** 物品数量 */
-    protected Integer count;
+    protected Integer num;
     /** 装备/道具所在的背包 */
     protected Integer bagPack;
     /** 装备/道具所在背包的位置 */

@@ -1,0 +1,48 @@
+syntax = "proto3";
+option java_package = "com.game.protocol";
+option java_outer_classname = "ChatProtocol";
+
+// 发送频道消息请求
+message ChannelMsg {
+    // 发送者Id
+    int64  senderId = 1;
+    // 发送者名称
+    string senderName = 2;
+    // 消息
+    string msg = 4;
+    // 频道Id
+    int64  channelId = 5;
+    // 频道类型
+    int32  channelType = 6;
+    int64  sendTime = 7;
+}
+
+// 发送私聊消息请求
+message PrivacyMsg{
+    // 发送者Id
+    int64 senderId = 1;
+    // 发送者名称
+    string senderName = 2;
+    // 消息
+    string msg = 4;
+    // 接收者Id
+    int64  receiverId = 5;
+    int64  sendTime = 6;
+}
+
+// 发送普通消息
+message CommonMsg{
+    int64  senderId = 1;
+    string senderName = 2;
+    string msg = 3;
+    int64  sendTime = 6;
+}
+
+// 发送消息结果
+message SendMsgRes {
+    int32 code = 1;
+    string msg = 2;
+}
+
+
+
