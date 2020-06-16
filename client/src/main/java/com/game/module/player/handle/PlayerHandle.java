@@ -3,6 +3,7 @@ package com.game.module.player.handle;
 import com.game.context.ClientGameContext;
 import com.game.module.BaseHandler;
 import com.game.module.ModuleKey;
+import com.game.module.order.handle.CmdHandle;
 import com.game.module.player.PlayerCmd;
 import com.game.module.gui.WordPage;
 import com.game.module.player.entity.SimplePlayerInfo;
@@ -33,6 +34,8 @@ public class PlayerHandle extends BaseHandler {
     private WordPage wordPage;
     @Autowired
     private ClientGameContext gameContext;
+    @Autowired
+    private CmdHandle cmdHandle;
 
     @CmdHandler(cmd = PlayerCmd.LIST_PLAYERS)
     public void receivePlayerList(Message message){
@@ -53,7 +56,20 @@ public class PlayerHandle extends BaseHandler {
 
     @CmdHandler(cmd = PlayerCmd.LOGIN_PLAYER)
     public void handleLoginPlayer(Message message){
-
+        try {
+            PlayerProtocol.LoginPlayerRes loginPlayerRes = PlayerProtocol.LoginPlayerRes.parseFrom(message.getData());
+            if(loginPlayerRes.getCode()!=0){
+                wordPage.print("登录失败:"+loginPlayerRes.getMsg());
+                return;
+            }
+            cmdHandle.requestSceneInfo();
+            cmdHandle.requestPlayerInfo();
+            cmdHandle.requestBag();
+            cmdHandle.requestEquip();
+            cmdHandle.requestSkill();
+        } catch (InvalidProtocolBufferException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -62,7 +78,7 @@ public class PlayerHandle extends BaseHandler {
      * @param message
      * @return void
      */
-    @CmdHandler(cmd = PlayerCmd.PLAYER_INFO_RES)
+    @CmdHandler(cmd = PlayerCmd.PLAYER_INFO_REQ)
     public void handlePlayerInfoRes(Message message){
 
     }

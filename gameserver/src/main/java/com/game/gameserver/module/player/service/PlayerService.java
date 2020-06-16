@@ -1,6 +1,5 @@
 package com.game.gameserver.module.player.service;
 
-import com.game.gameserver.common.Result;
 import com.game.gameserver.module.player.model.PlayerObject;
 import com.game.protocol.PlayerProtocol;
 import io.netty.channel.Channel;
@@ -29,7 +28,7 @@ public interface PlayerService {
      * @param channel
      * @return com.game.protocol.PlayerProtocol.LoginRes
      */
-    PlayerProtocol.LoginPlayerRes loginPlayer(int playerId, Channel channel);
+    PlayerProtocol.LoginPlayerRes loginPlayer(Long playerId, Channel channel);
 
 
     /**
@@ -38,7 +37,7 @@ public interface PlayerService {
      * @param playerId
      * @return com.game.gameserver.module.player.model.PlayerObject
      */
-    PlayerObject getPlayerObject(int playerId);
+    PlayerObject getPlayerObject(Long playerId);
 
     /**
      * 获取当前角色信息
@@ -46,5 +45,5 @@ public interface PlayerService {
      * @param playerId
      * @return com.game.protocol.PlayerProtocol.PlayerInfoReq
      */
-    PlayerProtocol.PlayerInfoReq getPlayerInfo(int playerId);
+    PlayerProtocol.PlayerInfoReq getPlayerInfo(Long playerId);
 }

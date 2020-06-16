@@ -20,7 +20,7 @@ public interface SkillService {
      * @param playerId
      * @return com.game.gameserver.module.skill.model.SkillBar
      */
-    PlayerSkill loadPlayerSkill(int playerId);
+    PlayerSkill loadPlayerSkill(Long playerId);
 
     /**
      * 学习技能
@@ -29,7 +29,7 @@ public interface SkillService {
      * @param skillId 所学技能Id
      * @return com.game.gameserver.common.Result
      */
-    Result learnSkill(int playerId,int skillId);
+    Result learnSkill(Long playerId,int skillId);
 
     /**
      * 放弃技能
@@ -38,7 +38,7 @@ public interface SkillService {
      * @param id
      * @return com.game.gameserver.common.Result
      */
-    Result giveUpSkill(int playerId,int id);
+    Result giveUpSkill(Long playerId,int id);
 
     /**
      * 得到技能列表

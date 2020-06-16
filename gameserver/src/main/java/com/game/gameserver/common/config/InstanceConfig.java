@@ -24,30 +24,19 @@ public class InstanceConfig {
     private int type;
     @JSONField(name = "diff")
     private int diff;
-    @JSONField(name = "sceneId")
-    private int sceneId;
     @JSONField(name = "desc")
     private String desc;
-    @JSONField(name = "monsterConfig")
-    private int monsterConfig;
-    @JSONField(name = "npcConfig")
-    private int npcConfig;
 
     /**
      * 副本开放时间 0 全天开发
      */
-    @JSONField(name = "openDate")
-    private int openDate;
-    /**
-     * 存在时间
-     */
-    @JSONField(name = "liveDate")
-    private int liveDate;
+    @JSONField(name = "openTime")
+    private int openTime;
     /**
      * 通关 时间限制
      */
-    @JSONField(name = "limitDate")
-    private int limitDate;
+    @JSONField(name = "limitTime")
+    private int limitTime;
     @JSONField(name = "needGood")
     private int needGood;
     @JSONField(name = "minNum")
@@ -62,9 +51,15 @@ public class InstanceConfig {
      */
     @JSONField(name = "exprAward")
     private int exprAward;
-    @JSONField(name = "goodAward")
-    private int goodAward;
+    @JSONField(name = "goldAward")
+    private int goldAward;
     @JSONField(name = "equipAward")
     private List<Integer> equipAward;
+    @JSONField(name = "propAward")
+    private List<Integer> propAward;
+
+    /** 怪物配置 */
+    @JSONField(name = "bossConfigId")
+    private Integer bossConfigId;
 
 }

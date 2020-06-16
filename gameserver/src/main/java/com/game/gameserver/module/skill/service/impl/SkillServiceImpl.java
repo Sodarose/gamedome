@@ -22,6 +22,8 @@ public class SkillServiceImpl implements SkillService {
     @Autowired
     private SkillMapper skillMapper;
 
+
+
     /**
      * 读取用户技能
      *
@@ -29,10 +31,8 @@ public class SkillServiceImpl implements SkillService {
      * @return com.game.gameserver.module.skill.model.SkillBar
      */
     @Override
-    public PlayerSkill loadPlayerSkill(int playerId) {
-        List<Skill> skillList = skillMapper.getSkillList(playerId);
-        PlayerSkill playerSkill = new PlayerSkill(skillList);
-        return playerSkill;
+    public PlayerSkill loadPlayerSkill(Long playerId) {
+        return null;
     }
 
     /**
@@ -43,7 +43,7 @@ public class SkillServiceImpl implements SkillService {
      * @return com.game.gameserver.common.Result
      */
     @Override
-    public Result learnSkill(int playerId, int skillId) {
+    public Result learnSkill(Long playerId, int skillId) {
         return null;
     }
 
@@ -55,7 +55,7 @@ public class SkillServiceImpl implements SkillService {
      * @return com.game.gameserver.common.Result
      */
     @Override
-    public Result giveUpSkill(int playerId, int id) {
+    public Result giveUpSkill(Long playerId, int id) {
         return null;
     }
 

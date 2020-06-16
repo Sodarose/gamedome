@@ -1,5 +1,6 @@
 package com.game.gameserver.module.team.service.impl;
 
+import com.game.gameserver.module.player.entity.Player;
 import com.game.gameserver.module.player.model.PlayerObject;
 import com.game.gameserver.module.player.service.PlayerService;
 import com.game.gameserver.module.team.manager.TeamManager;
@@ -27,20 +28,15 @@ public class TeamServiceImpl implements TeamService {
     /**
      * 创建队伍
      *
-     * @param playerId
+     * @param playerObject
      * @param teamName
      * @param maxCount
      * @return com.game.gameserver.module.team.model.TeamObject
      */
     @Override
-    public TeamObject createTeam(int playerId, String teamName, int maxCount) {
-        PlayerObject playerObject = playerService.getPlayerObject(playerId);
-        if(playerObject==null){
-            logger.warn("不存的用户 id:{} 创建 队伍",playerId);
-            return null;
-        }
+    public TeamObject createTeam(PlayerObject playerObject, String teamName, int maxCount) {
         if(playerObject.getTeamId()!=null){
-            logger.info("该用户 id:{} 已经存在队伍，禁止再此创建队伍",playerObject.getUnitId());
+            logger.info("该用户 id:{} 已经存在队伍，禁止再此创建队伍", playerObject.getPlayer().getId());
             return null;
         }
         TeamObject teamObject = teamManager.createTeamObject(playerObject,teamName,maxCount);
@@ -50,19 +46,5 @@ public class TeamServiceImpl implements TeamService {
         }
         return teamObject;
     }
-
-    /**
-     * 得到队伍信息
-     *
-     * @param teamId 队伍ID
-     * @return com.game.gameserver.module.team.model.TeamObject
-     */
-    @Override
-    public TeamObject getTeamObject(int teamId) {
-        return teamManager.getTeamObject(teamId);
-    }
-
-
-
 
 }

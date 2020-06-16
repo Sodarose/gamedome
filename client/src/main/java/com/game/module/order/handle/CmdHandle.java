@@ -185,4 +185,24 @@ public class CmdHandle {
     private void useItem(Integer itemId){
 
     }
+
+    public void requestSceneInfo(){
+
+    }
+
+    public void requestPlayerInfo(){
+
+    }
+
+    public void requestEquip(){
+
+    }
+
+    public void requestBag(){
+
+    }
+
+    public void requestSkill(){
+
+    }
 }

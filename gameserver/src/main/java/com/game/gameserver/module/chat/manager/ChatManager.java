@@ -1,13 +1,13 @@
 package com.game.gameserver.module.chat.manager;
 
 import com.game.gameserver.module.chat.entity.ChatChannel;
+import com.game.gameserver.module.player.entity.Player;
 import com.game.gameserver.module.player.model.PlayerObject;
 import com.game.gameserver.util.GameUUID;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
-import java.nio.channels.Channel;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -51,7 +51,7 @@ public class ChatManager {
      * @param channelId
      * @return void
      */
-    public void entryChannel(PlayerObject playerObject,Long channelId){
+    public void entryChannel(PlayerObject playerObject, Long channelId){
         ChatChannel chatChannel = channelMap.get(channelId);
         if(chatChannel==null){
             return;
@@ -77,7 +77,7 @@ public class ChatManager {
      * @param channelId
      * @return void
      */
-    public void exitChannel(PlayerObject playerObject,Long channelId){
+    public void exitChannel(PlayerObject playerObject, Long channelId){
         ChatChannel chatChannel = channelMap.get(channelId);
         if(channelId==null){
             return;

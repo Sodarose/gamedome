@@ -2,6 +2,7 @@ package com.game.gameserver.net.modelhandler.player;
 
 import com.game.gameserver.module.account.entity.Account;
 import com.game.gameserver.module.account.service.AccountService;
+import com.game.gameserver.module.player.entity.Player;
 import com.game.gameserver.module.player.model.PlayerObject;
 import com.game.gameserver.module.player.service.PlayerService;
 import com.game.gameserver.net.annotation.CmdHandler;
@@ -11,7 +12,6 @@ import com.game.gameserver.net.modelhandler.ModuleKey;
 import com.game.protocol.Message;
 import com.game.protocol.PlayerProtocol;
 import com.game.util.MessageUtil;
-import com.google.protobuf.InvalidProtocolBufferException;
 import io.netty.channel.Channel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -63,7 +63,7 @@ public class PlayerHandle extends BaseHandler {
         }
         // 是否重复登录
         PlayerObject playerObject = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
-        if(playerObject!=null){
+        if(playerObject !=null){
             return;
         }
     }

@@ -27,7 +27,7 @@ public class NpcManager {
     }
 
     /** npc 表 */
-    private final Map<Integer, NpcObject> npcObjectMap = new ConcurrentHashMap<>();
+    private final Map<Long, NpcObject> npcObjectMap = new ConcurrentHashMap<>();
 
     public NpcObject createNpcObject(int npcId) {
         NpcConfig npcConfig = StaticConfigManager.getInstance().getNpcConfigMap().get(npcId);

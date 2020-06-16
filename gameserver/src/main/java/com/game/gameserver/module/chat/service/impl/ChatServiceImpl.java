@@ -4,6 +4,7 @@ import com.game.gameserver.module.chat.entity.ChatChannel;
 import com.game.gameserver.module.chat.manager.ChatManager;
 import com.game.gameserver.module.chat.service.ChatService;
 import com.game.gameserver.module.player.manager.PlayerManager;
+import com.game.gameserver.module.player.entity.Player;
 import com.game.gameserver.module.player.model.PlayerObject;
 import com.game.gameserver.module.scene.manager.SceneManager;
 import com.game.gameserver.module.scene.model.SceneObject;
@@ -98,13 +99,13 @@ public class ChatServiceImpl implements ChatService {
     /**
      * 普通消息 (以角色周围玩家为对象，发送消息)
      * 暂时以场景为范围
-     * @param playerObject
+     * @param player
      * @param commonMsg
      * @return void
      */
     @Override
-    public void sendCommonMsg(PlayerObject playerObject, ChatProtocol.CommonMsg commonMsg) {
-        Long sceneId = playerObject.getSceneId();
+    public void sendCommonMsg(PlayerObject player, ChatProtocol.CommonMsg commonMsg) {
+        Integer sceneId = player.getPlayer().getSceneId();
         if(sceneId==null){
             return;
         }
@@ -112,9 +113,9 @@ public class ChatServiceImpl implements ChatService {
         if(sceneObject==null){
             return;
         }
-        for(Map.Entry<Long,PlayerObject> entry:sceneObject.getPlayerObjectMap().entrySet()){
+        for(Map.Entry<Long, PlayerObject> entry:sceneObject.getPlayerObjectMap().entrySet()){
             // 不需要发给自己
-            if(entry.getKey().equals(playerObject.getPlayer().getId())){
+            if(entry.getKey().equals(player.getPlayer().getId())){
                 continue;
             }
             Message message = MessageUtil.createMessage(ModuleKey.CHAT_MODULE,

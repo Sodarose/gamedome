@@ -14,14 +14,5 @@ import java.util.List;
  */
 @Service
 public class BufferServiceImpl implements BufferService {
-    /**
-     * 加载角色buffer
-     *
-     * @param playerId
-     * @return java.util.List<com.game.gameserver.module.buffer.model.Buffer>
-     */
-    @Override
-    public List<Buffer> loadPlayerBuffer(int playerId) {
-        return null;
-    }
+
 }

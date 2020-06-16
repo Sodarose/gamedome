@@ -6,12 +6,13 @@ import com.game.gameserver.module.goods.entity.Equip;
 import com.game.gameserver.module.goods.entity.Prop;
 import com.game.gameserver.module.monster.model.MonsterObject;
 import com.game.gameserver.module.npc.model.NpcObject;
-import com.game.gameserver.module.player.entity.Player;
 import com.game.gameserver.module.player.entity.PlayerBattle;
+import com.game.gameserver.module.player.entity.Player;
 import com.game.gameserver.module.player.model.PlayerObject;
 import com.game.gameserver.module.scene.model.SceneObject;
 import com.game.gameserver.module.skill.entity.Skill;
 import com.game.gameserver.module.skill.model.PlayerSkill;
+import com.game.protocol.GoodsProtocol;
 import com.game.protocol.PlayerProtocol;
 import com.game.protocol.SceneProtocol;
 
@@ -32,9 +33,9 @@ public class ProtocolFactory {
      * @param playerList
      * @return com.game.protocol.PlayerProtocol.PlayerList
      */
-    public static PlayerProtocol.PlayerListRes createPlayerList(List<Player> playerList){
+    public static PlayerProtocol.PlayerListRes createPlayerList(List<com.game.gameserver.module.player.entity.Player> playerList){
         PlayerProtocol.PlayerListRes.Builder builder = PlayerProtocol.PlayerListRes.newBuilder();
-        for(Player player:playerList){
+        for(com.game.gameserver.module.player.entity.Player player:playerList){
             builder.addPlayerInfoList(createSimplePlayerInfo(player));
         }
         return builder.build();
@@ -46,7 +47,7 @@ public class ProtocolFactory {
      * @param player
      * @return com.game.protocol.PlayerProtocol.BriefPlayerInfo
      */
-    public static PlayerProtocol.SimplePlayerInfo createSimplePlayerInfo(Player player){
+    public static PlayerProtocol.SimplePlayerInfo createSimplePlayerInfo(com.game.gameserver.module.player.entity.Player player){
         PlayerProtocol.SimplePlayerInfo.Builder builder = PlayerProtocol.SimplePlayerInfo.newBuilder();
         builder.setId(player.getId().intValue());
         builder.setName(player.getName());
@@ -79,11 +80,11 @@ public class ProtocolFactory {
     }
 
 
-    public static PlayerProtocol.GoodsInfo createGoodsInfo(Equip equip){
+    public static GoodsProtocol.GoodsInfo createGoodsInfo(Equip equip){
         return null;
     }
 
-    public static PlayerProtocol.GoodsInfo createGoodsInfo(Prop prop){
+    public static GoodsProtocol.GoodsInfo createGoodsInfo(Prop prop){
         return null;
     }
 
@@ -135,7 +136,7 @@ public class ProtocolFactory {
         builder.setName(sceneObject.getSceneConfig().getName());
         builder.setDescription(sceneObject.getSceneConfig().getDesc());
         builder.setPlayerNum(sceneObject.getPlayerNum());
-        for(Map.Entry<Long,PlayerObject> entry:sceneObject.getPlayerObjectMap().entrySet()){
+        for(Map.Entry<Long, PlayerObject> entry:sceneObject.getPlayerObjectMap().entrySet()){
             builder.putPlayers(entry.getKey(),createOtherPlayerInfo(entry.getValue()));
         }
         for(Map.Entry<Long,MonsterObject> entry:sceneObject.getMonsterObjectMap().entrySet()){

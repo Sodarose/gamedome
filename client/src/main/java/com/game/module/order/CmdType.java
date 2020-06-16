@@ -10,6 +10,8 @@ public interface CmdType {
     String LIST_ROLES = "LIST_ROLES";
     /** 选中角色 */
     String CONFIRM_ROLE = "CONFIRM_ROLE";
+    /** 查看当前场景信息 */
+    String SHOW_SCENE = "SHOW_SCENE";
     /** 产看角色信息 */
     String SELF_MESSAGE = "SELF";
     /** 打开背包 */
@@ -20,5 +22,4 @@ public interface CmdType {
     String CLOSE_BAG = "CLOSE_BAG";
     /** 使用后道具 */
     String USER_ITEM = "USE_ITEM";
-
 }

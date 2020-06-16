@@ -8,7 +8,6 @@ import com.game.gameserver.module.npc.manager.NpcManager;
 import com.game.gameserver.module.npc.model.NpcObject;
 import com.game.gameserver.module.player.entity.Player;
 import com.game.gameserver.module.player.model.PlayerObject;
-import com.game.gameserver.util.GameUUID;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -29,7 +28,7 @@ public class SceneObject implements Unit {
     private final static Logger logger = LoggerFactory.getLogger(SceneObject.class);
 
     /** id */
-    private Long id;
+    private Integer id;
     /** 场景静态信息 */
     private final SceneConfig sceneConfig;
     /** 场景怪物配置信息 */
@@ -39,7 +38,7 @@ public class SceneObject implements Unit {
     /** 玩家数量 */
     private final AtomicInteger playerNum = new AtomicInteger(0);
     /** 场景内玩家Map */
-    private final Map<Long,PlayerObject> playerMap = new ConcurrentHashMap<>();
+    private final Map<Long, PlayerObject> playerMap = new ConcurrentHashMap<>();
     /** 场景内怪物Map */
     private final Map<Long,MonsterObject> monsterMap = new ConcurrentHashMap<>();
     /** 场景内Npc Map */
@@ -48,7 +47,7 @@ public class SceneObject implements Unit {
     private final List<String> sceneExitWays = new ArrayList<>();
 
     public SceneObject(SceneConfig sceneConfig,SceneMonsterConfig sceneMonsterConfig,SceneNpcConfig sceneNpcConfig){
-        this.id = GameUUID.getInstance().generate();
+        this.id = sceneConfig.getId();
         this.sceneConfig = sceneConfig;
         this.sceneMonsterConfig = sceneMonsterConfig;
         this.sceneNpcConfig = sceneNpcConfig;
@@ -81,7 +80,7 @@ public class SceneObject implements Unit {
             return;
         }
         for(SceneMonster sceneMonster:sceneMonsterConfig.getSceneMonsterList()){
-            List<MonsterObject> monsterObjectList = MonsterManager.getInstance()
+            List<MonsterObject> monsterObjectList = MonsterManager.instance
                     .createMonsterObjectList(sceneMonster.getMonsterId(),
                     sceneMonster.getCount());
             for(MonsterObject monsterObject:monsterObjectList){
@@ -112,74 +111,47 @@ public class SceneObject implements Unit {
     }
 
 
+    /**
+     * 进入场景
+     *
+     * @param playerObject
+     * @return void
+     */
+    public boolean entry(PlayerObject playerObject){
+        synchronized (playerMap){
+            if(playerMap.containsKey(playerObject.getPlayer().getId())){
+                return false;
+            }
+            playerMap.put(playerObject.getPlayer().getId(), playerObject);
+            playerObject.getPlayer().setSceneId(id);
+            return true;
+        }
+    }
+
+    /**
+     * 退出场景
+     *
+     * @param
+     * @return boolean
+     */
+    public boolean exit(PlayerObject playerObject){
+        synchronized (playerMap){
+            if(!playerMap.containsKey(playerObject.getPlayer().getId())){
+                return false;
+            }
+            playerMap.remove(playerObject.getPlayer().getId());
+            return true;
+        }
+    }
 
     @Override
     public void update() {
 
     }
 
-    /**
-     * 添加玩家对象
-     *
-     * @param playerObject
-     * @return boolean
-     */
-    public void addPlayerObject(PlayerObject playerObject){
-       playerMap.put(playerObject.getUnitId(),playerObject);
-    }
-
-    /**
-     * 移除玩家对象
-     *
-     * @param playerId
-     * @return com.game.gameserver.module.player.model.PlayerObject
-     */
-    public PlayerObject removePlayerObject(int playerId){
-        return playerMap.remove(playerId);
-    }
-
-    /**
-     * 外部添加一个怪物对象
-     *
-     * @param monsterObject
-     * @return boolean
-     */
-    public void addMonsterObject(MonsterObject monsterObject){
-        monsterMap.put(monsterObject.getId(),monsterObject);
-    }
-
-    /**
-     * 移除一个怪物对象
-     *
-     * @param monsterId
-     * @return com.game.gameserver.module.monster.model.MonsterObject
-     */
-    public MonsterObject removeMonsterObject(int monsterId){
-        return monsterMap.remove(monsterId);
-    }
-
-    /**
-     * 增加一个NPC对象
-     *
-     * @param npcObject
-     * @return boolean
-     */
-    public void addNpcObject(NpcObject npcObject){
-        npcMap.put(npcObject.getId(),npcObject);
-    }
 
 
-    /**
-     * 移除一个Npc对象
-     *
-     * @param npcId
-     * @return com.game.gameserver.module.npc.model.NpcObject
-     */
-    public NpcObject removeNpcObject(int npcId){
-        return npcMap.remove(npcId);
-    }
-
-    public long getId() {
+    public Integer getId() {
         return id;
     }
 

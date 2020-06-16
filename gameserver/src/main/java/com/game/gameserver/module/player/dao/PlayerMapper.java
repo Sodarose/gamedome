@@ -16,7 +16,7 @@ import java.util.List;
 @Mapper
 public interface PlayerMapper {
     /**
-     * 根据账户获取角色列表
+     * 根据账户获取角色数据
      *
      * @param accountId
      * @return java.util.List<com.game.gameserver.module.player.entity.Player>
@@ -29,6 +29,6 @@ public interface PlayerMapper {
      * @param playerId
      * @return java.util.List<com.game.gameserver.module.player.entity.Player>
      */
-    Player getPlayerById(int playerId);
+    Player getPlayerById(Long playerId);
 
 }

@@ -1,5 +1,6 @@
 package com.game.gameserver.module.chat.service;
 
+import com.game.gameserver.module.player.entity.Player;
 import com.game.gameserver.module.player.model.PlayerObject;
 import com.game.protocol.ChatProtocol;
 

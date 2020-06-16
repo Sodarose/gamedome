@@ -1,6 +1,7 @@
 syntax = "proto3";
 option java_package = "com.game.protocol";
 option java_outer_classname = "PlayerProtocol";
+import "Goods.proto";
 
 // 角色列表请求
 message PlayerListReq {
@@ -33,19 +34,9 @@ message PlayerInfoRes {
     PlayerInfo playerInfo = 1;
 }
 
-// 进入场景
-message EntrySceneReq {
-
-}
-
-// 进入场景响应
-message EntrySceneRes {
-
-}
-
 // 同步角色信息
 message SyncPlayerInfo {
-
+    PlayerInfo playerInfo = 1;
 }
 
 // 背包请求
@@ -68,7 +59,7 @@ message SimplePlayerInfo {
 
 // 个人角色全部信息
 message PlayerInfo {
-    int32 id = 1;
+    int64 id = 1;
     string name = 2;
     int32 level = 3;
     int32 careerId = 4;
@@ -112,7 +103,7 @@ message SkillInfo {
 
 // 他人信息
 message OtherPlayerInfo {
-    int32 unitId = 1;
+    int64 id = 1;
     string name = 2;
     int32 level = 3;
     int32 careerId = 4;
@@ -123,27 +114,6 @@ message OtherPlayerInfo {
     repeated GoodsInfo equipBag = 7;
 }
 
-// 物品信息
-message GoodsInfo {
-    // 物品ID
-    int32 goodsId = 1;
-    // 物品类型
-    int32 goodsType = 2;
-    // 物品名称
-    int32 goodsName = 3;
-    // 物品数量
-    int32 goodsCount = 4;
-    // 物品所在的背包
-    int32 bagPack = 5;
-    // 物品所在的背包位置
-    int32 bagIndex = 6;
-    // 是否绑定
-    bool bound = 7;
-    // 物品描述
-    string desc = 8;
-    // 物品属性 根据类型的不同而不同
-    map<int32, string> attribute = 9;
-}
 
 // 战斗属性
 message PlayerBattle {

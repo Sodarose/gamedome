@@ -1,9 +1,9 @@
 package com.game.gameserver.module.team.model;
 
 import com.game.gameserver.common.entity.Unit;
+import com.game.gameserver.module.player.entity.Player;
 import com.game.gameserver.module.player.model.PlayerObject;
 import com.game.gameserver.util.GameUUID;
-import com.game.gameserver.util.GenIdUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,47 +31,47 @@ public class TeamObject implements Unit {
     /** 团队频道 */
     private Long channelId;
 
-    public TeamObject(PlayerObject playerObject,String teamName,int maxCount){
+    public TeamObject(PlayerObject player, String teamName, int maxCount){
         this.id = GameUUID.getInstance().generate();
         this.teamName = teamName;
-        this.captainId = playerObject.getPlayer().getId();
+        this.captainId = player.getPlayer().getId();
         this.state = TeamState.NULL_FULL;
         this.maxCount = maxCount;
         members = new ArrayList<>();
-        members.add(playerObject.getPlayer().getId());
+        members.add(player.getPlayer().getId());
     }
 
     /**
      * 入队操作
      *
-     * @param playerObject
+     * @param player
      * @return void
      */
-    public void entryTeam(PlayerObject playerObject){
+    public void entryTeam(Player player){
 
     }
 
     /**
      * 出队操作
      *
-     * @param playerObject
+     * @param player
      * @return void
      */
-    public void exitTeam(PlayerObject playerObject){
-        members.remove(playerObject);
+    public void exitTeam(Player player){
+        members.remove(player);
     }
 
     /**
      * 交换队长
      *
-     * @param playerObject 队伍成员
+     * @param player 队伍成员
      * @return void
      */
     public void changeCaptain(PlayerObject playerObject){
-        if(!members.contains(playerObject)){
+        if(!members.contains(playerObject.getPlayer().getId())){
             return;
         }
-        this.captainId = playerObject.getUnitId();
+        this.captainId = playerObject.getPlayer().getId();
     }
 
     public void setTeamName(String teamName){

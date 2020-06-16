@@ -1,9 +1,6 @@
 package com.game.gameserver.module.email.entity;
 
-import com.game.gameserver.module.goods.entity.Goods;
 import lombok.Data;
-
-import java.util.List;
 
 /**
  *
@@ -23,8 +20,8 @@ public class Email {
     private String senderName;
     /** 文字内容 */
     private String content;
-    /** 道具附件 序列化存进去 */
-    private List<Goods> attachments;
+    /** 附件其内容格式为 类型_道具Id|类型_道具Id|类型_道具Id|类型_道具Id */
+    private String attachments;
     /** golds */
     private Long golds;
     /** 玩家Id */

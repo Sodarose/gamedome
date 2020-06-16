@@ -11,4 +11,8 @@ public interface InstanceCmd {
     short INSTANCE_LIST = 1001;
     /** 进入副本 */
     short ENTRY_INSTANCE = 1002;
+    /** 退出副本 */
+    short EXIT_INSTANCE = 1003;
+    /** */
+
 }

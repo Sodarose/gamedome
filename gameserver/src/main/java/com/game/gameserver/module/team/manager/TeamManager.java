@@ -1,5 +1,6 @@
 package com.game.gameserver.module.team.manager;
 
+import com.game.gameserver.module.player.entity.Player;
 import com.game.gameserver.module.player.model.PlayerObject;
 import com.game.gameserver.module.team.model.TeamObject;
 import org.slf4j.Logger;
@@ -20,21 +21,21 @@ public class TeamManager {
     private final static Logger logger = LoggerFactory.getLogger(TeamManager.class);
 
     /** 队伍列表 */
-    private final Map<Integer, TeamObject> teamObjectMap = new ConcurrentHashMap<>(16);
+    private final Map<Long, TeamObject> teamObjectMap = new ConcurrentHashMap<>(16);
 
     /**
      * 创建一个队伍
      *
-     * @param playerObject 创建者
+     * @param player 创建者
      * @param teamName 队伍名
      * @return com.game.gameserver.module.team.model.TeamObject
      */
-    public TeamObject createTeamObject(PlayerObject playerObject,String teamName,int maxCount){
-        if(playerObject.getTeamId()!=null){
+    public TeamObject createTeamObject(PlayerObject player, String teamName, int maxCount){
+        if(player.getTeamId()!=null){
             logger.info("还用户已经在组队状态，禁止创建队伍");
             return null;
         }
-        TeamObject teamObject = new TeamObject(playerObject,teamName,maxCount);
+        TeamObject teamObject = new TeamObject(player,teamName,maxCount);
         teamObjectMap.put(teamObject.getId(),teamObject);
         return teamObject;
     }

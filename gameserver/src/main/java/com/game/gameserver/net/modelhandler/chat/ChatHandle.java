@@ -1,6 +1,7 @@
 package com.game.gameserver.net.modelhandler.chat;
 
 import com.game.gameserver.module.chat.service.ChatService;
+import com.game.gameserver.module.player.entity.Player;
 import com.game.gameserver.module.player.model.PlayerObject;
 import com.game.gameserver.module.player.service.PlayerService;
 import com.game.gameserver.net.annotation.CmdHandler;
@@ -36,7 +37,7 @@ public class ChatHandle extends BaseHandler {
     @CmdHandler(cmd = ChatCmd.SEND_CHANNEL_MSG)
     public void sendChannelMsgHandle(Message message, Channel channel) {
         PlayerObject playerObject = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
-        if(playerObject==null){
+        if(playerObject ==null){
             return;
         }
         try {
@@ -58,7 +59,7 @@ public class ChatHandle extends BaseHandler {
     @CmdHandler(cmd = ChatCmd.SEND_PRIVACY_MSG)
     public void sendPrivacyMsgHandle(Message message, Channel channel) {
         PlayerObject playerObject = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
-        if(playerObject==null){
+        if(playerObject ==null){
             return;
         }
         try {
@@ -80,7 +81,7 @@ public class ChatHandle extends BaseHandler {
     @CmdHandler(cmd = ChatCmd.SEND_COMMON_MSG)
     public void sendCommonMsgHandle(Message message, Channel channel) {
         PlayerObject playerObject = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
-        if(playerObject==null){
+        if(playerObject ==null){
             return;
         }
         try {

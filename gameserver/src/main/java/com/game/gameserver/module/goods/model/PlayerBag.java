@@ -19,14 +19,12 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
  */
 public class PlayerBag {
 
-    private final int bagType;
     private final int capacity;
-    /** key 表示位置 */
+    /** key 表示格子Id  value 表示物品Id*/
     private final Map<Integer,Goods> rawData;
     private final ReentrantReadWriteLock lock;
 
     public PlayerBag(int capacity){
-        this.bagType = BagType.NORMAL_BAG;
         this.capacity = capacity;
         this.rawData = new ConcurrentHashMap<>(capacity);
         this.lock = new ReentrantReadWriteLock();

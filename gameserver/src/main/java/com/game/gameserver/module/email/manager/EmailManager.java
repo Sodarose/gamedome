@@ -22,4 +22,9 @@ public class EmailManager {
     /** 玩家邮件 */
     private Map<Long, List<Email>> playerEmailMap = new ConcurrentHashMap<>();
 
+    public void loadPlayerEmail(PlayerObject playerObject){
+
+    }
+
+    
 }

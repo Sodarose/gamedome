@@ -2,60 +2,45 @@ syntax = "proto3";
 option java_package = "com.game.protocol";
 option java_outer_classname = "SceneProtocol";
 import "Player.proto";
+import "Actor.proto";
 
-
-message EntrySceneReq{
-
-}
-
-message EntrySceneRes{
+// 进入场景
+message EntrySceneReq {
 
 }
 
+// 进入场景响应
+message EntrySceneRes {
 
-message SceneInfo{
-    int32 id = 1;
+}
+
+// 退出场景请求
+message ExitSceneReq{
+
+}
+
+// 退出场景响应
+message ExitSceneRes{
+
+}
+
+message SceneInfo {
+    int64 id = 1;
     string name = 2;
     string description = 3;
-    int32  playerCount = 4;
-    map<int32,OtherPlayerInfo> players = 5;
-    map<int32,Monster> monsters = 6;
-    map<int32,Npc> npcs = 7;
-    map<string,int32> ways = 8;
+    int32 playerNum = 4;
+    map<int64, OtherPlayerInfo> players = 5;
+    map<int64, MonsterInfo> monsters = 6;
+    map<int64, NpcInfo> npcs = 7;
+    repeated string sceneExitWays = 8;
 }
 
-// monster
-message Monster {
-    int32 id = 1;
-    string name = 2;
-    int32 level = 3;
-    int32 state = 4;
-    int32 hp = 6;
-    int32 mp = 7;
-    int32 attack = 8;
-    int32 defense = 9;
-    int32 currHp = 10;
-    int32 currMp = 11;
+// 查看场景列表
+message CheckSceneListReq{
+
 }
 
-// npc
-message Npc {
-    int32 id = 1;
-    string name = 2;
-    int32 level = 3;
-    int32 state = 4;
-}
-
-message Move{
-    int32 targetId = 1;
-}
-
-// 玩家退出场景
-message ExitScene{
-    int32 playerId = 1;
-}
-
-message SceneList{
-    map<string,int32> scenes = 1;
+message SceneList {
+    map<string, int32> scenes = 1;
 }
 

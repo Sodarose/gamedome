@@ -8,7 +8,7 @@ import com.game.gameserver.common.entity.Unit;
  * @author xuewenkang
  * @date 2020/6/8 17:36
  */
-public interface State<T extends Unit> {
+public interface State<T> {
     /**
      * 进入状态
      *
@@ -31,5 +31,5 @@ public interface State<T extends Unit> {
      * @param t
      * @return void
      */
-    void update(T t);
+    void execute(T t);
 }

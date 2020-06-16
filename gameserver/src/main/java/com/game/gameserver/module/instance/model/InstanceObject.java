@@ -2,18 +2,13 @@ package com.game.gameserver.module.instance.model;
 
 import com.game.gameserver.common.config.*;
 import com.game.gameserver.common.entity.Unit;
-import com.game.gameserver.common.state.StateMachine;
-import com.game.gameserver.module.monster.manager.MonsterManager;
 import com.game.gameserver.module.monster.model.MonsterObject;
-import com.game.gameserver.module.npc.manager.NpcManager;
-import com.game.gameserver.module.npc.model.NpcObject;
+import com.game.gameserver.module.player.entity.Player;
 import com.game.gameserver.module.player.model.PlayerObject;
-import com.game.gameserver.module.team.model.TeamObject;
-import com.game.gameserver.util.GenIdUtil;
+import com.game.gameserver.util.GameUUID;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -27,67 +22,73 @@ public class InstanceObject implements Unit {
 
     private final static Logger logger = LoggerFactory.getLogger(InstanceObject.class);
 
-    /** 副本唯一ID */
-    private final int id;
-    /** 副本静态数据 */
+    /**
+     * 副本唯一ID
+     */
+    private final Long id;
+    /**
+     * 副本静态配置
+     */
     private final InstanceConfig instanceConfig;
-    /** 副本怪物配置 */
-    private final InstanceMonsterConfig instanceMonsterConfig;
-    /** 副本npc配置 */
-    private final InstanceNpcConfig instanceNpcConfig;
-    /** 玩家队伍 */
-    private TeamObject teamObject;
-    /** 玩家 */
-    private final Map<Integer, PlayerObject> playerMap = new ConcurrentHashMap<>(4);
-    /** 怪物列表 */
-    private final Map<Integer,MonsterObject> monsterMap = new ConcurrentHashMap<>(15);
-    /** npc列表 */
-    private final Map<Integer, NpcObject> npcMap = new ConcurrentHashMap<>(1);
-    /** 副本状态机 */
-    private StateMachine<InstanceObject> stateMachine;
+    /**
+     * 副本内玩家
+     */
+    private final Map<Long, PlayerObject> playerMap = new ConcurrentHashMap<>();
+    /**
+     * 副本Boss
+     */
+    private MonsterObject boss;
+    /**
+     * 创建时间
+     */
+    private Long creatTime;
+    /**
+     * 结束时间
+     */
+    private Long endTime;
+    /**
+     * 副本状态(运行/结束/通关失败/通关结束)
+     */
+    private volatile InstanceEnum state;
+    /**
+     * 通关最多留存时间
+     */
+    private Long overTime;
 
-
-    public InstanceObject(InstanceConfig instanceConfig, InstanceMonsterConfig instanceMonsterConfig,
-                          InstanceNpcConfig instanceNpcConfig){
-        this.id = GenIdUtil.nextId();
+    public InstanceObject(InstanceConfig instanceConfig) {
+        this.id = GameUUID.getInstance().generate();
         this.instanceConfig = instanceConfig;
-        this.instanceMonsterConfig = instanceMonsterConfig;
-        this.instanceNpcConfig = instanceNpcConfig;
-    }
-
-    public void initialize(){
-        logger.info("instance {} initialize",instanceConfig.getName());
-        loadInstanceMonsterConfig();
-    }
-
-    private void loadInstanceMonsterConfig(){
-        if(instanceMonsterConfig==null){
-            logger.info("scene {} don't have SceneMonsterConfig ",instanceConfig.getName());
-            return;
-        }
-        for(InstanceMonster sceneMonster:instanceMonsterConfig.getInstanceMonsterList()){
-            List<MonsterObject> monsterObjectList = MonsterManager.getInstance()
-                    .createMonsterObjectList(sceneMonster.getMonsterId(),
-                            sceneMonster.getCount());
-            for(MonsterObject monsterObject:monsterObjectList){
-                monsterMap.put(monsterObject.getId(),monsterObject);
-            }
-        }
-    }
-
-    private void loadInstanceNpcConfig(){
-
     }
 
     /**
      * 状态更新
-     * */
+     */
     @Override
     public void update() {
 
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
+    }
+
+    public void entry(PlayerObject... playerObject) {
+        synchronized (playerMap) {
+            for (PlayerObject player : playerObject) {
+                if (playerMap.containsKey(player.getPlayer().getId())) {
+                    continue;
+                }
+                playerMap.put(player.getPlayer().getId(), player);
+            }
+        }
+    }
+
+    public void exit(PlayerObject playerObject) {
+        synchronized (playerMap) {
+            if (!playerMap.containsKey(playerObject.getPlayer().getId())) {
+                return;
+            }
+            playerMap.remove(playerObject.getPlayer().getId());
+        }
     }
 }

@@ -1,0 +1,57 @@
+syntax = "proto3";
+option java_package = "com.game.protocol";
+option java_outer_classname = "EmailProtocol";
+import "Goods.proto";
+
+// 发送邮件请求
+message SendEmailReq {
+    // 邮件标题
+    string title = 1;
+    // 邮件内容
+    string content = 2;
+    // 邮件附件
+    repeated int64 attachment = 3;
+    // 金币
+    int32 golds = 4;
+    // 接收者Id
+    int64 receiverId = 5;
+}
+
+// 同步邮件信息
+message SyncEmail {
+    repeated EmailInfo email = 1;
+}
+
+// 邮件数据
+message EmailInfo {
+    int64 id = 1;
+    string title = 2;
+    string sendName = 3;
+    string content = 4;
+    repeated GoodsInfo attachments = 5;
+    int32 golds = 6;
+    int32 state = 7;
+}
+
+
+// 删除邮件请求
+message RemoveEmailReq{
+    repeated int64 emailId = 1;
+}
+
+// 接收附件
+message ReceiveAttachment{
+    repeated int64 attachmentIds = 1;
+}
+
+// 查看邮件 主要是为了更改邮件状态
+message CheckEmail{
+    int64 emailId = 1;
+}
+
+// 邮件操作回执
+message EmailCmdRes {
+    int32 code = 1;
+    string msg = 2;
+}
+
