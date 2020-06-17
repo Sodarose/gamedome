@@ -1,0 +1,39 @@
+syntax = "proto3";
+option java_package = "com.game.protocol";
+option java_outer_classname = "Store";
+
+message BuyCommodityReq{
+    int32 commodityId = 1;
+    int32 num = 2;
+}
+
+message BuyCommodityRes{
+    int32 code = 1;
+    string msg = 2;
+}
+
+message SellGoodsReq{
+    int32 bagIndex = 1;
+    int32 goodsId = 2;
+    int32 num = 3;
+}
+
+message SellGoodsRes{
+    int32 code = 1;
+    string msg = 2;
+}
+
+message CommodityList{
+    repeated CommodityInfo commodityInfos = 1;
+}
+
+message CommodityInfo {
+    int32 id = 1;
+    int32 goodsType = 2;
+    int32 goodsId = 3;
+    string goodsName = 4;
+    int32 shoreType = 5;
+    int32 originalPrice = 6;
+    int32 price = 7;
+    int32 limitCount = 8;
+}

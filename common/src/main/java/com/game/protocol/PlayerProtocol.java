@@ -1241,10 +1241,10 @@ public final class PlayerProtocol {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>int32 playerId = 1;</code>
+     * <code>int64 playerId = 1;</code>
      * @return The playerId.
      */
-    int getPlayerId();
+    long getPlayerId();
   }
   /**
    * <pre>
@@ -1297,7 +1297,7 @@ public final class PlayerProtocol {
               break;
             case 8: {
 
-              playerId_ = input.readInt32();
+              playerId_ = input.readInt64();
               break;
             }
             default: {
@@ -1333,12 +1333,12 @@ public final class PlayerProtocol {
     }
 
     public static final int PLAYERID_FIELD_NUMBER = 1;
-    private int playerId_;
+    private long playerId_;
     /**
-     * <code>int32 playerId = 1;</code>
+     * <code>int64 playerId = 1;</code>
      * @return The playerId.
      */
-    public int getPlayerId() {
+    public long getPlayerId() {
       return playerId_;
     }
 
@@ -1356,8 +1356,8 @@ public final class PlayerProtocol {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (playerId_ != 0) {
-        output.writeInt32(1, playerId_);
+      if (playerId_ != 0L) {
+        output.writeInt64(1, playerId_);
       }
       unknownFields.writeTo(output);
     }
@@ -1368,9 +1368,9 @@ public final class PlayerProtocol {
       if (size != -1) return size;
 
       size = 0;
-      if (playerId_ != 0) {
+      if (playerId_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(1, playerId_);
+          .computeInt64Size(1, playerId_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -1401,7 +1401,8 @@ public final class PlayerProtocol {
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + PLAYERID_FIELD_NUMBER;
-      hash = (53 * hash) + getPlayerId();
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getPlayerId());
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -1539,7 +1540,7 @@ public final class PlayerProtocol {
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        playerId_ = 0;
+        playerId_ = 0L;
 
         return this;
       }
@@ -1616,7 +1617,7 @@ public final class PlayerProtocol {
 
       public Builder mergeFrom(com.game.protocol.PlayerProtocol.LoginPlayerReq other) {
         if (other == com.game.protocol.PlayerProtocol.LoginPlayerReq.getDefaultInstance()) return this;
-        if (other.getPlayerId() != 0) {
+        if (other.getPlayerId() != 0L) {
           setPlayerId(other.getPlayerId());
         }
         this.mergeUnknownFields(other.unknownFields);
@@ -1648,32 +1649,32 @@ public final class PlayerProtocol {
         return this;
       }
 
-      private int playerId_ ;
+      private long playerId_ ;
       /**
-       * <code>int32 playerId = 1;</code>
+       * <code>int64 playerId = 1;</code>
        * @return The playerId.
        */
-      public int getPlayerId() {
+      public long getPlayerId() {
         return playerId_;
       }
       /**
-       * <code>int32 playerId = 1;</code>
+       * <code>int64 playerId = 1;</code>
        * @param value The playerId to set.
        * @return This builder for chaining.
        */
-      public Builder setPlayerId(int value) {
+      public Builder setPlayerId(long value) {
         
         playerId_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>int32 playerId = 1;</code>
+       * <code>int64 playerId = 1;</code>
        * @return This builder for chaining.
        */
       public Builder clearPlayerId() {
         
-        playerId_ = 0;
+        playerId_ = 0L;
         onChanged();
         return this;
       }
@@ -1751,6 +1752,21 @@ public final class PlayerProtocol {
      */
     com.google.protobuf.ByteString
         getMsgBytes();
+
+    /**
+     * <code>.PlayerInfo playerInfo = 3;</code>
+     * @return Whether the playerInfo field is set.
+     */
+    boolean hasPlayerInfo();
+    /**
+     * <code>.PlayerInfo playerInfo = 3;</code>
+     * @return The playerInfo.
+     */
+    com.game.protocol.PlayerProtocol.PlayerInfo getPlayerInfo();
+    /**
+     * <code>.PlayerInfo playerInfo = 3;</code>
+     */
+    com.game.protocol.PlayerProtocol.PlayerInfoOrBuilder getPlayerInfoOrBuilder();
   }
   /**
    * <pre>
@@ -1811,6 +1827,19 @@ public final class PlayerProtocol {
               java.lang.String s = input.readStringRequireUtf8();
 
               msg_ = s;
+              break;
+            }
+            case 26: {
+              com.game.protocol.PlayerProtocol.PlayerInfo.Builder subBuilder = null;
+              if (playerInfo_ != null) {
+                subBuilder = playerInfo_.toBuilder();
+              }
+              playerInfo_ = input.readMessage(com.game.protocol.PlayerProtocol.PlayerInfo.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(playerInfo_);
+                playerInfo_ = subBuilder.buildPartial();
+              }
+
               break;
             }
             default: {
@@ -1891,6 +1920,29 @@ public final class PlayerProtocol {
       }
     }
 
+    public static final int PLAYERINFO_FIELD_NUMBER = 3;
+    private com.game.protocol.PlayerProtocol.PlayerInfo playerInfo_;
+    /**
+     * <code>.PlayerInfo playerInfo = 3;</code>
+     * @return Whether the playerInfo field is set.
+     */
+    public boolean hasPlayerInfo() {
+      return playerInfo_ != null;
+    }
+    /**
+     * <code>.PlayerInfo playerInfo = 3;</code>
+     * @return The playerInfo.
+     */
+    public com.game.protocol.PlayerProtocol.PlayerInfo getPlayerInfo() {
+      return playerInfo_ == null ? com.game.protocol.PlayerProtocol.PlayerInfo.getDefaultInstance() : playerInfo_;
+    }
+    /**
+     * <code>.PlayerInfo playerInfo = 3;</code>
+     */
+    public com.game.protocol.PlayerProtocol.PlayerInfoOrBuilder getPlayerInfoOrBuilder() {
+      return getPlayerInfo();
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -1911,6 +1963,9 @@ public final class PlayerProtocol {
       if (!getMsgBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, msg_);
       }
+      if (playerInfo_ != null) {
+        output.writeMessage(3, getPlayerInfo());
+      }
       unknownFields.writeTo(output);
     }
 
@@ -1926,6 +1981,10 @@ public final class PlayerProtocol {
       }
       if (!getMsgBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, msg_);
+      }
+      if (playerInfo_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(3, getPlayerInfo());
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -1946,6 +2005,11 @@ public final class PlayerProtocol {
           != other.getCode()) return false;
       if (!getMsg()
           .equals(other.getMsg())) return false;
+      if (hasPlayerInfo() != other.hasPlayerInfo()) return false;
+      if (hasPlayerInfo()) {
+        if (!getPlayerInfo()
+            .equals(other.getPlayerInfo())) return false;
+      }
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -1961,6 +2025,10 @@ public final class PlayerProtocol {
       hash = (53 * hash) + getCode();
       hash = (37 * hash) + MSG_FIELD_NUMBER;
       hash = (53 * hash) + getMsg().hashCode();
+      if (hasPlayerInfo()) {
+        hash = (37 * hash) + PLAYERINFO_FIELD_NUMBER;
+        hash = (53 * hash) + getPlayerInfo().hashCode();
+      }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -2102,6 +2170,12 @@ public final class PlayerProtocol {
 
         msg_ = "";
 
+        if (playerInfoBuilder_ == null) {
+          playerInfo_ = null;
+        } else {
+          playerInfo_ = null;
+          playerInfoBuilder_ = null;
+        }
         return this;
       }
 
@@ -2130,6 +2204,11 @@ public final class PlayerProtocol {
         com.game.protocol.PlayerProtocol.LoginPlayerRes result = new com.game.protocol.PlayerProtocol.LoginPlayerRes(this);
         result.code_ = code_;
         result.msg_ = msg_;
+        if (playerInfoBuilder_ == null) {
+          result.playerInfo_ = playerInfo_;
+        } else {
+          result.playerInfo_ = playerInfoBuilder_.build();
+        }
         onBuilt();
         return result;
       }
@@ -2184,6 +2263,9 @@ public final class PlayerProtocol {
         if (!other.getMsg().isEmpty()) {
           msg_ = other.msg_;
           onChanged();
+        }
+        if (other.hasPlayerInfo()) {
+          mergePlayerInfo(other.getPlayerInfo());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -2318,6 +2400,125 @@ public final class PlayerProtocol {
         msg_ = value;
         onChanged();
         return this;
+      }
+
+      private com.game.protocol.PlayerProtocol.PlayerInfo playerInfo_;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.game.protocol.PlayerProtocol.PlayerInfo, com.game.protocol.PlayerProtocol.PlayerInfo.Builder, com.game.protocol.PlayerProtocol.PlayerInfoOrBuilder> playerInfoBuilder_;
+      /**
+       * <code>.PlayerInfo playerInfo = 3;</code>
+       * @return Whether the playerInfo field is set.
+       */
+      public boolean hasPlayerInfo() {
+        return playerInfoBuilder_ != null || playerInfo_ != null;
+      }
+      /**
+       * <code>.PlayerInfo playerInfo = 3;</code>
+       * @return The playerInfo.
+       */
+      public com.game.protocol.PlayerProtocol.PlayerInfo getPlayerInfo() {
+        if (playerInfoBuilder_ == null) {
+          return playerInfo_ == null ? com.game.protocol.PlayerProtocol.PlayerInfo.getDefaultInstance() : playerInfo_;
+        } else {
+          return playerInfoBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.PlayerInfo playerInfo = 3;</code>
+       */
+      public Builder setPlayerInfo(com.game.protocol.PlayerProtocol.PlayerInfo value) {
+        if (playerInfoBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          playerInfo_ = value;
+          onChanged();
+        } else {
+          playerInfoBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.PlayerInfo playerInfo = 3;</code>
+       */
+      public Builder setPlayerInfo(
+          com.game.protocol.PlayerProtocol.PlayerInfo.Builder builderForValue) {
+        if (playerInfoBuilder_ == null) {
+          playerInfo_ = builderForValue.build();
+          onChanged();
+        } else {
+          playerInfoBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>.PlayerInfo playerInfo = 3;</code>
+       */
+      public Builder mergePlayerInfo(com.game.protocol.PlayerProtocol.PlayerInfo value) {
+        if (playerInfoBuilder_ == null) {
+          if (playerInfo_ != null) {
+            playerInfo_ =
+              com.game.protocol.PlayerProtocol.PlayerInfo.newBuilder(playerInfo_).mergeFrom(value).buildPartial();
+          } else {
+            playerInfo_ = value;
+          }
+          onChanged();
+        } else {
+          playerInfoBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.PlayerInfo playerInfo = 3;</code>
+       */
+      public Builder clearPlayerInfo() {
+        if (playerInfoBuilder_ == null) {
+          playerInfo_ = null;
+          onChanged();
+        } else {
+          playerInfo_ = null;
+          playerInfoBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>.PlayerInfo playerInfo = 3;</code>
+       */
+      public com.game.protocol.PlayerProtocol.PlayerInfo.Builder getPlayerInfoBuilder() {
+        
+        onChanged();
+        return getPlayerInfoFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.PlayerInfo playerInfo = 3;</code>
+       */
+      public com.game.protocol.PlayerProtocol.PlayerInfoOrBuilder getPlayerInfoOrBuilder() {
+        if (playerInfoBuilder_ != null) {
+          return playerInfoBuilder_.getMessageOrBuilder();
+        } else {
+          return playerInfo_ == null ?
+              com.game.protocol.PlayerProtocol.PlayerInfo.getDefaultInstance() : playerInfo_;
+        }
+      }
+      /**
+       * <code>.PlayerInfo playerInfo = 3;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.game.protocol.PlayerProtocol.PlayerInfo, com.game.protocol.PlayerProtocol.PlayerInfo.Builder, com.game.protocol.PlayerProtocol.PlayerInfoOrBuilder> 
+          getPlayerInfoFieldBuilder() {
+        if (playerInfoBuilder_ == null) {
+          playerInfoBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.game.protocol.PlayerProtocol.PlayerInfo, com.game.protocol.PlayerProtocol.PlayerInfo.Builder, com.game.protocol.PlayerProtocol.PlayerInfoOrBuilder>(
+                  getPlayerInfo(),
+                  getParentForChildren(),
+                  isClean());
+          playerInfo_ = null;
+        }
+        return playerInfoBuilder_;
       }
       @java.lang.Override
       public final Builder setUnknownFields(
@@ -4907,10 +5108,10 @@ public final class PlayerProtocol {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>int32 id = 1;</code>
+     * <code>int64 id = 1;</code>
      * @return The id.
      */
-    int getId();
+    long getId();
 
     /**
      * <code>string name = 2;</code>
@@ -4988,7 +5189,7 @@ public final class PlayerProtocol {
               break;
             case 8: {
 
-              id_ = input.readInt32();
+              id_ = input.readInt64();
               break;
             }
             case 18: {
@@ -5040,12 +5241,12 @@ public final class PlayerProtocol {
     }
 
     public static final int ID_FIELD_NUMBER = 1;
-    private int id_;
+    private long id_;
     /**
-     * <code>int32 id = 1;</code>
+     * <code>int64 id = 1;</code>
      * @return The id.
      */
-    public int getId() {
+    public long getId() {
       return id_;
     }
 
@@ -5119,8 +5320,8 @@ public final class PlayerProtocol {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (id_ != 0) {
-        output.writeInt32(1, id_);
+      if (id_ != 0L) {
+        output.writeInt64(1, id_);
       }
       if (!getNameBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, name_);
@@ -5140,9 +5341,9 @@ public final class PlayerProtocol {
       if (size != -1) return size;
 
       size = 0;
-      if (id_ != 0) {
+      if (id_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(1, id_);
+          .computeInt64Size(1, id_);
       }
       if (!getNameBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, name_);
@@ -5190,7 +5391,8 @@ public final class PlayerProtocol {
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + ID_FIELD_NUMBER;
-      hash = (53 * hash) + getId();
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getId());
       hash = (37 * hash) + NAME_FIELD_NUMBER;
       hash = (53 * hash) + getName().hashCode();
       hash = (37 * hash) + LEVEL_FIELD_NUMBER;
@@ -5334,7 +5536,7 @@ public final class PlayerProtocol {
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        id_ = 0;
+        id_ = 0L;
 
         name_ = "";
 
@@ -5420,7 +5622,7 @@ public final class PlayerProtocol {
 
       public Builder mergeFrom(com.game.protocol.PlayerProtocol.SimplePlayerInfo other) {
         if (other == com.game.protocol.PlayerProtocol.SimplePlayerInfo.getDefaultInstance()) return this;
-        if (other.getId() != 0) {
+        if (other.getId() != 0L) {
           setId(other.getId());
         }
         if (!other.getName().isEmpty()) {
@@ -5462,32 +5664,32 @@ public final class PlayerProtocol {
         return this;
       }
 
-      private int id_ ;
+      private long id_ ;
       /**
-       * <code>int32 id = 1;</code>
+       * <code>int64 id = 1;</code>
        * @return The id.
        */
-      public int getId() {
+      public long getId() {
         return id_;
       }
       /**
-       * <code>int32 id = 1;</code>
+       * <code>int64 id = 1;</code>
        * @param value The id to set.
        * @return This builder for chaining.
        */
-      public Builder setId(int value) {
+      public Builder setId(long value) {
         
         id_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>int32 id = 1;</code>
+       * <code>int64 id = 1;</code>
        * @return This builder for chaining.
        */
       public Builder clearId() {
         
-        id_ = 0;
+        id_ = 0L;
         onChanged();
         return this;
       }
@@ -13699,35 +13901,36 @@ public final class PlayerProtocol {
       "\n\014Player.proto\032\013Goods.proto\"\017\n\rPlayerLis" +
       "tReq\":\n\rPlayerListRes\022)\n\016playerInfoList\030" +
       "\001 \003(\0132\021.SimplePlayerInfo\"\"\n\016LoginPlayerR" +
-      "eq\022\020\n\010playerId\030\001 \001(\005\"+\n\016LoginPlayerRes\022\014" +
-      "\n\004code\030\001 \001(\005\022\013\n\003msg\030\002 \001(\t\"\017\n\rPlayerInfoR" +
-      "eq\"0\n\rPlayerInfoRes\022\037\n\nplayerInfo\030\001 \001(\0132" +
-      "\013.PlayerInfo\"1\n\016SyncPlayerInfo\022\037\n\nplayer" +
-      "Info\030\001 \001(\0132\013.PlayerInfo\"\014\n\nOpenBagReq\"\014\n" +
-      "\nOpenBagRes\"M\n\020SimplePlayerInfo\022\n\n\002id\030\001 " +
-      "\001(\005\022\014\n\004name\030\002 \001(\t\022\r\n\005level\030\003 \001(\005\022\020\n\010care" +
-      "erId\030\004 \001(\005\"\216\002\n\nPlayerInfo\022\n\n\002id\030\001 \001(\003\022\014\n" +
-      "\004name\030\002 \001(\t\022\r\n\005level\030\003 \001(\005\022\020\n\010careerId\030\004" +
-      " \001(\005\022\r\n\005golds\030\005 \001(\005\022\017\n\007sceneId\030\006 \001(\005\022#\n\014" +
-      "playerBattle\030\007 \001(\0132\r.PlayerBattle\022\035\n\tequ" +
-      "ipInfo\030\010 \003(\0132\n.GoodsInfo\022\035\n\tgoodsInfo\030\t " +
-      "\003(\0132\n.GoodsInfo\022!\n\013playerSkill\030\n \001(\0132\014.P" +
-      "layerSkill\022\037\n\nbufferInfo\030\013 \003(\0132\013.BufferI" +
-      "nfo\"\014\n\nBufferInfo\",\n\013PlayerSkill\022\035\n\tskil" +
-      "lInfo\030\n \003(\0132\n.SkillInfo\"\313\001\n\tSkillInfo\022\n\n" +
-      "\002id\030\001 \001(\003\022\014\n\004name\030\002 \001(\t\022\020\n\010careerId\030\003 \001(" +
-      "\005\022\022\n\nlimitLevel\030\004 \001(\005\022\025\n\rmaxLearnLevel\030\005" +
-      " \001(\005\022\020\n\010coolTime\030\006 \001(\005\022\017\n\007formula\030\007 \001(\t\022" +
-      "\014\n\004desc\030\010 \001(\t\022\020\n\010bagIndex\030\t \001(\005\022\022\n\nlearn" +
-      "Level\030\n \001(\005\022\020\n\010playerId\030\013 \001(\005\"\236\001\n\017OtherP" +
-      "layerInfo\022\n\n\002id\030\001 \001(\003\022\014\n\004name\030\002 \001(\t\022\r\n\005l" +
-      "evel\030\003 \001(\005\022\020\n\010careerId\030\004 \001(\005\022\r\n\005state\030\005 " +
-      "\001(\005\022#\n\014playerBattle\030\006 \001(\0132\r.PlayerBattle" +
-      "\022\034\n\010equipBag\030\007 \003(\0132\n.GoodsInfo\"g\n\014Player" +
-      "Battle\022\n\n\002hp\030\001 \001(\005\022\016\n\006currHp\030\002 \001(\005\022\n\n\002mp" +
-      "\030\003 \001(\005\022\016\n\006currMp\030\004 \001(\005\022\016\n\006attack\030\005 \001(\005\022\017" +
-      "\n\007defense\030\006 \001(\005B#\n\021com.game.protocolB\016Pl" +
-      "ayerProtocolb\006proto3"
+      "eq\022\020\n\010playerId\030\001 \001(\003\"L\n\016LoginPlayerRes\022\014" +
+      "\n\004code\030\001 \001(\005\022\013\n\003msg\030\002 \001(\t\022\037\n\nplayerInfo\030" +
+      "\003 \001(\0132\013.PlayerInfo\"\017\n\rPlayerInfoReq\"0\n\rP" +
+      "layerInfoRes\022\037\n\nplayerInfo\030\001 \001(\0132\013.Playe" +
+      "rInfo\"1\n\016SyncPlayerInfo\022\037\n\nplayerInfo\030\001 " +
+      "\001(\0132\013.PlayerInfo\"\014\n\nOpenBagReq\"\014\n\nOpenBa" +
+      "gRes\"M\n\020SimplePlayerInfo\022\n\n\002id\030\001 \001(\003\022\014\n\004" +
+      "name\030\002 \001(\t\022\r\n\005level\030\003 \001(\005\022\020\n\010careerId\030\004 " +
+      "\001(\005\"\216\002\n\nPlayerInfo\022\n\n\002id\030\001 \001(\003\022\014\n\004name\030\002" +
+      " \001(\t\022\r\n\005level\030\003 \001(\005\022\020\n\010careerId\030\004 \001(\005\022\r\n" +
+      "\005golds\030\005 \001(\005\022\017\n\007sceneId\030\006 \001(\005\022#\n\014playerB" +
+      "attle\030\007 \001(\0132\r.PlayerBattle\022\035\n\tequipInfo\030" +
+      "\010 \003(\0132\n.GoodsInfo\022\035\n\tgoodsInfo\030\t \003(\0132\n.G" +
+      "oodsInfo\022!\n\013playerSkill\030\n \001(\0132\014.PlayerSk" +
+      "ill\022\037\n\nbufferInfo\030\013 \003(\0132\013.BufferInfo\"\014\n\n" +
+      "BufferInfo\",\n\013PlayerSkill\022\035\n\tskillInfo\030\n" +
+      " \003(\0132\n.SkillInfo\"\313\001\n\tSkillInfo\022\n\n\002id\030\001 \001" +
+      "(\003\022\014\n\004name\030\002 \001(\t\022\020\n\010careerId\030\003 \001(\005\022\022\n\nli" +
+      "mitLevel\030\004 \001(\005\022\025\n\rmaxLearnLevel\030\005 \001(\005\022\020\n" +
+      "\010coolTime\030\006 \001(\005\022\017\n\007formula\030\007 \001(\t\022\014\n\004desc" +
+      "\030\010 \001(\t\022\020\n\010bagIndex\030\t \001(\005\022\022\n\nlearnLevel\030\n" +
+      " \001(\005\022\020\n\010playerId\030\013 \001(\005\"\236\001\n\017OtherPlayerIn" +
+      "fo\022\n\n\002id\030\001 \001(\003\022\014\n\004name\030\002 \001(\t\022\r\n\005level\030\003 " +
+      "\001(\005\022\020\n\010careerId\030\004 \001(\005\022\r\n\005state\030\005 \001(\005\022#\n\014" +
+      "playerBattle\030\006 \001(\0132\r.PlayerBattle\022\034\n\010equ" +
+      "ipBag\030\007 \003(\0132\n.GoodsInfo\"g\n\014PlayerBattle\022" +
+      "\n\n\002hp\030\001 \001(\005\022\016\n\006currHp\030\002 \001(\005\022\n\n\002mp\030\003 \001(\005\022" +
+      "\016\n\006currMp\030\004 \001(\005\022\016\n\006attack\030\005 \001(\005\022\017\n\007defen" +
+      "se\030\006 \001(\005B#\n\021com.game.protocolB\016PlayerPro" +
+      "tocolb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -13757,7 +13960,7 @@ public final class PlayerProtocol {
     internal_static_LoginPlayerRes_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_LoginPlayerRes_descriptor,
-        new java.lang.String[] { "Code", "Msg", });
+        new java.lang.String[] { "Code", "Msg", "PlayerInfo", });
     internal_static_PlayerInfoReq_descriptor =
       getDescriptor().getMessageTypes().get(4);
     internal_static_PlayerInfoReq_fieldAccessorTable = new

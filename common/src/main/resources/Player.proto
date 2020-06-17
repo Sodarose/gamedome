@@ -15,13 +15,14 @@ message PlayerListRes {
 
 // 角色登录请求
 message LoginPlayerReq {
-    int32 playerId = 1;
+    int64 playerId = 1;
 }
 
 // 角色登录响应
 message LoginPlayerRes {
     int32 code = 1;
     string msg = 2;
+    PlayerInfo playerInfo = 3;
 }
 
 // 请求角色信息
@@ -51,7 +52,7 @@ message OpenBagRes {
 
 // 简要角色信息
 message SimplePlayerInfo {
-    int32 id = 1;
+    int64 id = 1;
     string name = 2;
     int32 level = 3;
     int32 careerId = 4;

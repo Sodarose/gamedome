@@ -1,0 +1,51 @@
+syntax = "proto3";
+option java_package = "com.game.protocol";
+option java_outer_classname = "Team";
+// 创建队伍请求
+message CreateTeamReq {
+    // 队伍人数
+    int32 num = 1;
+    string teamName = 2;
+}
+
+message CreateTeamRes {
+    int32 code = 1;
+    string msg = 2;
+    TeamInfo teamInfo = 3;
+}
+
+message EntryTeamReq {
+    int64 teamId = 1;
+}
+
+
+message ExitTeamReq {
+    int64 teamId = 1;
+}
+
+// 踢出队伍
+message KickTeamReq {
+    int64 playerId = 1;
+}
+
+
+message KickTeamNotify {
+
+}
+
+
+message TeamList {
+    repeated TeamInfo teamInfo = 1;
+}
+
+
+message TeamInfo {
+    int64 id = 1;
+    int64 captainId = 2;
+    string teamName = 3;
+    int32 currNum = 4;
+    int32 maxNum = 5;
+    bool full = 6;
+    repeated string memberName = 7;
+}
+

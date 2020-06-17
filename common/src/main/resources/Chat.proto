@@ -10,8 +10,6 @@ message ChannelMsg {
     string senderName = 2;
     // 消息
     string msg = 4;
-    // 频道Id
-    int64  channelId = 5;
     // 频道类型
     int32  channelType = 6;
     int64  sendTime = 7;
