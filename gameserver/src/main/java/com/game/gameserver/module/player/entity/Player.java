@@ -24,6 +24,10 @@ public class Player {
     private Integer sceneId;
     /** 金币数量 */
     private Integer golds;
+    /** 背包容量 */
+    private Integer bagCapacity;
+    /** 仓库容量 */
+    private Integer warehouse;
     /** 账号ID */
     private Integer userId;
     /** 创建时间 */

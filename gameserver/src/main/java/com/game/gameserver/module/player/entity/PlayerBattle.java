@@ -1,12 +1,6 @@
 package com.game.gameserver.module.player.entity;
 
-import com.game.gameserver.common.config.CareerLevelProperty;
-import com.game.gameserver.module.buffer.model.Buffer;
-import com.game.gameserver.module.goods.entity.Equip;
-import com.game.gameserver.module.goods.model.EquipBag;
 import lombok.Data;
-
-import java.util.List;
 
 /**
  * 玩家角色战斗属性

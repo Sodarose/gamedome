@@ -23,7 +23,7 @@ public class ServerHandler extends ChannelInboundHandlerAdapter {
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         logger.info("server accept message {}",msg);
         Message message = (Message) msg;
-       try {
+        try {
             MessageDispatcher messageDispatcher = ServerContext.getApplication()
                     .getBean(MessageDispatcher.class);
             messageDispatcher.dispatch(message,ctx.channel());

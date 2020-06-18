@@ -11,10 +11,14 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
  * @date 2020/6/18 21:38
  */
 public class EmailBox {
-    private final List<Email> emails;
+    private final List<Email> emailList;
     private final ReentrantReadWriteLock lock;
     public EmailBox() {
-        this.emails = new ArrayList<>();
+        this.emailList = new ArrayList<>();
         this.lock = new ReentrantReadWriteLock();
+    }
+
+    public void initialize(List<Email> emailList){
+        this.emailList.addAll(emailList);
     }
 }

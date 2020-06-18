@@ -1,20 +1,12 @@
 package com.game.gameserver.module.player.model;
 
-import com.game.gameserver.common.config.CareerConfig;
-import com.game.gameserver.common.config.CareerLevelProperty;
-import com.game.gameserver.common.config.StaticConfigManager;
 import com.game.gameserver.common.entity.Unit;
 import com.game.gameserver.module.buffer.model.Buffer;
-import com.game.gameserver.module.goods.model.EquipBag;
-import com.game.gameserver.module.goods.model.PlayerBag;
 import com.game.gameserver.module.player.entity.Player;
 import com.game.gameserver.module.player.entity.PlayerBattle;
-import com.game.gameserver.module.skill.model.PlayerSkill;
-import com.game.gameserver.util.GameUUID;
 import io.netty.channel.Channel;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;

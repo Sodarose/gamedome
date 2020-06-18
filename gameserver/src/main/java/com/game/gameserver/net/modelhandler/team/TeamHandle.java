@@ -98,7 +98,7 @@ public class TeamHandle extends BaseHandler {
         if (playerObject == null) {
             return;
         }
-        TeamProtocol.ExitTeamRes exitTeamRes = teamService.exitTeam(playerObject);
+        teamService.exitTeam(playerObject);
 
     }
 

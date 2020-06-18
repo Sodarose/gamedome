@@ -1,12 +1,9 @@
 package com.game.gameserver.module.cache.entity;
 
-import com.game.gameserver.module.goods.entity.Equip;
+import com.game.gameserver.module.item.entity.Equip;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 /**
  * @author xuewenkang

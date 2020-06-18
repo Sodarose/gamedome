@@ -3,7 +3,7 @@ package com.game.gameserver.module.player.service.impl;
 import com.game.gameserver.event.EventBus;
 import com.game.gameserver.module.buffer.service.BufferService;
 import com.game.gameserver.module.cache.manager.CacheManager;
-import com.game.gameserver.module.goods.manager.GoodsManager;
+import com.game.gameserver.module.item.manager.ItemManager;
 import com.game.gameserver.module.player.dao.PlayerMapper;
 import com.game.gameserver.module.player.entity.Player;
 import com.game.gameserver.module.player.event.LoginEvent;
@@ -39,7 +39,7 @@ public class PlayerServiceImpl implements PlayerService {
     @Autowired
     private SceneManager sceneManager;
     @Autowired
-    private GoodsManager goodsManager;
+    private ItemManager itemManager;
     @Autowired
     private SkillService skillService;
     @Autowired
@@ -68,8 +68,8 @@ public class PlayerServiceImpl implements PlayerService {
         // 创建角色
         playerObject = new PlayerObject(player);
         // 读取相关数据
-        goodsManager.loadPlayerEquip(player);
-        goodsManager.loadPlayerBag(player);
+        itemManager.loadPlayerEquip(player);
+        itemManager.loadPlayerBag(player);
         // 设置Channel与角色的关联
         channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).set(playerObject);
         playerObject.setChannel(channel);

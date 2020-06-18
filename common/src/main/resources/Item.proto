@@ -1,0 +1,66 @@
+syntax = "proto3";
+option java_package = "com.game.protocol";
+option java_outer_classname = "ItemProtocol";
+
+
+// 道具信息
+message ItemInfo {
+    // 道具ID
+    int32 itemId = 1;
+    // 道具类型
+    int32 itemType = 2;
+    // 道具名称
+    int32 itemName = 3;
+    // 道具数量
+    int32 itemNum = 4;
+    // 道具所在的背包
+    int32 bagPack = 5;
+    // 道具所在的背包位置
+    int32 bagIndex = 6;
+    // 是否绑定
+    bool bound = 7;
+    // 物品描述
+    string desc = 8;
+    // 物品属性 根据类型的不同而不同
+    map<int32, string> attribute = 9;
+}
+
+// 装备栏
+message EquipBag{
+    repeated ItemInfo equipList = 1;
+}
+
+// 装备
+message PlayerBag{
+    repeated ItemInfo itemList = 1;
+}
+
+// 仓库
+message WareHouseBag{
+    repeated ItemInfo itemList = 1;
+}
+
+// 使用道具
+message UseItem{
+    int64 itemId = 1;
+    int32 bagPack = 2;
+    int32 bagIndex = 3;
+    int32 num = 4;
+}
+
+// 移动道具
+message MoveItem{
+    int64 itemId = 1;
+    int32 bagPack = 2;
+    int32 bagIndex = 3;
+    int32 num = 4;
+}
+
+// 丢弃道具
+message DiscardItem{
+    int64 itemId = 1;
+    int32 bagPack = 2;
+    int32 bagIndex = 3;
+    int32 num = 4;
+}
+

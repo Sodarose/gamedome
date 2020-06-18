@@ -1,6 +1,5 @@
 package com.game.gameserver.module.cache.entity;
 
-import com.game.gameserver.module.goods.entity.Equip;
 import com.game.gameserver.module.player.model.PlayerObject;
 
 import java.util.Map;

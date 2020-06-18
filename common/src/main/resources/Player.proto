@@ -1,7 +1,7 @@
 syntax = "proto3";
 option java_package = "com.game.protocol";
 option java_outer_classname = "PlayerProtocol";
-import "Goods.proto";
+import "Item.proto";
 
 // 角色列表请求
 message PlayerListReq {
@@ -69,9 +69,9 @@ message PlayerInfo {
     // 战斗属性
     PlayerBattle playerBattle = 7;
     // 装备信息
-    repeated GoodsInfo equipInfo = 8;
+    repeated ItemInfo equipInfo = 8;
     // 背包物品
-    repeated GoodsInfo goodsInfo = 9;
+    repeated ItemInfo goodsInfo = 9;
     // 技能数据
     PlayerSkill playerSkill = 10;
     // 角色Buffer信息
@@ -112,7 +112,7 @@ message OtherPlayerInfo {
     // 战斗属性
     PlayerBattle playerBattle = 6;
     // 装备信息
-    repeated GoodsInfo equipBag = 7;
+    repeated ItemInfo equipBag = 7;
 }
 
 

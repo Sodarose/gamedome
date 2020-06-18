@@ -2,9 +2,7 @@ package com.game.gameserver.module.store.service.impl;
 
 import com.game.gameserver.common.config.CommodityConfig;
 import com.game.gameserver.common.config.StaticConfigManager;
-import com.game.gameserver.module.goods.entity.Goods;
-import com.game.gameserver.module.goods.manager.GoodsManager;
-import com.game.gameserver.module.goods.model.PlayerBag;
+import com.game.gameserver.module.item.manager.ItemManager;
 import com.game.gameserver.module.player.model.PlayerObject;
 import com.game.gameserver.module.store.manager.StoreManager;
 import com.game.gameserver.module.store.entity.Commodity;
@@ -27,7 +25,7 @@ public class StoreServiceImpl implements StoreService {
     @Autowired
     private StoreManager storeManager;
     @Autowired
-    private GoodsManager goodsManager;
+    private ItemManager itemManager;
 
     /**
      * 获得商品列表
@@ -70,12 +68,12 @@ public class StoreServiceImpl implements StoreService {
             return createBuyCommodityRes(1003, "价钱不足");
         }
         // 判断背包空间是否足够放入物品
-        boolean space = goodsManager.hasSpace(playerObject, commodityConfig.getGoodsType()
+        boolean space = itemManager.hasSpace(playerObject, commodityConfig.getGoodsType()
                 , commodityConfig.getGoodsId(), num);
         if (!space) {
             return createBuyCommodityRes(1004, "空间不足");
         }
-        boolean result = goodsManager.addGoods(playerObject, commodityConfig.getGoodsType()
+        boolean result = itemManager.addGoods(playerObject, commodityConfig.getGoodsType()
                 , commodityConfig.getGoodsId(), num);
         if (!result) {
             return createBuyCommodityRes(1004, "购买失败");

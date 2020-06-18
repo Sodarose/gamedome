@@ -1,9 +1,9 @@
 package com.game.gameserver.util;
 
 import com.game.gameserver.common.config.*;
-import com.game.gameserver.module.goods.entity.Equip;
-import com.game.gameserver.module.goods.entity.Prop;
-import com.game.gameserver.module.goods.type.GoodsType;
+import com.game.gameserver.module.item.entity.Equip;
+import com.game.gameserver.module.item.entity.Prop;
+import com.game.gameserver.module.item.type.ItemType;
 import com.game.gameserver.module.monster.model.MonsterObject;
 import com.game.gameserver.module.npc.model.NpcObject;
 import com.game.gameserver.module.player.entity.PlayerBattle;
@@ -208,7 +208,7 @@ public class ProtocolFactory {
         builder.setGoodsType(commodityConfig.getGoodsType());
         builder.setGoodsId(commodityConfig.getGoodsId());
 
-        if (GoodsType.EQUIP == commodityConfig.getGoodsType()) {
+        if (ItemType.EQUIP == commodityConfig.getGoodsType()) {
             EquipConfig equipConfig = StaticConfigManager.getInstance().getEquipConfigMap()
                     .get(commodityConfig.getGoodsId());
             if (equipConfig == null) {
@@ -217,7 +217,7 @@ public class ProtocolFactory {
             builder.setGoodsName(equipConfig.getName());
         }
 
-        if (GoodsType.PROP == commodityConfig.getGoodsType()) {
+        if (ItemType.PROP == commodityConfig.getGoodsType()) {
             PropConfig propConfig = StaticConfigManager.getInstance().getPropConfigMap()
                     .get(commodityConfig.getGoodsId());
             if (propConfig == null) {

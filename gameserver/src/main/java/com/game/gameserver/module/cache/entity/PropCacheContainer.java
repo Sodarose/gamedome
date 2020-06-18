@@ -1,7 +1,6 @@
 package com.game.gameserver.module.cache.entity;
 
-import com.game.gameserver.module.goods.entity.Equip;
-import com.game.gameserver.module.goods.entity.Prop;
+import com.game.gameserver.module.item.entity.Prop;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
