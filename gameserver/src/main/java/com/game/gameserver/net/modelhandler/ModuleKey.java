@@ -16,4 +16,5 @@ public interface ModuleKey {
     short STORE_MODULE = 1008;
     short CHAT_MODULE = 1009;
     short EMAIL_MODULE = 1010;
+    short TEAM_MODULE = 1011;
 }

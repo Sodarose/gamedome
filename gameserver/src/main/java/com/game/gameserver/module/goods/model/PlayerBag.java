@@ -46,6 +46,10 @@ public class PlayerBag {
         return false;
     }
 
+    public int spaceNum(){
+        return 0;
+    }
+
     public List<Goods> getGoodsList(){
         return null;
     }

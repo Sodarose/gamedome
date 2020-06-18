@@ -1,14 +1,17 @@
 package com.game.gameserver.module.player.service.impl;
 
+import com.game.gameserver.event.EventBus;
 import com.game.gameserver.module.buffer.service.BufferService;
+import com.game.gameserver.module.cache.manager.CacheManager;
+import com.game.gameserver.module.goods.manager.GoodsManager;
 import com.game.gameserver.module.player.dao.PlayerMapper;
 import com.game.gameserver.module.player.entity.Player;
+import com.game.gameserver.module.player.event.LoginEvent;
 import com.game.gameserver.module.player.manager.PlayerManager;
 import com.game.gameserver.module.player.model.PlayerObject;
 import com.game.gameserver.module.player.model.PlayerResultType;
 import com.game.gameserver.module.player.service.PlayerService;
 import com.game.gameserver.module.scene.manager.SceneManager;
-import com.game.gameserver.module.skill.model.PlayerSkill;
 import com.game.gameserver.module.skill.service.SkillService;
 import com.game.gameserver.util.ProtocolFactory;
 import com.game.protocol.PlayerProtocol;
@@ -33,17 +36,16 @@ public class PlayerServiceImpl implements PlayerService {
     private PlayerManager playerManager;
     @Autowired
     private PlayerMapper playerMapper;
-    /*  @Autowired
-        private EquipService equipService;
-        @Autowired
-        private PropService propService;*/
     @Autowired
     private SceneManager sceneManager;
-
+    @Autowired
+    private GoodsManager goodsManager;
     @Autowired
     private SkillService skillService;
     @Autowired
     private BufferService bufferService;
+    @Autowired
+    private CacheManager cacheManager;
 
     /**
      * 登录用户角色
@@ -52,16 +54,44 @@ public class PlayerServiceImpl implements PlayerService {
      * @return com.game.protocol.PlayerProtocol.LoginRes
      */
     @Override
-    public PlayerProtocol.LoginPlayerRes loginPlayer(Long playerId, Channel channel) {
+    public PlayerProtocol.LoginPlayerRes loginRole(Long playerId, Channel channel) {
+        // 查询缓存
+        PlayerObject playerObject = playerManager.getPlayerObject(playerId);
+        if (playerObject != null) {
+            return null;
+        }
+        // 查询数据库
         Player player = playerMapper.getPlayerById(playerId);
         if (player == null) {
-            return ProtocolFactory.createLoginPlayerRes(PlayerResultType.LOGIN_FAILED,"登录失败");
+            return ProtocolFactory.createLoginPlayerRes(PlayerResultType.LOGIN_FAILED, "登录失败", null);
         }
         // 创建角色
-        PlayerObject playerObject = new PlayerObject(player);
+        playerObject = new PlayerObject(player);
+        // 读取相关数据
+        goodsManager.loadPlayerEquip(player);
+        goodsManager.loadPlayerBag(player);
+        // 设置Channel与角色的关联
+        channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).set(playerObject);
+        playerObject.setChannel(channel);
+        // 进入场景
+        sceneManager.entryScene(playerObject, player.getSceneId());
+        // 放入管理器缓存
+        playerManager.putPlayerObject(playerObject);
+        // 发出角色登录事件 做后续的处理
+        LoginEvent loginEvent = new LoginEvent(player.getId());
+        EventBus.EVENT_BUS.fire(loginEvent);
+        return ProtocolFactory.createLoginPlayerRes(PlayerResultType.SUCCESS, "角色登录成功", playerObject);
+    }
 
-        // 返回登录结果
-        return ProtocolFactory.createLoginPlayerRes(PlayerResultType.SUCCESS,"角色登录成功");
+    /**
+     * 获取角色信息
+     *
+     * @param playerObject
+     * @return com.game.protocol.PlayerProtocol.PlayerInfo
+     */
+    @Override
+    public PlayerProtocol.PlayerInfo getPlayerInfo(PlayerObject playerObject) {
+        return ProtocolFactory.createPlayerInfo(playerObject);
     }
 
     /**
@@ -71,32 +101,11 @@ public class PlayerServiceImpl implements PlayerService {
      * @return com.game.protocol.PlayerProtocol.PlayerList
      */
     @Override
-    public PlayerProtocol.PlayerListRes getPlayerList(int accountId) {
+    public PlayerProtocol.PlayerListRes getRoleList(int accountId) {
         // 获得角色列表
         List<Player> playerList = playerMapper.getPlayerListByAccountId(accountId);
         // 转换成Protocol 返回
         return ProtocolFactory.createPlayerList(playerList);
     }
 
-    /**
-     * 根据Id 获取角色
-     *
-     * @param playerId
-     * @return com.game.gameserver.module.player.model.PlayerObject
-     */
-    @Override
-    public PlayerObject getPlayerObject(Long playerId) {
-        return playerManager.getPlayerObject(playerId);
-    }
-
-    /**
-     * 获取当前角色信息
-     *
-     * @param playerId
-     * @return com.game.protocol.PlayerProtocol.PlayerInfoReq
-     */
-    @Override
-    public PlayerProtocol.PlayerInfoReq getPlayerInfo(Long playerId) {
-        return null;
-    }
 }

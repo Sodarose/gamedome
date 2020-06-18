@@ -1,4 +1,4 @@
-package com.game.module.skill.handle;
+package com.game.module.skill;
 
 /**
  * @author xuewenkang

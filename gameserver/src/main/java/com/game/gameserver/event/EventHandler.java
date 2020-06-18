@@ -9,7 +9,7 @@ import java.lang.annotation.*;
  * @date 2020/6/16 21:47
  */
 @Documented
-@Target(ElementType.TYPE)
+@Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface EventHandler {
     EventType type() ;

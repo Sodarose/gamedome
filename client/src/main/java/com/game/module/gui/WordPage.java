@@ -1,13 +1,15 @@
 package com.game.module.gui;
 
-import com.game.module.player.entity.PlayerObject;
-import com.game.module.player.entity.SimplePlayerInfo;
+import com.game.module.goods.GoodsType;
+import com.game.module.player.PlayerInfo;
+import com.game.module.player.SimplePlayerInfo;
+import com.game.module.store.Commodity;
 import com.game.util.StaticData;
 import org.springframework.stereotype.Component;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -38,6 +40,19 @@ public class WordPage extends JTextArea {
         repaint();
     }
 
+
+    public void printStore(Map<String, Commodity> commodityMap) {
+        for (Map.Entry<String, Commodity> entry : commodityMap.entrySet()) {
+            Commodity commodity = entry.getValue();
+            builder.append(commodity.getGoodsType() == GoodsType.EQUIP ? "装备" : "道具").append(":")
+                    .append(commodity.getGoodsName()).append("\n");
+            builder.append("原价:").append(commodity.getOriginalPrice()).append("\n");
+            builder.append("现价:").append(commodity.getPrice()).append("\n");
+            builder.append(commodity.getLimitCount() == 0 ? "" : "限购:" + "commodity.getLimitCount()").append("\n");
+        }
+        refresh();
+    }
+
     public void print(String text) {
         builder.append(text);
         builder.append("\n");
@@ -52,19 +67,19 @@ public class WordPage extends JTextArea {
     /**
      * 展示角色选择
      *
-     * @param playerList 角色列表
+     * @param roles 角色列表
      * @return void
      */
-    public void print(List<SimplePlayerInfo> playerList) {
+    public void printRoles(Map<String, SimplePlayerInfo> roles) {
         builder.append("\n");
-        if (playerList.size() == 0) {
+        if (roles.size() == 0) {
             builder.append("未拥有角色！请先创建角色！\n");
             return;
         }
-        for (SimplePlayerInfo player : playerList) {
-            builder.append("角色名：").append(player.getName()).append("\n");
-            builder.append("职业：").append(StaticData.careerMap.get(player.getCareerId())).append("\n");
-            builder.append("等级：").append(player.getLevel()).append("\n");
+        for (Map.Entry<String, SimplePlayerInfo> entry : roles.entrySet()) {
+            builder.append("角色名：").append(entry.getValue().getName()).append("\n");
+            builder.append("职业：").append(StaticData.careerMap.get(entry.getValue().getCareerId())).append("\n");
+            builder.append("等级：").append(entry.getValue().getLevel()).append("\n");
         }
         refresh();
     }
@@ -72,25 +87,25 @@ public class WordPage extends JTextArea {
     /**
      * 打印角色信息
      *
-     * @param playerObject
+     * @param playerInfo
      * @return void
      */
-    public void print(PlayerObject playerObject) {
-        clean();
-    /*    builder.append("姓名：\t").append(playerObject.getName()).append("\n");
-        builder.append("职业：\t").append(StaticData.careerMap.get(playerObject.getCareer())).append("\n");
-        builder.append("等级: \t").append(playerObject.getLevel()).append("\n");
+    public void printPlayerInfo(PlayerInfo playerInfo) {
+        builder.append("姓名：\t").append(playerInfo.getName()).append("\n");
+        builder.append("职业：\t").append(StaticData.careerMap.get(playerInfo.getCareerId())).append("\n");
+        builder.append("等级: \t").append(playerInfo.getLevel()).append("\n");
+        builder.append("金币: \t").append(playerInfo.getGolds()).append("\n");
         builder.append("\n");
-        builder.append("生命值：").append(playerObject.getPropertyInfo().getHp()).append("\t");
-        builder.append("魔法值：").append(playerObject.getPropertyInfo().getMp()).append("\t");
+        builder.append("生命值：").append(playerInfo.getPlayerBattle().getCurrHp()).append("/")
+                .append(playerInfo.getPlayerBattle().getHp())
+                .append("\t");
+        builder.append("魔法值：").append(playerInfo.getPlayerBattle().getCurrMp()).append("/")
+                .append(playerInfo.getPlayerBattle().getMp())
+                .append("\t");
         builder.append("\n");
-        builder.append("物理攻击力：").append(playerObject.getPropertyInfo().getPhyAttack()).append("\n");
-        builder.append("物理防御力：").append(playerObject.getPropertyInfo().getPhyDefense()).append("\n");
-        builder.append("魔法攻击力：").append(playerObject.getPropertyInfo().getMagicAttack()).append("\n");
-        builder.append("魔法防御力：").append(playerObject.getPropertyInfo().getMagicDefense()).append("\n");
-        builder.append("攻击速度：").append(playerObject.getPropertyInfo().getMagicDefense()).append("\n");
-        builder.append("移动速度：").append(playerObject.getPropertyInfo().getMagicDefense()).append("\n");
-        builder.append("\n");*/
+        builder.append("攻击力：").append(playerInfo.getPlayerBattle().getAttack()).append("\n");
+        builder.append("防御力：").append(playerInfo.getPlayerBattle().getDefense()).append("\n");
+        builder.append("\n");
         refresh();
     }
 

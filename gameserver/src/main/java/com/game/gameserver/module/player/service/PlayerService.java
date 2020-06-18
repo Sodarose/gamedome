@@ -19,7 +19,7 @@ public interface PlayerService {
      * @param account
      * @return com.game.protocol.PlayerProtocol.PlayerList
      */
-    PlayerProtocol.PlayerListRes getPlayerList(int account);
+    PlayerProtocol.PlayerListRes getRoleList(int account);
 
     /**
      * 登录用户角色
@@ -28,22 +28,13 @@ public interface PlayerService {
      * @param channel
      * @return com.game.protocol.PlayerProtocol.LoginRes
      */
-    PlayerProtocol.LoginPlayerRes loginPlayer(Long playerId, Channel channel);
-
-
-    /**
-     * 根据Id 获取角色
-     *
-     * @param playerId
-     * @return com.game.gameserver.module.player.model.PlayerObject
-     */
-    PlayerObject getPlayerObject(Long playerId);
+    PlayerProtocol.LoginPlayerRes loginRole(Long playerId, Channel channel);
 
     /**
-     * 获取当前角色信息
+     * 获取角色信息
      *
-     * @param playerId
-     * @return com.game.protocol.PlayerProtocol.PlayerInfoReq
+     * @param playerObject
+     * @return com.game.protocol.PlayerProtocol.PlayerInfo
      */
-    PlayerProtocol.PlayerInfoReq getPlayerInfo(Long playerId);
+    PlayerProtocol.PlayerInfo getPlayerInfo(PlayerObject playerObject);
 }

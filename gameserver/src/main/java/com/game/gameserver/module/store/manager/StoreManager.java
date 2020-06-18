@@ -1,11 +1,14 @@
 package com.game.gameserver.module.store.manager;
 
 import com.game.gameserver.common.config.CommodityConfig;
-import com.game.gameserver.module.store.model.Commodity;
+import com.game.gameserver.common.config.StaticConfigManager;
+import com.game.gameserver.module.store.entity.Commodity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -19,35 +22,32 @@ import java.util.concurrent.ConcurrentHashMap;
 public class StoreManager {
     private final static Logger logger = LoggerFactory.getLogger(StoreManager.class);
 
-    /** 商品列表 */
+    /**
+     * 商品列表
+     */
     private final Map<Integer, Commodity> commodityMap = new ConcurrentHashMap<>(16);
 
-    /** 加载商店 */
-    public void loadStore(){
-        
-    }
-
     /**
-     * 创建一个商品
-     *
-     * @param commodityConfig
-     * @return com.game.gameserver.module.store.model.Commodity
+     * 加载商店
      */
-    private Commodity createCommodity(CommodityConfig commodityConfig){
-        return null;
+    public void loadStore() {
+        logger.info("商店读取商品信息");
+        Map<Integer, CommodityConfig> commodityConfigMap = StaticConfigManager.getInstance().getCommodityConfigMap();
+        for (Map.Entry<Integer, CommodityConfig> entry : commodityConfigMap.entrySet()) {
+            Commodity commodity = new Commodity(entry.getKey());
+            commodityMap.put(entry.getKey(), commodity);
+        }
     }
 
-    public void addCommodity(CommodityConfig commodityConfig){
-
+    public List<Commodity> commodityList() {
+        List<Commodity> commodities = new ArrayList<>();
+        for (Map.Entry<Integer, Commodity> entry : commodityMap.entrySet()) {
+            commodities.add(entry.getValue());
+        }
+        return commodities;
     }
 
-    /**
-     * 移除一个商品
-     * @param id 商品Id
-     * @return void
-     */
-    public void removeCommodity(int id){
-
+    public Commodity getCommodity(int commodityId){
+        return commodityMap.get(commodityId);
     }
-
 }

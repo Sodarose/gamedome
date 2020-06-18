@@ -1,6 +1,6 @@
 package com.game.module.gui;
 
-import com.game.module.order.handle.CmdHandle;
+import com.game.module.order.CmdHandle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

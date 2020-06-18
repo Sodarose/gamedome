@@ -1,4 +1,4 @@
-package com.game.module.player.entity;
+package com.game.module.player;
 
 import lombok.Data;
 
@@ -8,7 +8,7 @@ import lombok.Data;
  */
 @Data
 public class SimplePlayerInfo {
-    private int id;
+    private long id;
     private String name;
     private int level;
     private int careerId;

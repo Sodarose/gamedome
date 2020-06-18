@@ -1,8 +1,6 @@
 package com.game.gameserver.module.goods.model;
 
-
 import com.game.gameserver.module.goods.entity.Equip;
-import com.game.gameserver.module.goods.entity.Goods;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
@@ -16,8 +14,25 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
  */
 public class EquipBag  {
     /** 容量 */
-    private int capacity;
+    private int capacity = 6;
     /** 容器 key为格子Id value 为装备Id */
-    private Map<Integer,Goods> rawData;
-    private ReentrantReadWriteLock lock;
+    private final Map<Integer, Equip> rawData;
+    /** 读写锁 */
+    private final ReentrantReadWriteLock lock;
+
+    public EquipBag(){
+        this.rawData = new ConcurrentHashMap<>(capacity);
+        this.lock = new ReentrantReadWriteLock();
+    }
+
+    /**
+     * 得到装备列表
+     *
+     * @param
+     * @return java.util.List<com.game.gameserver.module.goods.entity.Equip>
+     */
+    public List<Equip> getEquipList(){
+        return null;
+    }
+
 }

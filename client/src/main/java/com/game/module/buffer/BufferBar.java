@@ -1,4 +1,4 @@
-package com.game.module.buffer.entity;
+package com.game.module.buffer;
 
 /**
  * @author xuewenkang

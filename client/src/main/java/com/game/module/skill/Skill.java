@@ -1,4 +1,4 @@
-package com.game.module.skill.entity;
+package com.game.module.skill;
 
 import lombok.Data;
 

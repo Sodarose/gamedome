@@ -1,4 +1,4 @@
-package com.game.gameserver.module.store.model;
+package com.game.gameserver.module.store.type;
 
 /**
  * @author xuewenkang

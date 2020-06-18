@@ -1,11 +1,11 @@
 package com.game.context;
 
 
-import com.game.module.order.handle.CmdHandle;
-import com.game.module.player.handle.PlayerHandle;
-import com.game.module.account.handle.AccountHandle;
-import com.game.module.scene.handle.SceneHandle;
-import com.game.module.scene.handle.TipHandle;
+import com.game.module.order.CmdHandle;
+import com.game.module.player.PlayerHandle;
+import com.game.module.account.AccountHandle;
+import com.game.module.scene.SceneHandle;
+import com.game.module.scene.TipHandle;
 import com.game.task.MessageDispatcher;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;

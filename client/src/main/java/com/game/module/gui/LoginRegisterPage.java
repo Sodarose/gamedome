@@ -1,7 +1,7 @@
 package com.game.module.gui;
 
 import com.game.context.ClientSpringContext;
-import com.game.module.account.handle.AccountHandle;
+import com.game.module.account.AccountHandle;
 
 import javax.swing.*;
 import java.awt.*;

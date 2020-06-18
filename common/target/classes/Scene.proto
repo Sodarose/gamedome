@@ -15,13 +15,22 @@ message EntrySceneRes {
 }
 
 // 退出场景请求
-message ExitSceneReq{
+message ExitSceneReq {
 
 }
 
 // 退出场景响应
-message ExitSceneRes{
+message ExitSceneRes {
 
+}
+
+message ChangeSceneReq {
+    string sceneName = 1;
+}
+
+message ChangeSceneRes {
+    int32 code = 1;
+    string msg = 2;
 }
 
 message SceneInfo {
@@ -36,7 +45,7 @@ message SceneInfo {
 }
 
 // 查看场景列表
-message CheckSceneListReq{
+message CheckSceneListReq {
 
 }
 

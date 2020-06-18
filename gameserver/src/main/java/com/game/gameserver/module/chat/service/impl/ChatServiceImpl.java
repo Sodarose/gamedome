@@ -50,6 +50,10 @@ public class ChatServiceImpl implements ChatService {
         Long channelId = playerObject.getPlayerChannelMap().get(channelType);
         // 获取聊天频道
         ChatChannel chatChannel = chatManager.getChatChannel(channelId);
+        // 频道不存在
+        if(chatChannel==null){
+            return;
+        }
         Lock readLock = chatChannel.getReadLock();
         readLock.lock();
         try{

@@ -8,7 +8,7 @@ import lombok.Data;
  */
 @Data
 public class Npc {
-    private Integer id;
+    private Long id;
     private Integer level;
     private String name;
     private Integer career;

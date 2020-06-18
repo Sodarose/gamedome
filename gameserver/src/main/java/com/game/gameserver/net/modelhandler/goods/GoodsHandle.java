@@ -1,4 +1,4 @@
-package com.game.gameserver.net.modelhandler.item;
+package com.game.gameserver.net.modelhandler.goods;
 
 import com.game.gameserver.net.annotation.ModuleHandler;
 import com.game.gameserver.net.handler.BaseHandler;
@@ -11,6 +11,6 @@ import org.springframework.stereotype.Component;
  */
 @ModuleHandler(module = ModuleKey.ITEM_Module)
 @Component
-public class ItemHandle extends BaseHandler {
+public class GoodsHandle extends BaseHandler {
 
 }

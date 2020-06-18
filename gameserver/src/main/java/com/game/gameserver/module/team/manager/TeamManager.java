@@ -1,12 +1,12 @@
 package com.game.gameserver.module.team.manager;
 
-import com.game.gameserver.module.player.entity.Player;
-import com.game.gameserver.module.player.model.PlayerObject;
-import com.game.gameserver.module.team.model.TeamObject;
+import com.game.gameserver.module.team.entity.Team;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -20,24 +20,13 @@ import java.util.concurrent.ConcurrentHashMap;
 public class TeamManager {
     private final static Logger logger = LoggerFactory.getLogger(TeamManager.class);
 
-    /** 队伍列表 */
-    private final Map<Long, TeamObject> teamObjectMap = new ConcurrentHashMap<>(16);
-
     /**
-     * 创建一个队伍
-     *
-     * @param player 创建者
-     * @param teamName 队伍名
-     * @return com.game.gameserver.module.team.model.TeamObject
+     * 队伍列表
      */
-    public TeamObject createTeamObject(PlayerObject player, String teamName, int maxCount){
-        if(player.getTeamId()!=null){
-            logger.info("还用户已经在组队状态，禁止创建队伍");
-            return null;
-        }
-        TeamObject teamObject = new TeamObject(player,teamName,maxCount);
-        teamObjectMap.put(teamObject.getId(),teamObject);
-        return teamObject;
+    private final Map<Long, Team> teamObjectMap = new ConcurrentHashMap<>(16);
+
+    public void putTeamObject(Team team) {
+        teamObjectMap.put(team.getId(), team);
     }
 
     /**
@@ -46,7 +35,7 @@ public class TeamManager {
      * @param teamId
      * @return com.game.gameserver.module.team.model.TeamObject
      */
-    public TeamObject getTeamObject(int teamId){
+    public Team getTeamObject(long teamId) {
         return teamObjectMap.get(teamId);
     }
 
@@ -56,8 +45,16 @@ public class TeamManager {
      * @param teamId
      * @return void
      */
-    public void removeTeamObject(int teamId){
+    public void removeTeamObject(long teamId) {
         teamObjectMap.remove(teamId);
     }
 
+
+    public List<Team> getListTeamObject() {
+        List<Team> teamList = new ArrayList<>();
+        for (Map.Entry<Long, Team> entry : teamObjectMap.entrySet()) {
+            teamList.add(entry.getValue());
+        }
+        return teamList;
+    }
 }

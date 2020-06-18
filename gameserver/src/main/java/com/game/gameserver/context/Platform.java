@@ -3,6 +3,7 @@ package com.game.gameserver.context;
 import com.game.gameserver.common.config.StaticConfigManager;
 import com.game.gameserver.module.chat.manager.ChatManager;
 import com.game.gameserver.module.scene.manager.SceneManager;
+import com.game.gameserver.module.store.manager.StoreManager;
 import com.game.gameserver.module.timewheel.manager.TimeWheelTimeManager;
 import com.game.gameserver.thread.UnitTickThread;
 import org.slf4j.Logger;
@@ -28,6 +29,8 @@ public class Platform {
     private SceneManager sceneManager;
     @Autowired
     private ChatManager chatManager;
+    @Autowired
+    private StoreManager storeManager;
     private UnitTickThread unitTickThread = new UnitTickThread(1, TimeUnit.SECONDS);
 
     public void startUp() {
@@ -35,6 +38,7 @@ public class Platform {
         staticConfigManager.loadConfig();
         sceneManager.loadScene();
         chatManager.initialize();
+        storeManager.loadStore();
         unitTickThread.start();
     }
 

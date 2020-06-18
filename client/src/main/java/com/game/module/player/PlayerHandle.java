@@ -1,16 +1,15 @@
-package com.game.module.player.handle;
+package com.game.module.player;
 
 import com.game.context.ClientGameContext;
 import com.game.module.BaseHandler;
 import com.game.module.ModuleKey;
-import com.game.module.order.handle.CmdHandle;
-import com.game.module.player.PlayerCmd;
+import com.game.module.order.CmdHandle;
 import com.game.module.gui.WordPage;
-import com.game.module.player.entity.SimplePlayerInfo;
 import com.game.protocol.Message;
 import com.game.protocol.PlayerProtocol;
 import com.game.task.annotation.CmdHandler;
 import com.game.task.annotation.ModuleHandler;
+import com.game.util.MessageUtil;
 import com.game.util.TransFromUtil;
 import com.google.protobuf.InvalidProtocolBufferException;
 import org.slf4j.Logger;
@@ -18,8 +17,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author xuewenkang
@@ -30,24 +29,55 @@ import java.util.List;
 public class PlayerHandle extends BaseHandler {
     private final static Logger logger = LoggerFactory.getLogger(PlayerHandle.class);
 
+    private final Map<String, SimplePlayerInfo> roles = new HashMap<>();
+    private PlayerInfo playerInfo;
+    private boolean print = false;
+
     @Autowired
     private WordPage wordPage;
     @Autowired
     private ClientGameContext gameContext;
-    @Autowired
-    private CmdHandle cmdHandle;
+
+    public void showPlayerInfo() {
+        if (playerInfo == null) {
+            requestPlayerInfo();
+            print = true;
+            return;
+        }
+        wordPage.clean();
+        wordPage.printPlayerInfo(playerInfo);
+    }
+
+    public void requestPlayerInfo() {
+        Message message = MessageUtil.createMessage(ModuleKey.PLAYER_MODULE, PlayerCmd.PLAYER_INFO_REQ, null);
+        gameContext.getChannel().writeAndFlush(message);
+    }
+
+    public void loginRole(String roleName) {
+        SimplePlayerInfo simplePlayerInfo = roles.get(roleName);
+        if (simplePlayerInfo == null) {
+            wordPage.print("没有该角色");
+            return;
+        }
+        PlayerProtocol.LoginPlayerReq.Builder builder = PlayerProtocol.LoginPlayerReq.newBuilder();
+        builder.setPlayerId(simplePlayerInfo.getId());
+        Message message = MessageUtil.createMessage(ModuleKey.PLAYER_MODULE, PlayerCmd.LOGIN_PLAYER,
+                builder.build().toByteArray());
+        gameContext.getChannel().writeAndFlush(message);
+    }
+
 
     @CmdHandler(cmd = PlayerCmd.LIST_PLAYERS)
-    public void receivePlayerList(Message message){
+    public void receivePlayerList(Message message) {
+        roles.clear();
         try {
             PlayerProtocol.PlayerListRes res = PlayerProtocol.PlayerListRes.parseFrom(message.getData());
-            List<SimplePlayerInfo> playerList = new ArrayList<>();
-            for(PlayerProtocol.SimplePlayerInfo info:res.getPlayerInfoListList()){
+            for (PlayerProtocol.SimplePlayerInfo info : res.getPlayerInfoListList()) {
                 SimplePlayerInfo simplePlayerInfo = TransFromUtil.transFromSimplePlayerInfo(info);
-                playerList.add(simplePlayerInfo);
+                roles.put(simplePlayerInfo.getName(), simplePlayerInfo);
             }
-            gameContext.setPlayerList(playerList);
-            wordPage.print(playerList);
+            wordPage.clean();
+            wordPage.printRoles(roles);
         } catch (InvalidProtocolBufferException e) {
             e.printStackTrace();
         }
@@ -55,42 +85,59 @@ public class PlayerHandle extends BaseHandler {
 
 
     @CmdHandler(cmd = PlayerCmd.LOGIN_PLAYER)
-    public void handleLoginPlayer(Message message){
+    public void receiveLoginPlayerRes(Message message) {
         try {
             PlayerProtocol.LoginPlayerRes loginPlayerRes = PlayerProtocol.LoginPlayerRes.parseFrom(message.getData());
-            if(loginPlayerRes.getCode()!=0){
-                wordPage.print("登录失败:"+loginPlayerRes.getMsg());
+            if (loginPlayerRes.getCode() != 0) {
+                wordPage.print("登录失败:" + loginPlayerRes.getMsg());
                 return;
             }
-            cmdHandle.requestSceneInfo();
-            cmdHandle.requestPlayerInfo();
-            cmdHandle.requestBag();
-            cmdHandle.requestEquip();
-            cmdHandle.requestSkill();
+            wordPage.print("登录成功");
+            PlayerInfo playerInfo = TransFromUtil.transFromPlayerInfo(loginPlayerRes.getPlayerInfo());
+            this.playerInfo = playerInfo;
+            wordPage.printPlayerInfo(playerInfo);
         } catch (InvalidProtocolBufferException e) {
             e.printStackTrace();
         }
     }
 
-    /**
-     * 角色信息响应
-     *
-     * @param message
-     * @return void
-     */
     @CmdHandler(cmd = PlayerCmd.PLAYER_INFO_REQ)
-    public void handlePlayerInfoRes(Message message){
+    public void receivePlayerInfo(Message message) {
+        try {
+            PlayerProtocol.PlayerInfo info = PlayerProtocol.PlayerInfo.parseFrom(message.getData());
+            PlayerInfo playerInfo = TransFromUtil.transFromPlayerInfo(info);
+            this.playerInfo = playerInfo;
+            if (print) {
+                wordPage.clean();
+                wordPage.printPlayerInfo(playerInfo);
+            }
+        } catch (InvalidProtocolBufferException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    @CmdHandler(cmd = PlayerCmd.SYNC_PLAYER_INFO)
+    public void syncPlayerInfo(Message message) {
+        try {
+            PlayerProtocol.PlayerInfo info = PlayerProtocol.PlayerInfo.parseFrom(message.getData());
+            PlayerInfo playerInfo = TransFromUtil.transFromPlayerInfo(info);
+            this.playerInfo = playerInfo;
+            if (print) {
+                wordPage.clean();
+                wordPage.printPlayerInfo(playerInfo);
+            }
+        } catch (InvalidProtocolBufferException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @CmdHandler(cmd = PlayerCmd.SYNC_PLAYER_BATTLE)
+    public void syncPlayerBattle(Message message) {
 
     }
 
-    /**
-     * 角色数据同步
-     *
-     * @param message
-     * @return void
-     */
-    @CmdHandler(cmd = PlayerCmd.SYNC_PLAYER_INFO)
-    public void handleSyncPlayerInfo(Message message){
-
+    public PlayerInfo getPlayerInfo() {
+        return playerInfo;
     }
 }

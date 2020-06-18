@@ -6,7 +6,7 @@ import com.game.gameserver.module.monster.manager.MonsterManager;
 import com.game.gameserver.module.npc.manager.NpcManager;
 import com.game.gameserver.module.player.entity.Player;
 import com.game.gameserver.module.team.manager.TeamManager;
-import com.game.gameserver.module.team.model.TeamObject;
+import com.game.gameserver.module.team.entity.Team;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -45,10 +45,10 @@ public class InstanceManager {
     /**
      * 组队进入
      *
-     * @param teamObject
+     * @param team
      * @return void
      */
-    public void entryInstanceByTeam(TeamObject teamObject){
+    public void entryInstanceByTeam(Team team){
 
     }
 

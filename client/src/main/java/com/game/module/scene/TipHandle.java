@@ -1,4 +1,4 @@
-package com.game.module.scene.handle;
+package com.game.module.scene;
 
 import com.game.module.BaseHandler;
 import com.game.module.ModuleKey;
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
  * @date 2020/6/1 16:02
  */
 @Component
-@ModuleHandler(module = ModuleKey.TIP_MODEL)
+@ModuleHandler(module = ModuleKey.FIGHTER_MODEL)
 public class TipHandle extends BaseHandler {
 
     @Autowired

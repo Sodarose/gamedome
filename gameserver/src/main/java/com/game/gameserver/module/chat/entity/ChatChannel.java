@@ -9,40 +9,73 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 /**
  * 频道
+ *
  * @author xuewenkang
  * @date 2020/6/15 15:50
  */
 public class ChatChannel {
-    /** channelId */
+    /**
+     * channelId
+     */
     private final Long chanelId;
-    /** 频道内的玩家Id */
+    /**
+     * 频道内的玩家Id
+     */
     private final List<Long> players;
-    /** 读写锁 */
+    /**
+     * 读写锁
+     */
     private final ReentrantReadWriteLock lock;
 
-    public ChatChannel(Long chanelId){
+    public ChatChannel(Long chanelId) {
         this.chanelId = chanelId;
         this.players = new ArrayList<>();
         this.lock = new ReentrantReadWriteLock();
     }
 
-    public Long getChanelId(){
+    public void entry(Long playerId) {
+        Lock lock = getWriteLock();
+        lock.lock();
+        try {
+            if (players.contains(playerId)) {
+                return;
+            }
+            players.add(playerId);
+        } finally {
+            lock.unlock();
+        }
+    }
+
+    public void exit(Long playerId) {
+        Lock lock = getWriteLock();
+        lock.lock();
+        try {
+            if (!players.contains(playerId)) {
+                return;
+            }
+            players.remove(playerId);
+        } finally {
+            lock.unlock();
+        }
+    }
+
+    public Long getChanelId() {
         return chanelId;
     }
 
-    public List<Long> getPlayers(){
+    public List<Long> getPlayers() {
         return players;
     }
 
-    public ReentrantReadWriteLock lock(){
+    public ReentrantReadWriteLock lock() {
         return lock;
     }
 
-    public Lock getReadLock(){
+    public Lock getReadLock() {
         return lock.readLock();
     }
 
-    public Lock getWriteLock(){
+    public Lock getWriteLock() {
         return lock.writeLock();
     }
 }

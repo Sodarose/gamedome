@@ -31,21 +31,22 @@ public class PlayerObject  implements Unit, Serializable {
     private final Player player;
     /** 角色战斗数据 */
     private PlayerBattle playerBattle;
+    /** 角色连接信息 */
+    private Channel channel;
 
     /** buff列表 */
     private List<Buffer> buffers;
     /** 当前所在的组队 队伍ID */
-    private Integer teamId;
-    /** 角色连接信息 */
-    private Channel channel;
-
+    private Long teamId;
     /** 副本次数数据 */
     private final Map<Integer,Integer> instanceNumMap = new ConcurrentHashMap<>();
     /** 聊天频道  key 频道类型  value 频道Id*/
     private final Map<Integer,Long> playerChannelMap = new ConcurrentHashMap<>();
 
+
     public PlayerObject(Player player){
         this.player = player;
+        this.playerBattle = new PlayerBattle();
     }
 
 
@@ -54,11 +55,11 @@ public class PlayerObject  implements Unit, Serializable {
 
     }
 
-    public void setTeamId(Integer teamId) {
+    public void setTeamId(Long teamId) {
         this.teamId = teamId;
     }
 
-    public Integer getTeamId(){
+    public Long getTeamId(){
         return teamId;
     }
 

@@ -26,7 +26,7 @@ import lombok.Data;
  * @date 2020/6/1 9:52
  */
 @Data
-public class PlayerObject {
+public class PlayerInfo {
     private long id;
     private String name;
     private int level;

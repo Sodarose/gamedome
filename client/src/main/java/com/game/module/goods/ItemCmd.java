@@ -1,4 +1,4 @@
-package com.game.module.item;
+package com.game.module.goods;
 
 /**
  * @author xuewenkang

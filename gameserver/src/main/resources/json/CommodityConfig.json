@@ -1,7 +1,6 @@
 [
   {
     "id": 1,
-    "type": 1,
     "goodsType": 1,
     "goodsId": 1,
     "shoreType": 1,
@@ -11,7 +10,6 @@
   },
   {
     "id": 2,
-    "type": 1,
     "goodsType": 1,
     "goodsId": 2,
     "shoreType": 1,
@@ -21,7 +19,6 @@
   },
   {
     "id": 3,
-    "type": 1,
     "goodsType": 1,
     "goodsId": 3,
     "shoreType": 1,
@@ -31,7 +28,6 @@
   },
   {
     "id": 4,
-    "type": 1,
     "goodsType": 1,
     "goodsId": 4,
     "shoreType": 1,
@@ -41,7 +37,6 @@
   },
   {
     "id": 5,
-    "type": 1,
     "goodsType": 1,
     "goodsId": 5,
     "shoreType": 1,
@@ -51,7 +46,6 @@
   },
   {
     "id": 6,
-    "type": 1,
     "goodsType": 1,
     "goodsId": 6,
     "shoreType": 1,
@@ -61,7 +55,6 @@
   },
   {
     "id": 7,
-    "type": 2,
     "goodsType": 2,
     "goodsId": 1,
     "shoreType": 2,
@@ -71,7 +64,6 @@
   },
   {
     "id": 8,
-    "type": 2,
     "goodsType": 2,
     "goodsId": 2,
     "shoreType": 2,

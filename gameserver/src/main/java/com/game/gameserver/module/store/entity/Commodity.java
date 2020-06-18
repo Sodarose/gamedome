@@ -1,4 +1,4 @@
-package com.game.gameserver.module.store.model;
+package com.game.gameserver.module.store.entity;
 
 import com.game.gameserver.common.config.CommodityConfig;
 import lombok.Data;
@@ -11,6 +11,7 @@ import lombok.Data;
  */
 @Data
 public class Commodity {
+
     /**
      * 商品静态数据Id
      */

@@ -23,5 +23,5 @@ public interface EquipMapper {
      * @param bagPack  背包
      * @return java.util.List<com.game.gameserver.module.goods.entity.EquipEntity>
      */
-    List<Equip> getEquipEntityList(int playerId,int bagPack);
+    List<Equip> getEquipEntityList(long playerId,int bagPack);
 }

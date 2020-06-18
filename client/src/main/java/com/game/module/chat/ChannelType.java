@@ -1,4 +1,4 @@
-package com.game.gameserver.module.chat.type;
+package com.game.module.chat;
 
 /**
  * 通道类型

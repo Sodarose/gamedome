@@ -1,4 +1,4 @@
-package com.game.module.account.entity;
+package com.game.module.account;
 
 import lombok.Data;
 

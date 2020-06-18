@@ -1,7 +1,7 @@
 package com.game.gameserver.module.instance.service;
 
 import com.game.gameserver.common.Result;
-import com.game.gameserver.module.team.model.TeamObject;
+import com.game.gameserver.module.team.entity.Team;
 
 /**
  * @author xuewenkang
@@ -12,8 +12,8 @@ public interface InstanceService {
     /**
      * 进入副本
      *
-     * @param teamObject
+     * @param team
      * @return com.game.gameserver.common.Result
      */
-    Result entryInstance(TeamObject teamObject);
+    Result entryInstance(Team team);
 }

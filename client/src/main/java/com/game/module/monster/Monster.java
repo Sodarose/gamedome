@@ -8,10 +8,18 @@ import lombok.Data;
  */
 @Data
 public class Monster {
-    private Integer  id;
-    private String   name;
-    private Integer  level;
+    private long id;
+    private String name;
+    private int level;
+    private int state;
+    private int hp;
+    private int currHp;
+    private int mp;
+    private int currMp;
+    private int attack;
+    private int defense;
 
-    public Monster(){}
+    public Monster() {
+    }
 
 }

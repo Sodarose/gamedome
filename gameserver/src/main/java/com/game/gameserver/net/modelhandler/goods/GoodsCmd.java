@@ -1,10 +1,10 @@
-package com.game.gameserver.net.modelhandler.item;
+package com.game.gameserver.net.modelhandler.goods;
 
 /**
  * @author xuewenkang
  * @date 2020/5/27 14:37
  */
-public interface ItemCmd {
+public interface GoodsCmd {
     /** 查看道具 */
     short CHECK_ITEM = 1001;
     /** 使用道具 */

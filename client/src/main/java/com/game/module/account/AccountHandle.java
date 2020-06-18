@@ -1,15 +1,12 @@
-package com.game.module.account.handle;
+package com.game.module.account;
 
 import com.game.context.ClientGameContext;
 import com.game.module.BaseHandler;
 import com.game.module.ModuleKey;
-import com.game.module.account.AccountCmd;
-import com.game.module.account.entity.Account;
 import com.game.module.gui.GameClientPage;
 import com.game.protocol.AccountProtocol;
 import com.game.protocol.CodeType;
 import com.game.protocol.Message;
-import com.game.task.MessageDispatcher;
 import com.game.task.annotation.CmdHandler;
 import com.game.task.annotation.ModuleHandler;
 import com.game.util.MessageUtil;
@@ -17,8 +14,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import javax.annotation.PostConstruct;
 
 /**
  * @author xuewenkang

@@ -13,4 +13,6 @@ public interface PlayerCmd {
     short PLAYER_INFO_REQ = 1003;
     /** 角色信息同步 */
     short SYNC_PLAYER_INFO = 1002;
+    /** 战斗属性同步 */
+    short SYNC_PLAYER_BATTLE = 1003;
 }

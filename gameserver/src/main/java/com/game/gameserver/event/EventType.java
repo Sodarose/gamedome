@@ -10,5 +10,7 @@ public enum EventType {
     /** 登录事件 */
     LOGIN,
     /** 登出事件 */
-    LOG_OUT;
+    LOG_OUT,
+    /** 掉线事件 */
+    LOST;
 }

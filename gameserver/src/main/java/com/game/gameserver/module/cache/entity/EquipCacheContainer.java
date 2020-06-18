@@ -12,7 +12,7 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
  * @author xuewenkang
  * @date 2020/6/17 13:17
  */
-public class GoodsCacheContainer implements CacheContainer<Equip> {
+public class EquipCacheContainer implements CacheContainer<Equip> {
 
     private final Map<Long, Equip> rawData = new ConcurrentHashMap<>();
 

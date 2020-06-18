@@ -1,4 +1,4 @@
-package com.game.gameserver.module.team.model;
+package com.game.gameserver.module.team.entity;
 
 import com.game.gameserver.module.player.entity.Player;
 import com.game.gameserver.module.player.model.PlayerObject;
@@ -15,8 +15,8 @@ import java.util.Set;
  * @author xuewenkang
  * @date 2020/6/8 17:34
  */
-public class TeamObject {
-    
+public class Team {
+
     /**
      * 组队ID
      */
@@ -35,7 +35,7 @@ public class TeamObject {
     private boolean full;
     /**
      * 队伍所在的副本
-     * */
+     */
     private Long instanceId;
     /**
      * 队伍当前人数
@@ -54,7 +54,7 @@ public class TeamObject {
      */
     private Long channelId;
 
-    public TeamObject(PlayerObject player, String teamName, int maxNum) {
+    public Team(PlayerObject player, String teamName, int maxNum) {
         this.id = GameUUID.getInstance().generate();
         this.teamName = teamName;
         this.captainId = player.getPlayer().getId();
@@ -78,6 +78,9 @@ public class TeamObject {
             }
             members.add(playerId);
             currNum += 1;
+            if (currNum == maxNum) {
+                full = true;
+            }
         }
     }
 
@@ -87,17 +90,14 @@ public class TeamObject {
      * @param playerId
      * @return void
      */
-    public boolean exitTeam(Long playerId) {
+    public void exitTeam(Long playerId) {
         synchronized (members) {
             if (!members.contains(playerId)) {
-                return false;
+                return;
             }
             members.remove(playerId);
-            currNum += 1;
-            if (currNum == maxNum) {
-
-            }
-            return true;
+            currNum -= 1;
+            full = false;
         }
     }
 
@@ -142,10 +142,6 @@ public class TeamObject {
         return teamName;
     }
 
-    public void update() {
-
-    }
-
     public Long getChannelId() {
         return channelId;
     }
@@ -154,11 +150,11 @@ public class TeamObject {
         this.channelId = channelId;
     }
 
-    public void setInstanceId(Long instanceId){
+    public void setInstanceId(Long instanceId) {
         this.instanceId = instanceId;
     }
 
-    public Long getInstanceId(){
+    public Long getInstanceId() {
         return instanceId;
     }
 

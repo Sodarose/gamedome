@@ -9,7 +9,7 @@
     "mp": 1000,
     "attack": 99,
     "defense": 99,
-    "price": 100,
+    "price": 1000,
     "desc": "太极天地剑"
   },
   {
@@ -22,7 +22,7 @@
     "mp": 1000,
     "attack": 99,
     "defense": 99,
-    "price": 100,
+    "price": 1000,
     "desc": "超大陆胸甲"
   },
   {
@@ -35,7 +35,7 @@
     "mp": 1000,
     "attack": 99,
     "defense": 99,
-    "price": 100,
+    "price": 1000,
     "desc": "超大陆肩甲"
   },
   {
@@ -48,7 +48,7 @@
     "mp": 1000,
     "attack": 99,
     "defense": 99,
-    "price": 100,
+    "price": 1000,
     "desc": "超大陆腰带"
   },
   {
@@ -61,7 +61,7 @@
     "mp": 1000,
     "attack": 99,
     "defense": 99,
-    "price": 100,
+    "price": 1000,
     "desc": "超大陆裤子"
   },
   {
@@ -74,7 +74,7 @@
     "mp": 1000,
     "attack": 99,
     "defense": 99,
-    "price": 100,
+    "price": 1000,
     "desc": "超大陆鞋子"
   }
 ]

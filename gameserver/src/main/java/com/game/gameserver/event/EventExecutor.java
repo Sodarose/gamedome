@@ -24,7 +24,7 @@ public class EventExecutor {
 
     public void execute(Event event){
         try{
-            method.invoke(event);
+            method.invoke(listener,event);
         }catch (Exception e){
             e.printStackTrace();
         }

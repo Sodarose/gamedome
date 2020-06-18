@@ -1,11 +1,11 @@
-package com.game.module.order.handle;
+package com.game.module.order;
 
 import com.game.context.ClientGameContext;
 import com.game.module.ModuleKey;
+import com.game.module.chat.ChatHandle;
 import com.game.module.player.PlayerCmd;
 import com.game.module.gui.WordPage;
-import com.game.module.order.CmdType;
-import com.game.module.player.entity.PlayerObject;
+import com.game.module.player.PlayerHandle;
 import com.game.module.store.StoreHandle;
 import com.game.protocol.Message;
 import com.game.protocol.PlayerProtocol;
@@ -34,6 +34,10 @@ public class CmdHandle {
     private ClientGameContext gameContext;
     @Autowired
     private StoreHandle storeHandle;
+    @Autowired
+    private PlayerHandle playerHandle;
+    @Autowired
+    private ChatHandle chatHandle;
 
 
     public void submitCmd(String order) {
@@ -73,40 +77,17 @@ public class CmdHandle {
         });
 
         // confirm role
-        CMD_INVOKE_MAP.put(CmdType.CONFIRM_ROLE, new Invoke() {
+        CMD_INVOKE_MAP.put(CmdType.LOGIN_ROLE, new Invoke() {
             @Override
             public void invoke(String[] flags) {
                 confirmRole(flags);
             }
         });
 
-        // self message
-        CMD_INVOKE_MAP.put(CmdType.SELF_MESSAGE, new Invoke() {
+        CMD_INVOKE_MAP.put(CmdType.SHOW_ME, new Invoke() {
             @Override
             public void invoke(String[] flags) {
-                selfMessage(flags);
-            }
-        });
-
-        // open bag
-        CMD_INVOKE_MAP.put(CmdType.OPEN_BAG, new Invoke() {
-            @Override
-            public void invoke(String[] flags) {
-                openBag(flags);
-            }
-        });
-
-        CMD_INVOKE_MAP.put(CmdType.USER_ITEM, new Invoke() {
-            @Override
-            public void invoke(String[] flags) {
-                useItem(flags);
-            }
-        });
-
-        CMD_INVOKE_MAP.put(CmdType.OPEN_EQUIP, new Invoke() {
-            @Override
-            public void invoke(String[] flags) {
-                openEquipBar(flags);
+                playerHandle.showPlayerInfo();
             }
         });
 
@@ -130,7 +111,34 @@ public class CmdHandle {
                 sell(flags);
             }
         });
+
+        CMD_INVOKE_MAP.put(CmdType.SEND_C_CHAT, new Invoke() {
+            @Override
+            public void invoke(String[] flags) {
+                int channelId = Integer.parseInt(flags[1]);
+                String content = flags[2];
+                chatHandle.sendChannelChat(channelId, content);
+            }
+        });
+
+        CMD_INVOKE_MAP.put(CmdType.SEND_P_CHAT, new Invoke() {
+            @Override
+            public void invoke(String[] flags) {
+                int playerId = Integer.parseInt(flags[1]);
+                String content = flags[2];
+                chatHandle.sendPrivacyChat(playerId, content);
+            }
+        });
+
+        CMD_INVOKE_MAP.put(CmdType.SEND_L_CHAT, new Invoke() {
+            @Override
+            public void invoke(String[] flags) {
+                String content = flags[1];
+                chatHandle.sendLocalChat(content);
+            }
+        });
     }
+
 
     /**
      * 请求角色列表
@@ -156,82 +164,12 @@ public class CmdHandle {
         if (flags.length < 2) {
             return;
         }
-        String name = flags[1];
-        Integer roleId = gameContext.getRoleIdByRoleName(name);
-        if (roleId == null) {
-            wordPage.print("请输入正确的角色名");
-            return;
-        }
-/*        PlayerProtocol.LoginPlayer.Builder builder = PlayerProtocol.LoginPlayer.newBuilder();
-        builder.setPlayerId(roleId);
-        Message message = MessageUtil.createMessage(ModuleKey.PLAYER_MODULE, PlayerCmd.LOGIN_PLAYER,builder.build()
-                .toByteArray());
-        gameContext.getChannel().writeAndFlush(message);
-        logger.info("登录角色请求 id {} , name {}",roleId,name);*/
+        String roleName = flags[1];
+        playerHandle.loginRole(roleName);
     }
 
-    /**
-     * 产看自己的角色信息
-     */
-    private void selfMessage(String[] flags) {
-        PlayerObject playerObject = gameContext.getPlayerObject();
-        if (playerObject == null) {
-            wordPage.print("您还没有登录角色");
-            return;
-        }
-        wordPage.print(playerObject);
-        logger.info("查询登录的角色信息");
-    }
-
-    private void openBag(String[] flags) {
-        PlayerObject playerObject = gameContext.getPlayerObject();
-        if (playerObject == null) {
-            wordPage.print("您还没有登录角色");
-            return;
-        }
-        /*wordPage.print(playerObject.getBag());*/
-    }
-
-    private void openEquipBar(String[] flags) {
-        PlayerObject playerObject = gameContext.getPlayerObject();
-        if (playerObject == null) {
-            wordPage.print("您还没有登录角色");
-            return;
-        }
-        /* wordPage.print(playerObject.getEquipBar());*/
-    }
-
-    private void useItem(String[] flags) {
-
-
-    }
-
-    private void useEquip(Integer equipId) {
-
-    }
-
-    private void useItem(Integer itemId) {
-
-    }
-
-    public void requestSceneInfo() {
-
-    }
-
-    public void requestPlayerInfo() {
-
-    }
-
-    public void requestEquip() {
-
-    }
-
-    public void requestBag() {
-
-    }
-
-    public void requestSkill() {
-
+    private void showMe(String[] flags) {
+        playerHandle.showPlayerInfo();
     }
 
     private void showStore(String[] flags) {
@@ -239,20 +177,20 @@ public class CmdHandle {
     }
 
     private void buy(String[] flags) {
-        if(flags.length!=3){
+        if (flags.length != 3) {
             return;
         }
         String goodsName = flags[1];
         int num = Integer.parseInt(flags[2]);
-        storeHandle.requestByCommodity(goodsName,num);
+        storeHandle.requestByCommodity(goodsName, num);
     }
 
     private void sell(String[] flags) {
-        if(flags.length!=3){
+        if (flags.length != 3) {
             return;
         }
         String goodsName = flags[1];
         int num = Integer.parseInt(flags[2]);
-        storeHandle.requestShellGoods(goodsName,num);
+        storeHandle.requestShellGoods(goodsName, num);
     }
 }

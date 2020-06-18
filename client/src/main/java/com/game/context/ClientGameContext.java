@@ -1,12 +1,10 @@
 package com.game.context;
 
-import com.game.module.account.entity.Account;
-import com.game.module.chat.ChatChannel;
-import com.game.module.player.entity.PlayerObject;
-import com.game.module.player.entity.SimplePlayerInfo;
-import com.game.module.scene.entity.SceneObject;
+import com.game.module.account.Account;
+import com.game.module.player.PlayerInfo;
+import com.game.module.player.SimplePlayerInfo;
+import com.game.module.scene.SceneInfo;
 import io.netty.channel.Channel;
-import javafx.scene.Scene;
 import lombok.Data;
 import org.springframework.stereotype.Component;
 
@@ -26,14 +24,12 @@ public class ClientGameContext {
     /** 用户角色列表 */
     private List<SimplePlayerInfo> playerList;
     /** 角色信息 */
-    private PlayerObject playerObject;
+    private PlayerInfo playerInfo;
     /** 角色目前所在的场景 */
-    private SceneObject sceneObject;
-    /** 客户端私聊通道 */
-    private List<ChatChannel> chatChannels;
-    /** 客户端世界聊天通道 */
+    private SceneInfo sceneInfo;
 
-    public Integer getRoleIdByRoleName(String roleName){
+
+    public Long getRoleIdByRoleName(String roleName){
         for(SimplePlayerInfo info : playerList){
             if(info.getName().equals(roleName)){
                 return info.getId();

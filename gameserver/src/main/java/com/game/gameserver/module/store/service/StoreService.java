@@ -1,7 +1,8 @@
 package com.game.gameserver.module.store.service;
 
 import com.game.gameserver.common.Result;
-import com.game.gameserver.module.store.vo.CommodityVo;
+import com.game.gameserver.module.player.model.PlayerObject;
+import com.game.protocol.Store;
 
 import java.util.List;
 
@@ -16,7 +17,7 @@ public interface StoreService {
      * @param
      * @return java.util.List<com.game.gameserver.module.store.vo.CommodityVo>
      */
-    List<CommodityVo> getCommodityList();
+    Store.CommodityList getCommodityList();
 
     /**
      * 用户购买商品
@@ -26,7 +27,7 @@ public interface StoreService {
      * @param count 购买数量
      * @return com.game.gameserver.common.Result
      */
-    Result bugCommodity(int playerId,int commodityId, int count);
+    Store.BuyCommodityRes bugCommodity(PlayerObject playerObject, int commodityId, int count);
 
 
     /**
@@ -38,5 +39,5 @@ public interface StoreService {
      * @param bagIndex 物品所在的背包位置
      * @return com.game.gameserver.common.Result
      */
-    Result sellCommodity(int playerId,int goodsId,int bagType,int bagIndex);
+    Store.SellGoodsRes sellCommodity(PlayerObject playerObject,int goodsId,int bagType,int bagIndex);
 }

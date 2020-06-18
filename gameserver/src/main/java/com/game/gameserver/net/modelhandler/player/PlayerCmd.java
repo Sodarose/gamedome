@@ -7,10 +7,12 @@ package com.game.gameserver.net.modelhandler.player;
 public interface PlayerCmd {
     /** 请求角色列表 */
     short LIST_PLAYERS = 1000;
-    /** 登录角色 */
+    /** 登录角色请求 */
     short LOGIN_PLAYER = 1001;
-    /** 返回角色信息 */
-    short PLAYER_INFO = 1002;
-    /** 同步角色信息 */
-    short SYNC_PLAYER_DATA = 1003;
+    /** 角色数据请求 */
+    short PLAYER_INFO_REQ = 1003;
+    /** 角色信息同步 */
+    short SYNC_PLAYER_INFO = 1002;
+    /** 战斗属性同步 */
+    short SYNC_PLAYER_BATTLE = 1003;
 }

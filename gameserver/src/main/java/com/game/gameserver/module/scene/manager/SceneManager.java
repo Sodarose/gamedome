@@ -4,6 +4,12 @@ import com.game.gameserver.common.config.*;
 import com.game.gameserver.module.player.entity.Player;
 import com.game.gameserver.module.player.model.PlayerObject;
 import com.game.gameserver.module.scene.model.SceneObject;
+import com.game.gameserver.net.modelhandler.ModuleKey;
+import com.game.gameserver.net.modelhandler.scene.SceneCmd;
+import com.game.gameserver.util.ProtocolFactory;
+import com.game.protocol.Message;
+import com.game.protocol.SceneProtocol;
+import com.game.util.MessageUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -64,7 +70,7 @@ public class SceneManager {
      * @param sceneName
      * @return void
      */
-    public void entryScene(PlayerObject playerObject, String sceneName) {
+    public void changeScene(PlayerObject playerObject, String sceneName) {
         Integer sceneId = null;
         for (Map.Entry<Integer, SceneObject> entry : sceneObjectMap.entrySet()) {
             SceneConfig sceneConfig = entry.getValue().getSceneConfig();
@@ -76,6 +82,9 @@ public class SceneManager {
         if (sceneId == null) {
             return;
         }
+        /** 退出原场景 */
+        exitScene(playerObject);
+        /** 进入新场景 */
         entryScene(playerObject, sceneId);
     }
 
@@ -94,11 +103,14 @@ public class SceneManager {
         if (!result) {
             return;
         }
-        // 同步场景数据
-
-        // 广播进入场景事件
-
+        // 同步场景数据 (暂时直接同步场景数据)
+        SceneProtocol.SceneInfo sceneInfo = ProtocolFactory.createSceneInfo(sceneObject);
+        Message message = MessageUtil.createMessage(ModuleKey.SCENE_MODULE, SceneCmd.SYNC_SCENE
+                ,sceneInfo.toByteArray());
+        // 广播
+        sceneObject.broadcast(message);
     }
+
 
 
     /**
@@ -116,8 +128,12 @@ public class SceneManager {
         if (!result) {
             return;
         }
-        // 广播退出事件
-
+        // 同步场景数据 (暂时直接同步场景数据)
+        SceneProtocol.SceneInfo sceneInfo = ProtocolFactory.createSceneInfo(sceneObject);
+        Message message = MessageUtil.createMessage(ModuleKey.SCENE_MODULE, SceneCmd.SYNC_SCENE
+                ,sceneInfo.toByteArray());
+        // 广播
+        sceneObject.broadcast(message);
     }
 
 
