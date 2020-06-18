@@ -232,29 +232,40 @@ public class ProtocolFactory {
         return builder.build();
     }
 
-    public static com.game.protocol.Team.CreateTeamRes createCreateTeamRes(int code, String msg, Team team){
-        com.game.protocol.Team.CreateTeamRes.Builder builder = com.game.protocol.Team.CreateTeamRes.newBuilder();
+    public static TeamProtocol.CreateTeamRes createCreateTeamRes(int code, String msg, Team team) {
+        TeamProtocol.CreateTeamRes.Builder builder = TeamProtocol.CreateTeamRes.newBuilder();
         builder.setCode(code);
         builder.setMsg(msg);
-        if(team !=null){
+        if (team != null) {
             builder.setTeamInfo(createTeamInfo(team));
         }
         return builder.build();
     }
 
-
-    public static com.game.protocol.Team.TeamInfo createTeamInfo(Team team){
-        com.game.protocol.Team.TeamInfo.Builder builder = com.game.protocol.Team.TeamInfo.newBuilder();
+    public static TeamProtocol.TeamInfo createTeamInfo(Team team) {
+        TeamProtocol.TeamInfo.Builder builder = TeamProtocol.TeamInfo.newBuilder();
         builder.setId(team.getId());
         builder.setCaptainId(team.getCaptainId());
         builder.setTeamName(team.getTeamName());
-        builder.setState(team.getState());
-        for(Long playerId: team.getMembers()){
+        builder.setCurrNum(team.getCurrNum());
+        builder.setMaxNum(team.getMaxNum());
+        builder.setFull(team.isFull());
+        for (Long playerId : team.getMembers()) {
             PlayerObject playerObject = PlayerManager.instance.getPlayerObject(playerId);
-            if(playerObject==null){
+            if (playerObject == null) {
                 continue;
             }
             builder.addMemberName(playerObject.getPlayer().getName());
+        }
+        return builder.build();
+    }
+
+    public static TeamProtocol.EntryTeamRes createEntryRes(int code, String msg, Team team) {
+        TeamProtocol.EntryTeamRes.Builder builder = TeamProtocol.EntryTeamRes.newBuilder();
+        builder.setCode(code);
+        builder.setMsg(msg);
+        if(team!=null){
+            builder.setTeamInfo(createTeamInfo(team));
         }
         return builder.build();
     }

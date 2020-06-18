@@ -15,6 +15,8 @@ public interface TeamCmd {
     short ENTRY_TEAM = 1004;
     /** 退出队伍 */
     short EXIT_TEAM = 1005;
+    /** 退出队伍通知 */
+    short EXIT_TEAM_NOTIFY = 1006;
     /** 踢出队伍 */
     short KICK_TEAM = 1006;
     /** 队伍列表 */

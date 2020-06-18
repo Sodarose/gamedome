@@ -1,6 +1,7 @@
 package com.game.gameserver.module.email.manager;
 
 import com.game.gameserver.module.email.entity.Email;
+import com.game.gameserver.module.email.entity.EmailBox;
 import com.game.gameserver.module.player.model.PlayerObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,11 +21,9 @@ public class EmailManager {
     private final static Logger logger = LoggerFactory.getLogger(EmailManager.class);
 
     /** 玩家邮件 */
-    private Map<Long, List<Email>> playerEmailMap = new ConcurrentHashMap<>();
+    private Map<Long, EmailBox> playerEmailMap = new ConcurrentHashMap<>();
 
     public void loadPlayerEmail(PlayerObject playerObject){
 
     }
-
-    
 }

@@ -1,6 +1,6 @@
-package com.game.gameserver.module.email.model.impl;
+package com.game.gameserver.module.email.service.impl;
 
-import com.game.gameserver.module.email.model.EmailService;
+import com.game.gameserver.module.email.service.EmailService;
 import org.springframework.stereotype.Service;
 
 /**

@@ -1,6 +1,6 @@
 package com.game.gameserver.module.pk.manager;
 
-import com.game.gameserver.module.pk.model.Arena;
+import com.game.gameserver.module.pk.entity.Arena;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;

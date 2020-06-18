@@ -8,7 +8,7 @@ import com.game.gameserver.net.annotation.ModuleHandler;
 import com.game.gameserver.net.handler.BaseHandler;
 import com.game.gameserver.net.modelhandler.ModuleKey;
 import com.game.protocol.Message;
-import com.game.protocol.Team;
+import com.game.protocol.TeamProtocol;
 import com.game.util.MessageUtil;
 import com.google.protobuf.InvalidProtocolBufferException;
 import io.netty.channel.Channel;
@@ -40,8 +40,8 @@ public class TeamHandle extends BaseHandler {
             return;
         }
         try {
-            Team.CreateTeamReq req = Team.CreateTeamReq.parseFrom(message.getData());
-            Team.CreateTeamRes res = teamService.createTeam(playerObject, req.getTeamName()
+            TeamProtocol.CreateTeamReq req = TeamProtocol.CreateTeamReq.parseFrom(message.getData());
+            TeamProtocol.CreateTeamRes res = teamService.createTeam(playerObject, req.getTeamName()
                     , req.getNum());
             Message msg = MessageUtil.createMessage(ModuleKey.TEAM_MODULE, TeamCmd.CREATE_TEAM,
                     res.toByteArray());
@@ -73,7 +73,7 @@ public class TeamHandle extends BaseHandler {
         if (playerObject == null) {
             return;
         }
-        Team.TeamList teamList = teamService.getTeamList();
+        TeamProtocol.TeamList teamList = teamService.getTeamList();
         Message res = MessageUtil.createMessage(ModuleKey.TEAM_MODULE,TeamCmd.TEAM_LIST,teamList.toByteArray());
         channel.writeAndFlush(res);
     }
@@ -84,17 +84,36 @@ public class TeamHandle extends BaseHandler {
         if (playerObject == null) {
             return;
         }
-
+        try {
+            TeamProtocol.EntryTeamReq req = TeamProtocol.EntryTeamReq.parseFrom(message.getData());
+            teamService.entryTeam(playerObject,req.getTeamId());
+        } catch (InvalidProtocolBufferException e) {
+            e.printStackTrace();
+        }
     }
 
     @CmdHandler(cmd = TeamCmd.EXIT_TEAM)
     public void handleExitTeamReq(Message message, Channel channel) {
+        PlayerObject playerObject = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
+        if (playerObject == null) {
+            return;
+        }
+        TeamProtocol.ExitTeamRes exitTeamRes = teamService.exitTeam(playerObject);
 
     }
 
     @CmdHandler(cmd = TeamCmd.KICK_TEAM)
     public void handleKickTeamReq(Message message, Channel channel) {
-
+        PlayerObject playerObject = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
+        if (playerObject == null) {
+            return;
+        }
+        try {
+            TeamProtocol.KickTeamReq kickTeamReq = TeamProtocol.KickTeamReq.parseFrom(message.getData());
+            teamService.kickTeam(playerObject,kickTeamReq.getPlayerId());
+        } catch (InvalidProtocolBufferException e) {
+            e.printStackTrace();
+        }
     }
 
 }

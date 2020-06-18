@@ -1,4 +1,4 @@
-package com.game.gameserver.module.email.model;
+package com.game.gameserver.module.email.service;
 
 /**
  * @author xuewenkang

@@ -1,6 +1,6 @@
 syntax = "proto3";
 option java_package = "com.game.protocol";
-option java_outer_classname = "Team";
+option java_outer_classname = "TeamProtocol";
 // 创建队伍请求
 message CreateTeamReq {
     // 队伍人数
@@ -17,10 +17,19 @@ message CreateTeamRes {
 message EntryTeamReq {
     int64 teamId = 1;
 }
+message EntryTeamRes{
+    int32 code = 1;
+    string msg = 2;
+    TeamInfo teamInfo = 3;
+}
 
 
 message ExitTeamReq {
     int64 teamId = 1;
+}
+
+message ExitTeamRes{
+
 }
 
 // 踢出队伍
@@ -28,11 +37,14 @@ message KickTeamReq {
     int64 playerId = 1;
 }
 
+message KickTeamRes{
+    int32 code = 1;
+    string msg = 2;
+}
 
 message KickTeamNotify {
 
 }
-
 
 message TeamList {
     repeated TeamInfo teamInfo = 1;

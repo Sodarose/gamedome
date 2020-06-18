@@ -20,7 +20,7 @@ public class Email {
     private String senderName;
     /** 文字内容 */
     private String content;
-    /** 附件其内容格式为 类型_道具Id|类型_道具Id|类型_道具Id|类型_道具Id */
+    /** 附件其内容格式为 类型_道具Id_数量|类型_道具Id_数量|类型_道具Id_数量|类型_道具Id_数量*/
     private String attachments;
     /** golds */
     private Long golds;

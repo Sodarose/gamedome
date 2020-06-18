@@ -1,13 +1,12 @@
 package com.game.gameserver.module.team.entity;
 
-import com.game.gameserver.module.player.entity.Player;
 import com.game.gameserver.module.player.model.PlayerObject;
 import com.game.gameserver.util.GameUUID;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 /**
  * 组队对象
@@ -53,6 +52,7 @@ public class Team {
      * 队伍聊天频道
      */
     private Long channelId;
+    private final ReentrantReadWriteLock lock;
 
     public Team(PlayerObject player, String teamName, int maxNum) {
         this.id = GameUUID.getInstance().generate();
@@ -60,6 +60,7 @@ public class Team {
         this.captainId = player.getPlayer().getId();
         this.full = false;
         this.maxNum = maxNum;
+        this.lock = new ReentrantReadWriteLock();
         members = new ArrayList<>();
         members.add(player.getPlayer().getId());
         currNum = 1;
@@ -68,37 +69,42 @@ public class Team {
     /**
      * 入队操作
      *
-     * @param playerId
+     * @param playerObject
      * @return void
      */
-    public void entryTeam(Long playerId) {
-        synchronized (members) {
-            if (members.contains(playerId)) {
-                return;
-            }
-            members.add(playerId);
-            currNum += 1;
-            if (currNum == maxNum) {
-                full = true;
-            }
+    public boolean entryTeam(PlayerObject playerObject) {
+        if (members.contains(playerObject.getPlayer().getId())) {
+                return false;
         }
+        playerObject.setTeamId(this.id);
+        members.add(playerObject.getPlayer().getId());
+        currNum += 1;
+        if (currNum == maxNum) {
+                full = true;
+        }
+        return true;
     }
 
     /**
      * 出队操作
      *
-     * @param playerId
+     * @param playerObject
      * @return void
      */
-    public void exitTeam(Long playerId) {
-        synchronized (members) {
-            if (!members.contains(playerId)) {
-                return;
-            }
-            members.remove(playerId);
-            currNum -= 1;
-            full = false;
+    public boolean exitTeam(PlayerObject playerObject) {
+        if (!members.contains(playerObject.getPlayer().getId())) {
+                return false;
         }
+        playerObject.setTeamId(null);
+        members.remove(playerObject.getPlayer().getId());
+        currNum -= 1;
+        full = false;
+        return true;
+
+    }
+
+    public boolean hasPlayer(Long playerId){
+        return members.contains(playerId);
     }
 
     /**
@@ -158,4 +164,15 @@ public class Team {
         return instanceId;
     }
 
+    public int getCurrNum(){
+        return currNum;
+    }
+
+    public Lock getReadLock(){
+        return lock.readLock();
+    }
+
+    public Lock getWriteLock(){
+        return lock.writeLock();
+    }
 }

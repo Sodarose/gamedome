@@ -1,4 +1,4 @@
-package com.game.gameserver.module.pk.model;
+package com.game.gameserver.module.pk.entity;
 
 import com.game.gameserver.module.player.entity.Player;
 
@@ -14,17 +14,9 @@ import java.util.List;
 public class Arena {
     /** 竞技场唯一Id */
     private final int id;
-    /** 竞技场名称 */
-    private final String title;
-    /** 竞技场最大人数 */
-    private final int maxCount;
     /** 玩家列表 */
-    private final List<Player> playerList = new ArrayList<>();
-
+    private final List<Long> playerList = new ArrayList<>();
     public Arena(int id,String title,int maxCount){
         this.id = id;
-        this.title = title;
-        this.maxCount = maxCount;
     }
-
 }

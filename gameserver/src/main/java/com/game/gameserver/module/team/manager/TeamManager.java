@@ -1,8 +1,16 @@
 package com.game.gameserver.module.team.manager;
 
+import com.game.gameserver.module.player.manager.PlayerManager;
 import com.game.gameserver.module.team.entity.Team;
+import com.game.gameserver.net.modelhandler.ModuleKey;
+import com.game.gameserver.net.modelhandler.team.TeamCmd;
+import com.game.gameserver.util.ProtocolFactory;
+import com.game.protocol.Message;
+import com.game.protocol.TeamProtocol;
+import com.game.util.MessageUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -19,6 +27,7 @@ import java.util.concurrent.ConcurrentHashMap;
 @Component
 public class TeamManager {
     private final static Logger logger = LoggerFactory.getLogger(TeamManager.class);
+
 
     /**
      * 队伍列表
@@ -57,4 +66,5 @@ public class TeamManager {
         }
         return teamList;
     }
+
 }
