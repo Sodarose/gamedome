@@ -10,6 +10,8 @@ import lombok.Data;
  */
 @Data
 public class InstanceMonster {
+    @JSONField(name = "roundIndex")
+    private int roundIndex;
     @JSONField(name = "monsterId")
     private int monsterId;
     @JSONField(name = "count")

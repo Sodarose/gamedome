@@ -1,19 +1,14 @@
 package com.game.gameserver.common.entity;
 
-import java.io.Serializable;
-
 /**
- * 基础单元
- *
  * @author xuewenkang
- * @date 2020/6/2 20:11
+ * @date 2020/6/23 10:34
  */
-public interface Unit  {
-    /**
-     * 更新状态信息
-     *
-     * @param
-     * @return void
-     */
+public interface Unit {
+    /** 更新 */
     void update();
+    /** 单位类型 */
+    int getUnitType();
+    /** 单位Id */
+    long getUnitId();
 }

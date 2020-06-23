@@ -4,7 +4,6 @@ import com.game.gameserver.module.instance.manager.InstanceManager;
 import com.game.gameserver.module.monster.manager.MonsterManager;
 import com.game.gameserver.module.npc.manager.NpcManager;
 import com.game.gameserver.module.player.manager.PlayerManager;
-import com.game.gameserver.module.player.model.PlayerObject;
 import com.game.gameserver.module.scene.manager.SceneManager;
 import com.game.gameserver.module.store.manager.StoreManager;
 import com.game.gameserver.net.handler.MessageDispatcher;

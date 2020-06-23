@@ -11,6 +11,24 @@ message CreateTeamReq {
 message CreateTeamRes {
     int32 code = 1;
     string msg = 2;
+}
+
+message TeamListReq{
+
+}
+
+message TeamListRes {
+    repeated TeamInfo teamInfo = 1;
+}
+
+// 查看队伍
+message CheckTeamReq{
+
+}
+
+message CheckTeamRes{
+    int32 code = 1;
+    string msg = 2;
     TeamInfo teamInfo = 3;
 }
 
@@ -20,16 +38,16 @@ message EntryTeamReq {
 message EntryTeamRes{
     int32 code = 1;
     string msg = 2;
-    TeamInfo teamInfo = 3;
 }
 
 
 message ExitTeamReq {
-    int64 teamId = 1;
+
 }
 
 message ExitTeamRes{
-
+    int32 code = 1;
+    string msg = 2;
 }
 
 // 踢出队伍
@@ -46,10 +64,6 @@ message KickTeamNotify {
 
 }
 
-message TeamList {
-    repeated TeamInfo teamInfo = 1;
-}
-
 
 message TeamInfo {
     int64 id = 1;
@@ -57,7 +71,7 @@ message TeamInfo {
     string teamName = 3;
     int32 currNum = 4;
     int32 maxNum = 5;
-    bool full = 6;
+    bool instance= 6;
     repeated string memberName = 7;
 }
 

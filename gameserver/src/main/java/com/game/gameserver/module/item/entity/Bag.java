@@ -1,5 +1,9 @@
 package com.game.gameserver.module.item.entity;
 
+import com.game.gameserver.common.config.PropConfig;
+import com.game.gameserver.common.config.StaticConfigManager;
+import com.game.gameserver.module.item.type.ItemType;
+
 import java.util.List;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
@@ -12,38 +16,66 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
  */
 public class Bag {
 
-    /** 容量 */
+    /**
+     * 容量
+     */
     private int capacity;
     private final int bagType;
-    private Item[] rawData;
+    private final Item[] rawData;
     private final ReentrantReadWriteLock lock;
 
-    public Bag(int capacity, int bagType){
+    public Bag(int capacity, int bagType) {
         this.capacity = capacity;
         this.bagType = bagType;
         this.rawData = new Item[capacity];
         this.lock = new ReentrantReadWriteLock();
     }
 
-    public void initialize(List<Item> itemList){
-        for(Item item:itemList){
+    public void initialize(List<Item> itemList) {
+        for (Item item : itemList) {
             rawData[item.getBagIndex()] = item;
         }
     }
 
-    public Lock getReadLock(){
+    public Lock getReadLock() {
         return lock.readLock();
     }
 
-    public Lock getWriteLock(){
+    public Lock getWriteLock() {
         return lock.writeLock();
     }
 
-    public int getBagType(){
+    public int getBagType() {
         return bagType;
     }
 
     public int getCapacity() {
         return capacity;
+    }
+
+    public boolean hasSpace(Item... items) {
+        // 需要格子数
+        int needGrid = 0;
+        for (Item item : items) {
+            // 如果是装备
+            if(item.getItemType().equals(ItemType.EQUIP)){
+                needGrid+=1;
+            }
+            // 如果是道具 判断是否可以叠加
+            if(item.getItemType().equals(ItemType.PROP)){
+                // 是否有同类道具
+                PropConfig propConfig = StaticConfigManager.getInstance().getPropConfigMap().get(item.getItemId());
+                if(propConfig==null){
+                    return false;
+                }
+                // 是否可叠加
+                // 叠加后还剩多少 需要多少个格子
+            }
+        }
+        return rawData.length + needGrid <= capacity;
+    }
+
+    public Item[] getRawData() {
+        return rawData;
     }
 }

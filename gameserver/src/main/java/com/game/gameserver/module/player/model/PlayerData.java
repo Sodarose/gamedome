@@ -1,6 +1,6 @@
 package com.game.gameserver.module.player.model;
 
-import com.game.gameserver.module.buffer.model.Buffer;
+import com.game.gameserver.module.buffer.entity.Buffer;
 import lombok.Data;
 
 import java.io.Serializable;

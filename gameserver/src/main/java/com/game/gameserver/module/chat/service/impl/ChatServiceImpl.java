@@ -109,7 +109,7 @@ public class ChatServiceImpl implements ChatService {
      */
     @Override
     public void sendCommonMsg(PlayerObject player, ChatProtocol.CommonMsg commonMsg) {
-        Integer sceneId = player.getPlayer().getSceneId();
+        Long sceneId = player.getPlayer().getSceneId();
         if(sceneId==null){
             return;
         }

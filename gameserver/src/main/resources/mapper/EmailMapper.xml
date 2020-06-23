@@ -7,7 +7,7 @@
         <result column="senderId" property="senderId"/>
         <result column="senderName" property="senderName"/>
         <result column="content" property="content"/>
-        <result column="attachments" property="attachments"/>
+        <!--<result column="attachments" property="attachments"/>-->
         <result column="golds" property="golds"/>
         <result column="playerId" property="playerId"/>
         <result column="state" property="state"/>

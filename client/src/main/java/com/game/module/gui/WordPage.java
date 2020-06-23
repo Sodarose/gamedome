@@ -1,14 +1,17 @@
 package com.game.module.gui;
 
-import com.game.module.goods.GoodsType;
+import com.game.module.item.ItemType;
 import com.game.module.player.PlayerInfo;
 import com.game.module.player.SimplePlayerInfo;
 import com.game.module.store.Commodity;
+import com.game.protocol.InstanceProtocol;
+import com.game.protocol.TeamProtocol;
 import com.game.util.StaticData;
 import org.springframework.stereotype.Component;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.List;
 import java.util.Map;
 
 
@@ -40,11 +43,29 @@ public class WordPage extends JTextArea {
         repaint();
     }
 
+    public void printInstanceInfo(List<InstanceProtocol.InstanceConfigInfo> instanceInfos) {
+        for (InstanceProtocol.InstanceConfigInfo info : instanceInfos) {
+            builder.append("副本名称:").append(info.getInstanceName()).append("\n");
+            builder.append("副本类型:").append("闯关类型").append("\n");
+            builder.append("副本难度:").append(info.getDiff()).append("\n");
+            builder.append("开放时间:").append("全天开放").append("\n");
+            builder.append("限制时间:").append(info.getLimitTime()).append("\n");
+            builder.append("需要组队:").append(info.getNeedTeam()).append("\n");
+            builder.append("等级限制:").append(info.getMaxNum()).append("\n");
+            builder.append("经验奖励:").append(info.getExprAward()).append("\n");
+            builder.append("金币奖励:").append(info.getGoldAward()).append("\n");
+            builder.append("装备奖励:").append(info.getEquipAwardList().toString()).append("\n");
+            builder.append("道具奖励:").append(info.getPropAwardList().toString()).append("\n");
+            builder.append("\n");
+        }
+        refresh();
+    }
+
 
     public void printStore(Map<String, Commodity> commodityMap) {
         for (Map.Entry<String, Commodity> entry : commodityMap.entrySet()) {
             Commodity commodity = entry.getValue();
-            builder.append(commodity.getGoodsType() == GoodsType.EQUIP ? "装备" : "道具").append(":")
+            builder.append(commodity.getGoodsType() == ItemType.EQUIP ? "装备" : "道具").append(":")
                     .append(commodity.getGoodsName()).append("\n");
             builder.append("原价:").append(commodity.getOriginalPrice()).append("\n");
             builder.append("现价:").append(commodity.getPrice()).append("\n");
@@ -109,6 +130,28 @@ public class WordPage extends JTextArea {
         refresh();
     }
 
+    public void printTeamList(List<TeamProtocol.TeamInfo> teamInfos){
+        for(TeamProtocol.TeamInfo teamInfo:teamInfos){
+            printTeamInfo(teamInfo);
+        }
+        refresh();
+    }
+
+    public void printTeamInfo(TeamProtocol.TeamInfo teamInfo){
+        builder.append("队伍Id:").append(teamInfo.getId()).append("\n");
+        builder.append("队伍名称:").append(teamInfo.getTeamName()).append("\n");
+        builder.append("队长Id:").append(teamInfo.getCaptainId()).append("\n");
+        builder.append("人数:").append(teamInfo.getCurrNum()).append("/").append(teamInfo.getMaxNum()).append("\n");
+        builder.append("状态:").append(teamInfo.getInstance()?"副本中":"待机").append("\n");
+        builder.append("队员:");
+        for(String name:teamInfo.getMemberNameList()){
+            builder.append(name).append("\t");
+        }
+        builder.append("\n");
+        builder.append("\n");
+        refresh();
+    }
+
     /*public void print(Bag bag){
         clean();
     *//*    builder.append(bag.getName()).append("\n");
@@ -133,4 +176,5 @@ public class WordPage extends JTextArea {
         }
         refresh();
     }*/
+
 }

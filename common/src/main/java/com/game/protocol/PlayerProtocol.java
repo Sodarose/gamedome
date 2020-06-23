@@ -5923,10 +5923,10 @@ public final class PlayerProtocol {
     int getGolds();
 
     /**
-     * <code>int32 sceneId = 6;</code>
+     * <code>int64 sceneId = 6;</code>
      * @return The sceneId.
      */
-    int getSceneId();
+    long getSceneId();
 
     /**
      * <pre>
@@ -5960,24 +5960,24 @@ public final class PlayerProtocol {
      * 装备信息
      * </pre>
      *
-     * <code>repeated .GoodsInfo equipInfo = 8;</code>
+     * <code>repeated .ItemInfo equipInfo = 8;</code>
      */
-    java.util.List<com.game.protocol.GoodsProtocol.GoodsInfo> 
+    java.util.List<com.game.protocol.ItemProtocol.ItemInfo> 
         getEquipInfoList();
     /**
      * <pre>
      * 装备信息
      * </pre>
      *
-     * <code>repeated .GoodsInfo equipInfo = 8;</code>
+     * <code>repeated .ItemInfo equipInfo = 8;</code>
      */
-    com.game.protocol.GoodsProtocol.GoodsInfo getEquipInfo(int index);
+    com.game.protocol.ItemProtocol.ItemInfo getEquipInfo(int index);
     /**
      * <pre>
      * 装备信息
      * </pre>
      *
-     * <code>repeated .GoodsInfo equipInfo = 8;</code>
+     * <code>repeated .ItemInfo equipInfo = 8;</code>
      */
     int getEquipInfoCount();
     /**
@@ -5985,18 +5985,18 @@ public final class PlayerProtocol {
      * 装备信息
      * </pre>
      *
-     * <code>repeated .GoodsInfo equipInfo = 8;</code>
+     * <code>repeated .ItemInfo equipInfo = 8;</code>
      */
-    java.util.List<? extends com.game.protocol.GoodsProtocol.GoodsInfoOrBuilder> 
+    java.util.List<? extends com.game.protocol.ItemProtocol.ItemInfoOrBuilder> 
         getEquipInfoOrBuilderList();
     /**
      * <pre>
      * 装备信息
      * </pre>
      *
-     * <code>repeated .GoodsInfo equipInfo = 8;</code>
+     * <code>repeated .ItemInfo equipInfo = 8;</code>
      */
-    com.game.protocol.GoodsProtocol.GoodsInfoOrBuilder getEquipInfoOrBuilder(
+    com.game.protocol.ItemProtocol.ItemInfoOrBuilder getEquipInfoOrBuilder(
         int index);
 
     /**
@@ -6004,24 +6004,24 @@ public final class PlayerProtocol {
      * 背包物品
      * </pre>
      *
-     * <code>repeated .GoodsInfo goodsInfo = 9;</code>
+     * <code>repeated .ItemInfo goodsInfo = 9;</code>
      */
-    java.util.List<com.game.protocol.GoodsProtocol.GoodsInfo> 
+    java.util.List<com.game.protocol.ItemProtocol.ItemInfo> 
         getGoodsInfoList();
     /**
      * <pre>
      * 背包物品
      * </pre>
      *
-     * <code>repeated .GoodsInfo goodsInfo = 9;</code>
+     * <code>repeated .ItemInfo goodsInfo = 9;</code>
      */
-    com.game.protocol.GoodsProtocol.GoodsInfo getGoodsInfo(int index);
+    com.game.protocol.ItemProtocol.ItemInfo getGoodsInfo(int index);
     /**
      * <pre>
      * 背包物品
      * </pre>
      *
-     * <code>repeated .GoodsInfo goodsInfo = 9;</code>
+     * <code>repeated .ItemInfo goodsInfo = 9;</code>
      */
     int getGoodsInfoCount();
     /**
@@ -6029,18 +6029,18 @@ public final class PlayerProtocol {
      * 背包物品
      * </pre>
      *
-     * <code>repeated .GoodsInfo goodsInfo = 9;</code>
+     * <code>repeated .ItemInfo goodsInfo = 9;</code>
      */
-    java.util.List<? extends com.game.protocol.GoodsProtocol.GoodsInfoOrBuilder> 
+    java.util.List<? extends com.game.protocol.ItemProtocol.ItemInfoOrBuilder> 
         getGoodsInfoOrBuilderList();
     /**
      * <pre>
      * 背包物品
      * </pre>
      *
-     * <code>repeated .GoodsInfo goodsInfo = 9;</code>
+     * <code>repeated .ItemInfo goodsInfo = 9;</code>
      */
-    com.game.protocol.GoodsProtocol.GoodsInfoOrBuilder getGoodsInfoOrBuilder(
+    com.game.protocol.ItemProtocol.ItemInfoOrBuilder getGoodsInfoOrBuilder(
         int index);
 
     /**
@@ -6196,7 +6196,7 @@ public final class PlayerProtocol {
             }
             case 48: {
 
-              sceneId_ = input.readInt32();
+              sceneId_ = input.readInt64();
               break;
             }
             case 58: {
@@ -6214,20 +6214,20 @@ public final class PlayerProtocol {
             }
             case 66: {
               if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                equipInfo_ = new java.util.ArrayList<com.game.protocol.GoodsProtocol.GoodsInfo>();
+                equipInfo_ = new java.util.ArrayList<com.game.protocol.ItemProtocol.ItemInfo>();
                 mutable_bitField0_ |= 0x00000001;
               }
               equipInfo_.add(
-                  input.readMessage(com.game.protocol.GoodsProtocol.GoodsInfo.parser(), extensionRegistry));
+                  input.readMessage(com.game.protocol.ItemProtocol.ItemInfo.parser(), extensionRegistry));
               break;
             }
             case 74: {
               if (!((mutable_bitField0_ & 0x00000002) != 0)) {
-                goodsInfo_ = new java.util.ArrayList<com.game.protocol.GoodsProtocol.GoodsInfo>();
+                goodsInfo_ = new java.util.ArrayList<com.game.protocol.ItemProtocol.ItemInfo>();
                 mutable_bitField0_ |= 0x00000002;
               }
               goodsInfo_.add(
-                  input.readMessage(com.game.protocol.GoodsProtocol.GoodsInfo.parser(), extensionRegistry));
+                  input.readMessage(com.game.protocol.ItemProtocol.ItemInfo.parser(), extensionRegistry));
               break;
             }
             case 82: {
@@ -6370,12 +6370,12 @@ public final class PlayerProtocol {
     }
 
     public static final int SCENEID_FIELD_NUMBER = 6;
-    private int sceneId_;
+    private long sceneId_;
     /**
-     * <code>int32 sceneId = 6;</code>
+     * <code>int64 sceneId = 6;</code>
      * @return The sceneId.
      */
-    public int getSceneId() {
+    public long getSceneId() {
       return sceneId_;
     }
 
@@ -6415,15 +6415,15 @@ public final class PlayerProtocol {
     }
 
     public static final int EQUIPINFO_FIELD_NUMBER = 8;
-    private java.util.List<com.game.protocol.GoodsProtocol.GoodsInfo> equipInfo_;
+    private java.util.List<com.game.protocol.ItemProtocol.ItemInfo> equipInfo_;
     /**
      * <pre>
      * 装备信息
      * </pre>
      *
-     * <code>repeated .GoodsInfo equipInfo = 8;</code>
+     * <code>repeated .ItemInfo equipInfo = 8;</code>
      */
-    public java.util.List<com.game.protocol.GoodsProtocol.GoodsInfo> getEquipInfoList() {
+    public java.util.List<com.game.protocol.ItemProtocol.ItemInfo> getEquipInfoList() {
       return equipInfo_;
     }
     /**
@@ -6431,9 +6431,9 @@ public final class PlayerProtocol {
      * 装备信息
      * </pre>
      *
-     * <code>repeated .GoodsInfo equipInfo = 8;</code>
+     * <code>repeated .ItemInfo equipInfo = 8;</code>
      */
-    public java.util.List<? extends com.game.protocol.GoodsProtocol.GoodsInfoOrBuilder> 
+    public java.util.List<? extends com.game.protocol.ItemProtocol.ItemInfoOrBuilder> 
         getEquipInfoOrBuilderList() {
       return equipInfo_;
     }
@@ -6442,7 +6442,7 @@ public final class PlayerProtocol {
      * 装备信息
      * </pre>
      *
-     * <code>repeated .GoodsInfo equipInfo = 8;</code>
+     * <code>repeated .ItemInfo equipInfo = 8;</code>
      */
     public int getEquipInfoCount() {
       return equipInfo_.size();
@@ -6452,9 +6452,9 @@ public final class PlayerProtocol {
      * 装备信息
      * </pre>
      *
-     * <code>repeated .GoodsInfo equipInfo = 8;</code>
+     * <code>repeated .ItemInfo equipInfo = 8;</code>
      */
-    public com.game.protocol.GoodsProtocol.GoodsInfo getEquipInfo(int index) {
+    public com.game.protocol.ItemProtocol.ItemInfo getEquipInfo(int index) {
       return equipInfo_.get(index);
     }
     /**
@@ -6462,23 +6462,23 @@ public final class PlayerProtocol {
      * 装备信息
      * </pre>
      *
-     * <code>repeated .GoodsInfo equipInfo = 8;</code>
+     * <code>repeated .ItemInfo equipInfo = 8;</code>
      */
-    public com.game.protocol.GoodsProtocol.GoodsInfoOrBuilder getEquipInfoOrBuilder(
+    public com.game.protocol.ItemProtocol.ItemInfoOrBuilder getEquipInfoOrBuilder(
         int index) {
       return equipInfo_.get(index);
     }
 
     public static final int GOODSINFO_FIELD_NUMBER = 9;
-    private java.util.List<com.game.protocol.GoodsProtocol.GoodsInfo> goodsInfo_;
+    private java.util.List<com.game.protocol.ItemProtocol.ItemInfo> goodsInfo_;
     /**
      * <pre>
      * 背包物品
      * </pre>
      *
-     * <code>repeated .GoodsInfo goodsInfo = 9;</code>
+     * <code>repeated .ItemInfo goodsInfo = 9;</code>
      */
-    public java.util.List<com.game.protocol.GoodsProtocol.GoodsInfo> getGoodsInfoList() {
+    public java.util.List<com.game.protocol.ItemProtocol.ItemInfo> getGoodsInfoList() {
       return goodsInfo_;
     }
     /**
@@ -6486,9 +6486,9 @@ public final class PlayerProtocol {
      * 背包物品
      * </pre>
      *
-     * <code>repeated .GoodsInfo goodsInfo = 9;</code>
+     * <code>repeated .ItemInfo goodsInfo = 9;</code>
      */
-    public java.util.List<? extends com.game.protocol.GoodsProtocol.GoodsInfoOrBuilder> 
+    public java.util.List<? extends com.game.protocol.ItemProtocol.ItemInfoOrBuilder> 
         getGoodsInfoOrBuilderList() {
       return goodsInfo_;
     }
@@ -6497,7 +6497,7 @@ public final class PlayerProtocol {
      * 背包物品
      * </pre>
      *
-     * <code>repeated .GoodsInfo goodsInfo = 9;</code>
+     * <code>repeated .ItemInfo goodsInfo = 9;</code>
      */
     public int getGoodsInfoCount() {
       return goodsInfo_.size();
@@ -6507,9 +6507,9 @@ public final class PlayerProtocol {
      * 背包物品
      * </pre>
      *
-     * <code>repeated .GoodsInfo goodsInfo = 9;</code>
+     * <code>repeated .ItemInfo goodsInfo = 9;</code>
      */
-    public com.game.protocol.GoodsProtocol.GoodsInfo getGoodsInfo(int index) {
+    public com.game.protocol.ItemProtocol.ItemInfo getGoodsInfo(int index) {
       return goodsInfo_.get(index);
     }
     /**
@@ -6517,9 +6517,9 @@ public final class PlayerProtocol {
      * 背包物品
      * </pre>
      *
-     * <code>repeated .GoodsInfo goodsInfo = 9;</code>
+     * <code>repeated .ItemInfo goodsInfo = 9;</code>
      */
-    public com.game.protocol.GoodsProtocol.GoodsInfoOrBuilder getGoodsInfoOrBuilder(
+    public com.game.protocol.ItemProtocol.ItemInfoOrBuilder getGoodsInfoOrBuilder(
         int index) {
       return goodsInfo_.get(index);
     }
@@ -6643,8 +6643,8 @@ public final class PlayerProtocol {
       if (golds_ != 0) {
         output.writeInt32(5, golds_);
       }
-      if (sceneId_ != 0) {
-        output.writeInt32(6, sceneId_);
+      if (sceneId_ != 0L) {
+        output.writeInt64(6, sceneId_);
       }
       if (playerBattle_ != null) {
         output.writeMessage(7, getPlayerBattle());
@@ -6689,9 +6689,9 @@ public final class PlayerProtocol {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(5, golds_);
       }
-      if (sceneId_ != 0) {
+      if (sceneId_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(6, sceneId_);
+          .computeInt64Size(6, sceneId_);
       }
       if (playerBattle_ != null) {
         size += com.google.protobuf.CodedOutputStream
@@ -6779,7 +6779,8 @@ public final class PlayerProtocol {
       hash = (37 * hash) + GOLDS_FIELD_NUMBER;
       hash = (53 * hash) + getGolds();
       hash = (37 * hash) + SCENEID_FIELD_NUMBER;
-      hash = (53 * hash) + getSceneId();
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getSceneId());
       if (hasPlayerBattle()) {
         hash = (37 * hash) + PLAYERBATTLE_FIELD_NUMBER;
         hash = (53 * hash) + getPlayerBattle().hashCode();
@@ -6950,7 +6951,7 @@ public final class PlayerProtocol {
 
         golds_ = 0;
 
-        sceneId_ = 0;
+        sceneId_ = 0L;
 
         if (playerBattleBuilder_ == null) {
           playerBattle_ = null;
@@ -7116,7 +7117,7 @@ public final class PlayerProtocol {
         if (other.getGolds() != 0) {
           setGolds(other.getGolds());
         }
-        if (other.getSceneId() != 0) {
+        if (other.getSceneId() != 0L) {
           setSceneId(other.getSceneId());
         }
         if (other.hasPlayerBattle()) {
@@ -7429,32 +7430,32 @@ public final class PlayerProtocol {
         return this;
       }
 
-      private int sceneId_ ;
+      private long sceneId_ ;
       /**
-       * <code>int32 sceneId = 6;</code>
+       * <code>int64 sceneId = 6;</code>
        * @return The sceneId.
        */
-      public int getSceneId() {
+      public long getSceneId() {
         return sceneId_;
       }
       /**
-       * <code>int32 sceneId = 6;</code>
+       * <code>int64 sceneId = 6;</code>
        * @param value The sceneId to set.
        * @return This builder for chaining.
        */
-      public Builder setSceneId(int value) {
+      public Builder setSceneId(long value) {
         
         sceneId_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>int32 sceneId = 6;</code>
+       * <code>int64 sceneId = 6;</code>
        * @return This builder for chaining.
        */
       public Builder clearSceneId() {
         
-        sceneId_ = 0;
+        sceneId_ = 0L;
         onChanged();
         return this;
       }
@@ -7614,26 +7615,26 @@ public final class PlayerProtocol {
         return playerBattleBuilder_;
       }
 
-      private java.util.List<com.game.protocol.GoodsProtocol.GoodsInfo> equipInfo_ =
+      private java.util.List<com.game.protocol.ItemProtocol.ItemInfo> equipInfo_ =
         java.util.Collections.emptyList();
       private void ensureEquipInfoIsMutable() {
         if (!((bitField0_ & 0x00000001) != 0)) {
-          equipInfo_ = new java.util.ArrayList<com.game.protocol.GoodsProtocol.GoodsInfo>(equipInfo_);
+          equipInfo_ = new java.util.ArrayList<com.game.protocol.ItemProtocol.ItemInfo>(equipInfo_);
           bitField0_ |= 0x00000001;
          }
       }
 
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.game.protocol.GoodsProtocol.GoodsInfo, com.game.protocol.GoodsProtocol.GoodsInfo.Builder, com.game.protocol.GoodsProtocol.GoodsInfoOrBuilder> equipInfoBuilder_;
+          com.game.protocol.ItemProtocol.ItemInfo, com.game.protocol.ItemProtocol.ItemInfo.Builder, com.game.protocol.ItemProtocol.ItemInfoOrBuilder> equipInfoBuilder_;
 
       /**
        * <pre>
        * 装备信息
        * </pre>
        *
-       * <code>repeated .GoodsInfo equipInfo = 8;</code>
+       * <code>repeated .ItemInfo equipInfo = 8;</code>
        */
-      public java.util.List<com.game.protocol.GoodsProtocol.GoodsInfo> getEquipInfoList() {
+      public java.util.List<com.game.protocol.ItemProtocol.ItemInfo> getEquipInfoList() {
         if (equipInfoBuilder_ == null) {
           return java.util.Collections.unmodifiableList(equipInfo_);
         } else {
@@ -7645,7 +7646,7 @@ public final class PlayerProtocol {
        * 装备信息
        * </pre>
        *
-       * <code>repeated .GoodsInfo equipInfo = 8;</code>
+       * <code>repeated .ItemInfo equipInfo = 8;</code>
        */
       public int getEquipInfoCount() {
         if (equipInfoBuilder_ == null) {
@@ -7659,9 +7660,9 @@ public final class PlayerProtocol {
        * 装备信息
        * </pre>
        *
-       * <code>repeated .GoodsInfo equipInfo = 8;</code>
+       * <code>repeated .ItemInfo equipInfo = 8;</code>
        */
-      public com.game.protocol.GoodsProtocol.GoodsInfo getEquipInfo(int index) {
+      public com.game.protocol.ItemProtocol.ItemInfo getEquipInfo(int index) {
         if (equipInfoBuilder_ == null) {
           return equipInfo_.get(index);
         } else {
@@ -7673,10 +7674,10 @@ public final class PlayerProtocol {
        * 装备信息
        * </pre>
        *
-       * <code>repeated .GoodsInfo equipInfo = 8;</code>
+       * <code>repeated .ItemInfo equipInfo = 8;</code>
        */
       public Builder setEquipInfo(
-          int index, com.game.protocol.GoodsProtocol.GoodsInfo value) {
+          int index, com.game.protocol.ItemProtocol.ItemInfo value) {
         if (equipInfoBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -7694,10 +7695,10 @@ public final class PlayerProtocol {
        * 装备信息
        * </pre>
        *
-       * <code>repeated .GoodsInfo equipInfo = 8;</code>
+       * <code>repeated .ItemInfo equipInfo = 8;</code>
        */
       public Builder setEquipInfo(
-          int index, com.game.protocol.GoodsProtocol.GoodsInfo.Builder builderForValue) {
+          int index, com.game.protocol.ItemProtocol.ItemInfo.Builder builderForValue) {
         if (equipInfoBuilder_ == null) {
           ensureEquipInfoIsMutable();
           equipInfo_.set(index, builderForValue.build());
@@ -7712,9 +7713,9 @@ public final class PlayerProtocol {
        * 装备信息
        * </pre>
        *
-       * <code>repeated .GoodsInfo equipInfo = 8;</code>
+       * <code>repeated .ItemInfo equipInfo = 8;</code>
        */
-      public Builder addEquipInfo(com.game.protocol.GoodsProtocol.GoodsInfo value) {
+      public Builder addEquipInfo(com.game.protocol.ItemProtocol.ItemInfo value) {
         if (equipInfoBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -7732,10 +7733,10 @@ public final class PlayerProtocol {
        * 装备信息
        * </pre>
        *
-       * <code>repeated .GoodsInfo equipInfo = 8;</code>
+       * <code>repeated .ItemInfo equipInfo = 8;</code>
        */
       public Builder addEquipInfo(
-          int index, com.game.protocol.GoodsProtocol.GoodsInfo value) {
+          int index, com.game.protocol.ItemProtocol.ItemInfo value) {
         if (equipInfoBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -7753,10 +7754,10 @@ public final class PlayerProtocol {
        * 装备信息
        * </pre>
        *
-       * <code>repeated .GoodsInfo equipInfo = 8;</code>
+       * <code>repeated .ItemInfo equipInfo = 8;</code>
        */
       public Builder addEquipInfo(
-          com.game.protocol.GoodsProtocol.GoodsInfo.Builder builderForValue) {
+          com.game.protocol.ItemProtocol.ItemInfo.Builder builderForValue) {
         if (equipInfoBuilder_ == null) {
           ensureEquipInfoIsMutable();
           equipInfo_.add(builderForValue.build());
@@ -7771,10 +7772,10 @@ public final class PlayerProtocol {
        * 装备信息
        * </pre>
        *
-       * <code>repeated .GoodsInfo equipInfo = 8;</code>
+       * <code>repeated .ItemInfo equipInfo = 8;</code>
        */
       public Builder addEquipInfo(
-          int index, com.game.protocol.GoodsProtocol.GoodsInfo.Builder builderForValue) {
+          int index, com.game.protocol.ItemProtocol.ItemInfo.Builder builderForValue) {
         if (equipInfoBuilder_ == null) {
           ensureEquipInfoIsMutable();
           equipInfo_.add(index, builderForValue.build());
@@ -7789,10 +7790,10 @@ public final class PlayerProtocol {
        * 装备信息
        * </pre>
        *
-       * <code>repeated .GoodsInfo equipInfo = 8;</code>
+       * <code>repeated .ItemInfo equipInfo = 8;</code>
        */
       public Builder addAllEquipInfo(
-          java.lang.Iterable<? extends com.game.protocol.GoodsProtocol.GoodsInfo> values) {
+          java.lang.Iterable<? extends com.game.protocol.ItemProtocol.ItemInfo> values) {
         if (equipInfoBuilder_ == null) {
           ensureEquipInfoIsMutable();
           com.google.protobuf.AbstractMessageLite.Builder.addAll(
@@ -7808,7 +7809,7 @@ public final class PlayerProtocol {
        * 装备信息
        * </pre>
        *
-       * <code>repeated .GoodsInfo equipInfo = 8;</code>
+       * <code>repeated .ItemInfo equipInfo = 8;</code>
        */
       public Builder clearEquipInfo() {
         if (equipInfoBuilder_ == null) {
@@ -7825,7 +7826,7 @@ public final class PlayerProtocol {
        * 装备信息
        * </pre>
        *
-       * <code>repeated .GoodsInfo equipInfo = 8;</code>
+       * <code>repeated .ItemInfo equipInfo = 8;</code>
        */
       public Builder removeEquipInfo(int index) {
         if (equipInfoBuilder_ == null) {
@@ -7842,9 +7843,9 @@ public final class PlayerProtocol {
        * 装备信息
        * </pre>
        *
-       * <code>repeated .GoodsInfo equipInfo = 8;</code>
+       * <code>repeated .ItemInfo equipInfo = 8;</code>
        */
-      public com.game.protocol.GoodsProtocol.GoodsInfo.Builder getEquipInfoBuilder(
+      public com.game.protocol.ItemProtocol.ItemInfo.Builder getEquipInfoBuilder(
           int index) {
         return getEquipInfoFieldBuilder().getBuilder(index);
       }
@@ -7853,9 +7854,9 @@ public final class PlayerProtocol {
        * 装备信息
        * </pre>
        *
-       * <code>repeated .GoodsInfo equipInfo = 8;</code>
+       * <code>repeated .ItemInfo equipInfo = 8;</code>
        */
-      public com.game.protocol.GoodsProtocol.GoodsInfoOrBuilder getEquipInfoOrBuilder(
+      public com.game.protocol.ItemProtocol.ItemInfoOrBuilder getEquipInfoOrBuilder(
           int index) {
         if (equipInfoBuilder_ == null) {
           return equipInfo_.get(index);  } else {
@@ -7867,9 +7868,9 @@ public final class PlayerProtocol {
        * 装备信息
        * </pre>
        *
-       * <code>repeated .GoodsInfo equipInfo = 8;</code>
+       * <code>repeated .ItemInfo equipInfo = 8;</code>
        */
-      public java.util.List<? extends com.game.protocol.GoodsProtocol.GoodsInfoOrBuilder> 
+      public java.util.List<? extends com.game.protocol.ItemProtocol.ItemInfoOrBuilder> 
            getEquipInfoOrBuilderList() {
         if (equipInfoBuilder_ != null) {
           return equipInfoBuilder_.getMessageOrBuilderList();
@@ -7882,41 +7883,41 @@ public final class PlayerProtocol {
        * 装备信息
        * </pre>
        *
-       * <code>repeated .GoodsInfo equipInfo = 8;</code>
+       * <code>repeated .ItemInfo equipInfo = 8;</code>
        */
-      public com.game.protocol.GoodsProtocol.GoodsInfo.Builder addEquipInfoBuilder() {
+      public com.game.protocol.ItemProtocol.ItemInfo.Builder addEquipInfoBuilder() {
         return getEquipInfoFieldBuilder().addBuilder(
-            com.game.protocol.GoodsProtocol.GoodsInfo.getDefaultInstance());
+            com.game.protocol.ItemProtocol.ItemInfo.getDefaultInstance());
       }
       /**
        * <pre>
        * 装备信息
        * </pre>
        *
-       * <code>repeated .GoodsInfo equipInfo = 8;</code>
+       * <code>repeated .ItemInfo equipInfo = 8;</code>
        */
-      public com.game.protocol.GoodsProtocol.GoodsInfo.Builder addEquipInfoBuilder(
+      public com.game.protocol.ItemProtocol.ItemInfo.Builder addEquipInfoBuilder(
           int index) {
         return getEquipInfoFieldBuilder().addBuilder(
-            index, com.game.protocol.GoodsProtocol.GoodsInfo.getDefaultInstance());
+            index, com.game.protocol.ItemProtocol.ItemInfo.getDefaultInstance());
       }
       /**
        * <pre>
        * 装备信息
        * </pre>
        *
-       * <code>repeated .GoodsInfo equipInfo = 8;</code>
+       * <code>repeated .ItemInfo equipInfo = 8;</code>
        */
-      public java.util.List<com.game.protocol.GoodsProtocol.GoodsInfo.Builder> 
+      public java.util.List<com.game.protocol.ItemProtocol.ItemInfo.Builder> 
            getEquipInfoBuilderList() {
         return getEquipInfoFieldBuilder().getBuilderList();
       }
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.game.protocol.GoodsProtocol.GoodsInfo, com.game.protocol.GoodsProtocol.GoodsInfo.Builder, com.game.protocol.GoodsProtocol.GoodsInfoOrBuilder> 
+          com.game.protocol.ItemProtocol.ItemInfo, com.game.protocol.ItemProtocol.ItemInfo.Builder, com.game.protocol.ItemProtocol.ItemInfoOrBuilder> 
           getEquipInfoFieldBuilder() {
         if (equipInfoBuilder_ == null) {
           equipInfoBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.game.protocol.GoodsProtocol.GoodsInfo, com.game.protocol.GoodsProtocol.GoodsInfo.Builder, com.game.protocol.GoodsProtocol.GoodsInfoOrBuilder>(
+              com.game.protocol.ItemProtocol.ItemInfo, com.game.protocol.ItemProtocol.ItemInfo.Builder, com.game.protocol.ItemProtocol.ItemInfoOrBuilder>(
                   equipInfo_,
                   ((bitField0_ & 0x00000001) != 0),
                   getParentForChildren(),
@@ -7926,26 +7927,26 @@ public final class PlayerProtocol {
         return equipInfoBuilder_;
       }
 
-      private java.util.List<com.game.protocol.GoodsProtocol.GoodsInfo> goodsInfo_ =
+      private java.util.List<com.game.protocol.ItemProtocol.ItemInfo> goodsInfo_ =
         java.util.Collections.emptyList();
       private void ensureGoodsInfoIsMutable() {
         if (!((bitField0_ & 0x00000002) != 0)) {
-          goodsInfo_ = new java.util.ArrayList<com.game.protocol.GoodsProtocol.GoodsInfo>(goodsInfo_);
+          goodsInfo_ = new java.util.ArrayList<com.game.protocol.ItemProtocol.ItemInfo>(goodsInfo_);
           bitField0_ |= 0x00000002;
          }
       }
 
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.game.protocol.GoodsProtocol.GoodsInfo, com.game.protocol.GoodsProtocol.GoodsInfo.Builder, com.game.protocol.GoodsProtocol.GoodsInfoOrBuilder> goodsInfoBuilder_;
+          com.game.protocol.ItemProtocol.ItemInfo, com.game.protocol.ItemProtocol.ItemInfo.Builder, com.game.protocol.ItemProtocol.ItemInfoOrBuilder> goodsInfoBuilder_;
 
       /**
        * <pre>
        * 背包物品
        * </pre>
        *
-       * <code>repeated .GoodsInfo goodsInfo = 9;</code>
+       * <code>repeated .ItemInfo goodsInfo = 9;</code>
        */
-      public java.util.List<com.game.protocol.GoodsProtocol.GoodsInfo> getGoodsInfoList() {
+      public java.util.List<com.game.protocol.ItemProtocol.ItemInfo> getGoodsInfoList() {
         if (goodsInfoBuilder_ == null) {
           return java.util.Collections.unmodifiableList(goodsInfo_);
         } else {
@@ -7957,7 +7958,7 @@ public final class PlayerProtocol {
        * 背包物品
        * </pre>
        *
-       * <code>repeated .GoodsInfo goodsInfo = 9;</code>
+       * <code>repeated .ItemInfo goodsInfo = 9;</code>
        */
       public int getGoodsInfoCount() {
         if (goodsInfoBuilder_ == null) {
@@ -7971,9 +7972,9 @@ public final class PlayerProtocol {
        * 背包物品
        * </pre>
        *
-       * <code>repeated .GoodsInfo goodsInfo = 9;</code>
+       * <code>repeated .ItemInfo goodsInfo = 9;</code>
        */
-      public com.game.protocol.GoodsProtocol.GoodsInfo getGoodsInfo(int index) {
+      public com.game.protocol.ItemProtocol.ItemInfo getGoodsInfo(int index) {
         if (goodsInfoBuilder_ == null) {
           return goodsInfo_.get(index);
         } else {
@@ -7985,10 +7986,10 @@ public final class PlayerProtocol {
        * 背包物品
        * </pre>
        *
-       * <code>repeated .GoodsInfo goodsInfo = 9;</code>
+       * <code>repeated .ItemInfo goodsInfo = 9;</code>
        */
       public Builder setGoodsInfo(
-          int index, com.game.protocol.GoodsProtocol.GoodsInfo value) {
+          int index, com.game.protocol.ItemProtocol.ItemInfo value) {
         if (goodsInfoBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -8006,10 +8007,10 @@ public final class PlayerProtocol {
        * 背包物品
        * </pre>
        *
-       * <code>repeated .GoodsInfo goodsInfo = 9;</code>
+       * <code>repeated .ItemInfo goodsInfo = 9;</code>
        */
       public Builder setGoodsInfo(
-          int index, com.game.protocol.GoodsProtocol.GoodsInfo.Builder builderForValue) {
+          int index, com.game.protocol.ItemProtocol.ItemInfo.Builder builderForValue) {
         if (goodsInfoBuilder_ == null) {
           ensureGoodsInfoIsMutable();
           goodsInfo_.set(index, builderForValue.build());
@@ -8024,9 +8025,9 @@ public final class PlayerProtocol {
        * 背包物品
        * </pre>
        *
-       * <code>repeated .GoodsInfo goodsInfo = 9;</code>
+       * <code>repeated .ItemInfo goodsInfo = 9;</code>
        */
-      public Builder addGoodsInfo(com.game.protocol.GoodsProtocol.GoodsInfo value) {
+      public Builder addGoodsInfo(com.game.protocol.ItemProtocol.ItemInfo value) {
         if (goodsInfoBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -8044,10 +8045,10 @@ public final class PlayerProtocol {
        * 背包物品
        * </pre>
        *
-       * <code>repeated .GoodsInfo goodsInfo = 9;</code>
+       * <code>repeated .ItemInfo goodsInfo = 9;</code>
        */
       public Builder addGoodsInfo(
-          int index, com.game.protocol.GoodsProtocol.GoodsInfo value) {
+          int index, com.game.protocol.ItemProtocol.ItemInfo value) {
         if (goodsInfoBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -8065,10 +8066,10 @@ public final class PlayerProtocol {
        * 背包物品
        * </pre>
        *
-       * <code>repeated .GoodsInfo goodsInfo = 9;</code>
+       * <code>repeated .ItemInfo goodsInfo = 9;</code>
        */
       public Builder addGoodsInfo(
-          com.game.protocol.GoodsProtocol.GoodsInfo.Builder builderForValue) {
+          com.game.protocol.ItemProtocol.ItemInfo.Builder builderForValue) {
         if (goodsInfoBuilder_ == null) {
           ensureGoodsInfoIsMutable();
           goodsInfo_.add(builderForValue.build());
@@ -8083,10 +8084,10 @@ public final class PlayerProtocol {
        * 背包物品
        * </pre>
        *
-       * <code>repeated .GoodsInfo goodsInfo = 9;</code>
+       * <code>repeated .ItemInfo goodsInfo = 9;</code>
        */
       public Builder addGoodsInfo(
-          int index, com.game.protocol.GoodsProtocol.GoodsInfo.Builder builderForValue) {
+          int index, com.game.protocol.ItemProtocol.ItemInfo.Builder builderForValue) {
         if (goodsInfoBuilder_ == null) {
           ensureGoodsInfoIsMutable();
           goodsInfo_.add(index, builderForValue.build());
@@ -8101,10 +8102,10 @@ public final class PlayerProtocol {
        * 背包物品
        * </pre>
        *
-       * <code>repeated .GoodsInfo goodsInfo = 9;</code>
+       * <code>repeated .ItemInfo goodsInfo = 9;</code>
        */
       public Builder addAllGoodsInfo(
-          java.lang.Iterable<? extends com.game.protocol.GoodsProtocol.GoodsInfo> values) {
+          java.lang.Iterable<? extends com.game.protocol.ItemProtocol.ItemInfo> values) {
         if (goodsInfoBuilder_ == null) {
           ensureGoodsInfoIsMutable();
           com.google.protobuf.AbstractMessageLite.Builder.addAll(
@@ -8120,7 +8121,7 @@ public final class PlayerProtocol {
        * 背包物品
        * </pre>
        *
-       * <code>repeated .GoodsInfo goodsInfo = 9;</code>
+       * <code>repeated .ItemInfo goodsInfo = 9;</code>
        */
       public Builder clearGoodsInfo() {
         if (goodsInfoBuilder_ == null) {
@@ -8137,7 +8138,7 @@ public final class PlayerProtocol {
        * 背包物品
        * </pre>
        *
-       * <code>repeated .GoodsInfo goodsInfo = 9;</code>
+       * <code>repeated .ItemInfo goodsInfo = 9;</code>
        */
       public Builder removeGoodsInfo(int index) {
         if (goodsInfoBuilder_ == null) {
@@ -8154,9 +8155,9 @@ public final class PlayerProtocol {
        * 背包物品
        * </pre>
        *
-       * <code>repeated .GoodsInfo goodsInfo = 9;</code>
+       * <code>repeated .ItemInfo goodsInfo = 9;</code>
        */
-      public com.game.protocol.GoodsProtocol.GoodsInfo.Builder getGoodsInfoBuilder(
+      public com.game.protocol.ItemProtocol.ItemInfo.Builder getGoodsInfoBuilder(
           int index) {
         return getGoodsInfoFieldBuilder().getBuilder(index);
       }
@@ -8165,9 +8166,9 @@ public final class PlayerProtocol {
        * 背包物品
        * </pre>
        *
-       * <code>repeated .GoodsInfo goodsInfo = 9;</code>
+       * <code>repeated .ItemInfo goodsInfo = 9;</code>
        */
-      public com.game.protocol.GoodsProtocol.GoodsInfoOrBuilder getGoodsInfoOrBuilder(
+      public com.game.protocol.ItemProtocol.ItemInfoOrBuilder getGoodsInfoOrBuilder(
           int index) {
         if (goodsInfoBuilder_ == null) {
           return goodsInfo_.get(index);  } else {
@@ -8179,9 +8180,9 @@ public final class PlayerProtocol {
        * 背包物品
        * </pre>
        *
-       * <code>repeated .GoodsInfo goodsInfo = 9;</code>
+       * <code>repeated .ItemInfo goodsInfo = 9;</code>
        */
-      public java.util.List<? extends com.game.protocol.GoodsProtocol.GoodsInfoOrBuilder> 
+      public java.util.List<? extends com.game.protocol.ItemProtocol.ItemInfoOrBuilder> 
            getGoodsInfoOrBuilderList() {
         if (goodsInfoBuilder_ != null) {
           return goodsInfoBuilder_.getMessageOrBuilderList();
@@ -8194,41 +8195,41 @@ public final class PlayerProtocol {
        * 背包物品
        * </pre>
        *
-       * <code>repeated .GoodsInfo goodsInfo = 9;</code>
+       * <code>repeated .ItemInfo goodsInfo = 9;</code>
        */
-      public com.game.protocol.GoodsProtocol.GoodsInfo.Builder addGoodsInfoBuilder() {
+      public com.game.protocol.ItemProtocol.ItemInfo.Builder addGoodsInfoBuilder() {
         return getGoodsInfoFieldBuilder().addBuilder(
-            com.game.protocol.GoodsProtocol.GoodsInfo.getDefaultInstance());
+            com.game.protocol.ItemProtocol.ItemInfo.getDefaultInstance());
       }
       /**
        * <pre>
        * 背包物品
        * </pre>
        *
-       * <code>repeated .GoodsInfo goodsInfo = 9;</code>
+       * <code>repeated .ItemInfo goodsInfo = 9;</code>
        */
-      public com.game.protocol.GoodsProtocol.GoodsInfo.Builder addGoodsInfoBuilder(
+      public com.game.protocol.ItemProtocol.ItemInfo.Builder addGoodsInfoBuilder(
           int index) {
         return getGoodsInfoFieldBuilder().addBuilder(
-            index, com.game.protocol.GoodsProtocol.GoodsInfo.getDefaultInstance());
+            index, com.game.protocol.ItemProtocol.ItemInfo.getDefaultInstance());
       }
       /**
        * <pre>
        * 背包物品
        * </pre>
        *
-       * <code>repeated .GoodsInfo goodsInfo = 9;</code>
+       * <code>repeated .ItemInfo goodsInfo = 9;</code>
        */
-      public java.util.List<com.game.protocol.GoodsProtocol.GoodsInfo.Builder> 
+      public java.util.List<com.game.protocol.ItemProtocol.ItemInfo.Builder> 
            getGoodsInfoBuilderList() {
         return getGoodsInfoFieldBuilder().getBuilderList();
       }
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.game.protocol.GoodsProtocol.GoodsInfo, com.game.protocol.GoodsProtocol.GoodsInfo.Builder, com.game.protocol.GoodsProtocol.GoodsInfoOrBuilder> 
+          com.game.protocol.ItemProtocol.ItemInfo, com.game.protocol.ItemProtocol.ItemInfo.Builder, com.game.protocol.ItemProtocol.ItemInfoOrBuilder> 
           getGoodsInfoFieldBuilder() {
         if (goodsInfoBuilder_ == null) {
           goodsInfoBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.game.protocol.GoodsProtocol.GoodsInfo, com.game.protocol.GoodsProtocol.GoodsInfo.Builder, com.game.protocol.GoodsProtocol.GoodsInfoOrBuilder>(
+              com.game.protocol.ItemProtocol.ItemInfo, com.game.protocol.ItemProtocol.ItemInfo.Builder, com.game.protocol.ItemProtocol.ItemInfoOrBuilder>(
                   goodsInfo_,
                   ((bitField0_ & 0x00000002) != 0),
                   getParentForChildren(),
@@ -11458,24 +11459,24 @@ public final class PlayerProtocol {
      * 装备信息
      * </pre>
      *
-     * <code>repeated .GoodsInfo equipBag = 7;</code>
+     * <code>repeated .ItemInfo equipBag = 7;</code>
      */
-    java.util.List<com.game.protocol.GoodsProtocol.GoodsInfo> 
+    java.util.List<com.game.protocol.ItemProtocol.ItemInfo> 
         getEquipBagList();
     /**
      * <pre>
      * 装备信息
      * </pre>
      *
-     * <code>repeated .GoodsInfo equipBag = 7;</code>
+     * <code>repeated .ItemInfo equipBag = 7;</code>
      */
-    com.game.protocol.GoodsProtocol.GoodsInfo getEquipBag(int index);
+    com.game.protocol.ItemProtocol.ItemInfo getEquipBag(int index);
     /**
      * <pre>
      * 装备信息
      * </pre>
      *
-     * <code>repeated .GoodsInfo equipBag = 7;</code>
+     * <code>repeated .ItemInfo equipBag = 7;</code>
      */
     int getEquipBagCount();
     /**
@@ -11483,18 +11484,18 @@ public final class PlayerProtocol {
      * 装备信息
      * </pre>
      *
-     * <code>repeated .GoodsInfo equipBag = 7;</code>
+     * <code>repeated .ItemInfo equipBag = 7;</code>
      */
-    java.util.List<? extends com.game.protocol.GoodsProtocol.GoodsInfoOrBuilder> 
+    java.util.List<? extends com.game.protocol.ItemProtocol.ItemInfoOrBuilder> 
         getEquipBagOrBuilderList();
     /**
      * <pre>
      * 装备信息
      * </pre>
      *
-     * <code>repeated .GoodsInfo equipBag = 7;</code>
+     * <code>repeated .ItemInfo equipBag = 7;</code>
      */
-    com.game.protocol.GoodsProtocol.GoodsInfoOrBuilder getEquipBagOrBuilder(
+    com.game.protocol.ItemProtocol.ItemInfoOrBuilder getEquipBagOrBuilder(
         int index);
   }
   /**
@@ -11590,11 +11591,11 @@ public final class PlayerProtocol {
             }
             case 58: {
               if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                equipBag_ = new java.util.ArrayList<com.game.protocol.GoodsProtocol.GoodsInfo>();
+                equipBag_ = new java.util.ArrayList<com.game.protocol.ItemProtocol.ItemInfo>();
                 mutable_bitField0_ |= 0x00000001;
               }
               equipBag_.add(
-                  input.readMessage(com.game.protocol.GoodsProtocol.GoodsInfo.parser(), extensionRegistry));
+                  input.readMessage(com.game.protocol.ItemProtocol.ItemInfo.parser(), extensionRegistry));
               break;
             }
             default: {
@@ -11744,15 +11745,15 @@ public final class PlayerProtocol {
     }
 
     public static final int EQUIPBAG_FIELD_NUMBER = 7;
-    private java.util.List<com.game.protocol.GoodsProtocol.GoodsInfo> equipBag_;
+    private java.util.List<com.game.protocol.ItemProtocol.ItemInfo> equipBag_;
     /**
      * <pre>
      * 装备信息
      * </pre>
      *
-     * <code>repeated .GoodsInfo equipBag = 7;</code>
+     * <code>repeated .ItemInfo equipBag = 7;</code>
      */
-    public java.util.List<com.game.protocol.GoodsProtocol.GoodsInfo> getEquipBagList() {
+    public java.util.List<com.game.protocol.ItemProtocol.ItemInfo> getEquipBagList() {
       return equipBag_;
     }
     /**
@@ -11760,9 +11761,9 @@ public final class PlayerProtocol {
      * 装备信息
      * </pre>
      *
-     * <code>repeated .GoodsInfo equipBag = 7;</code>
+     * <code>repeated .ItemInfo equipBag = 7;</code>
      */
-    public java.util.List<? extends com.game.protocol.GoodsProtocol.GoodsInfoOrBuilder> 
+    public java.util.List<? extends com.game.protocol.ItemProtocol.ItemInfoOrBuilder> 
         getEquipBagOrBuilderList() {
       return equipBag_;
     }
@@ -11771,7 +11772,7 @@ public final class PlayerProtocol {
      * 装备信息
      * </pre>
      *
-     * <code>repeated .GoodsInfo equipBag = 7;</code>
+     * <code>repeated .ItemInfo equipBag = 7;</code>
      */
     public int getEquipBagCount() {
       return equipBag_.size();
@@ -11781,9 +11782,9 @@ public final class PlayerProtocol {
      * 装备信息
      * </pre>
      *
-     * <code>repeated .GoodsInfo equipBag = 7;</code>
+     * <code>repeated .ItemInfo equipBag = 7;</code>
      */
-    public com.game.protocol.GoodsProtocol.GoodsInfo getEquipBag(int index) {
+    public com.game.protocol.ItemProtocol.ItemInfo getEquipBag(int index) {
       return equipBag_.get(index);
     }
     /**
@@ -11791,9 +11792,9 @@ public final class PlayerProtocol {
      * 装备信息
      * </pre>
      *
-     * <code>repeated .GoodsInfo equipBag = 7;</code>
+     * <code>repeated .ItemInfo equipBag = 7;</code>
      */
-    public com.game.protocol.GoodsProtocol.GoodsInfoOrBuilder getEquipBagOrBuilder(
+    public com.game.protocol.ItemProtocol.ItemInfoOrBuilder getEquipBagOrBuilder(
         int index) {
       return equipBag_.get(index);
     }
@@ -12611,26 +12612,26 @@ public final class PlayerProtocol {
         return playerBattleBuilder_;
       }
 
-      private java.util.List<com.game.protocol.GoodsProtocol.GoodsInfo> equipBag_ =
+      private java.util.List<com.game.protocol.ItemProtocol.ItemInfo> equipBag_ =
         java.util.Collections.emptyList();
       private void ensureEquipBagIsMutable() {
         if (!((bitField0_ & 0x00000001) != 0)) {
-          equipBag_ = new java.util.ArrayList<com.game.protocol.GoodsProtocol.GoodsInfo>(equipBag_);
+          equipBag_ = new java.util.ArrayList<com.game.protocol.ItemProtocol.ItemInfo>(equipBag_);
           bitField0_ |= 0x00000001;
          }
       }
 
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.game.protocol.GoodsProtocol.GoodsInfo, com.game.protocol.GoodsProtocol.GoodsInfo.Builder, com.game.protocol.GoodsProtocol.GoodsInfoOrBuilder> equipBagBuilder_;
+          com.game.protocol.ItemProtocol.ItemInfo, com.game.protocol.ItemProtocol.ItemInfo.Builder, com.game.protocol.ItemProtocol.ItemInfoOrBuilder> equipBagBuilder_;
 
       /**
        * <pre>
        * 装备信息
        * </pre>
        *
-       * <code>repeated .GoodsInfo equipBag = 7;</code>
+       * <code>repeated .ItemInfo equipBag = 7;</code>
        */
-      public java.util.List<com.game.protocol.GoodsProtocol.GoodsInfo> getEquipBagList() {
+      public java.util.List<com.game.protocol.ItemProtocol.ItemInfo> getEquipBagList() {
         if (equipBagBuilder_ == null) {
           return java.util.Collections.unmodifiableList(equipBag_);
         } else {
@@ -12642,7 +12643,7 @@ public final class PlayerProtocol {
        * 装备信息
        * </pre>
        *
-       * <code>repeated .GoodsInfo equipBag = 7;</code>
+       * <code>repeated .ItemInfo equipBag = 7;</code>
        */
       public int getEquipBagCount() {
         if (equipBagBuilder_ == null) {
@@ -12656,9 +12657,9 @@ public final class PlayerProtocol {
        * 装备信息
        * </pre>
        *
-       * <code>repeated .GoodsInfo equipBag = 7;</code>
+       * <code>repeated .ItemInfo equipBag = 7;</code>
        */
-      public com.game.protocol.GoodsProtocol.GoodsInfo getEquipBag(int index) {
+      public com.game.protocol.ItemProtocol.ItemInfo getEquipBag(int index) {
         if (equipBagBuilder_ == null) {
           return equipBag_.get(index);
         } else {
@@ -12670,10 +12671,10 @@ public final class PlayerProtocol {
        * 装备信息
        * </pre>
        *
-       * <code>repeated .GoodsInfo equipBag = 7;</code>
+       * <code>repeated .ItemInfo equipBag = 7;</code>
        */
       public Builder setEquipBag(
-          int index, com.game.protocol.GoodsProtocol.GoodsInfo value) {
+          int index, com.game.protocol.ItemProtocol.ItemInfo value) {
         if (equipBagBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -12691,10 +12692,10 @@ public final class PlayerProtocol {
        * 装备信息
        * </pre>
        *
-       * <code>repeated .GoodsInfo equipBag = 7;</code>
+       * <code>repeated .ItemInfo equipBag = 7;</code>
        */
       public Builder setEquipBag(
-          int index, com.game.protocol.GoodsProtocol.GoodsInfo.Builder builderForValue) {
+          int index, com.game.protocol.ItemProtocol.ItemInfo.Builder builderForValue) {
         if (equipBagBuilder_ == null) {
           ensureEquipBagIsMutable();
           equipBag_.set(index, builderForValue.build());
@@ -12709,9 +12710,9 @@ public final class PlayerProtocol {
        * 装备信息
        * </pre>
        *
-       * <code>repeated .GoodsInfo equipBag = 7;</code>
+       * <code>repeated .ItemInfo equipBag = 7;</code>
        */
-      public Builder addEquipBag(com.game.protocol.GoodsProtocol.GoodsInfo value) {
+      public Builder addEquipBag(com.game.protocol.ItemProtocol.ItemInfo value) {
         if (equipBagBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -12729,10 +12730,10 @@ public final class PlayerProtocol {
        * 装备信息
        * </pre>
        *
-       * <code>repeated .GoodsInfo equipBag = 7;</code>
+       * <code>repeated .ItemInfo equipBag = 7;</code>
        */
       public Builder addEquipBag(
-          int index, com.game.protocol.GoodsProtocol.GoodsInfo value) {
+          int index, com.game.protocol.ItemProtocol.ItemInfo value) {
         if (equipBagBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -12750,10 +12751,10 @@ public final class PlayerProtocol {
        * 装备信息
        * </pre>
        *
-       * <code>repeated .GoodsInfo equipBag = 7;</code>
+       * <code>repeated .ItemInfo equipBag = 7;</code>
        */
       public Builder addEquipBag(
-          com.game.protocol.GoodsProtocol.GoodsInfo.Builder builderForValue) {
+          com.game.protocol.ItemProtocol.ItemInfo.Builder builderForValue) {
         if (equipBagBuilder_ == null) {
           ensureEquipBagIsMutable();
           equipBag_.add(builderForValue.build());
@@ -12768,10 +12769,10 @@ public final class PlayerProtocol {
        * 装备信息
        * </pre>
        *
-       * <code>repeated .GoodsInfo equipBag = 7;</code>
+       * <code>repeated .ItemInfo equipBag = 7;</code>
        */
       public Builder addEquipBag(
-          int index, com.game.protocol.GoodsProtocol.GoodsInfo.Builder builderForValue) {
+          int index, com.game.protocol.ItemProtocol.ItemInfo.Builder builderForValue) {
         if (equipBagBuilder_ == null) {
           ensureEquipBagIsMutable();
           equipBag_.add(index, builderForValue.build());
@@ -12786,10 +12787,10 @@ public final class PlayerProtocol {
        * 装备信息
        * </pre>
        *
-       * <code>repeated .GoodsInfo equipBag = 7;</code>
+       * <code>repeated .ItemInfo equipBag = 7;</code>
        */
       public Builder addAllEquipBag(
-          java.lang.Iterable<? extends com.game.protocol.GoodsProtocol.GoodsInfo> values) {
+          java.lang.Iterable<? extends com.game.protocol.ItemProtocol.ItemInfo> values) {
         if (equipBagBuilder_ == null) {
           ensureEquipBagIsMutable();
           com.google.protobuf.AbstractMessageLite.Builder.addAll(
@@ -12805,7 +12806,7 @@ public final class PlayerProtocol {
        * 装备信息
        * </pre>
        *
-       * <code>repeated .GoodsInfo equipBag = 7;</code>
+       * <code>repeated .ItemInfo equipBag = 7;</code>
        */
       public Builder clearEquipBag() {
         if (equipBagBuilder_ == null) {
@@ -12822,7 +12823,7 @@ public final class PlayerProtocol {
        * 装备信息
        * </pre>
        *
-       * <code>repeated .GoodsInfo equipBag = 7;</code>
+       * <code>repeated .ItemInfo equipBag = 7;</code>
        */
       public Builder removeEquipBag(int index) {
         if (equipBagBuilder_ == null) {
@@ -12839,9 +12840,9 @@ public final class PlayerProtocol {
        * 装备信息
        * </pre>
        *
-       * <code>repeated .GoodsInfo equipBag = 7;</code>
+       * <code>repeated .ItemInfo equipBag = 7;</code>
        */
-      public com.game.protocol.GoodsProtocol.GoodsInfo.Builder getEquipBagBuilder(
+      public com.game.protocol.ItemProtocol.ItemInfo.Builder getEquipBagBuilder(
           int index) {
         return getEquipBagFieldBuilder().getBuilder(index);
       }
@@ -12850,9 +12851,9 @@ public final class PlayerProtocol {
        * 装备信息
        * </pre>
        *
-       * <code>repeated .GoodsInfo equipBag = 7;</code>
+       * <code>repeated .ItemInfo equipBag = 7;</code>
        */
-      public com.game.protocol.GoodsProtocol.GoodsInfoOrBuilder getEquipBagOrBuilder(
+      public com.game.protocol.ItemProtocol.ItemInfoOrBuilder getEquipBagOrBuilder(
           int index) {
         if (equipBagBuilder_ == null) {
           return equipBag_.get(index);  } else {
@@ -12864,9 +12865,9 @@ public final class PlayerProtocol {
        * 装备信息
        * </pre>
        *
-       * <code>repeated .GoodsInfo equipBag = 7;</code>
+       * <code>repeated .ItemInfo equipBag = 7;</code>
        */
-      public java.util.List<? extends com.game.protocol.GoodsProtocol.GoodsInfoOrBuilder> 
+      public java.util.List<? extends com.game.protocol.ItemProtocol.ItemInfoOrBuilder> 
            getEquipBagOrBuilderList() {
         if (equipBagBuilder_ != null) {
           return equipBagBuilder_.getMessageOrBuilderList();
@@ -12879,41 +12880,41 @@ public final class PlayerProtocol {
        * 装备信息
        * </pre>
        *
-       * <code>repeated .GoodsInfo equipBag = 7;</code>
+       * <code>repeated .ItemInfo equipBag = 7;</code>
        */
-      public com.game.protocol.GoodsProtocol.GoodsInfo.Builder addEquipBagBuilder() {
+      public com.game.protocol.ItemProtocol.ItemInfo.Builder addEquipBagBuilder() {
         return getEquipBagFieldBuilder().addBuilder(
-            com.game.protocol.GoodsProtocol.GoodsInfo.getDefaultInstance());
+            com.game.protocol.ItemProtocol.ItemInfo.getDefaultInstance());
       }
       /**
        * <pre>
        * 装备信息
        * </pre>
        *
-       * <code>repeated .GoodsInfo equipBag = 7;</code>
+       * <code>repeated .ItemInfo equipBag = 7;</code>
        */
-      public com.game.protocol.GoodsProtocol.GoodsInfo.Builder addEquipBagBuilder(
+      public com.game.protocol.ItemProtocol.ItemInfo.Builder addEquipBagBuilder(
           int index) {
         return getEquipBagFieldBuilder().addBuilder(
-            index, com.game.protocol.GoodsProtocol.GoodsInfo.getDefaultInstance());
+            index, com.game.protocol.ItemProtocol.ItemInfo.getDefaultInstance());
       }
       /**
        * <pre>
        * 装备信息
        * </pre>
        *
-       * <code>repeated .GoodsInfo equipBag = 7;</code>
+       * <code>repeated .ItemInfo equipBag = 7;</code>
        */
-      public java.util.List<com.game.protocol.GoodsProtocol.GoodsInfo.Builder> 
+      public java.util.List<com.game.protocol.ItemProtocol.ItemInfo.Builder> 
            getEquipBagBuilderList() {
         return getEquipBagFieldBuilder().getBuilderList();
       }
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.game.protocol.GoodsProtocol.GoodsInfo, com.game.protocol.GoodsProtocol.GoodsInfo.Builder, com.game.protocol.GoodsProtocol.GoodsInfoOrBuilder> 
+          com.game.protocol.ItemProtocol.ItemInfo, com.game.protocol.ItemProtocol.ItemInfo.Builder, com.game.protocol.ItemProtocol.ItemInfoOrBuilder> 
           getEquipBagFieldBuilder() {
         if (equipBagBuilder_ == null) {
           equipBagBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.game.protocol.GoodsProtocol.GoodsInfo, com.game.protocol.GoodsProtocol.GoodsInfo.Builder, com.game.protocol.GoodsProtocol.GoodsInfoOrBuilder>(
+              com.game.protocol.ItemProtocol.ItemInfo, com.game.protocol.ItemProtocol.ItemInfo.Builder, com.game.protocol.ItemProtocol.ItemInfoOrBuilder>(
                   equipBag_,
                   ((bitField0_ & 0x00000001) != 0),
                   getParentForChildren(),
@@ -13898,44 +13899,44 @@ public final class PlayerProtocol {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\014Player.proto\032\013Goods.proto\"\017\n\rPlayerLis" +
-      "tReq\":\n\rPlayerListRes\022)\n\016playerInfoList\030" +
-      "\001 \003(\0132\021.SimplePlayerInfo\"\"\n\016LoginPlayerR" +
-      "eq\022\020\n\010playerId\030\001 \001(\003\"L\n\016LoginPlayerRes\022\014" +
-      "\n\004code\030\001 \001(\005\022\013\n\003msg\030\002 \001(\t\022\037\n\nplayerInfo\030" +
-      "\003 \001(\0132\013.PlayerInfo\"\017\n\rPlayerInfoReq\"0\n\rP" +
-      "layerInfoRes\022\037\n\nplayerInfo\030\001 \001(\0132\013.Playe" +
-      "rInfo\"1\n\016SyncPlayerInfo\022\037\n\nplayerInfo\030\001 " +
-      "\001(\0132\013.PlayerInfo\"\014\n\nOpenBagReq\"\014\n\nOpenBa" +
-      "gRes\"M\n\020SimplePlayerInfo\022\n\n\002id\030\001 \001(\003\022\014\n\004" +
-      "name\030\002 \001(\t\022\r\n\005level\030\003 \001(\005\022\020\n\010careerId\030\004 " +
-      "\001(\005\"\216\002\n\nPlayerInfo\022\n\n\002id\030\001 \001(\003\022\014\n\004name\030\002" +
-      " \001(\t\022\r\n\005level\030\003 \001(\005\022\020\n\010careerId\030\004 \001(\005\022\r\n" +
-      "\005golds\030\005 \001(\005\022\017\n\007sceneId\030\006 \001(\005\022#\n\014playerB" +
-      "attle\030\007 \001(\0132\r.PlayerBattle\022\035\n\tequipInfo\030" +
-      "\010 \003(\0132\n.GoodsInfo\022\035\n\tgoodsInfo\030\t \003(\0132\n.G" +
-      "oodsInfo\022!\n\013playerSkill\030\n \001(\0132\014.PlayerSk" +
-      "ill\022\037\n\nbufferInfo\030\013 \003(\0132\013.BufferInfo\"\014\n\n" +
-      "BufferInfo\",\n\013PlayerSkill\022\035\n\tskillInfo\030\n" +
-      " \003(\0132\n.SkillInfo\"\313\001\n\tSkillInfo\022\n\n\002id\030\001 \001" +
-      "(\003\022\014\n\004name\030\002 \001(\t\022\020\n\010careerId\030\003 \001(\005\022\022\n\nli" +
-      "mitLevel\030\004 \001(\005\022\025\n\rmaxLearnLevel\030\005 \001(\005\022\020\n" +
-      "\010coolTime\030\006 \001(\005\022\017\n\007formula\030\007 \001(\t\022\014\n\004desc" +
-      "\030\010 \001(\t\022\020\n\010bagIndex\030\t \001(\005\022\022\n\nlearnLevel\030\n" +
-      " \001(\005\022\020\n\010playerId\030\013 \001(\005\"\236\001\n\017OtherPlayerIn" +
-      "fo\022\n\n\002id\030\001 \001(\003\022\014\n\004name\030\002 \001(\t\022\r\n\005level\030\003 " +
-      "\001(\005\022\020\n\010careerId\030\004 \001(\005\022\r\n\005state\030\005 \001(\005\022#\n\014" +
-      "playerBattle\030\006 \001(\0132\r.PlayerBattle\022\034\n\010equ" +
-      "ipBag\030\007 \003(\0132\n.GoodsInfo\"g\n\014PlayerBattle\022" +
-      "\n\n\002hp\030\001 \001(\005\022\016\n\006currHp\030\002 \001(\005\022\n\n\002mp\030\003 \001(\005\022" +
-      "\016\n\006currMp\030\004 \001(\005\022\016\n\006attack\030\005 \001(\005\022\017\n\007defen" +
-      "se\030\006 \001(\005B#\n\021com.game.protocolB\016PlayerPro" +
-      "tocolb\006proto3"
+      "\n\014Player.proto\032\nItem.proto\"\017\n\rPlayerList" +
+      "Req\":\n\rPlayerListRes\022)\n\016playerInfoList\030\001" +
+      " \003(\0132\021.SimplePlayerInfo\"\"\n\016LoginPlayerRe" +
+      "q\022\020\n\010playerId\030\001 \001(\003\"L\n\016LoginPlayerRes\022\014\n" +
+      "\004code\030\001 \001(\005\022\013\n\003msg\030\002 \001(\t\022\037\n\nplayerInfo\030\003" +
+      " \001(\0132\013.PlayerInfo\"\017\n\rPlayerInfoReq\"0\n\rPl" +
+      "ayerInfoRes\022\037\n\nplayerInfo\030\001 \001(\0132\013.Player" +
+      "Info\"1\n\016SyncPlayerInfo\022\037\n\nplayerInfo\030\001 \001" +
+      "(\0132\013.PlayerInfo\"\014\n\nOpenBagReq\"\014\n\nOpenBag" +
+      "Res\"M\n\020SimplePlayerInfo\022\n\n\002id\030\001 \001(\003\022\014\n\004n" +
+      "ame\030\002 \001(\t\022\r\n\005level\030\003 \001(\005\022\020\n\010careerId\030\004 \001" +
+      "(\005\"\214\002\n\nPlayerInfo\022\n\n\002id\030\001 \001(\003\022\014\n\004name\030\002 " +
+      "\001(\t\022\r\n\005level\030\003 \001(\005\022\020\n\010careerId\030\004 \001(\005\022\r\n\005" +
+      "golds\030\005 \001(\005\022\017\n\007sceneId\030\006 \001(\003\022#\n\014playerBa" +
+      "ttle\030\007 \001(\0132\r.PlayerBattle\022\034\n\tequipInfo\030\010" +
+      " \003(\0132\t.ItemInfo\022\034\n\tgoodsInfo\030\t \003(\0132\t.Ite" +
+      "mInfo\022!\n\013playerSkill\030\n \001(\0132\014.PlayerSkill" +
+      "\022\037\n\nbufferInfo\030\013 \003(\0132\013.BufferInfo\"\014\n\nBuf" +
+      "ferInfo\",\n\013PlayerSkill\022\035\n\tskillInfo\030\n \003(" +
+      "\0132\n.SkillInfo\"\313\001\n\tSkillInfo\022\n\n\002id\030\001 \001(\003\022" +
+      "\014\n\004name\030\002 \001(\t\022\020\n\010careerId\030\003 \001(\005\022\022\n\nlimit" +
+      "Level\030\004 \001(\005\022\025\n\rmaxLearnLevel\030\005 \001(\005\022\020\n\010co" +
+      "olTime\030\006 \001(\005\022\017\n\007formula\030\007 \001(\t\022\014\n\004desc\030\010 " +
+      "\001(\t\022\020\n\010bagIndex\030\t \001(\005\022\022\n\nlearnLevel\030\n \001(" +
+      "\005\022\020\n\010playerId\030\013 \001(\005\"\235\001\n\017OtherPlayerInfo\022" +
+      "\n\n\002id\030\001 \001(\003\022\014\n\004name\030\002 \001(\t\022\r\n\005level\030\003 \001(\005" +
+      "\022\020\n\010careerId\030\004 \001(\005\022\r\n\005state\030\005 \001(\005\022#\n\014pla" +
+      "yerBattle\030\006 \001(\0132\r.PlayerBattle\022\033\n\010equipB" +
+      "ag\030\007 \003(\0132\t.ItemInfo\"g\n\014PlayerBattle\022\n\n\002h" +
+      "p\030\001 \001(\005\022\016\n\006currHp\030\002 \001(\005\022\n\n\002mp\030\003 \001(\005\022\016\n\006c" +
+      "urrMp\030\004 \001(\005\022\016\n\006attack\030\005 \001(\005\022\017\n\007defense\030\006" +
+      " \001(\005B#\n\021com.game.protocolB\016PlayerProtoco" +
+      "lb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
-          com.game.protocol.GoodsProtocol.getDescriptor(),
+          com.game.protocol.ItemProtocol.getDescriptor(),
         });
     internal_static_PlayerListReq_descriptor =
       getDescriptor().getMessageTypes().get(0);
@@ -14033,7 +14034,7 @@ public final class PlayerProtocol {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_PlayerBattle_descriptor,
         new java.lang.String[] { "Hp", "CurrHp", "Mp", "CurrMp", "Attack", "Defense", });
-    com.game.protocol.GoodsProtocol.getDescriptor();
+    com.game.protocol.ItemProtocol.getDescriptor();
   }
 
   // @@protoc_insertion_point(outer_class_scope)

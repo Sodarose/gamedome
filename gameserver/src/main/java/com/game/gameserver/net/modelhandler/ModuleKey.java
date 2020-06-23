@@ -8,7 +8,7 @@ package com.game.gameserver.net.modelhandler;
 public interface ModuleKey {
     short ACCOUNT_MODULE = 1001;
     short PLAYER_MODULE = 1002;
-    short ITEM_Module = 1003;
+    short ITEM_MODULE = 1003;
     short TIP_MODULE = 1004;
     short SCENE_MODULE = 1005;
     short FIGHTER_MODEL = 1006;

@@ -2,10 +2,10 @@ package com.game.gameserver.context;
 
 import com.game.gameserver.common.config.StaticConfigManager;
 import com.game.gameserver.module.chat.manager.ChatManager;
+import com.game.gameserver.module.instance.manager.InstanceManager;
 import com.game.gameserver.module.scene.manager.SceneManager;
 import com.game.gameserver.module.store.manager.StoreManager;
-import com.game.gameserver.module.timewheel.manager.TimeWheelTimeManager;
-import com.game.gameserver.thread.UnitTickThread;
+import com.game.gameserver.module.ai.thread.UnitTickThread;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +31,8 @@ public class Platform {
     private ChatManager chatManager;
     @Autowired
     private StoreManager storeManager;
+    @Autowired
+    private InstanceManager instanceManager;
     private UnitTickThread unitTickThread = new UnitTickThread(1, TimeUnit.SECONDS);
 
     public void startUp() {
@@ -39,6 +41,8 @@ public class Platform {
         sceneManager.loadScene();
         chatManager.initialize();
         storeManager.loadStore();
+        // 启动副本定时器
+        instanceManager.startInstanceWorker();
         unitTickThread.start();
     }
 

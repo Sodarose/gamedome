@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
  * @author xuewenkang
  * @date 2020/5/27 14:37
  */
-@ModuleHandler(module = ModuleKey.ITEM_Module)
+@ModuleHandler(module = ModuleKey.ITEM_MODULE)
 @Component
 public class ItemHandle extends BaseHandler {
     /**
@@ -50,7 +50,7 @@ public class ItemHandle extends BaseHandler {
     /**
      * 丢弃道具
      * */
-    @CmdHandler(cmd = ItemCmd.DISCARD_ITEM)
+    @CmdHandler(cmd = ItemCmd.DROP_ITEM)
     public void handleDiscardItemCmd(Message message, Channel channel){
 
     }

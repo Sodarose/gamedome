@@ -51,6 +51,17 @@ public class TeamHandle extends BaseHandler {
         }
     }
 
+    @CmdHandler(cmd = TeamCmd.SHOW_TEAM)
+    public void handleShowTeamReq(Message message, Channel channel) {
+        PlayerObject playerObject = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
+        if (playerObject == null) {
+            return;
+        }
+        TeamProtocol.CheckTeamRes res = teamService.checkTeamRes(playerObject);
+        Message resMsg = MessageUtil.createMessage(ModuleKey.TEAM_MODULE, TeamCmd.SHOW_TEAM, res.toByteArray());
+        channel.writeAndFlush(resMsg);
+    }
+
     @CmdHandler(cmd = TeamCmd.DISSOLVE_TEAM)
     public void handleDissolveTeamReq(Message message, Channel channel) {
         PlayerObject playerObject = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
@@ -73,8 +84,8 @@ public class TeamHandle extends BaseHandler {
         if (playerObject == null) {
             return;
         }
-        TeamProtocol.TeamList teamList = teamService.getTeamList();
-        Message res = MessageUtil.createMessage(ModuleKey.TEAM_MODULE,TeamCmd.TEAM_LIST,teamList.toByteArray());
+        TeamProtocol.TeamListRes teamList = teamService.getTeamList();
+        Message res = MessageUtil.createMessage(ModuleKey.TEAM_MODULE, TeamCmd.TEAM_LIST, teamList.toByteArray());
         channel.writeAndFlush(res);
     }
 
@@ -86,7 +97,9 @@ public class TeamHandle extends BaseHandler {
         }
         try {
             TeamProtocol.EntryTeamReq req = TeamProtocol.EntryTeamReq.parseFrom(message.getData());
-            teamService.entryTeam(playerObject,req.getTeamId());
+            TeamProtocol.EntryTeamRes res = teamService.entryTeam(playerObject, req.getTeamId());
+            Message resMsg = MessageUtil.createMessage(ModuleKey.TEAM_MODULE, TeamCmd.ENTRY_TEAM, res.toByteArray());
+            channel.writeAndFlush(resMsg);
         } catch (InvalidProtocolBufferException e) {
             e.printStackTrace();
         }
@@ -98,8 +111,9 @@ public class TeamHandle extends BaseHandler {
         if (playerObject == null) {
             return;
         }
-        teamService.exitTeam(playerObject);
-
+        TeamProtocol.ExitTeamRes res = teamService.exitTeam(playerObject);
+        Message resMsg = MessageUtil.createMessage(ModuleKey.TEAM_MODULE, TeamCmd.EXIT_TEAM, res.toByteArray());
+        channel.writeAndFlush(resMsg);
     }
 
     @CmdHandler(cmd = TeamCmd.KICK_TEAM)
@@ -110,7 +124,7 @@ public class TeamHandle extends BaseHandler {
         }
         try {
             TeamProtocol.KickTeamReq kickTeamReq = TeamProtocol.KickTeamReq.parseFrom(message.getData());
-            teamService.kickTeam(playerObject,kickTeamReq.getPlayerId());
+            teamService.kickTeam(playerObject, kickTeamReq.getPlayerId());
         } catch (InvalidProtocolBufferException e) {
             e.printStackTrace();
         }

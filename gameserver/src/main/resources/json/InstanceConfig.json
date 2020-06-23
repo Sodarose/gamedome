@@ -4,9 +4,10 @@
     "name": "牛头人巢穴",
     "type": 0,
     "diff": 1,
-    "openDate": 0,
-    "limitDate": 600,
-    "needGood": 0,
+    "desc": "牛头人巢穴",
+    "openTime": "",
+    "limitTime": 600,
+    "needTeam": false,
     "minNum": 1,
     "maxNum": 4,
     "minLevel": 5,
@@ -14,15 +15,17 @@
     "goldAward": 2000,
     "equipAward": [],
     "propAward": [],
-    "bossConfigId": 1018
+    "instanceMonsterConfigId": 1001
   },
   {
     "id": 1002,
     "name": "村庄墓地",
     "type": 0,
     "diff": 1,
-    "openTime": 0,
-    "limitTime": 600,
+    "desc": "村庄墓地",
+    "openTime": "",
+    "limitTime": 60,
+    "needTeam": false,
     "limitNum": 10,
     "minNum": 1,
     "maxNum": 4,
@@ -31,15 +34,17 @@
     "goldAward": 2000,
     "equipAward": [],
     "propAward": [],
-    "bossConfigId": 1019
+    "instanceMonsterConfigId": 1002
   },
   {
     "id": 1003,
     "name": "古堡地牢",
     "type": 0,
     "diff": 1,
-    "openTime": 0,
-    "limitTime": 600,
+    "desc": "古堡地牢",
+    "openTime": "",
+    "limitTime": 60,
+    "needTeam": false,
     "limitNum": 10,
     "minNum": 1,
     "maxNum": 4,
@@ -48,15 +53,17 @@
     "goldAward": 2000,
     "equipAward": [],
     "propAward": [],
-    "bossConfigId": 1020
+    "instanceMonsterConfigId": 1003
   },
   {
     "id": 1004,
     "name": "森岭祭坛",
     "type": 0,
     "diff": 1,
-    "openTime": 0,
-    "limitTime": 600,
+    "desc": "森岭祭坛",
+    "openTime": "",
+    "limitTime": 60,
+    "needTeam": false,
     "limitNum": 10,
     "minNum": 1,
     "maxNum": 4,
@@ -65,15 +72,17 @@
     "goldAward": 2000,
     "equipAward": [],
     "propAward": [],
-    "bossConfigId": 1021
+    "instanceMonsterConfigId": 1004
   },
   {
     "id": 1005,
     "name": "龙墓",
     "type": 0,
     "diff": 1,
-    "openTime": 0,
-    "limitTime": 600,
+    "desc": "龙墓",
+    "openTime": "",
+    "limitTime": 60,
+    "needTeam": false,
     "limitNum": 10,
     "minNum": 1,
     "maxNum": 4,
@@ -82,15 +91,17 @@
     "goldAward": 2000,
     "equipAward": [],
     "propAward": [],
-    "bossConfigId": 1022
+    "instanceMonsterConfigId": 1005
   },
   {
     "id": 1006,
     "name": "未来车站",
     "type": 0,
     "diff": 1,
-    "openTime": 0,
+    "desc": "未来车站",
+    "openTime": "",
     "limitTime": 600,
+    "needTeam": false,
     "limitNum": 10,
     "minNum": 1,
     "maxNum": 4,
@@ -99,6 +110,6 @@
     "goldAward": 2000,
     "equipAward": [],
     "propAward": [],
-    "bossConfigId": 1023
+    "instanceMonsterConfigId": 1006
   }
 ]

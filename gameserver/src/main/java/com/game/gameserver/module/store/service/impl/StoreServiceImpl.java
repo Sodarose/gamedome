@@ -68,16 +68,16 @@ public class StoreServiceImpl implements StoreService {
             return createBuyCommodityRes(1003, "价钱不足");
         }
         // 判断背包空间是否足够放入物品
-        boolean space = itemManager.hasSpace(playerObject, commodityConfig.getGoodsType()
-                , commodityConfig.getGoodsId(), num);
-        if (!space) {
+      /*  boolean space = itemManager.hasSpace(playerObject, commodityConfig.getGoodsType()
+                , commodityConfig.getGoodsId(), num);*/
+       /* if (!space) {
             return createBuyCommodityRes(1004, "空间不足");
         }
         boolean result = itemManager.addGoods(playerObject, commodityConfig.getGoodsType()
-                , commodityConfig.getGoodsId(), num);
-        if (!result) {
+                , commodityConfig.getGoodsId(), num);*/
+      /*  if (!result) {
             return createBuyCommodityRes(1004, "购买失败");
-        }
+        }*/
         // 扣除金钱
         playerGolds -= price;
         playerObject.getPlayer().setGolds(playerGolds);

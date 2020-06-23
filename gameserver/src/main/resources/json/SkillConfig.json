@@ -1,82 +1,112 @@
 [
   {
     "id": 0,
-    "name": "崩山击",
-    "careerId": 1000,
-    "limitLevel": 10,
-    "maxLearnLevel": 10,
-    "coolTime": 3,
-    "formula": "${0}+(${0}*1.2)",
-    "desc": "向前猛击"
+    "name": "普通攻击（玩家）",
+    "careerId": 0,
+    "range": 1,
+    "limitLevel": 0,
+    "maxLearnLevel": 0,
+    "coolTime": 0,
+    "formula": "Attack|${0}",
+    "desc": "普通攻击"
   },
   {
     "id": 1,
-    "name": "十字斩",
+    "name": "普通攻击（怪物）",
     "careerId": 1000,
-    "limitLevel": 5,
+    "range": 1,
+    "limitLevel": 10,
     "maxLearnLevel": 10,
     "coolTime": 3,
-    "formula": "${0}+1000",
-    "desc": "十字斩"
+    "formula": "Attack|${0}",
+    "desc": "向前猛击"
   },
   {
     "id": 2,
-    "name": "破军",
-    "careerId": 1001,
-    "limitLevel": 5,
+    "name": "崩山击",
+    "careerId": 1000,
+    "range": 2,
+    "limitLevel": 10,
     "maxLearnLevel": 10,
     "coolTime": 3,
-    "formula": "${0}+1000",
-    "desc": "破军"
+    "formula": "Attack|${0}+(${0}*1.2)",
+    "desc": "向前猛击"
   },
   {
     "id": 3,
-    "name": "流星*跃",
-    "careerId": 1001,
-    "limitLevel": 10,
+    "name": "十字斩",
+    "careerId": 1000,
+    "range": 1,
+    "limitLevel": 5,
     "maxLearnLevel": 10,
     "coolTime": 3,
-    "formula": "${0}+1000",
-    "desc": "流星*跃"
+    "formula": "Attack|${0}+1000",
+    "desc": "十字斩"
   },
   {
     "id": 4,
-    "name": "红阵",
-    "careerId": 1002,
+    "name": "破军",
+    "careerId": 1001,
+    "range": 1,
     "limitLevel": 5,
     "maxLearnLevel": 10,
     "coolTime": 3,
-    "formula": "${0}+1000",
-    "desc": "红阵"
+    "formula": "Attack|${0}+1000",
+    "desc": "破军"
   },
   {
     "id": 5,
-    "name": "绿阵",
-    "careerId": 1002,
+    "name": "流星*跃",
+    "careerId": 1001,
+    "range": 1,
     "limitLevel": 10,
     "maxLearnLevel": 10,
     "coolTime": 3,
-    "formula": "${0}+1000",
-    "desc": "绿阵"
+    "formula": "Attack|${0}+1000",
+    "desc": "流星*跃"
   },
   {
     "id": 6,
-    "name": "裂波斩",
-    "careerId": 1003,
+    "name": "召唤召唤物1号",
+    "careerId": 1002,
+    "range": 0,
     "limitLevel": 5,
     "maxLearnLevel": 10,
     "coolTime": 3,
-    "formula": "${0}+1000",
-    "desc": "红阵"
+    "formula": "Summon|1001",
+    "desc": "召唤召唤物1号"
   },
   {
     "id": 7,
-    "name": "极冰斩",
-    "careerId": 1003,
+    "name": "召唤召唤物二号",
+    "careerId": 1002,
+    "range": 0,
     "limitLevel": 10,
     "maxLearnLevel": 10,
     "coolTime": 3,
-    "formula": "${0}+1000",
+    "formula": "Summon|1002",
+    "desc": "召唤召唤物2号"
+  },
+  {
+    "id": 8,
+    "name": "治愈术",
+    "careerId": 1003,
+    "range": 2,
+    "limitLevel": 5,
+    "maxLearnLevel": 10,
+    "coolTime": 5,
+    "formula": "Cure|hp|3000",
+    "desc": "红阵"
+  },
+  {
+    "id": 9,
+    "name": "治蓝术",
+    "careerId": 1003,
+    "range": 2,
+    "limitLevel": 10,
+    "maxLearnLevel": 10,
+    "coolTime": 3,
+    "formula": "Cure|mp|1000",
     "desc": "绿阵"
   }
 ]

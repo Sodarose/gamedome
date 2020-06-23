@@ -23,6 +23,6 @@ public interface TeamCmd {
     short TEAM_LIST = 1007;
     /** 踢出队伍通知 */
     short KICK_TEAM_NOTIFY = 1008;
-    /** 同步组队信息*/
-    short SYNC_TEAM = 1009;
+    /** 展示队伍 */
+    short SHOW_TEAM = 1010;
 }

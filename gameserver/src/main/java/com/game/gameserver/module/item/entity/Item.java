@@ -25,7 +25,7 @@ public class Item {
     /** 是否绑定 */
     protected Integer bound;
     /** 物品所属角色 */
-    protected Integer playerId;
+    protected Long playerId;
     /** 过期时间 */
     private long expireTime;
 }

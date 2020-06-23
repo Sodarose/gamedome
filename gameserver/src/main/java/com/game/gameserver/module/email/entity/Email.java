@@ -1,6 +1,12 @@
 package com.game.gameserver.module.email.entity;
 
+import com.game.gameserver.module.email.type.EmailState;
+import com.game.gameserver.module.item.entity.Item;
+import com.game.gameserver.util.GameUUID;
 import lombok.Data;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -20,8 +26,8 @@ public class Email {
     private String senderName;
     /** 文字内容 */
     private String content;
-    /** 附件其内容格式为 类型_道具Id_数量|类型_道具Id_数量|类型_道具Id_数量|类型_道具Id_数量*/
-    private String attachments;
+    /** 附件*/
+    private List<Item> attachments;
     /** golds */
     private Long golds;
     /** 玩家Id */
@@ -32,4 +38,24 @@ public class Email {
     private Integer delete;
     /** 邮件过期期限 */
     private Long expireTime;
+
+    public Email(){
+
+    }
+
+    public Email(String title,Long sendId,String senderName,String content){
+        this.id = GameUUID.getInstance().generate();
+        this.title = title;
+        this.senderId = sendId;
+        this.senderName = senderName;
+        this.content = content;
+        this.state = EmailState.CLOSE;
+    }
+
+    public void addAttachments(Item item){
+        if(attachments==null){
+            attachments = new ArrayList<>();
+        }
+        attachments.add(item);
+    }
 }

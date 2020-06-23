@@ -65,7 +65,7 @@ message PlayerInfo {
     int32 level = 3;
     int32 careerId = 4;
     int32 golds = 5;
-    int32 sceneId = 6;
+    int64 sceneId = 6;
     // 战斗属性
     PlayerBattle playerBattle = 7;
     // 装备信息

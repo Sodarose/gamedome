@@ -14,9 +14,15 @@ public interface ItemCmd {
     /** 使用道具 */
     short USE_ITEM = 1002;
     /** 丢弃道具 */
-    short DISCARD_ITEM = 1003;
+    short DROP_ITEM = 1003;
     /** 移动道具 */
     short MOVE_ITEM = 1004;
     /** 背包整理 */
     short CLEAR_BAG = 1006;
+    /** 卸下装备*/
+    short TAKEOFF_EQUIP = 1007;
+    /** 穿上装备*/
+    short PUT_ON_EQUIP = 1008;
+    /** 修理装备*/
+    short FIX_EQUIP = 1009;
 }

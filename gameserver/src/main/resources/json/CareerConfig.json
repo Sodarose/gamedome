@@ -3,6 +3,7 @@
     "id": 1000,
     "name": "狂战士",
     "desc": "垃圾红狗",
+    "skillIds": [],
     "careerLevelProperty": [
       {
         "level": 1,
@@ -87,6 +88,7 @@
     "id": 1001,
     "name": "剑魂",
     "desc": "垃圾白手",
+    "skillIds": [],
     "careerLevelProperty": [
       {
         "level": 1,
@@ -169,8 +171,9 @@
   },
   {
     "id": 1002,
-    "name": "鬼泣",
-    "desc": "非洲黑人",
+    "name": "召唤师",
+    "desc": "卡B",
+    "skillIds": [],
     "careerLevelProperty": [
       {
         "level": 1,
@@ -253,8 +256,9 @@
   },
   {
     "id": 1003,
-    "name": "阿修罗",
-    "desc": "不锈钢",
+    "name": "奶妈",
+    "desc": "老太婆",
+    "skillIds": [],
     "careerLevelProperty": [
       {
         "level": 1,

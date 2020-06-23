@@ -1,9 +1,7 @@
 package com.game.gameserver.module.npc.model;
 
 import com.game.gameserver.common.config.NpcConfig;
-import com.game.gameserver.common.entity.Unit;
 import com.game.gameserver.util.GameUUID;
-import com.game.gameserver.util.GenIdUtil;
 
 /**
  * npc模型对象
@@ -11,7 +9,7 @@ import com.game.gameserver.util.GenIdUtil;
  * @author xuewenkang
  * @date 2020/6/9 11:41
  */
-public class NpcObject implements Unit {
+public class NpcObject {
 
     /** id */
     private final long id;
@@ -28,10 +26,6 @@ public class NpcObject implements Unit {
 
     }
 
-    @Override
-    public void update() {
-
-    }
 
     public long getId() {
         return id;

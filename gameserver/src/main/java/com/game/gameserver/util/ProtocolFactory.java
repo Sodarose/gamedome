@@ -1,9 +1,13 @@
 package com.game.gameserver.util;
 
+import com.alibaba.druid.support.spring.stat.annotation.Stat;
 import com.game.gameserver.common.config.*;
+import com.game.gameserver.module.instance.model.InstanceObject;
 import com.game.gameserver.module.item.entity.Equip;
+import com.game.gameserver.module.item.entity.Item;
 import com.game.gameserver.module.item.entity.Prop;
 import com.game.gameserver.module.item.type.ItemType;
+import com.game.gameserver.module.monster.manager.MonsterManager;
 import com.game.gameserver.module.monster.model.MonsterObject;
 import com.game.gameserver.module.npc.model.NpcObject;
 import com.game.gameserver.module.player.entity.PlayerBattle;
@@ -138,8 +142,12 @@ public class ProtocolFactory {
         for (Map.Entry<Long, PlayerObject> entry : sceneObject.getPlayerObjectMap().entrySet()) {
             builder.putPlayers(entry.getKey(), createOtherPlayerInfo(entry.getValue()));
         }
-        for (Map.Entry<Long, MonsterObject> entry : sceneObject.getMonsterObjectMap().entrySet()) {
-            builder.putMonsters(entry.getKey(), createMonster(entry.getValue()));
+        for (Map.Entry<Long, Long> entry : sceneObject.getMonsterObjectMap().entrySet()) {
+            MonsterObject monsterObject = MonsterManager.instance.getMonster(entry.getValue());
+            if (monsterObject == null) {
+                continue;
+            }
+            builder.putMonsters(entry.getKey(), createMonster(monsterObject));
         }
         for (Map.Entry<Long, NpcObject> entry : sceneObject.getNpcObjectMap().entrySet()) {
             builder.putNpcs(entry.getKey(), createNpc(entry.getValue()));
@@ -170,12 +178,12 @@ public class ProtocolFactory {
         builder.setId(monsterObject.getId());
         builder.setName(monsterObject.getMonsterConfig().getName());
         builder.setLevel(monsterObject.getMonsterConfig().getLevel());
-        builder.setHp(monsterObject.getProperty().getHp());
-        builder.setMp(monsterObject.getProperty().getMp());
-        builder.setAttack(monsterObject.getProperty().getAttack());
-        builder.setDefense(monsterObject.getProperty().getDefense());
-        builder.setCurrHp(monsterObject.getProperty().getCurrHp());
-        builder.setCurrMp(monsterObject.getProperty().getCurrMp());
+        builder.setHp(monsterObject.getHp());
+        builder.setMp(monsterObject.getMp());
+        builder.setAttack(monsterObject.getAttack());
+        builder.setDefense(monsterObject.getDefense());
+        builder.setCurrHp(monsterObject.getCurrHp());
+        builder.setCurrMp(monsterObject.getCurrMp());
         return builder.build();
     }
 
@@ -232,13 +240,10 @@ public class ProtocolFactory {
         return builder.build();
     }
 
-    public static TeamProtocol.CreateTeamRes createCreateTeamRes(int code, String msg, Team team) {
+    public static TeamProtocol.CreateTeamRes createCreateTeamRes(int code, String msg) {
         TeamProtocol.CreateTeamRes.Builder builder = TeamProtocol.CreateTeamRes.newBuilder();
         builder.setCode(code);
         builder.setMsg(msg);
-        if (team != null) {
-            builder.setTeamInfo(createTeamInfo(team));
-        }
         return builder.build();
     }
 
@@ -249,7 +254,7 @@ public class ProtocolFactory {
         builder.setTeamName(team.getTeamName());
         builder.setCurrNum(team.getCurrNum());
         builder.setMaxNum(team.getMaxNum());
-        builder.setFull(team.isFull());
+        builder.setInstance(team.getInstanceId()!=null);
         for (Long playerId : team.getMembers()) {
             PlayerObject playerObject = PlayerManager.instance.getPlayerObject(playerId);
             if (playerObject == null) {
@@ -260,8 +265,136 @@ public class ProtocolFactory {
         return builder.build();
     }
 
-    public static TeamProtocol.EntryTeamRes createEntryRes(int code, String msg, Team team) {
+    public static TeamProtocol.EntryTeamRes createEntryRes(int code, String msg) {
         TeamProtocol.EntryTeamRes.Builder builder = TeamProtocol.EntryTeamRes.newBuilder();
+        builder.setCode(code);
+        builder.setMsg(msg);
+        return builder.build();
+    }
+
+    public static InstanceProtocol.InstanceSuccess createInstanceSuccess(InstanceConfig instanceConfig) {
+        InstanceProtocol.InstanceSuccess.Builder builder = InstanceProtocol.InstanceSuccess.newBuilder();
+        builder.setCode(0);
+        builder.setMsg("恭喜通关");
+        builder.setExprAward(instanceConfig.getExprAward());
+        builder.setGoldAward(instanceConfig.getGoldAward());
+        for (Integer equipId : instanceConfig.getEquipAward()) {
+            EquipConfig equipConfig = StaticConfigManager.getInstance().getEquipConfigMap().get(equipId);
+            if (equipConfig == null) {
+                continue;
+            }
+            builder.addEquipList(equipConfig.getName());
+        }
+        for (Integer propId : instanceConfig.getPropAward()) {
+            PropConfig propConfig = StaticConfigManager.getInstance().getPropConfigMap().get(propId);
+            if (propConfig == null) {
+                continue;
+            }
+            builder.addPropList(propConfig.getName());
+        }
+        return builder.build();
+    }
+
+    public static InstanceProtocol.InstanceInfoListRes createInstanceInfoListRes(int code,String msg,List<InstanceConfig> instanceConfigs){
+        InstanceProtocol.InstanceInfoListRes.Builder builder = InstanceProtocol.InstanceInfoListRes.newBuilder();
+        builder.setCode(code);
+        builder.setMsg(msg);
+        if(instanceConfigs!=null){
+            for(InstanceConfig instanceConfig:instanceConfigs){
+                builder.addInstanceInfoList(createInstanceInfo(instanceConfig));
+            }
+        }
+        return builder.build();
+    }
+
+    public static InstanceProtocol.InstanceConfigInfo createInstanceInfo(InstanceConfig instanceConfig){
+        InstanceProtocol.InstanceConfigInfo.Builder builder = InstanceProtocol.InstanceConfigInfo.newBuilder();
+        builder.setInstanceConfigId(instanceConfig.getId());
+        builder.setInstanceName(instanceConfig.getName());
+        builder.setInstanceType(instanceConfig.getType());
+        builder.setDiff(instanceConfig.getDiff());
+        builder.setOpenTime("全天开放");
+        builder.setLimitTime(instanceConfig.getLimitTime());
+        builder.setNeedTeam(false);
+        builder.setMinNum(instanceConfig.getMinNum());
+        builder.setMaxNum(instanceConfig.getMaxNum());
+        builder.setMinLevel(instanceConfig.getMinLevel());
+        builder.setExprAward(instanceConfig.getExprAward());
+        builder.setGoldAward(instanceConfig.getGoldAward());
+        builder.setDesc(instanceConfig.getDesc());
+        for (Integer equipId : instanceConfig.getEquipAward()) {
+            EquipConfig equipConfig = StaticConfigManager.getInstance().getEquipConfigMap().get(equipId);
+            if (equipConfig == null) {
+                continue;
+            }
+            builder.addEquipAward(equipConfig.getName());
+        }
+        for (Integer propId : instanceConfig.getPropAward()) {
+            PropConfig propConfig = StaticConfigManager.getInstance().getPropConfigMap().get(propId);
+            if (propConfig == null) {
+                continue;
+            }
+            builder.addPropAward(propConfig.getName());
+        }
+        return builder.build();
+    }
+
+    public static InstanceProtocol.EntryInstanceRes createEntryInstanceRes(int code,String msg,InstanceObject instanceObject){
+        InstanceProtocol.EntryInstanceRes.Builder builder = InstanceProtocol.EntryInstanceRes.newBuilder();
+        builder.setCode(code);
+        builder.setMsg(msg);
+        if(instanceObject!=null){
+            InstanceProtocol.InstanceInfo info = createInstanceInfo(instanceObject);
+            if(info==null){
+                builder.setCode(1001);
+                builder.setMsg("数据错误");
+                return builder.build();
+            }
+            builder.setInstanceInfo(info);
+        }
+        return builder.build();
+    }
+
+    public static InstanceProtocol.InstanceInfo createInstanceInfo(InstanceObject instanceObject){
+        InstanceConfig instanceConfig = StaticConfigManager.getInstance().getInstanceConfigMap().get(instanceObject
+                .getInstanceConfigId());
+        if(instanceConfig==null){
+            return null;
+        }
+        InstanceProtocol.InstanceInfo.Builder builder = InstanceProtocol.InstanceInfo.newBuilder();
+        builder.setId(instanceObject.getId());
+        builder.setName(instanceConfig.getName());
+        builder.setDescription(instanceConfig.getDesc());
+        builder.setEndTime(instanceObject.getEndTime());
+        builder.setRecoveryTime(instanceObject.getRecoveryTime());
+        for(Long playerId:instanceObject.getPlayers()){
+            PlayerObject playerObject = PlayerManager
+                    .instance.getPlayerObject(playerId);
+            if(playerObject==null){
+                continue;
+            }
+            builder.addPlayerList(createOtherPlayerInfo(playerObject));
+        }
+
+        for(Long monsterId:instanceObject.getCurrMonsters()){
+            MonsterObject monsterObject = MonsterManager.instance.getMonster(monsterId);
+            if(monsterObject==null){
+                continue;
+            }
+            builder.addMonsterList(createMonster(monsterObject));
+        }
+        return builder.build();
+    }
+
+    public static InstanceProtocol.ExitInstanceRes createExitInstanceRes(int code,String msg){
+        InstanceProtocol.ExitInstanceRes.Builder builder = InstanceProtocol.ExitInstanceRes.newBuilder();
+        builder.setCode(code);
+        builder.setMsg(msg);
+        return builder.build();
+    }
+
+    public static TeamProtocol.CheckTeamRes createCheckTeamRes(int code, String msg, Team team){
+        TeamProtocol.CheckTeamRes.Builder builder = TeamProtocol.CheckTeamRes.newBuilder();
         builder.setCode(code);
         builder.setMsg(msg);
         if(team!=null){

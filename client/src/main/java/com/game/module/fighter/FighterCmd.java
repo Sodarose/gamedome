@@ -6,5 +6,4 @@ package com.game.module.fighter;
  */
 public interface FighterCmd {
     short ATTACK = 1001;
-    short EXIT = 1002;
 }

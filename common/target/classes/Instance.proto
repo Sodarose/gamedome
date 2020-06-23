@@ -1,0 +1,76 @@
+syntax = "proto3";
+option java_package = "com.game.protocol";
+option java_outer_classname = "InstanceProtocol";
+import "Player.proto";
+import "Actor.proto";
+
+// 请求副本列表信息
+message InstanceInfoListReq{
+
+}
+
+// 返回副本列表信息
+message InstanceInfoListRes{
+    int32 code = 1;
+    string msg = 2;
+    repeated InstanceConfigInfo instanceInfoList = 3;
+}
+
+message EntryInstanceReq{
+    int32 instanceId = 1;
+    bool team = 2;
+}
+
+message EntryInstanceRes{
+    int32 code = 1;
+    string msg = 2;
+    InstanceInfo instanceInfo = 3;
+}
+
+message ExitInstanceReq{
+
+}
+
+message ExitInstanceRes{
+    int32 code = 1;
+    string msg = 2;
+}
+
+message InstanceInfo{
+    int64 id = 1;
+    string name = 2;
+    string description = 4;
+    int64 endTime = 5;
+    int64 recoveryTime = 6;
+    repeated OtherPlayerInfo playerList = 7;
+    repeated MonsterInfo monsterList = 8;
+}
+
+
+
+message InstanceConfigInfo{
+    int32 instanceConfigId = 1;
+    string instanceName = 2;
+    int32 instanceType = 3;
+    int32 diff = 4;
+    string openTime = 5;
+    int64 limitTime = 6;
+    bool needTeam = 7;
+    int32 minNum = 8;
+    int32 maxNum = 9;
+    int32 minLevel = 10;
+    int32 exprAward = 11;
+    int32 goldAward = 12;
+    string desc = 15;
+    repeated string equipAward = 13;
+    repeated string propAward = 14;
+}
+
+message InstanceSuccess{
+    int32 code = 1;
+    string msg = 2;
+    int32 exprAward = 3;
+    int32 goldAward = 4;
+    repeated string equipList = 5;
+    repeated string propList = 6;
+}

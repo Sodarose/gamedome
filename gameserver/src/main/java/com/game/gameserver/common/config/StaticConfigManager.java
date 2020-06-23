@@ -28,7 +28,7 @@ public class StaticConfigManager {
     private final static StaticConfigManager INSTANCE = new StaticConfigManager();
     private final static String JSON_FILE_PATH = "json";
 
-    private Map<Integer, SceneConfig> sceneConfigMap = new HashMap<>(16);
+    private Map<Long, SceneConfig> sceneConfigMap = new HashMap<>(16);
     private Map<Integer, SceneNpcConfig> sceneNpcConfigMap = new HashMap<>(16);
     private Map<Integer, SceneMonsterConfig> sceneMonsterConfigMap = new HashMap<>(16);
     private Map<Integer, InstanceConfig> instanceConfigMap = new HashMap<>(16);
@@ -41,6 +41,7 @@ public class StaticConfigManager {
     private Map<Integer, CommodityConfig> commodityConfigMap = new HashMap<>(16);
     private Map<Integer, CareerConfig> careerConfigMap = new HashMap<>(16);
     private Map<Integer, SkillConfig>  skillConfigMap = new HashMap<>(16);
+    private Map<Integer, PetConfig> petConfigMap = new HashMap<>(16);
 
     public static StaticConfigManager getInstance() {
         return INSTANCE;

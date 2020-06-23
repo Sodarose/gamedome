@@ -37,4 +37,14 @@ public class EmailManager {
         emailBox.initialize(emailList);
         playerEmailMap.put(player.getId(),emailBox);
     }
+
+
+    public void deliverEmail(Long playerId,Email email){
+        // 获取邮箱
+        EmailBox emailBox = playerEmailMap.get(playerId);
+        if(emailBox==null){
+            return;
+        }
+        // 投递邮件
+    }
 }

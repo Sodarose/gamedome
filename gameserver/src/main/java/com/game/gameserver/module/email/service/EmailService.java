@@ -5,5 +5,5 @@ package com.game.gameserver.module.email.service;
  * @date 2020/6/15 20:41
  */
 public interface EmailService {
-
+    
 }

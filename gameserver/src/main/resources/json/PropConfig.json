@@ -8,7 +8,7 @@
     "maxOverlay": 99,
     "price": 50,
     "formula": "+|HP|50",
-    "coolTime": 1,
+    "coolTimeId": 1,
     "limitCount": 0,
     "desc": "恢复hp50点"
   },
@@ -21,7 +21,7 @@
     "maxOverlay": 99,
     "price": 50,
     "formula": "+|MP|50",
-    "coolTime": 1,
+    "coolTimeId": 2,
     "limitCount": 0,
     "desc": "恢复mp50点"
   }

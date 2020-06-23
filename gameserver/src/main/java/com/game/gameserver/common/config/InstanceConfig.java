@@ -28,38 +28,47 @@ public class InstanceConfig {
     private String desc;
 
     /**
-     * 副本开放时间 0 全天开发
+     * 副本开放时间
      */
     @JSONField(name = "openTime")
-    private int openTime;
+    private String openTime;
     /**
-     * 通关 时间限制
+     * 通关 限制
      */
+    /** 时间限制 单位秒*/
     @JSONField(name = "limitTime")
     private int limitTime;
-    @JSONField(name = "needGood")
-    private int needGood;
+    /** 是否需要强制组队 */
+    @JSONField(name = "needTeam")
+    private boolean needTeam;
+    /** 最小人数限制 */
     @JSONField(name = "minNum")
     private int minNum;
+    /** 最大人数限制 */
     @JSONField(name = "maxNum")
     private int maxNum;
+    /** 等级限制 */
     @JSONField(name = "minLevel")
     private int minLevel;
 
     /**
-     * 副本奖励
+     * 副本奖励配置
      */
+    /** 经验奖励 */
     @JSONField(name = "exprAward")
     private int exprAward;
+    /** 金币奖励 */
     @JSONField(name = "goldAward")
     private int goldAward;
+    /** 装备奖励 */
     @JSONField(name = "equipAward")
     private List<Integer> equipAward;
+    /** 道具奖励 */
     @JSONField(name = "propAward")
     private List<Integer> propAward;
 
     /** 怪物配置 */
-    @JSONField(name = "bossConfigId")
-    private Integer bossConfigId;
+    @JSONField(name = "instanceMonsterConfigId")
+    private Integer instanceMonsterConfigId;
 
 }

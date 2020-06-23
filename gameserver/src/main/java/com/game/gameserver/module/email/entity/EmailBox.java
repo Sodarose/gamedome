@@ -21,4 +21,12 @@ public class EmailBox {
     public void initialize(List<Email> emailList){
         this.emailList.addAll(emailList);
     }
+
+    public void addEmail(Email email){
+        emailList.add(email);
+    }
+
+    public void clear(){
+        emailList.clear();
+    }
 }

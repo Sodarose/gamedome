@@ -3,10 +3,12 @@ package com.game.module.order;
 import com.game.context.ClientGameContext;
 import com.game.module.ModuleKey;
 import com.game.module.chat.ChatHandle;
+import com.game.module.instance.InstanceHandle;
 import com.game.module.player.PlayerCmd;
 import com.game.module.gui.WordPage;
 import com.game.module.player.PlayerHandle;
 import com.game.module.store.StoreHandle;
+import com.game.module.team.TeamHandle;
 import com.game.protocol.Message;
 import com.game.protocol.PlayerProtocol;
 import com.game.util.MessageUtil;
@@ -38,6 +40,10 @@ public class CmdHandle {
     private PlayerHandle playerHandle;
     @Autowired
     private ChatHandle chatHandle;
+    @Autowired
+    private InstanceHandle instanceHandle;
+    @Autowired
+    private TeamHandle teamHandle;
 
 
     public void submitCmd(String order) {
@@ -135,6 +141,70 @@ public class CmdHandle {
             public void invoke(String[] flags) {
                 String content = flags[1];
                 chatHandle.sendLocalChat(content);
+            }
+        });
+
+        CMD_INVOKE_MAP.put(CmdType.SHOW_INSTANCE_LIST, new Invoke() {
+            @Override
+            public void invoke(String[] flags) {
+                instanceHandle.showInstanceList();
+            }
+        });
+
+        CMD_INVOKE_MAP.put(CmdType.ENTRY_INSTANCE, new Invoke() {
+            @Override
+            public void invoke(String[] flags) {
+                instanceHandle.entryInstance(flags[1], false);
+            }
+        });
+
+        CMD_INVOKE_MAP.put(CmdType.ENTRY_INSTANCE_BY_TEAM, new Invoke() {
+            @Override
+            public void invoke(String[] flags) {
+                instanceHandle.entryInstance(flags[1], true);
+            }
+        });
+
+        CMD_INVOKE_MAP.put(CmdType.EXIT_INSTANCE, new Invoke() {
+            @Override
+            public void invoke(String[] flags) {
+                instanceHandle.exitInstance();
+            }
+        });
+
+        CMD_INVOKE_MAP.put(CmdType.CREATE_TEAM, new Invoke() {
+            @Override
+            public void invoke(String[] flags) {
+                int num = Integer.parseInt(flags[1]);
+                teamHandle.createTeam(num,flags[2]);
+            }
+        });
+
+        CMD_INVOKE_MAP.put(CmdType.TEAM_LIST, new Invoke() {
+            @Override
+            public void invoke(String[] flags) {
+                teamHandle.getTeamList();
+            }
+        });
+
+        CMD_INVOKE_MAP.put(CmdType.SHOW_TEAM, new Invoke() {
+            @Override
+            public void invoke(String[] flags) {
+                teamHandle.showTeam();
+            }
+        });
+
+        CMD_INVOKE_MAP.put(CmdType.ENTRY_TEAM, new Invoke() {
+            @Override
+            public void invoke(String[] flags) {
+                teamHandle.entryTeam(flags[1]);
+            }
+        });
+
+        CMD_INVOKE_MAP.put(CmdType.EXIT_TEAM, new Invoke() {
+            @Override
+            public void invoke(String[] flags) {
+                teamHandle.exitTeam();
             }
         });
     }

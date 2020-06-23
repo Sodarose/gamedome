@@ -27,8 +27,8 @@ public class PropConfig {
     private int price;
     @JSONField(name = "formula")
     private String formula;
-    @JSONField(name = "coolTime")
-    private int coolTime;
+    @JSONField(name = "coolTimeId")
+    private int coolTimeId;
     @JSONField(name = "limitCount")
     private int limitCount;
     @JSONField(name = "desc")

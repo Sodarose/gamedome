@@ -14,7 +14,7 @@ import java.util.List;
 @Data
 public class SceneConfig {
     @JSONField(name = "id")
-    private int id;
+    private long id;
     @JSONField(name = "name")
     private String name;
     @JSONField(name = "desc")

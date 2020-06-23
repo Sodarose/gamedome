@@ -1,12 +1,10 @@
 package com.game.gameserver.module.scene.model;
 
 import com.game.gameserver.common.config.*;
-import com.game.gameserver.common.entity.Unit;
 import com.game.gameserver.module.monster.manager.MonsterManager;
-import com.game.gameserver.module.monster.model.MonsterObject;
+import com.game.gameserver.module.monster.type.MonsterType;
 import com.game.gameserver.module.npc.manager.NpcManager;
 import com.game.gameserver.module.npc.model.NpcObject;
-import com.game.gameserver.module.player.entity.Player;
 import com.game.gameserver.module.player.model.PlayerObject;
 import com.game.protocol.Message;
 import org.slf4j.Logger;
@@ -26,14 +24,14 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
  * @author xuewenkang
  * @date 2020/6/8 16:15
  */
-public class SceneObject implements Unit {
+public class SceneObject {
 
     private final static Logger logger = LoggerFactory.getLogger(SceneObject.class);
 
     /**
      * id
      */
-    private Integer id;
+    private Long id;
     /**
      * 场景静态信息
      */
@@ -57,7 +55,7 @@ public class SceneObject implements Unit {
     /**
      * 场景内怪物Map
      */
-    private final Map<Long, MonsterObject> monsterMap = new ConcurrentHashMap<>();
+    private final Map<Long, Long> monsterMap = new ConcurrentHashMap<>();
     /**
      * 场景内Npc Map
      */
@@ -106,11 +104,11 @@ public class SceneObject implements Unit {
             return;
         }
         for (SceneMonster sceneMonster : sceneMonsterConfig.getSceneMonsterList()) {
-            List<MonsterObject> monsterObjectList = MonsterManager.instance
+            List<Long> monsterObjectList = MonsterManager.instance
                     .createMonsterObjectList(sceneMonster.getMonsterId(),
-                            sceneMonster.getCount());
-            for (MonsterObject monsterObject : monsterObjectList) {
-                monsterMap.put(monsterObject.getId(), monsterObject);
+                            sceneMonster.getCount(), MonsterType.SCENE_MONSTER, this.id);
+            for (Long monsterId : monsterObjectList) {
+                monsterMap.put(monsterId, monsterId);
             }
         }
     }
@@ -173,16 +171,16 @@ public class SceneObject implements Unit {
     /**
      * 广播消息给场景内用户
      *
-     * @param message 消息
+     * @param message    消息
      * @param excludeIds 排除的名单
      * @return boolean
      */
     public void broadcast(Message message, Long... excludeIds) {
         lock.readLock().lock();
-        List<Long> excludeList =  Arrays.asList(excludeIds);
+        List<Long> excludeList = Arrays.asList(excludeIds);
         try {
             for (Map.Entry<Long, PlayerObject> entry : playerMap.entrySet()) {
-                if(excludeList.contains(entry.getKey())){
+                if (excludeList.contains(entry.getKey())) {
                     continue;
                 }
                 entry.getValue().getChannel().writeAndFlush(message);
@@ -193,13 +191,7 @@ public class SceneObject implements Unit {
         }
     }
 
-    @Override
-    public void update() {
-
-    }
-
-
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
@@ -227,7 +219,7 @@ public class SceneObject implements Unit {
         return playerMap;
     }
 
-    public Map<Long, MonsterObject> getMonsterObjectMap() {
+    public Map<Long, Long> getMonsterObjectMap() {
         return monsterMap;
     }
 

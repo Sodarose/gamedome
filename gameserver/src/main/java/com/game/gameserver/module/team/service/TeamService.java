@@ -1,5 +1,6 @@
 package com.game.gameserver.module.team.service;
 
+import com.game.gameserver.module.player.entity.Player;
 import com.game.gameserver.module.player.model.PlayerObject;
 import com.game.gameserver.module.team.entity.Team;
 import com.game.protocol.TeamProtocol;
@@ -21,6 +22,13 @@ public interface TeamService {
     TeamProtocol.CreateTeamRes createTeam(PlayerObject player, String teamName, int maxCount);
 
     /**
+     *
+     * @param playerObject
+     * @return com.game.protocol.TeamProtocol.CheckTeamRes
+     */
+    TeamProtocol.CheckTeamRes checkTeamRes(PlayerObject playerObject);
+
+    /**
      * 解散队伍
      *
      * @param playerObject
@@ -34,7 +42,7 @@ public interface TeamService {
      * @param
      * @return com.game.protocol.Team.TeamList
      */
-    TeamProtocol.TeamList getTeamList();
+    TeamProtocol.TeamListRes getTeamList();
 
     /**
      * 进入队伍
@@ -51,7 +59,7 @@ public interface TeamService {
      * @param playerObject
      * @return void
      */
-    void exitTeam(PlayerObject playerObject);
+    TeamProtocol.ExitTeamRes exitTeam(PlayerObject playerObject);
 
     /**
      * 提出队伍

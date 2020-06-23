@@ -32,6 +32,6 @@ public class PlayerInfo {
     private int level;
     private int careerId;
     private int golds;
-    private int sceneId;
+    private long sceneId;
     private PlayerBattle playerBattle;
 }

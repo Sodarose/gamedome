@@ -21,7 +21,7 @@ public class Player {
     /** 职业 */
     private Integer careerId;
     /** 场景Id */
-    private Integer sceneId;
+    private Long sceneId;
     /** 金币数量 */
     private Integer golds;
     /** 背包容量 */

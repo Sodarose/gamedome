@@ -1,5 +1,9 @@
 package com.game.gameserver.module.item.entity;
 
+import com.game.gameserver.common.config.EquipConfig;
+import com.game.gameserver.module.item.type.ItemType;
+import com.game.gameserver.util.GameUUID;
+
 /**
  * 玩家装备
  *
@@ -13,6 +17,17 @@ public class Equip extends Item {
 
     public Equip(){
 
+    }
+
+    public static Equip valueOf(EquipConfig equipConfig){
+        Equip equip = new Equip();
+        equip.setId(GameUUID.getInstance().generate());
+        equip.setItemType(ItemType.EQUIP);
+        equip.setItemId(equipConfig.getId());
+        equip.setNum(1);
+        equip.setBound(0);
+        equip.setDurability(equipConfig.getMaxDurability());
+        return equip;
     }
 
     /**

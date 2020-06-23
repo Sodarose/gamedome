@@ -28,7 +28,6 @@ import java.util.concurrent.ConcurrentHashMap;
 public class TeamManager {
     private final static Logger logger = LoggerFactory.getLogger(TeamManager.class);
 
-
     /**
      * 队伍列表
      */

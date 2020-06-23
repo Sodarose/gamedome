@@ -2,7 +2,6 @@ package com.game.gameserver.module.player.service.impl;
 
 import com.game.gameserver.event.EventBus;
 import com.game.gameserver.module.buffer.service.BufferService;
-import com.game.gameserver.module.cache.manager.CacheManager;
 import com.game.gameserver.module.item.manager.ItemManager;
 import com.game.gameserver.module.player.dao.PlayerMapper;
 import com.game.gameserver.module.player.entity.Player;
@@ -44,8 +43,6 @@ public class PlayerServiceImpl implements PlayerService {
     private SkillService skillService;
     @Autowired
     private BufferService bufferService;
-    @Autowired
-    private CacheManager cacheManager;
 
     /**
      * 登录用户角色
@@ -67,9 +64,9 @@ public class PlayerServiceImpl implements PlayerService {
         }
         // 创建角色
         playerObject = new PlayerObject(player);
-        // 读取相关数据
-        itemManager.loadPlayerEquip(player);
-        itemManager.loadPlayerBag(player);
+        // 读取道具数据
+        itemManager.loadPlayerItem(player);
+        // 读取玩家技能数据
         // 设置Channel与角色的关联
         channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).set(playerObject);
         playerObject.setChannel(channel);
@@ -77,7 +74,7 @@ public class PlayerServiceImpl implements PlayerService {
         sceneManager.entryScene(playerObject, player.getSceneId());
         // 放入管理器缓存
         playerManager.putPlayerObject(playerObject);
-        // 发出角色登录事件 做后续的处理
+        // 发出角色登录事件
         LoginEvent loginEvent = new LoginEvent(player.getId());
         EventBus.EVENT_BUS.fire(loginEvent);
         return ProtocolFactory.createLoginPlayerRes(PlayerResultType.SUCCESS, "角色登录成功", playerObject);

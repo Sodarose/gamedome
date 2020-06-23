@@ -1,22 +1,14 @@
 package com.game.gameserver.module.cooltime.entity;
 
 /**
- * 冷却时间实体
+ * 冷却时间实体对象
  *
  * @author xuewenkang
  * @date 2020/6/3 12:28
  */
-public interface CoolTime<T> {
-    /**
-     * CD 更新
-     */
-    void update();
-
-    /**
-     * 是否过期
-     *
-     * @param
-     * @return boolean
-     */
-    boolean isExpire();
+public class CoolTime {
+    /** 开始时间 */
+    private Long startTime;
+    /** 冷却时间 */
+    private Long endTime;
 }
