@@ -1,6 +1,5 @@
 package com.game.gameserver.module.item.manager;
 
-import com.alibaba.druid.support.spring.stat.annotation.Stat;
 import com.game.gameserver.common.config.EquipConfig;
 import com.game.gameserver.common.config.InstanceConfig;
 import com.game.gameserver.common.config.PropConfig;
@@ -14,7 +13,6 @@ import com.game.gameserver.module.item.entity.*;
 import com.game.gameserver.module.item.type.BagType;
 import com.game.gameserver.module.item.type.ItemType;
 import com.game.gameserver.module.player.entity.Player;
-import com.game.protocol.ItemProtocol;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -92,11 +90,14 @@ public class ItemManager {
         Equip equip = Equip.valueOf(equipConfig);
         equip.setPlayerId(player.getId());
         addEquipInPlayerBag(player.getId(),equip);
+        equip.setNum(1);
+        equip.setDurability(equipConfig.getMaxDurability());
+
         PropConfig propConfig = StaticConfigManager.getInstance().getPropConfigMap().get(1);
         Prop prop = Prop.valueOf(propConfig);
+        prop.setNum(50);
         prop.setPlayerId(player.getId());
         addPropInPlayerBag(player.getId(),prop);
-
     }
 
     /**
@@ -128,11 +129,13 @@ public class ItemManager {
      * @return void
      */
     public void addInstanceAward(Long playerId, InstanceConfig instanceConfig) {
+        logger.info("添加副本奖励");
         // 生成道具
         List<Integer> equipList = instanceConfig.getEquipAward();
         List<Integer> propList = instanceConfig.getPropAward();
         List<Equip> equipAwards = new ArrayList<>();
         List<Prop> propsAwards = new ArrayList<>();
+        //
         for (Integer equipId : equipList) {
             EquipConfig equipConfig = StaticConfigManager.getInstance().getEquipConfigMap().get(equipId);
             if (equipConfig == null) {
@@ -200,15 +203,11 @@ public class ItemManager {
         Lock lock = playerBag.getWriteLock();
         lock.lock();
         try {
-            if(playerBag.getCapacity()<=playerBag.getRawData().length){
-                return false;
-            }
             Item[] items = playerBag.getRawData();
             for (int i = 0; i < items.length; i++) {
                 if (items[i]==null) {
                     items[i] = item;
                     item.setBagIndex(i);
-                    item.setBagIndex(BagType.PLAYER_BAG);
                     break;
                 }
             }
@@ -227,14 +226,12 @@ public class ItemManager {
         Lock lock = playerBag.getWriteLock();
         lock.lock();
         try {
-            if(playerBag.getCapacity()<=playerBag.getRawData().length){
-                return false;
-            }
             Item[] items = playerBag.getRawData();
             PropConfig propConfig = StaticConfigManager.getInstance().getPropConfigMap().get(item.getItemId());
             for (int i = 0; i < items.length; i++) {
                 if (items[i]==null) {
                     items[i] = item;
+                    item.setBagIndex(i);
                     break;
                 }
             }
@@ -244,4 +241,23 @@ public class ItemManager {
         }
     }
 
+    public Bag getPlayerBag(long playerId){
+        return playerBagMap.get(playerId);
+    }
+
+    public Item getItemInPlayerBag(long playerId,long itemId){
+        Bag playerBag = playerBagMap.get(playerId);
+        if(playerBag==null){
+            return null;
+        }
+        return playerBag.getItem(itemId);
+    }
+
+    public boolean removeItemInPlayerBag(long playerId,long itemId){
+        Bag playerBag = playerBagMap.get(playerId);
+        if(playerBag==null){
+            return false;
+        }
+        return playerBag.removeItem(itemId);
+    }
 }

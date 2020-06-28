@@ -29,7 +29,7 @@ public class Email {
     /** 附件*/
     private List<Item> attachments;
     /** golds */
-    private Long golds;
+    private Integer golds;
     /** 玩家Id */
     private Long playerId;
     /** 邮件状态 */
@@ -40,7 +40,7 @@ public class Email {
     private Long expireTime;
 
     public Email(){
-
+        this.id = GameUUID.getInstance().generate();
     }
 
     public Email(String title,Long sendId,String senderName,String content){

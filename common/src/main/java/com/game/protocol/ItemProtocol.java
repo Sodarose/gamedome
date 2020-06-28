@@ -23,10 +23,10 @@ public final class ItemProtocol {
      * 道具ID
      * </pre>
      *
-     * <code>int32 itemId = 1;</code>
+     * <code>int64 itemId = 1;</code>
      * @return The itemId.
      */
-    int getItemId();
+    long getItemId();
 
     /**
      * <pre>
@@ -43,10 +43,20 @@ public final class ItemProtocol {
      * 道具名称
      * </pre>
      *
-     * <code>int32 itemName = 3;</code>
+     * <code>string itemName = 3;</code>
      * @return The itemName.
      */
-    int getItemName();
+    java.lang.String getItemName();
+    /**
+     * <pre>
+     * 道具名称
+     * </pre>
+     *
+     * <code>string itemName = 3;</code>
+     * @return The bytes for itemName.
+     */
+    com.google.protobuf.ByteString
+        getItemNameBytes();
 
     /**
      * <pre>
@@ -179,6 +189,7 @@ public final class ItemProtocol {
       super(builder);
     }
     private ItemInfo() {
+      itemName_ = "";
       desc_ = "";
     }
 
@@ -215,7 +226,7 @@ public final class ItemProtocol {
               break;
             case 8: {
 
-              itemId_ = input.readInt32();
+              itemId_ = input.readInt64();
               break;
             }
             case 16: {
@@ -223,9 +234,10 @@ public final class ItemProtocol {
               itemType_ = input.readInt32();
               break;
             }
-            case 24: {
+            case 26: {
+              java.lang.String s = input.readStringRequireUtf8();
 
-              itemName_ = input.readInt32();
+              itemName_ = s;
               break;
             }
             case 32: {
@@ -312,16 +324,16 @@ public final class ItemProtocol {
     }
 
     public static final int ITEMID_FIELD_NUMBER = 1;
-    private int itemId_;
+    private long itemId_;
     /**
      * <pre>
      * 道具ID
      * </pre>
      *
-     * <code>int32 itemId = 1;</code>
+     * <code>int64 itemId = 1;</code>
      * @return The itemId.
      */
-    public int getItemId() {
+    public long getItemId() {
       return itemId_;
     }
 
@@ -340,17 +352,47 @@ public final class ItemProtocol {
     }
 
     public static final int ITEMNAME_FIELD_NUMBER = 3;
-    private int itemName_;
+    private volatile java.lang.Object itemName_;
     /**
      * <pre>
      * 道具名称
      * </pre>
      *
-     * <code>int32 itemName = 3;</code>
+     * <code>string itemName = 3;</code>
      * @return The itemName.
      */
-    public int getItemName() {
-      return itemName_;
+    public java.lang.String getItemName() {
+      java.lang.Object ref = itemName_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        itemName_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * 道具名称
+     * </pre>
+     *
+     * <code>string itemName = 3;</code>
+     * @return The bytes for itemName.
+     */
+    public com.google.protobuf.ByteString
+        getItemNameBytes() {
+      java.lang.Object ref = itemName_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        itemName_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
 
     public static final int ITEMNUM_FIELD_NUMBER = 4;
@@ -559,14 +601,14 @@ public final class ItemProtocol {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (itemId_ != 0) {
-        output.writeInt32(1, itemId_);
+      if (itemId_ != 0L) {
+        output.writeInt64(1, itemId_);
       }
       if (itemType_ != 0) {
         output.writeInt32(2, itemType_);
       }
-      if (itemName_ != 0) {
-        output.writeInt32(3, itemName_);
+      if (!getItemNameBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, itemName_);
       }
       if (itemNum_ != 0) {
         output.writeInt32(4, itemNum_);
@@ -598,17 +640,16 @@ public final class ItemProtocol {
       if (size != -1) return size;
 
       size = 0;
-      if (itemId_ != 0) {
+      if (itemId_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(1, itemId_);
+          .computeInt64Size(1, itemId_);
       }
       if (itemType_ != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(2, itemType_);
       }
-      if (itemName_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(3, itemName_);
+      if (!getItemNameBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, itemName_);
       }
       if (itemNum_ != 0) {
         size += com.google.protobuf.CodedOutputStream
@@ -658,8 +699,8 @@ public final class ItemProtocol {
           != other.getItemId()) return false;
       if (getItemType()
           != other.getItemType()) return false;
-      if (getItemName()
-          != other.getItemName()) return false;
+      if (!getItemName()
+          .equals(other.getItemName())) return false;
       if (getItemNum()
           != other.getItemNum()) return false;
       if (getBagPack()
@@ -684,11 +725,12 @@ public final class ItemProtocol {
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + ITEMID_FIELD_NUMBER;
-      hash = (53 * hash) + getItemId();
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getItemId());
       hash = (37 * hash) + ITEMTYPE_FIELD_NUMBER;
       hash = (53 * hash) + getItemType();
       hash = (37 * hash) + ITEMNAME_FIELD_NUMBER;
-      hash = (53 * hash) + getItemName();
+      hash = (53 * hash) + getItemName().hashCode();
       hash = (37 * hash) + ITEMNUM_FIELD_NUMBER;
       hash = (53 * hash) + getItemNum();
       hash = (37 * hash) + BAGPACK_FIELD_NUMBER;
@@ -863,11 +905,11 @@ public final class ItemProtocol {
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        itemId_ = 0;
+        itemId_ = 0L;
 
         itemType_ = 0;
 
-        itemName_ = 0;
+        itemName_ = "";
 
         itemNum_ = 0;
 
@@ -965,14 +1007,15 @@ public final class ItemProtocol {
 
       public Builder mergeFrom(com.game.protocol.ItemProtocol.ItemInfo other) {
         if (other == com.game.protocol.ItemProtocol.ItemInfo.getDefaultInstance()) return this;
-        if (other.getItemId() != 0) {
+        if (other.getItemId() != 0L) {
           setItemId(other.getItemId());
         }
         if (other.getItemType() != 0) {
           setItemType(other.getItemType());
         }
-        if (other.getItemName() != 0) {
-          setItemName(other.getItemName());
+        if (!other.getItemName().isEmpty()) {
+          itemName_ = other.itemName_;
+          onChanged();
         }
         if (other.getItemNum() != 0) {
           setItemNum(other.getItemNum());
@@ -1022,16 +1065,16 @@ public final class ItemProtocol {
       }
       private int bitField0_;
 
-      private int itemId_ ;
+      private long itemId_ ;
       /**
        * <pre>
        * 道具ID
        * </pre>
        *
-       * <code>int32 itemId = 1;</code>
+       * <code>int64 itemId = 1;</code>
        * @return The itemId.
        */
-      public int getItemId() {
+      public long getItemId() {
         return itemId_;
       }
       /**
@@ -1039,11 +1082,11 @@ public final class ItemProtocol {
        * 道具ID
        * </pre>
        *
-       * <code>int32 itemId = 1;</code>
+       * <code>int64 itemId = 1;</code>
        * @param value The itemId to set.
        * @return This builder for chaining.
        */
-      public Builder setItemId(int value) {
+      public Builder setItemId(long value) {
         
         itemId_ = value;
         onChanged();
@@ -1054,12 +1097,12 @@ public final class ItemProtocol {
        * 道具ID
        * </pre>
        *
-       * <code>int32 itemId = 1;</code>
+       * <code>int64 itemId = 1;</code>
        * @return This builder for chaining.
        */
       public Builder clearItemId() {
         
-        itemId_ = 0;
+        itemId_ = 0L;
         onChanged();
         return this;
       }
@@ -1106,29 +1149,63 @@ public final class ItemProtocol {
         return this;
       }
 
-      private int itemName_ ;
+      private java.lang.Object itemName_ = "";
       /**
        * <pre>
        * 道具名称
        * </pre>
        *
-       * <code>int32 itemName = 3;</code>
+       * <code>string itemName = 3;</code>
        * @return The itemName.
        */
-      public int getItemName() {
-        return itemName_;
+      public java.lang.String getItemName() {
+        java.lang.Object ref = itemName_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          itemName_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
       }
       /**
        * <pre>
        * 道具名称
        * </pre>
        *
-       * <code>int32 itemName = 3;</code>
+       * <code>string itemName = 3;</code>
+       * @return The bytes for itemName.
+       */
+      public com.google.protobuf.ByteString
+          getItemNameBytes() {
+        java.lang.Object ref = itemName_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          itemName_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * 道具名称
+       * </pre>
+       *
+       * <code>string itemName = 3;</code>
        * @param value The itemName to set.
        * @return This builder for chaining.
        */
-      public Builder setItemName(int value) {
-        
+      public Builder setItemName(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
         itemName_ = value;
         onChanged();
         return this;
@@ -1138,12 +1215,32 @@ public final class ItemProtocol {
        * 道具名称
        * </pre>
        *
-       * <code>int32 itemName = 3;</code>
+       * <code>string itemName = 3;</code>
        * @return This builder for chaining.
        */
       public Builder clearItemName() {
         
-        itemName_ = 0;
+        itemName_ = getDefaultInstance().getItemName();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 道具名称
+       * </pre>
+       *
+       * <code>string itemName = 3;</code>
+       * @param value The bytes for itemName to set.
+       * @return This builder for chaining.
+       */
+      public Builder setItemNameBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        itemName_ = value;
         onChanged();
         return this;
       }
@@ -6789,7 +6886,7 @@ public final class ItemProtocol {
   static {
     java.lang.String[] descriptorData = {
       "\n\nItem.proto\"\356\001\n\010ItemInfo\022\016\n\006itemId\030\001 \001(" +
-      "\005\022\020\n\010itemType\030\002 \001(\005\022\020\n\010itemName\030\003 \001(\005\022\017\n" +
+      "\003\022\020\n\010itemType\030\002 \001(\005\022\020\n\010itemName\030\003 \001(\t\022\017\n" +
       "\007itemNum\030\004 \001(\005\022\017\n\007bagPack\030\005 \001(\005\022\020\n\010bagIn" +
       "dex\030\006 \001(\005\022\r\n\005bound\030\007 \001(\010\022\014\n\004desc\030\010 \001(\t\022+" +
       "\n\tattribute\030\t \003(\0132\030.ItemInfo.AttributeEn" +

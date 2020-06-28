@@ -65,8 +65,12 @@ public class StateMachine<E, S extends State<E>> {
         return globalState;
     }
 
-    public void setGlobalState(S globalState) {
+    public void changeGlobalState(S globalState) {
+        if(this.globalState!=null){
+            this.globalState.exit(owner);
+        }
         this.globalState = globalState;
+        this.globalState.enter(owner);
     }
 
     public void update() {

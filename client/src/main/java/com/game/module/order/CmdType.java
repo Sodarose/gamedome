@@ -52,4 +52,15 @@ public interface CmdType {
     String ENTRY_TEAM = "ENTRY_TEAM";
     /** 退出队伍*/
     String EXIT_TEAM = "EXIT_TEAM";
+    /** */
+    String EMAIL_LIST = "EMAIL_LIST";
+    /** sendEmail */
+    String SEND_EMAIL = "SEND_EMAIL";
+    /** 攻击 */
+    String ATTACK = "ATTACK";
+    /**  scene AIO */
+    String SCENE_AIO = "SCENE_AIO";
+    /** instance AIO */
+    String INSTANCE_AIO = "INSTANCE_AIO";
+    /** 改变战斗模式 */
 }

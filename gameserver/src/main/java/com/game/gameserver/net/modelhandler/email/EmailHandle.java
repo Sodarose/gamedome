@@ -1,12 +1,19 @@
 package com.game.gameserver.net.modelhandler.email;
 
 import com.game.gameserver.module.email.entity.Email;
+import com.game.gameserver.module.email.service.EmailService;
+import com.game.gameserver.module.player.model.PlayerObject;
+import com.game.gameserver.module.player.service.PlayerService;
 import com.game.gameserver.net.annotation.CmdHandler;
 import com.game.gameserver.net.annotation.ModuleHandler;
 import com.game.gameserver.net.handler.BaseHandler;
 import com.game.gameserver.net.modelhandler.ModuleKey;
+import com.game.protocol.EmailProtocol;
 import com.game.protocol.Message;
+import com.game.util.MessageUtil;
+import com.google.protobuf.InvalidProtocolBufferException;
 import io.netty.channel.Channel;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
@@ -16,6 +23,8 @@ import org.springframework.stereotype.Component;
 @Component
 @ModuleHandler(module = ModuleKey.EMAIL_MODULE)
 public class EmailHandle extends BaseHandler {
+    @Autowired
+    private EmailService emailService;
 
     /**
      * 处理获取邮件列表请求
@@ -26,7 +35,14 @@ public class EmailHandle extends BaseHandler {
      */
     @CmdHandler(cmd = EmailCmd.EMAIL_LIST_REQ)
     public void handleEmailListReq(Message message, Channel channel) {
-
+        PlayerObject playerObject = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
+        if (playerObject == null) {
+            return;
+        }
+        EmailProtocol.EmailListRes res = emailService.getEmailList(playerObject);
+        Message resMsg = MessageUtil.createMessage(ModuleKey.EMAIL_MODULE,EmailCmd.EMAIL_LIST_REQ,
+                res.toByteArray());
+        channel.writeAndFlush(resMsg);
     }
 
     /**
@@ -50,7 +66,19 @@ public class EmailHandle extends BaseHandler {
      */
     @CmdHandler(cmd = EmailCmd.SEND_EMAIL_REQ)
     public void handleSendEmailReq(Message message,Channel channel){
-
+        PlayerObject playerObject = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
+        if (playerObject == null) {
+            return;
+        }
+        try {
+            EmailProtocol.SendEmailReq req = EmailProtocol.SendEmailReq.parseFrom(message.getData());
+            EmailProtocol.SendEmailRes res = emailService.sendEmail(playerObject,req);
+            Message resMsg = MessageUtil.createMessage(ModuleKey.EMAIL_MODULE,EmailCmd.SEND_EMAIL_REQ,
+                    res.toByteArray());
+            channel.writeAndFlush(resMsg);
+        } catch (InvalidProtocolBufferException e) {
+            e.printStackTrace();
+        }
     }
 
     /**

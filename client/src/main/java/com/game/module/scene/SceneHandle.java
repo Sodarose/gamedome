@@ -4,8 +4,11 @@ import com.game.context.ClientGameContext;
 import com.game.module.BaseHandler;
 import com.game.module.ModuleKey;
 import com.game.module.gui.ScenePage;
+import com.game.module.gui.WordPage;
+import com.game.module.monster.Monster;
 import com.game.module.player.OtherPlayerInfo;
 import com.game.module.scene.SceneCmd;
+import com.game.protocol.Actor;
 import com.game.protocol.Message;
 import com.game.protocol.SceneProtocol;
 import com.game.task.annotation.CmdHandler;
@@ -16,6 +19,8 @@ import com.google.protobuf.InvalidProtocolBufferException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -33,6 +38,21 @@ public class SceneHandle extends BaseHandler {
     @Autowired
     private ClientGameContext gameContext;
 
+    private SceneProtocol.SceneInfo currSceneInfo;
+    @Autowired
+    private WordPage wordPage;
+
+    public void sceneAio(){
+        if(sceneInfo==null){
+            return;
+        }
+        List<Actor.MonsterInfo> monsterInfos = new ArrayList<>();
+        for(Map.Entry<Long, Actor.MonsterInfo> entry:currSceneInfo.getMonstersMap().entrySet()){
+            monsterInfos.add(entry.getValue());
+        }
+        wordPage.clean();
+        wordPage.printMonsterList(monsterInfos);
+    }
 
     /**
      * @param
@@ -52,6 +72,7 @@ public class SceneHandle extends BaseHandler {
     public void syncScene(Message message) {
         try {
             SceneProtocol.SceneInfo info = SceneProtocol.SceneInfo.parseFrom(message.getData());
+            currSceneInfo = info;
             SceneInfo sceneInfo = TransFromUtil.transFromSceneInfo(info);
             this.sceneInfo = sceneInfo;
             scenePage.clean();

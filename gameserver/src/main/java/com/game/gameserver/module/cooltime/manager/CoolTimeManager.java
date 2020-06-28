@@ -1,6 +1,6 @@
 package com.game.gameserver.module.cooltime.manager;
 
-import com.game.gameserver.module.cooltime.entity.CoolTime;
+import com.game.gameserver.common.DefaultThreadFactory;
 import com.game.gameserver.module.cooltime.entity.UnitCoolTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,17 +19,46 @@ public class CoolTimeManager {
 
     public static CoolTimeManager instance;
 
-    public CoolTimeManager(){
+    public CoolTimeManager() {
         instance = this;
     }
 
-    private final  Map<Long, UnitCoolTime> playerCoolTimeMap = new ConcurrentHashMap<>();
+    private final Map<Long, UnitCoolTime> unitCoolTimeMap = new ConcurrentHashMap<>();
 
-    public UnitCoolTime getPlayerCoolTime(Long playerId){
-        return playerCoolTimeMap.get(playerId);
+    private ScheduledExecutorService scheduledExecutorService;
+    private Worker worker;
+
+    public UnitCoolTime getUnitCoolTime(Long unitId) {
+        return unitCoolTimeMap.get(unitId);
     }
 
-    public void removePlayerCoolTime(Long playerId){
-        playerCoolTimeMap.remove(playerId);
+    public void putUnitCoolTime(long unitId, UnitCoolTime unitCoolTime) {
+        unitCoolTimeMap.put(unitId, unitCoolTime);
+    }
+
+    public void removeUnitCoolTime(Long unitId) {
+        unitCoolTimeMap.remove(unitId);
+    }
+
+    public void startCoolTimeWorker() {
+        if (scheduledExecutorService != null) {
+            return;
+        }
+        scheduledExecutorService = new ScheduledThreadPoolExecutor(1, new
+                DefaultThreadFactory("CD Worker"));
+        worker = new Worker();
+        scheduledExecutorService.scheduleAtFixedRate(worker, 0, 1, TimeUnit.SECONDS);
+    }
+
+    private class Worker implements Runnable {
+
+        @Override
+        public void run() {
+            for (Map.Entry<Long, UnitCoolTime> entry : unitCoolTimeMap.entrySet()) {
+                UnitCoolTime unitCoolTime = entry.getValue();
+                // 清除已经过期的cd实体
+                unitCoolTime.cleanOutTimeCoolTime();
+            }
+        }
     }
 }

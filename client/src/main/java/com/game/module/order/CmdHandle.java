@@ -3,10 +3,14 @@ package com.game.module.order;
 import com.game.context.ClientGameContext;
 import com.game.module.ModuleKey;
 import com.game.module.chat.ChatHandle;
+import com.game.module.emai.EmailHandle;
+import com.game.module.fighter.FighterHandle;
 import com.game.module.instance.InstanceHandle;
+import com.game.module.item.ItemHandle;
 import com.game.module.player.PlayerCmd;
 import com.game.module.gui.WordPage;
 import com.game.module.player.PlayerHandle;
+import com.game.module.scene.SceneHandle;
 import com.game.module.store.StoreHandle;
 import com.game.module.team.TeamHandle;
 import com.game.protocol.Message;
@@ -44,6 +48,14 @@ public class CmdHandle {
     private InstanceHandle instanceHandle;
     @Autowired
     private TeamHandle teamHandle;
+    @Autowired
+    private ItemHandle itemHandle;
+    @Autowired
+    private EmailHandle emailHandle;
+    @Autowired
+    private SceneHandle sceneHandle;
+    @Autowired
+    private FighterHandle fighterHandle;
 
 
     public void submitCmd(String order) {
@@ -176,7 +188,7 @@ public class CmdHandle {
             @Override
             public void invoke(String[] flags) {
                 int num = Integer.parseInt(flags[1]);
-                teamHandle.createTeam(num,flags[2]);
+                teamHandle.createTeam(num, flags[2]);
             }
         });
 
@@ -207,6 +219,61 @@ public class CmdHandle {
                 teamHandle.exitTeam();
             }
         });
+
+        // 打开背包
+        CMD_INVOKE_MAP.put(CmdType.SHOW_BAG, new Invoke() {
+            @Override
+            public void invoke(String[] flags) {
+                itemHandle.playerBagReq();
+            }
+        });
+
+        // 打开邮箱
+        CMD_INVOKE_MAP.put(CmdType.EMAIL_LIST, new Invoke() {
+            @Override
+            public void invoke(String[] flags) {
+                emailHandle.showEmail();
+            }
+        });
+
+        /**  */
+        CMD_INVOKE_MAP.put(CmdType.SEND_EMAIL, new Invoke() {
+            @Override
+            public void invoke(String[] flags) {
+                String title = flags[1];
+                String content = flags[2];
+                long receiverId = Long.parseLong(flags[3]);
+                int golds = Integer.parseInt(flags[4]);
+                int bagIndex = Integer.parseInt(flags[5]);
+                emailHandle.sendEmail(title, content, receiverId, golds, bagIndex);
+            }
+        });
+
+        /** 场景AIO*/
+        CMD_INVOKE_MAP.put(CmdType.SCENE_AIO, new Invoke() {
+            @Override
+            public void invoke(String[] flags) {
+                sceneHandle.sceneAio();
+            }
+        });
+
+        /** 副本AIO */
+        CMD_INVOKE_MAP.put(CmdType.INSTANCE_AIO, new Invoke() {
+            @Override
+            public void invoke(String[] flags) {
+                instanceHandle.instanceaio();
+            }
+        });
+
+        CMD_INVOKE_MAP.put(CmdType.ATTACK, new Invoke() {
+            @Override
+            public void invoke(String[] flags) {
+                long unitId = Long.parseLong(flags[1]);
+                int unitType = Integer.parseInt(flags[2]);
+                fighterHandle.attack(unitId,unitType);
+            }
+        });
+
     }
 
 
@@ -252,7 +319,7 @@ public class CmdHandle {
         }
         String goodsName = flags[1];
         int num = Integer.parseInt(flags[2]);
-        storeHandle.requestByCommodity(goodsName, num);
+        storeHandle.requestBuyCommodity(goodsName, num);
     }
 
     private void sell(String[] flags) {

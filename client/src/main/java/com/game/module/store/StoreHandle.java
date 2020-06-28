@@ -65,7 +65,7 @@ public class StoreHandle extends BaseHandler {
      * @param num       商品数量
      * @return void
      */
-    public void requestByCommodity(String goodsName, int num) {
+    public void requestBuyCommodity(String goodsName, int num) {
         Commodity commodity = commodityMap.get(goodsName);
         if(commodity==null){
             wordPage.print("商品不存在,请刷新商店");

@@ -5929,6 +5929,18 @@ public final class PlayerProtocol {
     long getSceneId();
 
     /**
+     * <code>int32 state = 12;</code>
+     * @return The state.
+     */
+    int getState();
+
+    /**
+     * <code>int32 fighterModel = 13;</code>
+     * @return The fighterModel.
+     */
+    int getFighterModel();
+
+    /**
      * <pre>
      * 战斗属性
      * </pre>
@@ -6252,6 +6264,16 @@ public final class PlayerProtocol {
                   input.readMessage(com.game.protocol.PlayerProtocol.BufferInfo.parser(), extensionRegistry));
               break;
             }
+            case 96: {
+
+              state_ = input.readInt32();
+              break;
+            }
+            case 104: {
+
+              fighterModel_ = input.readInt32();
+              break;
+            }
             default: {
               if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
@@ -6377,6 +6399,26 @@ public final class PlayerProtocol {
      */
     public long getSceneId() {
       return sceneId_;
+    }
+
+    public static final int STATE_FIELD_NUMBER = 12;
+    private int state_;
+    /**
+     * <code>int32 state = 12;</code>
+     * @return The state.
+     */
+    public int getState() {
+      return state_;
+    }
+
+    public static final int FIGHTERMODEL_FIELD_NUMBER = 13;
+    private int fighterModel_;
+    /**
+     * <code>int32 fighterModel = 13;</code>
+     * @return The fighterModel.
+     */
+    public int getFighterModel() {
+      return fighterModel_;
     }
 
     public static final int PLAYERBATTLE_FIELD_NUMBER = 7;
@@ -6661,6 +6703,12 @@ public final class PlayerProtocol {
       for (int i = 0; i < bufferInfo_.size(); i++) {
         output.writeMessage(11, bufferInfo_.get(i));
       }
+      if (state_ != 0) {
+        output.writeInt32(12, state_);
+      }
+      if (fighterModel_ != 0) {
+        output.writeInt32(13, fighterModel_);
+      }
       unknownFields.writeTo(output);
     }
 
@@ -6713,6 +6761,14 @@ public final class PlayerProtocol {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(11, bufferInfo_.get(i));
       }
+      if (state_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(12, state_);
+      }
+      if (fighterModel_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(13, fighterModel_);
+      }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
@@ -6740,6 +6796,10 @@ public final class PlayerProtocol {
           != other.getGolds()) return false;
       if (getSceneId()
           != other.getSceneId()) return false;
+      if (getState()
+          != other.getState()) return false;
+      if (getFighterModel()
+          != other.getFighterModel()) return false;
       if (hasPlayerBattle() != other.hasPlayerBattle()) return false;
       if (hasPlayerBattle()) {
         if (!getPlayerBattle()
@@ -6781,6 +6841,10 @@ public final class PlayerProtocol {
       hash = (37 * hash) + SCENEID_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           getSceneId());
+      hash = (37 * hash) + STATE_FIELD_NUMBER;
+      hash = (53 * hash) + getState();
+      hash = (37 * hash) + FIGHTERMODEL_FIELD_NUMBER;
+      hash = (53 * hash) + getFighterModel();
       if (hasPlayerBattle()) {
         hash = (37 * hash) + PLAYERBATTLE_FIELD_NUMBER;
         hash = (53 * hash) + getPlayerBattle().hashCode();
@@ -6953,6 +7017,10 @@ public final class PlayerProtocol {
 
         sceneId_ = 0L;
 
+        state_ = 0;
+
+        fighterModel_ = 0;
+
         if (playerBattleBuilder_ == null) {
           playerBattle_ = null;
         } else {
@@ -7016,6 +7084,8 @@ public final class PlayerProtocol {
         result.careerId_ = careerId_;
         result.golds_ = golds_;
         result.sceneId_ = sceneId_;
+        result.state_ = state_;
+        result.fighterModel_ = fighterModel_;
         if (playerBattleBuilder_ == null) {
           result.playerBattle_ = playerBattle_;
         } else {
@@ -7119,6 +7189,12 @@ public final class PlayerProtocol {
         }
         if (other.getSceneId() != 0L) {
           setSceneId(other.getSceneId());
+        }
+        if (other.getState() != 0) {
+          setState(other.getState());
+        }
+        if (other.getFighterModel() != 0) {
+          setFighterModel(other.getFighterModel());
         }
         if (other.hasPlayerBattle()) {
           mergePlayerBattle(other.getPlayerBattle());
@@ -7456,6 +7532,66 @@ public final class PlayerProtocol {
       public Builder clearSceneId() {
         
         sceneId_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private int state_ ;
+      /**
+       * <code>int32 state = 12;</code>
+       * @return The state.
+       */
+      public int getState() {
+        return state_;
+      }
+      /**
+       * <code>int32 state = 12;</code>
+       * @param value The state to set.
+       * @return This builder for chaining.
+       */
+      public Builder setState(int value) {
+        
+        state_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 state = 12;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearState() {
+        
+        state_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int fighterModel_ ;
+      /**
+       * <code>int32 fighterModel = 13;</code>
+       * @return The fighterModel.
+       */
+      public int getFighterModel() {
+        return fighterModel_;
+      }
+      /**
+       * <code>int32 fighterModel = 13;</code>
+       * @param value The fighterModel to set.
+       * @return This builder for chaining.
+       */
+      public Builder setFighterModel(int value) {
+        
+        fighterModel_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 fighterModel = 13;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearFighterModel() {
+        
+        fighterModel_ = 0;
         onChanged();
         return this;
       }
@@ -11428,6 +11564,12 @@ public final class PlayerProtocol {
     int getState();
 
     /**
+     * <code>int32 fighterModel = 8;</code>
+     * @return The fighterModel.
+     */
+    int getFighterModel();
+
+    /**
      * <pre>
      * 战斗属性
      * </pre>
@@ -11598,6 +11740,11 @@ public final class PlayerProtocol {
                   input.readMessage(com.game.protocol.ItemProtocol.ItemInfo.parser(), extensionRegistry));
               break;
             }
+            case 64: {
+
+              fighterModel_ = input.readInt32();
+              break;
+            }
             default: {
               if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
@@ -11707,6 +11854,16 @@ public final class PlayerProtocol {
      */
     public int getState() {
       return state_;
+    }
+
+    public static final int FIGHTERMODEL_FIELD_NUMBER = 8;
+    private int fighterModel_;
+    /**
+     * <code>int32 fighterModel = 8;</code>
+     * @return The fighterModel.
+     */
+    public int getFighterModel() {
+      return fighterModel_;
     }
 
     public static final int PLAYERBATTLE_FIELD_NUMBER = 6;
@@ -11834,6 +11991,9 @@ public final class PlayerProtocol {
       for (int i = 0; i < equipBag_.size(); i++) {
         output.writeMessage(7, equipBag_.get(i));
       }
+      if (fighterModel_ != 0) {
+        output.writeInt32(8, fighterModel_);
+      }
       unknownFields.writeTo(output);
     }
 
@@ -11870,6 +12030,10 @@ public final class PlayerProtocol {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(7, equipBag_.get(i));
       }
+      if (fighterModel_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(8, fighterModel_);
+      }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
@@ -11895,6 +12059,8 @@ public final class PlayerProtocol {
           != other.getCareerId()) return false;
       if (getState()
           != other.getState()) return false;
+      if (getFighterModel()
+          != other.getFighterModel()) return false;
       if (hasPlayerBattle() != other.hasPlayerBattle()) return false;
       if (hasPlayerBattle()) {
         if (!getPlayerBattle()
@@ -11924,6 +12090,8 @@ public final class PlayerProtocol {
       hash = (53 * hash) + getCareerId();
       hash = (37 * hash) + STATE_FIELD_NUMBER;
       hash = (53 * hash) + getState();
+      hash = (37 * hash) + FIGHTERMODEL_FIELD_NUMBER;
+      hash = (53 * hash) + getFighterModel();
       if (hasPlayerBattle()) {
         hash = (37 * hash) + PLAYERBATTLE_FIELD_NUMBER;
         hash = (53 * hash) + getPlayerBattle().hashCode();
@@ -12080,6 +12248,8 @@ public final class PlayerProtocol {
 
         state_ = 0;
 
+        fighterModel_ = 0;
+
         if (playerBattleBuilder_ == null) {
           playerBattle_ = null;
         } else {
@@ -12124,6 +12294,7 @@ public final class PlayerProtocol {
         result.level_ = level_;
         result.careerId_ = careerId_;
         result.state_ = state_;
+        result.fighterModel_ = fighterModel_;
         if (playerBattleBuilder_ == null) {
           result.playerBattle_ = playerBattle_;
         } else {
@@ -12201,6 +12372,9 @@ public final class PlayerProtocol {
         }
         if (other.getState() != 0) {
           setState(other.getState());
+        }
+        if (other.getFighterModel() != 0) {
+          setFighterModel(other.getFighterModel());
         }
         if (other.hasPlayerBattle()) {
           mergePlayerBattle(other.getPlayerBattle());
@@ -12453,6 +12627,36 @@ public final class PlayerProtocol {
       public Builder clearState() {
         
         state_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int fighterModel_ ;
+      /**
+       * <code>int32 fighterModel = 8;</code>
+       * @return The fighterModel.
+       */
+      public int getFighterModel() {
+        return fighterModel_;
+      }
+      /**
+       * <code>int32 fighterModel = 8;</code>
+       * @param value The fighterModel to set.
+       * @return This builder for chaining.
+       */
+      public Builder setFighterModel(int value) {
+        
+        fighterModel_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 fighterModel = 8;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearFighterModel() {
+        
+        fighterModel_ = 0;
         onChanged();
         return this;
       }
@@ -13910,28 +14114,29 @@ public final class PlayerProtocol {
       "(\0132\013.PlayerInfo\"\014\n\nOpenBagReq\"\014\n\nOpenBag" +
       "Res\"M\n\020SimplePlayerInfo\022\n\n\002id\030\001 \001(\003\022\014\n\004n" +
       "ame\030\002 \001(\t\022\r\n\005level\030\003 \001(\005\022\020\n\010careerId\030\004 \001" +
-      "(\005\"\214\002\n\nPlayerInfo\022\n\n\002id\030\001 \001(\003\022\014\n\004name\030\002 " +
+      "(\005\"\261\002\n\nPlayerInfo\022\n\n\002id\030\001 \001(\003\022\014\n\004name\030\002 " +
       "\001(\t\022\r\n\005level\030\003 \001(\005\022\020\n\010careerId\030\004 \001(\005\022\r\n\005" +
-      "golds\030\005 \001(\005\022\017\n\007sceneId\030\006 \001(\003\022#\n\014playerBa" +
-      "ttle\030\007 \001(\0132\r.PlayerBattle\022\034\n\tequipInfo\030\010" +
-      " \003(\0132\t.ItemInfo\022\034\n\tgoodsInfo\030\t \003(\0132\t.Ite" +
-      "mInfo\022!\n\013playerSkill\030\n \001(\0132\014.PlayerSkill" +
-      "\022\037\n\nbufferInfo\030\013 \003(\0132\013.BufferInfo\"\014\n\nBuf" +
-      "ferInfo\",\n\013PlayerSkill\022\035\n\tskillInfo\030\n \003(" +
-      "\0132\n.SkillInfo\"\313\001\n\tSkillInfo\022\n\n\002id\030\001 \001(\003\022" +
-      "\014\n\004name\030\002 \001(\t\022\020\n\010careerId\030\003 \001(\005\022\022\n\nlimit" +
-      "Level\030\004 \001(\005\022\025\n\rmaxLearnLevel\030\005 \001(\005\022\020\n\010co" +
-      "olTime\030\006 \001(\005\022\017\n\007formula\030\007 \001(\t\022\014\n\004desc\030\010 " +
-      "\001(\t\022\020\n\010bagIndex\030\t \001(\005\022\022\n\nlearnLevel\030\n \001(" +
-      "\005\022\020\n\010playerId\030\013 \001(\005\"\235\001\n\017OtherPlayerInfo\022" +
-      "\n\n\002id\030\001 \001(\003\022\014\n\004name\030\002 \001(\t\022\r\n\005level\030\003 \001(\005" +
-      "\022\020\n\010careerId\030\004 \001(\005\022\r\n\005state\030\005 \001(\005\022#\n\014pla" +
-      "yerBattle\030\006 \001(\0132\r.PlayerBattle\022\033\n\010equipB" +
-      "ag\030\007 \003(\0132\t.ItemInfo\"g\n\014PlayerBattle\022\n\n\002h" +
-      "p\030\001 \001(\005\022\016\n\006currHp\030\002 \001(\005\022\n\n\002mp\030\003 \001(\005\022\016\n\006c" +
-      "urrMp\030\004 \001(\005\022\016\n\006attack\030\005 \001(\005\022\017\n\007defense\030\006" +
-      " \001(\005B#\n\021com.game.protocolB\016PlayerProtoco" +
-      "lb\006proto3"
+      "golds\030\005 \001(\005\022\017\n\007sceneId\030\006 \001(\003\022\r\n\005state\030\014 " +
+      "\001(\005\022\024\n\014fighterModel\030\r \001(\005\022#\n\014playerBattl" +
+      "e\030\007 \001(\0132\r.PlayerBattle\022\034\n\tequipInfo\030\010 \003(" +
+      "\0132\t.ItemInfo\022\034\n\tgoodsInfo\030\t \003(\0132\t.ItemIn" +
+      "fo\022!\n\013playerSkill\030\n \001(\0132\014.PlayerSkill\022\037\n" +
+      "\nbufferInfo\030\013 \003(\0132\013.BufferInfo\"\014\n\nBuffer" +
+      "Info\",\n\013PlayerSkill\022\035\n\tskillInfo\030\n \003(\0132\n" +
+      ".SkillInfo\"\313\001\n\tSkillInfo\022\n\n\002id\030\001 \001(\003\022\014\n\004" +
+      "name\030\002 \001(\t\022\020\n\010careerId\030\003 \001(\005\022\022\n\nlimitLev" +
+      "el\030\004 \001(\005\022\025\n\rmaxLearnLevel\030\005 \001(\005\022\020\n\010coolT" +
+      "ime\030\006 \001(\005\022\017\n\007formula\030\007 \001(\t\022\014\n\004desc\030\010 \001(\t" +
+      "\022\020\n\010bagIndex\030\t \001(\005\022\022\n\nlearnLevel\030\n \001(\005\022\020" +
+      "\n\010playerId\030\013 \001(\005\"\263\001\n\017OtherPlayerInfo\022\n\n\002" +
+      "id\030\001 \001(\003\022\014\n\004name\030\002 \001(\t\022\r\n\005level\030\003 \001(\005\022\020\n" +
+      "\010careerId\030\004 \001(\005\022\r\n\005state\030\005 \001(\005\022\024\n\014fighte" +
+      "rModel\030\010 \001(\005\022#\n\014playerBattle\030\006 \001(\0132\r.Pla" +
+      "yerBattle\022\033\n\010equipBag\030\007 \003(\0132\t.ItemInfo\"g" +
+      "\n\014PlayerBattle\022\n\n\002hp\030\001 \001(\005\022\016\n\006currHp\030\002 \001" +
+      "(\005\022\n\n\002mp\030\003 \001(\005\022\016\n\006currMp\030\004 \001(\005\022\016\n\006attack" +
+      "\030\005 \001(\005\022\017\n\007defense\030\006 \001(\005B#\n\021com.game.prot" +
+      "ocolB\016PlayerProtocolb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -14003,7 +14208,7 @@ public final class PlayerProtocol {
     internal_static_PlayerInfo_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_PlayerInfo_descriptor,
-        new java.lang.String[] { "Id", "Name", "Level", "CareerId", "Golds", "SceneId", "PlayerBattle", "EquipInfo", "GoodsInfo", "PlayerSkill", "BufferInfo", });
+        new java.lang.String[] { "Id", "Name", "Level", "CareerId", "Golds", "SceneId", "State", "FighterModel", "PlayerBattle", "EquipInfo", "GoodsInfo", "PlayerSkill", "BufferInfo", });
     internal_static_BufferInfo_descriptor =
       getDescriptor().getMessageTypes().get(11);
     internal_static_BufferInfo_fieldAccessorTable = new
@@ -14027,7 +14232,7 @@ public final class PlayerProtocol {
     internal_static_OtherPlayerInfo_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_OtherPlayerInfo_descriptor,
-        new java.lang.String[] { "Id", "Name", "Level", "CareerId", "State", "PlayerBattle", "EquipBag", });
+        new java.lang.String[] { "Id", "Name", "Level", "CareerId", "State", "FighterModel", "PlayerBattle", "EquipBag", });
     internal_static_PlayerBattle_descriptor =
       getDescriptor().getMessageTypes().get(15);
     internal_static_PlayerBattle_fieldAccessorTable = new

@@ -5,6 +5,7 @@ import com.game.module.BaseHandler;
 import com.game.module.ModuleKey;
 import com.game.module.gui.ScenePage;
 import com.game.module.gui.WordPage;
+import com.game.protocol.Actor;
 import com.game.protocol.InstanceProtocol;
 import com.game.protocol.Message;
 import com.game.task.annotation.CmdHandler;
@@ -14,7 +15,9 @@ import com.google.protobuf.InvalidProtocolBufferException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -36,6 +39,13 @@ public class InstanceHandle extends BaseHandler {
     @Autowired
     private WordPage wordPage;
 
+
+    public void instanceaio() {
+        List<Actor.MonsterInfo> monsterInfos = new ArrayList<>(currInstanceInfo.getMonsterListList());
+        wordPage.clean();
+        wordPage.printMonsterList(monsterInfos);
+    }
+
     /**
      * 查看副本列表
      *
@@ -47,9 +57,9 @@ public class InstanceHandle extends BaseHandler {
         gameContext.getChannel().writeAndFlush(reqMsg);
     }
 
-    public void entryInstance(String instanceName,boolean team){
+    public void entryInstance(String instanceName, boolean team) {
         InstanceProtocol.InstanceConfigInfo info = infoMap.get(instanceName);
-        if(info==null){
+        if (info == null) {
             wordPage.print("错误的副本名称");
             return;
         }
@@ -57,12 +67,12 @@ public class InstanceHandle extends BaseHandler {
         builder.setInstanceId(info.getInstanceConfigId());
         builder.setTeam(team);
         Message message = MessageUtil.createMessage(ModuleKey.INSTANCE_MODULE
-                ,InstanceCmd.ENTRY_INSTANCE,builder.build().toByteArray());
+                , InstanceCmd.ENTRY_INSTANCE, builder.build().toByteArray());
         gameContext.getChannel().writeAndFlush(message);
     }
 
-    public void exitInstance(){
-        Message message = MessageUtil.createMessage(ModuleKey.INSTANCE_MODULE,InstanceCmd.EXIT_INSTANCE,null);
+    public void exitInstance() {
+        Message message = MessageUtil.createMessage(ModuleKey.INSTANCE_MODULE, InstanceCmd.EXIT_INSTANCE, null);
         gameContext.getChannel().writeAndFlush(message);
     }
 
@@ -73,7 +83,7 @@ public class InstanceHandle extends BaseHandler {
             InstanceProtocol.InstanceInfoListRes res = InstanceProtocol
                     .InstanceInfoListRes.parseFrom(message.getData());
             for (InstanceProtocol.InstanceConfigInfo instanceInfo : res.getInstanceInfoListList()) {
-                infoMap.put(instanceInfo.getInstanceName(),instanceInfo);
+                infoMap.put(instanceInfo.getInstanceName(), instanceInfo);
             }
             wordPage.clean();
             wordPage.printInstanceInfo(res.getInstanceInfoListList());
@@ -83,11 +93,11 @@ public class InstanceHandle extends BaseHandler {
     }
 
     @CmdHandler(cmd = InstanceCmd.ENTRY_INSTANCE)
-    public void receiveEntryInstanceMsg(Message message){
+    public void receiveEntryInstanceMsg(Message message) {
         try {
             InstanceProtocol.EntryInstanceRes res = InstanceProtocol.EntryInstanceRes
                     .parseFrom(message.getData());
-            if(res.getCode()!=0){
+            if (res.getCode() != 0) {
                 wordPage.print(res.getMsg());
                 return;
             }
@@ -99,8 +109,8 @@ public class InstanceHandle extends BaseHandler {
         }
     }
 
-    @CmdHandler( cmd = InstanceCmd.SYNC_INSTANCE_INFO)
-    public void receiveSyncInstanceInfoMsg(Message message){
+    @CmdHandler(cmd = InstanceCmd.SYNC_INSTANCE_INFO)
+    public void receiveSyncInstanceInfoMsg(Message message) {
         try {
             InstanceProtocol.InstanceInfo info = InstanceProtocol.InstanceInfo.parseFrom(message.getData());
             this.currInstanceInfo = info;

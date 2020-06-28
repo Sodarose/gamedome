@@ -22,34 +22,40 @@ public class PetManager {
     private final static Logger logger = LoggerFactory.getLogger(PetManager.class);
 
     private Map<Long, UserPet> playerPetMap = new ConcurrentHashMap<>();
-    private Map<Long,Pet> petMap = new ConcurrentHashMap<>();
+    private Map<Long, Pet> petMap = new ConcurrentHashMap<>();
 
 
-    public Pet createPet(Long playerId,int petConfigId){
+    public Pet createPet(Long playerId, int petConfigId) {
         PetConfig petConfig = StaticConfigManager.getInstance().getPetConfigMap().get(petConfigId);
-        if(petConfig==null){
+        if (petConfig == null) {
             return null;
         }
         UserPet userPet = null;
-        if(playerPetMap.get(playerId)==null){
+        if (playerPetMap.get(playerId) == null) {
             userPet = new UserPet();
-            playerPetMap.put(playerId,userPet);
-        }else{
+            playerPetMap.put(playerId, userPet);
+        } else {
             userPet = playerPetMap.get(playerId);
         }
         boolean result = userPet.hasPet(petConfigId);
-        if(result){
+        if (result) {
             logger.info("不能重复召唤");
             return null;
         }
-        Pet pet = new Pet(petConfigId);
+        Pet pet = new Pet(playerId,petConfigId);
         pet.initialize();
         userPet.addPet(pet);
-        petMap.put(pet.getId(),pet);
+        petMap.put(pet.getId(), pet);
         return pet;
     }
 
-    public Pet getPet(Long petId){
+    public Pet getPet(Long petId) {
         return petMap.get(petId);
+    }
+
+    public void update() {
+        for (Map.Entry<Long, Pet> entry : petMap.entrySet()) {
+            entry.getValue().update();
+        }
     }
 }

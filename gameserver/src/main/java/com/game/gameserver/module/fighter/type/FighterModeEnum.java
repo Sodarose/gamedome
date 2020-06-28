@@ -7,7 +7,7 @@ package com.game.gameserver.module.fighter.type;
  * @date 2020/6/18 21:49
  */
 public enum  FighterModeEnum {
-    /** 和平模式 不会被玩家攻击 */
+    /** 和平模式 只攻击怪物 */
     PEACE,
     /** 全体模式 可以攻击任何可攻击对象 */
     ALL,

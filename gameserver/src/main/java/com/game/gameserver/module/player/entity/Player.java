@@ -25,7 +25,7 @@ public class Player {
     /** 金币数量 */
     private Integer golds;
     /** 背包容量 */
-    private Integer bagCapacity;
+    private Integer bagCapacity = 36;
     /** 仓库容量 */
     private Integer warehouse;
     /** 账号ID */
@@ -34,4 +34,6 @@ public class Player {
     private LocalDate createTime;
     /** 更新时间 */
     private LocalDate updateTime;
+    /** 角色经验 */
+    private int expr = 0;
 }

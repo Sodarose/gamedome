@@ -1,11 +1,20 @@
 package com.game.gameserver.module.item.service.impl;
 
+import com.game.gameserver.module.item.entity.Bag;
+import com.game.gameserver.module.item.entity.Item;
 import com.game.gameserver.module.item.manager.ItemManager;
 import com.game.gameserver.module.item.service.ItemService;
 import com.game.gameserver.module.player.model.PlayerObject;
+import com.game.gameserver.util.ProtocolFactory;
 import com.game.protocol.ItemProtocol;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 /**
  * @author kangkang
@@ -23,7 +32,11 @@ public class ItemServiceImpl implements ItemService {
      */
     @Override
     public ItemProtocol.PlayerBag getPlayerBag(PlayerObject playerObject) {
-        return null;
+        Bag bag = itemManager.getPlayerBag(playerObject.getPlayer().getId());
+        List<Item> items = Arrays.stream(bag.getRawData()).filter(
+                Objects::nonNull
+        ).collect(Collectors.toList());
+        return ProtocolFactory.createPlayerBag(items);
     }
 
     /**

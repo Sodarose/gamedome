@@ -29,4 +29,8 @@ public class EmailBox {
     public void clear(){
         emailList.clear();
     }
+
+    public List<Email> getEmailList(){
+        return emailList;
+    }
 }

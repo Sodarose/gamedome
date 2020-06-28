@@ -23,9 +23,9 @@ import java.util.concurrent.ConcurrentHashMap;
 public class PlayerManager {
     private final static Logger logger = LoggerFactory.getLogger(PlayerManager.class);
 
-    public static PlayerManager instance ;
+    public static PlayerManager instance;
 
-    public PlayerManager(){
+    public PlayerManager() {
         instance = this;
     }
 
@@ -35,7 +35,13 @@ public class PlayerManager {
         return playerObjectMap.get(playerId);
     }
 
-    public void putPlayerObject(PlayerObject playerObject){
-        playerObjectMap.put(playerObject.getPlayer().getId(),playerObject);
+    public void putPlayerObject(PlayerObject playerObject) {
+        playerObjectMap.put(playerObject.getPlayer().getId(), playerObject);
+    }
+
+    public void update() {
+        for (Map.Entry<Long, PlayerObject> entry : playerObjectMap.entrySet()) {
+            entry.getValue().update();
+        }
     }
 }

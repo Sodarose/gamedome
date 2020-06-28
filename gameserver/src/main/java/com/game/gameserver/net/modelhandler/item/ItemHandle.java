@@ -1,11 +1,17 @@
 package com.game.gameserver.net.modelhandler.item;
 
+import com.game.gameserver.module.item.service.ItemService;
+import com.game.gameserver.module.player.model.PlayerObject;
+import com.game.gameserver.module.player.service.PlayerService;
 import com.game.gameserver.net.annotation.CmdHandler;
 import com.game.gameserver.net.annotation.ModuleHandler;
 import com.game.gameserver.net.handler.BaseHandler;
 import com.game.gameserver.net.modelhandler.ModuleKey;
+import com.game.protocol.ItemProtocol;
 import com.game.protocol.Message;
+import com.game.util.MessageUtil;
 import io.netty.channel.Channel;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
@@ -15,6 +21,10 @@ import org.springframework.stereotype.Component;
 @ModuleHandler(module = ModuleKey.ITEM_MODULE)
 @Component
 public class ItemHandle extends BaseHandler {
+
+    @Autowired
+    private ItemService itemService;
+
     /**
      * 获取装备栏数据
      * */
@@ -28,7 +38,13 @@ public class ItemHandle extends BaseHandler {
      * */
     @CmdHandler(cmd = ItemCmd.PLAYER_BAG_REQ)
     public void handlePlayerBagCmd(Message message, Channel channel){
-
+        PlayerObject playerObject = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
+        if (playerObject == null) {
+            return;
+        }
+        ItemProtocol.PlayerBag playerBag = itemService.getPlayerBag(playerObject);
+        Message res = MessageUtil.createMessage(ModuleKey.ITEM_MODULE,ItemCmd.PLAYER_BAG_REQ,playerBag.toByteArray());
+        channel.writeAndFlush(res);
     }
 
     /**

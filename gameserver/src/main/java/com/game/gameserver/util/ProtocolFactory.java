@@ -1,11 +1,10 @@
 package com.game.gameserver.util;
 
-import com.alibaba.druid.support.spring.stat.annotation.Stat;
 import com.game.gameserver.common.config.*;
+import com.game.gameserver.module.email.entity.Email;
 import com.game.gameserver.module.instance.model.InstanceObject;
-import com.game.gameserver.module.item.entity.Equip;
 import com.game.gameserver.module.item.entity.Item;
-import com.game.gameserver.module.item.entity.Prop;
+import com.game.gameserver.module.item.type.BagType;
 import com.game.gameserver.module.item.type.ItemType;
 import com.game.gameserver.module.monster.manager.MonsterManager;
 import com.game.gameserver.module.monster.model.MonsterObject;
@@ -77,20 +76,14 @@ public class ProtocolFactory {
         builder.setLevel(playerObject.getPlayer().getLevel());
         builder.setCareerId(playerObject.getPlayer().getCareerId());
         builder.setGolds(playerObject.getPlayer().getGolds());
+        builder.setState(playerObject.getCurrState().ordinal());
+        builder.setFighterModel(playerObject.getFighterModeEnum().ordinal());
         builder.setSceneId(playerObject.getPlayer().getSceneId());
         // 人物属性
         builder.setPlayerBattle(createPlayerBattle(playerObject.getPlayerBattle()));
         return builder.build();
     }
 
-
-    public static GoodsProtocol.GoodsInfo createGoodsInfo(Equip equip) {
-        return null;
-    }
-
-    public static GoodsProtocol.GoodsInfo createGoodsInfo(Prop prop) {
-        return null;
-    }
 
     public static PlayerProtocol.PlayerBattle createPlayerBattle(PlayerBattle playerBattle) {
         PlayerProtocol.PlayerBattle.Builder builder = PlayerProtocol.PlayerBattle.newBuilder();
@@ -367,7 +360,7 @@ public class ProtocolFactory {
         builder.setDescription(instanceConfig.getDesc());
         builder.setEndTime(instanceObject.getEndTime());
         builder.setRecoveryTime(instanceObject.getRecoveryTime());
-        for(Long playerId:instanceObject.getPlayers()){
+        for(Long playerId:instanceObject.getCurrPlayers()){
             PlayerObject playerObject = PlayerManager
                     .instance.getPlayerObject(playerId);
             if(playerObject==null){
@@ -400,6 +393,75 @@ public class ProtocolFactory {
         if(team!=null){
             builder.setTeamInfo(createTeamInfo(team));
         }
+        return builder.build();
+    }
+
+    public static ItemProtocol.PlayerBag createPlayerBag(List<Item> items){
+        ItemProtocol.PlayerBag.Builder builder = ItemProtocol.PlayerBag.newBuilder();
+        for(Item item:items){
+            builder.addItemList(createItemInfo(item));
+        }
+        return builder.build();
+    }
+
+    public static ItemProtocol.ItemInfo createItemInfo(Item item){
+        ItemProtocol.ItemInfo.Builder builder = ItemProtocol.ItemInfo.newBuilder();
+        builder.setItemId(item.getId());
+        builder.setItemType(item.getItemType());
+        if(item.getItemType().equals(ItemType.EQUIP)){
+            EquipConfig equipConfig = StaticConfigManager.getInstance().getEquipConfigMap().get(item.getItemId());
+            builder.setItemName(equipConfig.getName());
+            builder.setDesc(equipConfig.getDesc());
+        }
+        if(item.getItemType().equals(ItemType.PROP)){
+            PropConfig propConfig = StaticConfigManager.getInstance().getPropConfigMap().get(item.getItemId());
+            builder.setItemName(propConfig.getName());
+            builder.setDesc(propConfig.getDesc());
+        }
+        builder.setItemNum(item.getNum());
+        builder.setBagPack(BagType.PLAYER_BAG);
+        builder.setBagIndex(item.getBagIndex());
+        builder.setBound(item.getBound()==1);
+        return builder.build();
+    }
+
+    public static EmailProtocol.EmailListRes createEmailListRes(int code,String msg, List<Email> emailList){
+        EmailProtocol.EmailListRes.Builder builder = EmailProtocol.EmailListRes.newBuilder();
+        builder.setCode(code);
+        builder.setMsg(msg);
+        if(emailList!=null&&emailList.size()!=0){
+            for(Email email:emailList){
+                builder.addEmail(createEmailInfo(email));
+            }
+        }
+        return builder.build();
+    }
+
+    public static EmailProtocol.EmailInfo createEmailInfo(Email email){
+        EmailProtocol.EmailInfo.Builder builder = EmailProtocol.EmailInfo.newBuilder();
+        builder.setId(email.getId());
+        builder.setTitle(email.getTitle());
+        builder.setSendName(email.getSenderName());
+        builder.setContent(email.getContent());
+        for(Item item:email.getAttachments()){
+            if(item.getItemType().equals(ItemType.EQUIP)){
+                EquipConfig equipConfig = StaticConfigManager.getInstance().getEquipConfigMap()
+                        .get(item.getItemId());
+                if(equipConfig==null){
+                    continue;
+                }
+                builder.addAttachments(equipConfig.getName());
+            }
+            if(item.getItemType().equals(ItemType.PROP)){
+                PropConfig propConfig = StaticConfigManager.getInstance().getPropConfigMap().get(item.getItemId());
+                if(propConfig==null){
+                    continue;
+                }
+                builder.addAttachments(propConfig.getName());
+            }
+        }
+        builder.setGolds(email.getGolds());
+        builder.setState(email.getState());
         return builder.build();
     }
 }

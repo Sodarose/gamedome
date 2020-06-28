@@ -7970,28 +7970,29 @@ public final class EmailProtocol {
         getContentBytes();
 
     /**
-     * <code>repeated .ItemInfo attachments = 5;</code>
+     * <code>repeated string attachments = 5;</code>
+     * @return A list containing the attachments.
      */
-    java.util.List<com.game.protocol.ItemProtocol.ItemInfo> 
+    java.util.List<java.lang.String>
         getAttachmentsList();
     /**
-     * <code>repeated .ItemInfo attachments = 5;</code>
-     */
-    com.game.protocol.ItemProtocol.ItemInfo getAttachments(int index);
-    /**
-     * <code>repeated .ItemInfo attachments = 5;</code>
+     * <code>repeated string attachments = 5;</code>
+     * @return The count of attachments.
      */
     int getAttachmentsCount();
     /**
-     * <code>repeated .ItemInfo attachments = 5;</code>
+     * <code>repeated string attachments = 5;</code>
+     * @param index The index of the element to return.
+     * @return The attachments at the given index.
      */
-    java.util.List<? extends com.game.protocol.ItemProtocol.ItemInfoOrBuilder> 
-        getAttachmentsOrBuilderList();
+    java.lang.String getAttachments(int index);
     /**
-     * <code>repeated .ItemInfo attachments = 5;</code>
+     * <code>repeated string attachments = 5;</code>
+     * @param index The index of the value to return.
+     * @return The bytes of the attachments at the given index.
      */
-    com.game.protocol.ItemProtocol.ItemInfoOrBuilder getAttachmentsOrBuilder(
-        int index);
+    com.google.protobuf.ByteString
+        getAttachmentsBytes(int index);
 
     /**
      * <code>int32 golds = 6;</code>
@@ -8025,7 +8026,7 @@ public final class EmailProtocol {
       title_ = "";
       sendName_ = "";
       content_ = "";
-      attachments_ = java.util.Collections.emptyList();
+      attachments_ = com.google.protobuf.LazyStringArrayList.EMPTY;
     }
 
     @java.lang.Override
@@ -8083,12 +8084,12 @@ public final class EmailProtocol {
               break;
             }
             case 42: {
+              java.lang.String s = input.readStringRequireUtf8();
               if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                attachments_ = new java.util.ArrayList<com.game.protocol.ItemProtocol.ItemInfo>();
+                attachments_ = new com.google.protobuf.LazyStringArrayList();
                 mutable_bitField0_ |= 0x00000001;
               }
-              attachments_.add(
-                  input.readMessage(com.game.protocol.ItemProtocol.ItemInfo.parser(), extensionRegistry));
+              attachments_.add(s);
               break;
             }
             case 48: {
@@ -8117,7 +8118,7 @@ public final class EmailProtocol {
             e).setUnfinishedMessage(this);
       } finally {
         if (((mutable_bitField0_ & 0x00000001) != 0)) {
-          attachments_ = java.util.Collections.unmodifiableList(attachments_);
+          attachments_ = attachments_.getUnmodifiableView();
         }
         this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
@@ -8255,38 +8256,38 @@ public final class EmailProtocol {
     }
 
     public static final int ATTACHMENTS_FIELD_NUMBER = 5;
-    private java.util.List<com.game.protocol.ItemProtocol.ItemInfo> attachments_;
+    private com.google.protobuf.LazyStringList attachments_;
     /**
-     * <code>repeated .ItemInfo attachments = 5;</code>
+     * <code>repeated string attachments = 5;</code>
+     * @return A list containing the attachments.
      */
-    public java.util.List<com.game.protocol.ItemProtocol.ItemInfo> getAttachmentsList() {
+    public com.google.protobuf.ProtocolStringList
+        getAttachmentsList() {
       return attachments_;
     }
     /**
-     * <code>repeated .ItemInfo attachments = 5;</code>
-     */
-    public java.util.List<? extends com.game.protocol.ItemProtocol.ItemInfoOrBuilder> 
-        getAttachmentsOrBuilderList() {
-      return attachments_;
-    }
-    /**
-     * <code>repeated .ItemInfo attachments = 5;</code>
+     * <code>repeated string attachments = 5;</code>
+     * @return The count of attachments.
      */
     public int getAttachmentsCount() {
       return attachments_.size();
     }
     /**
-     * <code>repeated .ItemInfo attachments = 5;</code>
+     * <code>repeated string attachments = 5;</code>
+     * @param index The index of the element to return.
+     * @return The attachments at the given index.
      */
-    public com.game.protocol.ItemProtocol.ItemInfo getAttachments(int index) {
+    public java.lang.String getAttachments(int index) {
       return attachments_.get(index);
     }
     /**
-     * <code>repeated .ItemInfo attachments = 5;</code>
+     * <code>repeated string attachments = 5;</code>
+     * @param index The index of the value to return.
+     * @return The bytes of the attachments at the given index.
      */
-    public com.game.protocol.ItemProtocol.ItemInfoOrBuilder getAttachmentsOrBuilder(
-        int index) {
-      return attachments_.get(index);
+    public com.google.protobuf.ByteString
+        getAttachmentsBytes(int index) {
+      return attachments_.getByteString(index);
     }
 
     public static final int GOLDS_FIELD_NUMBER = 6;
@@ -8336,7 +8337,7 @@ public final class EmailProtocol {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 4, content_);
       }
       for (int i = 0; i < attachments_.size(); i++) {
-        output.writeMessage(5, attachments_.get(i));
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 5, attachments_.getRaw(i));
       }
       if (golds_ != 0) {
         output.writeInt32(6, golds_);
@@ -8366,9 +8367,13 @@ public final class EmailProtocol {
       if (!getContentBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, content_);
       }
-      for (int i = 0; i < attachments_.size(); i++) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(5, attachments_.get(i));
+      {
+        int dataSize = 0;
+        for (int i = 0; i < attachments_.size(); i++) {
+          dataSize += computeStringSizeNoTag(attachments_.getRaw(i));
+        }
+        size += dataSize;
+        size += 1 * getAttachmentsList().size();
       }
       if (golds_ != 0) {
         size += com.google.protobuf.CodedOutputStream
@@ -8567,7 +8572,6 @@ public final class EmailProtocol {
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessageV3
                 .alwaysUseFieldBuilders) {
-          getAttachmentsFieldBuilder();
         }
       }
       @java.lang.Override
@@ -8581,12 +8585,8 @@ public final class EmailProtocol {
 
         content_ = "";
 
-        if (attachmentsBuilder_ == null) {
-          attachments_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
-        } else {
-          attachmentsBuilder_.clear();
-        }
+        attachments_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        bitField0_ = (bitField0_ & ~0x00000001);
         golds_ = 0;
 
         state_ = 0;
@@ -8622,15 +8622,11 @@ public final class EmailProtocol {
         result.title_ = title_;
         result.sendName_ = sendName_;
         result.content_ = content_;
-        if (attachmentsBuilder_ == null) {
-          if (((bitField0_ & 0x00000001) != 0)) {
-            attachments_ = java.util.Collections.unmodifiableList(attachments_);
-            bitField0_ = (bitField0_ & ~0x00000001);
-          }
-          result.attachments_ = attachments_;
-        } else {
-          result.attachments_ = attachmentsBuilder_.build();
+        if (((bitField0_ & 0x00000001) != 0)) {
+          attachments_ = attachments_.getUnmodifiableView();
+          bitField0_ = (bitField0_ & ~0x00000001);
         }
+        result.attachments_ = attachments_;
         result.golds_ = golds_;
         result.state_ = state_;
         onBuilt();
@@ -8696,31 +8692,15 @@ public final class EmailProtocol {
           content_ = other.content_;
           onChanged();
         }
-        if (attachmentsBuilder_ == null) {
-          if (!other.attachments_.isEmpty()) {
-            if (attachments_.isEmpty()) {
-              attachments_ = other.attachments_;
-              bitField0_ = (bitField0_ & ~0x00000001);
-            } else {
-              ensureAttachmentsIsMutable();
-              attachments_.addAll(other.attachments_);
-            }
-            onChanged();
+        if (!other.attachments_.isEmpty()) {
+          if (attachments_.isEmpty()) {
+            attachments_ = other.attachments_;
+            bitField0_ = (bitField0_ & ~0x00000001);
+          } else {
+            ensureAttachmentsIsMutable();
+            attachments_.addAll(other.attachments_);
           }
-        } else {
-          if (!other.attachments_.isEmpty()) {
-            if (attachmentsBuilder_.isEmpty()) {
-              attachmentsBuilder_.dispose();
-              attachmentsBuilder_ = null;
-              attachments_ = other.attachments_;
-              bitField0_ = (bitField0_ & ~0x00000001);
-              attachmentsBuilder_ = 
-                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
-                   getAttachmentsFieldBuilder() : null;
-            } else {
-              attachmentsBuilder_.addAllMessages(other.attachments_);
-            }
-          }
+          onChanged();
         }
         if (other.getGolds() != 0) {
           setGolds(other.getGolds());
@@ -9016,244 +8996,114 @@ public final class EmailProtocol {
         return this;
       }
 
-      private java.util.List<com.game.protocol.ItemProtocol.ItemInfo> attachments_ =
-        java.util.Collections.emptyList();
+      private com.google.protobuf.LazyStringList attachments_ = com.google.protobuf.LazyStringArrayList.EMPTY;
       private void ensureAttachmentsIsMutable() {
         if (!((bitField0_ & 0x00000001) != 0)) {
-          attachments_ = new java.util.ArrayList<com.game.protocol.ItemProtocol.ItemInfo>(attachments_);
+          attachments_ = new com.google.protobuf.LazyStringArrayList(attachments_);
           bitField0_ |= 0x00000001;
          }
       }
-
-      private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.game.protocol.ItemProtocol.ItemInfo, com.game.protocol.ItemProtocol.ItemInfo.Builder, com.game.protocol.ItemProtocol.ItemInfoOrBuilder> attachmentsBuilder_;
-
       /**
-       * <code>repeated .ItemInfo attachments = 5;</code>
+       * <code>repeated string attachments = 5;</code>
+       * @return A list containing the attachments.
        */
-      public java.util.List<com.game.protocol.ItemProtocol.ItemInfo> getAttachmentsList() {
-        if (attachmentsBuilder_ == null) {
-          return java.util.Collections.unmodifiableList(attachments_);
-        } else {
-          return attachmentsBuilder_.getMessageList();
-        }
+      public com.google.protobuf.ProtocolStringList
+          getAttachmentsList() {
+        return attachments_.getUnmodifiableView();
       }
       /**
-       * <code>repeated .ItemInfo attachments = 5;</code>
+       * <code>repeated string attachments = 5;</code>
+       * @return The count of attachments.
        */
       public int getAttachmentsCount() {
-        if (attachmentsBuilder_ == null) {
-          return attachments_.size();
-        } else {
-          return attachmentsBuilder_.getCount();
-        }
+        return attachments_.size();
       }
       /**
-       * <code>repeated .ItemInfo attachments = 5;</code>
+       * <code>repeated string attachments = 5;</code>
+       * @param index The index of the element to return.
+       * @return The attachments at the given index.
        */
-      public com.game.protocol.ItemProtocol.ItemInfo getAttachments(int index) {
-        if (attachmentsBuilder_ == null) {
-          return attachments_.get(index);
-        } else {
-          return attachmentsBuilder_.getMessage(index);
-        }
+      public java.lang.String getAttachments(int index) {
+        return attachments_.get(index);
       }
       /**
-       * <code>repeated .ItemInfo attachments = 5;</code>
+       * <code>repeated string attachments = 5;</code>
+       * @param index The index of the value to return.
+       * @return The bytes of the attachments at the given index.
        */
-      public Builder setAttachments(
-          int index, com.game.protocol.ItemProtocol.ItemInfo value) {
-        if (attachmentsBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureAttachmentsIsMutable();
-          attachments_.set(index, value);
-          onChanged();
-        } else {
-          attachmentsBuilder_.setMessage(index, value);
-        }
-        return this;
+      public com.google.protobuf.ByteString
+          getAttachmentsBytes(int index) {
+        return attachments_.getByteString(index);
       }
       /**
-       * <code>repeated .ItemInfo attachments = 5;</code>
+       * <code>repeated string attachments = 5;</code>
+       * @param index The index to set the value at.
+       * @param value The attachments to set.
+       * @return This builder for chaining.
        */
       public Builder setAttachments(
-          int index, com.game.protocol.ItemProtocol.ItemInfo.Builder builderForValue) {
-        if (attachmentsBuilder_ == null) {
-          ensureAttachmentsIsMutable();
-          attachments_.set(index, builderForValue.build());
-          onChanged();
-        } else {
-          attachmentsBuilder_.setMessage(index, builderForValue.build());
-        }
+          int index, java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureAttachmentsIsMutable();
+        attachments_.set(index, value);
+        onChanged();
         return this;
       }
       /**
-       * <code>repeated .ItemInfo attachments = 5;</code>
-       */
-      public Builder addAttachments(com.game.protocol.ItemProtocol.ItemInfo value) {
-        if (attachmentsBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureAttachmentsIsMutable();
-          attachments_.add(value);
-          onChanged();
-        } else {
-          attachmentsBuilder_.addMessage(value);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .ItemInfo attachments = 5;</code>
+       * <code>repeated string attachments = 5;</code>
+       * @param value The attachments to add.
+       * @return This builder for chaining.
        */
       public Builder addAttachments(
-          int index, com.game.protocol.ItemProtocol.ItemInfo value) {
-        if (attachmentsBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureAttachmentsIsMutable();
-          attachments_.add(index, value);
-          onChanged();
-        } else {
-          attachmentsBuilder_.addMessage(index, value);
-        }
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureAttachmentsIsMutable();
+        attachments_.add(value);
+        onChanged();
         return this;
       }
       /**
-       * <code>repeated .ItemInfo attachments = 5;</code>
-       */
-      public Builder addAttachments(
-          com.game.protocol.ItemProtocol.ItemInfo.Builder builderForValue) {
-        if (attachmentsBuilder_ == null) {
-          ensureAttachmentsIsMutable();
-          attachments_.add(builderForValue.build());
-          onChanged();
-        } else {
-          attachmentsBuilder_.addMessage(builderForValue.build());
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .ItemInfo attachments = 5;</code>
-       */
-      public Builder addAttachments(
-          int index, com.game.protocol.ItemProtocol.ItemInfo.Builder builderForValue) {
-        if (attachmentsBuilder_ == null) {
-          ensureAttachmentsIsMutable();
-          attachments_.add(index, builderForValue.build());
-          onChanged();
-        } else {
-          attachmentsBuilder_.addMessage(index, builderForValue.build());
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .ItemInfo attachments = 5;</code>
+       * <code>repeated string attachments = 5;</code>
+       * @param values The attachments to add.
+       * @return This builder for chaining.
        */
       public Builder addAllAttachments(
-          java.lang.Iterable<? extends com.game.protocol.ItemProtocol.ItemInfo> values) {
-        if (attachmentsBuilder_ == null) {
-          ensureAttachmentsIsMutable();
-          com.google.protobuf.AbstractMessageLite.Builder.addAll(
-              values, attachments_);
-          onChanged();
-        } else {
-          attachmentsBuilder_.addAllMessages(values);
-        }
+          java.lang.Iterable<java.lang.String> values) {
+        ensureAttachmentsIsMutable();
+        com.google.protobuf.AbstractMessageLite.Builder.addAll(
+            values, attachments_);
+        onChanged();
         return this;
       }
       /**
-       * <code>repeated .ItemInfo attachments = 5;</code>
+       * <code>repeated string attachments = 5;</code>
+       * @return This builder for chaining.
        */
       public Builder clearAttachments() {
-        if (attachmentsBuilder_ == null) {
-          attachments_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
-          onChanged();
-        } else {
-          attachmentsBuilder_.clear();
-        }
+        attachments_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        onChanged();
         return this;
       }
       /**
-       * <code>repeated .ItemInfo attachments = 5;</code>
+       * <code>repeated string attachments = 5;</code>
+       * @param value The bytes of the attachments to add.
+       * @return This builder for chaining.
        */
-      public Builder removeAttachments(int index) {
-        if (attachmentsBuilder_ == null) {
-          ensureAttachmentsIsMutable();
-          attachments_.remove(index);
-          onChanged();
-        } else {
-          attachmentsBuilder_.remove(index);
-        }
+      public Builder addAttachmentsBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        ensureAttachmentsIsMutable();
+        attachments_.add(value);
+        onChanged();
         return this;
-      }
-      /**
-       * <code>repeated .ItemInfo attachments = 5;</code>
-       */
-      public com.game.protocol.ItemProtocol.ItemInfo.Builder getAttachmentsBuilder(
-          int index) {
-        return getAttachmentsFieldBuilder().getBuilder(index);
-      }
-      /**
-       * <code>repeated .ItemInfo attachments = 5;</code>
-       */
-      public com.game.protocol.ItemProtocol.ItemInfoOrBuilder getAttachmentsOrBuilder(
-          int index) {
-        if (attachmentsBuilder_ == null) {
-          return attachments_.get(index);  } else {
-          return attachmentsBuilder_.getMessageOrBuilder(index);
-        }
-      }
-      /**
-       * <code>repeated .ItemInfo attachments = 5;</code>
-       */
-      public java.util.List<? extends com.game.protocol.ItemProtocol.ItemInfoOrBuilder> 
-           getAttachmentsOrBuilderList() {
-        if (attachmentsBuilder_ != null) {
-          return attachmentsBuilder_.getMessageOrBuilderList();
-        } else {
-          return java.util.Collections.unmodifiableList(attachments_);
-        }
-      }
-      /**
-       * <code>repeated .ItemInfo attachments = 5;</code>
-       */
-      public com.game.protocol.ItemProtocol.ItemInfo.Builder addAttachmentsBuilder() {
-        return getAttachmentsFieldBuilder().addBuilder(
-            com.game.protocol.ItemProtocol.ItemInfo.getDefaultInstance());
-      }
-      /**
-       * <code>repeated .ItemInfo attachments = 5;</code>
-       */
-      public com.game.protocol.ItemProtocol.ItemInfo.Builder addAttachmentsBuilder(
-          int index) {
-        return getAttachmentsFieldBuilder().addBuilder(
-            index, com.game.protocol.ItemProtocol.ItemInfo.getDefaultInstance());
-      }
-      /**
-       * <code>repeated .ItemInfo attachments = 5;</code>
-       */
-      public java.util.List<com.game.protocol.ItemProtocol.ItemInfo.Builder> 
-           getAttachmentsBuilderList() {
-        return getAttachmentsFieldBuilder().getBuilderList();
-      }
-      private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.game.protocol.ItemProtocol.ItemInfo, com.game.protocol.ItemProtocol.ItemInfo.Builder, com.game.protocol.ItemProtocol.ItemInfoOrBuilder> 
-          getAttachmentsFieldBuilder() {
-        if (attachmentsBuilder_ == null) {
-          attachmentsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.game.protocol.ItemProtocol.ItemInfo, com.game.protocol.ItemProtocol.ItemInfo.Builder, com.game.protocol.ItemProtocol.ItemInfoOrBuilder>(
-                  attachments_,
-                  ((bitField0_ & 0x00000001) != 0),
-                  getParentForChildren(),
-                  isClean());
-          attachments_ = null;
-        }
-        return attachmentsBuilder_;
       }
 
       private int golds_ ;
@@ -9442,31 +9292,29 @@ public final class EmailProtocol {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\013Email.proto\032\nItem.proto\"w\n\014SendEmailRe" +
-      "q\022\r\n\005title\030\001 \001(\t\022\017\n\007content\030\002 \001(\t\022$\n\natt" +
-      "achment\030\003 \003(\0132\020.EmailAttachment\022\r\n\005golds" +
-      "\030\004 \001(\005\022\022\n\nreceiverId\030\005 \001(\003\".\n\017EmailAttac" +
-      "hment\022\016\n\006itemId\030\001 \001(\003\022\013\n\003num\030\002 \001(\005\")\n\014Se" +
-      "ndEmailRes\022\014\n\004code\030\001 \001(\005\022\013\n\003msg\030\002 \001(\t\"\016\n" +
-      "\014EmailListReq\"D\n\014EmailListRes\022\014\n\004code\030\001 " +
-      "\001(\005\022\013\n\003msg\030\002 \001(\t\022\031\n\005email\030\003 \003(\0132\n.EmailI" +
-      "nfo\"\034\n\tRemoveReq\022\017\n\007emailId\030\001 \001(\003\"&\n\tRem" +
-      "oveRes\022\014\n\004code\030\001 \001(\005\022\013\n\003msg\030\002 \001(\t\"&\n\023Rem" +
-      "oveAndExtractReq\022\017\n\007emailId\030\001 \001(\003\"0\n\023Rem" +
-      "oveAndExtractRes\022\014\n\004code\030\001 \001(\005\022\013\n\003msg\030\002 " +
-      "\001(\t\"\030\n\026RemoveAndExtractAllReq\"3\n\026RemoveA" +
-      "ndExtractAllRes\022\014\n\004code\030\001 \001(\005\022\013\n\003msg\030\002 \001" +
-      "(\t\" \n\rCheckEmailReq\022\017\n\007emailId\030\001 \001(\003\"\207\001\n" +
-      "\tEmailInfo\022\n\n\002id\030\001 \001(\003\022\r\n\005title\030\002 \001(\t\022\020\n" +
-      "\010sendName\030\003 \001(\t\022\017\n\007content\030\004 \001(\t\022\036\n\013atta" +
-      "chments\030\005 \003(\0132\t.ItemInfo\022\r\n\005golds\030\006 \001(\005\022" +
-      "\r\n\005state\030\007 \001(\005B\"\n\021com.game.protocolB\rEma" +
-      "ilProtocolb\006proto3"
+      "\n\013Email.proto\"w\n\014SendEmailReq\022\r\n\005title\030\001" +
+      " \001(\t\022\017\n\007content\030\002 \001(\t\022$\n\nattachment\030\003 \003(" +
+      "\0132\020.EmailAttachment\022\r\n\005golds\030\004 \001(\005\022\022\n\nre" +
+      "ceiverId\030\005 \001(\003\".\n\017EmailAttachment\022\016\n\006ite" +
+      "mId\030\001 \001(\003\022\013\n\003num\030\002 \001(\005\")\n\014SendEmailRes\022\014" +
+      "\n\004code\030\001 \001(\005\022\013\n\003msg\030\002 \001(\t\"\016\n\014EmailListRe" +
+      "q\"D\n\014EmailListRes\022\014\n\004code\030\001 \001(\005\022\013\n\003msg\030\002" +
+      " \001(\t\022\031\n\005email\030\003 \003(\0132\n.EmailInfo\"\034\n\tRemov" +
+      "eReq\022\017\n\007emailId\030\001 \001(\003\"&\n\tRemoveRes\022\014\n\004co" +
+      "de\030\001 \001(\005\022\013\n\003msg\030\002 \001(\t\"&\n\023RemoveAndExtrac" +
+      "tReq\022\017\n\007emailId\030\001 \001(\003\"0\n\023RemoveAndExtrac" +
+      "tRes\022\014\n\004code\030\001 \001(\005\022\013\n\003msg\030\002 \001(\t\"\030\n\026Remov" +
+      "eAndExtractAllReq\"3\n\026RemoveAndExtractAll" +
+      "Res\022\014\n\004code\030\001 \001(\005\022\013\n\003msg\030\002 \001(\t\" \n\rCheckE" +
+      "mailReq\022\017\n\007emailId\030\001 \001(\003\"|\n\tEmailInfo\022\n\n" +
+      "\002id\030\001 \001(\003\022\r\n\005title\030\002 \001(\t\022\020\n\010sendName\030\003 \001" +
+      "(\t\022\017\n\007content\030\004 \001(\t\022\023\n\013attachments\030\005 \003(\t" +
+      "\022\r\n\005golds\030\006 \001(\005\022\r\n\005state\030\007 \001(\005B\"\n\021com.ga" +
+      "me.protocolB\rEmailProtocolb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
-          com.game.protocol.ItemProtocol.getDescriptor(),
         });
     internal_static_SendEmailReq_descriptor =
       getDescriptor().getMessageTypes().get(0);
@@ -9546,7 +9394,6 @@ public final class EmailProtocol {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_EmailInfo_descriptor,
         new java.lang.String[] { "Id", "Title", "SendName", "Content", "Attachments", "Golds", "State", });
-    com.game.protocol.ItemProtocol.getDescriptor();
   }
 
   // @@protoc_insertion_point(outer_class_scope)

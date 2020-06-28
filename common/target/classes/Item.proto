@@ -5,11 +5,11 @@ option java_outer_classname = "ItemProtocol";
 // 道具信息
 message ItemInfo {
     // 道具ID
-    int32 itemId = 1;
+    int64 itemId = 1;
     // 道具类型
     int32 itemType = 2;
     // 道具名称
-    int32 itemName = 3;
+    string itemName = 3;
     // 道具数量
     int32 itemNum = 4;
     // 道具所在的背包

@@ -66,6 +66,8 @@ message PlayerInfo {
     int32 careerId = 4;
     int32 golds = 5;
     int64 sceneId = 6;
+    int32 state = 12;
+    int32 fighterModel = 13;
     // 战斗属性
     PlayerBattle playerBattle = 7;
     // 装备信息
@@ -109,6 +111,7 @@ message OtherPlayerInfo {
     int32 level = 3;
     int32 careerId = 4;
     int32 state = 5;
+    int32 fighterModel = 8;
     // 战斗属性
     PlayerBattle playerBattle = 6;
     // 装备信息

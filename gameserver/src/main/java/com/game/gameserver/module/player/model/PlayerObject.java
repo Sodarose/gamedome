@@ -11,6 +11,7 @@ import com.game.gameserver.module.player.entity.PlayerBattle;
 import io.netty.channel.Channel;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -29,36 +30,31 @@ public class PlayerObject  implements  Serializable,Unit {
     private PlayerBattle playerBattle;
     /** 角色连接信息 */
     private Channel channel;
-
     /** buff列表 */
     private List<Buffer> buffers;
-    /** 经验*/
-    private int expr = 0;
     /** 当前所在的组队 队伍ID */
     private Long teamId;
     /** 当前玩家所在的副本*/
     private Long instanceId;
-
     /** 副本次数数据 key 副本Id value 当前次数 */
     private final Map<Integer,Integer> instanceNumMap = new ConcurrentHashMap<>();
     /** 聊天频道  key 频道类型  value 频道Id*/
     private final Map<Integer,Long> playerChannelMap = new ConcurrentHashMap<>();
-
-    /** 是否死亡 */
-    private volatile boolean dead = false;
     /** 状态机 */
     private StateMachine<PlayerObject, PlayerState> stateMachine;
-    /** 攻击的目标 */
-    private Unit unit;
     /** 临时数据*/
-    private Map<Integer,Object> tempData = new ConcurrentHashMap<>();
+    private Map<String,Object> tempData = new ConcurrentHashMap<>();
     /** 战斗模式*/
-    private FighterModeEnum fighterModeEnum = FighterModeEnum.PEACE;
+    private FighterModeEnum fighterModeEnum = FighterModeEnum.ALL;
+    /** 攻击的单位 */
+    private volatile Unit attackTarget;
+    /** 玩家召唤的宝宝 */
+    private List<Long> petList = new ArrayList<>();
 
     public PlayerObject(Player player){
         this.player = player;
         this.playerBattle = new PlayerBattle();
-        this.stateMachine = new StateMachine<>(this,PlayerState.PLAYER_CONTROL,PlayerState.LIVE);
+        this.stateMachine = new StateMachine<>(this,PlayerState.NORMAL);
     }
 
     public void setTeamId(Long teamId) {
@@ -103,11 +99,12 @@ public class PlayerObject  implements  Serializable,Unit {
     }
 
     public void addExpr(int expr){
-        this.expr +=expr;
+        expr = this.player.getExpr() +expr;
+        this.player.setExpr(expr);
     }
 
     public int getExpr(){
-        return expr;
+        return this.getPlayer().getExpr();
     }
 
     public void addGolds(int value){
@@ -123,26 +120,22 @@ public class PlayerObject  implements  Serializable,Unit {
         this.instanceId = instanceId;
     }
 
+    @Override
     public boolean isDead(){
-        return dead;
+        return getCurrState().equals(PlayerState.DEAD);
     }
 
-    public void setDead(boolean value){
-        this.dead = dead;
+
+    public void changeGlobalState(PlayerState playerState){
+        if(stateMachine!=null){
+            stateMachine.changeGlobalState(playerState);
+        }
     }
 
     public void changeState(PlayerState playerState){
         if(stateMachine!=null){
             stateMachine.changeState(playerState);
         }
-    }
-
-    public void setUnit(Unit unit){
-        this.unit = unit;
-    }
-
-    public Unit getUnit(){
-        return unit;
     }
 
     /**
@@ -176,7 +169,7 @@ public class PlayerObject  implements  Serializable,Unit {
         playerBattle.setCurrMp(playerBattle.getMp());
     }
 
-    public Map<Integer, Object> getTempData() {
+    public Map<String, Object> getTempData() {
         return tempData;
     }
 
@@ -186,5 +179,28 @@ public class PlayerObject  implements  Serializable,Unit {
 
     public void setFighterModeEnum(FighterModeEnum modeEnum){
         this.fighterModeEnum = modeEnum;
+    }
+
+
+    public PlayerState getGlobalState(){
+        if(stateMachine==null){
+            return null;
+        }
+        return stateMachine.getGlobalState();
+    }
+
+    public PlayerState getCurrState(){
+        if(stateMachine==null){
+            return null;
+        }
+        return stateMachine.getCurrState();
+    }
+
+    public void setAttackTarget(Unit attackTarget) {
+        this.attackTarget = attackTarget;
+    }
+
+    public Unit getAttackTarget() {
+        return attackTarget;
     }
 }

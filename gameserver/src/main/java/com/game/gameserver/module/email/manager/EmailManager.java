@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -30,8 +31,7 @@ public class EmailManager {
     private EmailMapper emailMapper;
 
     public void loadPlayerEmail(Player player){
-        // 读取邮件
-        List<Email> emailList = emailMapper.getEmailList(player.getId());
+        List<Email> emailList = new ArrayList<>();
         EmailBox emailBox = new EmailBox();
         // 初始化
         emailBox.initialize(emailList);
@@ -46,5 +46,10 @@ public class EmailManager {
             return;
         }
         // 投递邮件
+        emailBox.addEmail(email);
+    }
+
+    public EmailBox getEmailBox(Long playerId){
+        return playerEmailMap.get(playerId);
     }
 }

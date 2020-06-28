@@ -10,6 +10,7 @@ import com.game.module.player.PlayerInfo;
 import com.game.module.scene.SceneHandle;
 import com.game.protocol.ChatProtocol;
 import com.game.protocol.Message;
+import com.game.protocol.PlayerProtocol;
 import com.game.task.annotation.CmdHandler;
 import com.game.task.annotation.ModuleHandler;
 import com.game.util.MessageUtil;
@@ -33,23 +34,8 @@ public class ChatHandle extends BaseHandler {
     @Autowired
     private ClientGameContext clientGameContext;
 
-    /**
-     * // 发送者Id
-     * int64 senderId = 1;
-     * // 发送者名称
-     * string senderName = 2;
-     * // 消息
-     * string msg = 4;
-     * // 接收者Id
-     * int64  receiverId = 5;
-     * int64  sendTime = 6;
-     *
-     * @param id
-     * @param content
-     * @return void
-     */
     public void sendPrivacyChat(long id, String content) {
-        PlayerInfo playerInfo = playerHandle.getPlayerInfo();
+        PlayerProtocol.PlayerInfo playerInfo = playerHandle.getPlayerInfo();
         if (playerInfo == null) {
             wordPage.print("请登录角色");
             return;
@@ -65,26 +51,8 @@ public class ChatHandle extends BaseHandler {
         clientGameContext.getChannel().writeAndFlush(message);
     }
 
-
-    /**
-     *     // 发送者Id
-     *     int64  senderId = 1;
-     *     // 发送者名称
-     *     string senderName = 2;
-     *     // 消息
-     *     string msg = 4;
-     *     // 频道Id
-     *     int64  channelId = 5;
-     *     // 频道类型
-     *     int32  channelType = 6;
-     *     int64  sendTime = 7;
-     *
-     * @param channelType
-     * @param content
-     * @return void
-     */
     public void sendChannelChat(Integer channelType, String content) {
-        PlayerInfo playerInfo = playerHandle.getPlayerInfo();
+        PlayerProtocol.PlayerInfo playerInfo = playerHandle.getPlayerInfo();
         if (playerInfo == null) {
             wordPage.print("请登录角色");
             return;
@@ -100,17 +68,8 @@ public class ChatHandle extends BaseHandler {
         clientGameContext.getChannel().writeAndFlush(message);
     }
 
-    /**
-     *     int64  senderId = 1;
-     *     string senderName = 2;
-     *     string msg = 3;
-     *     int64  sendTime = 6;
-     *
-     * @param content
-     * @return void
-     */
     public void sendLocalChat(String content) {
-        PlayerInfo playerInfo = playerHandle.getPlayerInfo();
+        PlayerProtocol.PlayerInfo playerInfo = playerHandle.getPlayerInfo();
         if (playerInfo == null) {
             wordPage.print("请登录角色");
             return;

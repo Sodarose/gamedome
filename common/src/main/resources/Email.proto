@@ -1,7 +1,6 @@
 syntax = "proto3";
 option java_package = "com.game.protocol";
 option java_outer_classname = "EmailProtocol";
-import "Item.proto";
 
 // 发送邮件请求
 message SendEmailReq {
@@ -84,7 +83,7 @@ message EmailInfo {
     string title = 2;
     string sendName = 3;
     string content = 4;
-    repeated ItemInfo attachments = 5;
+    repeated string attachments = 5;
     int32 golds = 6;
     int32 state = 7;
 }

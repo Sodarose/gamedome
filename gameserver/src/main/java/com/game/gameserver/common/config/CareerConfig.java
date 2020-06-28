@@ -21,4 +21,6 @@ public class CareerConfig {
     private String desc;
     @JSONField(name = "careerLevelProperty")
     private List<CareerLevelProperty> careerLevelProperty;
+    @JSONField(name = "skillIds")
+    private List<Integer> skillIds;
 }

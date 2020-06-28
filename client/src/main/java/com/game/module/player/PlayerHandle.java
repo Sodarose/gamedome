@@ -30,7 +30,7 @@ public class PlayerHandle extends BaseHandler {
     private final static Logger logger = LoggerFactory.getLogger(PlayerHandle.class);
 
     private final Map<String, SimplePlayerInfo> roles = new HashMap<>();
-    private PlayerInfo playerInfo;
+    private PlayerProtocol.PlayerInfo playerInfo;
     private boolean print = false;
 
     @Autowired
@@ -39,13 +39,7 @@ public class PlayerHandle extends BaseHandler {
     private ClientGameContext gameContext;
 
     public void showPlayerInfo() {
-        if (playerInfo == null) {
-            requestPlayerInfo();
-            print = true;
-            return;
-        }
-        wordPage.clean();
-        wordPage.printPlayerInfo(playerInfo);
+        requestPlayerInfo();
     }
 
     public void requestPlayerInfo() {
@@ -93,8 +87,7 @@ public class PlayerHandle extends BaseHandler {
                 return;
             }
             wordPage.print("登录成功");
-            PlayerInfo playerInfo = TransFromUtil.transFromPlayerInfo(loginPlayerRes.getPlayerInfo());
-            this.playerInfo = playerInfo;
+            this.playerInfo = loginPlayerRes.getPlayerInfo();
             wordPage.printPlayerInfo(playerInfo);
         } catch (InvalidProtocolBufferException e) {
             e.printStackTrace();
@@ -105,12 +98,9 @@ public class PlayerHandle extends BaseHandler {
     public void receivePlayerInfo(Message message) {
         try {
             PlayerProtocol.PlayerInfo info = PlayerProtocol.PlayerInfo.parseFrom(message.getData());
-            PlayerInfo playerInfo = TransFromUtil.transFromPlayerInfo(info);
-            this.playerInfo = playerInfo;
-            if (print) {
-                wordPage.clean();
-                wordPage.printPlayerInfo(playerInfo);
-            }
+            this.playerInfo = info;
+            wordPage.clean();
+            wordPage.printPlayerInfo(playerInfo);
         } catch (InvalidProtocolBufferException e) {
             e.printStackTrace();
         }
@@ -121,8 +111,7 @@ public class PlayerHandle extends BaseHandler {
     public void syncPlayerInfo(Message message) {
         try {
             PlayerProtocol.PlayerInfo info = PlayerProtocol.PlayerInfo.parseFrom(message.getData());
-            PlayerInfo playerInfo = TransFromUtil.transFromPlayerInfo(info);
-            this.playerInfo = playerInfo;
+            this.playerInfo = info;
             if (print) {
                 wordPage.clean();
                 wordPage.printPlayerInfo(playerInfo);
@@ -137,7 +126,7 @@ public class PlayerHandle extends BaseHandler {
 
     }
 
-    public PlayerInfo getPlayerInfo() {
+    public PlayerProtocol.PlayerInfo getPlayerInfo() {
         return playerInfo;
     }
 }

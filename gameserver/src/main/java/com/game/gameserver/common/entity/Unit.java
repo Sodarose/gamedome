@@ -11,4 +11,6 @@ public interface Unit {
     int getUnitType();
     /** 单位Id */
     long getUnitId();
+    /** 是否死亡*/
+    boolean isDead();
 }

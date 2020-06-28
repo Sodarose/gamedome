@@ -5,6 +5,7 @@ import com.game.gameserver.module.monster.manager.MonsterManager;
 import com.game.gameserver.module.monster.type.MonsterType;
 import com.game.gameserver.module.npc.manager.NpcManager;
 import com.game.gameserver.module.npc.model.NpcObject;
+import com.game.gameserver.module.pet.entity.Pet;
 import com.game.gameserver.module.player.model.PlayerObject;
 import com.game.protocol.Message;
 import org.slf4j.Logger;
@@ -60,6 +61,10 @@ public class SceneObject {
      * 场景内Npc Map
      */
     private final Map<Long, NpcObject> npcMap = new ConcurrentHashMap<>();
+    /**
+     * 场景内召唤物map
+     */
+    private final Map<Long, Pet> petMap = new ConcurrentHashMap<>();
     /**
      * 场景出口
      */
@@ -227,5 +232,7 @@ public class SceneObject {
         return npcMap;
     }
 
-
+    public Map<Long, Pet> getPetMap() {
+        return petMap;
+    }
 }

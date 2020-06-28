@@ -87,12 +87,12 @@ public class ScenePage extends JTextArea {
         builder.append("\n");
         builder.append("周围玩家：");
         for (PlayerProtocol.OtherPlayerInfo playerInfo : instanceInfo.getPlayerListList()) {
-            builder.append(playerInfo.getName()).append("\t");
+            builder.append(playerInfo.getName()).append("(").append(playerInfo.getPlayerBattle().getCurrHp()).append(")").append("\t");
         }
         builder.append("\n");
         builder.append("周围怪物：");
         for (Actor.MonsterInfo monsterInfo : instanceInfo.getMonsterListList()) {
-            builder.append(monsterInfo.getName()).append("\t");
+            builder.append(monsterInfo.getName()).append("(").append(monsterInfo.getCurrHp()).append(")").append("\t");
         }
         builder.append("\n");
         refresh();

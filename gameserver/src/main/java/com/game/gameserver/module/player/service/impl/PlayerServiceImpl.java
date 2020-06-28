@@ -2,13 +2,14 @@ package com.game.gameserver.module.player.service.impl;
 
 import com.game.gameserver.event.EventBus;
 import com.game.gameserver.module.buffer.service.BufferService;
+import com.game.gameserver.module.email.manager.EmailManager;
 import com.game.gameserver.module.item.manager.ItemManager;
 import com.game.gameserver.module.player.dao.PlayerMapper;
 import com.game.gameserver.module.player.entity.Player;
 import com.game.gameserver.module.player.event.LoginEvent;
 import com.game.gameserver.module.player.manager.PlayerManager;
 import com.game.gameserver.module.player.model.PlayerObject;
-import com.game.gameserver.module.player.model.PlayerResultType;
+import com.game.gameserver.module.player.type.PlayerResultType;
 import com.game.gameserver.module.player.service.PlayerService;
 import com.game.gameserver.module.scene.manager.SceneManager;
 import com.game.gameserver.module.skill.service.SkillService;
@@ -43,6 +44,8 @@ public class PlayerServiceImpl implements PlayerService {
     private SkillService skillService;
     @Autowired
     private BufferService bufferService;
+    @Autowired
+    private EmailManager emailManager;
 
     /**
      * 登录用户角色
@@ -66,6 +69,8 @@ public class PlayerServiceImpl implements PlayerService {
         playerObject = new PlayerObject(player);
         // 读取道具数据
         itemManager.loadPlayerItem(player);
+        // 读取玩家邮箱
+        emailManager.loadPlayerEmail(player);
         // 读取玩家技能数据
         // 设置Channel与角色的关联
         channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).set(playerObject);

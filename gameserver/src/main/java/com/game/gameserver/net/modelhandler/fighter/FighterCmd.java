@@ -6,6 +6,4 @@ package com.game.gameserver.net.modelhandler.fighter;
  */
 public interface FighterCmd {
     short ATTACK = 1001;
-    short EXIT = 1002;
-    short SKILL= 1003;
 }

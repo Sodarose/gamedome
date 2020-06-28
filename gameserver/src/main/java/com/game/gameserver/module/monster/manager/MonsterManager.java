@@ -79,4 +79,10 @@ public class MonsterManager {
     public void handleMonsterDeadEvent(MonsterDeadEvent event) {
 
     }
+
+    public void update(){
+        for(Map.Entry<Long,MonsterObject> entry:monsterObjectMap.entrySet()){
+            entry.getValue().update();
+        }
+    }
 }

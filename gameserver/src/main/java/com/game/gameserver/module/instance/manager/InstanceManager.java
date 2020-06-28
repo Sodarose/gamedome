@@ -42,9 +42,13 @@ public class InstanceManager {
     private Worker worker;
 
 
-    /** 副本对象*/
-    private Map<Long, InstanceObject> instanceObjectMap = new ConcurrentHashMap<>(1);
-    /** 待移除副本 */
+    /**
+     * 副本对象
+     */
+    private final Map<Long, InstanceObject> instanceObjectMap = new ConcurrentHashMap<>(1);
+    /**
+     * 待移除副本
+     */
     private Map<Long, InstanceObject> removeMap = new ConcurrentHashMap<>(1);
 
     public static InstanceManager instance;
@@ -53,27 +57,30 @@ public class InstanceManager {
         instance = this;
     }
 
-
     public void startInstanceWorker() {
         if (scheduledExecutorService != null) {
             return;
         }
         scheduledExecutorService = new ScheduledThreadPoolExecutor(1, new
                 DefaultThreadFactory("副本Worker"));
-        Worker worker = new Worker();
+        worker = new Worker();
         scheduledExecutorService.scheduleAtFixedRate(worker, 0, 200, TimeUnit.MILLISECONDS);
     }
 
-    public void put(InstanceObject instanceObject){
-        instanceObjectMap.put(instanceObject.getId(),instanceObject);
+    public void put(InstanceObject instanceObject) {
+        instanceObjectMap.put(instanceObject.getId(), instanceObject);
     }
 
-    public void addRemoveInstance(InstanceObject instanceObject){
-        removeMap.put(instanceObject.getId(),instanceObject);
+    public void removeInstance(InstanceObject instanceObject) {
+        removeMap.put(instanceObject.getId(), instanceObject);
     }
 
     public Map<Long, InstanceObject> getInstanceMap() {
         return instanceObjectMap;
+    }
+
+    public InstanceObject getInstance(long instanceId){
+        return instanceObjectMap.get(instanceId);
     }
 
     /**
@@ -101,16 +108,18 @@ public class InstanceManager {
         @Override
         public void run() {
             //logger.info("副本机制运行中");
-            for(Map.Entry<Long, InstanceObject> entry : removeMap.entrySet()){
-                instanceObjectMap.remove(entry.getKey());
-            }
-            removeMap.clear();
-            for (Map.Entry<Long, InstanceObject> entry : instanceObjectMap.entrySet()) {
-                InstanceObject instanceObject = entry.getValue();
-                try {
-                    InstanceRule.getInstanceRule().action(instanceObject);
-                } catch (Exception e) {
-                    e.printStackTrace();
+            synchronized (instanceObjectMap) {
+                for (Map.Entry<Long, InstanceObject> entry : removeMap.entrySet()) {
+                    instanceObjectMap.remove(entry.getKey());
+                }
+                removeMap.clear();
+                for (Map.Entry<Long, InstanceObject> entry : instanceObjectMap.entrySet()) {
+                    InstanceObject instanceObject = entry.getValue();
+                    try {
+                        InstanceRule.getInstanceRule().action(instanceObject);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         }

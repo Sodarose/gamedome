@@ -14,13 +14,12 @@ import lombok.Getter;
 public class MonsterDeadEvent implements Event {
     /** 死亡的怪物Id */
     private final Long monsterId;
-
     public MonsterDeadEvent(Long monsterId) {
         this.monsterId = monsterId;
     }
 
     @Override
     public EventType getEventType() {
-        return null;
+        return EventType.MONSTER_DEAD;
     }
 }

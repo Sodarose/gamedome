@@ -6,9 +6,14 @@ import com.game.gameserver.common.entity.Unit;
 import com.game.gameserver.common.entity.UnitType;
 import com.game.gameserver.module.ai.fsm.State;
 import com.game.gameserver.module.ai.fsm.StateMachine;
+import com.game.gameserver.module.ai.state.monster.MonsterState;
 import com.game.gameserver.module.ai.state.pet.PetState;
+import com.game.gameserver.module.player.model.PlayerObject;
 import com.game.gameserver.util.GameUUID;
 import lombok.Data;
+
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * 宝宝实体
@@ -18,35 +23,58 @@ import lombok.Data;
  */
 @Data
 public class Pet implements Unit {
-    /** 唯一id */
+    /**
+     * 唯一id
+     */
     private final long id;
-    /** 怪物静态数据 */
+    /**
+     * 怪物静态数据
+     */
     private final int petConfigId;
-    /** 怪物动态属性 */
+    /**
+     * 怪物动态属性
+     */
     private int hp;
     private int currHp;
     private int mp;
     private int currMp;
     private int attack;
     private int defense;
+    /**
+     * 主人Id
+     */
+    private final Long playerId;
 
-    /** 所在位置ID /场景Id/副本Id */
+    /**
+     * 所在位置ID /场景Id/副本Id
+     */
     private Long addrId;
-    /** 状态机 */
+    /**
+     * 状态机
+     */
     StateMachine<Pet, PetState> stateMachine;
-    /** 是否死亡 */
-    private volatile boolean dead;
+    /**
+     * 攻击目标
+     */
+    private Unit hateUnit;
+    /**
+     * 临时数据
+     */
+    private final Map<String, Object> tempData = new ConcurrentHashMap<>();
 
-    public Pet(int petConfigId){
+    public Pet(long playerId, int petConfigId) {
         this.id = GameUUID.getInstance().generate();
         this.petConfigId = petConfigId;
-        this.stateMachine = new StateMachine<>(this,PetState.AUTO_ATTACK,PetState.LIVE);
+        this.stateMachine = new StateMachine<>(this, PetState.FOLLOW);
+        this.playerId = playerId;
     }
 
-    /** 初始化 */
-    public void initialize(){
+    /**
+     * 初始化
+     */
+    public void initialize() {
         PetConfig petConfig = StaticConfigManager.getInstance().getPetConfigMap().get(petConfigId);
-        if(petConfig==null){
+        if (petConfig == null) {
             return;
         }
         this.hp = petConfig.getHp();
@@ -57,12 +85,19 @@ public class Pet implements Unit {
         this.defense = petConfig.getDefense();
     }
 
+    public State getCurrState() {
+        if (stateMachine == null) {
+            return null;
+        }
+        return stateMachine.getCurrState();
+    }
+
     /**
      * 更新
      */
     @Override
     public void update() {
-        if(stateMachine!=null){
+        if (stateMachine != null) {
             stateMachine.update();
         }
     }
@@ -81,5 +116,45 @@ public class Pet implements Unit {
     @Override
     public long getUnitId() {
         return id;
+    }
+
+    /**
+     * 是否死亡
+     */
+    @Override
+    public boolean isDead() {
+        return PetState.DEAD.equals(getCurrState());
+    }
+
+    public void reduceCurrHp(int value) {
+        this.currHp -= value;
+        if (currHp <= 0) {
+            currHp = 0;
+        }
+    }
+
+    public boolean isCurrHpEmpty() {
+        return this.currHp == 0;
+    }
+
+    public void changeState(PetState state) {
+        if (stateMachine != null) {
+            stateMachine.changeState(state);
+        }
+    }
+
+    public void setHateUnit(Unit unit) {
+        this.hateUnit = unit;
+    }
+
+    public Unit getHateUnit() {
+        return hateUnit;
+    }
+
+    public void addCurrHp(int value){
+        this.currHp+=value;
+        if(this.currHp>hp){
+            this.currHp = hp;
+        }
     }
 }

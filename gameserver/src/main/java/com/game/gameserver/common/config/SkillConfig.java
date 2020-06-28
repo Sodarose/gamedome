@@ -16,6 +16,10 @@ public class SkillConfig {
     private String name;
     @JSONField(name = "careerId")
     private int careerId;
+    @JSONField(name = "skillType")
+    private int skillType;
+    @JSONField(name = "skillRange")
+    private int skillRange;
     @JSONField(name = "limitLevel")
     private int limitLevel;
     @JSONField(name = "maxLearnLevel")

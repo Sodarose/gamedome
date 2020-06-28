@@ -1,49 +1,33 @@
 package com.game.gameserver.module.ai.state.player;
 
+import com.game.gameserver.common.config.CareerConfig;
+import com.game.gameserver.common.config.StaticConfigManager;
 import com.game.gameserver.common.entity.Unit;
 import com.game.gameserver.module.ai.fsm.State;
-import com.game.gameserver.module.cooltime.entity.CoolTime;
 import com.game.gameserver.module.cooltime.entity.UnitCoolTime;
 import com.game.gameserver.module.cooltime.manager.CoolTimeManager;
 import com.game.gameserver.module.fighter.service.impl.FighterServiceImpl;
-import com.game.gameserver.module.instance.manager.InstanceManager;
-import com.game.gameserver.module.instance.model.InstanceObject;
-import com.game.gameserver.module.item.entity.Item;
-import com.game.gameserver.module.item.service.ItemService;
-import com.game.gameserver.module.item.service.impl.ItemServiceImpl;
-import com.game.gameserver.module.monster.manager.MonsterManager;
-import com.game.gameserver.module.monster.model.MonsterObject;
+import com.game.gameserver.module.player.entity.PlayerBattle;
 import com.game.gameserver.module.player.model.PlayerObject;
-import com.game.gameserver.module.scene.manager.SceneManager;
-import com.game.gameserver.module.scene.model.SceneObject;
-import com.game.gameserver.module.skill.dao.SkillMapper;
-import com.game.gameserver.module.skill.entity.Skill;
-import com.game.gameserver.module.skill.manager.SkillManager;
-import com.game.gameserver.module.skill.model.PlayerSkill;
+import com.game.gameserver.module.player.type.PlayerStaticData;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author xuewenkang
  * @date 2020/6/22 21:50
  */
-public enum  PlayerState implements State<PlayerObject> {
+public enum PlayerState implements State<PlayerObject> {
     /*** 角色状态 */
-    /** 存活状态 */
-    LIVE(){
+    NORMAL() {
         @Override
         public void enter(PlayerObject playerObject) {
-            playerObject.setDead(false);
-            // 回复所有数值
-            playerObject.revert();
+            // 设置成非死亡
         }
 
         @Override
         public void update(PlayerObject playerObject) {
-            // 半血以下 自动使用回复药剂
 
         }
 
@@ -52,163 +36,159 @@ public enum  PlayerState implements State<PlayerObject> {
 
         }
     },
-    /** 死亡状态 */
-    DEAD(){
+    /**
+     * 死亡状态  10S 后满血复活
+     */
+    DEAD() {
         /** 死亡时间 */
-        private final static String DEAD_TIME  = "DEAD_TIME";
+        private final static String DEAD_TIME = "DEAD_TIME";
         /** 复活时间 */
         private final static String REVIVE = "REVIVE_TIME";
+        /** 等待时间*/
+        private final static int DURATION = 10;
+
         @Override
         public void enter(PlayerObject playerObject) {
-            playerObject.setDead(true);
             // 设置死亡时间和复活时间
+            playerObject.getTempData().put(DEAD_TIME, System.currentTimeMillis());
+            playerObject.getTempData().put(REVIVE, System.currentTimeMillis() + TimeUnit.MILLISECONDS.convert(
+                    DURATION, TimeUnit.SECONDS
+            ));
 
         }
 
         @Override
         public void update(PlayerObject playerObject) {
-
+            long currTime = System.currentTimeMillis();
+            if (playerObject.getTempData().get(REVIVE) == null) {
+                playerObject.changeState(NORMAL);
+                return;
+            }
+            long reviveTime = (long) playerObject.getTempData().get(REVIVE);
+            if (currTime >= reviveTime) {
+                playerObject.changeState(NORMAL);
+            }
         }
 
         @Override
         public void exit(PlayerObject playerObject) {
-
+            // 移除数据
+            // playerObject.getTempData().remove(DEAD_TIME);
+            // playerObject.getTempData().remove(REVIVE);
+            // 退出死亡状态时 清除所有异常状态 恢复血量
+            playerObject.revert();
         }
     },
-
-    /** 行为状态 */
-    /**AI操控 自动攻击 */
-    AI_AUTO_ATTACK(){
+    // 攻击 处于攻击状态的单位自动攻击选定的目标
+    ATTACK() {
+        /** 设定第一次攻击时间*/
         @Override
         public void enter(PlayerObject playerObject) {
-
+            // 第一次攻击的时间 根据设定的攻击速度计算
+            long attackTime = System.currentTimeMillis() + TimeUnit.MILLISECONDS.convert(playerObject
+                    .getPlayerBattle()
+                    .getAttackSpeed(), TimeUnit.SECONDS);
+            // 设定下次攻击的时间
+            playerObject.getTempData().put(PlayerStaticData.NEX_ATTACK_TIME, attackTime);
         }
 
         @Override
         public void update(PlayerObject playerObject) {
-            // 玩家是否死亡
-            if(playerObject.isDead()){
+            // 当前时间
+            long currTime = System.currentTimeMillis();
+            // 攻击目标丢失 切换脱战状态
+            Unit unit = playerObject.getAttackTarget();
+            if(unit==null||unit.isDead()){
+                playerObject.changeState(PlayerState.TAKEOFF);
+            }
+            // 攻击时间丢失
+            if (playerObject.getTempData().get(PlayerStaticData.NEX_ATTACK_TIME) == null) {
+                playerObject.changeState(PlayerState.TAKEOFF);
                 return;
             }
-            Unit unit = null;
-            // 是否有攻击目标
-            if(playerObject.getUnit()==null){
-                // 搜寻攻击目标
-                // 玩家在副本
-                if(playerObject.getInstanceId()!=null){
-                    // 获取场景中的一个怪物
-                    InstanceObject instanceObject = InstanceManager.instance.getInstanceMap()
-                            .get(playerObject.getInstanceId());
-                    if(instanceObject==null){
-                        return;
-                    }
-                    // 副本已经通关
-                    if(instanceObject.isRecovery()){
-                        return;
-                    }
-                    // 副本中已经没有怪物了
-                    if(instanceObject.isEmptyMonster()){
-                        return;
-                    }
-                    // 可选怪物列表
-                    List<Long> monsterIds = instanceObject.getCurrMonsters();
-                    for(Long monsterId:monsterIds){
-                        MonsterObject monsterObject = MonsterManager.instance.getMonster(monsterId);
-                        // 怪物不存在或死亡
-                        if(monsterObject!=null&&!monsterObject.isDead()){
-                            unit = monsterObject;
-                            break;
-                        }
-                    }
-                }
-                else{
-                    // 玩家在普通场景中
-                    SceneObject sceneObject = SceneManager.instance.getSceneObject(playerObject
-                            .getPlayer().getSceneId());
-                    if(sceneObject==null){
-                        return;
-                    }
-                    // 获取怪物列表
-                    Map<Long,Long> map = sceneObject.getMonsterObjectMap();
-                    for(Map.Entry<Long,Long> entry:map.entrySet()){
-                        MonsterObject monsterObject = MonsterManager.instance.getMonster(entry.getKey());
-                        // 怪物不存在或死亡
-                        if(monsterObject!=null&&!monsterObject.isDead()){
-                            unit = monsterObject;
-                            break;
-                        }
-                    }
-                }
-            }
-            if(unit==null){
+            // 获取本次攻击的时间
+            Long attackTime = (Long) playerObject.getTempData().get(PlayerStaticData.NEX_ATTACK_TIME);
+            if (currTime < attackTime) {
                 return;
             }
+
+            // 获取职业信息
+            CareerConfig careerConfig = StaticConfigManager.getInstance().getCareerConfigMap().get(playerObject.getPlayer().getCareerId());
+            List<Integer> skillIds = careerConfig.getSkillIds();
+
             // 获取可用技能
-            PlayerSkill playerSkill = SkillManager.instance.getPlayerSkill(playerObject.getPlayer().getId());
-            if(playerSkill==null){
+            List<Integer> skills = new ArrayList<>(skillIds);
+            // 移除正在冷却的技能
+            UnitCoolTime unitCoolTime = CoolTimeManager.instance.getUnitCoolTime(playerObject.getPlayer().getId());
+            if (unitCoolTime != null) {
+                skills.removeIf(unitCoolTime::hasSkillCoolTime);
+            }
+            if (skills.size() == 0) {
                 return;
             }
-            // 可用技能列表
-            List<Skill> skills = new ArrayList<>();
-            // 获取玩家CD容器
-            UnitCoolTime unitCoolTime = CoolTimeManager.instance.getPlayerCoolTime(playerObject.getPlayer().getId());
-            if(unitCoolTime!=null){
-                for(Skill skill:playerSkill.getSkillList()){
-                    if(unitCoolTime.getCoolTime(skill.getSkillId())!=null){
-                        continue;
-                    }
-                    skills.add(skill);
-                }
-            }
-            // 随机选取技能
-            if(skills.size()==0){
-                return;
-            }
-            Random random = new Random();
-            // 技能的ID
-            int i = random.nextInt(skills.size()-1);
-            // 主动攻击敌人
-            Skill skill = skills.get(i);
-            FighterServiceImpl.instance.playerAttack(
+            // 随机获取一个技能
+            int id = new Random().nextInt(skills.size());
+            int skillId = skills.get(id);
+            // 攻击怪物
+            FighterServiceImpl.instance.playerUseSkill(
                     playerObject.getPlayer().getId(),
                     unit.getUnitId(),
                     unit.getUnitType(),
-                    skill.getSkillId()
+                    skillId
             );
+            // 计算下一次攻击时间
+            attackTime = System.currentTimeMillis() + TimeUnit.MILLISECONDS.convert(playerObject
+                    .getPlayerBattle()
+                    .getAttackSpeed(), TimeUnit.SECONDS);
+            playerObject.getTempData().put(PlayerStaticData.NEX_ATTACK_TIME, attackTime);
         }
 
         @Override
         public void exit(PlayerObject playerObject) {
-
+            // 清空仇恨值
+            playerObject.setAttackTarget(null);
+            // 移除一些数据
+            //playerObject.getTempData().remove(PlayerStaticData.NEX_ATTACK_TIME);
         }
     },
-    /** 玩家操控 */
-    PLAYER_CONTROL(){
-        @Override
-        public void enter(PlayerObject playerObject) {
 
-        }
-        @Override
-        public void update(PlayerObject playerObject) {
-
-        }
-        @Override
-        public void exit(PlayerObject playerObject) {
-
-        }
-    },
-    /** 自动攻击 */
-    AUTO_ATTACK(){
+    // 脱战 脱战后缓慢恢复HP和MP
+    TAKEOFF() {
+        /** 固定回复的数值 */
+        private final static int HP = 100;
+        private final static int MP = 100;
+        /** 回复期间  单位秒 */
+        private final static int DURATION = 1;
+        /** 下一次的回复时间*/
+        private final static String NEXT_REPLY_TIME = "NEXT_REPLY_TIME";
 
         @Override
         public void enter(PlayerObject playerObject) {
-
+            // 设置第一次回复的时间
+            long currTime = System.currentTimeMillis();
+            long nextTime = currTime + TimeUnit.MILLISECONDS.convert(DURATION, TimeUnit.SECONDS);
+            playerObject.getTempData().put(NEXT_REPLY_TIME, nextTime);
         }
 
         @Override
         public void update(PlayerObject playerObject) {
-            if(playerObject.getUnit()==null){
-
+            long currTime = System.currentTimeMillis();
+            if (playerObject.getTempData().get(NEXT_REPLY_TIME) == null) {
+                return;
+            }
+            long nextTime = (long) playerObject.getTempData().get(NEXT_REPLY_TIME);
+            if (currTime < nextTime) {
+                return;
+            }
+            // 获取战斗属性
+            PlayerBattle playerBattle = playerObject.getPlayerBattle();
+            // 恢复HP和MP
+            // 当HP和MP满的时候 退出该状态
+            playerBattle.addCurrHp(HP);
+            playerBattle.addCurrMp(MP);
+            // 退出脱战状态
+            if (playerBattle.getCurrHp() == playerBattle.getHp() && playerBattle.getCurrMp() == playerBattle.getMp()) {
+                playerObject.changeState(PlayerState.NORMAL);
             }
         }
 

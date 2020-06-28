@@ -62,7 +62,7 @@ public class InstanceRule {
             return;
         }
         // 副本内人员为空
-        if (instanceObject.getPlayers().isEmpty()) {
+        if (instanceObject.getCurrPlayers().isEmpty()) {
             logger.info("副本内人员为空");
             // 直接回收
             doRecovery(instanceObject);
@@ -115,8 +115,7 @@ public class InstanceRule {
         } else {
             // 判断当前关卡是否到达通关条件 怪物死亡表示可以进入下一个关卡
             if (instanceObject.isEmptyMonster()) {
-
-                // 等待进入下一个关卡的时间
+                // 关卡数
                 currRound += 1;
                 // 生成当前关卡怪物配置列表
                 List<InstanceMonster> monsterConfigList = instanceMonsterConfig.getInstanceMonsterList();
@@ -139,11 +138,12 @@ public class InstanceRule {
                         instanceObject.getId());
                 // 放入副本
                 instanceObject.addMonsters(monsterList);
-
+                // 进入下一个关卡
+                instanceObject.setCurrRound(currRound);
                 // 发给前端 提示准备进入下一回合
                 // 提示闯关失败
                 TipProtocol.TipMessage.Builder builder = TipProtocol.TipMessage.newBuilder();
-                List<Long> players = instanceObject.getPlayers();
+                List<Long> players = instanceObject.getCurrPlayers();
                 builder.setMsg("进入下一个关卡");
                 Message message = MessageUtil.createMessage(ModuleKey.TIP_MODULE, (short) 0, builder.build().toByteArray());
                 for (Long playerId : players) {
@@ -167,7 +167,7 @@ public class InstanceRule {
     private void doFailed(InstanceObject instanceObject) {
         // 提示闯关失败
         TipProtocol.TipMessage.Builder builder = TipProtocol.TipMessage.newBuilder();
-        List<Long> players = instanceObject.getPlayers();
+        List<Long> players = instanceObject.getCurrPlayers();
         builder.setMsg("闯关失败 10秒后退出");
         Message message = MessageUtil.createMessage(ModuleKey.TIP_MODULE, (short) 0, builder.build().toByteArray());
         for (Long playerId : players) {
@@ -192,7 +192,7 @@ public class InstanceRule {
      */
     public void doSuccess(InstanceObject instanceObject) {
         // 提示成功
-        List<Long> players = instanceObject.getPlayers();
+        List<Long> players = instanceObject.getCurrPlayers();
         InstanceConfig instanceConfig = StaticConfigManager.getInstance().getInstanceConfigMap().get(instanceObject
                 .getInstanceConfigId());
         if(instanceConfig==null){
@@ -231,11 +231,11 @@ public class InstanceRule {
      */
     private void doRecovery(InstanceObject instanceObject) {
         // 踢出还在副本内的角色
-        List<Long> players = instanceObject.getPlayers();
+        List<Long> players = instanceObject.getCurrPlayers();
         SceneManager.instance.receiveInstancePlayers(players);
-        instanceObject.getPlayers().clear();
+        instanceObject.getCurrPlayers().clear();
         // 回收副本
-        InstanceManager.instance.addRemoveInstance(instanceObject);
+        InstanceManager.instance.removeInstance(instanceObject);
     }
 
     /**
@@ -249,7 +249,7 @@ public class InstanceRule {
         assert info != null;
         Message message = MessageUtil.createMessage(ModuleKey.INSTANCE_MODULE, InstanceCmd.SYNC_INSTANCE_INFO,
                 info.toByteArray());
-        List<Long> players = instanceObject.getPlayers();
+        List<Long> players = instanceObject.getCurrPlayers();
         for (Long playerId : players) {
             PlayerObject playerObject = PlayerManager.instance.getPlayerObject(playerId);
             if (playerObject == null) {

@@ -36,6 +36,10 @@ public class StoreHandle extends BaseHandler {
      */
     @CmdHandler(cmd = StoreCmd.LIST)
     public void getCommodityList(Message message, Channel channel) {
+        PlayerObject playerObject = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
+        if (playerObject == null) {
+            return;
+        }
         Store.CommodityList commodityList = storeService.getCommodityList();
         Message res = MessageUtil.createMessage(ModuleKey.STORE_MODULE, StoreCmd.LIST, commodityList.toByteArray());
         channel.writeAndFlush(res);

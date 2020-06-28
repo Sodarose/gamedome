@@ -37,6 +37,26 @@ public class Bag {
         }
     }
 
+    public Item getItem(Long itemId) {
+        for (Item item : rawData) {
+            if (item != null && item.getId().equals(itemId)) {
+                return item;
+            }
+        }
+        return null;
+    }
+
+    public boolean removeItem(Long itemId) {
+        for (int i = 0; i < rawData.length; i++) {
+            if (rawData[i] != null && rawData[i].getId().equals(itemId)) {
+                rawData[i] = null;
+                return true;
+            }
+        }
+        return false;
+    }
+
+
     public Lock getReadLock() {
         return lock.readLock();
     }
@@ -58,14 +78,14 @@ public class Bag {
         int needGrid = 0;
         for (Item item : items) {
             // 如果是装备
-            if(item.getItemType().equals(ItemType.EQUIP)){
-                needGrid+=1;
+            if (item.getItemType().equals(ItemType.EQUIP)) {
+                needGrid += 1;
             }
             // 如果是道具 判断是否可以叠加
-            if(item.getItemType().equals(ItemType.PROP)){
+            if (item.getItemType().equals(ItemType.PROP)) {
                 // 是否有同类道具
                 PropConfig propConfig = StaticConfigManager.getInstance().getPropConfigMap().get(item.getItemId());
-                if(propConfig==null){
+                if (propConfig == null) {
                     return false;
                 }
                 // 是否可叠加
