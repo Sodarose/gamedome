@@ -1,7 +1,6 @@
 package com.game.gameserver.module.instance.manager;
 
 import com.game.gameserver.common.DefaultThreadFactory;
-import com.game.gameserver.common.config.*;
 import com.game.gameserver.event.EventHandler;
 import com.game.gameserver.event.EventType;
 import com.game.gameserver.event.Listener;
@@ -89,7 +88,7 @@ public class InstanceManager {
      * @param monsterDeadEvent
      * @return void
      */
-    @EventHandler(type = EventType.MONSTER_DEAD)
+    @EventHandler(type = EventType.KILL_MONSTER)
     public void handleMonsterDead(MonsterDeadEvent monsterDeadEvent) {
         MonsterObject monsterObject = monsterManager.getMonster(monsterDeadEvent.getMonsterId());
         if (monsterObject.getAddrId() == null) {

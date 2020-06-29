@@ -72,6 +72,7 @@ public abstract class BaseHandler implements Handler {
         if(cmdExecutor==null){
             return;
         }
+        // 这里可以改为线程池
         cmdExecutor.execute(message,channel);
     }
 }

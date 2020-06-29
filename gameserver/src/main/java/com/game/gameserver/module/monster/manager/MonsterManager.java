@@ -75,7 +75,7 @@ public class MonsterManager {
      * @param event
      * @return void
      */
-    @EventHandler(type = EventType.MONSTER_DEAD)
+    @EventHandler(type = EventType.KILL_MONSTER)
     public void handleMonsterDeadEvent(MonsterDeadEvent event) {
 
     }

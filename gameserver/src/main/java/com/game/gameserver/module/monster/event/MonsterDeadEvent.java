@@ -20,6 +20,6 @@ public class MonsterDeadEvent implements Event {
 
     @Override
     public EventType getEventType() {
-        return EventType.MONSTER_DEAD;
+        return EventType.KILL_MONSTER;
     }
 }

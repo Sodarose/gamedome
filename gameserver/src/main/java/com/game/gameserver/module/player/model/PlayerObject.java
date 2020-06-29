@@ -26,28 +26,40 @@ public class PlayerObject  implements  Serializable,Unit {
 
     /** 角色数据 */
     private final Player player;
+
     /** 角色战斗数据 */
     private PlayerBattle playerBattle;
+
     /** 角色连接信息 */
     private Channel channel;
+
     /** buff列表 */
     private List<Buffer> buffers;
+
     /** 当前所在的组队 队伍ID */
     private Long teamId;
+
     /** 当前玩家所在的副本*/
     private Long instanceId;
+
     /** 副本次数数据 key 副本Id value 当前次数 */
     private final Map<Integer,Integer> instanceNumMap = new ConcurrentHashMap<>();
+
     /** 聊天频道  key 频道类型  value 频道Id*/
     private final Map<Integer,Long> playerChannelMap = new ConcurrentHashMap<>();
-    /** 状态机 */
+
+    /** 角色状态机 */
     private StateMachine<PlayerObject, PlayerState> stateMachine;
+
     /** 临时数据*/
     private Map<String,Object> tempData = new ConcurrentHashMap<>();
+
     /** 战斗模式*/
     private FighterModeEnum fighterModeEnum = FighterModeEnum.ALL;
+
     /** 攻击的单位 */
     private volatile Unit attackTarget;
+
     /** 玩家召唤的宝宝 */
     private List<Long> petList = new ArrayList<>();
 

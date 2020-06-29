@@ -38,14 +38,6 @@ public class PlayerServiceImpl implements PlayerService {
     private PlayerMapper playerMapper;
     @Autowired
     private SceneManager sceneManager;
-    @Autowired
-    private ItemManager itemManager;
-    @Autowired
-    private SkillService skillService;
-    @Autowired
-    private BufferService bufferService;
-    @Autowired
-    private EmailManager emailManager;
 
     /**
      * 登录用户角色
@@ -55,29 +47,18 @@ public class PlayerServiceImpl implements PlayerService {
      */
     @Override
     public PlayerProtocol.LoginPlayerRes loginRole(Long playerId, Channel channel) {
-        // 查询缓存
-        PlayerObject playerObject = playerManager.getPlayerObject(playerId);
-        if (playerObject != null) {
-            return null;
-        }
         // 查询数据库
         Player player = playerMapper.getPlayerById(playerId);
         if (player == null) {
             return ProtocolFactory.createLoginPlayerRes(PlayerResultType.LOGIN_FAILED, "登录失败", null);
         }
         // 创建角色
-        playerObject = new PlayerObject(player);
-        // 读取道具数据
-        itemManager.loadPlayerItem(player);
-        // 读取玩家邮箱
-        emailManager.loadPlayerEmail(player);
-        // 读取玩家技能数据
-        // 设置Channel与角色的关联
+        PlayerObject playerObject = new PlayerObject(player);
+        // 设置连接信息
         channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).set(playerObject);
         playerObject.setChannel(channel);
-        // 进入场景
+        // 放入场景
         sceneManager.entryScene(playerObject, player.getSceneId());
-        // 放入管理器缓存
         playerManager.putPlayerObject(playerObject);
         // 发出角色登录事件
         LoginEvent loginEvent = new LoginEvent(player.getId());

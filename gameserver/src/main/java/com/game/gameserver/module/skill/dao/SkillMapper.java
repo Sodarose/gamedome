@@ -19,5 +19,5 @@ public interface SkillMapper {
      * @param playerId 用户ID
      * @return java.util.List<com.game.gameserver.module.skill.entity.Skill>
      */
-    List<Skill> getSkillList(int playerId);
+    List<Skill> getSkillList(long playerId);
 }

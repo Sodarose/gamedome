@@ -42,6 +42,7 @@ public class StaticConfigManager {
     private Map<Integer, CareerConfig> careerConfigMap = new HashMap<>(16);
     private Map<Integer, SkillConfig>  skillConfigMap = new HashMap<>(16);
     private Map<Integer, PetConfig> petConfigMap = new HashMap<>(16);
+    private Map<Integer, TaskConfig> taskConfigMap = new HashMap<>(16);
 
     public static StaticConfigManager getInstance() {
         return INSTANCE;
@@ -77,6 +78,7 @@ public class StaticConfigManager {
         loadCommodityConfig(path);
         loadCareerConfig(path);
         loadSkillConfig(path);
+        loadTaskConfig(path);
     }
 
     private void loadSceneConfig(String path) {
@@ -284,6 +286,22 @@ public class StaticConfigManager {
             while (jsonReader.hasNext()) {
                 SkillConfig skillConfig = JSON.parseObject(jsonReader.readString(), SkillConfig.class);
                 skillConfigMap.put(skillConfig.getId(),skillConfig);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void loadTaskConfig(String path){
+        logger.info("load TaskConfig.json");
+        String fileName = "TaskConfig.json";
+        path += "/" + fileName;
+        try {
+            JSONReader jsonReader = new JSONReader(new InputStreamReader(new FileInputStream(path)));
+            jsonReader.startArray();
+            while (jsonReader.hasNext()) {
+                TaskConfig taskConfig = JSON.parseObject(jsonReader.readString(), TaskConfig.class);
+                taskConfigMap.put(taskConfig.getId(),taskConfig);
             }
         } catch (IOException e) {
             e.printStackTrace();

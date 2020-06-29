@@ -14,7 +14,7 @@ import com.game.gameserver.module.player.manager.PlayerManager;
 import com.game.gameserver.module.player.model.PlayerObject;
 import com.game.gameserver.module.scene.model.SceneObject;
 import com.game.gameserver.module.skill.entity.Skill;
-import com.game.gameserver.module.skill.model.PlayerSkill;
+import com.game.gameserver.module.skill.entity.PlayerSkill;
 import com.game.gameserver.module.store.entity.Commodity;
 import com.game.gameserver.module.team.entity.Team;
 import com.game.protocol.*;
@@ -98,9 +98,9 @@ public class ProtocolFactory {
 
     public static PlayerProtocol.PlayerSkill createPlayerSkill(PlayerSkill playerSkill) {
         PlayerProtocol.PlayerSkill.Builder builder = PlayerProtocol.PlayerSkill.newBuilder();
-        for (Skill skill : playerSkill.getSkillList()) {
+    /*    for (Skill skill : playerSkill.getSkillList()) {
             builder.addSkillInfo(createSkillInfo(skill));
-        }
+        }*/
         return builder.build();
     }
 
@@ -116,7 +116,6 @@ public class ProtocolFactory {
         builder.setFormula(skillConfig.getFormula());
         builder.setDesc(skillConfig.getDesc());
         builder.setBagIndex(skill.getBagIndex());
-        builder.setLearnLevel(skill.getLearnLevel());
         builder.setPlayerId(skill.getPlayerId());
         return builder.build();
     }
