@@ -12,10 +12,13 @@ import com.game.gameserver.module.npc.model.NpcObject;
 import com.game.gameserver.module.player.entity.PlayerBattle;
 import com.game.gameserver.module.player.manager.PlayerManager;
 import com.game.gameserver.module.player.model.PlayerObject;
-import com.game.gameserver.module.scene.model.SceneObject;
+import com.game.gameserver.module.scene.bean.Scene;
 import com.game.gameserver.module.skill.entity.Skill;
 import com.game.gameserver.module.skill.entity.PlayerSkill;
 import com.game.gameserver.module.store.entity.Commodity;
+import com.game.gameserver.module.task.entity.PlayerTask;
+import com.game.gameserver.module.task.entity.Task;
+import com.game.gameserver.module.task.entity.TaskProgress;
 import com.game.gameserver.module.team.entity.Team;
 import com.game.protocol.*;
 
@@ -122,26 +125,26 @@ public class ProtocolFactory {
 
 
     /**
-     * @param sceneObject
+     * @param scene
      * @return com.game.protocol.SceneProtocol.SceneInfo
      */
-    public static SceneProtocol.SceneInfo createSceneInfo(SceneObject sceneObject) {
+    public static SceneProtocol.SceneInfo createSceneInfo(Scene scene) {
         SceneProtocol.SceneInfo.Builder builder = SceneProtocol.SceneInfo.newBuilder();
-        builder.setId(sceneObject.getId());
-        builder.setName(sceneObject.getSceneConfig().getName());
-        builder.setDescription(sceneObject.getSceneConfig().getDesc());
-        builder.setPlayerNum(sceneObject.getPlayerNum());
-        for (Map.Entry<Long, PlayerObject> entry : sceneObject.getPlayerObjectMap().entrySet()) {
+        builder.setId(scene.getId());
+        builder.setName(scene.getSceneConfig().getName());
+        builder.setDescription(scene.getSceneConfig().getDesc());
+        builder.setPlayerNum(scene.getPlayerNum());
+        for (Map.Entry<Long, PlayerObject> entry : scene.getPlayerObjectMap().entrySet()) {
             builder.putPlayers(entry.getKey(), createOtherPlayerInfo(entry.getValue()));
         }
-        for (Map.Entry<Long, Long> entry : sceneObject.getMonsterObjectMap().entrySet()) {
+        for (Map.Entry<Long, Long> entry : scene.getMonsterObjectMap().entrySet()) {
             MonsterObject monsterObject = MonsterManager.instance.getMonster(entry.getValue());
             if (monsterObject == null) {
                 continue;
             }
             builder.putMonsters(entry.getKey(), createMonster(monsterObject));
         }
-        for (Map.Entry<Long, NpcObject> entry : sceneObject.getNpcObjectMap().entrySet()) {
+        for (Map.Entry<Long, NpcObject> entry : scene.getNpcObjectMap().entrySet()) {
             builder.putNpcs(entry.getKey(), createNpc(entry.getValue()));
         }
         return builder.build();
@@ -246,7 +249,7 @@ public class ProtocolFactory {
         builder.setTeamName(team.getTeamName());
         builder.setCurrNum(team.getCurrNum());
         builder.setMaxNum(team.getMaxNum());
-        builder.setInstance(team.getInstanceId()!=null);
+        builder.setInstance(team.getInstanceId() != null);
         for (Long playerId : team.getMembers()) {
             PlayerObject playerObject = PlayerManager.instance.getPlayerObject(playerId);
             if (playerObject == null) {
@@ -287,19 +290,19 @@ public class ProtocolFactory {
         return builder.build();
     }
 
-    public static InstanceProtocol.InstanceInfoListRes createInstanceInfoListRes(int code,String msg,List<InstanceConfig> instanceConfigs){
+    public static InstanceProtocol.InstanceInfoListRes createInstanceInfoListRes(int code, String msg, List<InstanceConfig> instanceConfigs) {
         InstanceProtocol.InstanceInfoListRes.Builder builder = InstanceProtocol.InstanceInfoListRes.newBuilder();
         builder.setCode(code);
         builder.setMsg(msg);
-        if(instanceConfigs!=null){
-            for(InstanceConfig instanceConfig:instanceConfigs){
+        if (instanceConfigs != null) {
+            for (InstanceConfig instanceConfig : instanceConfigs) {
                 builder.addInstanceInfoList(createInstanceInfo(instanceConfig));
             }
         }
         return builder.build();
     }
 
-    public static InstanceProtocol.InstanceConfigInfo createInstanceInfo(InstanceConfig instanceConfig){
+    public static InstanceProtocol.InstanceConfigInfo createInstanceInfo(InstanceConfig instanceConfig) {
         InstanceProtocol.InstanceConfigInfo.Builder builder = InstanceProtocol.InstanceConfigInfo.newBuilder();
         builder.setInstanceConfigId(instanceConfig.getId());
         builder.setInstanceName(instanceConfig.getName());
@@ -331,13 +334,13 @@ public class ProtocolFactory {
         return builder.build();
     }
 
-    public static InstanceProtocol.EntryInstanceRes createEntryInstanceRes(int code,String msg,InstanceObject instanceObject){
+    public static InstanceProtocol.EntryInstanceRes createEntryInstanceRes(int code, String msg, InstanceObject instanceObject) {
         InstanceProtocol.EntryInstanceRes.Builder builder = InstanceProtocol.EntryInstanceRes.newBuilder();
         builder.setCode(code);
         builder.setMsg(msg);
-        if(instanceObject!=null){
+        if (instanceObject != null) {
             InstanceProtocol.InstanceInfo info = createInstanceInfo(instanceObject);
-            if(info==null){
+            if (info == null) {
                 builder.setCode(1001);
                 builder.setMsg("数据错误");
                 return builder.build();
@@ -347,10 +350,10 @@ public class ProtocolFactory {
         return builder.build();
     }
 
-    public static InstanceProtocol.InstanceInfo createInstanceInfo(InstanceObject instanceObject){
+    public static InstanceProtocol.InstanceInfo createInstanceInfo(InstanceObject instanceObject) {
         InstanceConfig instanceConfig = StaticConfigManager.getInstance().getInstanceConfigMap().get(instanceObject
                 .getInstanceConfigId());
-        if(instanceConfig==null){
+        if (instanceConfig == null) {
             return null;
         }
         InstanceProtocol.InstanceInfo.Builder builder = InstanceProtocol.InstanceInfo.newBuilder();
@@ -359,18 +362,18 @@ public class ProtocolFactory {
         builder.setDescription(instanceConfig.getDesc());
         builder.setEndTime(instanceObject.getEndTime());
         builder.setRecoveryTime(instanceObject.getRecoveryTime());
-        for(Long playerId:instanceObject.getCurrPlayers()){
+        for (Long playerId : instanceObject.getCurrPlayers()) {
             PlayerObject playerObject = PlayerManager
                     .instance.getPlayerObject(playerId);
-            if(playerObject==null){
+            if (playerObject == null) {
                 continue;
             }
             builder.addPlayerList(createOtherPlayerInfo(playerObject));
         }
 
-        for(Long monsterId:instanceObject.getCurrMonsters()){
+        for (Long monsterId : instanceObject.getCurrMonsters()) {
             MonsterObject monsterObject = MonsterManager.instance.getMonster(monsterId);
-            if(monsterObject==null){
+            if (monsterObject == null) {
                 continue;
             }
             builder.addMonsterList(createMonster(monsterObject));
@@ -378,41 +381,41 @@ public class ProtocolFactory {
         return builder.build();
     }
 
-    public static InstanceProtocol.ExitInstanceRes createExitInstanceRes(int code,String msg){
+    public static InstanceProtocol.ExitInstanceRes createExitInstanceRes(int code, String msg) {
         InstanceProtocol.ExitInstanceRes.Builder builder = InstanceProtocol.ExitInstanceRes.newBuilder();
         builder.setCode(code);
         builder.setMsg(msg);
         return builder.build();
     }
 
-    public static TeamProtocol.CheckTeamRes createCheckTeamRes(int code, String msg, Team team){
+    public static TeamProtocol.CheckTeamRes createCheckTeamRes(int code, String msg, Team team) {
         TeamProtocol.CheckTeamRes.Builder builder = TeamProtocol.CheckTeamRes.newBuilder();
         builder.setCode(code);
         builder.setMsg(msg);
-        if(team!=null){
+        if (team != null) {
             builder.setTeamInfo(createTeamInfo(team));
         }
         return builder.build();
     }
 
-    public static ItemProtocol.PlayerBag createPlayerBag(List<Item> items){
+    public static ItemProtocol.PlayerBag createPlayerBag(List<Item> items) {
         ItemProtocol.PlayerBag.Builder builder = ItemProtocol.PlayerBag.newBuilder();
-        for(Item item:items){
+        for (Item item : items) {
             builder.addItemList(createItemInfo(item));
         }
         return builder.build();
     }
 
-    public static ItemProtocol.ItemInfo createItemInfo(Item item){
+    public static ItemProtocol.ItemInfo createItemInfo(Item item) {
         ItemProtocol.ItemInfo.Builder builder = ItemProtocol.ItemInfo.newBuilder();
         builder.setItemId(item.getId());
         builder.setItemType(item.getItemType());
-        if(item.getItemType().equals(ItemType.EQUIP)){
+        if (item.getItemType().equals(ItemType.EQUIP)) {
             EquipConfig equipConfig = StaticConfigManager.getInstance().getEquipConfigMap().get(item.getItemId());
             builder.setItemName(equipConfig.getName());
             builder.setDesc(equipConfig.getDesc());
         }
-        if(item.getItemType().equals(ItemType.PROP)){
+        if (item.getItemType().equals(ItemType.PROP)) {
             PropConfig propConfig = StaticConfigManager.getInstance().getPropConfigMap().get(item.getItemId());
             builder.setItemName(propConfig.getName());
             builder.setDesc(propConfig.getDesc());
@@ -420,40 +423,40 @@ public class ProtocolFactory {
         builder.setItemNum(item.getNum());
         builder.setBagPack(BagType.PLAYER_BAG);
         builder.setBagIndex(item.getBagIndex());
-        builder.setBound(item.getBound()==1);
+        builder.setBound(item.getBound() == 1);
         return builder.build();
     }
 
-    public static EmailProtocol.EmailListRes createEmailListRes(int code,String msg, List<Email> emailList){
+    public static EmailProtocol.EmailListRes createEmailListRes(int code, String msg, List<Email> emailList) {
         EmailProtocol.EmailListRes.Builder builder = EmailProtocol.EmailListRes.newBuilder();
         builder.setCode(code);
         builder.setMsg(msg);
-        if(emailList!=null&&emailList.size()!=0){
-            for(Email email:emailList){
+        if (emailList != null && emailList.size() != 0) {
+            for (Email email : emailList) {
                 builder.addEmail(createEmailInfo(email));
             }
         }
         return builder.build();
     }
 
-    public static EmailProtocol.EmailInfo createEmailInfo(Email email){
+    public static EmailProtocol.EmailInfo createEmailInfo(Email email) {
         EmailProtocol.EmailInfo.Builder builder = EmailProtocol.EmailInfo.newBuilder();
         builder.setId(email.getId());
         builder.setTitle(email.getTitle());
         builder.setSendName(email.getSenderName());
         builder.setContent(email.getContent());
-        for(Item item:email.getAttachments()){
-            if(item.getItemType().equals(ItemType.EQUIP)){
+        for (Item item : email.getAttachments()) {
+            if (item.getItemType().equals(ItemType.EQUIP)) {
                 EquipConfig equipConfig = StaticConfigManager.getInstance().getEquipConfigMap()
                         .get(item.getItemId());
-                if(equipConfig==null){
+                if (equipConfig == null) {
                     continue;
                 }
                 builder.addAttachments(equipConfig.getName());
             }
-            if(item.getItemType().equals(ItemType.PROP)){
+            if (item.getItemType().equals(ItemType.PROP)) {
                 PropConfig propConfig = StaticConfigManager.getInstance().getPropConfigMap().get(item.getItemId());
-                if(propConfig==null){
+                if (propConfig == null) {
                     continue;
                 }
                 builder.addAttachments(propConfig.getName());
@@ -463,4 +466,96 @@ public class ProtocolFactory {
         builder.setState(email.getState());
         return builder.build();
     }
+
+    /**
+     *
+     *
+     * @param code
+     * @param msg
+     * @param taskConfigs
+     * @return com.game.protocol.TaskProtocol.QueryAllTaskRes
+     */
+    public static TaskProtocol.QueryAllTaskRes createQueryAllTaskRes(int code, String msg, List<TaskConfig> taskConfigs) {
+        TaskProtocol.QueryAllTaskRes.Builder builder = TaskProtocol.QueryAllTaskRes.newBuilder();
+        builder.setCode(code);
+        builder.setMsg(msg);
+        if (taskConfigs != null) {
+            for (TaskConfig taskConfig : taskConfigs) {
+                builder.addInfos(createTaskConfigInfo(taskConfig));
+            }
+        }
+        return builder.build();
+    }
+
+    /** 可接受任务列表 */
+    public static TaskProtocol.QueryReceiveAbleTaskRes createQueryReceiveAbleTaskRes(int code,String msg,
+                                                                                List<TaskConfig> taskConfigs){
+        TaskProtocol.QueryReceiveAbleTaskRes.Builder builder = TaskProtocol.QueryReceiveAbleTaskRes.newBuilder();
+        builder.setCode(code);
+        builder.setMsg(msg);
+        if (taskConfigs != null) {
+            for (TaskConfig taskConfig : taskConfigs) {
+                builder.addInfos(createTaskConfigInfo(taskConfig));
+            }
+        }
+        return builder.build();
+    }
+
+    public static TaskProtocol.QueryReceiveTaskRes creatQueryReceiveTaskRes(int code, String msg, PlayerTask playerTask) {
+        TaskProtocol.QueryReceiveTaskRes.Builder builder = TaskProtocol.QueryReceiveTaskRes.newBuilder();
+        builder.setCode(code);
+        builder.setMsg(msg);
+        if(playerTask!=null){
+            for (Task task : playerTask.getTaskList()) {
+                builder.addTaskInfos(createTaskInfo(task));
+            }
+        }
+        return builder.build();
+    }
+
+
+
+    public static TaskProtocol.TaskConfigInfo createTaskConfigInfo(TaskConfig taskConfig) {
+        TaskProtocol.TaskConfigInfo.Builder builder = TaskProtocol.TaskConfigInfo.newBuilder();
+        builder.setId(taskConfig.getId());
+        builder.setName(taskConfig.getName());
+        builder.setDesc(taskConfig.getDescription());
+        builder.setType(taskConfig.getType());
+        builder.setLimitLevel(taskConfig.getLimitLevel());
+        builder.setTaskRequire(taskConfig.getTaskRequire());
+        builder.setExpr(taskConfig.getExpr());
+        builder.setGolds(taskConfig.getGolds());
+        builder.setProps(taskConfig.getProps());
+        builder.setEquips(taskConfig.getEquips());
+        return builder.build();
+    }
+
+    /**
+     * @param task
+     * @return com.game.protocol.TaskProtocol.TaskInfo
+     */
+    public static TaskProtocol.TaskInfo createTaskInfo(Task task) {
+        TaskProtocol.TaskInfo.Builder builder = TaskProtocol.TaskInfo.newBuilder();
+        builder.setId(task.getId());
+        TaskConfig taskConfig = StaticConfigManager.getInstance().getTaskConfigMap().get(task.getTaskId());
+        builder.setTaskId(taskConfig.getId());
+        builder.setName(taskConfig.getName());
+        builder.setDesc(taskConfig.getDescription());
+        builder.setExpr(taskConfig.getExpr());
+        builder.setGolds(taskConfig.getGolds());
+        builder.setProps(taskConfig.getProps());
+        builder.setEquips(taskConfig.getEquips());
+        builder.setState(task.getState());
+        List<TaskProgress> taskProgresses = task.getTaskProgresses();
+        for (TaskProgress taskProgress : taskProgresses) {
+            TaskProtocol.TaskProgressInfo info = TaskProtocol.TaskProgressInfo.newBuilder().setType(taskProgress.getType())
+                    .setTarget(taskProgress.getTarget())
+                    .setAmount(taskProgress.getAmount())
+                    .setNum(taskProgress.getNum())
+                    .setComplete(taskProgress.isComplete()).build();
+            builder.addTaskProgressInfo(info);
+        }
+        return builder.build();
+    }
 }
+

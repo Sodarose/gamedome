@@ -12,6 +12,7 @@ import com.game.module.gui.WordPage;
 import com.game.module.player.PlayerHandle;
 import com.game.module.scene.SceneHandle;
 import com.game.module.store.StoreHandle;
+import com.game.module.task.TaskHandle;
 import com.game.module.team.TeamHandle;
 import com.game.protocol.Message;
 import com.game.protocol.PlayerProtocol;
@@ -56,6 +57,8 @@ public class CmdHandle {
     private SceneHandle sceneHandle;
     @Autowired
     private FighterHandle fighterHandle;
+    @Autowired
+    private TaskHandle taskHandle;
 
 
     public void submitCmd(String order) {
@@ -274,6 +277,68 @@ public class CmdHandle {
             }
         });
 
+        CMD_INVOKE_MAP.put(CmdType.USE_SKILL, new Invoke() {
+            @Override
+            public void invoke(String[] flags) {
+                long unitId = Long.parseLong(flags[1]);
+                int unitType = Integer.parseInt(flags[2]);
+                int skillId = Integer.parseInt(flags[3]);
+                fighterHandle.useSkill(unitId,unitType,skillId);
+            }
+        });
+
+        CMD_INVOKE_MAP.put(CmdType.CHANGE_FIGHTER_MODULE, new Invoke() {
+            @Override
+            public void invoke(String[] flags) {
+                int fighterModule = Integer.parseInt(flags[1]);
+                fighterHandle.changeFighterModel(fighterModule);
+            }
+        });
+
+        // 任务
+        CMD_INVOKE_MAP.put(CmdType.QUERY_ALL_TASK, new Invoke() {
+            @Override
+            public void invoke(String[] flags) {
+                taskHandle.queryAllTaskReq();
+            }
+        });
+
+        CMD_INVOKE_MAP.put(CmdType.QUERY_RECEIVE_ABLE_TASK, new Invoke() {
+            @Override
+            public void invoke(String[] flags) {
+                taskHandle.queryReceiveAbleTaskReq();
+            }
+        });
+
+        CMD_INVOKE_MAP.put(CmdType.QUERY_RECEIVE_TASK, new Invoke() {
+            @Override
+            public void invoke(String[] flags) {
+                taskHandle.queryReceiveTaskReq();
+            }
+        });
+
+        CMD_INVOKE_MAP.put(CmdType.SUBMIT_TASK, new Invoke() {
+            @Override
+            public void invoke(String[] flags) {
+                taskHandle.submitTaskReq(flags[1]);
+            }
+        });
+
+        CMD_INVOKE_MAP.put(CmdType.ACCEPT_TASK, new Invoke() {
+            @Override
+            public void invoke(String[] flags) {
+                taskHandle.acceptTaskReq(flags[1]);
+            }
+        });
+
+        CMD_INVOKE_MAP.put(CmdType.CANCEL_TASK, new Invoke() {
+            @Override
+            public void invoke(String[] flags) {
+                taskHandle.cancelTaskReq(flags[1]);
+            }
+        });
+
+        // 成就
     }
 
 

@@ -11,4 +11,6 @@ public interface FighterCmd {
     short EXIT = 1002;
     /** 切换战斗模式 */
     short CHANGE_MODEL = 1003;
+    /** 使用技能 */
+    short USE_SKILL = 1004;
 }

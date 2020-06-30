@@ -1271,8 +1271,8 @@ public final class FighterProtocol {
 
   }
 
-  public interface ChangeModuleReqOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:ChangeModuleReq)
+  public interface ChangeModelReqOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:ChangeModelReq)
       com.google.protobuf.MessageOrBuilder {
 
     /**
@@ -1286,25 +1286,25 @@ public final class FighterProtocol {
    * 转换状态请求
    * </pre>
    *
-   * Protobuf type {@code ChangeModuleReq}
+   * Protobuf type {@code ChangeModelReq}
    */
-  public  static final class ChangeModuleReq extends
+  public  static final class ChangeModelReq extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:ChangeModuleReq)
-      ChangeModuleReqOrBuilder {
+      // @@protoc_insertion_point(message_implements:ChangeModelReq)
+      ChangeModelReqOrBuilder {
   private static final long serialVersionUID = 0L;
-    // Use ChangeModuleReq.newBuilder() to construct.
-    private ChangeModuleReq(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    // Use ChangeModelReq.newBuilder() to construct.
+    private ChangeModelReq(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-    private ChangeModuleReq() {
+    private ChangeModelReq() {
     }
 
     @java.lang.Override
     @SuppressWarnings({"unused"})
     protected java.lang.Object newInstance(
         UnusedPrivateParameter unused) {
-      return new ChangeModuleReq();
+      return new ChangeModelReq();
     }
 
     @java.lang.Override
@@ -1312,7 +1312,7 @@ public final class FighterProtocol {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private ChangeModuleReq(
+    private ChangeModelReq(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -1356,15 +1356,15 @@ public final class FighterProtocol {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.game.protocol.FighterProtocol.internal_static_ChangeModuleReq_descriptor;
+      return com.game.protocol.FighterProtocol.internal_static_ChangeModelReq_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.game.protocol.FighterProtocol.internal_static_ChangeModuleReq_fieldAccessorTable
+      return com.game.protocol.FighterProtocol.internal_static_ChangeModelReq_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.game.protocol.FighterProtocol.ChangeModuleReq.class, com.game.protocol.FighterProtocol.ChangeModuleReq.Builder.class);
+              com.game.protocol.FighterProtocol.ChangeModelReq.class, com.game.protocol.FighterProtocol.ChangeModelReq.Builder.class);
     }
 
     public static final int FIGHTERMODULEID_FIELD_NUMBER = 1;
@@ -1417,10 +1417,10 @@ public final class FighterProtocol {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof com.game.protocol.FighterProtocol.ChangeModuleReq)) {
+      if (!(obj instanceof com.game.protocol.FighterProtocol.ChangeModelReq)) {
         return super.equals(obj);
       }
-      com.game.protocol.FighterProtocol.ChangeModuleReq other = (com.game.protocol.FighterProtocol.ChangeModuleReq) obj;
+      com.game.protocol.FighterProtocol.ChangeModelReq other = (com.game.protocol.FighterProtocol.ChangeModelReq) obj;
 
       if (getFighterModuleId()
           != other.getFighterModuleId()) return false;
@@ -1442,69 +1442,69 @@ public final class FighterProtocol {
       return hash;
     }
 
-    public static com.game.protocol.FighterProtocol.ChangeModuleReq parseFrom(
+    public static com.game.protocol.FighterProtocol.ChangeModelReq parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.game.protocol.FighterProtocol.ChangeModuleReq parseFrom(
+    public static com.game.protocol.FighterProtocol.ChangeModelReq parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.game.protocol.FighterProtocol.ChangeModuleReq parseFrom(
+    public static com.game.protocol.FighterProtocol.ChangeModelReq parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.game.protocol.FighterProtocol.ChangeModuleReq parseFrom(
+    public static com.game.protocol.FighterProtocol.ChangeModelReq parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.game.protocol.FighterProtocol.ChangeModuleReq parseFrom(byte[] data)
+    public static com.game.protocol.FighterProtocol.ChangeModelReq parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.game.protocol.FighterProtocol.ChangeModuleReq parseFrom(
+    public static com.game.protocol.FighterProtocol.ChangeModelReq parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.game.protocol.FighterProtocol.ChangeModuleReq parseFrom(java.io.InputStream input)
+    public static com.game.protocol.FighterProtocol.ChangeModelReq parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.game.protocol.FighterProtocol.ChangeModuleReq parseFrom(
+    public static com.game.protocol.FighterProtocol.ChangeModelReq parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.game.protocol.FighterProtocol.ChangeModuleReq parseDelimitedFrom(java.io.InputStream input)
+    public static com.game.protocol.FighterProtocol.ChangeModelReq parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static com.game.protocol.FighterProtocol.ChangeModuleReq parseDelimitedFrom(
+    public static com.game.protocol.FighterProtocol.ChangeModelReq parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.game.protocol.FighterProtocol.ChangeModuleReq parseFrom(
+    public static com.game.protocol.FighterProtocol.ChangeModelReq parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.game.protocol.FighterProtocol.ChangeModuleReq parseFrom(
+    public static com.game.protocol.FighterProtocol.ChangeModelReq parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -1517,7 +1517,7 @@ public final class FighterProtocol {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.game.protocol.FighterProtocol.ChangeModuleReq prototype) {
+    public static Builder newBuilder(com.game.protocol.FighterProtocol.ChangeModelReq prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     @java.lang.Override
@@ -1537,26 +1537,26 @@ public final class FighterProtocol {
      * 转换状态请求
      * </pre>
      *
-     * Protobuf type {@code ChangeModuleReq}
+     * Protobuf type {@code ChangeModelReq}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:ChangeModuleReq)
-        com.game.protocol.FighterProtocol.ChangeModuleReqOrBuilder {
+        // @@protoc_insertion_point(builder_implements:ChangeModelReq)
+        com.game.protocol.FighterProtocol.ChangeModelReqOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.game.protocol.FighterProtocol.internal_static_ChangeModuleReq_descriptor;
+        return com.game.protocol.FighterProtocol.internal_static_ChangeModelReq_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.game.protocol.FighterProtocol.internal_static_ChangeModuleReq_fieldAccessorTable
+        return com.game.protocol.FighterProtocol.internal_static_ChangeModelReq_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.game.protocol.FighterProtocol.ChangeModuleReq.class, com.game.protocol.FighterProtocol.ChangeModuleReq.Builder.class);
+                com.game.protocol.FighterProtocol.ChangeModelReq.class, com.game.protocol.FighterProtocol.ChangeModelReq.Builder.class);
       }
 
-      // Construct using com.game.protocol.FighterProtocol.ChangeModuleReq.newBuilder()
+      // Construct using com.game.protocol.FighterProtocol.ChangeModelReq.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -1582,17 +1582,17 @@ public final class FighterProtocol {
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.game.protocol.FighterProtocol.internal_static_ChangeModuleReq_descriptor;
+        return com.game.protocol.FighterProtocol.internal_static_ChangeModelReq_descriptor;
       }
 
       @java.lang.Override
-      public com.game.protocol.FighterProtocol.ChangeModuleReq getDefaultInstanceForType() {
-        return com.game.protocol.FighterProtocol.ChangeModuleReq.getDefaultInstance();
+      public com.game.protocol.FighterProtocol.ChangeModelReq getDefaultInstanceForType() {
+        return com.game.protocol.FighterProtocol.ChangeModelReq.getDefaultInstance();
       }
 
       @java.lang.Override
-      public com.game.protocol.FighterProtocol.ChangeModuleReq build() {
-        com.game.protocol.FighterProtocol.ChangeModuleReq result = buildPartial();
+      public com.game.protocol.FighterProtocol.ChangeModelReq build() {
+        com.game.protocol.FighterProtocol.ChangeModelReq result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
@@ -1600,8 +1600,8 @@ public final class FighterProtocol {
       }
 
       @java.lang.Override
-      public com.game.protocol.FighterProtocol.ChangeModuleReq buildPartial() {
-        com.game.protocol.FighterProtocol.ChangeModuleReq result = new com.game.protocol.FighterProtocol.ChangeModuleReq(this);
+      public com.game.protocol.FighterProtocol.ChangeModelReq buildPartial() {
+        com.game.protocol.FighterProtocol.ChangeModelReq result = new com.game.protocol.FighterProtocol.ChangeModelReq(this);
         result.fighterModuleId_ = fighterModuleId_;
         onBuilt();
         return result;
@@ -1641,16 +1641,16 @@ public final class FighterProtocol {
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.game.protocol.FighterProtocol.ChangeModuleReq) {
-          return mergeFrom((com.game.protocol.FighterProtocol.ChangeModuleReq)other);
+        if (other instanceof com.game.protocol.FighterProtocol.ChangeModelReq) {
+          return mergeFrom((com.game.protocol.FighterProtocol.ChangeModelReq)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(com.game.protocol.FighterProtocol.ChangeModuleReq other) {
-        if (other == com.game.protocol.FighterProtocol.ChangeModuleReq.getDefaultInstance()) return this;
+      public Builder mergeFrom(com.game.protocol.FighterProtocol.ChangeModelReq other) {
+        if (other == com.game.protocol.FighterProtocol.ChangeModelReq.getDefaultInstance()) return this;
         if (other.getFighterModuleId() != 0) {
           setFighterModuleId(other.getFighterModuleId());
         }
@@ -1669,11 +1669,11 @@ public final class FighterProtocol {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.game.protocol.FighterProtocol.ChangeModuleReq parsedMessage = null;
+        com.game.protocol.FighterProtocol.ChangeModelReq parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.game.protocol.FighterProtocol.ChangeModuleReq) e.getUnfinishedMessage();
+          parsedMessage = (com.game.protocol.FighterProtocol.ChangeModelReq) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -1725,48 +1725,48 @@ public final class FighterProtocol {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:ChangeModuleReq)
+      // @@protoc_insertion_point(builder_scope:ChangeModelReq)
     }
 
-    // @@protoc_insertion_point(class_scope:ChangeModuleReq)
-    private static final com.game.protocol.FighterProtocol.ChangeModuleReq DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:ChangeModelReq)
+    private static final com.game.protocol.FighterProtocol.ChangeModelReq DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new com.game.protocol.FighterProtocol.ChangeModuleReq();
+      DEFAULT_INSTANCE = new com.game.protocol.FighterProtocol.ChangeModelReq();
     }
 
-    public static com.game.protocol.FighterProtocol.ChangeModuleReq getDefaultInstance() {
+    public static com.game.protocol.FighterProtocol.ChangeModelReq getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static final com.google.protobuf.Parser<ChangeModuleReq>
-        PARSER = new com.google.protobuf.AbstractParser<ChangeModuleReq>() {
+    private static final com.google.protobuf.Parser<ChangeModelReq>
+        PARSER = new com.google.protobuf.AbstractParser<ChangeModelReq>() {
       @java.lang.Override
-      public ChangeModuleReq parsePartialFrom(
+      public ChangeModelReq parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new ChangeModuleReq(input, extensionRegistry);
+        return new ChangeModelReq(input, extensionRegistry);
       }
     };
 
-    public static com.google.protobuf.Parser<ChangeModuleReq> parser() {
+    public static com.google.protobuf.Parser<ChangeModelReq> parser() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<ChangeModuleReq> getParserForType() {
+    public com.google.protobuf.Parser<ChangeModelReq> getParserForType() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.game.protocol.FighterProtocol.ChangeModuleReq getDefaultInstanceForType() {
+    public com.game.protocol.FighterProtocol.ChangeModelReq getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
   }
 
-  public interface ChangeModuleResOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:ChangeModuleRes)
+  public interface ChangeModelResOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:ChangeModelRes)
       com.google.protobuf.MessageOrBuilder {
 
     /**
@@ -1788,18 +1788,18 @@ public final class FighterProtocol {
         getMsgBytes();
   }
   /**
-   * Protobuf type {@code ChangeModuleRes}
+   * Protobuf type {@code ChangeModelRes}
    */
-  public  static final class ChangeModuleRes extends
+  public  static final class ChangeModelRes extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:ChangeModuleRes)
-      ChangeModuleResOrBuilder {
+      // @@protoc_insertion_point(message_implements:ChangeModelRes)
+      ChangeModelResOrBuilder {
   private static final long serialVersionUID = 0L;
-    // Use ChangeModuleRes.newBuilder() to construct.
-    private ChangeModuleRes(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    // Use ChangeModelRes.newBuilder() to construct.
+    private ChangeModelRes(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-    private ChangeModuleRes() {
+    private ChangeModelRes() {
       msg_ = "";
     }
 
@@ -1807,7 +1807,7 @@ public final class FighterProtocol {
     @SuppressWarnings({"unused"})
     protected java.lang.Object newInstance(
         UnusedPrivateParameter unused) {
-      return new ChangeModuleRes();
+      return new ChangeModelRes();
     }
 
     @java.lang.Override
@@ -1815,7 +1815,7 @@ public final class FighterProtocol {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private ChangeModuleRes(
+    private ChangeModelRes(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -1865,15 +1865,15 @@ public final class FighterProtocol {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.game.protocol.FighterProtocol.internal_static_ChangeModuleRes_descriptor;
+      return com.game.protocol.FighterProtocol.internal_static_ChangeModelRes_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.game.protocol.FighterProtocol.internal_static_ChangeModuleRes_fieldAccessorTable
+      return com.game.protocol.FighterProtocol.internal_static_ChangeModelRes_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.game.protocol.FighterProtocol.ChangeModuleRes.class, com.game.protocol.FighterProtocol.ChangeModuleRes.Builder.class);
+              com.game.protocol.FighterProtocol.ChangeModelRes.class, com.game.protocol.FighterProtocol.ChangeModelRes.Builder.class);
     }
 
     public static final int CODE_FIELD_NUMBER = 1;
@@ -1968,10 +1968,10 @@ public final class FighterProtocol {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof com.game.protocol.FighterProtocol.ChangeModuleRes)) {
+      if (!(obj instanceof com.game.protocol.FighterProtocol.ChangeModelRes)) {
         return super.equals(obj);
       }
-      com.game.protocol.FighterProtocol.ChangeModuleRes other = (com.game.protocol.FighterProtocol.ChangeModuleRes) obj;
+      com.game.protocol.FighterProtocol.ChangeModelRes other = (com.game.protocol.FighterProtocol.ChangeModelRes) obj;
 
       if (getCode()
           != other.getCode()) return false;
@@ -1997,69 +1997,69 @@ public final class FighterProtocol {
       return hash;
     }
 
-    public static com.game.protocol.FighterProtocol.ChangeModuleRes parseFrom(
+    public static com.game.protocol.FighterProtocol.ChangeModelRes parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.game.protocol.FighterProtocol.ChangeModuleRes parseFrom(
+    public static com.game.protocol.FighterProtocol.ChangeModelRes parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.game.protocol.FighterProtocol.ChangeModuleRes parseFrom(
+    public static com.game.protocol.FighterProtocol.ChangeModelRes parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.game.protocol.FighterProtocol.ChangeModuleRes parseFrom(
+    public static com.game.protocol.FighterProtocol.ChangeModelRes parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.game.protocol.FighterProtocol.ChangeModuleRes parseFrom(byte[] data)
+    public static com.game.protocol.FighterProtocol.ChangeModelRes parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.game.protocol.FighterProtocol.ChangeModuleRes parseFrom(
+    public static com.game.protocol.FighterProtocol.ChangeModelRes parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.game.protocol.FighterProtocol.ChangeModuleRes parseFrom(java.io.InputStream input)
+    public static com.game.protocol.FighterProtocol.ChangeModelRes parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.game.protocol.FighterProtocol.ChangeModuleRes parseFrom(
+    public static com.game.protocol.FighterProtocol.ChangeModelRes parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.game.protocol.FighterProtocol.ChangeModuleRes parseDelimitedFrom(java.io.InputStream input)
+    public static com.game.protocol.FighterProtocol.ChangeModelRes parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static com.game.protocol.FighterProtocol.ChangeModuleRes parseDelimitedFrom(
+    public static com.game.protocol.FighterProtocol.ChangeModelRes parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.game.protocol.FighterProtocol.ChangeModuleRes parseFrom(
+    public static com.game.protocol.FighterProtocol.ChangeModelRes parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.game.protocol.FighterProtocol.ChangeModuleRes parseFrom(
+    public static com.game.protocol.FighterProtocol.ChangeModelRes parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -2072,7 +2072,7 @@ public final class FighterProtocol {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.game.protocol.FighterProtocol.ChangeModuleRes prototype) {
+    public static Builder newBuilder(com.game.protocol.FighterProtocol.ChangeModelRes prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     @java.lang.Override
@@ -2088,26 +2088,26 @@ public final class FighterProtocol {
       return builder;
     }
     /**
-     * Protobuf type {@code ChangeModuleRes}
+     * Protobuf type {@code ChangeModelRes}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:ChangeModuleRes)
-        com.game.protocol.FighterProtocol.ChangeModuleResOrBuilder {
+        // @@protoc_insertion_point(builder_implements:ChangeModelRes)
+        com.game.protocol.FighterProtocol.ChangeModelResOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.game.protocol.FighterProtocol.internal_static_ChangeModuleRes_descriptor;
+        return com.game.protocol.FighterProtocol.internal_static_ChangeModelRes_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.game.protocol.FighterProtocol.internal_static_ChangeModuleRes_fieldAccessorTable
+        return com.game.protocol.FighterProtocol.internal_static_ChangeModelRes_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.game.protocol.FighterProtocol.ChangeModuleRes.class, com.game.protocol.FighterProtocol.ChangeModuleRes.Builder.class);
+                com.game.protocol.FighterProtocol.ChangeModelRes.class, com.game.protocol.FighterProtocol.ChangeModelRes.Builder.class);
       }
 
-      // Construct using com.game.protocol.FighterProtocol.ChangeModuleRes.newBuilder()
+      // Construct using com.game.protocol.FighterProtocol.ChangeModelRes.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -2135,17 +2135,17 @@ public final class FighterProtocol {
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.game.protocol.FighterProtocol.internal_static_ChangeModuleRes_descriptor;
+        return com.game.protocol.FighterProtocol.internal_static_ChangeModelRes_descriptor;
       }
 
       @java.lang.Override
-      public com.game.protocol.FighterProtocol.ChangeModuleRes getDefaultInstanceForType() {
-        return com.game.protocol.FighterProtocol.ChangeModuleRes.getDefaultInstance();
+      public com.game.protocol.FighterProtocol.ChangeModelRes getDefaultInstanceForType() {
+        return com.game.protocol.FighterProtocol.ChangeModelRes.getDefaultInstance();
       }
 
       @java.lang.Override
-      public com.game.protocol.FighterProtocol.ChangeModuleRes build() {
-        com.game.protocol.FighterProtocol.ChangeModuleRes result = buildPartial();
+      public com.game.protocol.FighterProtocol.ChangeModelRes build() {
+        com.game.protocol.FighterProtocol.ChangeModelRes result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
@@ -2153,8 +2153,8 @@ public final class FighterProtocol {
       }
 
       @java.lang.Override
-      public com.game.protocol.FighterProtocol.ChangeModuleRes buildPartial() {
-        com.game.protocol.FighterProtocol.ChangeModuleRes result = new com.game.protocol.FighterProtocol.ChangeModuleRes(this);
+      public com.game.protocol.FighterProtocol.ChangeModelRes buildPartial() {
+        com.game.protocol.FighterProtocol.ChangeModelRes result = new com.game.protocol.FighterProtocol.ChangeModelRes(this);
         result.code_ = code_;
         result.msg_ = msg_;
         onBuilt();
@@ -2195,16 +2195,16 @@ public final class FighterProtocol {
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.game.protocol.FighterProtocol.ChangeModuleRes) {
-          return mergeFrom((com.game.protocol.FighterProtocol.ChangeModuleRes)other);
+        if (other instanceof com.game.protocol.FighterProtocol.ChangeModelRes) {
+          return mergeFrom((com.game.protocol.FighterProtocol.ChangeModelRes)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(com.game.protocol.FighterProtocol.ChangeModuleRes other) {
-        if (other == com.game.protocol.FighterProtocol.ChangeModuleRes.getDefaultInstance()) return this;
+      public Builder mergeFrom(com.game.protocol.FighterProtocol.ChangeModelRes other) {
+        if (other == com.game.protocol.FighterProtocol.ChangeModelRes.getDefaultInstance()) return this;
         if (other.getCode() != 0) {
           setCode(other.getCode());
         }
@@ -2227,11 +2227,11 @@ public final class FighterProtocol {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.game.protocol.FighterProtocol.ChangeModuleRes parsedMessage = null;
+        com.game.protocol.FighterProtocol.ChangeModelRes parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.game.protocol.FighterProtocol.ChangeModuleRes) e.getUnfinishedMessage();
+          parsedMessage = (com.game.protocol.FighterProtocol.ChangeModelRes) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -2359,41 +2359,1366 @@ public final class FighterProtocol {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:ChangeModuleRes)
+      // @@protoc_insertion_point(builder_scope:ChangeModelRes)
     }
 
-    // @@protoc_insertion_point(class_scope:ChangeModuleRes)
-    private static final com.game.protocol.FighterProtocol.ChangeModuleRes DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:ChangeModelRes)
+    private static final com.game.protocol.FighterProtocol.ChangeModelRes DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new com.game.protocol.FighterProtocol.ChangeModuleRes();
+      DEFAULT_INSTANCE = new com.game.protocol.FighterProtocol.ChangeModelRes();
     }
 
-    public static com.game.protocol.FighterProtocol.ChangeModuleRes getDefaultInstance() {
+    public static com.game.protocol.FighterProtocol.ChangeModelRes getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static final com.google.protobuf.Parser<ChangeModuleRes>
-        PARSER = new com.google.protobuf.AbstractParser<ChangeModuleRes>() {
+    private static final com.google.protobuf.Parser<ChangeModelRes>
+        PARSER = new com.google.protobuf.AbstractParser<ChangeModelRes>() {
       @java.lang.Override
-      public ChangeModuleRes parsePartialFrom(
+      public ChangeModelRes parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new ChangeModuleRes(input, extensionRegistry);
+        return new ChangeModelRes(input, extensionRegistry);
       }
     };
 
-    public static com.google.protobuf.Parser<ChangeModuleRes> parser() {
+    public static com.google.protobuf.Parser<ChangeModelRes> parser() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<ChangeModuleRes> getParserForType() {
+    public com.google.protobuf.Parser<ChangeModelRes> getParserForType() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.game.protocol.FighterProtocol.ChangeModuleRes getDefaultInstanceForType() {
+    public com.game.protocol.FighterProtocol.ChangeModelRes getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface UseSkillReqOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:UseSkillReq)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <pre>
+     * 单位Id
+     * </pre>
+     *
+     * <code>int64 unitId = 1;</code>
+     * @return The unitId.
+     */
+    long getUnitId();
+
+    /**
+     * <pre>
+     * 单位类型
+     * </pre>
+     *
+     * <code>int32 unitType = 2;</code>
+     * @return The unitType.
+     */
+    int getUnitType();
+
+    /**
+     * <pre>
+     * 技能id
+     * </pre>
+     *
+     * <code>int32 skillId = 3;</code>
+     * @return The skillId.
+     */
+    int getSkillId();
+  }
+  /**
+   * <pre>
+   * 使用技能
+   * </pre>
+   *
+   * Protobuf type {@code UseSkillReq}
+   */
+  public  static final class UseSkillReq extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:UseSkillReq)
+      UseSkillReqOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use UseSkillReq.newBuilder() to construct.
+    private UseSkillReq(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private UseSkillReq() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new UseSkillReq();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private UseSkillReq(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 8: {
+
+              unitId_ = input.readInt64();
+              break;
+            }
+            case 16: {
+
+              unitType_ = input.readInt32();
+              break;
+            }
+            case 24: {
+
+              skillId_ = input.readInt32();
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.game.protocol.FighterProtocol.internal_static_UseSkillReq_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.game.protocol.FighterProtocol.internal_static_UseSkillReq_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.game.protocol.FighterProtocol.UseSkillReq.class, com.game.protocol.FighterProtocol.UseSkillReq.Builder.class);
+    }
+
+    public static final int UNITID_FIELD_NUMBER = 1;
+    private long unitId_;
+    /**
+     * <pre>
+     * 单位Id
+     * </pre>
+     *
+     * <code>int64 unitId = 1;</code>
+     * @return The unitId.
+     */
+    public long getUnitId() {
+      return unitId_;
+    }
+
+    public static final int UNITTYPE_FIELD_NUMBER = 2;
+    private int unitType_;
+    /**
+     * <pre>
+     * 单位类型
+     * </pre>
+     *
+     * <code>int32 unitType = 2;</code>
+     * @return The unitType.
+     */
+    public int getUnitType() {
+      return unitType_;
+    }
+
+    public static final int SKILLID_FIELD_NUMBER = 3;
+    private int skillId_;
+    /**
+     * <pre>
+     * 技能id
+     * </pre>
+     *
+     * <code>int32 skillId = 3;</code>
+     * @return The skillId.
+     */
+    public int getSkillId() {
+      return skillId_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (unitId_ != 0L) {
+        output.writeInt64(1, unitId_);
+      }
+      if (unitType_ != 0) {
+        output.writeInt32(2, unitType_);
+      }
+      if (skillId_ != 0) {
+        output.writeInt32(3, skillId_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (unitId_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(1, unitId_);
+      }
+      if (unitType_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(2, unitType_);
+      }
+      if (skillId_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(3, skillId_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.game.protocol.FighterProtocol.UseSkillReq)) {
+        return super.equals(obj);
+      }
+      com.game.protocol.FighterProtocol.UseSkillReq other = (com.game.protocol.FighterProtocol.UseSkillReq) obj;
+
+      if (getUnitId()
+          != other.getUnitId()) return false;
+      if (getUnitType()
+          != other.getUnitType()) return false;
+      if (getSkillId()
+          != other.getSkillId()) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + UNITID_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getUnitId());
+      hash = (37 * hash) + UNITTYPE_FIELD_NUMBER;
+      hash = (53 * hash) + getUnitType();
+      hash = (37 * hash) + SKILLID_FIELD_NUMBER;
+      hash = (53 * hash) + getSkillId();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.game.protocol.FighterProtocol.UseSkillReq parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.game.protocol.FighterProtocol.UseSkillReq parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.game.protocol.FighterProtocol.UseSkillReq parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.game.protocol.FighterProtocol.UseSkillReq parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.game.protocol.FighterProtocol.UseSkillReq parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.game.protocol.FighterProtocol.UseSkillReq parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.game.protocol.FighterProtocol.UseSkillReq parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.game.protocol.FighterProtocol.UseSkillReq parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.game.protocol.FighterProtocol.UseSkillReq parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.game.protocol.FighterProtocol.UseSkillReq parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.game.protocol.FighterProtocol.UseSkillReq parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.game.protocol.FighterProtocol.UseSkillReq parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.game.protocol.FighterProtocol.UseSkillReq prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * <pre>
+     * 使用技能
+     * </pre>
+     *
+     * Protobuf type {@code UseSkillReq}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:UseSkillReq)
+        com.game.protocol.FighterProtocol.UseSkillReqOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.game.protocol.FighterProtocol.internal_static_UseSkillReq_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.game.protocol.FighterProtocol.internal_static_UseSkillReq_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.game.protocol.FighterProtocol.UseSkillReq.class, com.game.protocol.FighterProtocol.UseSkillReq.Builder.class);
+      }
+
+      // Construct using com.game.protocol.FighterProtocol.UseSkillReq.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        unitId_ = 0L;
+
+        unitType_ = 0;
+
+        skillId_ = 0;
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.game.protocol.FighterProtocol.internal_static_UseSkillReq_descriptor;
+      }
+
+      @java.lang.Override
+      public com.game.protocol.FighterProtocol.UseSkillReq getDefaultInstanceForType() {
+        return com.game.protocol.FighterProtocol.UseSkillReq.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.game.protocol.FighterProtocol.UseSkillReq build() {
+        com.game.protocol.FighterProtocol.UseSkillReq result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.game.protocol.FighterProtocol.UseSkillReq buildPartial() {
+        com.game.protocol.FighterProtocol.UseSkillReq result = new com.game.protocol.FighterProtocol.UseSkillReq(this);
+        result.unitId_ = unitId_;
+        result.unitType_ = unitType_;
+        result.skillId_ = skillId_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.game.protocol.FighterProtocol.UseSkillReq) {
+          return mergeFrom((com.game.protocol.FighterProtocol.UseSkillReq)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.game.protocol.FighterProtocol.UseSkillReq other) {
+        if (other == com.game.protocol.FighterProtocol.UseSkillReq.getDefaultInstance()) return this;
+        if (other.getUnitId() != 0L) {
+          setUnitId(other.getUnitId());
+        }
+        if (other.getUnitType() != 0) {
+          setUnitType(other.getUnitType());
+        }
+        if (other.getSkillId() != 0) {
+          setSkillId(other.getSkillId());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.game.protocol.FighterProtocol.UseSkillReq parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.game.protocol.FighterProtocol.UseSkillReq) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private long unitId_ ;
+      /**
+       * <pre>
+       * 单位Id
+       * </pre>
+       *
+       * <code>int64 unitId = 1;</code>
+       * @return The unitId.
+       */
+      public long getUnitId() {
+        return unitId_;
+      }
+      /**
+       * <pre>
+       * 单位Id
+       * </pre>
+       *
+       * <code>int64 unitId = 1;</code>
+       * @param value The unitId to set.
+       * @return This builder for chaining.
+       */
+      public Builder setUnitId(long value) {
+        
+        unitId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 单位Id
+       * </pre>
+       *
+       * <code>int64 unitId = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearUnitId() {
+        
+        unitId_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private int unitType_ ;
+      /**
+       * <pre>
+       * 单位类型
+       * </pre>
+       *
+       * <code>int32 unitType = 2;</code>
+       * @return The unitType.
+       */
+      public int getUnitType() {
+        return unitType_;
+      }
+      /**
+       * <pre>
+       * 单位类型
+       * </pre>
+       *
+       * <code>int32 unitType = 2;</code>
+       * @param value The unitType to set.
+       * @return This builder for chaining.
+       */
+      public Builder setUnitType(int value) {
+        
+        unitType_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 单位类型
+       * </pre>
+       *
+       * <code>int32 unitType = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearUnitType() {
+        
+        unitType_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int skillId_ ;
+      /**
+       * <pre>
+       * 技能id
+       * </pre>
+       *
+       * <code>int32 skillId = 3;</code>
+       * @return The skillId.
+       */
+      public int getSkillId() {
+        return skillId_;
+      }
+      /**
+       * <pre>
+       * 技能id
+       * </pre>
+       *
+       * <code>int32 skillId = 3;</code>
+       * @param value The skillId to set.
+       * @return This builder for chaining.
+       */
+      public Builder setSkillId(int value) {
+        
+        skillId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 技能id
+       * </pre>
+       *
+       * <code>int32 skillId = 3;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearSkillId() {
+        
+        skillId_ = 0;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:UseSkillReq)
+    }
+
+    // @@protoc_insertion_point(class_scope:UseSkillReq)
+    private static final com.game.protocol.FighterProtocol.UseSkillReq DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.game.protocol.FighterProtocol.UseSkillReq();
+    }
+
+    public static com.game.protocol.FighterProtocol.UseSkillReq getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<UseSkillReq>
+        PARSER = new com.google.protobuf.AbstractParser<UseSkillReq>() {
+      @java.lang.Override
+      public UseSkillReq parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new UseSkillReq(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<UseSkillReq> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<UseSkillReq> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.game.protocol.FighterProtocol.UseSkillReq getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface UseSkillResOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:UseSkillRes)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>int32 code = 1;</code>
+     * @return The code.
+     */
+    int getCode();
+
+    /**
+     * <code>string msg = 2;</code>
+     * @return The msg.
+     */
+    java.lang.String getMsg();
+    /**
+     * <code>string msg = 2;</code>
+     * @return The bytes for msg.
+     */
+    com.google.protobuf.ByteString
+        getMsgBytes();
+  }
+  /**
+   * Protobuf type {@code UseSkillRes}
+   */
+  public  static final class UseSkillRes extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:UseSkillRes)
+      UseSkillResOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use UseSkillRes.newBuilder() to construct.
+    private UseSkillRes(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private UseSkillRes() {
+      msg_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new UseSkillRes();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private UseSkillRes(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 8: {
+
+              code_ = input.readInt32();
+              break;
+            }
+            case 18: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              msg_ = s;
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.game.protocol.FighterProtocol.internal_static_UseSkillRes_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.game.protocol.FighterProtocol.internal_static_UseSkillRes_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.game.protocol.FighterProtocol.UseSkillRes.class, com.game.protocol.FighterProtocol.UseSkillRes.Builder.class);
+    }
+
+    public static final int CODE_FIELD_NUMBER = 1;
+    private int code_;
+    /**
+     * <code>int32 code = 1;</code>
+     * @return The code.
+     */
+    public int getCode() {
+      return code_;
+    }
+
+    public static final int MSG_FIELD_NUMBER = 2;
+    private volatile java.lang.Object msg_;
+    /**
+     * <code>string msg = 2;</code>
+     * @return The msg.
+     */
+    public java.lang.String getMsg() {
+      java.lang.Object ref = msg_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        msg_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string msg = 2;</code>
+     * @return The bytes for msg.
+     */
+    public com.google.protobuf.ByteString
+        getMsgBytes() {
+      java.lang.Object ref = msg_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        msg_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (code_ != 0) {
+        output.writeInt32(1, code_);
+      }
+      if (!getMsgBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, msg_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (code_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, code_);
+      }
+      if (!getMsgBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, msg_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.game.protocol.FighterProtocol.UseSkillRes)) {
+        return super.equals(obj);
+      }
+      com.game.protocol.FighterProtocol.UseSkillRes other = (com.game.protocol.FighterProtocol.UseSkillRes) obj;
+
+      if (getCode()
+          != other.getCode()) return false;
+      if (!getMsg()
+          .equals(other.getMsg())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + CODE_FIELD_NUMBER;
+      hash = (53 * hash) + getCode();
+      hash = (37 * hash) + MSG_FIELD_NUMBER;
+      hash = (53 * hash) + getMsg().hashCode();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.game.protocol.FighterProtocol.UseSkillRes parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.game.protocol.FighterProtocol.UseSkillRes parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.game.protocol.FighterProtocol.UseSkillRes parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.game.protocol.FighterProtocol.UseSkillRes parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.game.protocol.FighterProtocol.UseSkillRes parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.game.protocol.FighterProtocol.UseSkillRes parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.game.protocol.FighterProtocol.UseSkillRes parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.game.protocol.FighterProtocol.UseSkillRes parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.game.protocol.FighterProtocol.UseSkillRes parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.game.protocol.FighterProtocol.UseSkillRes parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.game.protocol.FighterProtocol.UseSkillRes parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.game.protocol.FighterProtocol.UseSkillRes parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.game.protocol.FighterProtocol.UseSkillRes prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code UseSkillRes}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:UseSkillRes)
+        com.game.protocol.FighterProtocol.UseSkillResOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.game.protocol.FighterProtocol.internal_static_UseSkillRes_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.game.protocol.FighterProtocol.internal_static_UseSkillRes_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.game.protocol.FighterProtocol.UseSkillRes.class, com.game.protocol.FighterProtocol.UseSkillRes.Builder.class);
+      }
+
+      // Construct using com.game.protocol.FighterProtocol.UseSkillRes.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        code_ = 0;
+
+        msg_ = "";
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.game.protocol.FighterProtocol.internal_static_UseSkillRes_descriptor;
+      }
+
+      @java.lang.Override
+      public com.game.protocol.FighterProtocol.UseSkillRes getDefaultInstanceForType() {
+        return com.game.protocol.FighterProtocol.UseSkillRes.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.game.protocol.FighterProtocol.UseSkillRes build() {
+        com.game.protocol.FighterProtocol.UseSkillRes result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.game.protocol.FighterProtocol.UseSkillRes buildPartial() {
+        com.game.protocol.FighterProtocol.UseSkillRes result = new com.game.protocol.FighterProtocol.UseSkillRes(this);
+        result.code_ = code_;
+        result.msg_ = msg_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.game.protocol.FighterProtocol.UseSkillRes) {
+          return mergeFrom((com.game.protocol.FighterProtocol.UseSkillRes)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.game.protocol.FighterProtocol.UseSkillRes other) {
+        if (other == com.game.protocol.FighterProtocol.UseSkillRes.getDefaultInstance()) return this;
+        if (other.getCode() != 0) {
+          setCode(other.getCode());
+        }
+        if (!other.getMsg().isEmpty()) {
+          msg_ = other.msg_;
+          onChanged();
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.game.protocol.FighterProtocol.UseSkillRes parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.game.protocol.FighterProtocol.UseSkillRes) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private int code_ ;
+      /**
+       * <code>int32 code = 1;</code>
+       * @return The code.
+       */
+      public int getCode() {
+        return code_;
+      }
+      /**
+       * <code>int32 code = 1;</code>
+       * @param value The code to set.
+       * @return This builder for chaining.
+       */
+      public Builder setCode(int value) {
+        
+        code_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 code = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearCode() {
+        
+        code_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object msg_ = "";
+      /**
+       * <code>string msg = 2;</code>
+       * @return The msg.
+       */
+      public java.lang.String getMsg() {
+        java.lang.Object ref = msg_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          msg_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string msg = 2;</code>
+       * @return The bytes for msg.
+       */
+      public com.google.protobuf.ByteString
+          getMsgBytes() {
+        java.lang.Object ref = msg_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          msg_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string msg = 2;</code>
+       * @param value The msg to set.
+       * @return This builder for chaining.
+       */
+      public Builder setMsg(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        msg_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string msg = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearMsg() {
+        
+        msg_ = getDefaultInstance().getMsg();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string msg = 2;</code>
+       * @param value The bytes for msg to set.
+       * @return This builder for chaining.
+       */
+      public Builder setMsgBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        msg_ = value;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:UseSkillRes)
+    }
+
+    // @@protoc_insertion_point(class_scope:UseSkillRes)
+    private static final com.game.protocol.FighterProtocol.UseSkillRes DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.game.protocol.FighterProtocol.UseSkillRes();
+    }
+
+    public static com.game.protocol.FighterProtocol.UseSkillRes getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<UseSkillRes>
+        PARSER = new com.google.protobuf.AbstractParser<UseSkillRes>() {
+      @java.lang.Override
+      public UseSkillRes parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new UseSkillRes(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<UseSkillRes> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<UseSkillRes> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.game.protocol.FighterProtocol.UseSkillRes getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -2410,15 +3735,25 @@ public final class FighterProtocol {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_AttackRes_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_ChangeModuleReq_descriptor;
+    internal_static_ChangeModelReq_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_ChangeModuleReq_fieldAccessorTable;
+      internal_static_ChangeModelReq_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_ChangeModuleRes_descriptor;
+    internal_static_ChangeModelRes_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_ChangeModuleRes_fieldAccessorTable;
+      internal_static_ChangeModelRes_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_UseSkillReq_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_UseSkillReq_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_UseSkillRes_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_UseSkillRes_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -2431,10 +3766,13 @@ public final class FighterProtocol {
       "\n\rFighter.proto\">\n\tAttackReq\022\016\n\006unitId\030\001" +
       " \001(\003\022\020\n\010unitType\030\002 \001(\005\022\017\n\007skillId\030\003 \001(\005\"" +
       "&\n\tAttackRes\022\014\n\004code\030\001 \001(\005\022\013\n\003msg\030\002 \001(\t\"" +
-      "*\n\017ChangeModuleReq\022\027\n\017fighterModuleId\030\001 " +
-      "\001(\005\",\n\017ChangeModuleRes\022\014\n\004code\030\001 \001(\005\022\013\n\003" +
-      "msg\030\002 \001(\tB$\n\021com.game.protocolB\017FighterP" +
-      "rotocolb\006proto3"
+      ")\n\016ChangeModelReq\022\027\n\017fighterModuleId\030\001 \001" +
+      "(\005\"+\n\016ChangeModelRes\022\014\n\004code\030\001 \001(\005\022\013\n\003ms" +
+      "g\030\002 \001(\t\"@\n\013UseSkillReq\022\016\n\006unitId\030\001 \001(\003\022\020" +
+      "\n\010unitType\030\002 \001(\005\022\017\n\007skillId\030\003 \001(\005\"(\n\013Use" +
+      "SkillRes\022\014\n\004code\030\001 \001(\005\022\013\n\003msg\030\002 \001(\tB$\n\021c" +
+      "om.game.protocolB\017FighterProtocolb\006proto" +
+      "3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -2452,17 +3790,29 @@ public final class FighterProtocol {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_AttackRes_descriptor,
         new java.lang.String[] { "Code", "Msg", });
-    internal_static_ChangeModuleReq_descriptor =
+    internal_static_ChangeModelReq_descriptor =
       getDescriptor().getMessageTypes().get(2);
-    internal_static_ChangeModuleReq_fieldAccessorTable = new
+    internal_static_ChangeModelReq_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_ChangeModuleReq_descriptor,
+        internal_static_ChangeModelReq_descriptor,
         new java.lang.String[] { "FighterModuleId", });
-    internal_static_ChangeModuleRes_descriptor =
+    internal_static_ChangeModelRes_descriptor =
       getDescriptor().getMessageTypes().get(3);
-    internal_static_ChangeModuleRes_fieldAccessorTable = new
+    internal_static_ChangeModelRes_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_ChangeModuleRes_descriptor,
+        internal_static_ChangeModelRes_descriptor,
+        new java.lang.String[] { "Code", "Msg", });
+    internal_static_UseSkillReq_descriptor =
+      getDescriptor().getMessageTypes().get(4);
+    internal_static_UseSkillReq_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_UseSkillReq_descriptor,
+        new java.lang.String[] { "UnitId", "UnitType", "SkillId", });
+    internal_static_UseSkillRes_descriptor =
+      getDescriptor().getMessageTypes().get(5);
+    internal_static_UseSkillRes_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_UseSkillRes_descriptor,
         new java.lang.String[] { "Code", "Msg", });
   }
 

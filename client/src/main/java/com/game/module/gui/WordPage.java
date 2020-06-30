@@ -234,4 +234,48 @@ public class WordPage extends JTextArea {
         builder.append("\n");
         refresh();
     }
+
+    public void printTaskConfigInfos(List<TaskProtocol.TaskConfigInfo> taskConfigInfos){
+        for(TaskProtocol.TaskConfigInfo taskConfigInfo:taskConfigInfos){
+            printTaskConfigInfo(taskConfigInfo);
+        }
+        refresh();
+    }
+
+    public void printTaskConfigInfo(TaskProtocol.TaskConfigInfo info){
+        builder.append("任务Id:").append(info.getId()).append("\n");
+        builder.append("任务名称:").append(info.getName()).append("\n");
+        builder.append("任务描述:").append(info.getDesc()).append("\n");
+        builder.append("任务类型:").append(info.getType()).append("\n");
+        builder.append("等级限制:").append(info.getLimitLevel()).append("\n");
+        builder.append("任务要求:").append(info.getTaskRequire()).append("\n");
+        builder.append("任务奖励").append("\n");
+        builder.append("经验奖励:").append(info.getExpr()).append("\n");
+        builder.append("金币奖励:").append(info.getGolds()).append("\n");
+        builder.append("道具奖励:").append(info.getProps()).append("\n");
+        builder.append("装备奖励:").append(info.getEquips()).append("\n");
+        builder.append("\n");
+    }
+
+    public void printReceiveTaskList(List<TaskProtocol.TaskInfo> taskInfos){
+        for(TaskProtocol.TaskInfo taskInfo:taskInfos){
+            printTaskInfo(taskInfo);
+        }
+        refresh();
+    }
+
+    public void printTaskInfo(TaskProtocol.TaskInfo info){
+        builder.append("任务Id:").append(info.getTaskId()).append("\n");
+        builder.append("任务名称:").append(info.getName()).append("\n");
+        builder.append("任务描述:").append(info.getDesc()).append("\n");
+        builder.append("任务类型:").append(info.getType()).append("\n");
+        builder.append("任务进度:").append("\n");
+
+        builder.append("任务奖励").append("\n");
+        builder.append("经验奖励:").append(info.getExpr()).append("\n");
+        builder.append("金币奖励:").append(info.getGolds()).append("\n");
+        builder.append("道具奖励:").append(info.getProps()).append("\n");
+        builder.append("装备奖励:").append(info.getEquips()).append("\n");
+        builder.append("\n");
+    }
 }

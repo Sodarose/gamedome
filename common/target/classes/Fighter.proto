@@ -2,24 +2,38 @@ syntax = "proto3";
 option java_package = "com.game.protocol";
 option java_outer_classname = "FighterProtocol";
 
-message AttackReq{
+message AttackReq {
     int64 unitId = 1;
     int32 unitType = 2;
     int32 skillId = 3;
 }
 
-message AttackRes{
+message AttackRes {
     int32 code = 1;
     string msg = 2;
 }
 
 // 转换状态请求
-message ChangeModuleReq{
+message ChangeModelReq {
     int32 fighterModuleId = 1;
 }
 
-message ChangeModuleRes{
+message ChangeModelRes {
     int32 code = 1;
     string msg = 2;
 }
 
+// 使用技能
+message UseSkillReq {
+    // 单位Id
+    int64 unitId = 1;
+    // 单位类型
+    int32 unitType = 2;
+    // 技能id
+    int32 skillId = 3;
+}
+
+message UseSkillRes{
+    int32 code = 1;
+    string msg = 2;
+}

@@ -31,4 +31,8 @@ public class PlayerSkill {
         }
     }
 
+    public boolean hasSkill(int skillId){
+        return skillMap.containsKey(skillId);
+    }
+
 }

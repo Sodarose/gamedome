@@ -3,6 +3,7 @@ package com.game.gameserver.common.config;
 import com.alibaba.fastjson.annotation.JSONField;
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,6 +18,17 @@ public class SceneNpcConfig {
     private int id;
     @JSONField(name = "sceneId")
     private int sceneId;
-    @JSONField(name = "sceneNpc")
-    private List<SceneNpc> sceneNpcList;
+    @JSONField(name = "sceneNpcConfig")
+    private String sceneNpcConfig;
+
+    @JSONField(serialize = false)
+    private List<Integer> sceneNpcConfigList;
+
+    public List<Integer> getSceneNpcConfigList() {
+        if (sceneNpcConfigList != null) {
+            return sceneNpcConfigList;
+        }
+        sceneNpcConfigList = new ArrayList<>();
+        return sceneNpcConfigList;
+    }
 }

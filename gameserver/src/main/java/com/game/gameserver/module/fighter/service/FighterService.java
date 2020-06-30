@@ -18,6 +18,25 @@ public interface FighterService {
      */
     FighterProtocol.AttackRes playerAttackReq(long playerId,long targetId,int unitType);
 
+    /**
+     * 玩家使用技能
+     *
+     * @param playerId 玩家Id
+     * @param targetId 技能目标
+     * @param unitType 单位类型
+     * @param skillId  技能Id
+     * @return com.game.protocol.FighterProtocol.UseSkillRes
+     */
+    FighterProtocol.UseSkillRes useSkill(long playerId,long targetId,int unitType,int skillId);
+
+    /**
+     * 角色切换战斗模式
+     *
+     * @param playerId
+     * @param model
+     * @return com.game.protocol.FighterProtocol.ChangeModelRes
+     */
+    FighterProtocol.ChangeModelRes changeFighterModel(long playerId,int model);
 
 
     /**
@@ -53,4 +72,5 @@ public interface FighterService {
      * @return void
      */
     void petUseSkill(long petId, long targetId, int unitType, int skillId);
+
 }

@@ -6,10 +6,9 @@ import com.game.gameserver.event.EventType;
 import com.game.gameserver.event.Listener;
 import com.game.gameserver.module.instance.event.EntryInstanceEvent;
 import com.game.gameserver.module.instance.event.ExitInstanceEvent;
-import com.game.gameserver.module.player.entity.Player;
 import com.game.gameserver.module.player.manager.PlayerManager;
 import com.game.gameserver.module.player.model.PlayerObject;
-import com.game.gameserver.module.scene.model.SceneObject;
+import com.game.gameserver.module.scene.bean.Scene;
 import com.game.gameserver.net.modelhandler.ModuleKey;
 import com.game.gameserver.net.modelhandler.scene.SceneCmd;
 import com.game.gameserver.util.ProtocolFactory;
@@ -39,17 +38,15 @@ public class SceneManager {
 
     public static SceneManager instance;
 
-    public SceneManager() {
-        instance = this;
-    }
-
     @Autowired
     private PlayerManager playerManager;
 
-    /**
-     * 已经创建的场景
-     */
-    private Map<Long, SceneObject> sceneObjectMap = new ConcurrentHashMap<>(4);
+    /** 本地缓存的场景数据 */
+    private final Map<Long, Scene> LOCAL_SCENE_MAP = new ConcurrentHashMap<>(4);
+
+    public SceneManager() {
+        instance = this;
+    }
 
     /**
      * 读取场景配置 创建场景
@@ -64,15 +61,15 @@ public class SceneManager {
             SceneNpcConfig sceneNpcConfig = StaticConfigManager.getInstance()
                     .getSceneNpcConfigMap().get(sceneConfig.getValue().getSceneNpcConfigId());
             // 创建场景对象
-            SceneObject sceneObject = new SceneObject(sceneConfig.getValue(), sceneMonsterConfig, sceneNpcConfig);
+            Scene scene = new Scene(sceneConfig.getValue(), sceneMonsterConfig, sceneNpcConfig);
             // 场景初始化
-            sceneObject.initialize();
-            sceneObjectMap.put(sceneObject.getId(), sceneObject);
+            scene.initialize();
+            LOCAL_SCENE_MAP.put(scene.getId(), scene);
         }
     }
 
-    public SceneObject getSceneObject(Long sceneId) {
-        return sceneObjectMap.get(sceneId);
+    public Scene getScene(Long sceneId) {
+        return LOCAL_SCENE_MAP.get(sceneId);
     }
 
     /**
@@ -84,7 +81,7 @@ public class SceneManager {
      */
     public void changeScene(PlayerObject playerObject, String sceneName) {
         Long sceneId = null;
-        for (Map.Entry<Long, SceneObject> entry : sceneObjectMap.entrySet()) {
+        for (Map.Entry<Long, Scene> entry : LOCAL_SCENE_MAP.entrySet()) {
             SceneConfig sceneConfig = entry.getValue().getSceneConfig();
             if (sceneName.equals(sceneConfig.getName())) {
                 sceneId = entry.getKey();
@@ -107,20 +104,14 @@ public class SceneManager {
      * @return boolean
      */
     public void entryScene(PlayerObject playerObject, Long sceneId) {
-        SceneObject sceneObject = sceneObjectMap.get(sceneId);
-        if (sceneObject == null) {
-            sceneObject = sceneObjectMap.get(1001);
+        Scene scene = LOCAL_SCENE_MAP.get(sceneId);
+        if (scene == null) {
+            scene = LOCAL_SCENE_MAP.get(1001);
         }
-        boolean result = sceneObject.entry(playerObject);
+        boolean result = scene.entry(playerObject);
         if (!result) {
             return;
         }
-        // 同步场景数据 (暂时直接同步场景数据)
-        SceneProtocol.SceneInfo sceneInfo = ProtocolFactory.createSceneInfo(sceneObject);
-        Message message = MessageUtil.createMessage(ModuleKey.SCENE_MODULE, SceneCmd.SYNC_SCENE
-                , sceneInfo.toByteArray());
-        // 广播
-        sceneObject.broadcast(message);
     }
 
 
@@ -131,20 +122,14 @@ public class SceneManager {
      * @return boolean
      */
     public void exitScene(PlayerObject playerObject) {
-        SceneObject sceneObject = sceneObjectMap.get(playerObject.getPlayer().getSceneId());
-        if (sceneObject == null) {
+        Scene scene = LOCAL_SCENE_MAP.get(playerObject.getPlayer().getSceneId());
+        if (scene == null) {
             return;
         }
-        boolean result = sceneObject.exit(playerObject);
+        boolean result = scene.exit(playerObject);
         if (!result) {
             return;
         }
-        // 同步场景数据 (暂时直接同步场景数据)
-        SceneProtocol.SceneInfo sceneInfo = ProtocolFactory.createSceneInfo(sceneObject);
-        Message message = MessageUtil.createMessage(ModuleKey.SCENE_MODULE, SceneCmd.SYNC_SCENE
-                , sceneInfo.toByteArray());
-        // 广播
-        sceneObject.broadcast(message);
     }
 
 
@@ -194,49 +179,4 @@ public class SceneManager {
             entryScene(playerObject,playerObject.getPlayer().getSceneId());
         }
     }
-
-    /**
-     * 同步场景所有数据
-     *
-     * @param sceneId
-     * @return void
-     */
-    public void syncSceneAllInfo(Long sceneId) {
-
-    }
-
-    /**
-     * 同步场景怪物数据
-     *
-     * @param sceneId
-     * @param monsterId
-     * @return void
-     */
-    public void syncSceneMonsterInfo(Long sceneId, Long... monsterId) {
-
-    }
-
-    /**
-     * 同步场景npc数据
-     *
-     * @param sceneId
-     * @param npcId
-     * @return void
-     */
-    public void syncSceneNpcInfo(Long sceneId, Long... npcId) {
-
-    }
-
-    /**
-     * 同步场景内玩家数据
-     *
-     * @param sceneId
-     * @param playerId
-     * @return void
-     */
-    public void syncScenePlayerInfo(Long sceneId, Long... playerId) {
-
-    }
-
-
 }

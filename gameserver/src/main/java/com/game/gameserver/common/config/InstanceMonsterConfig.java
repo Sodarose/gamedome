@@ -19,6 +19,6 @@ public class InstanceMonsterConfig {
     private int instanceId;
     @JSONField(name = "roundCount")
     private int roundCount;
-    @JSONField(name = "instanceMonster")
-    private List<InstanceMonster> instanceMonsterList;
+    @JSONField(name = "instanceMonsterConfig")
+    private String instanceMonsterConfig;
 }

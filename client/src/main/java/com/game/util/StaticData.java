@@ -76,4 +76,12 @@ public class StaticData {
         equipPart.put(12,"魔法石");
     }
 
+    public static Map<Integer,String> FIGHTER_MODEL = new HashMap<>();
+    static {
+        FIGHTER_MODEL.put(0,"和平模式");
+        FIGHTER_MODEL.put(1,"全体模式");
+        FIGHTER_MODEL.put(2,"团队模式");
+        FIGHTER_MODEL.put(3,"善恶模式");
+    }
+
 }

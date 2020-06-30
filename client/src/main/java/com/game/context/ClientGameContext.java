@@ -3,7 +3,6 @@ package com.game.context;
 import com.game.module.account.Account;
 import com.game.module.player.PlayerInfo;
 import com.game.module.player.SimplePlayerInfo;
-import com.game.module.scene.SceneInfo;
 import io.netty.channel.Channel;
 import lombok.Data;
 import org.springframework.stereotype.Component;

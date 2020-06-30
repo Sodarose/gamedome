@@ -26,7 +26,8 @@ import com.game.gameserver.module.pet.manager.PetManager;
 import com.game.gameserver.module.player.manager.PlayerManager;
 import com.game.gameserver.module.player.model.PlayerObject;
 import com.game.gameserver.module.scene.manager.SceneManager;
-import com.game.gameserver.module.scene.model.SceneObject;
+import com.game.gameserver.module.scene.bean.Scene;
+import com.game.gameserver.module.skill.manager.SkillManager;
 import com.game.gameserver.module.skill.type.SkillType;
 import com.game.gameserver.module.team.entity.Team;
 import com.game.gameserver.module.team.manager.TeamManager;
@@ -78,7 +79,8 @@ public class FighterServiceImpl implements FighterService {
     private InstanceManager instanceManager;
     @Autowired
     private CoolTimeManager coolTimeManager;
-
+    @Autowired
+    private SkillManager skillManager;
 
     /**
      * 玩家请求发起攻击
@@ -122,6 +124,68 @@ public class FighterServiceImpl implements FighterService {
         return FighterProtocol.AttackRes.newBuilder().setCode(0).setMsg("success").build();
     }
 
+
+    @Override
+    public FighterProtocol.UseSkillRes useSkill(long playerId, long targetId, int unitType, int skillId) {
+        PlayerObject playerObject = playerManager.getPlayerObject(playerId);
+        if (playerObject == null) {
+            return FighterProtocol.UseSkillRes.newBuilder().setCode(1000).setMsg("非法用户").build();
+        }
+        // 用户死亡
+        if (playerObject.isDead()) {
+            return FighterProtocol.UseSkillRes.newBuilder().setCode(1001).setMsg("您已经死亡 请等待复活").build();
+        }
+        // 查询技能资源
+        SkillConfig skillConfig = StaticConfigManager.getInstance().getSkillConfigMap().get(skillId);
+        if (skillConfig == null) {
+            return FighterProtocol.UseSkillRes.newBuilder().setCode(1002).setMsg("不存在该技能").build();
+        }
+        // 获取角色技能数据
+        /*PlayerSkill playerSkill = skillManager.getPlayerSkill(playerId);
+        if (playerSkill == null) {
+            return FighterProtocol.UseSkillRes.newBuilder().setCode(1003).setMsg("用户技能数据读取失败").build();
+        }
+        if (playerSkill.hasSkill(skillId)) {
+            return FighterProtocol.UseSkillRes.newBuilder().setCode(1004).setMsg("用户没有该技能").build();
+        }*/
+        // 判断技能冷却时间 获取单位冷却组件
+        UnitCoolTime unitCoolTime = coolTimeManager.getUnitCoolTime(playerId);
+        if (unitCoolTime != null) {
+            if (unitCoolTime.hasSkillCoolTime(skillId)) {
+                return FighterProtocol.UseSkillRes.newBuilder().setCode(1005).setMsg("技能冷却中").build();
+            }
+        }
+        playerUseSkill(playerId, targetId, unitType, skillId);
+        return FighterProtocol.UseSkillRes.newBuilder().setCode(0).setMsg("技能使用成功").build();
+    }
+
+    /**
+     * 角色切换战斗模式
+     *
+     * @param playerId
+     * @param model
+     * @return com.game.protocol.FighterProtocol.ChangeModelRes
+     */
+    @Override
+    public FighterProtocol.ChangeModelRes changeFighterModel(long playerId, int model) {
+        PlayerObject playerObject = playerManager.getPlayerObject(playerId);
+        if (playerObject == null) {
+            return FighterProtocol.ChangeModelRes.newBuilder().setCode(1000).setMsg("非法用户").build();
+        }
+        FighterModeEnum fighterModeEnum = null;
+        for(FighterModeEnum modeEnum:FighterModeEnum.values()){
+            if(modeEnum.ordinal()==model){
+                fighterModeEnum = modeEnum;
+                break;
+            }
+        }
+        if(fighterModeEnum==null){
+            return FighterProtocol.ChangeModelRes.newBuilder().setCode(1001).setMsg("错误参数").build();
+        }
+        playerObject.setFighterModeEnum(fighterModeEnum);
+        return FighterProtocol.ChangeModelRes.newBuilder().setCode(0).setMsg("模式切换成功").build();
+    }
+
     /**
      * 玩家释放技能
      *
@@ -144,7 +208,7 @@ public class FighterServiceImpl implements FighterService {
         }
         // 验证技能CD 时间
         if (verifySkillCoolTime(playerId, skillConfig)) {
-            logger.info("{} 释放技能{} 失败，该技能冷却中",playerObject.getPlayer().getName(),skillConfig.getName());
+            logger.info("{} 释放技能{} 失败，该技能冷却中", playerObject.getPlayer().getName(), skillConfig.getName());
             return;
         }
         // 玩家释放攻击性技能
@@ -183,7 +247,7 @@ public class FighterServiceImpl implements FighterService {
             // 对玩家释放
             if (unitType == UnitType.PLAYER) {
                 PlayerObject target = playerManager.getPlayerObject(targetId);
-                if (target == null||target.isDead()) {
+                if (target == null || target.isDead()) {
                     return;
                 }
                 playerCastDamageSkill2Player(playerObject, target, skillConfig);
@@ -191,7 +255,7 @@ public class FighterServiceImpl implements FighterService {
             // 对怪物释放
             if (unitType == UnitType.MONSTER) {
                 MonsterObject monsterObject = monsterManager.getMonster(targetId);
-                if (monsterObject == null||monsterObject.isDead()) {
+                if (monsterObject == null || monsterObject.isDead()) {
                     return;
                 }
                 playerCastDamageSkill2Monster(playerObject, monsterObject, skillConfig);
@@ -199,7 +263,7 @@ public class FighterServiceImpl implements FighterService {
             // 对宝宝释放
             if (unitType == UnitType.PET) {
                 Pet pet = petManager.getPet(targetId);
-                if (pet == null||pet.isDead()) {
+                if (pet == null || pet.isDead()) {
                     return;
                 }
                 playerCastDamageSkill2Pet(playerObject, pet, skillConfig);
@@ -226,11 +290,11 @@ public class FighterServiceImpl implements FighterService {
         // 范围内怪物
         if (playerObject.getInstanceId() == null) {
             // 一般场景中 获取场景中的所有怪物
-            SceneObject sceneObject = sceneManager.getSceneObject(playerObject.getPlayer().getSceneId());
-            if (sceneObject == null) {
+            Scene scene = sceneManager.getScene(playerObject.getPlayer().getSceneId());
+            if (scene == null) {
                 return;
             }
-            Map<Long, Long> map = sceneObject.getMonsterObjectMap();
+            Map<Long, Long> map = scene.getMonsterObjectMap();
             for (Map.Entry<Long, Long> entry : map.entrySet()) {
                 MonsterObject monsterObject = monsterManager.getMonster(entry.getValue());
                 // 排除死亡的怪物和已经回收的怪物
@@ -573,26 +637,26 @@ public class FighterServiceImpl implements FighterService {
         int petConfigId = Integer.parseInt(formula);
         // 获得宝宝基础配置
         PetConfig petConfig = StaticConfigManager.getInstance().getPetConfigMap().get(petConfigId);
-        if(petConfig==null){
+        if (petConfig == null) {
             return;
         }
         // 放入场景中
-        if(playerObject.getInstanceId()==null){
-            SceneObject sceneObject = sceneManager.getSceneObject(playerObject.getPlayer().getSceneId());
-            if(sceneObject==null){
+        if (playerObject.getInstanceId() == null) {
+            Scene scene = sceneManager.getScene(playerObject.getPlayer().getSceneId());
+            if (scene == null) {
                 return;
             }
             // 生成宝宝
-            Pet pet = petManager.createPet(playerObject.getPlayer().getId(),petConfigId);
+            Pet pet = petManager.createPet(playerObject.getPlayer().getId(), petConfigId);
             // 放入场景
-            sceneObject.getPetMap().put(pet.getId(),pet);
-        }else{
+            scene.getPetMap().put(pet.getId(), pet);
+        } else {
             // 放入副本中
             InstanceObject instanceObject = instanceManager.getInstance(playerObject.getInstanceId());
-            if(instanceObject==null){
+            if (instanceObject == null) {
                 return;
             }
-            Pet pet = petManager.createPet(playerObject.getPlayer().getId(),petConfigId);
+            Pet pet = petManager.createPet(playerObject.getPlayer().getId(), petConfigId);
             instanceObject.addPet(pet.getId());
         }
     }
@@ -676,9 +740,9 @@ public class FighterServiceImpl implements FighterService {
         List<PlayerObject> targets = new ArrayList<>();
         // 如果是场景怪物
         if (monsterObject.getMonsterType() == MonsterType.SCENE_MONSTER) {
-            SceneObject sceneObject = sceneManager.getSceneObject(monsterObject.getAddrId());
+            Scene scene = sceneManager.getScene(monsterObject.getAddrId());
             // 获取场景内玩家
-            Map<Long, PlayerObject> playerObjectMap = sceneObject.getPlayerObjectMap();
+            Map<Long, PlayerObject> playerObjectMap = scene.getPlayerObjectMap();
             for (Map.Entry<Long, PlayerObject> entry : playerObjectMap.entrySet()) {
                 if (entry.getValue().isDead()) {
                     continue;

@@ -29,6 +29,16 @@ public class FighterHandle extends BaseHandler {
     @Autowired
     private WordPage wordPage;
 
+    public void useSkill(long unitId,int unitType,int skillId){
+        FighterProtocol.UseSkillReq.Builder builder = FighterProtocol.UseSkillReq.newBuilder();
+        builder.setUnitId(unitId);
+        builder.setUnitType(unitType);
+        builder.setSkillId(skillId);
+        Message message = MessageUtil.createMessage(ModuleKey.FIGHTER_MODEL,FighterCmd.USE_SKILL,builder.build()
+                .toByteArray());
+        gameContext.getChannel().writeAndFlush(message);
+    }
+
     public void attack(long unitId,int unitType){
         FighterProtocol.AttackReq.Builder builder = FighterProtocol.AttackReq.newBuilder();
         builder.setUnitId(unitId);
@@ -51,7 +61,7 @@ public class FighterHandle extends BaseHandler {
     }
 
     public void changeFighterModel(int model){
-        FighterProtocol.ChangeModuleReq.Builder builder = FighterProtocol.ChangeModuleReq.newBuilder();
+        FighterProtocol.ChangeModelReq.Builder builder = FighterProtocol.ChangeModelReq.newBuilder();
         builder.setFighterModuleId(model);
         Message message = MessageUtil.createMessage(ModuleKey.FIGHTER_MODEL,FighterCmd.CHANGE_MODEL,
                 builder.build().toByteArray());
@@ -61,11 +71,20 @@ public class FighterHandle extends BaseHandler {
     @CmdHandler(cmd = FighterCmd.CHANGE_MODEL)
     public void receiveChangeFighterModelRes(Message message){
         try {
-            FighterProtocol.ChangeModuleRes res = FighterProtocol.ChangeModuleRes.parseFrom(message.getData());
+            FighterProtocol.ChangeModelRes res = FighterProtocol.ChangeModelRes.parseFrom(message.getData());
             wordPage.print(res.getMsg());
         } catch (InvalidProtocolBufferException e) {
             e.printStackTrace();
         }
+    }
 
+    @CmdHandler(cmd = FighterCmd.USE_SKILL)
+    public void receiveUserSkillRes(Message message){
+        try {
+            FighterProtocol.UseSkillRes res = FighterProtocol.UseSkillRes.parseFrom(message.getData());
+            wordPage.print(res.getMsg());
+        } catch (InvalidProtocolBufferException e) {
+            e.printStackTrace();
+        }
     }
 }

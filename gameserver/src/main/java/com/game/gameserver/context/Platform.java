@@ -44,6 +44,7 @@ public class Platform {
     public void startUp() {
         logger.info("platform start up ......");
         staticConfigManager.loadConfig();
+        // 读取场景数据
         sceneManager.loadScene();
         chatManager.initialize();
         storeManager.loadStore();

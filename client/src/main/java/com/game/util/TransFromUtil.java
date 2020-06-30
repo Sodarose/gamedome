@@ -7,7 +7,6 @@ import com.game.module.player.OtherPlayerInfo;
 import com.game.module.player.PlayerBattle;
 import com.game.module.player.PlayerInfo;
 import com.game.module.player.SimplePlayerInfo;
-import com.game.module.scene.SceneInfo;
 import com.game.module.store.Commodity;
 import com.game.protocol.Actor;
 import com.game.protocol.PlayerProtocol;

@@ -33,14 +33,38 @@ public class FighterHandle extends BaseHandler {
         }
         try {
             FighterProtocol.AttackReq attackReq = FighterProtocol.AttackReq.parseFrom(message.getData());
-            FighterProtocol.AttackRes res = fighterService.playerAttackReq(playerObject.getPlayer().getId(),attackReq.getUnitId()
-                    ,attackReq.getUnitType());
-            Message resMsg = MessageUtil.createMessage(ModuleKey.FIGHTER_MODEL,FighterCmd.ATTACK,res.toByteArray());
+            FighterProtocol.AttackRes res = fighterService.playerAttackReq(playerObject.getPlayer().getId(), attackReq.getUnitId()
+                    , attackReq.getUnitType());
+            Message resMsg = MessageUtil.createMessage(ModuleKey.FIGHTER_MODEL, FighterCmd.ATTACK, res.toByteArray());
             channel.writeAndFlush(resMsg);
         } catch (InvalidProtocolBufferException e) {
             e.printStackTrace();
         }
     }
 
-    
+    @CmdHandler(cmd = FighterCmd.CHANGE_MODEL)
+    public void handleChangeFighterModelReq(Message message, Channel channel) {
+        PlayerObject playerObject = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
+        if (playerObject == null) {
+            return;
+        }
+    }
+
+    @CmdHandler(cmd = FighterCmd.USE_SKILL)
+    public void handleUseSkillReq(Message message, Channel channel) {
+        PlayerObject playerObject = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
+        if (playerObject == null) {
+            return;
+        }
+        try {
+            FighterProtocol.UseSkillReq req = FighterProtocol.UseSkillReq.parseFrom(message.getData());
+            FighterProtocol.UseSkillRes res = fighterService.useSkill(playerObject.getPlayer().getId(),
+                    req.getUnitId(), req.getUnitType(), req.getSkillId());
+            Message resMsg = MessageUtil.createMessage(ModuleKey.FIGHTER_MODEL,
+                    FighterCmd.USE_SKILL, res.toByteArray());
+            channel.writeAndFlush(resMsg);
+        } catch (InvalidProtocolBufferException e) {
+            e.printStackTrace();
+        }
+    }
 }

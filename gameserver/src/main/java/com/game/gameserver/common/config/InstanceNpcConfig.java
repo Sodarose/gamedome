@@ -17,6 +17,6 @@ public class InstanceNpcConfig {
     private int id;
     @JSONField(name = "instanceId")
     private int instanceId;
-    @JSONField(name = "instanceNpc")
-    private List<InstanceNpc> instanceNpcList;
+    @JSONField(name = "instanceNpcConfig")
+    private String instanceNpcConfig;
 }

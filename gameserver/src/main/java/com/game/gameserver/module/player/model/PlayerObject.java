@@ -55,7 +55,7 @@ public class PlayerObject  implements  Serializable,Unit {
     private Map<String,Object> tempData = new ConcurrentHashMap<>();
 
     /** 战斗模式*/
-    private FighterModeEnum fighterModeEnum = FighterModeEnum.ALL;
+    private FighterModeEnum fighterModeEnum = FighterModeEnum.PEACE;
 
     /** 攻击的单位 */
     private volatile Unit attackTarget;

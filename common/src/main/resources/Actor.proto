@@ -2,6 +2,12 @@ syntax = "proto3";
 option java_package = "com.game.protocol";
 option java_outer_classname = "Actor";
 
+message SimpleMonsterInfo {
+    int64  id = 1;
+    string name = 2;
+    int32  currHp = 3;
+}
+
 message MonsterInfo {
     int64 id = 1;
     string name = 2;
@@ -13,6 +19,11 @@ message MonsterInfo {
     int32 defense = 9;
     int32 currHp = 10;
     int32 currMp = 11;
+}
+
+message SimpleNpcInfo{
+    int64  id = 1;
+    string name = 2;
 }
 
 message NpcInfo {

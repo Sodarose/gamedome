@@ -4,7 +4,6 @@ import com.game.context.ClientGameContext;
 import com.game.module.monster.Monster;
 import com.game.module.npc.Npc;
 import com.game.module.player.OtherPlayerInfo;
-import com.game.module.scene.SceneInfo;
 import com.game.protocol.Actor;
 import com.game.protocol.InstanceProtocol;
 import com.game.protocol.PlayerProtocol;
@@ -52,12 +51,17 @@ public class ScenePage extends JTextArea {
                 .append("\n");
         builder.append("周围玩家：");
         for (Map.Entry<Long, OtherPlayerInfo> entry : sceneInfo.getPlayerMap().entrySet()) {
-            builder.append(entry.getValue().getName()).append("\t");
+            // 打印名字和
+            builder.append(entry.getValue().getName())
+                    .append("(").append(entry.getValue().getPlayerBattle().getCurrHp()).append(")")
+                    .append("\t");
         }
         builder.append("\n");
         builder.append("周围怪物：");
         for (Map.Entry<Long, Monster> entry : sceneInfo.getMonsterMap().entrySet()) {
-            builder.append(entry.getValue().getName()).append("\t");
+            builder.append(entry.getValue().getName())
+                    .append("(").append(entry.getValue().getCurrHp()).append(")")
+                    .append("\t");
         }
         builder.append("\n");
         builder.append("周围npc：");
