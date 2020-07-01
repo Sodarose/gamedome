@@ -26,7 +26,8 @@ import com.game.gameserver.module.pet.manager.PetManager;
 import com.game.gameserver.module.player.manager.PlayerManager;
 import com.game.gameserver.module.player.model.PlayerObject;
 import com.game.gameserver.module.scene.manager.SceneManager;
-import com.game.gameserver.module.scene.bean.Scene;
+import com.game.gameserver.module.scene.model.SceneObject;
+import com.game.gameserver.module.skill.entity.PlayerSkill;
 import com.game.gameserver.module.skill.manager.SkillManager;
 import com.game.gameserver.module.skill.type.SkillType;
 import com.game.gameserver.module.team.entity.Team;
@@ -290,11 +291,11 @@ public class FighterServiceImpl implements FighterService {
         // 范围内怪物
         if (playerObject.getInstanceId() == null) {
             // 一般场景中 获取场景中的所有怪物
-            Scene scene = sceneManager.getScene(playerObject.getPlayer().getSceneId());
-            if (scene == null) {
+            SceneObject sceneObject = sceneManager.getSceneObject(playerObject.getPlayer().getSceneId());
+            if (sceneObject == null) {
                 return;
             }
-            Map<Long, Long> map = scene.getMonsterObjectMap();
+            Map<Long, Long> map = sceneObject.getMonsterObjectMap();
             for (Map.Entry<Long, Long> entry : map.entrySet()) {
                 MonsterObject monsterObject = monsterManager.getMonster(entry.getValue());
                 // 排除死亡的怪物和已经回收的怪物
@@ -642,14 +643,14 @@ public class FighterServiceImpl implements FighterService {
         }
         // 放入场景中
         if (playerObject.getInstanceId() == null) {
-            Scene scene = sceneManager.getScene(playerObject.getPlayer().getSceneId());
-            if (scene == null) {
+            SceneObject sceneObject = sceneManager.getSceneObject(playerObject.getPlayer().getSceneId());
+            if (sceneObject == null) {
                 return;
             }
             // 生成宝宝
             Pet pet = petManager.createPet(playerObject.getPlayer().getId(), petConfigId);
             // 放入场景
-            scene.getPetMap().put(pet.getId(), pet);
+            sceneObject.getPetMap().put(pet.getId(), pet);
         } else {
             // 放入副本中
             InstanceObject instanceObject = instanceManager.getInstance(playerObject.getInstanceId());
@@ -740,9 +741,9 @@ public class FighterServiceImpl implements FighterService {
         List<PlayerObject> targets = new ArrayList<>();
         // 如果是场景怪物
         if (monsterObject.getMonsterType() == MonsterType.SCENE_MONSTER) {
-            Scene scene = sceneManager.getScene(monsterObject.getAddrId());
+            SceneObject sceneObject = sceneManager.getSceneObject(monsterObject.getAddrId());
             // 获取场景内玩家
-            Map<Long, PlayerObject> playerObjectMap = scene.getPlayerObjectMap();
+            Map<Long, PlayerObject> playerObjectMap = sceneObject.getPlayerObjectMap();
             for (Map.Entry<Long, PlayerObject> entry : playerObjectMap.entrySet()) {
                 if (entry.getValue().isDead()) {
                     continue;

@@ -1,6 +1,7 @@
 package com.game.gameserver.module.instance.model;
 
 import com.game.gameserver.common.config.InstanceConfig;
+import com.game.gameserver.common.config.InstanceMonster;
 import com.game.gameserver.common.config.InstanceMonsterConfig;
 import com.game.gameserver.common.config.StaticConfigManager;
 import com.game.gameserver.module.instance.manager.InstanceManager;

@@ -1,4 +1,4 @@
-package com.game.gameserver.module.scene.bean;
+package com.game.gameserver.module.scene.model;
 
 import com.game.gameserver.common.config.*;
 import com.game.gameserver.module.monster.manager.MonsterManager;
@@ -20,64 +20,62 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 /**
- * 场景实体
+ * 场景对象
  *
  * @author xuewenkang
  * @date 2020/6/8 16:15
  */
-public class Scene {
+public class SceneObject {
 
-    private final static Logger logger = LoggerFactory.getLogger(Scene.class);
+    private final static Logger logger = LoggerFactory.getLogger(SceneObject.class);
 
     /**
      * id
      */
     private Long id;
-
     /**
      * 场景静态信息
      */
     private final SceneConfig sceneConfig;
-
     /**
      * 场景怪物配置信息
      */
     private final SceneMonsterConfig sceneMonsterConfig;
-
     /**
      * 场景Npc配置信息
      */
     private final SceneNpcConfig sceneNpcConfig;
-
     /**
      * 玩家数量
      */
     private final AtomicInteger playerNum = new AtomicInteger(0);
-
     /**
      * 场景内玩家Map
      */
     private final Map<Long, PlayerObject> playerMap = new ConcurrentHashMap<>();
-
     /**
      * 场景内怪物Map
      */
     private final Map<Long, Long> monsterMap = new ConcurrentHashMap<>();
-
     /**
      * 场景内Npc Map
      */
     private final Map<Long, NpcObject> npcMap = new ConcurrentHashMap<>();
-
     /**
      * 场景内召唤物map
      */
     private final Map<Long, Pet> petMap = new ConcurrentHashMap<>();
-
+    /**
+     * 场景出口
+     */
     private final List<String> sceneExitWays = new ArrayList<>();
+    /**
+     * 锁
+     */
+    private final ReentrantReadWriteLock lock = new ReentrantReadWriteLock();
 
 
-    public Scene(SceneConfig sceneConfig, SceneMonsterConfig sceneMonsterConfig, SceneNpcConfig sceneNpcConfig) {
+    public SceneObject(SceneConfig sceneConfig, SceneMonsterConfig sceneMonsterConfig, SceneNpcConfig sceneNpcConfig) {
         this.id = sceneConfig.getId();
         this.sceneConfig = sceneConfig;
         this.sceneMonsterConfig = sceneMonsterConfig;
@@ -110,6 +108,14 @@ public class Scene {
             logger.info("scene {} don't have SceneMonsterConfig ", sceneConfig.getName());
             return;
         }
+        for (SceneMonster sceneMonster : sceneMonsterConfig.getSceneMonsterList()) {
+            List<Long> monsterObjectList = MonsterManager.instance
+                    .createMonsterObjectList(sceneMonster.getMonsterId(),
+                            sceneMonster.getCount(), MonsterType.SCENE_MONSTER, this.id);
+            for (Long monsterId : monsterObjectList) {
+                monsterMap.put(monsterId, monsterId);
+            }
+        }
     }
 
 
@@ -123,6 +129,13 @@ public class Scene {
         if (sceneNpcConfig == null) {
             logger.info("scene {} don't have SceneNpcConfig ", sceneConfig.getName());
             return;
+        }
+        for (SceneNpc sceneNpc : sceneNpcConfig.getSceneNpcList()) {
+            NpcObject npcObject = NpcManager.instance.createNpcObject(sceneNpc.getNpcId());
+            if (npcObject == null) {
+                continue;
+            }
+            npcMap.put(npcObject.getId(), npcObject);
         }
     }
 
@@ -160,7 +173,28 @@ public class Scene {
         }
     }
 
+    /**
+     * 广播消息给场景内用户
+     *
+     * @param message    消息
+     * @param excludeIds 排除的名单
+     * @return boolean
+     */
+    public void broadcast(Message message, Long... excludeIds) {
+        lock.readLock().lock();
+        List<Long> excludeList = Arrays.asList(excludeIds);
+        try {
+            for (Map.Entry<Long, PlayerObject> entry : playerMap.entrySet()) {
+                if (excludeList.contains(entry.getKey())) {
+                    continue;
+                }
+                entry.getValue().getChannel().writeAndFlush(message);
+            }
 
+        } finally {
+            lock.readLock().unlock();
+        }
+    }
 
     public Long getId() {
         return id;

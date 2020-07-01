@@ -4,6 +4,7 @@ import com.game.context.ClientGameContext;
 import com.game.module.monster.Monster;
 import com.game.module.npc.Npc;
 import com.game.module.player.OtherPlayerInfo;
+import com.game.module.scene.SceneInfo;
 import com.game.protocol.Actor;
 import com.game.protocol.InstanceProtocol;
 import com.game.protocol.PlayerProtocol;

@@ -40,18 +40,18 @@ message SyncPlayerInfo {
     PlayerInfo playerInfo = 1;
 }
 
-// 简要玩家信息
-message SimplePlayerInfo{
-    // 玩家Id
-    int64  Id = 1;
-    // 玩家名称
-    string name = 2;
-    // 当前血量
-    int32  currHp = 3;
+// 背包请求
+message OpenBagReq {
+
 }
 
-// 角色信息
-message CharacterInfo {
+// 背包响应
+message OpenBagRes {
+
+}
+
+// 简要角色信息
+message SimplePlayerInfo {
     int64 id = 1;
     string name = 2;
     int32 level = 3;
@@ -76,8 +76,14 @@ message PlayerInfo {
     repeated ItemInfo goodsInfo = 9;
     // 技能数据
     PlayerSkill playerSkill = 10;
+    // 角色Buffer信息
+    repeated BufferInfo bufferInfo = 11;
 }
 
+// buffer信息
+message BufferInfo {
+
+}
 
 message PlayerSkill{
     repeated SkillInfo skillInfo = 10;

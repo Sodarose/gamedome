@@ -4,48 +4,52 @@ option java_outer_classname = "SceneProtocol";
 import "Player.proto";
 import "Actor.proto";
 
-// 移动场景请求
-message MoveSceneReq {
+// 进入场景
+message EntrySceneReq {
+
+}
+
+// 进入场景响应
+message EntrySceneRes {
+
+}
+
+// 退出场景请求
+message ExitSceneReq {
+
+}
+
+// 退出场景响应
+message ExitSceneRes {
+
+}
+
+message ChangeSceneReq {
     string sceneName = 1;
 }
 
-// 移动场景响应
-message MoveSceneRes {
+message ChangeSceneRes {
     int32 code = 1;
     string msg = 2;
 }
 
-// 同步场景数据
-message SyncSceneInfo {
-    SceneInfo sceneInfo = 1;
-}
-
-// 查看场景列表
-message QuerySceneListReq {
-
-}
-
-// 查看场景响应
-message QuerySceneListRes {
-    repeated SimpleSceneInfo simpleInfo = 1;
-}
-
-// 场景实体信息
 message SceneInfo {
     int64 id = 1;
     string name = 2;
     string description = 3;
-    int32 playerCount = 4;
-    repeated SimplePlayerInfo players = 5;
-    repeated SimpleMonsterInfo monsters = 6;
-    repeated SimpleNpcInfo npcs = 7;
+    int32 playerNum = 4;
+    map<int64, OtherPlayerInfo> players = 5;
+    map<int64, MonsterInfo> monsters = 6;
+    map<int64, NpcInfo> npcs = 7;
     repeated string sceneExitWays = 8;
 }
 
-// 简要场景信息
-message SimpleSceneInfo{
-    int64 id = 1;
-    string name = 2;
-    string description = 3;
-    int32 playerCount = 4;
+// 查看场景列表
+message CheckSceneListReq {
+
 }
+
+message SceneList {
+    map<string, int32> scenes = 1;
+}
+

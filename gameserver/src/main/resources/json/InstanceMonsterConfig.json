@@ -3,36 +3,78 @@
     "id": 1001,
     "instanceId": 1001,
     "roundCount": 3,
-    "instanceMonsterConfig":"1001_10|1018_1|1018_1"
+    "instanceMonster": [
+
+      {
+        "roundIndex": 1,
+        "monsterId": 1001,
+        "count": 10
+      },
+      {
+        "roundIndex": 2,
+        "monsterId": 1018,
+        "count": 1
+      },
+      {
+        "roundIndex": 3,
+        "monsterId": 1018,
+        "count": 1
+      }
+    ]
   },
   {
     "id": 1002,
     "instanceId": 1002,
-    "roundCount": 3
-    "instanceMonsterConfig": "1001_10|1018_1|1018_1"
+    "roundCount": 2,
+    "instanceMonster": [
+      {
+        "monsterId": 1019,
+        "count": 1
+      }
+    ]
   },
   {
     "id": 1003,
     "instanceId": 1003,
     "roundCount": 3,
-    "instanceMonsterConfig": "1001_10|1018_1|1018_1"
+    "instanceMonster": [
+      {
+        "monsterId": 1020,
+        "count": 1
+      }
+    ]
   },
   {
     "id": 1004,
     "instanceId": 1004,
-    "roundCount": 3,
-    "instanceMonsterConfig": "1001_10|1018_1|1018_1"
+    "roundCount": 4,
+    "instanceMonster": [
+      {
+        "monsterId": 1021,
+        "count": 1
+      }
+    ]
   },
   {
     "id": 1005,
     "instanceId": 1005,
-    "roundCount": 3,
-    "instanceMonsterConfig": "1001_10|1018_1|1018_1"
+    "roundCount": 7,
+    "instanceMonster": [
+      {
+        "monsterId": 1022,
+        "count": 1
+      }
+    ]
   },
   {
     "id": 1006,
     "instanceId": 1006,
-    "roundCount": 3,
-    "instanceMonsterConfig": "1001_10|1018_1|1018_1"
+    "roundCount": 7,
+    "instanceMonster": [
+      {
+        "monsterId": 1023,
+        "count": 1
+      }
+    ]
   }
 ]

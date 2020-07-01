@@ -4,9 +4,10 @@ import com.game.gameserver.module.chat.entity.ChatChannel;
 import com.game.gameserver.module.chat.manager.ChatManager;
 import com.game.gameserver.module.chat.service.ChatService;
 import com.game.gameserver.module.player.manager.PlayerManager;
+import com.game.gameserver.module.player.entity.Player;
 import com.game.gameserver.module.player.model.PlayerObject;
 import com.game.gameserver.module.scene.manager.SceneManager;
-import com.game.gameserver.module.scene.bean.Scene;
+import com.game.gameserver.module.scene.model.SceneObject;
 import com.game.gameserver.net.modelhandler.ModuleKey;
 import com.game.gameserver.net.modelhandler.chat.ChatCmd;
 import com.game.protocol.ChatProtocol;
@@ -112,11 +113,11 @@ public class ChatServiceImpl implements ChatService {
         if(sceneId==null){
             return;
         }
-        Scene scene = sceneManager.getScene(sceneId);
-        if(scene ==null){
+        SceneObject sceneObject = sceneManager.getSceneObject(sceneId);
+        if(sceneObject==null){
             return;
         }
-        for(Map.Entry<Long, PlayerObject> entry: scene.getPlayerObjectMap().entrySet()){
+        for(Map.Entry<Long, PlayerObject> entry:sceneObject.getPlayerObjectMap().entrySet()){
             // 不需要发给自己
             if(entry.getKey().equals(player.getPlayer().getId())){
                 continue;

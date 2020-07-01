@@ -12,7 +12,7 @@ import com.game.gameserver.module.npc.model.NpcObject;
 import com.game.gameserver.module.player.entity.PlayerBattle;
 import com.game.gameserver.module.player.manager.PlayerManager;
 import com.game.gameserver.module.player.model.PlayerObject;
-import com.game.gameserver.module.scene.bean.Scene;
+import com.game.gameserver.module.scene.model.SceneObject;
 import com.game.gameserver.module.skill.entity.Skill;
 import com.game.gameserver.module.skill.entity.PlayerSkill;
 import com.game.gameserver.module.store.entity.Commodity;
@@ -125,26 +125,26 @@ public class ProtocolFactory {
 
 
     /**
-     * @param scene
+     * @param sceneObject
      * @return com.game.protocol.SceneProtocol.SceneInfo
      */
-    public static SceneProtocol.SceneInfo createSceneInfo(Scene scene) {
+    public static SceneProtocol.SceneInfo createSceneInfo(SceneObject sceneObject) {
         SceneProtocol.SceneInfo.Builder builder = SceneProtocol.SceneInfo.newBuilder();
-        builder.setId(scene.getId());
-        builder.setName(scene.getSceneConfig().getName());
-        builder.setDescription(scene.getSceneConfig().getDesc());
-        builder.setPlayerNum(scene.getPlayerNum());
-        for (Map.Entry<Long, PlayerObject> entry : scene.getPlayerObjectMap().entrySet()) {
+        builder.setId(sceneObject.getId());
+        builder.setName(sceneObject.getSceneConfig().getName());
+        builder.setDescription(sceneObject.getSceneConfig().getDesc());
+        builder.setPlayerNum(sceneObject.getPlayerNum());
+        for (Map.Entry<Long, PlayerObject> entry : sceneObject.getPlayerObjectMap().entrySet()) {
             builder.putPlayers(entry.getKey(), createOtherPlayerInfo(entry.getValue()));
         }
-        for (Map.Entry<Long, Long> entry : scene.getMonsterObjectMap().entrySet()) {
+        for (Map.Entry<Long, Long> entry : sceneObject.getMonsterObjectMap().entrySet()) {
             MonsterObject monsterObject = MonsterManager.instance.getMonster(entry.getValue());
             if (monsterObject == null) {
                 continue;
             }
             builder.putMonsters(entry.getKey(), createMonster(monsterObject));
         }
-        for (Map.Entry<Long, NpcObject> entry : scene.getNpcObjectMap().entrySet()) {
+        for (Map.Entry<Long, NpcObject> entry : sceneObject.getNpcObjectMap().entrySet()) {
             builder.putNpcs(entry.getKey(), createNpc(entry.getValue()));
         }
         return builder.build();

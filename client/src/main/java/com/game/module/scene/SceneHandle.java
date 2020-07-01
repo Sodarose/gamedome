@@ -31,6 +31,7 @@ import java.util.Map;
 @ModuleHandler(module = ModuleKey.SCENE_MODULE)
 public class SceneHandle extends BaseHandler {
 
+    private SceneInfo sceneInfo;
 
     @Autowired
     private ScenePage scenePage;
@@ -42,7 +43,23 @@ public class SceneHandle extends BaseHandler {
     private WordPage wordPage;
 
     public void sceneAio(){
+        if(sceneInfo==null){
+            return;
+        }
+        List<Actor.MonsterInfo> monsterInfos = new ArrayList<>();
+        for(Map.Entry<Long, Actor.MonsterInfo> entry:currSceneInfo.getMonstersMap().entrySet()){
+            monsterInfos.add(entry.getValue());
+        }
+        wordPage.clean();
+        wordPage.printMonsterList(monsterInfos);
+    }
 
+    /**
+     * @param
+     * @return void
+     */
+    public void requestSceneInfo() {
+        Message message = MessageUtil.createMessage(ModuleKey.SCENE_MODULE, SceneCmd.SCENE_INFO_REQ, null);
     }
 
     /**
@@ -53,7 +70,28 @@ public class SceneHandle extends BaseHandler {
      */
     @CmdHandler(cmd = SceneCmd.SYNC_SCENE)
     public void syncScene(Message message) {
-
+        try {
+            SceneProtocol.SceneInfo info = SceneProtocol.SceneInfo.parseFrom(message.getData());
+            currSceneInfo = info;
+            SceneInfo sceneInfo = TransFromUtil.transFromSceneInfo(info);
+            this.sceneInfo = sceneInfo;
+            scenePage.clean();
+            scenePage.printSceneInfo(sceneInfo);
+        } catch (InvalidProtocolBufferException e) {
+            e.printStackTrace();
+        }
     }
 
+    public OtherPlayerInfo getOtherPlayerInfoByName(String name) {
+        if (sceneInfo == null) {
+            return null;
+        }
+        Map<Long, OtherPlayerInfo> map = sceneInfo.getPlayerMap();
+        for (Map.Entry<Long, OtherPlayerInfo> entry : map.entrySet()) {
+            if(entry.getValue().getName().equals(name)){
+                return entry.getValue();
+            }
+        }
+        return null;
+    }
 }
