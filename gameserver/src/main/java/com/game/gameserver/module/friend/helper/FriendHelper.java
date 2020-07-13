@@ -27,7 +27,6 @@ public class FriendHelper {
     public static String buildFriendMsg(Friend friend){
         StringBuilder sb = new StringBuilder("好友信息:");
         sb.append("id:").append(friend.getId()).append("\n");
-        sb.append("name:").append(friend.getFriendName()).append("\n");
         sb.append("friendId:").append(friend.getFriendId()).append("\n");
         sb.append("friendType:").append(friend.getFriendType()).append("\n");
         sb.append("online:").append(friend.isOnline()).append("\n");

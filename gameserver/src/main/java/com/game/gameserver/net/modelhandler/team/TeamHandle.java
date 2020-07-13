@@ -85,7 +85,7 @@ public class TeamHandle extends BaseHandler {
             NotificationHelper.notifyChannel(channel,"请先登录角色");
             return;
         }
-        String[] param = message.getContent().split("\\st");
+        String[] param = message.getContent().split("\\s+");
         long targetId = Long.parseLong(param[0]);
         int agree = Integer.parseInt(param[1]);
         teamService.processApply(player,targetId,agree);

@@ -55,7 +55,7 @@ public class TaskUtil {
         StringBuilder builder = new StringBuilder();
         switch (type) {
             // 杀敌任务
-            case EventType.EVENT_TYPE_MONSTER_DEAD:
+            /*case EventType.EVENT_TYPE_MONSTER_DEAD:
                 // 获取目标
                 MonsterConfig monsterConfig = StaticConfigManager
                         .getInstance().getMonsterConfigMap().get(taskProgress.getTarget());
@@ -73,8 +73,9 @@ public class TaskUtil {
             case EventType.EVENT_TYPE_LEVEL_UP:
                 return "";
             default:
-                return "";
+                return "";*/
         }
+        return "";
     }
 
 

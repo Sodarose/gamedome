@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.game.gameserver.module.equipment.dao.EquipBarMapper">
+<mapper namespace="com.game.gameserver.module.friend.dao.FriendMapper">
     <!--道具-->
     <resultMap id="friendEntity" type="com.game.gameserver.module.friend.entity.FriendEntity">
         <id column="id" property="id"/>
-        <result column="friendName" property="friendName"/>
         <result column="friendId" property="friendId"/>
         <result column="friendType" property="friendType"/>
         <result column="playerId" property="playerId"/>
@@ -12,7 +11,7 @@
 
     <!--列表-->
     <sql id="Base_FriendEntity_Column_List">
-       id, friendName, friendId, friendType,playerId
+       id, friendId, friendType,playerId
     </sql>
 
     <select id="selectFriendEntityList" resultMap="friendEntity">
@@ -33,16 +32,13 @@
 
     <insert id="insert" parameterType="com.game.gameserver.module.friend.entity.FriendEntity">
         INSERT INTO game_friend
-        (id, friendName, friendId, friendType,playerId)
-        VALUES (#{id},#{friendName},#{friendId},#{friendType},#{playerId})
+        (id,  friendId, friendType,playerId)
+        VALUES (#{id},#{friendId},#{friendType},#{playerId})
     </insert>
 
     <update id="update" parameterType="com.game.gameserver.module.friend.entity.FriendEntity">
         UPDATE game_friend
         <set>
-            <if test="friendName != null">
-                friendName = #{friendName},
-            </if>
             <if test="itemConfigId != null">
                 friendId = #{friendId},
             </if>

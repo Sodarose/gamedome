@@ -44,7 +44,7 @@ public class TeamService {
             NotificationHelper.notifyPlayer(player, "已有队伍 不能创建新的队伍");
             return;
         }
-        if (capacity < MAX_CAPACITY || capacity > MAX_CAPACITY) {
+        if (capacity < MIN_CAPACITY || capacity > MAX_CAPACITY) {
             NotificationHelper.notifyPlayer(player, MessageFormat.format("队伍人数著能在{0} {1} 之间",
                     MIN_CAPACITY, MAX_CAPACITY));
             return;
@@ -115,6 +115,7 @@ public class TeamService {
         }
         // 放入申请人列表
         team.getApply().add(player.getPlayerEntity().getId());
+        NotificationHelper.notifyPlayer(player,"已发送申请");
         NotificationHelper.notifyTeam(team, MessageFormat.format("玩家id:{0} 姓名:{1}申请加入队伍", player
                 .getPlayerEntity().getId() + "", player.getPlayerEntity().getName()));
     }
@@ -143,6 +144,7 @@ public class TeamService {
         Team team = teamManager.getTeam(player.getTeamId());
         team.getInvite().add(targetId);
         // 通知对方
+        NotificationHelper.notifyPlayer(player,"已发送邀请");
         NotificationHelper.notifyPlayer(targetPlayer, MessageFormat.format("队伍id:{0} name:{1} 邀请您进入组队",
                 team.getId() + "", team.getTeamName()));
     }
@@ -272,7 +274,7 @@ public class TeamService {
         if (team == null) {
             return;
         }
-        if (player.getPlayerEntity().getId().equals(team.getCaptainId())) {
+        if (!player.getPlayerEntity().getId().equals(team.getCaptainId())) {
             NotificationHelper.notifyPlayer(player, "你不是队长");
             return;
         }
