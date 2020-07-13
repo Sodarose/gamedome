@@ -1,4 +1,4 @@
-package com.game.gameserver.module.user.entity;
+package com.game.gameserver.module.player.entity;
 
 import lombok.Data;
 

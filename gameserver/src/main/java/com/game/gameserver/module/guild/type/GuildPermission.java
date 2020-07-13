@@ -1,12 +1,12 @@
 package com.game.gameserver.module.guild.type;
 
 /**
- * 公会权限
+ * 公会权限 更改成枚举
  *
  * @author xuewenkang
  * @date 2020/7/3 10:50
  */
-public interface UnionPermission {
+public interface GuildPermission {
     /** 职位任命 */
     int APPOINT = 1;
     /** 修改公会公告 */

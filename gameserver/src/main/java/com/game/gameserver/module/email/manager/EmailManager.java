@@ -1,16 +1,10 @@
 package com.game.gameserver.module.email.manager;
 
-import com.game.gameserver.module.email.dao.EmailMapper;
-import com.game.gameserver.module.email.entity.Email;
-import com.game.gameserver.module.email.entity.EmailBox;
-import com.game.gameserver.module.player.entity.Player;
+import com.game.gameserver.module.email.model.EmailBox;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -22,33 +16,18 @@ import java.util.concurrent.ConcurrentHashMap;
 public class EmailManager {
 
     private final static Logger logger = LoggerFactory.getLogger(EmailManager.class);
+    /** 玩家邮件缓存 */
+    private final static  Map<Long, EmailBox> LOCAL_EMAIL_BOX_MAP = new ConcurrentHashMap<>();
 
-    /** 玩家邮件 */
-    private Map<Long, EmailBox> playerEmailMap = new ConcurrentHashMap<>();
-
-    @Autowired
-    private EmailMapper emailMapper;
-
-    public void loadPlayerEmail(Player player){
-        List<Email> emailList = new ArrayList<>();
-        EmailBox emailBox = new EmailBox();
-        // 初始化
-        emailBox.initialize(emailList);
-        playerEmailMap.put(player.getId(),emailBox);
+    public EmailBox getEmailBox(long playerId){
+        return LOCAL_EMAIL_BOX_MAP.get(playerId);
     }
 
-
-    public void deliverEmail(Long playerId,Email email){
-        // 获取邮箱
-        EmailBox emailBox = playerEmailMap.get(playerId);
-        if(emailBox==null){
-            return;
-        }
-        // 投递邮件
-        emailBox.addEmail(email);
+    public void removeEmailBox(long playerId){
+        LOCAL_EMAIL_BOX_MAP.remove(playerId);
     }
 
-    public EmailBox getEmailBox(Long playerId){
-        return playerEmailMap.get(playerId);
+    public void putEmailBox(long playerId,EmailBox emailBox){
+        LOCAL_EMAIL_BOX_MAP.put(playerId,emailBox);
     }
 }

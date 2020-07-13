@@ -15,9 +15,11 @@ import java.util.List;
 public interface AuctionMapper {
     List<AuctionItem> selectAuctionItemList();
 
-    int updateAuctionItem(AuctionItem auctionItem);
+    AuctionItem select();
 
-    int insertAuctionItem(AuctionItem auctionItem);
+    int update(AuctionItem auctionItem);
 
-    int removeAuctionItem(long auctionItemId);
+    int insert(AuctionItem auctionItem);
+
+    int delete(long auctionItemId);
 }

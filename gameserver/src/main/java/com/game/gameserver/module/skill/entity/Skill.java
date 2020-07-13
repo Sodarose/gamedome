@@ -14,7 +14,7 @@ public class Skill {
     private Long id;
     /** 技能Id */
     private Integer skillId;
-    /** 在快捷技能栏的位置 -1或者null则为不在快捷技能栏中 */
+    /** 在快捷技能栏的位置 0或者null则为不在快捷技能栏中 */
     private Integer bagIndex;
     /** 技能所属玩家 */
     private Integer playerId;

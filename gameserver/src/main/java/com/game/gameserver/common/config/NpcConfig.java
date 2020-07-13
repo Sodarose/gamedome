@@ -11,12 +11,16 @@ import lombok.Data;
  */
 @Data
 public class NpcConfig {
+    /** id */
     @JSONField(name = "id")
     private int id;
+
     @JSONField(name = "name")
     private String name;
+
     @JSONField(name = "level")
     private int level;
+
     @JSONField(name = "talk")
     private String talk;
 }

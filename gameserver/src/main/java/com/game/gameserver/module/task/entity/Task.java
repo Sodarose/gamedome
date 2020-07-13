@@ -18,16 +18,16 @@ import java.util.List;
 @Data
 public class Task {
     /** 存储在数据库中的id*/
-    private long id;
+    private Long id;
 
     /** 任务资源id*/
-    private int taskId;
+    private Integer taskId;
 
     /** 任务状态*/
-    private int state;
+    private Integer state;
 
     /** 任务所属的角色*/
-    private long playerId;
+    private Long playerId;
 
     /** 任务进度/要求 */
     private List<TaskProgress> taskProgresses;

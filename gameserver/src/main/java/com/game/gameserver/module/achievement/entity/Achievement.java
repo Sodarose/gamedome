@@ -1,3 +1,4 @@
+/*
 package com.game.gameserver.module.achievement.entity;
 
 import com.game.gameserver.common.config.AchievementConfig;
@@ -10,23 +11,35 @@ import lombok.Data;
 
 import java.util.List;
 
+*/
 /**
  * 成就实体
  *
  * @author xuewenkang
  * @date 2020/7/1 20:53
- */
+ *//*
+
 @Data
 public class Achievement {
-    /** 成就id */
+    */
+/** 成就id *//*
+
     private Long id;
-    /** 成就资源id */
+    */
+/** 成就资源id *//*
+
     private Integer achievementId;
-    /** 成就状态 */
+    */
+/** 成就状态 *//*
+
     private int state;
-    /** 成就所属 */
+    */
+/** 成就所属 *//*
+
     private long playerId;
-    /** 成就进度 */
+    */
+/** 成就进度 *//*
+
     private List<TaskProgress> taskProgresses;
 
     public Achievement(){
@@ -34,13 +47,15 @@ public class Achievement {
     }
 
 
-    /**
+    */
+/**
      * 新创建一个成就实体
      *
      * @param playerId
      * @param achievementConfig
      * @return com.game.gameserver.module.achievement.entity.Achievement
-     */
+     *//*
+
     public static Achievement valueOf(long playerId, AchievementConfig achievementConfig){
         Achievement achievement = new Achievement();
         achievement.setId(GameUUID.getInstance().generate());
@@ -52,3 +67,4 @@ public class Achievement {
         return achievement;
     }
 }
+*/

@@ -6,6 +6,6 @@ package com.game.gameserver.event;
  * @author xuewenkang
  * @date 2020/6/16 21:49
  */
-public enum EventTypeEnum {
+public enum EventType {
 
 }

@@ -1,0 +1,140 @@
+[
+  {
+    "id": 1001,
+    "type": 1,
+    "name":"天堂HP恢复药剂",
+    "level": 1,
+    "coolTime": 5,
+    "property": {},
+    "bufferId": 1,
+    "price": 50,
+    "overlap": true,
+    "overNum": 999,
+    "desc": "天堂恢复药剂 5s内 恢复血量5000点"
+  },
+  {
+    "id": 1002,
+    "type": 1,
+    "name":"天堂MP恢复药剂",
+    "level": 1,
+    "coolTime": 5,
+    "property": {},
+    "bufferId": 2,
+    "price": 50,
+    "overlap": true,
+    "overNum": 999,
+    "desc": "天堂恢复药剂 5s内 恢复血量5000点"
+  },
+  {
+    "id": 1003,
+    "type": 2,
+    "name":"太极天帝剑",
+    "level": 10,
+    "part": 1,
+    "coolTime": 0,
+    "property": {
+      "HP":1000,
+      "ATTACK": 1000
+    },
+    "price": 50,
+    "maxDurability":45,
+    "overlap": false,
+    "desc": "太极天帝剑 传说之剑"
+  },
+  {
+    "id": 1004,
+    "type": 2,
+    "name":"超大陆上衣 ",
+    "level": 10,
+    "part": 2,
+    "coolTime": 0,
+    "property": {
+      "HP":1000,
+      "ATTACK": 1000
+    },
+    "price": 50,
+    "maxDurability":45,
+    "overlap": false,
+    "desc": "超大陆上衣"
+  },
+  {
+    "id": 1005,
+    "type": 2,
+    "name":"超大陆肩甲",
+    "level": 10,
+    "part": 3,
+    "coolTime": 0,
+    "property": {
+      "HP":1000,
+      "ATTACK": 1000
+    },
+    "price": 50,
+    "maxDurability":45,
+    "overlap": false,
+    "desc": "超大陆肩甲"
+  },
+  {
+    "id": 1006,
+    "type": 2,
+    "name":"超大陆腰带",
+    "level": 10,
+    "part": 4,
+    "coolTime": 0,
+    "property": {
+      "HP":1000,
+      "ATTACK": 1000
+    },
+    "price": 50,
+    "maxDurability":45,
+    "overlap": false,
+    "desc": "太极天帝剑 传说之剑"
+  },
+  {
+    "id": 1007,
+    "type": 2,
+    "name":"超大陆裤子",
+    "level": 10,
+    "part": 5,
+    "coolTime": 0,
+    "property": {
+      "HP":1000,
+      "ATTACK": 1000
+    },
+    "price": 50,
+    "maxDurability":45,
+    "overlap": false,
+    "desc": "超大陆裤子"
+  },
+  {
+    "id": 1008,
+    "type": 2,
+    "name":"超大陆鞋子",
+    "level": 10,
+    "part": 6,
+    "coolTime": 0,
+    "property": {
+      "HP":1000,
+      "ATTACK": 1000
+    },
+    "price": 50,
+    "maxDurability":45,
+    "overlap": false,
+    "desc": "超大陆鞋子"
+  },
+  {
+    "id": 1009,
+    "type": 2,
+    "name":"怪兽猎杀者",
+    "level": 10,
+    "part": 7,
+    "coolTime": 0,
+    "property": {
+      "HP":1000,
+      "ATTACK": 1000
+    },
+    "price": 50,
+    "maxDurability":45,
+    "overlap": false,
+    "desc": "怪兽猎杀者"
+  }
+]

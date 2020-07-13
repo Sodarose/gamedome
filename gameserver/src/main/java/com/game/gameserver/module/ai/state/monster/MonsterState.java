@@ -1,11 +1,10 @@
 package com.game.gameserver.module.ai.state.monster;
 
 import com.game.gameserver.common.config.MonsterConfig;
-import com.game.gameserver.common.entity.Unit;
 import com.game.gameserver.module.ai.fsm.State;
 import com.game.gameserver.module.cooltime.entity.UnitCoolTime;
 import com.game.gameserver.module.cooltime.manager.CoolTimeManager;
-import com.game.gameserver.module.fighter.service.impl.FighterServiceImpl;
+/*import com.game.gameserver.module.fighter.service.FighterService;*/
 import com.game.gameserver.module.monster.model.Monster;
 
 import java.util.*;
@@ -62,13 +61,13 @@ public enum MonsterState implements State<Monster> {
             // 设定第一次攻击时间
             long currTime = System.currentTimeMillis();
             long attackTime = currTime + TimeUnit.MILLISECONDS.convert(2, TimeUnit.SECONDS);
-            monster.getTempData().put(NEX_ATTACK_TIME, attackTime);
+            /*monster.getTempData().put(NEX_ATTACK_TIME, attackTime);*/
         }
 
         @Override
         public void update(Monster monster) {
             // 判断目标仇恨目标是否存在
-            Unit unit = monster.getHateUnit();
+          /*  Unit unit = monster.getHateUnit();
             if (unit == null || unit.isDead()) {
                 monster.changeState(MonsterState.TAKEOFF);
                 return;
@@ -101,19 +100,19 @@ public enum MonsterState implements State<Monster> {
             }
             // 随机抽取一个不再CD下的技能Id
             int id = new Random().nextInt(skills.size());
-            // 攻击目标
-            FighterServiceImpl.instance.monsterUseSkill(monster.getId(), unit.getUnitId(), unit.getUnitType()
-                    , skills.get(id));
+          *//*  // 攻击目标
+            FighterService.instance.monsterUseSkill(monster.getId(), unit.getUnitId(), unit.getUnitType()
+                    , skills.get(id));*//*
             // 计算下一次攻击时间
             currTime = System.currentTimeMillis();
             attackTime = currTime + TimeUnit.MILLISECONDS.convert(2, TimeUnit.SECONDS);
-            monster.getTempData().put(NEX_ATTACK_TIME, attackTime);
+            monster.getTempData().put(NEX_ATTACK_TIME, attackTime);*/
         }
 
         @Override
         public void exit(Monster monster) {
             // 退出攻击状态时 清空仇恨值
-            monster.setHateUnit(null);
+            /*monster.setHateUnit(null);*/
         }
     },
     TAKEOFF {
@@ -128,14 +127,14 @@ public enum MonsterState implements State<Monster> {
         @Override
         public void enter(Monster monster) {
             // 设置第一次回复的时间
-            long currTime = System.currentTimeMillis();
+           /* long currTime = System.currentTimeMillis();
             long nextTime = currTime + TimeUnit.MILLISECONDS.convert(DURATION, TimeUnit.SECONDS);
-            monster.getTempData().put(NEXT_REPLY_TIME, nextTime);
+            monster.getTempData().put(NEXT_REPLY_TIME, nextTime);*/
         }
 
         @Override
         public void update(Monster monster) {
-            long currTime = System.currentTimeMillis();
+            /*long currTime = System.currentTimeMillis();
             if (monster.getTempData().get(NEXT_REPLY_TIME) == null) {
                 return;
             }
@@ -147,7 +146,7 @@ public enum MonsterState implements State<Monster> {
             monster.addCurrHp(HP);
             if (monster.getCurrHp() == monster.getHp()) {
                 monster.changeState(MonsterState.DEFEND);
-            }
+            }*/
         }
 
         @Override

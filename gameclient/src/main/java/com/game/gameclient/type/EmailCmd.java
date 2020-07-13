@@ -1,4 +1,4 @@
-package com.game.gameserver.net.modelhandler.email;
+package com.game.gameclient.type;
 
 /**
  * @author xuewenkang
@@ -9,4 +9,5 @@ public interface EmailCmd {
   int SHOW_EMAIL = 1002;
   int EXTRACT_ATTACH = 1003;
   int DELETE_EMAIL = 1004;
+  int SEND_EMAIL = 1005;
 }

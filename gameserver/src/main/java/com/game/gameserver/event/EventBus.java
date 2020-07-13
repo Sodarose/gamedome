@@ -1,6 +1,7 @@
 package com.game.gameserver.event;
 
 import com.game.gameserver.context.ServerContext;
+import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -11,7 +12,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.*;
 
 /**
  * 事件总线
@@ -28,10 +29,27 @@ public class EventBus {
     private EventBus() {
 
     }
-    /** 事件 */
+
+    /**
+     * 事件
+     */
     private final Map<Integer, List<EventExecutor>> eventExecutorMap = new HashMap<>();
-    /** 异步事件队列 */
-    private LinkedBlockingQueue<Event> eventQueue = new LinkedBlockingQueue<>();
+
+    /**
+     * 线程工厂
+     */
+    private final static ThreadFactory EVENT_THREAD_FACTORY = new ThreadFactoryBuilder()
+            .setNameFormat("Event_Thread-%d").setUncaughtExceptionHandler((t, e) -> e.printStackTrace()).build();
+    /**
+     * 事件线程
+     */
+    public final static ExecutorService EVENT_THREAD = new ThreadPoolExecutor(
+            1,
+            1,
+            30, TimeUnit.MINUTES,
+            new LinkedBlockingQueue<>(1000),
+            EVENT_THREAD_FACTORY
+    );
 
     /**
      * 激活事件
@@ -51,12 +69,10 @@ public class EventBus {
         }
     }
 
-    public void fireAsync(Event event){
-        try {
-            eventQueue.put(event);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+    public void fireAsync(Event event) {
+        EVENT_THREAD.execute(() -> {
+            fire(event);
+        });
     }
 
     /**
@@ -95,21 +111,6 @@ public class EventBus {
                 int type = eventHandler.type();
                 EventExecutor executor = new EventExecutor(type, method, entry.getValue());
                 EventBus.EVENT_BUS.register(type, executor);
-            }
-        }
-    }
-
-    private class EventWorker implements Runnable{
-
-        @Override
-        public void run() {
-            while (true){
-                try{
-                    Event event = eventQueue.take();
-                    fire(event);
-                }catch (Exception e){
-                    e.printStackTrace();
-                }
             }
         }
     }

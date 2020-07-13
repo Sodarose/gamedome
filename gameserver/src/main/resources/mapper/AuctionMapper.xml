@@ -16,7 +16,7 @@
 
     <!--列表-->
     <sql id="Base_AuctionItem_Column_List">
-        id, itemConfigId, num, price, model, publishTime, bidder, bidderId, playerId
+        id, itemConfigId, num, price, model, publishTime, bidderId, playerId
     </sql>
 
     <select id="selectAuctionItemList" resultMap="auctionItem">
@@ -25,7 +25,7 @@
         FROM game_auction
     </select>
 
-    <update id="updateAuctionItemList" parameterType="com.game.gameserver.module.auction.entity.AuctionItem">
+    <update id="update" parameterType="com.game.gameserver.module.auction.entity.AuctionItem">
         update game_auction
         <set>
             <if test="itemConfigId != null">
@@ -43,9 +43,6 @@
             <if test="publishTime != null">
                 publishTime = #{publishTime},
             </if>
-            <if test="bidder != null">
-                bidder = #{bidder},
-            </if>
             <if test="bidderId != null">
                 bidderId = #{bidderId},
             </if>
@@ -56,16 +53,16 @@
         where id = #{id}
     </update>
 
-    <insert id="insertAuctionItem" parameterType="com.game.gameserver.module.auction.entity.AuctionItem">
+    <insert id="insert" parameterType="com.game.gameserver.module.auction.entity.AuctionItem">
         insert into game_auction (id, itemConfigId, num,
-        price, model, publishTime,bidder,bidderId,
+        price, model, publishTime,bidderId,
         playerId)
         values (#{id}, #{itemConfigId}, #{num},
-        #{price}, #{model}, #{publishTime},#{bidder},#{bidderId},
-        #{playerId}
+        #{price}, #{model}, #{publishTime},#{bidderId},
+        #{playerId})
     </insert>
 
-    <delete id="removeAuctionItem">
+    <delete id="delete">
         delete from  game_auction
         where id = #{id}
     </delete>

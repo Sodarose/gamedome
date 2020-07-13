@@ -1,5 +1,6 @@
 package com.game.gameserver.module.cooltime.manager;
 
+import com.game.gameserver.event.Listener;
 import com.game.gameserver.thread.DefaultThreadFactory;
 import com.game.gameserver.module.cooltime.entity.UnitCoolTime;
 import org.slf4j.Logger;
@@ -13,6 +14,7 @@ import java.util.concurrent.*;
  * @author xuewenkang
  * @date 2020/6/3 13:59
  */
+@Listener
 @Component
 public class CoolTimeManager {
     private final static Logger logger = LoggerFactory.getLogger(CoolTimeManager.class);
@@ -32,8 +34,14 @@ public class CoolTimeManager {
         return unitCoolTimeMap.get(unitId);
     }
 
-    public void putUnitCoolTime(long unitId, UnitCoolTime unitCoolTime) {
-        unitCoolTimeMap.put(unitId, unitCoolTime);
+    /**
+     * 创建单位的CD组件
+     *
+     * @param unitId
+     * @return void
+     */
+    public void createCoolTime(Long unitId){
+
     }
 
     public void removeUnitCoolTime(Long unitId) {
@@ -61,4 +69,5 @@ public class CoolTimeManager {
             }
         }
     }
+
 }

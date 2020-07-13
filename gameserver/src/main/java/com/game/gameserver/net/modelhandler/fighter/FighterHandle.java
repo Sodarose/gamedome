@@ -1,24 +1,25 @@
+/*
 package com.game.gameserver.net.modelhandler.fighter;
 
-import com.game.gameserver.module.fighter.service.FighterService;
 import com.game.gameserver.module.player.entity.Player;
-import com.game.gameserver.module.player.service.PlayerService;
 import com.game.gameserver.net.annotation.CmdHandler;
 import com.game.gameserver.net.annotation.ModuleHandler;
 import com.game.gameserver.net.handler.BaseHandler;
 import com.game.gameserver.net.modelhandler.ModuleKey;
 import com.game.protocol.FighterProtocol;
-import com.game.protocol.Message;
+import com.game.message.Message;
 import com.game.util.MessageUtil;
 import com.google.protobuf.InvalidProtocolBufferException;
 import io.netty.channel.Channel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+*/
 /**
  * @author xuewenkang
  * @date 2020/6/4 9:31
- */
+ *//*
+
 @Component
 @ModuleHandler(module = ModuleKey.FIGHTER_MODEL)
 public class FighterHandle extends BaseHandler {
@@ -68,3 +69,4 @@ public class FighterHandle extends BaseHandler {
         }
     }
 }
+*/

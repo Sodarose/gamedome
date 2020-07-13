@@ -1,7 +1,7 @@
 package com.game.gameserver.module.player.service;
 
-import com.game.gameserver.module.player.domain.PlayerDomain;
-import com.game.gameserver.module.player.domain.PlayerBattle;
+import com.game.gameserver.module.player.model.Player;
+import com.game.gameserver.module.player.model.PlayerBattle;
 import org.springframework.stereotype.Service;
 
 /**
@@ -17,7 +17,7 @@ public class PlayerPropertyService {
      * @param playerDomain
      * @return void
      */
-    public void initPlayerBattle(PlayerDomain playerDomain){
+    public void initPlayerBattle(Player playerDomain){
         PlayerBattle playerBattle = new PlayerBattle();
         playerDomain.setPlayerBattle(playerBattle);
     }

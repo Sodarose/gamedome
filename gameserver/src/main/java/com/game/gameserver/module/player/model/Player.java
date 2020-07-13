@@ -1,10 +1,11 @@
-package com.game.gameserver.module.player.domain;
+package com.game.gameserver.module.player.model;
 
+import com.game.gameserver.common.entity.Creature;
 import com.game.gameserver.module.backbag.model.BackBag;
 import com.game.gameserver.module.equipment.model.EquipBar;
 import com.game.gameserver.module.buffer.model.Buffer;
 import com.game.gameserver.module.fighter.type.FighterModeEnum;
-import com.game.gameserver.module.player.entity.Player;
+import com.game.gameserver.module.player.entity.PlayerEntity;
 import com.game.gameserver.module.scene.model.Scene;
 import io.netty.channel.Channel;
 
@@ -16,9 +17,9 @@ import java.util.List;
  * @author xuewenkang
  * @date 2020/7/10 0:16
  */
-public class PlayerDomain {
+public class Player implements Creature {
     /** 玩家实体属性 */
-    private final Player player;
+    private final PlayerEntity playerEntity;
     /** 战斗属性 */
     private PlayerBattle playerBattle;
     /** 连接信息 */
@@ -42,8 +43,8 @@ public class PlayerDomain {
     /** 角色当前交易 */
     private Long currTrade;
 
-    public PlayerDomain(Player player){
-        this.player = player;
+    public Player(PlayerEntity playerEntity){
+        this.playerEntity = playerEntity;
     }
 
     public Long getCurrTrade() {
@@ -102,8 +103,8 @@ public class PlayerDomain {
         return equipBar;
     }
 
-    public Player getPlayer() {
-        return player;
+    public PlayerEntity getPlayerEntity() {
+        return playerEntity;
     }
 
     public void setPlayerBattle(PlayerBattle playerBattle) {
@@ -128,4 +129,8 @@ public class PlayerDomain {
     }
 
 
+    @Override
+    public long getId() {
+        return playerEntity.getId();
+    }
 }

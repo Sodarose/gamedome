@@ -1,4 +1,4 @@
-package com.game.gameserver.net.modelhandler.account;
+package com.game.gameserver.net.modelhandler.user;
 
 import com.game.gameserver.module.user.module.User;
 import com.game.gameserver.module.user.service.UserService;
@@ -18,9 +18,9 @@ import org.springframework.stereotype.Component;
  * @author xuewenkang
  * @date 2020/5/24 15:53
  */
-@ModuleHandler(module = ModuleKey.ACCOUNT_MODULE)
+@ModuleHandler(module = ModuleKey.USER_MODULE)
 @Component
-public class AccountHandle extends BaseHandler {
+public class UserHandle extends BaseHandler {
     private final static int LOGIN_PARAM_LENGTH = 2;
     private final static int REGISTER_PARAM_LENGTH = 2;
 
@@ -34,7 +34,7 @@ public class AccountHandle extends BaseHandler {
      * @param channel 用户通道
      * @return void
      */
-    @CmdHandler(cmd = AccountCmd.LOGIN)
+    @CmdHandler(cmd = UserCmd.LOGIN)
     public void login(Message message, Channel channel) {
         // 判断是否重复登录
         User user = channel.attr(UserService.ACCOUNT_ATTRIBUTE_KEY).get();
@@ -52,7 +52,7 @@ public class AccountHandle extends BaseHandler {
         userService.login(loginId,password,channel);
     }
 
-    @CmdHandler(cmd = AccountCmd.REGISTER)
+    @CmdHandler(cmd = UserCmd.REGISTER)
     public void register(Message message, Channel channel) {
         User user = channel.attr(UserService.ACCOUNT_ATTRIBUTE_KEY).get();
         if (user != null) {
@@ -69,7 +69,7 @@ public class AccountHandle extends BaseHandler {
         userService.register(loginId,password,channel);
     }
 
-    @CmdHandler(cmd = AccountCmd.LOGOUT)
+    @CmdHandler(cmd = UserCmd.LOGOUT)
     public void logout(Message message,Channel channel){
         User user = channel.attr(UserService.ACCOUNT_ATTRIBUTE_KEY).get();
         if (user == null) {
@@ -78,6 +78,5 @@ public class AccountHandle extends BaseHandler {
         }
         userService.logout(user);
     }
-
 
 }

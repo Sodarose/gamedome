@@ -12,4 +12,13 @@ import lombok.Data;
 public class EquipBarEntity {
     private long playerId;
     private String items;
+
+    public EquipBarEntity(){
+
+    }
+
+    public EquipBarEntity(long playerId,String items){
+        this.playerId = playerId;
+        this.items = items;
+    }
 }

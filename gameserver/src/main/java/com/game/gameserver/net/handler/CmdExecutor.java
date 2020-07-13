@@ -1,6 +1,6 @@
 package com.game.gameserver.net.handler;
 
-import com.game.protocol.Message;
+import com.game.message.Message;
 import io.netty.channel.Channel;
 import lombok.Getter;
 
@@ -16,7 +16,7 @@ public class CmdExecutor {
     /**
      * 执行器对应的CMD
      * */
-    private Short cmd;
+    private Integer cmd;
 
     /**
      * 执行器对应的Method方法
@@ -28,7 +28,7 @@ public class CmdExecutor {
      * */
     private Object object;
 
-    public CmdExecutor(Short cmd,Method method,Object object){
+    public CmdExecutor(Integer cmd,Method method,Object object){
         this.cmd = cmd;
         this.method = method;
         this.object = object;

@@ -1,3 +1,4 @@
+/*
 package com.game.gameserver.module.pet.manager;
 
 import com.game.gameserver.common.config.PetConfig;
@@ -11,12 +12,14 @@ import org.springframework.stereotype.Component;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+*/
 /**
  * 宝宝管理
  *
  * @author xuewenkang
  * @date 2020/6/23 9:27
- */
+ *//*
+
 @Component
 public class PetManager {
     private final static Logger logger = LoggerFactory.getLogger(PetManager.class);
@@ -59,3 +62,4 @@ public class PetManager {
         }
     }
 }
+*/

@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
  * @date 2020/7/2 20:57
  */
 @Repository
-public interface GuildDao {
+public interface GuildMapper {
 
 }

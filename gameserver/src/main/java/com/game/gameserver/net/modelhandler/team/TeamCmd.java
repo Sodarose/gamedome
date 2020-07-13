@@ -5,24 +5,13 @@ package com.game.gameserver.net.modelhandler.team;
  * @date 2020/6/17 18:26
  */
 public interface TeamCmd {
-    /** 创建队伍 */
-    short CREATE_TEAM = 1001;
-    /** 解散队伍 */
-    short DISSOLVE_TEAM = 1002;
-    /** 解散通知 */
-    short DISSOLVE_TEAM_NOTIFY = 1003;
-    /** 进入队伍 */
-    short ENTRY_TEAM = 1004;
-    /** 退出队伍 */
-    short EXIT_TEAM = 1005;
-    /** 退出队伍通知 */
-    short EXIT_TEAM_NOTIFY = 1006;
-    /** 踢出队伍 */
-    short KICK_TEAM = 1006;
-    /** 队伍列表 */
-    short TEAM_LIST = 1007;
-    /** 踢出队伍通知 */
-    short KICK_TEAM_NOTIFY = 1008;
-    /** 展示队伍 */
-    short SHOW_TEAM = 1010;
+    int CREATE_TEAM = 1001;
+    int SHOW_TEAM = 1002;
+    int SHOW_TEAM_LIST = 1003;
+    int APPLY_FOR_TEAM = 1004;
+    int INVITE_TEAM = 1005;
+    int PROCESS_APPLY = 1006;
+    int PROCESS_INVITE = 1007;
+    int EXIT_TEAM = 1008;
+    int DISSOLVE_TEAM = 1009;
 }

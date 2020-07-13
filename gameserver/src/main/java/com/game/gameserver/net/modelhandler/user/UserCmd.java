@@ -1,10 +1,10 @@
-package com.game.gameserver.net.modelhandler.account;
+package com.game.gameserver.net.modelhandler.user;
 
 /**
  * @author xuewenkang
  * @date 2020/5/24 15:53
  */
-public interface AccountCmd {
+public interface UserCmd {
     /** 登录 */
     int LOGIN = 1001;
     /** 注销*/

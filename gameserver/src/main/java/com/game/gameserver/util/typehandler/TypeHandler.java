@@ -1,6 +1,5 @@
-package com.game.gameserver.util;
+package com.game.gameserver.util.typehandler;
 
-import com.game.gameserver.module.email.entity.Attachment;
 import org.apache.ibatis.type.BaseTypeHandler;
 import org.apache.ibatis.type.JdbcType;
 
@@ -10,7 +9,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.sql.*;
-import java.util.ArrayList;
 
 /**
  * @author xuewenkang

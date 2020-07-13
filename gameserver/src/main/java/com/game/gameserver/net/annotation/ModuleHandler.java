@@ -13,5 +13,5 @@ import java.lang.annotation.Target;
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface ModuleHandler {
-    short module() default 0;
+    int module() default 0;
 }

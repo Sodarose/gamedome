@@ -1,4 +1,4 @@
-package com.game.gameserver.net.modelhandler.trade;
+package com.game.gameclient.type;
 
 /**
  * @author xuewenkang

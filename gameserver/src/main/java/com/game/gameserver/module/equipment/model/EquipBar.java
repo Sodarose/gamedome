@@ -1,7 +1,9 @@
 package com.game.gameserver.module.equipment.model;
 
 import com.game.gameserver.module.backbag.entity.BackBagEntity;
+import com.game.gameserver.module.equipment.entity.EquipBarEntity;
 import com.game.gameserver.module.item.model.Item;
+import lombok.Data;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -12,11 +14,18 @@ import java.util.concurrent.ConcurrentHashMap;
  * @author xuewenkang
  * @date 2020/7/7 3:48
  */
-public class PlayerEquipBar  {
+@Data
+public class EquipBar {
+    private long playerId;
 
     private final Map<Integer, Item> equipMap;
 
-    public PlayerEquipBar() {
+    public EquipBar(){
+        this.equipMap = new ConcurrentHashMap<>();
+    }
+
+    public EquipBar(EquipBarEntity equipBarEntity) {
+        this.playerId = equipBarEntity.getPlayerId();
         this.equipMap = new ConcurrentHashMap<>();
     }
 

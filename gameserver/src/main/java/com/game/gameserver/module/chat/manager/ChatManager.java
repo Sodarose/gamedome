@@ -2,7 +2,7 @@ package com.game.gameserver.module.chat.manager;
 
 import com.game.gameserver.event.Listener;
 import com.game.gameserver.module.chat.entity.ChatChannel;
-import com.game.gameserver.module.player.entity.Player;
+import com.game.gameserver.module.player.entity.PlayerEntity;
 import com.game.gameserver.util.GameUUID;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -50,7 +50,7 @@ public class ChatManager {
      * @param channelId
      * @return void
      */
-    public void entryChannel(Player player, Long channelId) {
+    public void entryChannel(PlayerEntity player, Long channelId) {
         ChatChannel chatChannel = channelMap.get(channelId);
         if (chatChannel == null) {
             return;
@@ -65,7 +65,7 @@ public class ChatManager {
      * @param channelId
      * @return void
      */
-    public void exitChannel(Player player, Long channelId) {
+    public void exitChannel(PlayerEntity player, Long channelId) {
         ChatChannel chatChannel = channelMap.get(channelId);
         if (channelId == null) {
             return;

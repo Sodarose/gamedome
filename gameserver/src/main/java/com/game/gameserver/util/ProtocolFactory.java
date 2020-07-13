@@ -1,29 +1,9 @@
 package com.game.gameserver.util;
 
-import com.game.gameserver.common.config.*;
-import com.game.gameserver.module.achievement.entity.Achievement;
-import com.game.gameserver.module.achievement.entity.PlayerAchievement;
-import com.game.gameserver.module.email.entity.Email;
-import com.game.gameserver.module.instance.model.InstanceObject;
-import com.game.gameserver.module.item.type.BagType;
-import com.game.gameserver.module.item.type.ItemType;
-import com.game.gameserver.module.monster.manager.MonsterManager;
-import com.game.gameserver.module.monster.model.Monster;
-import com.game.gameserver.module.npc.model.Npc;
-import com.game.gameserver.module.pet.entity.Pet;
-import com.game.gameserver.module.player.entity.Role;
-import com.game.gameserver.module.player.manager.PlayerManager;
-import com.game.gameserver.module.player.entity.Player;
-import com.game.gameserver.module.scene.model.Scene;
-import com.game.gameserver.module.store.entity.Commodity;
-import com.game.gameserver.module.task.entity.PlayerTask;
-import com.game.gameserver.module.task.entity.Task;
-import com.game.gameserver.module.task.entity.TaskProgress;
-import com.game.gameserver.module.team.entity.Team;
-import com.game.protocol.*;
-
-import java.util.List;
-import java.util.Map;
+/*import com.game.gameserver.module.achievement.entity.Achievement;
+import com.game.gameserver.module.achievement.entity.PlayerAchievement;*/
+/*import com.game.gameserver.module.pet.entity.Pet;*/
+/*import com.game.gameserver.module.team.entity.Team;*/
 
 /**
  * 转换工具
@@ -33,7 +13,7 @@ import java.util.Map;
  */
 public class ProtocolFactory {
 
-    public static PlayerProtocol.QueryRoleListRes createQueryRoleListRes(List<Role> roles) {
+   /* public static PlayerProtocol.QueryRoleListRes createQueryRoleListRes(List<Role> roles) {
         PlayerProtocol.QueryRoleListRes.Builder builder = PlayerProtocol.QueryRoleListRes.newBuilder();
         for (Role role : roles) {
             builder.addRoles(createRoleInfo(role));
@@ -62,7 +42,7 @@ public class ProtocolFactory {
     public static PlayerProtocol.PlayerInfo createPlayerInfo(Player player) {
         PlayerProtocol.PlayerInfo.Builder builder = PlayerProtocol.PlayerInfo.newBuilder();
         // 基本信息
-        builder.setId(player.getId());
+*//*        builder.setId(player.getId());
         builder.setName(player.getName());
         builder.setLevel(player.getLevel());
         builder.setCareerId(player.getCareerId());
@@ -70,23 +50,27 @@ public class ProtocolFactory {
         builder.setState(player.getCurrState().ordinal());
         builder.setFighterModel(player.getFighterModeEnum().ordinal());
         builder.setSceneId(player.getSceneId());
+        //
+        if(player.getGuildId()!=null){
+            builder.setUnionId(player.getGuildId());
+        }
         // 战斗属性
         builder.setHp(player.getHp());
         builder.setCurrHp(player.getCurrHp());
         builder.setMp(player.getMp());
         builder.setCurrHp(player.getCurrMp());
         builder.setAttack(player.getAttack());
-        builder.setDefense(player.getDefense());
+        builder.setDefense(player.getDefense());*//*
         // 其他信息
         return builder.build();
     }
 
     public static PlayerProtocol.SimplePlayerInfo createSimplePlayerInfo(Player player) {
         PlayerProtocol.SimplePlayerInfo.Builder builder = PlayerProtocol.SimplePlayerInfo.newBuilder();
-        builder.setId(player.getId());
+*//*        builder.setId(player.getId());
         builder.setName(player.getName());
         builder.setCurrHp(player.getCurrHp());
-        builder.setState(player.getCurrState().ordinal());
+        builder.setState(player.getCurrState().ordinal());*//*
         return builder.build();
     }
 
@@ -101,39 +85,21 @@ public class ProtocolFactory {
 
     public static SceneProtocol.SceneInfo createSceneInfo(Scene scene) {
         SceneProtocol.SceneInfo.Builder builder = SceneProtocol.SceneInfo.newBuilder();
-        builder.setId(scene.getId());
-        builder.setName(scene.getSceneConfig().getName());
-        builder.setDescription(scene.getSceneConfig().getDesc());
-        builder.setPlayerNum(scene.getPlayerNum());
-        // 写入人物信息
-        for (Map.Entry<Long, Player> entry : scene.getPlayerMap().entrySet()) {
-            builder.addPlayers(createSimplePlayerInfo(entry.getValue()));
-        }
-        // 写入怪物信息
-        for (Map.Entry<Long, Long> entry : scene.getMonsterMap().entrySet()) {
-            Monster monster = MonsterManager.instance.getMonster(entry.getValue());
-            if (monster == null) {
-                continue;
-            }
-            builder.addMonsters(createSimpleMonsterInfo(monster));
-        }
+
         // 写入npc信息
         for (Map.Entry<Long, Npc> entry : scene.getNpcMap().entrySet()) {
             builder.addNpcs(createSimpleNpcInfo(entry.getValue()));
         }
         // 写入宝宝信息
-        for (Map.Entry<Long, Pet> entry : scene.getPetMap().entrySet()) {
+       *//* for (Map.Entry<Long, Pet> entry : scene.getPetMap().entrySet()) {
             builder.addPets(createSimplePetInfo(entry.getValue()));
-        }
+        }*//*
         return builder.build();
     }
 
     public static SceneProtocol.SimpleSceneInfo createSimpleSceneInfo(Scene scene) {
         SceneProtocol.SimpleSceneInfo.Builder builder = SceneProtocol.SimpleSceneInfo.newBuilder();
-        builder.setId(scene.getId());
-        builder.setName(scene.getSceneConfig().getName());
-        builder.setDescription(scene.getSceneConfig().getDesc());
-        builder.setPlayerNum(scene.getPlayerNum());
+
         return builder.build();
     }
 
@@ -149,52 +115,37 @@ public class ProtocolFactory {
 
     public static Actor.MonsterInfo createMonster(Monster monster) {
         Actor.MonsterInfo.Builder builder = Actor.MonsterInfo.newBuilder();
-        builder.setId(monster.getId());
-        builder.setName(monster.getMonsterConfig().getName());
-        builder.setLevel(monster.getMonsterConfig().getLevel());
-        builder.setHp(monster.getHp());
-        builder.setMp(monster.getMp());
-        builder.setAttack(monster.getAttack());
-        builder.setDefense(monster.getDefense());
-        builder.setCurrHp(monster.getCurrHp());
-        builder.setCurrMp(monster.getCurrMp());
+
         return builder.build();
     }
 
     public static Actor.SimpleMonsterInfo createSimpleMonsterInfo(Monster monster) {
         Actor.SimpleMonsterInfo.Builder builder = Actor.SimpleMonsterInfo.newBuilder();
-        builder.setId(monster.getId());
-        builder.setName(monster.getMonsterConfig().getName());
-        builder.setCurrHp(monster.getCurrHp());
-        builder.setState(monster.getCurrState().ordinal());
+
         return builder.build();
     }
 
 
     public static Actor.NpcInfo createNpc(Npc npc) {
         Actor.NpcInfo.Builder builder = Actor.NpcInfo.newBuilder();
-        builder.setId(npc.getId());
-        builder.setName(npc.getNpcConfig().getName());
-        builder.setLevel(npc.getNpcConfig().getLevel());
+
         return builder.build();
     }
 
     public static Actor.SimpleNpcInfo createSimpleNpcInfo(Npc npc) {
         Actor.SimpleNpcInfo.Builder builder = Actor.SimpleNpcInfo.newBuilder();
-        builder.setId(npc.getId());
-        builder.setName(npc.getNpcConfig().getName());
-        builder.setState(0);
+
         return builder.build();
     }
 
-    public static Actor.SimplePetInfo createSimplePetInfo(Pet pet) {
+*//*    public static Actor.SimplePetInfo createSimplePetInfo(Pet pet) {
         Actor.SimplePetInfo.Builder builder = Actor.SimplePetInfo.newBuilder();
         builder.setId(pet.getId());
         builder.setName(pet.getPetConfig().getName());
         builder.setCurrHp(pet.getCurrHp());
         builder.setState(0);
         return builder.build();
-    }
+    }*//*
 
     public static Store.CommodityList createCommodityList(List<Commodity> commodities) {
         Store.CommodityList.Builder builder = Store.CommodityList.newBuilder();
@@ -217,23 +168,7 @@ public class ProtocolFactory {
         builder.setGoodsType(commodityConfig.getGoodsType());
         builder.setGoodsId(commodityConfig.getGoodsId());
 
-        if (ItemType.EQUIP == commodityConfig.getGoodsType()) {
-            EquipConfig equipConfig = StaticConfigManager.getInstance().getEquipConfigMap()
-                    .get(commodityConfig.getGoodsId());
-            if (equipConfig == null) {
-                return null;
-            }
-            builder.setGoodsName(equipConfig.getName());
-        }
 
-        if (ItemType.PROP == commodityConfig.getGoodsType()) {
-            PropConfig propConfig = StaticConfigManager.getInstance().getPropConfigMap()
-                    .get(commodityConfig.getGoodsId());
-            if (propConfig == null) {
-                return null;
-            }
-            builder.setGoodsName(propConfig.getName());
-        }
         builder.setShoreType(commodityConfig.getStoreType());
         builder.setOriginalPrice(commodityConfig.getOriginalPrice());
         builder.setPrice(commodityConfig.getOriginalPrice());
@@ -248,9 +183,9 @@ public class ProtocolFactory {
         return builder.build();
     }
 
-    public static TeamProtocol.TeamInfo createTeamInfo(Team team) {
+   *//* public static TeamProtocol.TeamInfo createTeamInfo(Team team) {
         TeamProtocol.TeamInfo.Builder builder = TeamProtocol.TeamInfo.newBuilder();
-        builder.setId(team.getId());
+     *//**//*   builder.setId(team.getId());
         builder.setCaptainId(team.getCaptainId());
         builder.setTeamName(team.getTeamName());
         builder.setCurrNum(team.getCurrNum());
@@ -262,9 +197,9 @@ public class ProtocolFactory {
                 continue;
             }
             builder.addMemberName(player.getName());
-        }
+        }*//**//*
         return builder.build();
-    }
+    }*//*
 
     public static TeamProtocol.EntryTeamRes createEntryRes(int code, String msg) {
         TeamProtocol.EntryTeamRes.Builder builder = TeamProtocol.EntryTeamRes.newBuilder();
@@ -368,21 +303,18 @@ public class ProtocolFactory {
         builder.setDescription(instanceConfig.getDesc());
         builder.setEndTime(instanceObject.getEndTime());
         builder.setRecoveryTime(instanceObject.getRecoveryTime());
-        for (Long playerId : instanceObject.getCurrPlayers()) {
+      *//*  for (Long playerId : instanceObject.getCurrPlayers()) {
             Player player = PlayerManager
                     .instance.getPlayer(playerId);
             if (player == null) {
                 continue;
             }
             builder.addPlayerList(createOtherPlayerInfo(player));
-        }
+        }*//*
 
         for (Long monsterId : instanceObject.getCurrMonsters()) {
-            Monster monster = MonsterManager.instance.getMonster(monsterId);
-            if (monster == null) {
-                continue;
-            }
-            builder.addMonsterList(createMonster(monster));
+
+
         }
         return builder.build();
     }
@@ -394,91 +326,48 @@ public class ProtocolFactory {
         return builder.build();
     }
 
-    public static TeamProtocol.CheckTeamRes createCheckTeamRes(int code, String msg, Team team) {
+  *//*  public static TeamProtocol.CheckTeamRes createCheckTeamRes(int code, String msg, Team team) {
         TeamProtocol.CheckTeamRes.Builder builder = TeamProtocol.CheckTeamRes.newBuilder();
         builder.setCode(code);
         builder.setMsg(msg);
-        if (team != null) {
+        *//**//*if (team != null) {
             builder.setTeamInfo(createTeamInfo(team));
-        }
+        }*//**//*
         return builder.build();
-    }
+    }*//*
 
-    public static ItemProtocol.PlayerBag createPlayerBag(List<Item> items) {
-        ItemProtocol.PlayerBag.Builder builder = ItemProtocol.PlayerBag.newBuilder();
-        for (Item item : items) {
-            builder.addItemList(createItemInfo(item));
-        }
-        return builder.build();
-    }
 
-    public static ItemProtocol.ItemInfo createItemInfo(Item item) {
-        ItemProtocol.ItemInfo.Builder builder = ItemProtocol.ItemInfo.newBuilder();
-        builder.setItemId(item.getId());
-        builder.setItemType(item.getItemType());
-        if (item.getItemType().equals(ItemType.EQUIP)) {
-            EquipConfig equipConfig = StaticConfigManager.getInstance().getEquipConfigMap().get(item.getItemId());
-            builder.setItemName(equipConfig.getName());
-            builder.setDesc(equipConfig.getDesc());
-        }
-        if (item.getItemType().equals(ItemType.PROP)) {
-            PropConfig propConfig = StaticConfigManager.getInstance().getPropConfigMap().get(item.getItemId());
-            builder.setItemName(propConfig.getName());
-            builder.setDesc(propConfig.getDesc());
-        }
-        builder.setItemNum(item.getNum());
-        builder.setBagPack(BagType.PLAYER_BAG);
-        builder.setBagIndex(item.getBagIndex());
-        builder.setBound(item.getBound() == 1);
-        return builder.build();
-    }
 
-    public static EmailProtocol.EmailListRes createEmailListRes(int code, String msg, List<Email> emailList) {
+    public static EmailProtocol.EmailListRes createEmailListRes(int code, String msg, List<EmailEntity> emailEntityList) {
         EmailProtocol.EmailListRes.Builder builder = EmailProtocol.EmailListRes.newBuilder();
         builder.setCode(code);
         builder.setMsg(msg);
-        if (emailList != null && emailList.size() != 0) {
-            for (Email email : emailList) {
-                builder.addEmail(createEmailInfo(email));
+        if (emailEntityList != null && emailEntityList.size() != 0) {
+            for (EmailEntity emailEntity : emailEntityList) {
+                builder.addEmail(createEmailInfo(emailEntity));
             }
         }
         return builder.build();
     }
 
-    public static EmailProtocol.EmailInfo createEmailInfo(Email email) {
+    public static EmailProtocol.EmailInfo createEmailInfo(EmailEntity emailEntity) {
         EmailProtocol.EmailInfo.Builder builder = EmailProtocol.EmailInfo.newBuilder();
-        builder.setId(email.getId());
-        builder.setTitle(email.getTitle());
-        builder.setSendName(email.getSenderName());
-        builder.setContent(email.getContent());
-        for (Item item : email.getAttachments()) {
-            if (item.getItemType().equals(ItemType.EQUIP)) {
-                EquipConfig equipConfig = StaticConfigManager.getInstance().getEquipConfigMap()
-                        .get(item.getItemId());
-                if (equipConfig == null) {
-                    continue;
-                }
-                builder.addAttachments(equipConfig.getName());
-            }
-            if (item.getItemType().equals(ItemType.PROP)) {
-                PropConfig propConfig = StaticConfigManager.getInstance().getPropConfigMap().get(item.getItemId());
-                if (propConfig == null) {
-                    continue;
-                }
-                builder.addAttachments(propConfig.getName());
-            }
-        }
-        builder.setGolds(email.getGolds());
-        builder.setState(email.getState());
+        builder.setId(emailEntity.getId());
+        builder.setTitle(emailEntity.getTitle());
+        builder.setSendName(emailEntity.getSenderName());
+        builder.setContent(emailEntity.getContent());
+        //
+        builder.setGolds(emailEntity.getGolds());
+        builder.setState(emailEntity.getState());
         return builder.build();
     }
 
-    /**
+    *//**
      * @param code
      * @param msg
      * @param taskConfigs
      * @return com.game.protocol.TaskProtocol.QueryAllTaskRes
-     */
+     *//*
     public static TaskProtocol.QueryAllTaskRes createQueryAllTaskRes(int code, String msg, List<TaskConfig> taskConfigs) {
         TaskProtocol.QueryAllTaskRes.Builder builder = TaskProtocol.QueryAllTaskRes.newBuilder();
         builder.setCode(code);
@@ -491,9 +380,9 @@ public class ProtocolFactory {
         return builder.build();
     }
 
-    /**
+    *//**
      * 可接受任务列表
-     */
+     *//*
     public static TaskProtocol.QueryReceiveAbleTaskRes createQueryReceiveAbleTaskRes(int code, String msg,
                                                                                      List<TaskConfig> taskConfigs) {
         TaskProtocol.QueryReceiveAbleTaskRes.Builder builder = TaskProtocol.QueryReceiveAbleTaskRes.newBuilder();
@@ -535,10 +424,10 @@ public class ProtocolFactory {
         return builder.build();
     }
 
-    /**
+    *//**
      * @param task
      * @return com.game.protocol.TaskProtocol.TaskInfo
-     */
+     *//*
     public static TaskProtocol.TaskInfo createTaskInfo(Task task) {
         TaskProtocol.TaskInfo.Builder builder = TaskProtocol.TaskInfo.newBuilder();
         builder.setId(task.getId());
@@ -577,10 +466,10 @@ public class ProtocolFactory {
         return builder.build();
     }
 
-    /**
+    *//**
      * @param config
      * @return com.game.protocol.AchievementProtocol.AchievementConfigInfo
-     */
+     *//*
     public static AchievementProtocol.AchievementConfigInfo createAchievementConfigInfo(AchievementConfig config) {
         AchievementProtocol.AchievementConfigInfo.Builder builder = AchievementProtocol.AchievementConfigInfo
                 .newBuilder();
@@ -593,9 +482,9 @@ public class ProtocolFactory {
         builder.setProps(TaskUtil.parserPropsAward2Str(config.getPropAwards()));
         builder.setEquips(TaskUtil.parserEquipAward2Str(config.getEquipAwards()));
         return builder.build();
-    }
+    }*/
 
-    public static AchievementProtocol.QueryPlayerAchievementListRes
+    /*public static AchievementProtocol.QueryPlayerAchievementListRes
     createQueryPlayerAchievementListRes(int code, String msg, PlayerAchievement playerAchievement) {
         AchievementProtocol.QueryPlayerAchievementListRes.Builder builder = AchievementProtocol
                 .QueryPlayerAchievementListRes.newBuilder();
@@ -607,9 +496,9 @@ public class ProtocolFactory {
             }
         }
         return builder.build();
-    }
+    }*/
 
-    public static AchievementProtocol.AchievementInfo createAchievementInfo(Achievement achievement) {
+   /* public static AchievementProtocol.AchievementInfo createAchievementInfo(Achievement achievement) {
         AchievementProtocol.AchievementInfo.Builder builder = AchievementProtocol.AchievementInfo.newBuilder();
         AchievementConfig achievementConfig = StaticConfigManager.getInstance().getAchievementConfigMap()
                 .get(achievement.getAchievementId());
@@ -635,8 +524,7 @@ public class ProtocolFactory {
             builder.addTaskProgressInfo(info);
         }
         return builder.build();
-    }
-
+    }*/
 
 }
 

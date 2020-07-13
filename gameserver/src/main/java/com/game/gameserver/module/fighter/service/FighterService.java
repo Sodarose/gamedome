@@ -1,4 +1,5 @@
-package com.game.gameserver.module.fighter.service.impl;
+/*
+package com.game.gameserver.module.fighter.service;
 
 import com.game.gameserver.common.config.PetConfig;
 import com.game.gameserver.common.config.SkillConfig;
@@ -13,7 +14,6 @@ import com.game.gameserver.module.cooltime.entity.CoolTime;
 import com.game.gameserver.module.cooltime.entity.UnitCoolTime;
 import com.game.gameserver.module.cooltime.manager.CoolTimeManager;
 import com.game.gameserver.module.fighter.entity.FighterContext;
-import com.game.gameserver.module.fighter.service.FighterService;
 import com.game.gameserver.module.fighter.type.FighterModeEnum;
 import com.game.gameserver.module.instance.manager.InstanceManager;
 import com.game.gameserver.module.instance.model.InstanceObject;
@@ -46,15 +46,17 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
+*/
 /**
  * @author xuewenkang
  * @date 2020/6/22 10:07
- */
+ *//*
+
 @Service
-public class FighterServiceImpl implements FighterService {
+public class FighterService {
 
 
-    private final static Logger logger = LoggerFactory.getLogger(FighterServiceImpl.class);
+    private final static Logger logger = LoggerFactory.getLogger(FighterService.class);
 
     public PlayerManager getPlayerManager() {
         return playerManager;
@@ -62,7 +64,7 @@ public class FighterServiceImpl implements FighterService {
 
     public static FighterService instance;
 
-    public FighterServiceImpl() {
+    public FighterService() {
         instance = this;
     }
 
@@ -83,14 +85,16 @@ public class FighterServiceImpl implements FighterService {
     @Autowired
     private SkillManager skillManager;
 
-    /**
+    */
+/**
      * 玩家请求发起攻击
      *
      * @param playerId
      * @param targetId
      * @param unitType
      * @return com.game.protocol.FighterProtocol.AttackRes
-     */
+     *//*
+
     @Override
     public FighterProtocol.AttackRes playerAttackReq(long playerId, long targetId, int unitType) {
         Player player = playerManager.getPlayer(playerId);
@@ -142,13 +146,15 @@ public class FighterServiceImpl implements FighterService {
             return FighterProtocol.UseSkillRes.newBuilder().setCode(1002).setMsg("不存在该技能").build();
         }
         // 获取角色技能数据
-        /*PlayerSkill playerSkill = skillManager.getPlayerSkill(playerId);
+        */
+/*PlayerSkill playerSkill = skillManager.getPlayerSkill(playerId);
         if (playerSkill == null) {
             return FighterProtocol.UseSkillRes.newBuilder().setCode(1003).setMsg("用户技能数据读取失败").build();
         }
         if (playerSkill.hasSkill(skillId)) {
             return FighterProtocol.UseSkillRes.newBuilder().setCode(1004).setMsg("用户没有该技能").build();
-        }*/
+        }*//*
+
         // 判断技能冷却时间 获取单位冷却组件
         UnitCoolTime unitCoolTime = coolTimeManager.getUnitCoolTime(playerId);
         if (unitCoolTime != null) {
@@ -160,13 +166,15 @@ public class FighterServiceImpl implements FighterService {
         return FighterProtocol.UseSkillRes.newBuilder().setCode(0).setMsg("技能使用成功").build();
     }
 
-    /**
+    */
+/**
      * 角色切换战斗模式
      *
      * @param playerId
      * @param model
      * @return com.game.protocol.FighterProtocol.ChangeModelRes
-     */
+     *//*
+
     @Override
     public FighterProtocol.ChangeModelRes changeFighterModel(long playerId, int model) {
         Player player = playerManager.getPlayer(playerId);
@@ -187,14 +195,16 @@ public class FighterServiceImpl implements FighterService {
         return FighterProtocol.ChangeModelRes.newBuilder().setCode(0).setMsg("模式切换成功").build();
     }
 
-    /**
+    */
+/**
      * 玩家释放技能
      *
      * @param playerId 玩家Id
      * @param targetId 目标Id
      * @param unitType 目标类型
      * @return void
-     */
+     *//*
+
     @Override
     public void playerUseSkill(long playerId, long targetId, int unitType, int skillId) {
         // 玩家是否存在
@@ -236,7 +246,8 @@ public class FighterServiceImpl implements FighterService {
     }
 
 
-    /**
+    */
+/**
      * 玩家释放伤害型技能
      *
      * @param player
@@ -244,7 +255,8 @@ public class FighterServiceImpl implements FighterService {
      * @param unitType
      * @param skillConfig
      * @return void
-     */
+     *//*
+
     private void playerCastDamageSkill(Player player, long targetId, int unitType, SkillConfig skillConfig) {
         // 玩家释放范围性伤害技能
         if (skillConfig.getSkillRange() == SkillType.AREA) {
@@ -283,13 +295,15 @@ public class FighterServiceImpl implements FighterService {
         skillEntryCoolTime(player.getUnitId(), skillConfig);
     }
 
-    /**
+    */
+/**
      * 玩家释放范围性伤害技能(目前范围型技能只能攻击怪物)
      *
      * @param player
      * @param skillConfig
      * @return void
-     */
+     *//*
+
     private void playerCastAreaDamageSkill(Player player, SkillConfig skillConfig) {
         if (player == null || player.isDead()) {
             return;
@@ -338,14 +352,16 @@ public class FighterServiceImpl implements FighterService {
         }
     }
 
-    /**
+    */
+/**
      * 玩家释放伤害技能攻击玩家
      *
      * @param player
      * @param target
      * @param skillConfig
      * @return void
-     */
+     *//*
+
     private void playerCastDamageSkill2Player(Player player, Player target,
                                               SkillConfig skillConfig) {
         if (player == null || player.isDead()) {
@@ -363,14 +379,16 @@ public class FighterServiceImpl implements FighterService {
         pushFighterContext(fighterContext);
     }
 
-    /**
+    */
+/**
      * 玩家释放伤害技能攻击怪物
      *
      * @param player
      * @param target
      * @param skillConfig
      * @return void
-     */
+     *//*
+
     private void playerCastDamageSkill2Monster(Player player, Monster target, SkillConfig skillConfig) {
         // 校验是否能够攻击该怪物
         if (!verifyAttackMonster(player, target)) {
@@ -381,14 +399,16 @@ public class FighterServiceImpl implements FighterService {
         pushFighterContext(fighterContext);
     }
 
-    /**
+    */
+/**
      * 玩家攻击怪物
      *
      * @param player
      * @param monster
      * @param skillConfig
      * @return com.game.gameserver.module.fighter.entity.FighterContext 战报
-     */
+     *//*
+
     private FighterContext playerAttackMonster(Player player,
                                                Monster monster, SkillConfig skillConfig) {
         // 解析技能 获取技能公式
@@ -434,14 +454,16 @@ public class FighterServiceImpl implements FighterService {
         return fighterContext;
     }
 
-    /**
+    */
+/**
      * 玩家攻击玩家
      *
      * @param player
      * @param target
      * @param skillConfig
      * @return com.game.gameserver.module.fighter.entity.FighterContext
-     */
+     *//*
+
     private FighterContext playerAttackPlayer(Player player, Player target, SkillConfig skillConfig) {
         // 解析技能 获取技能公式
         String formula = skillConfig.getFormula();
@@ -488,14 +510,16 @@ public class FighterServiceImpl implements FighterService {
     }
 
 
-    /**
+    */
+/**
      * 玩家释放伤害技能攻击宝宝
      *
      * @param player
      * @param pet
      * @param skillConfig
      * @return void
-     */
+     *//*
+
     private void playerCastDamageSkill2Pet(Player player, Pet pet, SkillConfig skillConfig) {
         if (verifyAttackPet(player, pet)) {
             return;
@@ -537,18 +561,21 @@ public class FighterServiceImpl implements FighterService {
     }
 
 
-    /**
+    */
+/**
      * 验证宝宝是否可以被攻击
      *
      * @param player
      * @param pet
      * @return boolean
-     */
+     *//*
+
     private boolean verifyAttackPet(Player player, Pet pet) {
         return true;
     }
 
-    /**
+    */
+/**
      * 玩家释放辅助性技能
      *
      * @param player
@@ -556,7 +583,8 @@ public class FighterServiceImpl implements FighterService {
      * @param unitType
      * @param skillConfig
      * @return void
-     */
+     *//*
+
     private void playerCastAssistSkill(Player player, long targetId, int unitType, SkillConfig skillConfig) {
         // 技能目标
         List<Player> targets = new ArrayList<>();
@@ -633,13 +661,15 @@ public class FighterServiceImpl implements FighterService {
         return fighterContext;
     }
 
-    /**
+    */
+/**
      * 玩家释放召唤性技能
      *
      * @param player
      * @param skillConfig
      * @return void
-     */
+     *//*
+
     private void playerCastSummonerSkill(Player player, SkillConfig skillConfig) {
         // 解析技能
         String formula = skillConfig.getFormula();
@@ -671,7 +701,8 @@ public class FighterServiceImpl implements FighterService {
         }
     }
 
-    /**
+    */
+/**
      * 怪物释放技能
      *
      * @param monsterId 怪物Id
@@ -679,7 +710,8 @@ public class FighterServiceImpl implements FighterService {
      * @param unitType  目标类型
      * @param skillId   技能Id
      * @return void
-     */
+     *//*
+
     @Override
     public void monsterUseSkill(long monsterId, long targetId, int unitType, int skillId) {
         Monster monster = monsterManager.getMonster(monsterId);
@@ -710,7 +742,8 @@ public class FighterServiceImpl implements FighterService {
         }
     }
 
-    /**
+    */
+/**
      * 怪物释放伤害型技能
      *
      * @param monster
@@ -718,7 +751,8 @@ public class FighterServiceImpl implements FighterService {
      * @param unitType
      * @param skillConfig
      * @return void
-     */
+     *//*
+
     private void monsterCastDamageSkill(Monster monster, long targetId, int unitType, SkillConfig skillConfig) {
         // 怪物释放范围性技能
         if (skillConfig.getSkillRange() == SkillType.AREA) {
@@ -747,13 +781,15 @@ public class FighterServiceImpl implements FighterService {
         skillEntryCoolTime(monster.getUnitId(), skillConfig);
     }
 
-    /**
+    */
+/**
      * 怪物释放范围性攻击技能
      *
      * @param monster
      * @param skillConfig
      * @return void
-     */
+     *//*
+
     private void monsterCastAreaDamageSkill(Monster monster, SkillConfig skillConfig) {
         // 被攻击的玩家列表
         List<Player> targets = new ArrayList<>();
@@ -789,14 +825,16 @@ public class FighterServiceImpl implements FighterService {
         }
     }
 
-    /**
+    */
+/**
      * 怪物攻击玩家
      *
      * @param monster
      * @param target
      * @param skillConfig
      * @return void
-     */
+     *//*
+
     private FighterContext monsterCastSkill2Player(Monster monster, Player target, SkillConfig skillConfig) {
         // 解析技能 获取技能公式
         String formula = skillConfig.getFormula();
@@ -828,14 +866,16 @@ public class FighterServiceImpl implements FighterService {
         return fighterContext;
     }
 
-    /**
+    */
+/**
      * 怪物攻击宝宝
      *
      * @param monster
      * @param target
      * @param skillConfig
      * @return void
-     */
+     *//*
+
     private FighterContext monsterCastSkill2Pet(Monster monster, Pet target, SkillConfig skillConfig) {
         String formula = skillConfig.getFormula();
         String ruleFormula = formula.replace("${0}", monster.getAttack() + "");
@@ -867,7 +907,8 @@ public class FighterServiceImpl implements FighterService {
     }
 
 
-    /**
+    */
+/**
      * 宝宝主动攻击
      *
      * @param petId
@@ -875,7 +916,8 @@ public class FighterServiceImpl implements FighterService {
      * @param unitType
      * @param skillId
      * @return void
-     */
+     *//*
+
     @Override
     public void petUseSkill(long petId, long targetId, int unitType, int skillId) {
         Pet pet = petManager.getPet(petId);
@@ -888,23 +930,27 @@ public class FighterServiceImpl implements FighterService {
     }
 
 
-    /**
+    */
+/**
      * 推送战报
      *
      * @param fighterContext
      * @return void
-     */
+     *//*
+
     private void pushFighterContext(FighterContext fighterContext) {
 
     }
 
-    /**
+    */
+/**
      * 验证单位的技能冷却时间
      *
      * @param unitId      单位Id
      * @param skillConfig 技能配置
      * @return boolean
-     */
+     *//*
+
     private boolean verifySkillCoolTime(long unitId, SkillConfig skillConfig) {
         // 获取该单位的CD 实体
         UnitCoolTime unitCoolTime = coolTimeManager.getUnitCoolTime(unitId);
@@ -916,13 +962,15 @@ public class FighterServiceImpl implements FighterService {
         return unitCoolTime.hasSkillCoolTime(skillConfig.getId());
     }
 
-    /**
+    */
+/**
      * 技能进入冷却时间
      *
      * @param unitId      单位Id
      * @param skillConfig 技能配置
      * @return void
-     */
+     *//*
+
     private void skillEntryCoolTime(long unitId, SkillConfig skillConfig) {
         UnitCoolTime unitCoolTime = coolTimeManager.getUnitCoolTime(unitId);
         // 判断技能CD
@@ -937,13 +985,15 @@ public class FighterServiceImpl implements FighterService {
         unitCoolTime.putCoolTimeMap(skillConfig.getId(), coolTime);
     }
 
-    /**
+    */
+/**
      * 判断该玩家是否能够被攻击
      *
      * @param player
      * @param target
      * @return boolean
-     */
+     *//*
+
     private boolean verifyAttackPlayer(Player player, Player target) {
         if (target == null) {
             return false;
@@ -981,9 +1031,11 @@ public class FighterServiceImpl implements FighterService {
     }
 
 
-    /**
+    */
+/**
      * 验证怪物是否可以被攻击
-     */
+     *//*
+
     public boolean verifyAttackMonster(Player player, Monster monster) {
         if (monster == null) {
             return false;
@@ -1003,3 +1055,4 @@ public class FighterServiceImpl implements FighterService {
         return true;
     }
 }
+*/

@@ -12,7 +12,7 @@ import java.io.Serializable;
  * @date 2020/6/8 16:16
  */
 @Data
-public class Player implements Serializable {
+public class PlayerEntity implements Serializable {
     /** id */
     private Long id;
     /** 姓名 */
@@ -36,7 +36,7 @@ public class Player implements Serializable {
     /** 账号ID*/
     private Long userId;
 
-    public Player(){
+    public PlayerEntity(){
 
     }
 

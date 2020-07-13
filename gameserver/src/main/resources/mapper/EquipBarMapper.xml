@@ -1,11 +1,48 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.game.gameserver.module.backbag.dao.BackBagMapper">
+<mapper namespace="com.game.gameserver.module.equipment.dao.EquipBarMapper">
     <!--道具-->
-    <resultMap id="backBag" type="com.game.gameserver.module.equipment.entity.EquipBarEntity">
+    <resultMap id="equipBar" type="com.game.gameserver.module.equipment.entity.EquipBarEntity">
         <result column="playerId" property="playerId"/>
         <result column="items" property="items" jdbcType="BLOB" typeHandler="com.game.gameserver.util.typehandler.TypeHandler"/>
     </resultMap>
 
+    <!--列表-->
+    <sql id="Base_EquipBar_Column_List">
+       playerId, items
+    </sql>
+
+    <insert id="insert" parameterType="com.game.gameserver.module.equipment.entity.EquipBarEntity">
+        INSERT INTO game_player_equip_bar
+        (playerId, items)
+        VALUES (#{playerId},
+        #{items,jdbcType=BLOB,typeHandler=com.game.gameserver.util.typehandler.TypeHandler})
+    </insert>
+
+    <select id="select" resultMap="equipBar">
+        SELECT
+        <include refid="Base_EquipBar_Column_List" />
+        FROM game_player_equip_bar
+        WHERE
+        playerId=#{playerId}
+    </select>
+
+    <update id="update" parameterType="com.game.gameserver.module.equipment.entity.EquipBarEntity">
+        UPDATE game_player_equip_bar
+        <set>
+            <if test="itemConfigId != null">
+                itemConfigId = #{itemConfigId},
+            </if>
+            <if test="items != null">
+                items = #{items,jdbcType=BLOB,typeHandler=com.game.gameserver.util.typehandler.TypeHandler},
+            </if>
+        </set>
+        WHERE playerId = #{playerId}
+    </update>
+
+    <delete id="delete">
+    DELETE FROM  game_player_equip_bar
+    WHERE playerId = #{playerId}
+    </delete>
 
 </mapper>

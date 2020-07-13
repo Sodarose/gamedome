@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/client/client.iml" filepath="$PROJECT_DIR$/client/client.iml" />
       <module fileurl="file://$PROJECT_DIR$/common/common.iml" filepath="$PROJECT_DIR$/common/common.iml" />
       <module fileurl="file://$PROJECT_DIR$/dome.iml" filepath="$PROJECT_DIR$/dome.iml" />
+      <module fileurl="file://$PROJECT_DIR$/gameclient/gameclient.iml" filepath="$PROJECT_DIR$/gameclient/gameclient.iml" />
       <module fileurl="file://$PROJECT_DIR$/gameserver/gameserver.iml" filepath="$PROJECT_DIR$/gameserver/gameserver.iml" />
     </modules>
   </component>

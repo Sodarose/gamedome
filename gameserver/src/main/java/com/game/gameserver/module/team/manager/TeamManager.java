@@ -1,16 +1,8 @@
 package com.game.gameserver.module.team.manager;
 
-import com.game.gameserver.module.player.manager.PlayerManager;
-import com.game.gameserver.module.team.entity.Team;
-import com.game.gameserver.net.modelhandler.ModuleKey;
-import com.game.gameserver.net.modelhandler.team.TeamCmd;
-import com.game.gameserver.util.ProtocolFactory;
-import com.game.protocol.Message;
-import com.game.protocol.TeamProtocol;
-import com.game.util.MessageUtil;
+import com.game.gameserver.module.team.model.Team;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -28,42 +20,22 @@ import java.util.concurrent.ConcurrentHashMap;
 public class TeamManager {
     private final static Logger logger = LoggerFactory.getLogger(TeamManager.class);
 
-    /**
-     * 队伍列表
-     */
-    private final Map<Long, Team> teamObjectMap = new ConcurrentHashMap<>(16);
+    /** 本地组队缓存 */
+    private final static Map<Long, Team> LOCAL_ITEM_MAP = new ConcurrentHashMap<>();
 
-    public void putTeamObject(Team team) {
-        teamObjectMap.put(team.getId(), team);
+    public void putTeam(Team team){
+        LOCAL_ITEM_MAP.put(team.getId(),team);
     }
 
-    /**
-     * 根据队伍Id，搜索队伍
-     *
-     * @param teamId
-     * @return com.game.gameserver.module.team.model.TeamObject
-     */
-    public Team getTeamObject(long teamId) {
-        return teamObjectMap.get(teamId);
+    public Team getTeam(long itemId){
+        return LOCAL_ITEM_MAP.get(itemId);
     }
 
-    /**
-     * 删除一个队伍
-     *
-     * @param teamId
-     * @return void
-     */
-    public void removeTeamObject(long teamId) {
-        teamObjectMap.remove(teamId);
+    public void remove(long itemId){
+        LOCAL_ITEM_MAP.remove(itemId);
     }
 
-
-    public List<Team> getListTeamObject() {
-        List<Team> teamList = new ArrayList<>();
-        for (Map.Entry<Long, Team> entry : teamObjectMap.entrySet()) {
-            teamList.add(entry.getValue());
-        }
-        return teamList;
+    public List<Team> getTeamList(){
+        return new ArrayList<>(LOCAL_ITEM_MAP.values());
     }
-
 }

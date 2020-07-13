@@ -1,3 +1,4 @@
+/*
 package com.game.gameserver.module.achievement.entity;
 
 import com.game.gameserver.module.task.entity.TaskProgress;
@@ -7,33 +8,45 @@ import java.util.List;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
+*/
 /**
  * 玩家成就容器
  *
  * @author xuewenkang
  * @date 2020/7/1 20:53
- */
+ *//*
+
 public class PlayerAchievement {
 
-    /**
+    */
+/**
      * 角色Id
-     */
+     *//*
+
     private final long playerId;
-    /**
+    */
+/**
      * 成就列表
-     */
+     *//*
+
     private volatile List<Achievement> achievements;
-    /**
+    */
+/**
      * 新增的成就
-     */
+     *//*
+
     private volatile List<Achievement> ADD;
-    /**
+    */
+/**
      * 待更新的成就
-     */
+     *//*
+
     private volatile List<Achievement> UPDATE;
-    /**
+    */
+/**
      * 读写锁
-     */
+     *//*
+
     private final ReentrantReadWriteLock lock;
 
     public PlayerAchievement(long playerId) {
@@ -78,12 +91,14 @@ public class PlayerAchievement {
         return lock.writeLock();
     }
 
-    /**
+    */
+/**
      * 获取所有成就的进度
      *
      * @param
      * @return java.util.List<com.game.gameserver.module.task.entity.TaskProgress>
-     */
+     *//*
+
     public List<TaskProgress> getAllTaskProgress() {
         List<TaskProgress> taskProgresses = new ArrayList<>();
         for (Achievement achievement : achievements) {
@@ -91,4 +106,9 @@ public class PlayerAchievement {
         }
         return taskProgresses;
     }
+
+    public long getPlayerId() {
+        return playerId;
+    }
 }
+*/

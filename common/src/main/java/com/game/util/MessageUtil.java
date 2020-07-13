@@ -1,6 +1,6 @@
 package com.game.util;
 
-import com.game.protocol.Message;
+import com.game.message.Message;
 
 /**
  * @author xuewenkang
@@ -19,11 +19,7 @@ public class MessageUtil {
      */
     private final static int CMD_LENGTH = 2;
 
-    public static Message createMessage(short module,short cmd, byte[] bytes) {
-        int length = LENGTH + MODULE_LENGTH +CMD_LENGTH;
-        if (bytes != null) {
-            length += bytes.length;
-        }
-        return new Message(length,module,cmd, bytes);
+    public static Message createMessage(short module, short cmd, byte[] bytes) {
+        return null;
     }
 }

@@ -1,3 +1,4 @@
+/*
 package com.game.gameserver.module.ai.state.pet;
 
 import com.game.gameserver.common.config.PetConfig;
@@ -16,15 +17,21 @@ import java.util.List;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
+*/
 /**
  * @author xuewenkang
  * @date 2020/6/23 10:36
- */
+ *//*
+
 public enum PetState implements State<Pet> {
-    /*** 宝宝状态 */
-    /**
+    */
+/*** 宝宝状态 *//*
+
+    */
+/**
      * 跟随状态
-     */
+     *//*
+
     FOLLOW {
         @Override
         public void enter(Pet pet) {
@@ -58,7 +65,9 @@ public enum PetState implements State<Pet> {
     },
     // 攻击状态
     ATTACK {
-        /** 下次攻击时间 */
+        */
+/** 下次攻击时间 *//*
+
         private final static String NEX_ATTACK_TIME = "NEX_ATTACK_TIME";
 
         @Override
@@ -116,12 +125,18 @@ public enum PetState implements State<Pet> {
         }
     },
     TAKEOFF {
-        /** 固定回复的数值 */
+        */
+/** 固定回复的数值 *//*
+
         private final static int HP = 100;
         private final static int MP = 100;
-        /** 回复期间  单位秒 */
+        */
+/** 回复期间  单位秒 *//*
+
         private final static int DURATION = 1;
-        /** 下一次的回复时间*/
+        */
+/** 下一次的回复时间*//*
+
         private final static String NEXT_REPLY_TIME = "NEXT_REPLY_TIME";
 
         @Override
@@ -172,3 +187,4 @@ public enum PetState implements State<Pet> {
         }
     }
 }
+*/

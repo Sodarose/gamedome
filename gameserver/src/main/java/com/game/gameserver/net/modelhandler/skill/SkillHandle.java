@@ -1,12 +1,9 @@
 package com.game.gameserver.net.modelhandler.skill;
 
 import com.game.gameserver.module.skill.service.SkillService;
-import com.game.gameserver.net.annotation.CmdHandler;
 import com.game.gameserver.net.annotation.ModuleHandler;
 import com.game.gameserver.net.handler.BaseHandler;
 import com.game.gameserver.net.modelhandler.ModuleKey;
-import com.game.protocol.Message;
-import io.netty.channel.Channel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -19,6 +16,4 @@ import org.springframework.stereotype.Component;
 public class SkillHandle extends BaseHandler {
     @Autowired
     private SkillService skillService;
-
-
 }

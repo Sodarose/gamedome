@@ -1,6 +1,6 @@
 package com.game.gameserver.module.user.dao;
 
-import com.game.gameserver.module.user.entity.AccountEntity;
+import com.game.gameserver.module.user.entity.UserEntity;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -10,13 +10,13 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 @Mapper
-public interface AccountMapper {
+public interface UserMapper {
 
-    AccountEntity select(String loginId);
+    UserEntity select(String loginId);
 
-    int insert(AccountEntity accountEntity);
+    int insert(UserEntity userEntity);
 
-    int update(AccountEntity accountEntity);
+    int update(UserEntity userEntity);
 
     int delete(long accountId);
 

@@ -1,7 +1,6 @@
 package com.game.gameserver.module.instance.model;
 
 import com.game.gameserver.common.config.InstanceConfig;
-import com.game.gameserver.common.config.InstanceMonsterConfig;
 import com.game.gameserver.common.config.StaticConfigManager;
 import com.game.gameserver.module.instance.type.InstanceEnum;
 import com.game.gameserver.util.GameUUID;
@@ -96,11 +95,11 @@ public class InstanceObject {
         if (instanceConfig == null) {
             return;
         }
-        InstanceMonsterConfig instanceMonsterConfig = StaticConfigManager.getInstance().getInstanceMonsterConfigMap()
+     /*   InstanceMonsterConfig instanceMonsterConfig = StaticConfigManager.getInstance().getInstanceMonsterConfigMap()
                 .get(instanceConfig.getInstanceMonsterConfigId());
         if (instanceMonsterConfig == null) {
             return;
-        }
+        }*/
 
     }
 

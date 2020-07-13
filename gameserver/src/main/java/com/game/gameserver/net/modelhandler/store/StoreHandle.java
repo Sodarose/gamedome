@@ -1,18 +1,8 @@
 package com.game.gameserver.net.modelhandler.store;
 
-import com.game.gameserver.module.player.entity.Player;
-import com.game.gameserver.module.player.service.PlayerService;
-import com.game.gameserver.module.store.service.StoreService;
-import com.game.gameserver.net.annotation.CmdHandler;
 import com.game.gameserver.net.annotation.ModuleHandler;
 import com.game.gameserver.net.handler.BaseHandler;
 import com.game.gameserver.net.modelhandler.ModuleKey;
-import com.game.protocol.Message;
-import com.game.protocol.Store;
-import com.game.util.MessageUtil;
-import com.google.protobuf.InvalidProtocolBufferException;
-import io.netty.channel.Channel;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
@@ -23,16 +13,16 @@ import org.springframework.stereotype.Component;
 @Component
 public class StoreHandle extends BaseHandler {
 
-    @Autowired
+/*    @Autowired
     private StoreService storeService;
 
-    /**
+    *//**
      * 获取商品列表
      *
      * @param message
      * @param channel
      * @return void
-     */
+     *//*
     @CmdHandler(cmd = StoreCmd.LIST)
     public void getCommodityList(Message message, Channel channel) {
         Player player = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
@@ -44,13 +34,13 @@ public class StoreHandle extends BaseHandler {
         channel.writeAndFlush(res);
     }
 
-    /**
+    *//**
      * 购买物品
      *
      * @param message
      * @param channel
      * @return void
-     */
+     *//*
     @CmdHandler(cmd = StoreCmd.BUY)
     public void buyCommodity(Message message, Channel channel) {
         Player player = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
@@ -68,13 +58,13 @@ public class StoreHandle extends BaseHandler {
         }
     }
 
-    /**
+    *//**
      * 出售物品
      *
      * @param message
      * @param channel
      * @return void
-     */
+     *//*
     @CmdHandler(cmd = StoreCmd.SELL)
     public void sellCommodity(Message message, Channel channel) {
         Player player = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
@@ -90,6 +80,6 @@ public class StoreHandle extends BaseHandler {
         } catch (InvalidProtocolBufferException e) {
             e.printStackTrace();
         }
-    }
+    }*/
 
 }

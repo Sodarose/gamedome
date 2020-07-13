@@ -1,18 +1,19 @@
-package com.game.gameserver.module.task.service.impl;
+package com.game.gameserver.module.task.service;
 
 import com.game.gameserver.common.config.StaticConfigManager;
 import com.game.gameserver.common.config.TaskConfig;
 import com.game.gameserver.event.Listener;
-import com.game.gameserver.module.bag.service.BackBagService;
+import com.game.gameserver.module.backbag.service.BackBagService;
+import com.game.gameserver.module.notification.NotificationHelper;
 import com.game.gameserver.module.player.manager.PlayerManager;
-import com.game.gameserver.module.player.entity.Player;
-import com.game.gameserver.module.task.entity.PlayerTask;
+import com.game.gameserver.module.player.entity.PlayerEntity;
+import com.game.gameserver.module.player.model.Player;
+import com.game.gameserver.module.task.helper.TaskHelper;
+import com.game.gameserver.module.task.model.PlayerTask;
 import com.game.gameserver.module.task.entity.Task;
 import com.game.gameserver.module.task.manager.TaskManager;
-import com.game.gameserver.module.task.service.TaskService;
 import com.game.gameserver.module.task.type.TaskState;
 import com.game.gameserver.util.ProtocolFactory;
-import com.game.protocol.TaskProtocol;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +27,7 @@ import java.util.Map;
  */
 @Listener
 @Service
-public class TaskServiceImpl implements TaskService {
+public class TaskService {
 
     @Autowired
     private TaskManager taskManager;
@@ -37,204 +38,183 @@ public class TaskServiceImpl implements TaskService {
 
 
     /**
-     * 获取任务列表
+     * 查看所有任务列表
      *
-     * @param playerId
-     * @return com.game.protocol.TaskProtocol.TaskListRes
+     * @param player
+     * @return void
      */
-    @Override
-    public TaskProtocol.QueryAllTaskRes queryAllTask(long playerId) {
+    public void showAllTask(Player player) {
         // 获取任务资源MAP
         Map<Integer, TaskConfig> taskConfigMap = StaticConfigManager.getInstance().getTaskConfigMap();
         List<TaskConfig> taskConfigs = new ArrayList<>();
-        for (Map.Entry<Integer, TaskConfig> entry : taskConfigMap.entrySet()) {
-            taskConfigs.add(entry.getValue());
-        }
-        return ProtocolFactory.createQueryAllTaskRes(0, "success", taskConfigs);
+        taskConfigMap.forEach((key,value)->{
+            taskConfigs.add(value);
+        });
+        // 返回信息
+        NotificationHelper.notifyPlayer(player, TaskHelper.buildTaskConfigListMsg(taskConfigs));
     }
 
     /**
-     * 获取可接受的任务列表
+     * 更改下顺序
      *
-     * @param playerId
-     * @return com.game.protocol.TaskProtocol.QueryReceiveAbleTaskRes
+     * @param player
+     * @return TaskProtocol.QueryReceiveAbleTaskRes
      */
-    @Override
-    public TaskProtocol.QueryReceiveAbleTaskRes queryReceiveAbleTask(long playerId) {
-        Player player = playerManager.getPlayer(playerId);
-        if (player == null) {
-            return TaskProtocol.QueryReceiveAbleTaskRes.newBuilder().setCode(1000).setMsg("获取用户数据出错").build();
-        }
+    public void showReceiveAbleTask(Player player) {
         // 获取用户已经接受的任务
-        PlayerTask playerTask = taskManager.getPlayerTask(playerId);
+        PlayerTask playerTask = taskManager.getPlayerTask(player.getPlayerEntity().getId());
         if (playerTask == null) {
-            return TaskProtocol.QueryReceiveAbleTaskRes.newBuilder().setCode(1001).setMsg("获取任务列表失败").build();
+            return;
         }
         // 获取任务资源MAP
         Map<Integer, TaskConfig> taskConfigMap = StaticConfigManager.getInstance().getTaskConfigMap();
         // 可接受任务列表
         List<TaskConfig> receiveAbleTasks = new ArrayList<>();
         for (Map.Entry<Integer, TaskConfig> entry : taskConfigMap.entrySet()) {
+
             receiveAbleTasks.add(entry.getValue());
         }
         // 移除已经接收的任务||等级不够的任务
         receiveAbleTasks.removeIf(taskConfig -> playerTask.hasTask(taskConfig.getId()) ||
-                taskConfig.getLimitLevel() > player.getLevel());
+                taskConfig.getLimitLevel() > player.getPlayerEntity().getLevel());
         // 返回结果
-        return ProtocolFactory.createQueryReceiveAbleTaskRes(0, "success", receiveAbleTasks);
+        NotificationHelper.notifyPlayer(player, TaskHelper.buildTaskConfigListMsg(receiveAbleTasks));
     }
 
     /**
-     * 查询用户已经接受的任务
+     * 显示用户已经接受的任务
      *
-     * @param playerId
-     * @return com.game.protocol.TaskProtocol.PlayerTaskListRes
+     * @param player
+     * @return void
      */
-    @Override
-    public TaskProtocol.QueryReceiveTaskRes queryReceiveTask(long playerId) {
-        Player player = playerManager.getPlayer(playerId);
-        if (player == null) {
-            return TaskProtocol.QueryReceiveTaskRes.newBuilder().setCode(1000).setMsg("获取用户数据失败").build();
-        }
-        PlayerTask playerTask = taskManager.getPlayerTask(playerId);
+    public void showReceiveTask(Player player) {
+        PlayerTask playerTask = taskManager.getPlayerTask(player.getPlayerEntity().getId());
         if (playerTask == null) {
-            return TaskProtocol.QueryReceiveTaskRes.newBuilder().setCode(1001).setMsg("获取任务列表失败").build();
+            NotificationHelper.notifyPlayer(player,"获取任务列表失败");
+            return;
         }
-        return ProtocolFactory.creatQueryReceiveTaskRes(0, "success", playerTask);
+        NotificationHelper.notifyPlayer(player,"");
     }
 
     /**
-     * 接受任务
+     * 接取任务
      *
-     * @param playerId
+     * @param player
      * @param taskId
-     * @return com.game.protocol.TaskProtocol.AcceptTaskTes
+     * @return void
      */
-    @Override
-    public TaskProtocol.AcceptTaskTes acceptTask(long playerId, int taskId) {
-        Player player = playerManager.getPlayer(playerId);
-        if (player == null) {
-            return TaskProtocol.AcceptTaskTes.newBuilder().setCode(1000).setMsg("获取用户数据失败").build();
-        }
-        PlayerTask playerTask = taskManager.getPlayerTask(playerId);
+    public void acceptTask(Player player, int taskId) {
+        PlayerTask playerTask = taskManager.getPlayerTask(player.getPlayerEntity().getId());
         if (playerTask == null) {
-            return TaskProtocol.AcceptTaskTes.newBuilder().setCode(1001).setMsg("获取玩家任务列表失败").build();
+            NotificationHelper.notifyPlayer(player,"获取任务列表失败");
+            return;
         }
-        // 判断是否达到接收任务要求
+
         TaskConfig taskConfig = StaticConfigManager.getInstance().getTaskConfigMap().get(taskId);
         if (taskConfig == null) {
-            return TaskProtocol.AcceptTaskTes.newBuilder().setCode(1002).setMsg("无该任务").build();
+            NotificationHelper.notifyPlayer(player,"无该任务");
+            return;
         }
-        if (taskConfig.getLimitLevel() > player.getLevel()) {
-            return TaskProtocol.AcceptTaskTes.newBuilder().setCode(1003).setMsg("没有达到可接受任务的要求").build();
+
+        // 判断是否达到接收任务要求
+        if (taskConfig.getLimitLevel() > player.getPlayerEntity().getLevel()) {
+            NotificationHelper.notifyPlayer(player,"没有达到可接受任务的要求");
+            return;
         }
+
         // 判断是否已经接受该任务
         if (playerTask.hasTask(taskId)) {
-            return TaskProtocol.AcceptTaskTes.newBuilder().setCode(1004).setMsg("您已经接受了该任务").build();
+            NotificationHelper.notifyPlayer(player,"您已经接受了该任务");
+            return;
         }
+
         // 创建任务 放入角色人物容器中
-        Task task = new Task(playerId, taskConfig);
+        Task task = new Task(player.getPlayerEntity().getId(), taskConfig);
         playerTask.addTask(task);
         // 完成
-        return TaskProtocol.AcceptTaskTes.newBuilder().setCode(0).setMsg("接受任务成功").build();
+        NotificationHelper.notifyPlayer(player,"接受任务成功");
     }
 
     /**
      * 取消任务
      *
-     * @param playerId
+     * @param player
      * @param taskId
-     * @return com.game.protocol.TaskProtocol.CancelTaskRes
+     * @return void
      */
-    @Override
-    public TaskProtocol.CancelTaskRes cancelTask(long playerId, int taskId) {
-        Player player = playerManager.getPlayer(playerId);
-        if (player == null) {
-            return TaskProtocol.CancelTaskRes.newBuilder().setCode(1000).setMsg("获取用户数据失败").build();
-        }
-        PlayerTask playerTask = taskManager.getPlayerTask(playerId);
+    public void cancelTask(Player player, int taskId) {
+        PlayerTask playerTask = taskManager.getPlayerTask(player.getPlayerEntity().getId());
         if (playerTask == null) {
-            return TaskProtocol.CancelTaskRes.newBuilder().setCode(1001).setMsg("获取玩家任务列表失败").build();
+            NotificationHelper.notifyPlayer(player,"获取任务列表失败");
+            return;
         }
-        TaskConfig taskConfig = StaticConfigManager.getInstance().getTaskConfigMap().get(taskId);
-        if (taskConfig == null) {
-            return TaskProtocol.CancelTaskRes.newBuilder().setCode(1002).setMsg("无该任务").build();
-        }
+
+        // 这里要改动
         if (!playerTask.hasTask(taskId)) {
-            return TaskProtocol.CancelTaskRes.newBuilder().setCode(1003).setMsg("你没有接受此任务").build();
+            NotificationHelper.notifyPlayer(player,"你没有接受此任务");
+            return;
         }
+
         // 判断任务是否可取消
-        if (!taskConfig.isCancel()) {
-            return TaskProtocol.CancelTaskRes.newBuilder().setCode(1004).setMsg("该任务不能取消").build();
-        }
+
         // 移除该任务
         playerTask.removeTask(taskId);
-        return TaskProtocol.CancelTaskRes.newBuilder().setCode(0).setMsg("取消任务成功").build();
+        NotificationHelper.notifyPlayer(player,"取消任务");
     }
 
     /**
      * 提交任务
      *
-     * @param playerId
      * @param taskId
-     * @return com.game.protocol.TaskProtocol.SubmitTaskRes
+     * @return void
      */
-    @Override
-    public TaskProtocol.SubmitTaskRes submitTask(long playerId, int taskId) {
-        Player player = playerManager.getPlayer(playerId);
-        if (player == null) {
-            return TaskProtocol.SubmitTaskRes.newBuilder().setCode(1000).setMsg("获取用户数据失败").build();
-        }
-        PlayerTask playerTask = taskManager.getPlayerTask(playerId);
+    public void submitTask(Player player, int taskId) {
+        PlayerTask playerTask = taskManager.getPlayerTask(player.getPlayerEntity().getId());
         if (playerTask == null) {
-            return TaskProtocol.SubmitTaskRes.newBuilder().setCode(1001).setMsg("获取玩家任务列表失败").build();
+            NotificationHelper.notifyPlayer(player,"获取任务列表失败");
+            return;
         }
-        TaskConfig taskConfig = StaticConfigManager.getInstance().getTaskConfigMap().get(taskId);
-        if (taskConfig == null) {
-            return TaskProtocol.SubmitTaskRes.newBuilder().setCode(1002).setMsg("无该任务").build();
-        }
+
         // 判断任务是否为可提交状态
         Task task = playerTask.getTask(taskId);
         if (task == null) {
-            return TaskProtocol.SubmitTaskRes.newBuilder().setCode(1003).setMsg("你没有接受此任务").build();
+            NotificationHelper.notifyPlayer(player,"你没有接受此任务");
+            return;
         }
+
         if(task.getState()!= TaskState.COMPLETED){
-            return TaskProtocol.SubmitTaskRes.newBuilder().setCode(1004).setMsg("任务未完成或者已经完成并领取奖励").build();
+            NotificationHelper.notifyPlayer(player,"任务未完成或者已经完成并领取奖励");
+            return;
         }
-        // 调用道具服务 发送任务奖励(暂时等待重构)
+
+        // 生成任务奖励
+        // 放入背包
 
         // 设置任务状态
         task.setState(TaskState.FINISH);
+
         // 返回结果
-        return TaskProtocol.SubmitTaskRes.newBuilder().setCode(0).setMsg("领取成功").build();
+        NotificationHelper.notifyPlayer(player,"领取成功");
     }
 
     /**
-     * 查看任务
+     * 展示任务
      *
-     * @param playerId
+     * @param player
      * @param taskId
-     * @return com.game.protocol.TaskProtocol.CheckTaskRes
+     * @return void
      */
-    @Override
-    public TaskProtocol.CheckTaskRes checkTask(long playerId, int taskId) {
-        Player player = playerManager.getPlayer(playerId);
-        if (player == null) {
-            return TaskProtocol.CheckTaskRes.newBuilder().setCode(1000).setMsg("获取用户数据失败").build();
-        }
-        PlayerTask playerTask = taskManager.getPlayerTask(playerId);
+    public void showTask(Player player, int taskId) {
+        PlayerTask playerTask = taskManager.getPlayerTask(player.getPlayerEntity().getId());
         if (playerTask == null) {
-            return TaskProtocol.CheckTaskRes.newBuilder().setCode(1001).setMsg("获取玩家任务列表失败").build();
-        }
-        TaskConfig taskConfig = StaticConfigManager.getInstance().getTaskConfigMap().get(taskId);
-        if (taskConfig == null) {
-            return TaskProtocol.CheckTaskRes.newBuilder().setCode(1002).setMsg("无该任务").build();
+            NotificationHelper.notifyPlayer(player,"获取任务列表失败");
+            return;
         }
         Task task = playerTask.getTask(taskId);
         if (task == null) {
-            return TaskProtocol.CheckTaskRes.newBuilder().setCode(1003).setMsg("你没有接受此任务").build();
+            NotificationHelper.notifyPlayer(player,"你没有接受此任务");
+            return;
         }
-        TaskProtocol.TaskInfo taskInfo = ProtocolFactory.createTaskInfo(task);
-        return TaskProtocol.CheckTaskRes.newBuilder().setCode(0).setMsg("success").setTaskInfo(taskInfo).build();
+        NotificationHelper.notifyPlayer(player,"你没有接受此任务");
     }
 }

@@ -1,8 +1,7 @@
 package com.game.gameserver.module.ai.manager;
 
 import com.game.gameserver.thread.DefaultThreadFactory;
-import com.game.gameserver.module.monster.manager.MonsterManager;
-import com.game.gameserver.module.pet.manager.PetManager;
+/*import com.game.gameserver.module.pet.manager.PetManager;*/
 import com.game.gameserver.module.player.manager.PlayerManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,10 +23,8 @@ public class AiManager {
     private final static Logger logger = LoggerFactory.getLogger(AiManager.class);
     @Autowired
     private PlayerManager playerManager;
-    @Autowired
-    private MonsterManager monsterManager;
-    @Autowired
-    private PetManager petManager;
+ /*   @Autowired
+    private PetManager petManager;*/
 
     private ScheduledExecutorService scheduledExecutorService;
     private Worker  worker;
@@ -46,9 +43,7 @@ public class AiManager {
         @Override
         public void run() {
             try {
-                playerManager.update();
-                monsterManager.update();
-                petManager.update();
+
             }catch (Exception e){
                 e.printStackTrace();
             }

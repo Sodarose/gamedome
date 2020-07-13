@@ -1,4 +1,4 @@
-package com.game.gameserver.net.modelhandler.auction;
+package com.game.gameclient.type;
 
 /**
  * @author xuewenkang

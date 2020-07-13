@@ -1,23 +1,37 @@
 package com.game.gameserver.module.item.model;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import com.game.gameserver.common.config.ItemConfig;
+import lombok.Data;
 
 /**
- * 道具模型
+ * 道具
  *
  * @author xuewenkang
  * @date 2020/7/12 2:26
  */
-public class ItemEntity extends com.game.gameserver.module.item.entity.ItemEntity {
-    /** 道具静态资源属性 */
-    private final ItemConfig itemConfig;
+@Data
+public class Item  {
+    /** 静态资源Id */
+    private Integer itemConfigId;
+    /** 数量 */
+    private Integer num;
+    /** 物品位置 */
+    private Integer bagIndex;
+    /** 装备耐久读 */
+    private Integer durability;
 
-    public ItemEntity(ItemConfig itemConfig){
-        this.itemConfig = itemConfig;
+    public ItemConfig itemConfig;
+
+    public Item(){
+
     }
 
-    public ItemConfig getItemConfig() {
-        return itemConfig;
+    public void decreaseNum(int value){
+        this.num -= value;
     }
 
+    public void addNum(int value){
+        this.num+=value;
+    }
 }

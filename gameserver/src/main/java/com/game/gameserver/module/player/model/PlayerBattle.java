@@ -1,4 +1,4 @@
-package com.game.gameserver.module.player.domain;
+package com.game.gameserver.module.player.model;
 
 import lombok.Data;
 

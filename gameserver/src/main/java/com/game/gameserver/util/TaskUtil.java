@@ -86,14 +86,14 @@ public class TaskUtil {
      */
     public static String parserPropsAward2Str(Map<Integer, Integer> propsMap){
         StringBuilder result = new StringBuilder();
-        for (Map.Entry<Integer, Integer> entry : propsMap.entrySet()) {
+      /*  for (Map.Entry<Integer, Integer> entry : propsMap.entrySet()) {
             // 获取道具资源
             PropConfig propConfig = StaticConfigManager.getInstance().getPropConfigMap().get(entry.getKey());
             if (propConfig == null) {
                 continue;
             }
             result.append(propConfig.getName()).append(entry.getValue()).append("\n");
-        }
+        }*/
         return result.toString();
     }
 
@@ -106,12 +106,12 @@ public class TaskUtil {
     public static String parserEquipAward2Str(List<Integer> equipList){
         StringBuilder result = new StringBuilder();
         for (Integer equipId : equipList) {
-            // 获取装备资源
+         /*   // 获取装备资源
             EquipConfig equipConfig = StaticConfigManager.getInstance().getEquipConfigMap().get(equipId);
             if (equipConfig == null) {
                 continue;
             }
-            result.append(equipConfig.getName()).append("\n");
+            result.append(equipConfig.getName()).append("\n");*/
         }
         return result.toString();
     }

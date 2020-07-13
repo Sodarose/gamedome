@@ -8,7 +8,9 @@
     "mp": 500,
     "attack": 100,
     "defense": 200,
-    "skills": [1]
+    "skills": [1],
+    "refreshTime": 10,
+    "drop": ""
   },
   {
     "id": 1001,
@@ -19,7 +21,9 @@
     "mp": 500,
     "attack": 100,
     "defense": 200,
-    "skills": [1]
+    "skills": [1],
+    "refreshTime": 10,
+    "drop": ""
   },
   {
     "id": 1002,
@@ -30,7 +34,9 @@
     "mp": 500,
     "attack": 100,
     "defense": 200,
-    "skills": [1]
+    "skills": [1],
+    "refreshTime": 10,
+    "drop": ""
   },
   {
     "id": 1003,
@@ -41,7 +47,9 @@
     "mp": 500,
     "attack": 100,
     "defense": 200,
-    "skills": [1]
+    "skills": [1],
+    "refreshTime": 10,
+    "drop": ""
   },
   {
     "id": 1004,
@@ -52,7 +60,9 @@
     "mp": 500,
     "attack": 100,
     "defense": 200,
-    "skills": [1]
+    "skills": [1],
+    "refreshTime": 10,
+    "drop": ""
   },
   {
     "id": 1005,
@@ -63,7 +73,9 @@
     "mp": 500,
     "attack": 100,
     "defense": 200,
-    "skills": [1]
+    "skills": [1],
+    "refreshTime": 10,
+    "drop": ""
   },
   {
     "id": 1006,
@@ -74,7 +86,9 @@
     "mp": 500,
     "attack": 100,
     "defense": 200,
-    "skills": [1]
+    "skills": [1],
+    "refreshTime": 10,
+    "drop": ""
   },
   {
     "id": 1007,
@@ -85,7 +99,9 @@
     "mp": 500,
     "attack": 100,
     "defense": 200,
-    "skills": [1]
+    "skills": [1],
+    "refreshTime": 10,
+    "drop": ""
   },
   {
     "id": 1008,
@@ -96,7 +112,9 @@
     "mp": 500,
     "attack": 100,
     "defense": 200,
-    "skills": [1]
+    "skills": [1],
+    "refreshTime": 10,
+    "drop": ""
   },
   {
     "id": 1009,
@@ -107,7 +125,9 @@
     "mp": 500,
     "attack": 100,
     "defense": 200,
-    "skills": [1]
+    "skills": [1],
+    "refreshTime": 10,
+    "drop": ""
   },
   {
     "id": 1010,
@@ -118,7 +138,9 @@
     "mp": 500,
     "attack": 100,
     "defense": 200,
-    "skills": [1]
+    "skills": [1],
+    "refreshTime": 10,
+    "drop": ""
   },
   {
     "id": 1011,
@@ -129,7 +151,9 @@
     "mp": 500,
     "attack": 100,
     "defense": 200,
-    "skills": [1]
+    "skills": [1],
+    "refreshTime": 10,
+    "drop": ""
   },
   {
     "id": 1012,
@@ -140,7 +164,9 @@
     "mp": 500,
     "attack": 100,
     "defense": 200,
-    "skills": [1]
+    "skills": [1],
+    "refreshTime": 10,
+    "drop": ""
   },
   {
     "id": 1013,
@@ -151,7 +177,9 @@
     "mp": 500,
     "attack": 100,
     "defense": 200,
-    "skills": [1]
+    "skills": [1],
+    "refreshTime": 10,
+    "drop": ""
   },
   {
     "id": 1014,
@@ -162,7 +190,9 @@
     "mp": 500,
     "attack": 100,
     "defense": 200,
-    "skills": [1]
+    "skills": [1],
+    "refreshTime": 10,
+    "drop": ""
   },
   {
     "id": 1015,
@@ -173,7 +203,9 @@
     "mp": 500,
     "attack": 100,
     "defense": 200,
-    "skills": [1]
+    "skills": [1],
+    "refreshTime": 10,
+    "drop": ""
   },
   {
     "id": 1016,
@@ -184,7 +216,9 @@
     "mp": 500,
     "attack": 100,
     "defense": 200,
-    "skills": [1]
+    "skills": [1],
+    "refreshTime": 10,
+    "drop": ""
   },
   {
     "id": 1017,
@@ -195,7 +229,9 @@
     "mp": 500,
     "attack": 100,
     "defense": 200,
-    "skills": [1]
+    "skills": [1],
+    "refreshTime": 10,
+    "drop": ""
   },
   {
     "id": 1018,
@@ -206,7 +242,9 @@
     "mp": 500,
     "attack": 100,
     "defense": 200,
-    "skills": [1]
+    "skills": [1],
+    "refreshTime": 10,
+    "drop": ""
   },
   {
     "id": 1019,
@@ -217,7 +255,9 @@
     "mp": 500,
     "attack": 100,
     "defense": 200,
-    "skills": [1]
+    "skills": [1],
+    "refreshTime": 10,
+    "drop": ""
   },
   {
     "id": 1020,
@@ -228,7 +268,9 @@
     "mp": 500,
     "attack": 100,
     "defense": 200,
-    "skills": [1]
+    "skills": [1],
+    "refreshTime": 10,
+    "drop": ""
   },
   {
     "id": 1021,
@@ -239,7 +281,9 @@
     "mp": 500,
     "attack": 100,
     "defense": 200,
-    "skills": [1]
+    "skills": [1],
+    "refreshTime": 10,
+    "drop": ""
   },
   {
     "id": 1022,
@@ -250,7 +294,9 @@
     "mp": 500,
     "attack": 100,
     "defense": 200,
-    "skills": [1]
+    "skills": [1],
+    "refreshTime": 10,
+    "drop": ""
   },
   {
     "id": 1023,
@@ -261,6 +307,8 @@
     "mp": 500,
     "attack": 100,
     "defense": 200,
-    "skills": [1]
+    "skills": [1],
+    "refreshTime": 10,
+    "drop": ""
   }
 ]

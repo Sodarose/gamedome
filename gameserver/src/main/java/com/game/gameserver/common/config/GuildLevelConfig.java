@@ -10,7 +10,7 @@ import lombok.Data;
  * @date 2020/7/3 11:45
  */
 @Data
-public class UnionLevelConfig {
+public class GuildLevelConfig {
     /** 公会等级 */
     @JSONField(name = "level")
     private int level;

@@ -1,4 +1,4 @@
-package com.game.gameserver.net.modelhandler.team;
+package com.game.gameclient.type;
 
 /**
  * @author xuewenkang

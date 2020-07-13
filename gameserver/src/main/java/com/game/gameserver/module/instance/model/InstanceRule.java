@@ -1,3 +1,4 @@
+/*
 package com.game.gameserver.module.instance.model;
 
 import com.game.gameserver.common.config.InstanceConfig;
@@ -6,7 +7,6 @@ import com.game.gameserver.common.config.InstanceMonsterConfig;
 import com.game.gameserver.common.config.StaticConfigManager;
 import com.game.gameserver.module.instance.manager.InstanceManager;
 import com.game.gameserver.module.instance.type.InstanceEnum;
-import com.game.gameserver.module.item.manager.ItemManager;
 import com.game.gameserver.module.monster.manager.MonsterManager;
 import com.game.gameserver.module.monster.type.MonsterType;
 import com.game.gameserver.module.player.manager.PlayerManager;
@@ -16,7 +16,7 @@ import com.game.gameserver.net.modelhandler.ModuleKey;
 import com.game.gameserver.net.modelhandler.instance.InstanceCmd;
 import com.game.gameserver.util.ProtocolFactory;
 import com.game.protocol.InstanceProtocol;
-import com.game.protocol.Message;
+import com.game.message.Message;
 import com.game.protocol.TipProtocol;
 import com.game.util.MessageUtil;
 import org.slf4j.Logger;
@@ -24,12 +24,14 @@ import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
+*/
 /**
  * 副本玩法
  *
  * @author xuewenkang
  * @date 2020/6/20 12:21
- */
+ *//*
+
 public class InstanceRule {
     private final static Logger logger = LoggerFactory.getLogger(InstanceRule.class);
 
@@ -145,7 +147,7 @@ public class InstanceRule {
                 TipProtocol.TipMessage.Builder builder = TipProtocol.TipMessage.newBuilder();
                 List<Long> players = instanceObject.getCurrPlayers();
                 builder.setMsg("进入下一个关卡");
-                Message message = MessageUtil.createMessage(ModuleKey.TIP_MODULE, (short) 0, builder.build().toByteArray());
+                Message message = MessageUtil.createMessage(ModuleKey.NOTIFY_MODULE, (short) 0, builder.build().toByteArray());
                 for (Long playerId : players) {
                     Player player = PlayerManager.instance.getPlayer(playerId);
                     if (player == null) {
@@ -158,18 +160,20 @@ public class InstanceRule {
     }
 
 
-    /**
+    */
+/**
      * 失败
      *
      * @param instanceObject
      * @return void
-     */
+     *//*
+
     private void doFailed(InstanceObject instanceObject) {
         // 提示闯关失败
         TipProtocol.TipMessage.Builder builder = TipProtocol.TipMessage.newBuilder();
         List<Long> players = instanceObject.getCurrPlayers();
         builder.setMsg("闯关失败 10秒后退出");
-        Message message = MessageUtil.createMessage(ModuleKey.TIP_MODULE, (short) 0, builder.build().toByteArray());
+        Message message = MessageUtil.createMessage(ModuleKey.NOTIFY_MODULE, (short) 0, builder.build().toByteArray());
         for (Long playerId : players) {
             Player player = PlayerManager.instance.getPlayer(playerId);
             if (player == null) {
@@ -184,12 +188,14 @@ public class InstanceRule {
         instanceObject.setRecovery(true);
     }
 
-    /**
+    */
+/**
      * 成功
      *
      * @param instanceObject
      * @return void
-     */
+     *//*
+
     public void doSuccess(InstanceObject instanceObject) {
         // 提示成功
         List<Long> players = instanceObject.getCurrPlayers();
@@ -199,7 +205,7 @@ public class InstanceRule {
             return;
         }
         InstanceProtocol.InstanceSuccess instanceSuccess = ProtocolFactory.createInstanceSuccess(instanceConfig);
-        Message message = MessageUtil.createMessage(ModuleKey.TIP_MODULE, (short) 0, instanceSuccess.toByteArray());
+        Message message = MessageUtil.createMessage(ModuleKey.NOTIFY_MODULE, (short) 0, instanceSuccess.toByteArray());
         for (Long playerId : players) {
             Player player = PlayerManager.instance.getPlayer(playerId);
             if (player == null) {
@@ -213,7 +219,9 @@ public class InstanceRule {
             player.addExpr(expr);
             player.addGolds(golds);
             // 道具奖励
-            ItemManager.instance.addInstanceAward(playerId,instanceConfig);
+            */
+/*ItemManager.instance.addInstanceAward(playerId,instanceConfig);*//*
+
             player.getChannel().writeAndFlush(message);
         }
         // 设定回收期限
@@ -223,12 +231,14 @@ public class InstanceRule {
         instanceObject.setRecovery(true);
     }
 
-    /**
+    */
+/**
      * 副本完成
      *
      * @param instanceObject
      * @return void
-     */
+     *//*
+
     private void doRecovery(InstanceObject instanceObject) {
         // 踢出还在副本内的角色
         List<Long> players = instanceObject.getCurrPlayers();
@@ -238,12 +248,14 @@ public class InstanceRule {
         InstanceManager.instance.removeInstance(instanceObject);
     }
 
-    /**
+    */
+/**
      * 同步副本数据 测试用
      *
      * @param instanceObject
      * @return void
-     */
+     *//*
+
     private void syncInstanceInfo(InstanceObject instanceObject){
         InstanceProtocol.InstanceInfo info = ProtocolFactory.createInstanceInfo(instanceObject);
         assert info != null;
@@ -259,3 +271,4 @@ public class InstanceRule {
         }
     }
 }
+*/

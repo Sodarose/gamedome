@@ -12,4 +12,6 @@ public interface BackBagCmd {
     int DISCARD_ITEM = 1003;
     /** */
     int SYNC = 1004;
+    /** */
+    int CLEAN_UP = 1005;
 }

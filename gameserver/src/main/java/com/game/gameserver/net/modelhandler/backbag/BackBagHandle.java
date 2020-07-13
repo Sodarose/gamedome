@@ -2,7 +2,7 @@ package com.game.gameserver.net.modelhandler.backbag;
 
 import com.game.gameserver.module.backbag.service.BackBagService;
 import com.game.gameserver.module.notification.NotificationHelper;
-import com.game.gameserver.module.player.domain.PlayerDomain;
+import com.game.gameserver.module.player.model.Player;
 import com.game.gameserver.module.player.service.PlayerService;
 import com.game.gameserver.net.annotation.CmdHandler;
 import com.game.gameserver.net.annotation.ModuleHandler;
@@ -26,7 +26,7 @@ public class BackBagHandle extends BaseHandler {
 
     @CmdHandler(cmd = BackBagCmd.SHOW_BACK_BAG)
     public void showBackBag(Message message, Channel channel){
-        PlayerDomain playerDomain = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
+        Player playerDomain = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
         if (playerDomain == null) {
             NotificationHelper.notifyChannel(channel, "请先登录角色");
             return;
@@ -36,7 +36,7 @@ public class BackBagHandle extends BaseHandler {
 
     @CmdHandler(cmd = BackBagCmd.MOVE_ITEM)
     public void moveItem(Message message,Channel channel){
-        PlayerDomain playerDomain = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
+        Player playerDomain = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
         if (playerDomain == null) {
             NotificationHelper.notifyChannel(channel, "请先登录角色");
             return;
@@ -55,7 +55,7 @@ public class BackBagHandle extends BaseHandler {
 
     @CmdHandler(cmd = BackBagCmd.DISCARD_ITEM)
     public void discardItem(Message message,Channel channel){
-        PlayerDomain playerDomain = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
+        Player playerDomain = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
         if (playerDomain == null) {
             NotificationHelper.notifyChannel(channel, "请先登录角色");
             return;
@@ -71,4 +71,15 @@ public class BackBagHandle extends BaseHandler {
         int num = Integer.parseInt(param[1]);
         backBagService.discardItem(playerDomain,bagIndex,num);
     }
+
+    @CmdHandler(cmd = BackBagCmd.CLEAN_UP)
+    public void clearUpBag(Message message,Channel channel){
+        Player playerDomain = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
+        if (playerDomain == null) {
+            NotificationHelper.notifyChannel(channel, "请先登录角色");
+            return;
+        }
+        backBagService.clearUpBag(playerDomain);
+    }
+
 }

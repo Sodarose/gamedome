@@ -1,5 +1,7 @@
-package com.game.gameserver.module.task.entity;
+package com.game.gameserver.module.task.model;
 
+import com.game.gameserver.module.task.entity.Task;
+import com.game.gameserver.module.task.entity.TaskProgress;
 import com.game.gameserver.module.task.type.TaskState;
 
 import java.util.ArrayList;

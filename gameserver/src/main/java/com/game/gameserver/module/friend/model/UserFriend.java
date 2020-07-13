@@ -16,14 +16,14 @@ import java.util.concurrent.CopyOnWriteArrayList;
  * @date 2020/7/8 12:05
  */
 @Getter
-public class PlayerFriend {
+public class UserFriend {
     private final long playerId;
     private Map<Long,Friend> friendMap = new ConcurrentHashMap<>();
 
     /** 好友申请 */
     private Set<Long> applicant = new ConcurrentSkipListSet<>();
 
-    public PlayerFriend(long playerId){
+    public UserFriend(long playerId){
         this.playerId = playerId;
     }
 

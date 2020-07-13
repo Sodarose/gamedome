@@ -3,64 +3,64 @@
     "id": 1001,
     "name": "初始之地",
     "desc": "一切开始的地方",
-    "exitWays": [
+    "neighbors": [
       1002
     ],
-    "sceneMonsterConfigId": 1001,
-    "sceneNpcConfigId": 1001
+    "monsterIds": [1000,1001,1002],
+    "npcIds": [1000]
   },
   {
     "id": 1002,
     "name": "村庄",
     "desc": "宁静的村庄 隐藏着不为人知的秘密啊",
-    "exitWays": [
+    "neighbors": [
       1001,
       1003,
       1004
     ],
-    "sceneMonsterConfigId": 1002,
-    "sceneNpcConfigId": 1002
+    "monsterIds": [1003,1004,1005],
+    "npcIds": [1001,1002]
   },
   {
     "id": 1003,
     "name": "城堡",
     "desc": "城堡的主人似乎对你十分的感兴趣",
-    "exitWays": [
+    "neighbors": [
       1002,
       1006
     ],
-    "sceneMonsterConfigId": 1003,
-    "sceneNpcConfigId": 1003
+    "monsterIds": [1006,1007,1008],
+    "npcIds": [1003,1004,1005]
   },
   {
     "id": 1004,
     "name": "森岭",
     "desc": "阴森的森岭 传说，里面居住着巨龙",
-    "exitWays": [
+    "neighbors": [
       1002,
       1005
     ],
-    "sceneMonsterConfigId": 1004,
-    "sceneNpcConfigId": 1004
+    "monsterIds": [1009,1010,1011],
+    "npcIds": [1006,1007]
   },
   {
     "id": 1005,
     "name": "龙窟",
     "desc": "巨龙盘踞之地，小心头顶的火焰",
-    "exitWays": [
+    "neighbors": [
       1004
     ],
-    "sceneMonsterConfigId": 1005,
-    "sceneNpcConfigId": 1005
+    "monsterIds": [1012,1013,1014],
+    "npcIds": []
   },
   {
     "id": 1006,
     "name": "未来之地",
     "desc": "你的未来，在何处？",
-    "exitWays": [
+    "neighbors": [
       1003
     ],
-    "sceneMonsterConfigId": 1006,
-    "sceneNpcConfigId": 1006
+    "monsterIds": [1015,1016,1017],
+    "npcIds": []
   }
 ]

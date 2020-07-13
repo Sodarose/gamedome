@@ -1,10 +1,9 @@
 package com.game.gameserver.net.server;
 
 import com.game.gameserver.context.ServerContext;
-import com.game.gameserver.module.player.entity.Player;
-import com.game.gameserver.module.player.service.PlayerService;
 import com.game.gameserver.net.handler.MessageDispatcher;
-import com.game.protocol.Message;
+import com.game.message.Message;
+import com.game.protocol.CmdProto;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import org.slf4j.Logger;
@@ -20,11 +19,12 @@ public class ServerHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         logger.info("server accept message {}",msg);
-        Message message = (Message) msg;
+        CmdProto.CmdMsg cmdMsg =  (CmdProto.CmdMsg) msg;
+        Message message1 = Message.buildMsg(cmdMsg);
         try {
             MessageDispatcher messageDispatcher = ServerContext.getApplication()
                     .getBean(MessageDispatcher.class);
-            messageDispatcher.dispatch(message,ctx.channel());
+            messageDispatcher.dispatch(message1,ctx.channel());
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -46,11 +46,6 @@ public class ServerHandler extends ChannelInboundHandlerAdapter {
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
         super.exceptionCaught(ctx,cause);
         logger.error("channel {} exception",ctx.channel().id());
-        Player player = ctx.channel().attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
-        if(player !=null){
-            /*LostEvent lostEvent = new LostEvent(playerObject.getPlayer().getId());
-            EventBus.EVENT_BUS.fire(lostEvent);*/
-        }
         ctx.channel().close();
     }
 

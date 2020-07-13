@@ -1,18 +1,8 @@
 package com.game.gameserver.net.modelhandler.task;
 
-import com.game.gameserver.module.player.entity.Player;
-import com.game.gameserver.module.player.service.PlayerService;
-import com.game.gameserver.module.task.service.TaskService;
-import com.game.gameserver.net.annotation.CmdHandler;
 import com.game.gameserver.net.annotation.ModuleHandler;
 import com.game.gameserver.net.handler.BaseHandler;
 import com.game.gameserver.net.modelhandler.ModuleKey;
-import com.game.protocol.Message;
-import com.game.protocol.TaskProtocol;
-import com.game.util.MessageUtil;
-import com.google.protobuf.InvalidProtocolBufferException;
-import io.netty.channel.Channel;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
@@ -23,16 +13,16 @@ import org.springframework.stereotype.Component;
 @ModuleHandler(module = ModuleKey.TASK_MODULE)
 public class TaskHandle extends BaseHandler {
 
-    @Autowired
+   /* @Autowired
     private TaskService taskService;
 
-    /**
+    *//**
      * 查询所有任务
      *
      * @param message
      * @param channel
      * @return void
-     */
+     *//*
     @CmdHandler(cmd = TaskCmd.QUERY_ALL_TASK)
     public void handleQueryAllTaskReq(Message message, Channel channel) {
         Player player = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
@@ -45,13 +35,13 @@ public class TaskHandle extends BaseHandler {
         channel.writeAndFlush(resMsg);
     }
 
-    /**
+    *//**
      * 查询可接受的任务
      *
      * @param message
      * @param channel
      * @return void
-     */
+     *//*
     @CmdHandler(cmd = TaskCmd.QUERY_RECEIVE_ABLE_TASK)
     public void handleQueryReceiveAbleTask(Message message, Channel channel) {
         Player player = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
@@ -64,13 +54,13 @@ public class TaskHandle extends BaseHandler {
         channel.writeAndFlush(resMsg);
     }
 
-    /**
+    *//**
      * 查询已经接受的任务
      *
      * @param message
      * @param channel
      * @return void
-     */
+     *//*
     @CmdHandler(cmd = TaskCmd.QUERY_RECEIVE_TASK)
     public void handleQueryReceiveTaskReq(Message message, Channel channel) {
         Player player = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
@@ -82,13 +72,13 @@ public class TaskHandle extends BaseHandler {
         channel.writeAndFlush(resMsg);
     }
 
-    /**
+    *//**
      * 接受任务请求
      *
      * @param message
      * @param channel
      * @return void
-     */
+     *//*
     @CmdHandler(cmd = TaskCmd.ACCEPT_TASK)
     public void handleAcceptTaskReq(Message message, Channel channel) {
         Player player = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
@@ -106,13 +96,13 @@ public class TaskHandle extends BaseHandler {
         }
     }
 
-    /**
+    *//**
      * 取消任务
      *
      * @param message
      * @param channel
      * @return void
-     */
+     *//*
     @CmdHandler(cmd = TaskCmd.CANCEL_TASK)
     public void handleCancelTaskReq(Message message, Channel channel) {
         Player player = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
@@ -130,13 +120,13 @@ public class TaskHandle extends BaseHandler {
         }
     }
 
-    /**
+    *//**
      * 提交任务
      *
      * @param message
      * @param channel
      * @return void
-     */
+     *//*
     @CmdHandler(cmd = TaskCmd.SUBMIT_TASK)
     public void handleSubmitTaskReq(Message message, Channel channel) {
         Player player = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
@@ -154,13 +144,13 @@ public class TaskHandle extends BaseHandler {
         }
     }
 
-    /**
+    *//**
      * 查看任务
      *
      * @param message
      * @param channel
      * @return void
-     */
+     *//*
     @CmdHandler(cmd = TaskCmd.CHECK_TASK)
     public void handleCheckTaskReq(Message message, Channel channel) {
         Player player = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
@@ -177,6 +167,6 @@ public class TaskHandle extends BaseHandler {
             e.printStackTrace();
         }
     }
-
+*/
 
 }

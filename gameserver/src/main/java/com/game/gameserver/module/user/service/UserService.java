@@ -1,7 +1,11 @@
 package com.game.gameserver.module.user.service;
 
+import com.game.gameserver.common.config.CareerConfig;
+import com.game.gameserver.common.config.StaticConfigManager;
+import com.game.gameserver.module.player.dao.PlayerDbService;
 import com.game.gameserver.module.user.dao.UserDbService;
-import com.game.gameserver.module.user.entity.AccountEntity;
+import com.game.gameserver.module.player.entity.Role;
+import com.game.gameserver.module.user.entity.UserEntity;
 import com.game.gameserver.module.user.manager.UserManager;
 import com.game.gameserver.module.user.module.User;
 import com.game.gameserver.module.notification.NotificationHelper;
@@ -14,13 +18,15 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @author xuewenkang
  * @date 2020/5/24 23:45
  */
 @Service
-public class AccountService {
-    private static final Logger logger = LoggerFactory.getLogger(AccountService.class);
+public class UserService {
+    private static final Logger logger = LoggerFactory.getLogger(UserService.class);
     public final static AttributeKey<User> ACCOUNT_ATTRIBUTE_KEY = AttributeKey.newInstance("ACCOUNT_ATTRIBUTE_KEY");
 
 
@@ -29,6 +35,9 @@ public class AccountService {
 
     @Autowired
     private UserDbService userDbService;
+
+    @Autowired
+    private PlayerDbService playerDbService;
 
     /**
      * 登录
@@ -39,26 +48,32 @@ public class AccountService {
      * @return void
      */
     public void login(String loginId, String password, Channel channel) {
-        User user = userManager.getAccount(loginId);
+        User user = userManager.getUser(loginId);
         // 从数据库中获取数据
         if (user == null) {
-            AccountEntity accountEntity = userDbService.select(loginId);
-            if (accountEntity == null || !accountEntity.getPassword().equals(password)) {
+            UserEntity userEntity = userDbService.select(loginId);
+            if (userEntity == null || !userEntity.getPassword().equals(password)) {
                 NotificationHelper.notifyChannel(channel, "账户或密码错误");
                 return;
             }
             // 生成账号信息
             user = new User();
-            BeanUtils.copyProperties(accountEntity, user);
+            BeanUtils.copyProperties(userEntity, user);
+            // 查询用户角色拥有的Id列表
+            List<Long> roles = playerDbService.selectRoleIds(user.getId());
+            user.getRoles().addAll(roles);
+            // 放入缓存
+            userManager.putUser(loginId, user);
             // 设置连接
             user.setChannel(channel);
             channel.attr(ACCOUNT_ATTRIBUTE_KEY).set(user);
-            // 放入缓存
-            userManager.putAccount(loginId, user);
             NotificationHelper.notifyChannel(channel, "登录成功");
         } else {
             // 掉线通知
             NotificationHelper.notifyChannel(user.getChannel(), "您被挤了");
+            // 移除缓存
+            userManager.removeUser(loginId);
+            // 关闭连接
             user.getChannel().close();
             // 设置新连接
             user.setChannel(channel);
@@ -83,8 +98,8 @@ public class AccountService {
             return;
         }
         // 同步注册
-        AccountEntity accountEntity = new AccountEntity(GameUUID.getInstance().generate(),loginId,password);
-        i = userDbService.insert(accountEntity);
+        UserEntity userEntity = new UserEntity(GameUUID.getInstance().generate(),loginId,password);
+        i = userDbService.insert(userEntity);
         if(i!=1){
             NotificationHelper.notifyChannel(channel, "注册失败");
             return;
@@ -101,7 +116,7 @@ public class AccountService {
      */
     public void logout(User user) {
         // 移除缓存
-        userManager.removeAccount(user.getLoginId());
+        userManager.removeUser(user.getLoginId());
         // 移除连接
         user.getChannel().attr(ACCOUNT_ATTRIBUTE_KEY).set(null);
         // 通知

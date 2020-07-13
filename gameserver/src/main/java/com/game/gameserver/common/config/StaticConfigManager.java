@@ -1,8 +1,8 @@
 package com.game.gameserver.common.config;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.JSONReader;
-import com.game.gameserver.module.skill.entity.Skill;
 import lombok.Getter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,22 +28,18 @@ public class StaticConfigManager {
     private final static StaticConfigManager INSTANCE = new StaticConfigManager();
     private final static String JSON_FILE_PATH = "json";
 
-    private Map<Long, SceneConfig> sceneConfigMap = new HashMap<>(16);
-    private Map<Integer, SceneNpcConfig> sceneNpcConfigMap = new HashMap<>(16);
-    private Map<Integer, SceneMonsterConfig> sceneMonsterConfigMap = new HashMap<>(16);
+    private Map<Integer, SceneConfig> sceneConfigMap = new HashMap<>(16);
     private Map<Integer, InstanceConfig> instanceConfigMap = new HashMap<>(16);
-    private Map<Integer, InstanceMonsterConfig> instanceMonsterConfigMap = new HashMap<>(16);
-    private Map<Integer, InstanceNpcConfig> instanceNpcConfigMap = new HashMap<>(16);
     private Map<Integer, NpcConfig> npcConfigMap = new HashMap<>(16);
     private Map<Integer, MonsterConfig> monsterConfigMap = new HashMap<>(16);
-    private Map<Integer, EquipConfig> equipConfigMap = new HashMap<>(16);
-    private Map<Integer, PropConfig> propConfigMap = new HashMap<>(16);
     private Map<Integer, CommodityConfig> commodityConfigMap = new HashMap<>(16);
     private Map<Integer, CareerConfig> careerConfigMap = new HashMap<>(16);
     private Map<Integer, SkillConfig>  skillConfigMap = new HashMap<>(16);
     private Map<Integer, PetConfig> petConfigMap = new HashMap<>(16);
     private Map<Integer, TaskConfig> taskConfigMap = new HashMap<>(16);
     private Map<Integer, AchievementConfig> achievementConfigMap = new HashMap<>(16);
+    private Map<Integer, GuildLevelConfig> guildLevelConfigMap = new HashMap<>(16);
+    private Map<Integer, ItemConfig> itemConfigMap = new HashMap<>(16);
 
     public static StaticConfigManager getInstance() {
         return INSTANCE;
@@ -67,20 +63,16 @@ public class StaticConfigManager {
             return;
         }
         loadSceneConfig(path);
-        loadSceneMonsterConfig(path);
-        loadSceneNpcConfig(path);
         loadInstanceConfig(path);
         loadMonsterConfig(path);
         loadNpcConfig(path);
-        loadInstanceMonsterConfig(path);
-        loadInstanceNpcConfig(path);
-        loadEquipConfig(path);
-        loadPropConfig(path);
+        loadItemConfig(path);
         loadCommodityConfig(path);
         loadCareerConfig(path);
         loadSkillConfig(path);
         loadTaskConfig(path);
         loadAchievementConfig(path);
+        loadUnionLevelConfig(path);
     }
 
     private void loadSceneConfig(String path) {
@@ -99,38 +91,6 @@ public class StaticConfigManager {
         }
     }
 
-    private void loadSceneMonsterConfig(String path) {
-        logger.info("load SceneMonsterConfig.json");
-        String fileName = "SceneMonsterConfig.json";
-        path += "/" + fileName;
-        try {
-            JSONReader jsonReader = new JSONReader(new InputStreamReader(new FileInputStream(path)));
-            jsonReader.startArray();
-            while (jsonReader.hasNext()) {
-                SceneMonsterConfig sceneMonsterConfig = JSON.parseObject(jsonReader.readString(),
-                        SceneMonsterConfig.class);
-                sceneMonsterConfigMap.put(sceneMonsterConfig.getSceneId(), sceneMonsterConfig);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void loadSceneNpcConfig(String path) {
-        logger.info("load SceneNpcConfig.json");
-        String fileName = "SceneNpcConfig.json";
-        path += "/" + fileName;
-        try {
-            JSONReader jsonReader = new JSONReader(new InputStreamReader(new FileInputStream(path)));
-            jsonReader.startArray();
-            while (jsonReader.hasNext()) {
-                SceneNpcConfig sceneNpcConfig = JSON.parseObject(jsonReader.readString(), SceneNpcConfig.class);
-                sceneNpcConfigMap.put(sceneNpcConfig.getId(), sceneNpcConfig);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
 
     private void loadMonsterConfig(String path) {
@@ -182,64 +142,19 @@ public class StaticConfigManager {
         }
     }
 
-    private void loadInstanceMonsterConfig(String path) {
-        logger.info("load InstanceMonsterConfig.json");
-        String fileName = "InstanceMonsterConfig.json";
-        path += "/" + fileName;
-        try {
-            JSONReader jsonReader = new JSONReader(new InputStreamReader(new FileInputStream(path)));
-            jsonReader.startArray();
-            while (jsonReader.hasNext()) {
-                InstanceMonsterConfig instanceMonsterConfig = JSON.parseObject(jsonReader.readString(), InstanceMonsterConfig.class);
-                instanceMonsterConfigMap.put(instanceMonsterConfig.getId(), instanceMonsterConfig);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
-    private void loadInstanceNpcConfig(String path) {
-        logger.info("load InstanceNpcConfig.json");
-        String fileName = "InstanceNpcConfig.json";
-        path += "/" + fileName;
-        try {
-            JSONReader jsonReader = new JSONReader(new InputStreamReader(new FileInputStream(path)));
-            jsonReader.startArray();
-            while (jsonReader.hasNext()) {
-                InstanceNpcConfig instanceNpcConfig = JSON.parseObject(jsonReader.readString(), InstanceNpcConfig.class);
-                instanceNpcConfigMap.put(instanceNpcConfig.getId(), instanceNpcConfig);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
-    private void loadEquipConfig(String path) {
-        logger.info("load EquipConfig.json");
-        String fileName = "EquipConfig.json";
-        path += "/" + fileName;
-        try {
-            JSONReader jsonReader = new JSONReader(new InputStreamReader(new FileInputStream(path)));
-            jsonReader.startArray();
-            while (jsonReader.hasNext()) {
-                EquipConfig equipConfig = JSON.parseObject(jsonReader.readString(), EquipConfig.class);
-                equipConfigMap.put(equipConfig.getId(), equipConfig);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
-    private void loadPropConfig(String path) {
-        logger.info("load PropConfig.json");
-        String fileName = "PropConfig.json";
+    private void loadItemConfig(String path) {
+        logger.info("load ItemConfig.json");
+        String fileName = "ItemConfig.json";
         path += "/" + fileName;
         try {
             JSONReader jsonReader = new JSONReader(new InputStreamReader(new FileInputStream(path)));
             jsonReader.startArray();
             while (jsonReader.hasNext()) {
-                PropConfig propConfig = JSON.parseObject(jsonReader.readString(), PropConfig.class);
-                propConfigMap.put(propConfig.getId(), propConfig);
+                ItemConfig itemConfig = JSONObject.parseObject(jsonReader.readString(),ItemConfig.class);
+                itemConfigMap.put(itemConfig.getId(),itemConfig);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -320,6 +235,22 @@ public class StaticConfigManager {
             while (jsonReader.hasNext()) {
                 AchievementConfig achievementConfig = JSON.parseObject(jsonReader.readString(), AchievementConfig.class);
                 achievementConfigMap.put(achievementConfig.getId(),achievementConfig);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void loadUnionLevelConfig(String path){
+        logger.info("load GuildLevelConfig.json");
+        String fileName = "GuildLevelConfig.json";
+        path += "/" + fileName;
+        try {
+            JSONReader jsonReader = new JSONReader(new InputStreamReader(new FileInputStream(path)));
+            jsonReader.startArray();
+            while (jsonReader.hasNext()) {
+                GuildLevelConfig guildLevelConfig = JSON.parseObject(jsonReader.readString(), GuildLevelConfig.class);
+                guildLevelConfigMap.put(guildLevelConfig.getLevel(), guildLevelConfig);
             }
         } catch (IOException e) {
             e.printStackTrace();

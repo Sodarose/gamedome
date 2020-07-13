@@ -8,21 +8,25 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="common" />
-        <module name="client" />
+        <module name="gameclient" />
         <module name="gameserver" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="client" target="1.8" />
+      <module name="clienttest" target="1.8" />
       <module name="common" target="1.8" />
       <module name="dome" target="1.8" />
+      <module name="gameclient" target="1.8" />
       <module name="gameserver" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="client" options="-parameters" />
+      <module name="clienttest" options="-parameters" />
       <module name="common" options="-parameters" />
+      <module name="gameclient" options="-parameters" />
       <module name="gameserver" options="-parameters" />
     </option>
   </component>

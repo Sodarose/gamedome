@@ -1,0 +1,9 @@
+syntax = "proto3";
+option java_package = "com.game.protocol";
+option java_outer_classname = "CmdProto";
+
+message CmdMsg{
+    int32 module = 1;
+    int32 cmd = 2;
+    string content = 3;
+}

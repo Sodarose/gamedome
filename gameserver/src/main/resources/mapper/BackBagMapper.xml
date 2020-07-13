@@ -2,31 +2,30 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.game.gameserver.module.backbag.dao.BackBagMapper">
     <!--道具-->
-    <resultMap id="backBag" type="com.game.gameserver.module.backbag.entity.BackBagEntity">
+    <resultMap id="BackBagEntity" type="com.game.gameserver.module.backbag.entity.BackBagEntity">
         <result column="playerId" property="playerId"/>
-        <result column="bagType" property="bagType"/>
         <result column="capacity" property="capacity"/>
         <result column="items" property="items" jdbcType="BLOB" typeHandler="com.game.gameserver.util.typehandler.TypeHandler"/>
     </resultMap>
 
     <!--列表-->
     <sql id="Base_BackBag_Column_List">
-       playerId, bagType, capacity, items
+       playerId,  capacity, items
     </sql>
 
 
     <!--插入道具 一个背包 -->
     <insert id="insert" parameterType="com.game.gameserver.module.backbag.entity.BackBagEntity">
         INSERT INTO game_player_back_bag
-        (playerId, bagType, capacity, items)
-        VALUES (#{playerId}, #{bagType}, #{capacity},
+        (playerId, capacity, items)
+        VALUES (#{playerId}, #{capacity},
           #{items,jdbcType=BLOB,typeHandler=com.game.gameserver.util.typehandler.TypeHandler})
     </insert>
 
     <!--查询道具列表-->
-    <select id="select" resultMap="backBag">
+    <select id="select" resultMap="BackBagEntity">
         SELECT
-        <include refid="Base_Item_Column_List" />
+        <include refid="Base_BackBag_Column_List" />
         FROM game_player_back_bag
         WHERE
         playerId=#{playerId}
@@ -42,7 +41,7 @@
             <if test="capacity != null">
                 capacity = #{capacity},
             </if>
-            <if test="itemConfigId != null">
+            <if test="items != null">
                 items = #{items,jdbcType=BLOB,typeHandler=com.game.gameserver.util.typehandler.TypeHandler},
             </if>
         </set>

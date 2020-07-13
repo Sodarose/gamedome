@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.game.gameserver.module.player.dao.PlayerMapper">
-    <resultMap id="playerResultMap" type="com.game.gameserver.module.player.entity.Player">
+    <resultMap id="player" type="com.game.gameserver.module.player.entity.PlayerEntity">
         <id column="id" property="id"/>
         <result column="name" property="name"/>
         <result column="level" property="level"/>
@@ -10,24 +10,102 @@
         <result column="sceneId" property="sceneId"/>
         <result column="userId" property="userId"/>
         <result column="expr" property="expr"/>
-        <result column="bagCapacity" property="bagCapacity"/>
-        <result column="warehouse" property="warehouse"/>
-        <result column="hp" property="hp"/>
-        <result column="currHp" property="currHp"/>
-        <result column="mp" property="mp"/>
-        <result column="currMp" property="currMp"/>
-        <result column="attack" property="attack"/>
-        <result column="defense" property="defense"/>
-        <result column="createTime" property="createTime"/>
-        <result column="updateTime" property="updateTime"/>
+        <result column="backBagCapacity" property="backBagCapacity"/>
+        <result column="warehouseCapacity" property="warehouseCapacity"/>
+        <result column="guildId" property="guildId"/>
     </resultMap>
-    <select id="queryRoleList" resultType="com.game.gameserver.module.player.entity.Role">
-        SELECT id,name,level,careerId FROM game_player WHERE userId = #{accountId}
+
+    <sql id="Base_Player_Column_List">
+        id, name, level, careerId, golds, sceneId, userId, expr, backBagCapacity, warehouseCapacity,guildId
+    </sql>
+
+    <sql id="Base_Role_Column_List">
+        id,name,level,careerId
+    </sql>
+
+    <select id="selectRoleIds" resultType="long">
+        SELECT id
+        FROM game_player
+        WHERE userId = #{userId}
     </select>
 
-    <select id="queryPlayer" resultMap="playerResultMap">
-        SELECT id,name,level,careerId,golds,sceneId,userId,expr,bagCapacity,warehouse,hp,currHp,mp,
-        currMp,attack,defense,createTime,updateTime FROM game_player WHERE id = #{playerId}
+    <!--查询账户角色列表-->
+    <select id="selectRoleList" resultType="com.game.gameserver.module.player.entity.Role">
+        SELECT
+        <include refid="Base_Role_Column_List"/>
+        FROM game_player
+        WHERE userId = #{userId}
     </select>
+
+    <!--查询用户-->
+    <select id="select" resultMap="player">
+        SELECT
+        <include refid="Base_Player_Column_List"/>
+        FROM game_player
+        WHERE id = #{playerId}
+    </select>
+
+    <select id="count" resultType="int">
+        SELECT
+        count(*)
+        FROM game_player
+        WHERE name = #{name}
+    </select>
+
+    <!--插入角色数据-->
+    <insert id="insert" parameterType="com.game.gameserver.module.player.entity.PlayerEntity">
+    insert into game_player (id, name, level, careerId, golds, sceneId, userId, expr,
+    backBagCapacity, warehouseCapacity,guildId)
+    values (#{id}, #{name}, #{level},
+      #{careerId}, #{golds}, #{sceneId},#{userId},#{expr},
+      #{backBagCapacity}, #{warehouseCapacity},#{guildId})
+    </insert>
+
+    <!--更新角色数据-->
+    <update id="update" parameterType="com.game.gameserver.module.player.entity.PlayerEntity">
+        update game_player
+        <set>
+            <if test="name != null">
+                name = #{name},
+            </if>
+            <if test="level != null">
+                level = #{level},
+            </if>
+            <if test="careerId != null">
+                careerId = #{careerId},
+            </if>
+            <if test="golds != null">
+                golds = #{golds},
+            </if>
+            <if test="sceneId != null">
+                sceneId = #{sceneId},
+            </if>
+            <if test="userId != null">
+                userId = #{userId},
+            </if>
+            <if test="expr != null">
+                expr = #{expr},
+            </if>
+
+            <if test="backBagCapacity != null">
+                backBagCapacity = #{backBagCapacity},
+            </if>
+
+            <if test="warehouseCapacity != null">
+                warehouseCapacity = #{warehouseCapacity},
+            </if>
+
+            <if test="guildId != null">
+                guildId = #{guildId}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--删除角色数据-->
+    <delete id="delete">
+    delete from  game_player
+    where id = #{id}
+    </delete>
 
 </mapper>

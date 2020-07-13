@@ -1,8 +1,6 @@
 package com.game.gameserver.context;
 
-import com.game.gameserver.module.instance.manager.InstanceManager;
-import com.game.gameserver.module.monster.manager.MonsterManager;
-import com.game.gameserver.module.npc.manager.NpcManager;
+/*import com.game.gameserver.module.instance.manager.InstanceManager;*/
 import com.game.gameserver.module.player.manager.PlayerManager;
 import com.game.gameserver.module.scene.manager.SceneManager;
 import com.game.gameserver.module.store.manager.StoreManager;
@@ -25,12 +23,8 @@ public class ServerContext implements ApplicationContextAware {
     private MessageDispatcher messageDispatcher;
     @Autowired
     private SceneManager sceneManager;
-    @Autowired
-    private MonsterManager monsterManager;
-    @Autowired
-    private NpcManager npcManager;
-    @Autowired
-    private InstanceManager instanceManager;
+/*    @Autowired
+    private InstanceManager instanceManager;*/
     @Autowired
     private PlayerManager playerManager;
     @Autowired

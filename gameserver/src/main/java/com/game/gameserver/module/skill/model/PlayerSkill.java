@@ -1,4 +1,4 @@
-package com.game.gameserver.module.skill.entity;
+package com.game.gameserver.module.skill.model;
 
 import com.game.gameserver.module.skill.entity.Skill;
 import java.util.List;

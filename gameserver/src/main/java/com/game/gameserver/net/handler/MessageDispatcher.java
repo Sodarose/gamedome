@@ -1,7 +1,7 @@
 package com.game.gameserver.net.handler;
 
 import com.game.gameserver.net.annotation.ModuleHandler;
-import com.game.protocol.Message;
+import com.game.message.Message;
 import io.netty.channel.Channel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,14 +19,14 @@ public class MessageDispatcher {
 
     private final static Logger logger = LoggerFactory.getLogger(MessageDispatcher.class);
 
-    private final Map<Short, Handler> moduleHandlers = new HashMap<>(16);
+    private final Map<Integer, Handler> moduleHandlers = new HashMap<>(16);
 
     /**
      * 根据消息中的cmd值，分发指定的CmdExecutor执行
      * @param message 消息
      * */
     public void dispatch(Message message, Channel channel){
-        short module = message.getModule();
+        int module = message.getModule();
         Handler moduleHandler = moduleHandlers.get(module);
         if(moduleHandler==null){
             return;

@@ -1,6 +1,4 @@
-package com.game.gameserver.module.union.type;
-
-import com.game.gameserver.module.union.entity.Union;
+package com.game.gameserver.module.guild.type;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,41 +15,47 @@ public class PositionPermissionMapping {
     /** 职位 权限映射 */
     public final static Map<Integer, List<Integer>> POSITION_PERMISSION_MAP = new HashMap<>(4);
     static{
-        // 会装权限
+        // 会长权限
         List<Integer> presidentPerm = new ArrayList<>();
         // 任命
-        presidentPerm.add(UnionPermission.APPOINT);
+        presidentPerm.add(GuildPermission.APPOINT);
         // 公告
-        presidentPerm.add(UnionPermission.ANNOUNCEMENT);
+        presidentPerm.add(GuildPermission.ANNOUNCEMENT);
         // 处理申请信息
-        presidentPerm.add(UnionPermission.PROCESS_APPLY);
+        presidentPerm.add(GuildPermission.PROCESS_APPLY);
         // 踢人
-        presidentPerm.add(UnionPermission.KICK);
+        presidentPerm.add(GuildPermission.KICK);
         // 公会升级
-        presidentPerm.add(UnionPermission.LEVEL_UP);
+        presidentPerm.add(GuildPermission.LEVEL_UP);
         // 公会解散
-        presidentPerm.add(UnionPermission.DISSOLVE);
+        presidentPerm.add(GuildPermission.DISSOLVE);
         // 使用公会仓库
-        presidentPerm.add(UnionPermission.USE_WAREHOUSE);
-        POSITION_PERMISSION_MAP.put(UnionPosition.PRESIDENT,presidentPerm);
+        presidentPerm.add(GuildPermission.USE_WAREHOUSE);
+        POSITION_PERMISSION_MAP.put(GuildPosition.PRESIDENT,presidentPerm);
 
         /** 副会长权限 */
         List<Integer> vicePresident = new ArrayList<>();
         // 任命
-        vicePresident.add(UnionPermission.APPOINT);
+        vicePresident.add(GuildPermission.APPOINT);
         // 公告
-        vicePresident.add(UnionPermission.ANNOUNCEMENT);
+        vicePresident.add(GuildPermission.ANNOUNCEMENT);
         // 处理申请信息
-        vicePresident.add(UnionPermission.PROCESS_APPLY);
+        vicePresident.add(GuildPermission.PROCESS_APPLY);
         // 踢人
-        vicePresident.add(UnionPermission.KICK);
+        vicePresident.add(GuildPermission.KICK);
         // 公会升级
-        vicePresident.add(UnionPermission.LEVEL_UP);
+        vicePresident.add(GuildPermission.LEVEL_UP);
         // 使用公会仓库
-        vicePresident.add(UnionPermission.USE_WAREHOUSE);
-        POSITION_PERMISSION_MAP.put(UnionPosition.VICE_PRESIDENT,vicePresident);
+        vicePresident.add(GuildPermission.USE_WAREHOUSE);
+        POSITION_PERMISSION_MAP.put(GuildPosition.VICE_PRESIDENT,vicePresident);
 
         /** 优秀会员权限 */
+        List<Integer> excellentMember = new ArrayList<>();
+        excellentMember.add(GuildPermission.USE_WAREHOUSE);
+        POSITION_PERMISSION_MAP.put(GuildPosition.EXCELLENT_MEMBER,excellentMember);
 
+        /** 普通会员权限 */
+        List<Integer> member = new ArrayList<>();
+        POSITION_PERMISSION_MAP.put(GuildPosition.MEMBER,member);
     }
 }

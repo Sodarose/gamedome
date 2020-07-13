@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.game.gameserver.module.user.dao.UserMapper">
-    <resultMap id="accountEntity" type="com.game.gameserver.module.user.entity.AccountEntity">
+    <resultMap id="accountEntity" type="com.game.gameserver.module.user.entity.UserEntity">
         <id column="id" property="id"/>
         <result column="login_id" property="loginId"/>
         <result column="password" property="password"/>
     </resultMap>
 
     <!--列表-->
-    <sql id="Base_Account_Column_List">
+    <sql id="Base_User_Column_List">
         id,login_id,password
     </sql>
 
     <select id="select" resultMap="accountEntity" parameterType="string">
         SELECT
-        <include refid="Base_Account_Column_List"/>
+        <include refid="Base_User_Column_List"/>
         FROM game_user
         WHERE login_id = #{loginId}
     </select>
@@ -26,12 +26,12 @@
         WHERE login_id = #{loginId}
     </select>
 
-    <insert id="insert" parameterType="com.game.gameserver.module.user.entity.AccountEntity">
+    <insert id="insert" parameterType="com.game.gameserver.module.user.entity.UserEntity">
         insert into game_user (id,login_id,password)
         values (#{id}, #{loginId}, #{password})
     </insert>
 
-    <update id="update" parameterType="com.game.gameserver.module.user.entity.AccountEntity">
+    <update id="update" parameterType="com.game.gameserver.module.user.entity.UserEntity">
         update game_user
         <set>
             <if test="login_id != null">

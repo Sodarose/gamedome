@@ -1,11 +1,13 @@
 package com.game.gameserver.module.player.manager;
 
 import com.game.gameserver.event.Listener;
-import com.game.gameserver.module.player.entity.Player;
+import com.game.gameserver.module.player.model.Player;
+import com.game.gameserver.module.player.entity.Role;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -24,21 +26,21 @@ public class PlayerManager {
         instance = this;
     }
 
-    private final Map<Long, Player> playerObjectMap = new ConcurrentHashMap<>(1);
+    /** 角色本地缓存 */
+    private final static Map<Long, Player> LOCAL_PLAYER_DOMAIN_MAP = new ConcurrentHashMap<>(1);
+    /** 玩家角色列表缓存 */
+    private final static Map<Long, List<Role>> LOCAL_USER_ROLE_MAP = new ConcurrentHashMap<>();
 
-    public Player getPlayer(Long playerId) {
-        return playerObjectMap.get(playerId);
+    public Player getPlayerDomain(long playerId){
+        return LOCAL_PLAYER_DOMAIN_MAP.get(playerId);
     }
 
-    public void putPlayerObject(Player player) {
-        playerObjectMap.put(player.getId(), player);
+    public void putPlayerDomain(long playerId, Player playerDomain){
+        LOCAL_PLAYER_DOMAIN_MAP.put(playerId,playerDomain);
     }
 
-    public void update() {
-        for (Map.Entry<Long, Player> entry : playerObjectMap.entrySet()) {
-            entry.getValue().update();
-        }
+    public void removePlayerDomain(long playerId){
+        LOCAL_PLAYER_DOMAIN_MAP.remove(playerId);
     }
 
-    
 }

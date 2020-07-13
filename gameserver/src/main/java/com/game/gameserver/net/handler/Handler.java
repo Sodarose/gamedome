@@ -1,6 +1,6 @@
 package com.game.gameserver.net.handler;
 
-import com.game.protocol.Message;
+import com.game.message.Message;
 import io.netty.channel.Channel;
 
 /**
