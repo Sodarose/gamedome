@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.game.gameserver.module.user.dao.UserMapper">
+    <resultMap id="accountEntity" type="com.game.gameserver.module.user.entity.AccountEntity">
+        <id column="id" property="id"/>
+        <result column="login_id" property="loginId"/>
+        <result column="password" property="password"/>
+    </resultMap>
+
+    <!--列表-->
+    <sql id="Base_Account_Column_List">
+        id,login_id,password
+    </sql>
+
+    <select id="select" resultMap="accountEntity" parameterType="string">
+        SELECT
+        <include refid="Base_Account_Column_List"/>
+        FROM game_user
+        WHERE login_id = #{loginId}
+    </select>
+
+    <select id="count" resultType="int">
+        SELECT
+        count(*)
+        FROM game_user
+        WHERE login_id = #{loginId}
+    </select>
+
+    <insert id="insert" parameterType="com.game.gameserver.module.user.entity.AccountEntity">
+        insert into game_user (id,login_id,password)
+        values (#{id}, #{loginId}, #{password})
+    </insert>
+
+    <update id="update" parameterType="com.game.gameserver.module.user.entity.AccountEntity">
+        update game_user
+        <set>
+            <if test="login_id != null">
+                login_id = #{loginId},
+            </if>
+            <if test="password != null">
+                password = #{password},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="delete">
+        delete from  game_user
+        where id = #{accountId}
+    </delete>
+
+</mapper>

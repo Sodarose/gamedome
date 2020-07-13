@@ -10,7 +10,7 @@ import com.game.gameserver.module.item.manager.ItemManager;
 import com.game.gameserver.module.monster.manager.MonsterManager;
 import com.game.gameserver.module.monster.type.MonsterType;
 import com.game.gameserver.module.player.manager.PlayerManager;
-import com.game.gameserver.module.player.model.PlayerObject;
+import com.game.gameserver.module.player.entity.Player;
 import com.game.gameserver.module.scene.manager.SceneManager;
 import com.game.gameserver.net.modelhandler.ModuleKey;
 import com.game.gameserver.net.modelhandler.instance.InstanceCmd;
@@ -147,11 +147,11 @@ public class InstanceRule {
                 builder.setMsg("进入下一个关卡");
                 Message message = MessageUtil.createMessage(ModuleKey.TIP_MODULE, (short) 0, builder.build().toByteArray());
                 for (Long playerId : players) {
-                    PlayerObject playerObject = PlayerManager.instance.getPlayerObject(playerId);
-                    if (playerObject == null) {
+                    Player player = PlayerManager.instance.getPlayer(playerId);
+                    if (player == null) {
                         continue;
                     }
-                    playerObject.getChannel().writeAndFlush(message);
+                    player.getChannel().writeAndFlush(message);
                 }
             }
         }
@@ -171,11 +171,11 @@ public class InstanceRule {
         builder.setMsg("闯关失败 10秒后退出");
         Message message = MessageUtil.createMessage(ModuleKey.TIP_MODULE, (short) 0, builder.build().toByteArray());
         for (Long playerId : players) {
-            PlayerObject playerObject = PlayerManager.instance.getPlayerObject(playerId);
-            if (playerObject == null) {
+            Player player = PlayerManager.instance.getPlayer(playerId);
+            if (player == null) {
                 continue;
             }
-            playerObject.getChannel().writeAndFlush(message);
+            player.getChannel().writeAndFlush(message);
         }
         // 设定回收期限
         Long recoveryTime = System.currentTimeMillis()+InstanceObject.DURATION;
@@ -201,8 +201,8 @@ public class InstanceRule {
         InstanceProtocol.InstanceSuccess instanceSuccess = ProtocolFactory.createInstanceSuccess(instanceConfig);
         Message message = MessageUtil.createMessage(ModuleKey.TIP_MODULE, (short) 0, instanceSuccess.toByteArray());
         for (Long playerId : players) {
-            PlayerObject playerObject = PlayerManager.instance.getPlayerObject(playerId);
-            if (playerObject == null) {
+            Player player = PlayerManager.instance.getPlayer(playerId);
+            if (player == null) {
                 continue;
             }
             // 发放副本通关奖励
@@ -210,11 +210,11 @@ public class InstanceRule {
             int expr = instanceConfig.getExprAward();
             // 金币奖励
             int golds = instanceConfig.getGoldAward();
-            playerObject.addExpr(expr);
-            playerObject.addGolds(golds);
+            player.addExpr(expr);
+            player.addGolds(golds);
             // 道具奖励
             ItemManager.instance.addInstanceAward(playerId,instanceConfig);
-            playerObject.getChannel().writeAndFlush(message);
+            player.getChannel().writeAndFlush(message);
         }
         // 设定回收期限
         Long recoveryTime = System.currentTimeMillis()+InstanceObject.DURATION;
@@ -251,11 +251,11 @@ public class InstanceRule {
                 info.toByteArray());
         List<Long> players = instanceObject.getCurrPlayers();
         for (Long playerId : players) {
-            PlayerObject playerObject = PlayerManager.instance.getPlayerObject(playerId);
-            if (playerObject == null) {
+            Player player = PlayerManager.instance.getPlayer(playerId);
+            if (player == null) {
                 continue;
             }
-            playerObject.getChannel().writeAndFlush(message);
+            player.getChannel().writeAndFlush(message);
         }
     }
 }

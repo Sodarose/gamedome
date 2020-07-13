@@ -1,6 +1,6 @@
 package com.game.gameserver.module.ai.manager;
 
-import com.game.gameserver.common.DefaultThreadFactory;
+import com.game.gameserver.thread.DefaultThreadFactory;
 import com.game.gameserver.module.monster.manager.MonsterManager;
 import com.game.gameserver.module.pet.manager.PetManager;
 import com.game.gameserver.module.player.manager.PlayerManager;

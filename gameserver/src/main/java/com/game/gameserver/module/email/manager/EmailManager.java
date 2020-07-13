@@ -4,7 +4,6 @@ import com.game.gameserver.module.email.dao.EmailMapper;
 import com.game.gameserver.module.email.entity.Email;
 import com.game.gameserver.module.email.entity.EmailBox;
 import com.game.gameserver.module.player.entity.Player;
-import com.game.gameserver.module.player.model.PlayerObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

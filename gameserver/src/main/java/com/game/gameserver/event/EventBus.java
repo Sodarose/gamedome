@@ -1,7 +1,6 @@
 package com.game.gameserver.event;
 
 import com.game.gameserver.context.ServerContext;
-import com.game.gameserver.module.player.event.LoginEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -12,6 +11,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.LinkedBlockingQueue;
 
 /**
  * 事件总线
@@ -25,11 +25,13 @@ public class EventBus {
 
     public final static EventBus EVENT_BUS = new EventBus();
 
-    public EventBus() {
+    private EventBus() {
 
     }
-
-    private final Map<EventType, List<EventExecutor>> eventExecutorMap = new HashMap<>();
+    /** 事件 */
+    private final Map<Integer, List<EventExecutor>> eventExecutorMap = new HashMap<>();
+    /** 异步事件队列 */
+    private LinkedBlockingQueue<Event> eventQueue = new LinkedBlockingQueue<>();
 
     /**
      * 激活事件
@@ -38,7 +40,7 @@ public class EventBus {
      * @return void
      */
     public void fire(Event event) {
-        EventType type = event.getEventType();
+        int type = event.getEventType();
         List<EventExecutor> executors = eventExecutorMap.get(type);
         if (executors == null || executors.size() == 0) {
             return;
@@ -49,6 +51,14 @@ public class EventBus {
         }
     }
 
+    public void fireAsync(Event event){
+        try {
+            eventQueue.put(event);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
     /**
      * 注册事件
      *
@@ -56,8 +66,8 @@ public class EventBus {
      * @param eventExecutor
      * @return void
      */
-    public void register(EventType type, EventExecutor eventExecutor) {
-        if (type == null || eventExecutor == null) {
+    public void register(int type, EventExecutor eventExecutor) {
+        if (eventExecutor == null) {
             return;
         }
         List<EventExecutor> executors = eventExecutorMap.get(type);
@@ -82,9 +92,24 @@ public class EventBus {
                 if (eventHandler == null) {
                     continue;
                 }
-                EventType type = eventHandler.type();
+                int type = eventHandler.type();
                 EventExecutor executor = new EventExecutor(type, method, entry.getValue());
                 EventBus.EVENT_BUS.register(type, executor);
+            }
+        }
+    }
+
+    private class EventWorker implements Runnable{
+
+        @Override
+        public void run() {
+            while (true){
+                try{
+                    Event event = eventQueue.take();
+                    fire(event);
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
             }
         }
     }

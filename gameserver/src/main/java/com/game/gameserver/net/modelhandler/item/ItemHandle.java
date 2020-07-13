@@ -1,7 +1,7 @@
 package com.game.gameserver.net.modelhandler.item;
 
 import com.game.gameserver.module.item.service.ItemService;
-import com.game.gameserver.module.player.model.PlayerObject;
+import com.game.gameserver.module.player.entity.Player;
 import com.game.gameserver.module.player.service.PlayerService;
 import com.game.gameserver.net.annotation.CmdHandler;
 import com.game.gameserver.net.annotation.ModuleHandler;
@@ -38,11 +38,11 @@ public class ItemHandle extends BaseHandler {
      * */
     @CmdHandler(cmd = ItemCmd.PLAYER_BAG_REQ)
     public void handlePlayerBagCmd(Message message, Channel channel){
-        PlayerObject playerObject = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
-        if (playerObject == null) {
+        Player player = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
+        if (player == null) {
             return;
         }
-        ItemProtocol.PlayerBag playerBag = itemService.getPlayerBag(playerObject);
+        ItemProtocol.PlayerBag playerBag = itemService.getPlayerBag(player);
         Message res = MessageUtil.createMessage(ModuleKey.ITEM_MODULE,ItemCmd.PLAYER_BAG_REQ,playerBag.toByteArray());
         channel.writeAndFlush(res);
     }

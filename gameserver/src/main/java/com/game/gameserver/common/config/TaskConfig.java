@@ -1,7 +1,9 @@
 package com.game.gameserver.common.config;
 
 import com.alibaba.fastjson.annotation.JSONField;
+import com.game.gameserver.module.task.entity.Task;
 import com.game.gameserver.module.task.entity.TaskProgress;
+import com.game.gameserver.util.TaskUtil;
 import lombok.Data;
 
 import java.util.ArrayList;
@@ -65,6 +67,10 @@ public class TaskConfig {
     @JSONField(name = "taskRequire")
     private String taskRequire;
 
+    /** 任务要求已经解析的字符串 */
+    @JSONField(name = "taskRequireStr")
+    private String taskRequireStr;
+
     /**
      * 任务奖励 经验奖励
      */
@@ -101,21 +107,12 @@ public class TaskConfig {
     @JSONField(serialize = false)
     private List<Integer> equipAwards;
 
+
     public Map<Integer, Integer> getPropAwards() {
         if (propAwards != null) {
             return propAwards;
         }
-        String[] propAwardStrs = props.split("\\|");
-        propAwards = new HashMap<>(propAwardStrs.length);
-        for (String propAwardStr : propAwardStrs) {
-            String[] propAward = propAwardStr.split("_");
-            if (propAward.length != 2) {
-                continue;
-            }
-            int propConfigId = Integer.parseInt(propAward[0]);
-            int num = Integer.parseInt(propAward[2]);
-            propAwards.put(propConfigId, num);
-        }
+        propAwards = TaskUtil.parserPropAwards(props);
         return propAwards;
     }
 
@@ -123,31 +120,8 @@ public class TaskConfig {
         if (equipAwards != null) {
             return equipAwards;
         }
-        equipAwards = new ArrayList<>();
-        String[] equipAwardStrs = equips.split("\\|");
-        for (String equipAward : equipAwardStrs) {
-            int equipConfigId = Integer.parseInt(equipAward);
-            equipAwards.add(equipConfigId);
-        }
+        equipAwards = TaskUtil.parserEquipAwards(equips);
         return equipAwards;
     }
 
-    public List<TaskProgress> parseTaskRequire() {
-        List<TaskProgress> taskProgresses = new ArrayList<>();
-        String[] requireStrs = taskRequire.split("\\|");
-        for (String requireStr : requireStrs) {
-            String[] require = requireStr.split("_");
-            // 行为类型
-            int type = Integer.parseInt(require[0]);
-            // 任务目标
-            int target = Integer.parseInt(require[1]);
-            // 要求数量
-            int amount = Integer.parseInt(require[2]);
-            // 创建任务要求/进度
-            TaskProgress taskProgress = new TaskProgress(type, target, amount);
-            // 加入
-            taskProgresses.add(taskProgress);
-        }
-        return taskProgresses;
-    }
 }

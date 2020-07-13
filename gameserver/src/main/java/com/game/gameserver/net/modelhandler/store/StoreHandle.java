@@ -1,7 +1,6 @@
 package com.game.gameserver.net.modelhandler.store;
 
-import com.game.gameserver.module.player.manager.PlayerManager;
-import com.game.gameserver.module.player.model.PlayerObject;
+import com.game.gameserver.module.player.entity.Player;
 import com.game.gameserver.module.player.service.PlayerService;
 import com.game.gameserver.module.store.service.StoreService;
 import com.game.gameserver.net.annotation.CmdHandler;
@@ -36,8 +35,8 @@ public class StoreHandle extends BaseHandler {
      */
     @CmdHandler(cmd = StoreCmd.LIST)
     public void getCommodityList(Message message, Channel channel) {
-        PlayerObject playerObject = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
-        if (playerObject == null) {
+        Player player = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
+        if (player == null) {
             return;
         }
         Store.CommodityList commodityList = storeService.getCommodityList();
@@ -54,13 +53,13 @@ public class StoreHandle extends BaseHandler {
      */
     @CmdHandler(cmd = StoreCmd.BUY)
     public void buyCommodity(Message message, Channel channel) {
-        PlayerObject playerObject = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
-        if (playerObject == null) {
+        Player player = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
+        if (player == null) {
             return;
         }
         try {
             Store.BuyCommodityReq req = Store.BuyCommodityReq.parseFrom(message.getData());
-            Store.BuyCommodityRes buyCommodityRes = storeService.bugCommodity(playerObject,
+            Store.BuyCommodityRes buyCommodityRes = storeService.bugCommodity(player,
                     req.getCommodityId(), req.getNum());
             Message msg = MessageUtil.createMessage(ModuleKey.STORE_MODULE, StoreCmd.BUY, buyCommodityRes.toByteArray());
             channel.writeAndFlush(msg);
@@ -78,13 +77,13 @@ public class StoreHandle extends BaseHandler {
      */
     @CmdHandler(cmd = StoreCmd.SELL)
     public void sellCommodity(Message message, Channel channel) {
-        PlayerObject playerObject = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
-        if (playerObject == null) {
+        Player player = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
+        if (player == null) {
             return;
         }
         try {
             Store.SellGoodsReq sellGoodsReq = Store.SellGoodsReq.parseFrom(message.getData());
-            Store.SellGoodsRes sellGoodsRes = storeService.sellCommodity(playerObject, sellGoodsReq.getBagIndex(), sellGoodsReq.getGoodsId(),
+            Store.SellGoodsRes sellGoodsRes = storeService.sellCommodity(player, sellGoodsReq.getBagIndex(), sellGoodsReq.getGoodsId(),
                     sellGoodsReq.getNum());
             Message msg = MessageUtil.createMessage(ModuleKey.STORE_MODULE, StoreCmd.SELL, sellGoodsRes.toByteArray());
             channel.writeAndFlush(msg);

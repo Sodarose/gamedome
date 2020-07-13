@@ -13,7 +13,7 @@ public class UserPet {
 
     public boolean hasPet(int petConfigId){
         for(Pet pet:petList){
-            if(pet.getPetConfigId()==petConfigId){
+            if(pet.getPetConfig().getId()==petConfigId){
                 return true;
             }
         }

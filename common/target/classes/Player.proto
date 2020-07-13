@@ -1,38 +1,45 @@
 syntax = "proto3";
 option java_package = "com.game.protocol";
 option java_outer_classname = "PlayerProtocol";
-import "Item.proto";
 
-// 角色列表请求
-message PlayerListReq {
+// 请求角色列表
+message QueryRoleListReq {
 
 }
 
-// 角色列表响应
-message PlayerListRes {
-    repeated SimplePlayerInfo playerInfoList = 1;
+message QueryRoleListRes {
+    int32 code = 1;
+    string msg = 2;
+    repeated RoleInfo roles = 3;
 }
 
-// 角色登录请求
-message LoginPlayerReq {
-    int64 playerId = 1;
+message RoleInfo {
+    int64 id = 1;
+    string name = 2;
+    int32 level = 3;
+    int32 careerId = 4;
 }
 
-// 角色登录响应
-message LoginPlayerRes {
+message LoginRoleReq {
+    int64 roleId = 1;
+}
+
+message LoginRoleRes {
     int32 code = 1;
     string msg = 2;
     PlayerInfo playerInfo = 3;
 }
 
-// 请求角色信息
-message PlayerInfoReq {
+// 查询角色数据
+message QueryPlayerInfoReq {
 
 }
 
 // 请求角色信息响应
-message PlayerInfoRes {
-    PlayerInfo playerInfo = 1;
+message QueryPlayerInfoRes {
+    int32 code = 1;
+    string msg = 2;
+    PlayerInfo playerInfo = 3;
 }
 
 // 同步角色信息
@@ -40,22 +47,12 @@ message SyncPlayerInfo {
     PlayerInfo playerInfo = 1;
 }
 
-// 背包请求
-message OpenBagReq {
-
-}
-
-// 背包响应
-message OpenBagRes {
-
-}
-
 // 简要角色信息
 message SimplePlayerInfo {
     int64 id = 1;
     string name = 2;
-    int32 level = 3;
-    int32 careerId = 4;
+    int32 currHp = 3;
+    int32 state = 4;
 }
 
 // 个人角色全部信息
@@ -66,17 +63,14 @@ message PlayerInfo {
     int32 careerId = 4;
     int32 golds = 5;
     int64 sceneId = 6;
-    int32 state = 12;
-    int32 fighterModel = 13;
-    // 战斗属性
-    PlayerBattle playerBattle = 7;
-    // 装备信息
-    repeated ItemInfo equipInfo = 8;
-    // 背包物品
-    repeated ItemInfo goodsInfo = 9;
-    // 技能数据
-    PlayerSkill playerSkill = 10;
-    // 角色Buffer信息
+    int32 state = 7;
+    int32 hp = 12;
+    int32 currHp = 13;
+    int32 mp = 14;
+    int32 currMp = 15;
+    int32 attack = 16;
+    int32 defense = 17;
+    int32 fighterModel = 8;
     repeated BufferInfo bufferInfo = 11;
 }
 
@@ -85,24 +79,6 @@ message BufferInfo {
 
 }
 
-message PlayerSkill{
-    repeated SkillInfo skillInfo = 10;
-}
-
-// 技能
-message SkillInfo {
-    int64 id = 1;
-    string name = 2;
-    int32 careerId = 3;
-    int32 limitLevel = 4;
-    int32 maxLearnLevel = 5;
-    int32 coolTime = 6;
-    string formula = 7;
-    string desc = 8;
-    int32 bagIndex = 9;
-    int32 learnLevel = 10;
-    int32 playerId = 11;
-}
 
 // 他人信息
 message OtherPlayerInfo {
@@ -112,21 +88,13 @@ message OtherPlayerInfo {
     int32 careerId = 4;
     int32 state = 5;
     int32 fighterModel = 8;
-    // 战斗属性
-    PlayerBattle playerBattle = 6;
-    // 装备信息
-    repeated ItemInfo equipBag = 7;
-}
-
-
-// 战斗属性
-message PlayerBattle {
-    int32 hp = 1;
-    int32 currHp = 2;
-    int32 mp = 3;
-    int32 currMp = 4;
-    int32 attack = 5;
-    int32 defense = 6;
+    int32 hp = 12;
+    int32 currHp = 13;
+    int32 mp = 14;
+    int32 currMp = 15;
+    int32 attack = 16;
+    int32 defense = 17;
+    repeated BufferInfo bufferInfo = 11;
 }
 
 

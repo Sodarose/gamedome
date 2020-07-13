@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.game.gameserver.module.auction.dao.AuctionMapper">
+    <!--道具-->
+    <resultMap id="auctionItem" type="com.game.gameserver.module.auction.entity.AuctionItem">
+        <id column="id" property="id"/>
+        <result column="itemConfigId" property="itemConfigId"/>
+        <result column="num" property="num"/>
+        <result column="price" property="price"/>
+        <result column="model" property="model"/>
+        <result column="publishTime" property="publishTime"/>
+        <result column="bidder" property="bidder"/>
+        <result column="bidderId" property="bidderId"/>
+        <result column="playerId" property="playerId"/>
+    </resultMap>
+
+    <!--列表-->
+    <sql id="Base_AuctionItem_Column_List">
+        id, itemConfigId, num, price, model, publishTime, bidder, bidderId, playerId
+    </sql>
+
+    <select id="selectAuctionItemList" resultMap="auctionItem">
+        SELECT
+        <include refid="Base_AuctionItem_Column_List"/>
+        FROM game_auction
+    </select>
+
+    <update id="updateAuctionItemList" parameterType="com.game.gameserver.module.auction.entity.AuctionItem">
+        update game_auction
+        <set>
+            <if test="itemConfigId != null">
+                itemConfigId = #{itemConfigId},
+            </if>
+            <if test="num != null">
+                num = #{num},
+            </if>
+            <if test="price != null">
+                price = #{price},
+            </if>
+            <if test="model != null">
+                model = #{model},
+            </if>
+            <if test="publishTime != null">
+                publishTime = #{publishTime},
+            </if>
+            <if test="bidder != null">
+                bidder = #{bidder},
+            </if>
+            <if test="bidderId != null">
+                bidderId = #{bidderId},
+            </if>
+            <if test="playerId != null">
+                playerId = #{playerId},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <insert id="insertAuctionItem" parameterType="com.game.gameserver.module.auction.entity.AuctionItem">
+        insert into game_auction (id, itemConfigId, num,
+        price, model, publishTime,bidder,bidderId,
+        playerId)
+        values (#{id}, #{itemConfigId}, #{num},
+        #{price}, #{model}, #{publishTime},#{bidder},#{bidderId},
+        #{playerId}
+    </insert>
+
+    <delete id="removeAuctionItem">
+        delete from  game_auction
+        where id = #{id}
+    </delete>
+</mapper>

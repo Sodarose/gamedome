@@ -19,4 +19,5 @@ public interface ModuleKey {
     short TEAM_MODULE = 1011;
     short SKILL_MODULE = 1012;
     short TASK_MODULE = 1013;
+    short ACHIEVEMENT_MODULE = 1014;
 }

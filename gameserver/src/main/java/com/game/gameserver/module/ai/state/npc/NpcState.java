@@ -1,44 +1,44 @@
 package com.game.gameserver.module.ai.state.npc;
 
 import com.game.gameserver.module.ai.fsm.State;
-import com.game.gameserver.module.npc.model.NpcObject;
+import com.game.gameserver.module.npc.model.Npc;
 
 /**
  * @author xuewenkang
  * @date 2020/6/22 21:47
  */
-public enum  NpcState implements State<NpcObject> {
+public enum  NpcState implements State<Npc> {
     /** 来回走动*/
     WALK(){
         @Override
-        public void enter(NpcObject npcObject) {
+        public void enter(Npc npc) {
 
         }
 
         @Override
-        public void update(NpcObject npcObject) {
+        public void update(Npc npc) {
 
         }
 
         @Override
-        public void exit(NpcObject npcObject) {
+        public void exit(Npc npc) {
 
         }
     },
     /** 站立不动 */
     STAND(){
         @Override
-        public void enter(NpcObject npcObject) {
+        public void enter(Npc npc) {
 
         }
 
         @Override
-        public void update(NpcObject npcObject) {
+        public void update(Npc npc) {
 
         }
 
         @Override
-        public void exit(NpcObject npcObject) {
+        public void exit(Npc npc) {
 
         }
     }

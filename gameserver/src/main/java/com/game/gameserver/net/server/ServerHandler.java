@@ -1,9 +1,7 @@
 package com.game.gameserver.net.server;
 
 import com.game.gameserver.context.ServerContext;
-import com.game.gameserver.event.EventBus;
-import com.game.gameserver.module.player.event.LostEvent;
-import com.game.gameserver.module.player.model.PlayerObject;
+import com.game.gameserver.module.player.entity.Player;
 import com.game.gameserver.module.player.service.PlayerService;
 import com.game.gameserver.net.handler.MessageDispatcher;
 import com.game.protocol.Message;
@@ -48,10 +46,10 @@ public class ServerHandler extends ChannelInboundHandlerAdapter {
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
         super.exceptionCaught(ctx,cause);
         logger.error("channel {} exception",ctx.channel().id());
-        PlayerObject playerObject = ctx.channel().attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
-        if(playerObject!=null){
-            LostEvent lostEvent = new LostEvent(playerObject.getPlayer().getId());
-            EventBus.EVENT_BUS.fire(lostEvent);
+        Player player = ctx.channel().attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
+        if(player !=null){
+            /*LostEvent lostEvent = new LostEvent(playerObject.getPlayer().getId());
+            EventBus.EVENT_BUS.fire(lostEvent);*/
         }
         ctx.channel().close();
     }

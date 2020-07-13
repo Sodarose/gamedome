@@ -1,6 +1,6 @@
 package com.game.gameserver.module.cooltime.manager;
 
-import com.game.gameserver.common.DefaultThreadFactory;
+import com.game.gameserver.thread.DefaultThreadFactory;
 import com.game.gameserver.module.cooltime.entity.UnitCoolTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

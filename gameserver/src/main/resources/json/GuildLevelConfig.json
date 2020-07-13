@@ -1,0 +1,32 @@
+[
+  {
+    "level": 1,
+    "needExpr": 0,
+    "capacity": 200,
+    "vicePresident": 5,
+    "hp": 1000,
+    "mp": 500,
+    "attack": 100,
+    "defense": 200
+  },
+  {
+    "level": 2,
+    "needExpr": 300,
+    "capacity": 500,
+    "vicePresident": 10,
+    "hp": 1500,
+    "mp": 1000,
+    "attack": 200,
+    "defense": 400
+  },
+  {
+    "level": 3,
+    "needExpr": 1000,
+    "capacity": 1000,
+    "vicePresident": 20,
+    "hp": 3000,
+    "mp": 2000,
+    "attack": 400,
+    "defense": 600
+  }
+]

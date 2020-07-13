@@ -15,11 +15,45 @@ message MonsterInfo {
     int32 currMp = 11;
 }
 
+message SimpleMonsterInfo{
+    int64 id = 1;
+    string name = 2;
+    int32 currHp = 3;
+    int32 state = 4;
+}
+
 message NpcInfo {
     int64 id = 1;
     string name = 2;
     int32 level = 3;
     int32 state = 4;
+}
+
+message SimpleNpcInfo{
+    int64 id = 1;
+    string name = 2;
+    int32 state = 3;
+}
+
+message SimplePetInfo{
+    int64 id = 1;
+    string name = 2;
+    int32 state = 3;
+    int32 currHp = 4;
+}
+
+message PetInfo{
+    int64 id = 1;
+    string name = 2;
+    int32 level = 3;
+    int32 state = 4;
+    int32 hp = 6;
+    int32 mp = 7;
+    int32 attack = 8;
+    int32 defense = 9;
+    int32 currHp = 10;
+    int32 currMp = 11;
+    int64 playerId = 12;
 }
 
 

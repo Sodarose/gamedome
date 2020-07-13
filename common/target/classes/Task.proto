@@ -127,14 +127,8 @@ message TaskInfo {
 
 // 任务进度
 message TaskProgressInfo {
-    // 类型
-    int32 type = 1;
-    // 目标
-    int32 target = 2;
     // 进度状态 是否完成
-    bool complete = 3;
-    // 已完成数量
-    int32 num = 4;
-    // 需完成数量
-    int32 amount = 5;
+    bool complete = 1;
+    // 通俗介绍
+    string description = 2;
 }

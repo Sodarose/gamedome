@@ -1,0 +1,13 @@
+[
+  {
+    "id": 1,
+    "name": "牛头人猎杀者",
+    "limitLevel": 10,
+    "taskRequire": "3_1000_100",
+    "taskRequireStr": "杀死100个牛头人",
+    "expr": 10000,
+    "golds": 10000,
+    "props": "0_50|1_30",
+    "equips": "1|2|3|4"
+  }
+]

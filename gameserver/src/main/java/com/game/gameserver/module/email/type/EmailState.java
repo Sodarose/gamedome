@@ -2,9 +2,7 @@ package com.game.gameserver.module.email.type;
 
 /**
  * @author xuewenkang
- * @date 2020/6/22 4:59
+ * @date 2020/7/13 2:33
  */
-public interface EmailState {
-    int OPEN = 1;
-    int CLOSE = 2;
+public class EmailState {
 }

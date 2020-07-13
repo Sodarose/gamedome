@@ -1,20 +1,20 @@
 package com.game.gameserver.util;
 
 import com.game.gameserver.common.config.*;
+import com.game.gameserver.module.achievement.entity.Achievement;
+import com.game.gameserver.module.achievement.entity.PlayerAchievement;
 import com.game.gameserver.module.email.entity.Email;
 import com.game.gameserver.module.instance.model.InstanceObject;
-import com.game.gameserver.module.item.entity.Item;
 import com.game.gameserver.module.item.type.BagType;
 import com.game.gameserver.module.item.type.ItemType;
 import com.game.gameserver.module.monster.manager.MonsterManager;
-import com.game.gameserver.module.monster.model.MonsterObject;
-import com.game.gameserver.module.npc.model.NpcObject;
-import com.game.gameserver.module.player.entity.PlayerBattle;
+import com.game.gameserver.module.monster.model.Monster;
+import com.game.gameserver.module.npc.model.Npc;
+import com.game.gameserver.module.pet.entity.Pet;
+import com.game.gameserver.module.player.entity.Role;
 import com.game.gameserver.module.player.manager.PlayerManager;
-import com.game.gameserver.module.player.model.PlayerObject;
-import com.game.gameserver.module.scene.model.SceneObject;
-import com.game.gameserver.module.skill.entity.Skill;
-import com.game.gameserver.module.skill.entity.PlayerSkill;
+import com.game.gameserver.module.player.entity.Player;
+import com.game.gameserver.module.scene.model.Scene;
 import com.game.gameserver.module.store.entity.Commodity;
 import com.game.gameserver.module.task.entity.PlayerTask;
 import com.game.gameserver.module.task.entity.Task;
@@ -33,160 +33,166 @@ import java.util.Map;
  */
 public class ProtocolFactory {
 
-    /**
-     * 将playerList 转换为 PlayerProtocol.PlayerList
-     *
-     * @param playerList
-     * @return com.game.protocol.PlayerProtocol.PlayerList
-     */
-    public static PlayerProtocol.PlayerListRes createPlayerList(List<com.game.gameserver.module.player.entity.Player> playerList) {
-        PlayerProtocol.PlayerListRes.Builder builder = PlayerProtocol.PlayerListRes.newBuilder();
-        for (com.game.gameserver.module.player.entity.Player player : playerList) {
-            builder.addPlayerInfoList(createSimplePlayerInfo(player));
+    public static PlayerProtocol.QueryRoleListRes createQueryRoleListRes(List<Role> roles) {
+        PlayerProtocol.QueryRoleListRes.Builder builder = PlayerProtocol.QueryRoleListRes.newBuilder();
+        for (Role role : roles) {
+            builder.addRoles(createRoleInfo(role));
         }
         return builder.build();
     }
 
-    /**
-     * 将player 转换为 PlayerProtocol.BriefPlayerInfo
-     *
-     * @param player
-     * @return com.game.protocol.PlayerProtocol.BriefPlayerInfo
-     */
-    public static PlayerProtocol.SimplePlayerInfo createSimplePlayerInfo(com.game.gameserver.module.player.entity.Player player) {
-        PlayerProtocol.SimplePlayerInfo.Builder builder = PlayerProtocol.SimplePlayerInfo.newBuilder();
-        builder.setId(player.getId().intValue());
-        builder.setName(player.getName());
-        builder.setCareerId(player.getCareerId());
-        builder.setLevel(player.getLevel());
+    public static PlayerProtocol.RoleInfo createRoleInfo(Role role) {
+        PlayerProtocol.RoleInfo.Builder builder = PlayerProtocol.RoleInfo.newBuilder();
+        builder.setId(role.getId());
+        builder.setName(role.getName());
+        builder.setCareerId(role.getCareerId());
+        builder.setLevel(role.getLevel());
         return builder.build();
     }
 
-    public static PlayerProtocol.LoginPlayerRes createLoginPlayerRes(int code, String msg, PlayerObject playerObject) {
-        PlayerProtocol.LoginPlayerRes.Builder builder = PlayerProtocol.LoginPlayerRes.newBuilder();
-        builder.setCode(code);
-        builder.setMsg(msg);
-        if (playerObject != null) {
-            builder.setPlayerInfo(createPlayerInfo(playerObject));
-        }
+
+
+    public static PlayerProtocol.QueryPlayerInfoRes createQueryPlayerInfoRes(Player player) {
+        PlayerProtocol.QueryPlayerInfoRes.Builder builder = PlayerProtocol.QueryPlayerInfoRes.newBuilder();
+        builder.setPlayerInfo(createPlayerInfo(player));
         return builder.build();
     }
 
-    public static PlayerProtocol.PlayerInfo createPlayerInfo(PlayerObject playerObject) {
+
+    public static PlayerProtocol.PlayerInfo createPlayerInfo(Player player) {
         PlayerProtocol.PlayerInfo.Builder builder = PlayerProtocol.PlayerInfo.newBuilder();
-        builder.setId(playerObject.getPlayer().getId());
-        builder.setName(playerObject.getPlayer().getName());
-        builder.setLevel(playerObject.getPlayer().getLevel());
-        builder.setCareerId(playerObject.getPlayer().getCareerId());
-        builder.setGolds(playerObject.getPlayer().getGolds());
-        builder.setState(playerObject.getCurrState().ordinal());
-        builder.setFighterModel(playerObject.getFighterModeEnum().ordinal());
-        builder.setSceneId(playerObject.getPlayer().getSceneId());
-        // 人物属性
-        builder.setPlayerBattle(createPlayerBattle(playerObject.getPlayerBattle()));
+        // 基本信息
+        builder.setId(player.getId());
+        builder.setName(player.getName());
+        builder.setLevel(player.getLevel());
+        builder.setCareerId(player.getCareerId());
+        builder.setGolds(player.getGolds());
+        builder.setState(player.getCurrState().ordinal());
+        builder.setFighterModel(player.getFighterModeEnum().ordinal());
+        builder.setSceneId(player.getSceneId());
+        // 战斗属性
+        builder.setHp(player.getHp());
+        builder.setCurrHp(player.getCurrHp());
+        builder.setMp(player.getMp());
+        builder.setCurrHp(player.getCurrMp());
+        builder.setAttack(player.getAttack());
+        builder.setDefense(player.getDefense());
+        // 其他信息
+        return builder.build();
+    }
+
+    public static PlayerProtocol.SimplePlayerInfo createSimplePlayerInfo(Player player) {
+        PlayerProtocol.SimplePlayerInfo.Builder builder = PlayerProtocol.SimplePlayerInfo.newBuilder();
+        builder.setId(player.getId());
+        builder.setName(player.getName());
+        builder.setCurrHp(player.getCurrHp());
+        builder.setState(player.getCurrState().ordinal());
         return builder.build();
     }
 
 
-    public static PlayerProtocol.PlayerBattle createPlayerBattle(PlayerBattle playerBattle) {
-        PlayerProtocol.PlayerBattle.Builder builder = PlayerProtocol.PlayerBattle.newBuilder();
-        builder.setHp(playerBattle.getHp());
-        builder.setMp(playerBattle.getMp());
-        builder.setCurrHp(playerBattle.getCurrHp());
-        builder.setCurrMp(playerBattle.getCurrMp());
-        builder.setAttack(playerBattle.getAttack());
-        builder.setDefense(playerBattle.getDefense());
-        return builder.build();
-    }
-
-    public static PlayerProtocol.PlayerSkill createPlayerSkill(PlayerSkill playerSkill) {
-        PlayerProtocol.PlayerSkill.Builder builder = PlayerProtocol.PlayerSkill.newBuilder();
-    /*    for (Skill skill : playerSkill.getSkillList()) {
-            builder.addSkillInfo(createSkillInfo(skill));
-        }*/
-        return builder.build();
-    }
-
-    public static PlayerProtocol.SkillInfo createSkillInfo(Skill skill) {
-        PlayerProtocol.SkillInfo.Builder builder = PlayerProtocol.SkillInfo.newBuilder();
-        SkillConfig skillConfig = StaticConfigManager.getInstance().getSkillConfigMap().get(skill.getSkillId());
-        builder.setId(skill.getId());
-        builder.setName(skillConfig.getName());
-        builder.setCareerId(skillConfig.getCareerId());
-        builder.setLimitLevel(skillConfig.getLimitLevel());
-        builder.setMaxLearnLevel(skillConfig.getMaxLearnLevel());
-        builder.setCoolTime(skillConfig.getCoolTime());
-        builder.setFormula(skillConfig.getFormula());
-        builder.setDesc(skillConfig.getDesc());
-        builder.setBagIndex(skill.getBagIndex());
-        builder.setPlayerId(skill.getPlayerId());
-        return builder.build();
-    }
-
-
-    /**
-     * @param sceneObject
-     * @return com.game.protocol.SceneProtocol.SceneInfo
-     */
-    public static SceneProtocol.SceneInfo createSceneInfo(SceneObject sceneObject) {
-        SceneProtocol.SceneInfo.Builder builder = SceneProtocol.SceneInfo.newBuilder();
-        builder.setId(sceneObject.getId());
-        builder.setName(sceneObject.getSceneConfig().getName());
-        builder.setDescription(sceneObject.getSceneConfig().getDesc());
-        builder.setPlayerNum(sceneObject.getPlayerNum());
-        for (Map.Entry<Long, PlayerObject> entry : sceneObject.getPlayerObjectMap().entrySet()) {
-            builder.putPlayers(entry.getKey(), createOtherPlayerInfo(entry.getValue()));
+    public static SceneProtocol.QuerySceneListRes createQuerySceneListRes(List<Scene> scenes) {
+        SceneProtocol.QuerySceneListRes.Builder builder = SceneProtocol.QuerySceneListRes.newBuilder();
+        for (Scene scene : scenes) {
+            builder.addScenes(createSimpleSceneInfo(scene));
         }
-        for (Map.Entry<Long, Long> entry : sceneObject.getMonsterObjectMap().entrySet()) {
-            MonsterObject monsterObject = MonsterManager.instance.getMonster(entry.getValue());
-            if (monsterObject == null) {
+        return builder.build();
+    }
+
+    public static SceneProtocol.SceneInfo createSceneInfo(Scene scene) {
+        SceneProtocol.SceneInfo.Builder builder = SceneProtocol.SceneInfo.newBuilder();
+        builder.setId(scene.getId());
+        builder.setName(scene.getSceneConfig().getName());
+        builder.setDescription(scene.getSceneConfig().getDesc());
+        builder.setPlayerNum(scene.getPlayerNum());
+        // 写入人物信息
+        for (Map.Entry<Long, Player> entry : scene.getPlayerMap().entrySet()) {
+            builder.addPlayers(createSimplePlayerInfo(entry.getValue()));
+        }
+        // 写入怪物信息
+        for (Map.Entry<Long, Long> entry : scene.getMonsterMap().entrySet()) {
+            Monster monster = MonsterManager.instance.getMonster(entry.getValue());
+            if (monster == null) {
                 continue;
             }
-            builder.putMonsters(entry.getKey(), createMonster(monsterObject));
+            builder.addMonsters(createSimpleMonsterInfo(monster));
         }
-        for (Map.Entry<Long, NpcObject> entry : sceneObject.getNpcObjectMap().entrySet()) {
-            builder.putNpcs(entry.getKey(), createNpc(entry.getValue()));
+        // 写入npc信息
+        for (Map.Entry<Long, Npc> entry : scene.getNpcMap().entrySet()) {
+            builder.addNpcs(createSimpleNpcInfo(entry.getValue()));
+        }
+        // 写入宝宝信息
+        for (Map.Entry<Long, Pet> entry : scene.getPetMap().entrySet()) {
+            builder.addPets(createSimplePetInfo(entry.getValue()));
         }
         return builder.build();
     }
 
-    /**
-     * @param playerObject
-     * @return com.game.protocol.PlayerProtocol.OtherPlayerInfo
-     */
-    public static PlayerProtocol.OtherPlayerInfo createOtherPlayerInfo(PlayerObject playerObject) {
+    public static SceneProtocol.SimpleSceneInfo createSimpleSceneInfo(Scene scene) {
+        SceneProtocol.SimpleSceneInfo.Builder builder = SceneProtocol.SimpleSceneInfo.newBuilder();
+        builder.setId(scene.getId());
+        builder.setName(scene.getSceneConfig().getName());
+        builder.setDescription(scene.getSceneConfig().getDesc());
+        builder.setPlayerNum(scene.getPlayerNum());
+        return builder.build();
+    }
+
+
+    public static PlayerProtocol.OtherPlayerInfo createOtherPlayerInfo(Player player) {
         PlayerProtocol.OtherPlayerInfo.Builder builder = PlayerProtocol.OtherPlayerInfo.newBuilder();
-        builder.setId(playerObject.getPlayer().getId());
-        builder.setName(playerObject.getPlayer().getName());
-        builder.setLevel(playerObject.getPlayer().getLevel());
-        builder.setCareerId(playerObject.getPlayer().getCareerId());
-        builder.setPlayerBattle(createPlayerBattle(playerObject.getPlayerBattle()));
+        builder.setId(player.getId());
+        builder.setName(player.getName());
+        builder.setLevel(player.getLevel());
+        builder.setCareerId(player.getCareerId());
         return builder.build();
     }
 
-    /**
-     * @param monsterObject
-     * @return com.game.protocol.SceneProtocol.Monster
-     */
-    public static Actor.MonsterInfo createMonster(MonsterObject monsterObject) {
+    public static Actor.MonsterInfo createMonster(Monster monster) {
         Actor.MonsterInfo.Builder builder = Actor.MonsterInfo.newBuilder();
-        builder.setId(monsterObject.getId());
-        builder.setName(monsterObject.getMonsterConfig().getName());
-        builder.setLevel(monsterObject.getMonsterConfig().getLevel());
-        builder.setHp(monsterObject.getHp());
-        builder.setMp(monsterObject.getMp());
-        builder.setAttack(monsterObject.getAttack());
-        builder.setDefense(monsterObject.getDefense());
-        builder.setCurrHp(monsterObject.getCurrHp());
-        builder.setCurrMp(monsterObject.getCurrMp());
+        builder.setId(monster.getId());
+        builder.setName(monster.getMonsterConfig().getName());
+        builder.setLevel(monster.getMonsterConfig().getLevel());
+        builder.setHp(monster.getHp());
+        builder.setMp(monster.getMp());
+        builder.setAttack(monster.getAttack());
+        builder.setDefense(monster.getDefense());
+        builder.setCurrHp(monster.getCurrHp());
+        builder.setCurrMp(monster.getCurrMp());
         return builder.build();
     }
 
-    public static Actor.NpcInfo createNpc(NpcObject npcObject) {
+    public static Actor.SimpleMonsterInfo createSimpleMonsterInfo(Monster monster) {
+        Actor.SimpleMonsterInfo.Builder builder = Actor.SimpleMonsterInfo.newBuilder();
+        builder.setId(monster.getId());
+        builder.setName(monster.getMonsterConfig().getName());
+        builder.setCurrHp(monster.getCurrHp());
+        builder.setState(monster.getCurrState().ordinal());
+        return builder.build();
+    }
+
+
+    public static Actor.NpcInfo createNpc(Npc npc) {
         Actor.NpcInfo.Builder builder = Actor.NpcInfo.newBuilder();
-        builder.setId(npcObject.getId());
-        builder.setName(npcObject.getNpcConfig().getName());
-        builder.setLevel(npcObject.getNpcConfig().getLevel());
+        builder.setId(npc.getId());
+        builder.setName(npc.getNpcConfig().getName());
+        builder.setLevel(npc.getNpcConfig().getLevel());
+        return builder.build();
+    }
+
+    public static Actor.SimpleNpcInfo createSimpleNpcInfo(Npc npc) {
+        Actor.SimpleNpcInfo.Builder builder = Actor.SimpleNpcInfo.newBuilder();
+        builder.setId(npc.getId());
+        builder.setName(npc.getNpcConfig().getName());
+        builder.setState(0);
+        return builder.build();
+    }
+
+    public static Actor.SimplePetInfo createSimplePetInfo(Pet pet) {
+        Actor.SimplePetInfo.Builder builder = Actor.SimplePetInfo.newBuilder();
+        builder.setId(pet.getId());
+        builder.setName(pet.getPetConfig().getName());
+        builder.setCurrHp(pet.getCurrHp());
+        builder.setState(0);
         return builder.build();
     }
 
@@ -251,11 +257,11 @@ public class ProtocolFactory {
         builder.setMaxNum(team.getMaxNum());
         builder.setInstance(team.getInstanceId() != null);
         for (Long playerId : team.getMembers()) {
-            PlayerObject playerObject = PlayerManager.instance.getPlayerObject(playerId);
-            if (playerObject == null) {
+            Player player = PlayerManager.instance.getPlayer(playerId);
+            if (player == null) {
                 continue;
             }
-            builder.addMemberName(playerObject.getPlayer().getName());
+            builder.addMemberName(player.getName());
         }
         return builder.build();
     }
@@ -363,20 +369,20 @@ public class ProtocolFactory {
         builder.setEndTime(instanceObject.getEndTime());
         builder.setRecoveryTime(instanceObject.getRecoveryTime());
         for (Long playerId : instanceObject.getCurrPlayers()) {
-            PlayerObject playerObject = PlayerManager
-                    .instance.getPlayerObject(playerId);
-            if (playerObject == null) {
+            Player player = PlayerManager
+                    .instance.getPlayer(playerId);
+            if (player == null) {
                 continue;
             }
-            builder.addPlayerList(createOtherPlayerInfo(playerObject));
+            builder.addPlayerList(createOtherPlayerInfo(player));
         }
 
         for (Long monsterId : instanceObject.getCurrMonsters()) {
-            MonsterObject monsterObject = MonsterManager.instance.getMonster(monsterId);
-            if (monsterObject == null) {
+            Monster monster = MonsterManager.instance.getMonster(monsterId);
+            if (monster == null) {
                 continue;
             }
-            builder.addMonsterList(createMonster(monsterObject));
+            builder.addMonsterList(createMonster(monster));
         }
         return builder.build();
     }
@@ -468,8 +474,6 @@ public class ProtocolFactory {
     }
 
     /**
-     *
-     *
      * @param code
      * @param msg
      * @param taskConfigs
@@ -487,9 +491,11 @@ public class ProtocolFactory {
         return builder.build();
     }
 
-    /** 可接受任务列表 */
-    public static TaskProtocol.QueryReceiveAbleTaskRes createQueryReceiveAbleTaskRes(int code,String msg,
-                                                                                List<TaskConfig> taskConfigs){
+    /**
+     * 可接受任务列表
+     */
+    public static TaskProtocol.QueryReceiveAbleTaskRes createQueryReceiveAbleTaskRes(int code, String msg,
+                                                                                     List<TaskConfig> taskConfigs) {
         TaskProtocol.QueryReceiveAbleTaskRes.Builder builder = TaskProtocol.QueryReceiveAbleTaskRes.newBuilder();
         builder.setCode(code);
         builder.setMsg(msg);
@@ -505,14 +511,13 @@ public class ProtocolFactory {
         TaskProtocol.QueryReceiveTaskRes.Builder builder = TaskProtocol.QueryReceiveTaskRes.newBuilder();
         builder.setCode(code);
         builder.setMsg(msg);
-        if(playerTask!=null){
+        if (playerTask != null) {
             for (Task task : playerTask.getTaskList()) {
                 builder.addTaskInfos(createTaskInfo(task));
             }
         }
         return builder.build();
     }
-
 
 
     public static TaskProtocol.TaskConfigInfo createTaskConfigInfo(TaskConfig taskConfig) {
@@ -522,11 +527,11 @@ public class ProtocolFactory {
         builder.setDesc(taskConfig.getDescription());
         builder.setType(taskConfig.getType());
         builder.setLimitLevel(taskConfig.getLimitLevel());
-        builder.setTaskRequire(taskConfig.getTaskRequire());
+        builder.setTaskRequire(taskConfig.getTaskRequireStr());
         builder.setExpr(taskConfig.getExpr());
         builder.setGolds(taskConfig.getGolds());
-        builder.setProps(taskConfig.getProps());
-        builder.setEquips(taskConfig.getEquips());
+        builder.setProps(TaskUtil.parserPropsAward2Str(taskConfig.getPropAwards()));
+        builder.setEquips(TaskUtil.parserEquipAward2Str(taskConfig.getEquipAwards()));
         return builder.build();
     }
 
@@ -543,19 +548,95 @@ public class ProtocolFactory {
         builder.setDesc(taskConfig.getDescription());
         builder.setExpr(taskConfig.getExpr());
         builder.setGolds(taskConfig.getGolds());
-        builder.setProps(taskConfig.getProps());
-        builder.setEquips(taskConfig.getEquips());
+        builder.setProps(TaskUtil.parserPropsAward2Str(taskConfig.getPropAwards()));
+        builder.setEquips(TaskUtil.parserEquipAward2Str(taskConfig.getEquipAwards()));
         builder.setState(task.getState());
         List<TaskProgress> taskProgresses = task.getTaskProgresses();
         for (TaskProgress taskProgress : taskProgresses) {
-            TaskProtocol.TaskProgressInfo info = TaskProtocol.TaskProgressInfo.newBuilder().setType(taskProgress.getType())
-                    .setTarget(taskProgress.getTarget())
-                    .setAmount(taskProgress.getAmount())
-                    .setNum(taskProgress.getNum())
-                    .setComplete(taskProgress.isComplete()).build();
+            TaskProtocol.TaskProgressInfo info = TaskProtocol.TaskProgressInfo.newBuilder()
+                    .setComplete(taskProgress.isComplete())
+                    // 进度的字符串描述
+                    .setDescription(TaskUtil.parserTaskRequireByStr(taskProgress))
+                    .build();
             builder.addTaskProgressInfo(info);
         }
         return builder.build();
     }
+
+    public static AchievementProtocol.QueryAchievementListRes
+    createQueryAchievementListRes(int code, String msg, List<AchievementConfig> achievementConfigs) {
+        AchievementProtocol.QueryAchievementListRes.Builder builder = AchievementProtocol
+                .QueryAchievementListRes.newBuilder();
+        builder.setCode(code);
+        builder.setMsg(msg);
+        if (achievementConfigs != null) {
+            for (AchievementConfig achievementConfig : achievementConfigs) {
+                builder.addAchievementConfigInfos(createAchievementConfigInfo(achievementConfig));
+            }
+        }
+        return builder.build();
+    }
+
+    /**
+     * @param config
+     * @return com.game.protocol.AchievementProtocol.AchievementConfigInfo
+     */
+    public static AchievementProtocol.AchievementConfigInfo createAchievementConfigInfo(AchievementConfig config) {
+        AchievementProtocol.AchievementConfigInfo.Builder builder = AchievementProtocol.AchievementConfigInfo
+                .newBuilder();
+        builder.setId(config.getId());
+        builder.setName(config.getName());
+        builder.setLimitLevel(config.getLimitLevel());
+        builder.setTaskRequire(config.getTaskRequireStr());
+        builder.setExpr(config.getExpr());
+        builder.setGolds(config.getGolds());
+        builder.setProps(TaskUtil.parserPropsAward2Str(config.getPropAwards()));
+        builder.setEquips(TaskUtil.parserEquipAward2Str(config.getEquipAwards()));
+        return builder.build();
+    }
+
+    public static AchievementProtocol.QueryPlayerAchievementListRes
+    createQueryPlayerAchievementListRes(int code, String msg, PlayerAchievement playerAchievement) {
+        AchievementProtocol.QueryPlayerAchievementListRes.Builder builder = AchievementProtocol
+                .QueryPlayerAchievementListRes.newBuilder();
+        builder.setCode(code);
+        builder.setMsg(msg);
+        if (playerAchievement != null) {
+            for (Achievement achievement : playerAchievement.getAchievements()) {
+                builder.addAchievementInfos(createAchievementInfo(achievement));
+            }
+        }
+        return builder.build();
+    }
+
+    public static AchievementProtocol.AchievementInfo createAchievementInfo(Achievement achievement) {
+        AchievementProtocol.AchievementInfo.Builder builder = AchievementProtocol.AchievementInfo.newBuilder();
+        AchievementConfig achievementConfig = StaticConfigManager.getInstance().getAchievementConfigMap()
+                .get(achievement.getAchievementId());
+        if(achievementConfig==null){
+            return builder.build();
+        }
+        builder.setId(achievement.getId());
+        builder.setAchievementId(achievementConfig.getId());
+        builder.setName(achievementConfig.getName());
+        builder.setExpr(achievementConfig.getExpr());
+        builder.setGolds(achievementConfig.getGolds());
+        builder.setProps(TaskUtil.parserPropsAward2Str(achievementConfig.getPropAwards()));
+        builder.setEquips(TaskUtil.parserEquipAward2Str(achievementConfig.getEquipAwards()));
+        builder.setState(achievement.getState());
+        // 设置进度
+        List<TaskProgress> taskProgresses = achievement.getTaskProgresses();
+        for (TaskProgress taskProgress : taskProgresses) {
+            TaskProtocol.TaskProgressInfo info = TaskProtocol.TaskProgressInfo.newBuilder()
+                    .setComplete(taskProgress.isComplete())
+                    // 进度的字符串描述
+                    .setDescription(TaskUtil.parserTaskRequireByStr(taskProgress))
+                    .build();
+            builder.addTaskProgressInfo(info);
+        }
+        return builder.build();
+    }
+
+
 }
 

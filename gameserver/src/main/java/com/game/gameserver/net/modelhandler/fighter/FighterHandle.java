@@ -1,7 +1,7 @@
 package com.game.gameserver.net.modelhandler.fighter;
 
 import com.game.gameserver.module.fighter.service.FighterService;
-import com.game.gameserver.module.player.model.PlayerObject;
+import com.game.gameserver.module.player.entity.Player;
 import com.game.gameserver.module.player.service.PlayerService;
 import com.game.gameserver.net.annotation.CmdHandler;
 import com.game.gameserver.net.annotation.ModuleHandler;
@@ -27,13 +27,13 @@ public class FighterHandle extends BaseHandler {
 
     @CmdHandler(cmd = FighterCmd.ATTACK)
     public void handleAttackReq(Message message, Channel channel) {
-        PlayerObject playerObject = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
-        if (playerObject == null) {
+        Player player = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
+        if (player == null) {
             return;
         }
         try {
             FighterProtocol.AttackReq attackReq = FighterProtocol.AttackReq.parseFrom(message.getData());
-            FighterProtocol.AttackRes res = fighterService.playerAttackReq(playerObject.getPlayer().getId(), attackReq.getUnitId()
+            FighterProtocol.AttackRes res = fighterService.playerAttackReq(player.getId(), attackReq.getUnitId()
                     , attackReq.getUnitType());
             Message resMsg = MessageUtil.createMessage(ModuleKey.FIGHTER_MODEL, FighterCmd.ATTACK, res.toByteArray());
             channel.writeAndFlush(resMsg);
@@ -44,21 +44,21 @@ public class FighterHandle extends BaseHandler {
 
     @CmdHandler(cmd = FighterCmd.CHANGE_MODEL)
     public void handleChangeFighterModelReq(Message message, Channel channel) {
-        PlayerObject playerObject = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
-        if (playerObject == null) {
+        Player player = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
+        if (player == null) {
             return;
         }
     }
 
     @CmdHandler(cmd = FighterCmd.USE_SKILL)
     public void handleUseSkillReq(Message message, Channel channel) {
-        PlayerObject playerObject = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
-        if (playerObject == null) {
+        Player player = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
+        if (player == null) {
             return;
         }
         try {
             FighterProtocol.UseSkillReq req = FighterProtocol.UseSkillReq.parseFrom(message.getData());
-            FighterProtocol.UseSkillRes res = fighterService.useSkill(playerObject.getPlayer().getId(),
+            FighterProtocol.UseSkillRes res = fighterService.useSkill(player.getId(),
                     req.getUnitId(), req.getUnitType(), req.getSkillId());
             Message resMsg = MessageUtil.createMessage(ModuleKey.FIGHTER_MODEL,
                     FighterCmd.USE_SKILL, res.toByteArray());

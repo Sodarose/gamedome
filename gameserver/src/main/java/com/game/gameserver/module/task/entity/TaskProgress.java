@@ -42,4 +42,8 @@ public class TaskProgress {
         this.num = 0;
         this.complete = false;
     }
+
+    public void addNum(int value) {
+        this.num += value;
+    }
 }

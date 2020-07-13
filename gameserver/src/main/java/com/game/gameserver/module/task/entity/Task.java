@@ -3,7 +3,9 @@ package com.game.gameserver.module.task.entity;
 import com.game.gameserver.common.config.TaskConfig;
 import com.game.gameserver.module.task.type.TaskState;
 import com.game.gameserver.util.GameUUID;
+import com.game.gameserver.util.TaskUtil;
 import lombok.Data;
+import org.springframework.scheduling.support.TaskUtils;
 
 import java.util.List;
 
@@ -30,6 +32,11 @@ public class Task {
     /** 任务进度/要求 */
     private List<TaskProgress> taskProgresses;
 
+    public Task(){
+
+    }
+
+    /** 新创建一个任务时使用 */
     public Task(long playerId,TaskConfig taskConfig){
         this.id = GameUUID.getInstance().generate();
         this.taskId = taskConfig.getId();
@@ -37,7 +44,7 @@ public class Task {
         this.state = TaskState.ACCEPTED;
         this.playerId = playerId;
         // 解析要求
-        this.taskProgresses = taskConfig.parseTaskRequire();
+        this.taskProgresses = TaskUtil.parserTaskRequire(taskConfig.getTaskRequire());
     }
 
 }

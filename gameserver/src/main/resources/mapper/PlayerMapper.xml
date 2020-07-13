@@ -9,15 +9,25 @@
         <result column="golds" property="golds"/>
         <result column="sceneId" property="sceneId"/>
         <result column="userId" property="userId"/>
+        <result column="expr" property="expr"/>
+        <result column="bagCapacity" property="bagCapacity"/>
+        <result column="warehouse" property="warehouse"/>
+        <result column="hp" property="hp"/>
+        <result column="currHp" property="currHp"/>
+        <result column="mp" property="mp"/>
+        <result column="currMp" property="currMp"/>
+        <result column="attack" property="attack"/>
+        <result column="defense" property="defense"/>
         <result column="createTime" property="createTime"/>
         <result column="updateTime" property="updateTime"/>
     </resultMap>
-    <select id="getPlayerListByAccountId" resultMap="playerResultMap">
-        SELECT id,name,level,careerId,golds,sceneId,userId,createTime,updateTime FROM game_player WHERE userId = #{accountId}
+    <select id="queryRoleList" resultType="com.game.gameserver.module.player.entity.Role">
+        SELECT id,name,level,careerId FROM game_player WHERE userId = #{accountId}
     </select>
 
-    <select id="getPlayerById" resultMap="playerResultMap">
-        SELECT id,name,level,careerId,golds,sceneId,userId,createTime,updateTime FROM game_player WHERE id = #{playerId}
+    <select id="queryPlayer" resultMap="playerResultMap">
+        SELECT id,name,level,careerId,golds,sceneId,userId,expr,bagCapacity,warehouse,hp,currHp,mp,
+        currMp,attack,defense,createTime,updateTime FROM game_player WHERE id = #{playerId}
     </select>
 
 </mapper>

@@ -1,8 +1,7 @@
 package com.game.gameserver.net.modelhandler.email;
 
-import com.game.gameserver.module.email.entity.Email;
 import com.game.gameserver.module.email.service.EmailService;
-import com.game.gameserver.module.player.model.PlayerObject;
+import com.game.gameserver.module.player.entity.Player;
 import com.game.gameserver.module.player.service.PlayerService;
 import com.game.gameserver.net.annotation.CmdHandler;
 import com.game.gameserver.net.annotation.ModuleHandler;
@@ -35,11 +34,11 @@ public class EmailHandle extends BaseHandler {
      */
     @CmdHandler(cmd = EmailCmd.EMAIL_LIST_REQ)
     public void handleEmailListReq(Message message, Channel channel) {
-        PlayerObject playerObject = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
-        if (playerObject == null) {
+        Player player = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
+        if (player == null) {
             return;
         }
-        EmailProtocol.EmailListRes res = emailService.getEmailList(playerObject);
+        EmailProtocol.EmailListRes res = emailService.getEmailList(player);
         Message resMsg = MessageUtil.createMessage(ModuleKey.EMAIL_MODULE,EmailCmd.EMAIL_LIST_REQ,
                 res.toByteArray());
         channel.writeAndFlush(resMsg);
@@ -66,13 +65,13 @@ public class EmailHandle extends BaseHandler {
      */
     @CmdHandler(cmd = EmailCmd.SEND_EMAIL_REQ)
     public void handleSendEmailReq(Message message,Channel channel){
-        PlayerObject playerObject = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
-        if (playerObject == null) {
+        Player player = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
+        if (player == null) {
             return;
         }
         try {
             EmailProtocol.SendEmailReq req = EmailProtocol.SendEmailReq.parseFrom(message.getData());
-            EmailProtocol.SendEmailRes res = emailService.sendEmail(playerObject,req);
+            EmailProtocol.SendEmailRes res = emailService.sendEmail(player,req);
             Message resMsg = MessageUtil.createMessage(ModuleKey.EMAIL_MODULE,EmailCmd.SEND_EMAIL_REQ,
                     res.toByteArray());
             channel.writeAndFlush(resMsg);

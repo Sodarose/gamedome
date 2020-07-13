@@ -15,10 +15,10 @@ public interface SkillType {
     int SUMMONER = 3;
 
 
-    /** 范围性技能 */
-    int AREA = 1;
     /** 指定目标性技能*/
-    int TARGET = 2;
+    int TARGET = 1;
+    /** 范围性技能 */
+    int AREA = 2;
     /** 无目标技能*/
     int NOT_TARGET = 3;
 

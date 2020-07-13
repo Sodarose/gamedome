@@ -6,9 +6,7 @@ import com.game.gameserver.common.entity.Unit;
 import com.game.gameserver.common.entity.UnitType;
 import com.game.gameserver.module.ai.fsm.State;
 import com.game.gameserver.module.ai.fsm.StateMachine;
-import com.game.gameserver.module.ai.state.monster.MonsterState;
 import com.game.gameserver.module.ai.state.pet.PetState;
-import com.game.gameserver.module.player.model.PlayerObject;
 import com.game.gameserver.util.GameUUID;
 import lombok.Data;
 
@@ -30,7 +28,7 @@ public class Pet implements Unit {
     /**
      * 怪物静态数据
      */
-    private final int petConfigId;
+    private final PetConfig petConfig;
     /**
      * 怪物动态属性
      */
@@ -62,9 +60,9 @@ public class Pet implements Unit {
      */
     private final Map<String, Object> tempData = new ConcurrentHashMap<>();
 
-    public Pet(long playerId, int petConfigId) {
+    public Pet(long playerId, PetConfig petConfig) {
         this.id = GameUUID.getInstance().generate();
-        this.petConfigId = petConfigId;
+        this.petConfig = petConfig;
         this.stateMachine = new StateMachine<>(this, PetState.FOLLOW);
         this.playerId = playerId;
     }
@@ -73,10 +71,6 @@ public class Pet implements Unit {
      * 初始化
      */
     public void initialize() {
-        PetConfig petConfig = StaticConfigManager.getInstance().getPetConfigMap().get(petConfigId);
-        if (petConfig == null) {
-            return;
-        }
         this.hp = petConfig.getHp();
         this.mp = petConfig.getMp();
         this.currHp = petConfig.getHp();

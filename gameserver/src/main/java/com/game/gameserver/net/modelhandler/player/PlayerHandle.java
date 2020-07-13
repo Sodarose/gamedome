@@ -2,7 +2,7 @@ package com.game.gameserver.net.modelhandler.player;
 
 import com.game.gameserver.module.account.entity.Account;
 import com.game.gameserver.module.account.service.AccountService;
-import com.game.gameserver.module.player.model.PlayerObject;
+import com.game.gameserver.module.player.entity.Player;
 import com.game.gameserver.module.player.service.PlayerService;
 import com.game.gameserver.net.annotation.CmdHandler;
 import com.game.gameserver.net.annotation.ModuleHandler;
@@ -34,17 +34,17 @@ public class PlayerHandle extends BaseHandler {
      * @param channel
      * @return void
      */
-    @CmdHandler(cmd = PlayerCmd.LIST_PLAYERS)
-    public void getPlayerList(Message message, Channel channel) {
+    @CmdHandler(cmd = PlayerCmd.QUERY_ROLE_LIST)
+    public void handleQueryRoleListReq(Message message, Channel channel) {
         // 验证账号是否已经登录
         Account account = channel.attr(AccountService.ACCOUNT_ATTRIBUTE_KEY).get();
         if (account == null) {
             return;
         }
         // 请求角色列表
-        PlayerProtocol.PlayerListRes playerList = playerService.getRoleList(account.getId());
-        Message res = MessageUtil.createMessage(ModuleKey.PLAYER_MODULE, PlayerCmd.LIST_PLAYERS, playerList.toByteArray());
-        channel.writeAndFlush(res);
+        PlayerProtocol.QueryRoleListRes res = playerService.queryRoleList(account.getId());
+        Message resMsg = MessageUtil.createMessage(ModuleKey.PLAYER_MODULE, PlayerCmd.QUERY_ROLE_LIST, res.toByteArray());
+        channel.writeAndFlush(resMsg);
     }
 
     /**
@@ -54,40 +54,40 @@ public class PlayerHandle extends BaseHandler {
      * @param channel
      * @return void
      */
-    @CmdHandler(cmd = PlayerCmd.LOGIN_PLAYER)
-    public void loginPlayer(Message message, Channel channel) {
+    @CmdHandler(cmd = PlayerCmd.LOGIN_ROLE)
+    public void handleLoginRoleReq(Message message, Channel channel) {
         // 验证连接
         Account account = channel.attr(AccountService.ACCOUNT_ATTRIBUTE_KEY).get();
         if (account == null) {
             return;
         }
         // 是否重复登录
-        PlayerObject playerObject = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
-        if (playerObject != null) {
+        Player player = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
+        if (player != null) {
             return;
         }
         try {
-            PlayerProtocol.LoginPlayerReq loginPlayerReq = PlayerProtocol.LoginPlayerReq.parseFrom(message.getData());
-            PlayerProtocol.LoginPlayerRes loginPlayerRes = playerService.loginRole(loginPlayerReq.getPlayerId(), channel);
-            Message res = MessageUtil.createMessage(ModuleKey.PLAYER_MODULE, PlayerCmd.LOGIN_PLAYER,
-                    loginPlayerRes.toByteArray());
-            channel.writeAndFlush(res);
+            PlayerProtocol.LoginRoleReq req = PlayerProtocol.LoginRoleReq.parseFrom(message.getData());
+            PlayerProtocol.LoginRoleRes res = playerService.loginRole(req.getRoleId(), channel);
+            Message resMsg = MessageUtil.createMessage(ModuleKey.PLAYER_MODULE, PlayerCmd.LOGIN_ROLE,
+                    res.toByteArray());
+            channel.writeAndFlush(resMsg);
         } catch (InvalidProtocolBufferException e) {
             e.printStackTrace();
         }
     }
 
     @CmdHandler(cmd = PlayerCmd.PLAYER_INFO_REQ)
-    public void handlePlayerInfoReq(Message message, Channel channel) {
+    public void handleQueryPlayerInfoReq(Message message, Channel channel) {
         // 角色是否已经登录
-        PlayerObject playerObject = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
-        if (playerObject == null) {
+        Player player = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
+        if (player == null) {
             return;
         }
-        PlayerProtocol.PlayerInfo playerInfo = playerService.getPlayerInfo(playerObject);
-        Message res = MessageUtil.createMessage(ModuleKey.PLAYER_MODULE, PlayerCmd.PLAYER_INFO_REQ,
-                playerInfo.toByteArray());
-        channel.writeAndFlush(res);
+        PlayerProtocol.QueryPlayerInfoRes res = playerService.queryPlayerInfo(player);
+        Message resMsg = MessageUtil.createMessage(ModuleKey.PLAYER_MODULE, PlayerCmd.PLAYER_INFO_REQ,
+                res.toByteArray());
+        channel.writeAndFlush(resMsg);
     }
 
 }

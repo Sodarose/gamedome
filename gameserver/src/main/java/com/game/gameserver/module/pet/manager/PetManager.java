@@ -42,7 +42,7 @@ public class PetManager {
             logger.info("不能重复召唤");
             return null;
         }
-        Pet pet = new Pet(playerId,petConfigId);
+        Pet pet = new Pet(playerId,petConfig);
         pet.initialize();
         userPet.addPet(pet);
         petMap.put(pet.getId(), pet);

@@ -1,9 +1,10 @@
-package com.game.gameserver.module.pet.service;
+package com.game.gameserver.module.pet.service.impl;
+
+import com.game.gameserver.module.pet.service.PetService;
 
 /**
  * @author xuewenkang
- * @date 2020/6/23 10:09
+ * @date 2020/6/23 10:10
  */
-public interface PetService {
-
+public class PetServiceImpl implements PetService {
 }

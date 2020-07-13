@@ -2,7 +2,7 @@ package com.game.gameserver.module.skill.manager;
 
 import com.game.gameserver.event.Listener;
 import com.game.gameserver.module.player.manager.PlayerManager;
-import com.game.gameserver.module.player.model.PlayerObject;
+import com.game.gameserver.module.player.entity.Player;
 import com.game.gameserver.module.skill.dao.SkillMapper;
 import com.game.gameserver.module.skill.entity.PlayerSkill;
 import com.game.gameserver.module.skill.entity.Skill;
@@ -39,8 +39,8 @@ public class SkillManager {
      * @return void
      */
     private void loadPlayerSkill(long playerId) {
-        PlayerObject playerObject = playerManager.getPlayerObject(playerId);
-        if (playerObject == null) {
+        Player player = playerManager.getPlayer(playerId);
+        if (player == null) {
             return;
         }
         // 从数据库中读取用户技能数据

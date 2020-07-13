@@ -1,14 +1,10 @@
 package com.game.gameserver.module.instance.manager;
 
-import com.game.gameserver.common.DefaultThreadFactory;
-import com.game.gameserver.event.EventHandler;
-import com.game.gameserver.event.EventType;
+import com.game.gameserver.thread.DefaultThreadFactory;
 import com.game.gameserver.event.Listener;
 import com.game.gameserver.module.instance.model.InstanceObject;
 import com.game.gameserver.module.instance.model.InstanceRule;
-import com.game.gameserver.module.monster.event.MonsterDeadEvent;
 import com.game.gameserver.module.monster.manager.MonsterManager;
-import com.game.gameserver.module.monster.model.MonsterObject;
 import com.game.gameserver.module.team.manager.TeamManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -82,25 +78,6 @@ public class InstanceManager {
         return instanceObjectMap.get(instanceId);
     }
 
-    /**
-     * 处理怪物死亡事件
-     *
-     * @param monsterDeadEvent
-     * @return void
-     */
-    @EventHandler(type = EventType.KILL_MONSTER)
-    public void handleMonsterDead(MonsterDeadEvent monsterDeadEvent) {
-        MonsterObject monsterObject = monsterManager.getMonster(monsterDeadEvent.getMonsterId());
-        if (monsterObject.getAddrId() == null) {
-            return;
-        }
-        InstanceObject instanceObject = instanceObjectMap.get(monsterObject.getAddrId());
-        if (instanceObject == null) {
-            return;
-        }
-        // 从副本中移除该怪物
-        instanceObject.removeDealMonster(monsterObject.getId());
-    }
 
 
     private class Worker implements Runnable {

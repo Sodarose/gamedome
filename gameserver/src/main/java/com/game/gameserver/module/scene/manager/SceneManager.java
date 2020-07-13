@@ -4,12 +4,10 @@ import com.game.gameserver.common.config.*;
 import com.game.gameserver.event.EventHandler;
 import com.game.gameserver.event.EventType;
 import com.game.gameserver.event.Listener;
-import com.game.gameserver.module.instance.event.EntryInstanceEvent;
-import com.game.gameserver.module.instance.event.ExitInstanceEvent;
-import com.game.gameserver.module.player.entity.Player;
+import com.game.gameserver.module.player.event.LoginEvent;
 import com.game.gameserver.module.player.manager.PlayerManager;
-import com.game.gameserver.module.player.model.PlayerObject;
-import com.game.gameserver.module.scene.model.SceneObject;
+import com.game.gameserver.module.player.entity.Player;
+import com.game.gameserver.module.scene.model.Scene;
 import com.game.gameserver.net.modelhandler.ModuleKey;
 import com.game.gameserver.net.modelhandler.scene.SceneCmd;
 import com.game.gameserver.util.ProtocolFactory;
@@ -21,6 +19,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -49,7 +48,7 @@ public class SceneManager {
     /**
      * 已经创建的场景
      */
-    private Map<Long, SceneObject> sceneObjectMap = new ConcurrentHashMap<>(4);
+    private Map<Long, Scene> sceneMap = new ConcurrentHashMap<>(4);
 
     /**
      * 读取场景配置 创建场景
@@ -64,27 +63,35 @@ public class SceneManager {
             SceneNpcConfig sceneNpcConfig = StaticConfigManager.getInstance()
                     .getSceneNpcConfigMap().get(sceneConfig.getValue().getSceneNpcConfigId());
             // 创建场景对象
-            SceneObject sceneObject = new SceneObject(sceneConfig.getValue(), sceneMonsterConfig, sceneNpcConfig);
+            Scene scene = new Scene(sceneConfig.getValue(), sceneMonsterConfig, sceneNpcConfig);
             // 场景初始化
-            sceneObject.initialize();
-            sceneObjectMap.put(sceneObject.getId(), sceneObject);
+            scene.initialize();
+            sceneMap.put(scene.getId(), scene);
         }
     }
 
-    public SceneObject getSceneObject(Long sceneId) {
-        return sceneObjectMap.get(sceneId);
+    public List<Scene> getSceneList() {
+        List<Scene> scenes = new ArrayList<>();
+        for (Map.Entry<Long, Scene> entry : sceneMap.entrySet()) {
+            scenes.add(entry.getValue());
+        }
+        return scenes;
+    }
+
+    public Scene getScene(Long sceneId) {
+        return sceneMap.get(sceneId);
     }
 
     /**
      * 进入场景
      *
-     * @param playerObject
+     * @param player
      * @param sceneName
      * @return void
      */
-    public void changeScene(PlayerObject playerObject, String sceneName) {
+    public void changeScene(Player player, String sceneName) {
         Long sceneId = null;
-        for (Map.Entry<Long, SceneObject> entry : sceneObjectMap.entrySet()) {
+        for (Map.Entry<Long, Scene> entry : sceneMap.entrySet()) {
             SceneConfig sceneConfig = entry.getValue().getSceneConfig();
             if (sceneName.equals(sceneConfig.getName())) {
                 sceneId = entry.getKey();
@@ -95,56 +102,56 @@ public class SceneManager {
             return;
         }
         /** 退出原场景 */
-        exitScene(playerObject);
+        exitScene(player);
         /** 进入新场景 */
-        entryScene(playerObject, sceneId);
+        entryScene(player, sceneId);
     }
 
     /**
      * 进入场景
      *
-     * @param playerObject
+     * @param player
      * @return boolean
      */
-    public void entryScene(PlayerObject playerObject, Long sceneId) {
-        SceneObject sceneObject = sceneObjectMap.get(sceneId);
-        if (sceneObject == null) {
-            sceneObject = sceneObjectMap.get(1001);
+    public void entryScene(Player player, Long sceneId) {
+        Scene scene = sceneMap.get(sceneId);
+        if (scene == null) {
+            scene = sceneMap.get(1001);
         }
-        boolean result = sceneObject.entry(playerObject);
+        boolean result = scene.entry(player);
         if (!result) {
             return;
         }
         // 同步场景数据 (暂时直接同步场景数据)
-        SceneProtocol.SceneInfo sceneInfo = ProtocolFactory.createSceneInfo(sceneObject);
+        SceneProtocol.SceneInfo sceneInfo = ProtocolFactory.createSceneInfo(scene);
         Message message = MessageUtil.createMessage(ModuleKey.SCENE_MODULE, SceneCmd.SYNC_SCENE
                 , sceneInfo.toByteArray());
         // 广播
-        sceneObject.broadcast(message);
+        scene.broadcast(message);
     }
 
 
     /**
      * 退出场景
      *
-     * @param playerObject
+     * @param player
      * @return boolean
      */
-    public void exitScene(PlayerObject playerObject) {
-        SceneObject sceneObject = sceneObjectMap.get(playerObject.getPlayer().getSceneId());
-        if (sceneObject == null) {
+    public void exitScene(Player player) {
+        Scene scene = sceneMap.get(player.getSceneId());
+        if (scene == null) {
             return;
         }
-        boolean result = sceneObject.exit(playerObject);
+        boolean result = scene.exit(player);
         if (!result) {
             return;
         }
         // 同步场景数据 (暂时直接同步场景数据)
-        SceneProtocol.SceneInfo sceneInfo = ProtocolFactory.createSceneInfo(sceneObject);
+        SceneProtocol.SceneInfo sceneInfo = ProtocolFactory.createSceneInfo(scene);
         Message message = MessageUtil.createMessage(ModuleKey.SCENE_MODULE, SceneCmd.SYNC_SCENE
                 , sceneInfo.toByteArray());
         // 广播
-        sceneObject.broadcast(message);
+        scene.broadcast(message);
     }
 
 
@@ -153,90 +160,29 @@ public class SceneManager {
             return;
         }
         for (Long playerId : players) {
-            PlayerObject playerObject = playerManager.getPlayerObject(playerId);
-            if (playerObject == null) {
+            Player player = playerManager.getPlayer(playerId);
+            if (player == null) {
                 continue;
             }
-            entryScene(playerObject, playerObject.getPlayer().getSceneId());
+            entryScene(player, player.getSceneId());
         }
     }
 
     /**
-     * 处理进入副本事件
+     * 处理用户登录事件 将用户加载进入场景
      *
      * @param event
      * @return void
      */
-    @EventHandler(type = EventType.ENTRY_INSTANCE)
-    public void handleEntryInstanceEvent(EntryInstanceEvent event) {
-        // 得到进入副本的名单
-        List<Long> playerIds = event.getPlayerIds();
-        // 让名单中的角色退出场景
-        for (Long playerId : playerIds) {
-            PlayerObject playerObject = playerManager.getPlayerObject(playerId);
-            if(playerObject==null){
-                continue;
-            }
-            exitScene(playerObject);
+    @EventHandler(type = EventType.EVENT_TYPE_LOGIN)
+    public void handleLoginEvent(LoginEvent event){
+        // 获取玩家角色
+        long playerId = event.getPlayerId();
+        Player player = playerManager.getPlayer(playerId);
+        if(player==null){
+            return;
         }
+        // 让玩家进入场景
+        entryScene(player,player.getSceneId());
     }
-
-    @EventHandler(type = EventType.EXIT_INSTANCE)
-    public void handleExitInstanceEvent(ExitInstanceEvent event){
-        // 得到退出副本的名单
-        List<Long> playerIds = event.getPlayerIds();
-        // 让名单中的角色进入场景
-        for (Long playerId : playerIds) {
-            PlayerObject playerObject = playerManager.getPlayerObject(playerId);
-            if(playerObject==null){
-                continue;
-            }
-            entryScene(playerObject,playerObject.getPlayer().getSceneId());
-        }
-    }
-
-    /**
-     * 同步场景所有数据
-     *
-     * @param sceneId
-     * @return void
-     */
-    public void syncSceneAllInfo(Long sceneId) {
-
-    }
-
-    /**
-     * 同步场景怪物数据
-     *
-     * @param sceneId
-     * @param monsterId
-     * @return void
-     */
-    public void syncSceneMonsterInfo(Long sceneId, Long... monsterId) {
-
-    }
-
-    /**
-     * 同步场景npc数据
-     *
-     * @param sceneId
-     * @param npcId
-     * @return void
-     */
-    public void syncSceneNpcInfo(Long sceneId, Long... npcId) {
-
-    }
-
-    /**
-     * 同步场景内玩家数据
-     *
-     * @param sceneId
-     * @param playerId
-     * @return void
-     */
-    public void syncScenePlayerInfo(Long sceneId, Long... playerId) {
-
-    }
-
-
 }

@@ -1,19 +1,15 @@
 package com.game.gameserver.module.ai.state.pet;
 
-import com.game.gameserver.common.config.MonsterConfig;
 import com.game.gameserver.common.config.PetConfig;
-import com.game.gameserver.common.config.StaticConfigManager;
 import com.game.gameserver.common.entity.Unit;
 import com.game.gameserver.module.ai.fsm.State;
-import com.game.gameserver.module.ai.state.monster.MonsterState;
 import com.game.gameserver.module.ai.state.player.PlayerState;
 import com.game.gameserver.module.cooltime.entity.UnitCoolTime;
 import com.game.gameserver.module.cooltime.manager.CoolTimeManager;
 import com.game.gameserver.module.fighter.service.impl.FighterServiceImpl;
 import com.game.gameserver.module.pet.entity.Pet;
-import com.game.gameserver.module.pet.manager.PetManager;
 import com.game.gameserver.module.player.manager.PlayerManager;
-import com.game.gameserver.module.player.model.PlayerObject;
+import com.game.gameserver.module.player.entity.Player;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,14 +35,14 @@ public enum PetState implements State<Pet> {
         public void update(Pet pet) {
             // 判断主人状态  如果主人在攻击状态 则切换为攻击状态 并将仇恨目标转换为与主人相同的目标
             long masterId = pet.getPlayerId();
-            PlayerObject playerObject = PlayerManager.instance.getPlayerObject(masterId);
-            if (playerObject == null) {
+            Player player = PlayerManager.instance.getPlayer(masterId);
+            if (player == null) {
                 return;
             }
             // 主人是否处于攻击状态
-            if (playerObject.getCurrState().equals(PlayerState.ATTACK)) {
+            if (player.getCurrState().equals(PlayerState.ATTACK)) {
                 // 得到主人的攻击目标
-                Unit unit = playerObject.getAttackTarget();
+                Unit unit = player.getAttackTarget();
                 if (unit == null) {
                     return;
                 }
@@ -94,7 +90,7 @@ public enum PetState implements State<Pet> {
                 return;
             }
             // 获取怪物基础对象
-            PetConfig petConfig = StaticConfigManager.getInstance().getPetConfigMap().get(pet.getPetConfigId());
+            PetConfig petConfig = pet.getPetConfig();
             if (petConfig == null) {
                 return;
             }

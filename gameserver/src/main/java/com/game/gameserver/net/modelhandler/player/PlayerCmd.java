@@ -6,9 +6,9 @@ package com.game.gameserver.net.modelhandler.player;
  */
 public interface PlayerCmd {
     /** 请求角色列表 */
-    short LIST_PLAYERS = 1000;
+    short QUERY_ROLE_LIST = 1000;
     /** 登录角色请求 */
-    short LOGIN_PLAYER = 1001;
+    short LOGIN_ROLE = 1001;
     /** 角色数据请求 */
     short PLAYER_INFO_REQ = 1003;
     /** 角色信息同步 */

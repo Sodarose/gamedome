@@ -14,7 +14,7 @@ public interface TaskState {
     /** 2 - 已完成任务(未领取奖励)*/
     int COMPLETED = 2;
 
-    /** 3 - 已完成任务(已经领取奖励)*/
-    int REWARDS = 3;
+    /** 3 - 任务结束(已经领取奖励)*/
+    int FINISH = 3;
 
 }

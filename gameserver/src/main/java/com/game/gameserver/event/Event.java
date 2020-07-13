@@ -8,10 +8,10 @@ package com.game.gameserver.event;
  */
 public interface Event {
     /**
-     * 得到事件类型
+     * 返回事件类型
      *
      * @param
-     * @return com.game.gameserver.event.EventType
+     * @return int
      */
-    EventType getEventType();
+    int getEventType();
 }

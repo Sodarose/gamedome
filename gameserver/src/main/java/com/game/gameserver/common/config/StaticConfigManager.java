@@ -43,6 +43,7 @@ public class StaticConfigManager {
     private Map<Integer, SkillConfig>  skillConfigMap = new HashMap<>(16);
     private Map<Integer, PetConfig> petConfigMap = new HashMap<>(16);
     private Map<Integer, TaskConfig> taskConfigMap = new HashMap<>(16);
+    private Map<Integer, AchievementConfig> achievementConfigMap = new HashMap<>(16);
 
     public static StaticConfigManager getInstance() {
         return INSTANCE;
@@ -79,6 +80,7 @@ public class StaticConfigManager {
         loadCareerConfig(path);
         loadSkillConfig(path);
         loadTaskConfig(path);
+        loadAchievementConfig(path);
     }
 
     private void loadSceneConfig(String path) {
@@ -302,6 +304,22 @@ public class StaticConfigManager {
             while (jsonReader.hasNext()) {
                 TaskConfig taskConfig = JSON.parseObject(jsonReader.readString(), TaskConfig.class);
                 taskConfigMap.put(taskConfig.getId(),taskConfig);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void loadAchievementConfig(String path){
+        logger.info("load AchievementConfig.json");
+        String fileName = "AchievementConfig.json";
+        path += "/" + fileName;
+        try {
+            JSONReader jsonReader = new JSONReader(new InputStreamReader(new FileInputStream(path)));
+            jsonReader.startArray();
+            while (jsonReader.hasNext()) {
+                AchievementConfig achievementConfig = JSON.parseObject(jsonReader.readString(), AchievementConfig.class);
+                achievementConfigMap.put(achievementConfig.getId(),achievementConfig);
             }
         } catch (IOException e) {
             e.printStackTrace();

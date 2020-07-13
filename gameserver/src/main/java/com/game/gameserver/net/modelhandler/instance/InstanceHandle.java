@@ -1,7 +1,7 @@
 package com.game.gameserver.net.modelhandler.instance;
 
 import com.game.gameserver.module.instance.service.InstanceService;
-import com.game.gameserver.module.player.model.PlayerObject;
+import com.game.gameserver.module.player.entity.Player;
 import com.game.gameserver.module.player.service.PlayerService;
 import com.game.gameserver.net.annotation.CmdHandler;
 import com.game.gameserver.net.annotation.ModuleHandler;
@@ -35,8 +35,8 @@ public class InstanceHandle extends BaseHandler {
      */
     @CmdHandler(cmd = InstanceCmd.INSTANCE_LIST)
     public void getInstanceList(Message message, Channel channel) {
-        PlayerObject playerObject = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
-        if (playerObject == null) {
+        Player player = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
+        if (player == null) {
             return;
         }
         InstanceProtocol.InstanceInfoListRes listRes = instanceService.getInstanceInfoList();
@@ -54,13 +54,13 @@ public class InstanceHandle extends BaseHandler {
      */
     @CmdHandler(cmd = InstanceCmd.ENTRY_INSTANCE)
     public void entryInstance(Message message, Channel channel) {
-        PlayerObject playerObject = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
-        if (playerObject == null) {
+        Player player = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
+        if (player == null) {
             return;
         }
         try {
             InstanceProtocol.EntryInstanceReq req = InstanceProtocol.EntryInstanceReq.parseFrom(message.getData());
-            InstanceProtocol.EntryInstanceRes res = instanceService.entryInstanceInfo(playerObject, req.getInstanceId(), req.getTeam());
+            InstanceProtocol.EntryInstanceRes res = instanceService.entryInstanceInfo(player, req.getInstanceId(), req.getTeam());
             Message resMsg = MessageUtil.createMessage(ModuleKey.INSTANCE_MODULE, InstanceCmd.ENTRY_INSTANCE, res.toByteArray());
             channel.writeAndFlush(resMsg);
         } catch (InvalidProtocolBufferException e) {
@@ -70,11 +70,11 @@ public class InstanceHandle extends BaseHandler {
 
     @CmdHandler(cmd = InstanceCmd.EXIT_INSTANCE)
     public void exitInstance(Message message,Channel channel){
-        PlayerObject playerObject = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
-        if (playerObject == null) {
+        Player player = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
+        if (player == null) {
             return;
         }
-        InstanceProtocol.ExitInstanceRes res = instanceService.exitInstance(playerObject);
+        InstanceProtocol.ExitInstanceRes res = instanceService.exitInstance(player);
         Message resMsg = MessageUtil.createMessage(ModuleKey.INSTANCE_MODULE,InstanceCmd.EXIT_INSTANCE,
                 res.toByteArray());
         channel.writeAndFlush(resMsg);
