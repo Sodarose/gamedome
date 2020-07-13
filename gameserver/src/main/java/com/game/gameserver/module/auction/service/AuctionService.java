@@ -236,8 +236,10 @@ public class AuctionService {
             // 扣除金币
             playerDomain.getPlayerEntity().setGolds(playerDomain.getPlayerEntity().getGolds()-price);
             // 将上一任的金钱返还
-            emailService.sendEmail(SystemSender.AUCTION.getId(),auctionItem.getPlayerId(),"您竞拍的商品已有更高的价格",
-                    "",auctionItem.getPrice(),null);
+            if(auctionItem.getBidderId()!=null){
+                emailService.sendEmail(SystemSender.AUCTION.getId(),auctionItem.getBidderId(),"您竞拍的商品已有更高的价格",
+                        "",auctionItem.getPrice(),null);
+            }
             // 设置新的竞拍者
             auctionItem.setBidderId(playerDomain.getPlayerEntity().getId());
             auctionItem.setPrice(price);
