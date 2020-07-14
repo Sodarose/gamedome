@@ -2,7 +2,7 @@ package com.game.gameserver.module.guild.domain;
 
 import com.alibaba.fastjson.JSONObject;
 import com.game.gameserver.module.guild.entity.Apply;
-import com.game.gameserver.module.guild.entity.Guild;
+import com.game.gameserver.module.guild.entity.GuildEntity;
 import com.game.gameserver.module.guild.entity.GuildWarehouse;
 import com.game.gameserver.module.guild.entity.Member;
 import lombok.Data;
@@ -17,19 +17,19 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
  * @date 2020/7/8 9:45
  */
 @Data
-public class GuildDomain {
+public class Guild {
     /** 公会基本信息 */
-    private Guild guild;
+    private GuildEntity guild;
     /** 公会成员*/
     private Map<String, Member> memberMap;
     /** 公会仓库 */
     private GuildWarehouse guildWarehouse;
-    /** 公会申请人 */
+    /** 公会申请入会表 */
     private Map<String,Apply> applyMap;
     /** 读写锁 */
     private final ReentrantReadWriteLock lock;
 
-    public GuildDomain(Guild guild){
+    public Guild(GuildEntity guild){
         JSONObject jsonObject = null;
         this.guild = guild;
         this.memberMap = new ConcurrentHashMap<>();

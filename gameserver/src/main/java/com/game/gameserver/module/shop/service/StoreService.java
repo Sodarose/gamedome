@@ -1,4 +1,4 @@
-package com.game.gameserver.module.store.service.impl;
+package com.game.gameserver.module.store.service;
 
 import com.game.gameserver.module.store.manager.StoreManager;
 import org.springframework.beans.factory.annotation.Autowired;

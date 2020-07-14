@@ -2,7 +2,7 @@ package com.game.gameserver.module.guild.dao;
 
 /**
  * @author xuewenkang
- * @date 2020/7/12 18:55
+ * @date 2020/7/14 11:31
  */
-public interface GuildMemberMapper {
+public class GuildWarehouseDbService {
 }

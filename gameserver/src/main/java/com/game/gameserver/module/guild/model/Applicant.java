@@ -1,4 +1,4 @@
-package com.game.gameserver.module.guild.entity;
+package com.game.gameserver.module.guild.model;
 
 import lombok.Data;
 
@@ -10,13 +10,11 @@ import lombok.Data;
  */
 @Data
 public class Apply {
-    /**
-     * 申请者名称
-     */
+
+    /** 申请者名称 */
     private String name;
-    /**
-     * 申请者id
-     */
+
+    /** 申请者id */
     private Long playerId;
 
     public Apply(String name, long playerId) {
