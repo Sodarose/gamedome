@@ -1,13 +1,9 @@
 package com.game.gameserver.common.config;
 
 import com.alibaba.fastjson.annotation.JSONField;
-import com.game.gameserver.module.task.entity.Task;
-import com.game.gameserver.module.task.entity.TaskProgress;
 import com.game.gameserver.util.TaskUtil;
 import lombok.Data;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 

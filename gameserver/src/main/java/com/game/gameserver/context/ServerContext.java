@@ -1,9 +1,7 @@
 package com.game.gameserver.context;
 
-/*import com.game.gameserver.module.instance.manager.InstanceManager;*/
 import com.game.gameserver.module.player.manager.PlayerManager;
 import com.game.gameserver.module.scene.manager.SceneManager;
-import com.game.gameserver.module.store.manager.StoreManager;
 import com.game.gameserver.net.handler.MessageDispatcher;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,12 +21,8 @@ public class ServerContext implements ApplicationContextAware {
     private MessageDispatcher messageDispatcher;
     @Autowired
     private SceneManager sceneManager;
-/*    @Autowired
-    private InstanceManager instanceManager;*/
     @Autowired
     private PlayerManager playerManager;
-    @Autowired
-    private StoreManager storeManager;
 
     private static ApplicationContext application;
 

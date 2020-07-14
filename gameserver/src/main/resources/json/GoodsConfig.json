@@ -1,0 +1,56 @@
+[
+  {
+    "id": 1001,
+    "itemId": 1001,
+    "price": 100,
+    "bulkBuy": true
+  },
+  {
+    "id": 1002,
+    "itemId": 1002,
+    "price": 100,
+    "bulkBuy": true
+  },
+  {
+    "id": 1003,
+    "itemId": 1003,
+    "price": 1500,
+    "bulkBuy": false
+  },
+  {
+    "id": 1004,
+    "itemId": 1004,
+    "price": 1500,
+    "bulkBuy": false
+  },
+  {
+    "id": 1005,
+    "itemId": 1005,
+    "price": 1500,
+    "bulkBuy": false
+  },
+  {
+    "id": 1006,
+    "itemId": 1006,
+    "price": 1500,
+    "bulkBuy": false
+  },
+  {
+    "id": 1007,
+    "itemId": 1007,
+    "price": 1500,
+    "bulkBuy": false
+  },
+  {
+    "id": 1008,
+    "itemId": 1008,
+    "price": 1500,
+    "bulkBuy": false
+  },
+  {
+    "id": 1009,
+    "itemId": 1009,
+    "price": 1500,
+    "bulkBuy": false
+  }
+]

@@ -9,7 +9,6 @@
     "bufferId": 1,
     "price": 50,
     "overlap": true,
-    "overNum": 999,
     "desc": "天堂恢复药剂 5s内 恢复血量5000点"
   },
   {
@@ -22,7 +21,6 @@
     "bufferId": 2,
     "price": 50,
     "overlap": true,
-    "overNum": 999,
     "desc": "天堂恢复药剂 5s内 恢复血量5000点"
   },
   {
@@ -36,7 +34,7 @@
       "HP":1000,
       "ATTACK": 1000
     },
-    "price": 50,
+    "price": 1000,
     "maxDurability":45,
     "overlap": false,
     "desc": "太极天帝剑 传说之剑"
@@ -52,7 +50,7 @@
       "HP":1000,
       "ATTACK": 1000
     },
-    "price": 50,
+    "price": 1000,
     "maxDurability":45,
     "overlap": false,
     "desc": "超大陆上衣"
@@ -68,7 +66,7 @@
       "HP":1000,
       "ATTACK": 1000
     },
-    "price": 50,
+    "price": 1000,
     "maxDurability":45,
     "overlap": false,
     "desc": "超大陆肩甲"
@@ -84,7 +82,7 @@
       "HP":1000,
       "ATTACK": 1000
     },
-    "price": 50,
+    "price": 1000,
     "maxDurability":45,
     "overlap": false,
     "desc": "太极天帝剑 传说之剑"
@@ -100,7 +98,7 @@
       "HP":1000,
       "ATTACK": 1000
     },
-    "price": 50,
+    "price": 1000,
     "maxDurability":45,
     "overlap": false,
     "desc": "超大陆裤子"
@@ -116,7 +114,7 @@
       "HP":1000,
       "ATTACK": 1000
     },
-    "price": 50,
+    "price": 1000,
     "maxDurability":45,
     "overlap": false,
     "desc": "超大陆鞋子"
@@ -132,7 +130,7 @@
       "HP":1000,
       "ATTACK": 1000
     },
-    "price": 50,
+    "price": 1000,
     "maxDurability":45,
     "overlap": false,
     "desc": "怪兽猎杀者"

@@ -1,7 +1,5 @@
 package com.game.gameserver.module.item.model;
 
-import com.alibaba.fastjson.annotation.JSONField;
-import com.game.gameserver.common.config.ItemConfig;
 import lombok.Data;
 
 /**
@@ -20,8 +18,6 @@ public class Item  {
     private Integer bagIndex;
     /** 装备耐久读 */
     private Integer durability;
-
-    public ItemConfig itemConfig;
 
     public Item(){
 

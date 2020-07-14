@@ -1,7 +1,7 @@
 package com.game.gameserver.module.task.helper;
 
 import com.game.gameserver.common.config.TaskConfig;
-import com.game.gameserver.module.task.entity.Task;
+import com.game.gameserver.module.task.entity.TaskEntity;
 
 import java.util.List;
 
@@ -24,12 +24,12 @@ public class TaskHelper {
         return sb.toString();
     }
 
-    public static String buildTaskListMsg(List<Task> tasks){
+    public static String buildTaskListMsg(List<TaskEntity> tasks){
         StringBuilder sb = new StringBuilder();
         return sb.toString();
     }
 
-    public static String buildTaskMsg(Task task){
+    public static String buildTaskMsg(TaskEntity task){
         StringBuilder sb = new StringBuilder();
         return sb.toString();
     }

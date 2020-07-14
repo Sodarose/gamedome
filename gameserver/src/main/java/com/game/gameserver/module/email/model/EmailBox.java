@@ -18,16 +18,10 @@ public class EmailBox {
     /** 角色Id */
     private final long playerId;
     /** 邮件容器 */
-    private final Map<Long,EmailEntity> emailMap;
+    private final Map<Long,Email> emailMap;
 
     public EmailBox(long playerId){
         this.playerId = playerId;
         this.emailMap = new ConcurrentHashMap<>();
-    }
-
-    public void initialize(List<EmailEntity> emailEntities){
-        for(EmailEntity emailEntity:emailEntities){
-            emailMap.put(emailEntity.getId(),emailEntity);
-        }
     }
 }

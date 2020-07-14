@@ -1,102 +1,85 @@
-/*
 package com.game.gameserver.net.modelhandler.chat;
 
-import com.game.gameserver.module.player.entity.Player;
+import com.game.gameserver.module.chat.service.ChatService;
+import com.game.gameserver.module.notification.NotificationHelper;
+import com.game.gameserver.module.player.model.Player;
+import com.game.gameserver.module.player.service.PlayerService;
 import com.game.gameserver.net.annotation.CmdHandler;
 import com.game.gameserver.net.annotation.ModuleHandler;
 import com.game.gameserver.net.handler.BaseHandler;
 import com.game.gameserver.net.modelhandler.ModuleKey;
-import com.game.protocol.ChatProtocol;
 import com.game.message.Message;
-import com.google.protobuf.InvalidProtocolBufferException;
 import io.netty.channel.Channel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-*/
-/**
- * @author xuewenkang
- * @date 2020/6/15 17:44
- *//*
 
+/**
+ * @author kangkang
+ */
 @Component
 @ModuleHandler(module = ModuleKey.CHAT_MODULE)
 public class ChatHandle extends BaseHandler {
 
-
     @Autowired
     private ChatService chatService;
 
-    */
-/**
-     * 发送频道消息
+
+    /**
+     * 私聊
      *
      * @param message
      * @param channel
      * @return void
-     *//*
-
-    @CmdHandler(cmd = ChatCmd.SEND_CHANNEL_MSG)
-    public void sendChannelMsgHandle(Message message, Channel channel) {
+     */
+    @CmdHandler(cmd = ChatCmd.PRIVATE_CHAT)
+    public void privateChat(Message message, Channel channel){
         Player player = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
-        if(player ==null){
+        if (player == null) {
+            NotificationHelper.notifyChannel(channel, "请先登录角色");
             return;
         }
-        try {
-            ChatProtocol.ChannelMsg channelMsg = ChatProtocol
-                    .ChannelMsg.parseFrom(message.getData());
-            chatService.sendChannelMsg(player,channelMsg);
-        } catch (InvalidProtocolBufferException e) {
-            e.printStackTrace();
-        }
+        String[] param = message.getContent().split("\\s+");
+        long targetId = Long.parseLong(param[0]);
+        String content = param[1];
+        chatService.privateChat(player,targetId,content);
     }
 
-    */
-/**
-     * 发送私聊消息
+    /**
+     * 本地聊天
      *
      * @param message
      * @param channel
      * @return void
-     *//*
-
-    @CmdHandler(cmd = ChatCmd.SEND_PRIVACY_MSG)
-    public void sendPrivacyMsgHandle(Message message, Channel channel) {
+     */
+    @CmdHandler(cmd = ChatCmd.LOCAL_CHAT)
+    public void localChat(Message message,Channel channel){
         Player player = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
-        if(player ==null){
+        if (player == null) {
+            NotificationHelper.notifyChannel(channel, "请先登录角色");
             return;
         }
-        try {
-            ChatProtocol.PrivacyMsg privacyMsg = ChatProtocol.PrivacyMsg
-                    .parseFrom(message.getData());
-            chatService.sendPrivacyMsg(player,privacyMsg);
-        } catch (InvalidProtocolBufferException e) {
-            e.printStackTrace();
-        }
+        String content = message.getContent();
+        chatService.localChat(player,content);
     }
 
-    */
-/**
-     * 发送普通消息
+    /**
+     * 频道聊天
      *
      * @param message
      * @param channel
      * @return void
-     *//*
-
-    @CmdHandler(cmd = ChatCmd.SEND_COMMON_MSG)
-    public void sendCommonMsgHandle(Message message, Channel channel) {
+     */
+    @CmdHandler(cmd = ChatCmd.CHANNEL_CHAT)
+    public void channelChat(Message message,Channel channel){
         Player player = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
-        if(player ==null){
+        if (player == null) {
+            NotificationHelper.notifyChannel(channel, "请先登录角色");
             return;
         }
-        try {
-            ChatProtocol.CommonMsg commonMsg = ChatProtocol
-                    .CommonMsg.parseFrom(message.getData());
-            chatService.sendCommonMsg(player,commonMsg);
-        } catch (InvalidProtocolBufferException e) {
-            e.printStackTrace();
-        }
+        String[] param = message.getContent().split("\\s+");
+        int channelType = Integer.parseInt(param[0]);
+        String content = param[1];
+        chatService.channelChat(player,channelType,content);
     }
 }
-*/

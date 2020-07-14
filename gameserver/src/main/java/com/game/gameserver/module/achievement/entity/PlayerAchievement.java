@@ -1,7 +1,7 @@
 /*
 package com.game.gameserver.module.achievement.entity;
 
-import com.game.gameserver.module.task.entity.TaskProgress;
+import com.game.gameserver.module.task.model.TaskProgress;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -96,7 +96,7 @@ public class PlayerAchievement {
      * 获取所有成就的进度
      *
      * @param
-     * @return java.util.List<com.game.gameserver.module.task.entity.TaskProgress>
+     * @return java.util.List<com.game.gameserver.module.task.model.TaskProgress>
      *//*
 
     public List<TaskProgress> getAllTaskProgress() {

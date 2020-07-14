@@ -1,15 +1,17 @@
 package com.game.gameserver.module.email.model;
 
 import com.game.gameserver.module.item.model.Item;
+import lombok.Data;
 
 import java.util.List;
 
 /**
- * 邮件模型
+ * 邮件Model
  *
  * @author xuewenkang
  * @date 2020/7/13 20:21
  */
+@Data
 public class Email {
     private Long id;
     /** 标题 */

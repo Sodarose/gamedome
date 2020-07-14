@@ -1,4 +1,4 @@
-package com.game.gameserver.module.guild.entity;
+package com.game.gameserver.module.guild.model;
 
 import com.game.gameserver.util.GameUUID;
 import lombok.Data;
@@ -11,29 +11,23 @@ import lombok.Data;
  */
 @Data
 public class Member {
-    /**
-     * 唯一Id
-     */
-    private long id;
-    /**
-     * 玩家名称
-     */
+
+    /** 玩家名称 */
     private String name;
-    /**
-     * 职位
-     */
+
+    /** 职位 */
     private Integer position;
-    /**
-     * 玩家ID
-     */
+
+    /** 玩家ID */
     private Long playerId;
 
-    public static Member valueOf(String name, int position, long playerId) {
-        Member member = new Member();
-        member.setId(GameUUID.getInstance().generate());
-        member.setName(name);
-        member.setPosition(position);
-        member.setPlayerId(playerId);
-        return member;
+    public Member(){
+
+    }
+
+    public Member(String name, int position, long playerId) {
+        this.name = name;
+        this.position = position;
+        this.playerId = playerId;
     }
 }

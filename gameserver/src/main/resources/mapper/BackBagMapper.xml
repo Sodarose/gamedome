@@ -35,9 +35,6 @@
     <update id="update" parameterType="com.game.gameserver.module.backbag.entity.BackBagEntity" >
         UPDATE game_player_back_bag
         <set>
-            <if test="itemConfigId != null">
-                itemConfigId = #{itemConfigId},
-            </if>
             <if test="capacity != null">
                 capacity = #{capacity},
             </if>

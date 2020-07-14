@@ -1,6 +1,7 @@
-package com.game.gameserver.module.store.service;
+package com.game.gameserver.module.shop.service;
 
-import com.game.gameserver.module.store.manager.StoreManager;
+import com.game.gameserver.module.player.model.Player;
+import com.game.gameserver.module.shop.manager.ShopManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,81 +14,74 @@ import org.springframework.stereotype.Service;
 @Service
 public class StoreService {
     @Autowired
-    private StoreManager storeManager;
-/*
-    *//**
-     * 获得商品列表
+    private ShopManager shopManager;
+
+    /**
+     * 展示商店列表
      *
-     * @return java.util.List<com.game.gameserver.module.store.vo.CommodityVo>
-     *//*
-    public Store.CommodityList getCommodityList() {
-        List<Commodity> commodities = storeManager.commodityList();
-        return ProtocolFactory.createCommodityList(commodities);
+     * @param player
+     * @return void
+     */
+    public void showShopList(Player player) {
+
     }
 
-    *//**
-     * 用户购买商品
+    /**
+     * 展示商店
      *
-     * @param player 角色
-     * @param commodityId  商品Id
-     * @param num          购买数量
-     * @return com.game.gameserver.common.Result
-     *//*
-    public Store.BuyCommodityRes bugCommodity(Player player, int commodityId, int num) {
-        Commodity commodity = storeManager.getCommodity(commodityId);
-        if (num <= 0) {
-            return createBuyCommodityRes(1001, "数量错误");
-        }
-        if (commodity == null) {
-            return createBuyCommodityRes(1002, "商品不存在");
-        }
-        // 获取商品配置信息
-        CommodityConfig commodityConfig = StaticConfigManager.getInstance().getCommodityConfigMap()
-                .get(commodity.getCommodityId());
-        if (commodityConfig == null) {
-            return createBuyCommodityRes(1002, "商品不存在");
-        }
-        // 计算价格
-        int price = commodityConfig.getPrice() * num;
-        int playerGolds = player.getGolds();
-        if (playerGolds < price) {
-            return createBuyCommodityRes(1003, "价钱不足");
-        }
-        // 判断背包空间是否足够放入物品
-      *//*  boolean space = itemManager.hasSpace(playerObject, commodityConfig.getGoodsType()
-                , commodityConfig.getGoodsId(), num);*//*
-       *//* if (!space) {
-            return createBuyCommodityRes(1004, "空间不足");
-        }
-        boolean result = itemManager.addGoods(playerObject, commodityConfig.getGoodsType()
-                , commodityConfig.getGoodsId(), num);*//*
-      *//*  if (!result) {
-            return createBuyCommodityRes(1004, "购买失败");
-        }*//*
-        // 扣除金钱
-        playerGolds -= price;
-        player.setGolds(playerGolds);
-        return createBuyCommodityRes(0, "购买成功");
+     * @param player
+     * @param shopId
+     * @return void
+     */
+    public void showShop(Player player, int shopId) {
+
     }
 
-    *//**
-     * 出售物品
+    /**
+     * 单买
      *
-     * @param player 角色
-     * @param goodsId      物品id
-     * @param bagType      物品所在的背包类型
-     * @param bagIndex     物品所在的背包位置
-     * @return com.game.gameserver.common.Result
-     *//*
-    public Store.SellGoodsRes sellCommodity(Player player, int goodsId, int bagType, int bagIndex) {
-        
-        return null;
+     * @param player
+     * @param shopId
+     * @param goodsId
+     * @return void
+     */
+    public void singleBuy(Player player, int shopId, int goodsId) {
+
     }
 
-    private Store.BuyCommodityRes createBuyCommodityRes(int code, String msg) {
-        Store.BuyCommodityRes.Builder builder = Store.BuyCommodityRes.newBuilder();
-        builder.setCode(code);
-        builder.setMsg(msg);
-        return builder.build();
-    }*/
+    /**
+     * 批量购买
+     *
+     * @param player
+     * @param shopId
+     * @param goodsId
+     * @param num
+     * @return void
+     */
+    public void bulkBuy(Player player, int shopId, int goodsId, int num) {
+
+    }
+
+    /**
+     * 出售道具
+     *
+     * @param player
+     * @param bagIndex
+     * @param num
+     * @return void
+     */
+    public void shell(Player player, int bagIndex, int num) {
+
+    }
+
+    /**
+     * @param player
+     * @param shopId
+     * @param goodsId
+     * @param num
+     * @return void
+     */
+    private void buy(Player player, int shopId, int goodsId, int num) {
+
+    }
 }

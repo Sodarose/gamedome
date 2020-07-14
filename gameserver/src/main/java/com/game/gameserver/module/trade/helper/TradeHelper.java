@@ -1,5 +1,7 @@
 package com.game.gameserver.module.trade.helper;
 
+import com.game.gameserver.common.config.ItemConfig;
+import com.game.gameserver.common.config.StaticConfigManager;
 import com.game.gameserver.module.item.model.Item;
 import com.game.gameserver.module.trade.model.TradeBoard;
 
@@ -9,23 +11,26 @@ import com.game.gameserver.module.trade.model.TradeBoard;
  */
 public class TradeHelper {
     public static String buildTradeBoard(TradeBoard tradeBoard){
-        StringBuilder sb  = new StringBuilder();
+        StringBuilder sb  = new StringBuilder("交易板:").append("\n");
         sb.append("id:").append(tradeBoard.getId()).append("\n");
-        sb.append("交易双方:").append(tradeBoard.getInitiator()).append("\t|\t").append(tradeBoard.getAccepter())
+        sb.append("交易双方:").append(tradeBoard.getInitiator().getName()).append("\t|\t")
+                .append(tradeBoard.getAccepter().getName())
                 .append("\n");
         sb.append("双方交易版:").append("\n");
-        sb.append("id:").append(tradeBoard.getInitiator()).append("\n");
+        sb.append("id:").append(tradeBoard.getInitiator().getId()).append("\n");
         sb.append("装备:").append("\n");
         for(Item item : tradeBoard.getTradeBarMap().get(tradeBoard.getInitiator().getPlayerEntity().getId()).getItemList()){
-            sb.append(item.getItemConfig().getName()).append(":").append(item.getNum()).append("\n");
+            ItemConfig itemConfig = StaticConfigManager.getInstance().getItemConfigMap().get(item.getItemConfigId());
+            sb.append(itemConfig.getName()).append(":").append(item.getNum()).append("\n");
         }
         sb.append("金币:").append(tradeBoard.getTradeBarMap().get(tradeBoard.getInitiator().getPlayerEntity().getId()).getGolds()).append("\n");
         sb.append("是否确认:").append(tradeBoard.getTradeBarMap().get(tradeBoard.getInitiator().getPlayerEntity().getId()).isAffirm()).append("\n");
         sb.append("\n");
-        sb.append("id:").append(tradeBoard.getAccepter()).append("\n");
+        sb.append("id:").append(tradeBoard.getAccepter().getId()).append("\n");
         sb.append("装备:").append("\n");
         for(Item item : tradeBoard.getTradeBarMap().get(tradeBoard.getAccepter().getPlayerEntity().getId()).getItemList()){
-            sb.append(item.getItemConfig().getName()).append(":").append(item.getNum()).append("\n");
+            ItemConfig itemConfig = StaticConfigManager.getInstance().getItemConfigMap().get(item.getItemConfigId());
+            sb.append(itemConfig.getName()).append(":").append(item.getNum()).append("\n");
         }
         sb.append("金币:").append(tradeBoard.getTradeBarMap().get(tradeBoard.getAccepter().getPlayerEntity().getId()).getGolds()).append("\n");
         sb.append("是否确认:").append(tradeBoard.getTradeBarMap().get(tradeBoard.getAccepter().getPlayerEntity().getId()).isAffirm()).append("\n");

@@ -288,4 +288,7 @@ public class TeamService {
         NotificationHelper.notifyTeam(team,"队伍已经被解散了");
     }
 
+    public Team getTeam(long teamId){
+        return teamManager.getTeam(teamId);
+    }
 }

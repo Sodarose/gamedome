@@ -22,7 +22,6 @@ public class ItemService {
         ItemConfig itemConfig = StaticConfigManager.getInstance().getItemConfigMap().get(itemConfigId);
         item.setItemConfigId(itemConfigId);
         item.setNum(num);
-        item.setItemConfig(itemConfig);
         // 如果是装备类型 设置耐久读
         if(itemConfig.getType().equals(ItemType.EQUIP.getType())){
             item.setDurability(itemConfig.getMaxDurability());

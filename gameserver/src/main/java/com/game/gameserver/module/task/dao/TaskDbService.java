@@ -12,4 +12,5 @@ import org.springframework.stereotype.Repository;
 public class TaskDbService extends BaseDbService {
     @Autowired
     private TaskMapper taskMapper;
+
 }

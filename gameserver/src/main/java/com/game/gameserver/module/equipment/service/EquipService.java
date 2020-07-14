@@ -48,13 +48,11 @@ public class EquipService {
                 new TypeReference<Map<Integer,Item>>(){});
         // 初始化道具 并放入背包
         itemMap.forEach((key,value)->{
-            ItemConfig itemConfig = StaticConfigManager.getInstance().getItemConfigMap().get(value.getItemConfigId());
-            value.setItemConfig(itemConfig);
             equipBar.getEquipMap().put(key,value);
         });
         // 放入玩家实体
         playerDomain.setEquipBar(equipBar);
-        NotificationHelper.syncPlayerEquipBar(playerDomain);
+        NotificationHelper.syncEquipBar(playerDomain);
     }
 
     /**
@@ -66,26 +64,26 @@ public class EquipService {
     public void showEquipBar(Player playerDomain){
         EquipBar equipBar = playerDomain.getEquipBar();
         NotificationHelper.notifyPlayer(playerDomain, EquipHelper.buildEquipBar(equipBar));
-        NotificationHelper.syncPlayerEquipBar(playerDomain);
+        NotificationHelper.syncEquipBar(playerDomain);
     }
 
 
     /**
      * 脱下装备
      *
-     * @param playerDomain
+     * @param player
      * @param part 装备部位
      * @return void
      */
-    public void takeEquip(Player playerDomain, int part){
-        EquipBar equipBar = playerDomain.getEquipBar();
+    public void takeEquip(Player player, int part){
+        EquipBar equipBar = player.getEquipBar();
         Item item = equipBar.getEquipMap().get(part);
         if(item==null){
-            NotificationHelper.notifyPlayer(playerDomain,"该部位没有装备");
+            NotificationHelper.notifyPlayer(player,"该部位没有装备");
             return;
         }
         // 将装备放入背包
-        boolean result = backBagService.addItem(playerDomain,item);
+        boolean result = backBagService.addItem(player,item);
         if(!result){
             return;
         }
@@ -94,40 +92,47 @@ public class EquipService {
         // 发出装备变更事件
 
         // 通知
-        NotificationHelper.notifyPlayer(playerDomain, MessageFormat.format("装备{0}已经卸下",
-                item.getItemConfig().getName()));
+        ItemConfig itemConfig = StaticConfigManager.getInstance().getItemConfigMap().get(item.getItemConfigId());
+        NotificationHelper.notifyPlayer(player, MessageFormat.format("装备{0}已经卸下", itemConfig.getName()));
         // 同步客户端
-        NotificationHelper.syncPlayerEquipBar(playerDomain);
+        NotificationHelper.syncBackBag(player);
+        NotificationHelper.syncEquipBar(player);
     }
 
     /**
      * 穿戴装备
      *
-     * @param playerDomain
+     * @param player
      * @param bagIndex
      * @return void
      */
-    public void putEquip(Player playerDomain, int bagIndex){
-        EquipBar equipBar = playerDomain.getEquipBar();
-        Item equip = backBagService.getItem(playerDomain,bagIndex);
-        if(equip==null||!equip.getItemConfig().getType().equals(ItemType.EQUIP.getType())){
-            NotificationHelper.notifyPlayer(playerDomain,"该位置没有装备或该位置存放的不是装备");
+    public void putEquip(Player player, int bagIndex){
+        EquipBar equipBar = player.getEquipBar();
+        Item equip = backBagService.getItem(player,bagIndex);
+        if(equip==null){
+            NotificationHelper.notifyPlayer(player,"该位置没有穿戴装备");
+            return;
+        }
+        ItemConfig itemConfig = StaticConfigManager.getInstance().getItemConfigMap().get(equip.getItemConfigId());
+        if(!itemConfig.getType().equals(ItemType.EQUIP.getType())){
+            NotificationHelper.notifyPlayer(player,"该位置没有装备或该位置存放的不是装备");
             return;
         }
         // 背包移除该装备
-        equip = backBagService.removeItem(playerDomain,bagIndex);
-        equip.setBagIndex(equip.getItemConfig().getPart());
+        equip = backBagService.removeItem(player,bagIndex);
+        equip.setBagIndex(itemConfig.getPart());
         // 装备栏卸下当前部位的装备
-        Item takeEquip = equipBar.getEquipMap().remove(equip.getItemConfig().getPart());
+        Item takeEquip = equipBar.getEquipMap().remove(itemConfig.getPart());
         // 穿上装备
         equipBar.getEquipMap().put(equip.getBagIndex(),equip);
         // 放入背包
-        backBagService.addItem(playerDomain,takeEquip);
+        backBagService.addItem(player,takeEquip);
         // 发出装备变更事件
         // 通知
-        NotificationHelper.notifyPlayer(playerDomain, MessageFormat.format("装备{0}已经穿上",
-                equip.getItemConfig().getName()));
+        NotificationHelper.notifyPlayer(player, MessageFormat.format("装备{0}已经穿上",
+                itemConfig.getName()));
         // 同步客户端
-        NotificationHelper.syncPlayerEquipBar(playerDomain);
+        NotificationHelper.syncEquipBar(player);
+        NotificationHelper.syncBackBag(player);
     }
 }

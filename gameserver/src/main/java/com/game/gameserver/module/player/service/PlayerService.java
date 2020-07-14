@@ -26,6 +26,7 @@ import org.springframework.stereotype.Service;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author xuewenkang
@@ -101,7 +102,7 @@ public class PlayerService {
             NotificationHelper.notifyChannel(channel, "角色Id错误");
             return;
         }
-        Player domain = playerManager.getPlayerDomain(playerId);
+        Player domain = playerManager.getPlayer(playerId);
         // 当前角色未登录
         if (domain == null) {
             // 从数据库中查找该角色
@@ -116,7 +117,7 @@ public class PlayerService {
             domain.setChannel(channel);
             initPlayer(domain);
             // 放入缓存
-            playerManager.putPlayerDomain(playerId, domain);
+            playerManager.putPlayer(playerId, domain);
             // 角色登录成功
             NotificationHelper.notifyPlayer(domain, MessageFormat.format("角色{0}登录成功",
                     domain.getPlayerEntity().getName()));
@@ -221,10 +222,14 @@ public class PlayerService {
         playerDomain.getChannel().attr(PLAYER_ENTITY_ATTRIBUTE_KEY).set(null);
         NotificationHelper.notifyPlayer(playerDomain,"退出当前角色");
         // 从缓存中剔除
-        playerManager.removePlayerDomain(playerDomain.getPlayerEntity().getId());
+        playerManager.removePlayer(playerDomain.getPlayerEntity().getId());
     }
 
     public Player getPlayer(long playerId){
-        return playerManager.getPlayerDomain(playerId);
+        return playerManager.getPlayer(playerId);
+    }
+
+    public Map<Long,Player> getAllPlayer(){
+        return playerManager.getAllPlayer();
     }
 }

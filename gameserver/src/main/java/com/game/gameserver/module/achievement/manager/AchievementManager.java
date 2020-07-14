@@ -13,7 +13,7 @@ import com.game.gameserver.module.monster.event.MonsterDeadEvent;
 import com.game.gameserver.module.player.entity.Player;
 import com.game.gameserver.module.player.event.LoginEvent;
 import com.game.gameserver.module.player.manager.PlayerManager;
-import com.game.gameserver.module.task.entity.TaskProgress;
+import com.game.gameserver.module.task.model.TaskProgress;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

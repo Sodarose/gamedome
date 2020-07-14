@@ -4,7 +4,7 @@ package com.game.gameserver.module.achievement.entity;
 import com.game.gameserver.common.config.AchievementConfig;
 import com.game.gameserver.module.achievement.service.AchievementService;
 import com.game.gameserver.module.achievement.type.AchievementState;
-import com.game.gameserver.module.task.entity.TaskProgress;
+import com.game.gameserver.module.task.model.TaskProgress;
 import com.game.gameserver.util.GameUUID;
 import com.game.gameserver.util.TaskUtil;
 import lombok.Data;

@@ -1,4 +1,4 @@
-package com.game.gameserver.net.modelhandler.store;
+package com.game.gameserver.net.modelhandler.shop;
 
 /**
  * @author xuewenkang

@@ -3,7 +3,7 @@ package com.game.gameserver.module.task.manager;
 import com.game.gameserver.event.Listener;
 import com.game.gameserver.module.player.manager.PlayerManager;
 import com.game.gameserver.module.task.dao.TaskMapper;
-import com.game.gameserver.module.task.model.PlayerTask;
+import com.game.gameserver.module.task.model.UserTask;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,13 +26,13 @@ public class TaskManager {
     /**
      * 本地缓存
      */
-    private volatile static Map<Long, PlayerTask> LOCAL_PLAYER_TASK_MAP = new ConcurrentHashMap<>();
+    private volatile static Map<Long, UserTask> LOCAL_PLAYER_TASK_MAP = new ConcurrentHashMap<>();
 
-    public Map<Long, PlayerTask> getPlayerTaskMap() {
+    public Map<Long, UserTask> getPlayerTaskMap() {
         return LOCAL_PLAYER_TASK_MAP;
     }
 
-    public PlayerTask getPlayerTask(long playerId) {
+    public UserTask getPlayerTask(long playerId) {
 
         return LOCAL_PLAYER_TASK_MAP.get(playerId);
     }

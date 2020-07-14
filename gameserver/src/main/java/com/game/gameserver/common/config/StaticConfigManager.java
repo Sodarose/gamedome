@@ -3,6 +3,7 @@ package com.game.gameserver.common.config;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.JSONReader;
+import com.game.gameserver.module.shop.model.Goods;
 import lombok.Getter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,6 +41,8 @@ public class StaticConfigManager {
     private Map<Integer, AchievementConfig> achievementConfigMap = new HashMap<>(16);
     private Map<Integer, GuildLevelConfig> guildLevelConfigMap = new HashMap<>(16);
     private Map<Integer, ItemConfig> itemConfigMap = new HashMap<>(16);
+    private Map<Integer, ShopConfig> shopConfigMap = new HashMap<>(16);
+    private Map<Integer, GoodsConfig> goodsConfigMap = new HashMap<>();
 
     public static StaticConfigManager getInstance() {
         return INSTANCE;
@@ -73,6 +76,53 @@ public class StaticConfigManager {
         loadTaskConfig(path);
         loadAchievementConfig(path);
         loadUnionLevelConfig(path);
+        loadShopConfig(path);
+        loadGoodsConfig(path);
+    }
+
+
+    /**
+     * 读取商品配置
+     *
+     * @param path
+     * @return void
+     */
+    private void loadGoodsConfig(String path){
+        logger.info("load GoodsConfig.json");
+        String fileName = "GoodsConfig.json";
+        path += "/" + fileName;
+        try {
+            JSONReader jsonReader = new JSONReader(new InputStreamReader(new FileInputStream(path)));
+            jsonReader.startArray();
+            while (jsonReader.hasNext()) {
+                GoodsConfig goodsConfig = JSON.parseObject(jsonReader.readString(), GoodsConfig.class);
+                goodsConfigMap.put(goodsConfig.getId(),goodsConfig);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 读取商店配置
+     *
+     * @param path
+     * @return void
+     */
+    private void loadShopConfig(String path){
+        logger.info("load ShopConfig.json");
+        String fileName = "ShopConfig.json";
+        path += "/" + fileName;
+        try {
+            JSONReader jsonReader = new JSONReader(new InputStreamReader(new FileInputStream(path)));
+            jsonReader.startArray();
+            while (jsonReader.hasNext()) {
+                ShopConfig shopConfig = JSON.parseObject(jsonReader.readString(), ShopConfig.class);
+                shopConfigMap.put(shopConfig.getId(),shopConfig);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void loadSceneConfig(String path) {
@@ -162,8 +212,8 @@ public class StaticConfigManager {
     }
 
     private void loadCommodityConfig(String path) {
-        logger.info("load CommodityConfig.json");
-        String fileName = "CommodityConfig.json";
+       /* logger.info("load ShopConfig.json");
+        String fileName = "ShopConfig.json";
         path += "/" + fileName;
         try {
             JSONReader jsonReader = new JSONReader(new InputStreamReader(new FileInputStream(path)));
@@ -174,7 +224,7 @@ public class StaticConfigManager {
             }
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
     }
 
     private void loadCareerConfig(String path) {

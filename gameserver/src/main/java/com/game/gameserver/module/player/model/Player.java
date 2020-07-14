@@ -133,4 +133,27 @@ public class Player implements Creature {
     public long getId() {
         return playerEntity.getId();
     }
+
+    @Override
+    public String getName() {
+        return playerEntity.getName();
+    }
+
+    public void addGolds(int value){
+        int golds = playerEntity.getGolds()+value;
+        playerEntity.setGolds(golds);
+    }
+
+    public void decrease(int value){
+        int golds = playerEntity.getGolds()-value;
+        playerEntity.setGolds(golds);
+    }
+
+    public Long getGuildId(){
+        return playerEntity.getGuildId();
+    }
+
+    public void setGuildId(Long guildId){
+        playerEntity.setGuildId(guildId);
+    }
 }

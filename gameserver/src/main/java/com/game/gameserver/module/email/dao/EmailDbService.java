@@ -2,7 +2,9 @@ package com.game.gameserver.module.email.dao;
 
 import com.game.gameserver.common.db.BaseDbService;
 import com.game.gameserver.module.email.entity.EmailEntity;
+import com.game.gameserver.module.email.helper.EmailHelper;
 import com.game.gameserver.module.email.manager.EmailManager;
+import com.game.gameserver.module.email.model.Email;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -25,11 +27,13 @@ public class EmailDbService extends BaseDbService {
         return emailMapper.select(emailId);
     }
 
-    public int insert(EmailEntity emailEntity){
+    public int insert(Email email){
+        EmailEntity emailEntity = EmailHelper.createEmailEntity(email);
         return emailMapper.insert(emailEntity);
     }
 
-    public int update(EmailEntity emailEntity){
+    public int update(Email email){
+        EmailEntity emailEntity = EmailHelper.createEmailEntity(email);
         return emailMapper.update(emailEntity);
     }
 
@@ -37,15 +41,15 @@ public class EmailDbService extends BaseDbService {
         return emailMapper.delete(emailId);
     }
 
-    public void insertAsync(EmailEntity emailEntity){
+    public void insertAsync(Email email){
         submit(()->{
-            int i = insert(emailEntity);
+            int i = insert(email);
         });
     }
 
-    public void updateAsync(EmailEntity emailEntity){
+    public void updateAsync(Email email){
         submit(()->{
-            int i = update(emailEntity);
+            int i = update(email);
         });
     }
 

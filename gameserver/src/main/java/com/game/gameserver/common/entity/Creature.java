@@ -8,4 +8,5 @@ package com.game.gameserver.common.entity;
  */
 public interface Creature  {
     long getId();
+    String getName();
 }

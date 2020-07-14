@@ -1,10 +1,10 @@
 package com.game.gameserver.module.email.service;
 
-import com.alibaba.fastjson.JSON;
 import com.game.gameserver.module.backbag.service.BackBagService;
 import com.game.gameserver.module.email.dao.EmailDbService;
 import com.game.gameserver.module.email.entity.EmailEntity;
 import com.game.gameserver.module.email.helper.EmailHelper;
+import com.game.gameserver.module.email.model.Email;
 import com.game.gameserver.module.email.model.EmailBox;
 import com.game.gameserver.module.email.manager.EmailManager;
 import com.game.gameserver.module.email.type.EmailState;
@@ -50,13 +50,29 @@ public class EmailService {
         // 数据库中读取数据
         List<EmailEntity> emailEntityList = emailDbService.selectEmailList(playerDomain.getPlayerEntity().getId());
         EmailBox emailBox = new EmailBox(playerDomain.getPlayerEntity().getId());
-        emailBox.initialize(emailEntityList);
+        emailEntityList.forEach(emailEntity -> {
+            Email email = EmailHelper.createEmail(emailEntity);
+            emailBox.getEmailMap().put(email.getId(),email);
+        });
         // 放如本地缓存
         emailManager.putEmailBox(emailBox.getPlayerId(), emailBox);
     }
 
+    /**
+     * 发送邮件
+     *
+     * @param senderId
+     * @param receiverId
+     * @param title
+     * @param content
+     * @return boolean
+     */
     public boolean sendEmail(long senderId, long receiverId, String title, String content){
         return sendEmail(senderId,receiverId,title,content,0,null);
+    }
+
+    public boolean sendEmail(long senderId, long receiverId, String title, String content,int golds){
+        return sendEmail(senderId,receiverId,title,content,golds,null);
     }
 
     /**
@@ -74,19 +90,22 @@ public class EmailService {
         if (golds < 0) {
             return false;
         }
-        EmailEntity emailEntity = new EmailEntity();
-        emailEntity.setId(GameUUID.getInstance().generate());
-        emailEntity.setSenderId(senderId);
-        emailEntity.setReceiverId(receiverId);
-        emailEntity.setTitle(title);
-        emailEntity.setContent(content);
-        emailEntity.setGolds(golds);
-        String attachmentsJson = JSON.toJSONString(attachments);
-        emailEntity.setAttachments(attachmentsJson);
-        emailEntity.setState(EmailState.UNREAD);
+        // 创建一封邮件
+        Email email = new Email();
+        email.setId(GameUUID.getInstance().generate());
+        email.setSenderId(senderId);
+        email.setReceiverId(receiverId);
+        email.setTitle(title);
+        email.setContent(content);
+        email.setGolds(golds);
+        email.setState(EmailState.UNREAD);
+        if(attachments==null){
+            attachments = new ArrayList<>();
+        }
+        email.setAttachments(attachments);
 
         // 持久化
-        int i = emailDbService.insert(emailEntity);
+        int i = emailDbService.insert(email);
         if (i != 1) {
             return false;
         }
@@ -96,7 +115,7 @@ public class EmailService {
             EmailBox emailBox = emailManager.getEmailBox(receiverId);
             if (emailBox != null) {
                 // 将邮件放入玩家缓存中
-                emailBox.getEmailMap().put(emailEntity.getId(), emailEntity);
+                emailBox.getEmailMap().put(email.getId(), email);
                 NotificationHelper.notifyPlayer(playerDomain, "您有一封新的邮件!");
             }
         }
@@ -106,7 +125,7 @@ public class EmailService {
     /**
      * 玩家发送邮件
      *
-     * @param playerDomain
+     * @param player
      * @param receiverId
      * @param title
      * @param content
@@ -114,108 +133,117 @@ public class EmailService {
      * @param bagIndexs
      * @return void
      */
-    public void sendEmailByPlayer(Player playerDomain, long receiverId, String title, String content,
+    public void sendEmailByPlayer(Player player, long receiverId, String title, String content,
                                   int golds, List<Integer> bagIndexs) {
-        title = playerDomain.getPlayerEntity().getName() + ":" + title;
+        title = player.getPlayerEntity().getName() + ":" + title;
         // 获取玩家附件
         List<Item> attachments = new ArrayList<>();
         for (int bagIndex : bagIndexs) {
-            Item item = backBagService.getItem(playerDomain, bagIndex);
+            Item item = backBagService.getItem(player, bagIndex);
             if (item != null) {
                 attachments.add(item);
             }
         }
-        boolean result = sendEmail(playerDomain.getPlayerEntity().getId(), receiverId, title, content, golds, attachments);
+        boolean result = sendEmail(player.getPlayerEntity().getId(), receiverId, title, content, golds, attachments);
         if (!result) {
-            NotificationHelper.notifyPlayer(playerDomain, "邮件发送失败");
+            NotificationHelper.notifyPlayer(player, "邮件发送失败");
             return;
         }
         for (Item item : attachments) {
-            backBagService.removeItem(playerDomain, item.getBagIndex());
+            backBagService.removeItem(player, item.getBagIndex());
         }
-        NotificationHelper.notifyPlayer(playerDomain, "邮件发送成功");
+        NotificationHelper.notifyPlayer(player, "邮件发送成功");
+        NotificationHelper.syncBackBag(player);
     }
 
     /**
      * 展示邮箱
      *
-     * @param playerDomain
+     * @param player
      * @return void
      */
-    public void showEmailBox(Player playerDomain) {
-        EmailBox emailBox = emailManager.getEmailBox(playerDomain.getPlayerEntity().getId());
+    public void showEmailBox(Player player) {
+        EmailBox emailBox = emailManager.getEmailBox(player.getPlayerEntity().getId());
         if (emailBox == null) {
-            NotificationHelper.notifyPlayer(playerDomain, "加载邮箱失败");
+            NotificationHelper.notifyPlayer(player, "加载邮箱失败");
             return;
         }
-        NotificationHelper.notifyPlayer(playerDomain, EmailHelper.buildEmailBox(emailBox));
+        NotificationHelper.notifyPlayer(player, EmailHelper.buildEmailBox(emailBox));
     }
 
-    public void showEmail(Player playerDomain, long emailId) {
-        EmailBox emailBox = emailManager.getEmailBox(playerDomain.getPlayerEntity().getId());
+    /**
+     * 查看邮件
+     *
+     * @param player
+     * @param emailId
+     * @return void
+     */
+    public void showEmail(Player player, long emailId) {
+        EmailBox emailBox = emailManager.getEmailBox(player.getPlayerEntity().getId());
         if (emailBox == null) {
-            NotificationHelper.notifyPlayer(playerDomain, "加载邮箱失败");
+            NotificationHelper.notifyPlayer(player, "加载邮箱失败");
             return;
         }
-        EmailEntity emailEntity = emailBox.getEmailMap().get(emailId);
-        if (emailEntity == null) {
-            NotificationHelper.notifyPlayer(playerDomain, "无此邮件");
+        Email email = emailBox.getEmailMap().get(emailId);
+        if (email == null) {
+            NotificationHelper.notifyPlayer(player, "无此邮件");
             return;
         }
-        NotificationHelper.notifyPlayer(playerDomain, EmailHelper.buildEmail(emailEntity));
-        emailEntity.setState(EmailState.READ);
-        emailDbService.update(emailEntity);
+        NotificationHelper.notifyPlayer(player, EmailHelper.buildEmail(email));
+        email.setState(EmailState.READ);
+        emailDbService.update(email);
     }
 
-    public void deleteEmail(Player playerDomain, long emailId) {
-        EmailBox emailBox = emailManager.getEmailBox(playerDomain.getPlayerEntity().getId());
+    /**
+     * 删除邮件
+     *
+     * @param player
+     * @param emailId
+     * @return void
+     */
+    public void deleteEmail(Player player, long emailId) {
+        EmailBox emailBox = emailManager.getEmailBox(player.getPlayerEntity().getId());
         if (emailBox == null) {
-            NotificationHelper.notifyPlayer(playerDomain, "加载邮箱失败");
+            NotificationHelper.notifyPlayer(player, "加载邮箱失败");
             return;
         }
-        EmailEntity emailEntity = emailBox.getEmailMap().get(emailId);
-        if (emailEntity == null) {
-            NotificationHelper.notifyPlayer(playerDomain, "无此邮件");
+        Email email = emailBox.getEmailMap().get(emailId);
+        if (email == null) {
+            NotificationHelper.notifyPlayer(player, "无此邮件");
             return;
         }
-        NotificationHelper.notifyPlayer(playerDomain, "删除邮件");
+        NotificationHelper.notifyPlayer(player, "删除邮件");
         emailBox.getEmailMap().remove(emailId);
         emailDbService.delete(emailId);
     }
 
-    public void extractAttachments(Player playerDomain, long emailId) {
-        EmailBox emailBox = emailManager.getEmailBox(playerDomain.getPlayerEntity().getId());
+    /**
+     * 提取附件
+     *
+     * @param player
+     * @param emailId
+     * @return void
+     */
+    public void extractAttachments(Player player, long emailId) {
+        EmailBox emailBox = emailManager.getEmailBox(player.getPlayerEntity().getId());
         if (emailBox == null) {
-            NotificationHelper.notifyPlayer(playerDomain, "加载邮箱失败");
+            NotificationHelper.notifyPlayer(player, "加载邮箱失败");
             return;
         }
-        EmailEntity emailEntity = emailBox.getEmailMap().get(emailId);
-        if (emailEntity == null) {
-            NotificationHelper.notifyPlayer(playerDomain, "无此邮件");
+        Email email = emailBox.getEmailMap().get(emailId);
+        if (email == null) {
+            NotificationHelper.notifyPlayer(player, "无此邮件");
             return;
         }
-        // 提取附件
-        int golds = emailEntity.getGolds();
-        String attachments = emailEntity.getAttachments();
-        List<Item> items = JSON.parseArray(attachments, Item.class);
-        // 先进行更新
-        emailEntity.setGolds(0);
-        emailEntity.setAttachments("");
-        int i = emailDbService.update(emailEntity);
-        if (i != 1) {
-            emailEntity.setGolds(golds);
-            emailEntity.setAttachments(attachments);
-            NotificationHelper.notifyPlayer(playerDomain, "提取附件失败");
-            return;
-        }
-        playerDomain.getPlayerEntity().setGolds(playerDomain.getPlayerEntity().getGolds() + golds);
-        if (items != null) {
-            for (Item item : items) {
-                backBagService.addItem(playerDomain, item);
-            }
-        }
-
-        NotificationHelper.notifyPlayer(playerDomain, "提取附件成功");
+        // 提取金币
+        player.addGolds(email.getGolds());
+        // 提取附件 如果该附件道具能够放进背包 则移除
+        email.getAttachments().removeIf(
+                item -> backBagService.addItem(player, item));
+        // 更新邮件信息
+        emailDbService.update(email);
+        NotificationHelper.syncBackBag(player);
+        NotificationHelper.notifyPlayer(player, "提取附件成功");
     }
 
 }

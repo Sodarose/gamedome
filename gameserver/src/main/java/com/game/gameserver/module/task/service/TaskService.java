@@ -6,14 +6,12 @@ import com.game.gameserver.event.Listener;
 import com.game.gameserver.module.backbag.service.BackBagService;
 import com.game.gameserver.module.notification.NotificationHelper;
 import com.game.gameserver.module.player.manager.PlayerManager;
-import com.game.gameserver.module.player.entity.PlayerEntity;
 import com.game.gameserver.module.player.model.Player;
 import com.game.gameserver.module.task.helper.TaskHelper;
-import com.game.gameserver.module.task.model.PlayerTask;
-import com.game.gameserver.module.task.entity.Task;
+import com.game.gameserver.module.task.model.UserTask;
+import com.game.gameserver.module.task.entity.TaskEntity;
 import com.game.gameserver.module.task.manager.TaskManager;
 import com.game.gameserver.module.task.type.TaskState;
-import com.game.gameserver.util.ProtocolFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -62,7 +60,7 @@ public class TaskService {
      */
     public void showReceiveAbleTask(Player player) {
         // 获取用户已经接受的任务
-        PlayerTask playerTask = taskManager.getPlayerTask(player.getPlayerEntity().getId());
+        UserTask playerTask = taskManager.getPlayerTask(player.getPlayerEntity().getId());
         if (playerTask == null) {
             return;
         }
@@ -88,7 +86,7 @@ public class TaskService {
      * @return void
      */
     public void showReceiveTask(Player player) {
-        PlayerTask playerTask = taskManager.getPlayerTask(player.getPlayerEntity().getId());
+        UserTask playerTask = taskManager.getPlayerTask(player.getPlayerEntity().getId());
         if (playerTask == null) {
             NotificationHelper.notifyPlayer(player,"获取任务列表失败");
             return;
@@ -104,7 +102,7 @@ public class TaskService {
      * @return void
      */
     public void acceptTask(Player player, int taskId) {
-        PlayerTask playerTask = taskManager.getPlayerTask(player.getPlayerEntity().getId());
+        UserTask playerTask = taskManager.getPlayerTask(player.getPlayerEntity().getId());
         if (playerTask == null) {
             NotificationHelper.notifyPlayer(player,"获取任务列表失败");
             return;
@@ -129,7 +127,7 @@ public class TaskService {
         }
 
         // 创建任务 放入角色人物容器中
-        Task task = new Task(player.getPlayerEntity().getId(), taskConfig);
+        TaskEntity task = new TaskEntity(player.getPlayerEntity().getId(), taskConfig);
         playerTask.addTask(task);
         // 完成
         NotificationHelper.notifyPlayer(player,"接受任务成功");
@@ -143,7 +141,7 @@ public class TaskService {
      * @return void
      */
     public void cancelTask(Player player, int taskId) {
-        PlayerTask playerTask = taskManager.getPlayerTask(player.getPlayerEntity().getId());
+        UserTask playerTask = taskManager.getPlayerTask(player.getPlayerEntity().getId());
         if (playerTask == null) {
             NotificationHelper.notifyPlayer(player,"获取任务列表失败");
             return;
@@ -169,14 +167,14 @@ public class TaskService {
      * @return void
      */
     public void submitTask(Player player, int taskId) {
-        PlayerTask playerTask = taskManager.getPlayerTask(player.getPlayerEntity().getId());
+        UserTask playerTask = taskManager.getPlayerTask(player.getPlayerEntity().getId());
         if (playerTask == null) {
             NotificationHelper.notifyPlayer(player,"获取任务列表失败");
             return;
         }
 
         // 判断任务是否为可提交状态
-        Task task = playerTask.getTask(taskId);
+        TaskEntity task = playerTask.getTask(taskId);
         if (task == null) {
             NotificationHelper.notifyPlayer(player,"你没有接受此任务");
             return;
@@ -205,12 +203,12 @@ public class TaskService {
      * @return void
      */
     public void showTask(Player player, int taskId) {
-        PlayerTask playerTask = taskManager.getPlayerTask(player.getPlayerEntity().getId());
+        UserTask playerTask = taskManager.getPlayerTask(player.getPlayerEntity().getId());
         if (playerTask == null) {
             NotificationHelper.notifyPlayer(player,"获取任务列表失败");
             return;
         }
-        Task task = playerTask.getTask(taskId);
+        TaskEntity task = playerTask.getTask(taskId);
         if (task == null) {
             NotificationHelper.notifyPlayer(player,"你没有接受此任务");
             return;

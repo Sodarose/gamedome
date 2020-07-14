@@ -1,20 +1,16 @@
 package com.game.gameserver.context;
 
 import com.game.gameserver.common.config.StaticConfigManager;
-import com.game.gameserver.module.ai.manager.AiManager;
 import com.game.gameserver.module.auction.manager.AuctionHouseManager;
-import com.game.gameserver.module.chat.manager.ChatManager;
-import com.game.gameserver.module.cooltime.manager.CoolTimeManager;
-/*import com.game.gameserver.module.instance.manager.InstanceManager;*/
+import com.game.gameserver.module.guild.dao.GuildDbService;
+import com.game.gameserver.module.guild.dao.GuildMapper;
+import com.game.gameserver.module.guild.manager.GuildManager;
 import com.game.gameserver.module.scene.manager.SceneManager;
-import com.game.gameserver.module.store.manager.StoreManager;
-import com.game.gameserver.module.ai.thread.UnitTickThread;
+import com.game.gameserver.module.shop.manager.ShopManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import java.util.concurrent.TimeUnit;
 
 /**
  * 管理平台 负责整个服务器资源的初始化
@@ -32,21 +28,23 @@ public class Platform {
     private SceneManager sceneManager;
     @Autowired
     private AuctionHouseManager auctionHouseManager;
-
     @Autowired
-    private StoreManager storeManager;
-/*    @Autowired
-    private InstanceManager instanceManager;*/
+    private ShopManager shopManager;
     @Autowired
-    private AiManager aiManager;
-    @Autowired
-    private CoolTimeManager coolTimeManager;
+    private GuildManager guildManager;
 
     public void startUp() {
         logger.info("platform start up ......");
+        // 加载静态资源
         staticConfigManager.loadConfig();
+        // 加载场景
         sceneManager.loadScene();
+        // 加载拍卖行
         auctionHouseManager.loadAuctionItem();
+        // 加载商店
+        shopManager.loadShop();
+        // 加载公会
+        guildManager.loadGuild();
     }
 
 }

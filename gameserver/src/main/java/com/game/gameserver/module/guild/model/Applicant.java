@@ -9,7 +9,7 @@ import lombok.Data;
  * @date 2020/7/3 12:21
  */
 @Data
-public class Apply {
+public class Applicant {
 
     /** 申请者名称 */
     private String name;
@@ -17,7 +17,7 @@ public class Apply {
     /** 申请者id */
     private Long playerId;
 
-    public Apply(String name, long playerId) {
+    public Applicant(String name, long playerId) {
         this.name = name;
         this.playerId = playerId;
     }

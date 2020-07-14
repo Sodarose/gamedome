@@ -396,12 +396,12 @@ public class ProtocolFactory {
         return builder.build();
     }
 
-    public static TaskProtocol.QueryReceiveTaskRes creatQueryReceiveTaskRes(int code, String msg, PlayerTask playerTask) {
+    public static TaskProtocol.QueryReceiveTaskRes creatQueryReceiveTaskRes(int code, String msg, UserTask playerTask) {
         TaskProtocol.QueryReceiveTaskRes.Builder builder = TaskProtocol.QueryReceiveTaskRes.newBuilder();
         builder.setCode(code);
         builder.setMsg(msg);
         if (playerTask != null) {
-            for (Task task : playerTask.getTaskList()) {
+            for (TaskEntity task : playerTask.getTaskList()) {
                 builder.addTaskInfos(createTaskInfo(task));
             }
         }
@@ -428,7 +428,7 @@ public class ProtocolFactory {
      * @param task
      * @return com.game.protocol.TaskProtocol.TaskInfo
      *//*
-    public static TaskProtocol.TaskInfo createTaskInfo(Task task) {
+    public static TaskProtocol.TaskInfo createTaskInfo(TaskEntity task) {
         TaskProtocol.TaskInfo.Builder builder = TaskProtocol.TaskInfo.newBuilder();
         builder.setId(task.getId());
         TaskConfig taskConfig = StaticConfigManager.getInstance().getTaskConfigMap().get(task.getTaskId());

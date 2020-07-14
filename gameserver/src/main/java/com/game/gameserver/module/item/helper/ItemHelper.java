@@ -1,5 +1,7 @@
 package com.game.gameserver.module.item.helper;
 
+import com.game.gameserver.common.config.ItemConfig;
+import com.game.gameserver.common.config.StaticConfigManager;
 import com.game.gameserver.module.item.model.Item;
 import com.game.gameserver.module.item.type.ItemType;
 
@@ -10,18 +12,33 @@ import com.game.gameserver.module.item.type.ItemType;
 public class ItemHelper {
     public static String buildItem(Item item){
         StringBuilder sb = new StringBuilder("道具信息:");
-        sb.append("type:").append(item.getItemConfig().getType().equals(ItemType.CONSUMABLES.getType())?"道具":"装备")
+        ItemConfig itemConfig = StaticConfigManager.getInstance().getItemConfigMap().get(item.getItemConfigId());
+        sb.append("type:").append(itemConfig.getType().equals(ItemType.CONSUMABLES.getType())?"道具":"装备")
                 .append("\n");
-        sb.append("name:").append(item.getItemConfig().getName()).append("\n");
-        if(item.getItemConfig().getType().equals(ItemType.EQUIP.getType())){
-            sb.append("durability:").append(item.getDurability()).append("/").append(item.getItemConfig()
-                    .getMaxDurability()).append("\n");
+        sb.append("name:").append(itemConfig.getName()).append("\n");
+        if(itemConfig.getType().equals(ItemType.EQUIP.getType())){
+            sb.append("durability:").append(item.getDurability()).append("/").append(itemConfig.getMaxDurability()).append("\n");
         }
-        sb.append("buffer:").append(item.getItemConfig().getBufferId()).append("\n");
+        sb.append("buffer:").append(itemConfig.getBufferId()).append("\n");
         sb.append("property:").append("\n");
-        item.getItemConfig().getPropertyMap().forEach((key,value)->{
+        itemConfig.getPropertyMap().forEach((key,value)->{
             sb.append(key).append(":").append(value).append("\n");
         });
+        return sb.toString();
+    }
+
+    public static String buildItemSimpleMsg(Item item){
+        if(item==null){
+            return "空";
+        }
+        StringBuilder sb = new StringBuilder();
+        ItemConfig itemConfig = StaticConfigManager.getInstance().getItemConfigMap().get(item.getItemConfigId());
+        if(itemConfig.getType().equals(ItemType.CONSUMABLES.getType())){
+            sb.append(itemConfig.getName()).append("(").append(item.getNum()).append(")");
+        }
+        if(itemConfig.getType().equals(ItemType.EQUIP.getType())){
+            sb.append(itemConfig.getName()).append("(").append(item.getDurability()).append(")");
+        }
         return sb.toString();
     }
 }

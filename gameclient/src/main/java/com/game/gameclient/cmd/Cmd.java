@@ -1,8 +1,7 @@
 package com.game.gameclient.cmd;
 
 import com.game.gameclient.type.*;
-import com.sun.org.apache.xpath.internal.operations.Mod;
-import sun.security.pkcs11.Secmod;
+import com.game.gameserver.net.modelhandler.guild.GuildCmd;
 
 /**
  * @author xuewenkang
@@ -75,7 +74,14 @@ public enum Cmd {
 
     /** 商店*/
 
+
     /** 聊天*/
+    /** 私聊 */
+    PRIVATE_CHAT(ModuleKey.CHAT_MODULE,ChatCmd.PRIVATE_CHAT),
+    /** 本地聊天 */
+    LOCAL_CHAT(ModuleKey.CHAT_MODULE,ChatCmd.LOCAL_CHAT),
+    /** 频道聊天 */
+    CHANNEL_CHAT(ModuleKey.CHAT_MODULE,ChatCmd.CHANNEL_CHAT),
 
     /** 邮件*/
     /** 展示邮箱 */
@@ -137,14 +143,38 @@ public enum Cmd {
     /** 竞拍 */
     AUCTION(ModuleKey.AUCTION_MODULE,AuctionCmd.AUCTION),
     /** 一口价 */
-    FIXED_PRICE(ModuleKey.AUCTION_MODULE,AuctionCmd.FIXED_PRICE);
+    FIXED_PRICE(ModuleKey.AUCTION_MODULE,AuctionCmd.FIXED_PRICE),
 
     /** 公会*/
+    /** 创建公会 */
+    CREATE_GUILD(ModuleKey.GUILD_MODULE, GuildCmd.CREATE_GUILD),
+    /** 展示公会列表*/
+    SHOW_GUILD_LIST(ModuleKey.GUILD_MODULE,GuildCmd.SHOW_GUILD_LIST),
+    /** 展示公会*/
+    SHOW_GUILD(ModuleKey.GUILD_MODULE,GuildCmd.SHOW_GUILD),
+    /** 申请加入公会*/
+    APPLY_FOR_GUILD(ModuleKey.GUILD_MODULE,GuildCmd.APPLY_FOR_GUILD),
+    /** 处理申请信息*/
+    PROCESS_GUILD_APPLY(ModuleKey.GUILD_MODULE,GuildCmd.PROCESS_GUILD_APPLY),
+    /** 授予职位*/
+    APPOINT(ModuleKey.GUILD_MODULE,GuildCmd.APPOINT),
+    /** 捐献金币*/
+    DONATE_GOLDS(ModuleKey.GUILD_MODULE,GuildCmd.DONATE_GOLDS),
+    /** 退出公会 */
+    EXIT_GUILD(ModuleKey.GUILD_MODULE,GuildCmd.EXIT_GUILD),
+    /** 展示公会仓库*/
+    SHOW_GUILD_W(ModuleKey.GUILD_MODULE,GuildCmd.SHOW_GUILD_W),
+    /** 放入道具到仓库*/
+    PUTIN_GUILD_W(ModuleKey.GUILD_MODULE,GuildCmd.PUTIN_GUILD_W),
+    /** 从仓库拿去*/
+    TAKEOUT_GUILD_W(ModuleKey.GUILD_MODULE,GuildCmd.TAKEOUT_GUILD_W),
+    /** 整理仓库*/
+    CLEAR_UP_W(ModuleKey.GUILD_MODULE,GuildCmd.CLEAR_UP_W)
 
     /** 任务*/
 
     /** 成就*/
-
+    ;
 
     private Integer module;
     private Integer cmd;

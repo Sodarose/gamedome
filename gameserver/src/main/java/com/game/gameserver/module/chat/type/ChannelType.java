@@ -8,7 +8,9 @@ package com.game.gameserver.module.chat.type;
  */
 public interface ChannelType {
     /** 世界聊天 */
-    int WORLD_CHAT = 0;
+    int WORLD_CHANNEL = 0;
     /** 团队聊天 */
-    int TEAM_CHAT = 1;
+    int TEAM_CHANNEL = 1;
+    /** 公会频道 */
+    int GUILD_CHANNEL = 2;
 }

@@ -1,8 +1,6 @@
 package com.game.gameserver.util;
 
-import com.game.gameserver.common.config.*;
-import com.game.gameserver.event.EventType;
-import com.game.gameserver.module.task.entity.TaskProgress;
+import com.game.gameserver.module.task.model.TaskProgress;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,7 +19,7 @@ public class TaskUtil {
      * 解析任务要求
      *
      * @param taskRequire
-     * @return java.util.List<com.game.gameserver.module.task.entity.TaskProgress>
+     * @return java.util.List<com.game.gameserver.module.task.model.TaskProgress>
      */
     public static List<TaskProgress> parserTaskRequire(String taskRequire) {
         List<TaskProgress> taskProgresses = new ArrayList<>();

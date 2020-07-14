@@ -2,7 +2,8 @@ package com.game.gameserver.module.notification;
 
 import com.game.gameserver.module.backbag.helper.BackBagHelper;
 import com.game.gameserver.module.equipment.helper.EquipHelper;
-import com.game.gameserver.module.guild.domain.GuildDomain;
+import com.game.gameserver.module.guild.model.Guild;
+import com.game.gameserver.module.player.manager.PlayerManager;
 import com.game.gameserver.module.player.model.Player;
 import com.game.gameserver.module.player.helper.PlayerHelper;
 import com.game.gameserver.module.scene.helper.SceneHelper;
@@ -48,9 +49,6 @@ public class NotificationHelper {
 
     }
 
-    public static void notifyGuild(GuildDomain guildDomain, String content) {
-
-    }
 
     public static void notifyScene(Scene scene, String content) {
         Message message = new Message(content);
@@ -96,7 +94,7 @@ public class NotificationHelper {
      * @param
      * @return void
      */
-    public static void syncPlayerEquipBar(Player playerDomain){
+    public static void syncEquipBar(Player playerDomain){
         String content = EquipHelper.buildEquipBar(playerDomain.getEquipBar());
         Message message = new Message(ModuleKey.EQUIP_MODULE, EquipCmd.SYNC,content);
         CmdProto.CmdMsg cmdMsg = Message.buildCmdProtoCmdMsg(message);
@@ -109,7 +107,7 @@ public class NotificationHelper {
      * @param
      * @return void
      */
-    public static void syncPlayerBackBag(Player playerDomain){
+    public static void syncBackBag(Player playerDomain){
         String content = BackBagHelper.buildPlayerBackBag(playerDomain.getBackBag());
         Message message = new Message(ModuleKey.BACK_BAG_MODULE, BackBagCmd.SYNC,content);
         CmdProto.CmdMsg cmdMsg = Message.buildCmdProtoCmdMsg(message);
@@ -121,6 +119,15 @@ public class NotificationHelper {
         CmdProto.CmdMsg cmdMsg = Message.buildCmdProtoCmdMsg(message);
         team.getMemberMap().values().forEach(playerDomain -> {
             playerDomain.getChannel().writeAndFlush(cmdMsg);
+        });
+    }
+
+    public static void notifyGuild(Guild guild, String content) {
+        guild.getMemberMap().forEach((key,value)->{
+            Player player = PlayerManager.instance.getPlayer(value.getPlayerId());
+            if(player!=null){
+                notifyPlayer(player,content);
+            }
         });
     }
 }

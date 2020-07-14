@@ -209,8 +209,8 @@ public class TradeService {
         // 同步
         NotificationHelper.syncPlayer(initiator);
         NotificationHelper.syncPlayer(accepter);
-        NotificationHelper.syncPlayerBackBag(initiator);
-        NotificationHelper.syncPlayerBackBag(accepter);
+        NotificationHelper.syncBackBag(initiator);
+        NotificationHelper.syncBackBag(accepter);
 
         NotificationHelper.notifyPlayer(initiator,"交易成功");
         NotificationHelper.notifyPlayer(accepter,"交易成功");

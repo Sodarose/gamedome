@@ -1,4 +1,4 @@
-package com.game.gameserver.net.modelhandler.store;
+package com.game.gameserver.net.modelhandler.shop;
 
 import com.game.gameserver.net.annotation.ModuleHandler;
 import com.game.gameserver.net.handler.BaseHandler;

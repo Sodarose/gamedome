@@ -1,4 +1,4 @@
-package com.game.gameserver.module.task.entity;
+package com.game.gameserver.module.task.model;
 
 import lombok.Data;
 

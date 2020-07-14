@@ -2,31 +2,84 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.game.gameserver.module.guild.dao.GuildMapper">
     <!--公会信息-->
-    <resultMap id="guild" type="com.game.gameserver.module.guild.entity.Guild">
-        <result column="id" property="id"/>
+    <resultMap id="GuildEntity" type="com.game.gameserver.module.guild.entity.GuildEntity">
+        <id column="id" property="id"/>
         <result column="name" property="name"/>
         <result column="level" property="level"/>
         <result column="expr" property="expr"/>
         <result column="capacity" property="capacity"/>
-        <result column="warehouseCapacity" property="warehouseCapacity"/>
+        <result column="members" property="members" jdbcType="BLOB" typeHandler="com.game.gameserver.util.typehandler.TypeHandler"/>
+        <result column="applicants" property="applicants" jdbcType="BLOB" typeHandler="com.game.gameserver.util.typehandler.TypeHandler"/>
         <result column="golds" property="golds"/>
         <result column="announcement" property="announcement"/>
     </resultMap>
 
-    <resultMap id="member" type="com.game.gameserver.module.guild.entity.Member">
-        <result column="id" property="id"/>
-        <result column="name" property="name"/>
-    </resultMap>
-
     <!--列表-->
-    <sql id="Base_guild_Column_List">
-
+    <sql id="Base_GuildEntity_Column_List">
+        id, name, level, expr, capacity, members, applicants, golds, announcement
     </sql>
 
-    <sql id="Base_member_Column_List">
+    <select id="count" resultType="int">
+        SELECT COUNT(*)
+        FROM game_guild
+        WHERE name = #{guildName}
+    </select>
 
-    </sql>
+    <select id="selectGuildEntityList" resultMap="GuildEntity">
+        SELECT
+        <include refid="Base_GuildEntity_Column_List" />
+        FROM game_guild
+    </select>
 
+    <select id="select" resultMap="GuildEntity">
+        SELECT
+        <include refid="Base_GuildEntity_Column_List" />
+        FROM game_guild
+        WHERE id = #{guildId}
+    </select>
 
+    <insert id="insert" parameterType="com.game.gameserver.module.guild.entity.GuildEntity">
+        INSERT INTO game_guild
+        (id, name, level, expr, capacity, members, applicants, golds, announcement)
+        VALUES (#{id},#{name},#{level},#{expr},#{capacity},
+        #{members,jdbcType=BLOB,typeHandler=com.game.gameserver.util.typehandler.TypeHandler},
+        #{applicants,jdbcType=BLOB,typeHandler=com.game.gameserver.util.typehandler.TypeHandler},
+        #{golds},#{announcement})
+    </insert>
 
+    <update id="update" parameterType="com.game.gameserver.module.guild.entity.GuildEntity">
+        UPDATE game_guild
+        <set>
+            <if test="name != null">
+                name = #{name},
+            </if>
+            <if test="level != null">
+                level = #{level},
+            </if>
+            <if test="expr != null">
+                expr = #{expr},
+            </if>
+            <if test="capacity != null">
+                capacity = #{capacity},
+            </if>
+            <if test="members != null">
+                members = #{members,jdbcType=BLOB,typeHandler=com.game.gameserver.util.typehandler.TypeHandler},
+            </if>
+            <if test="applicants != null">
+                applicants = #{applicants,jdbcType=BLOB,typeHandler=com.game.gameserver.util.typehandler.TypeHandler},
+            </if>
+            <if test="golds != null">
+                golds = #{golds},
+            </if>
+            <if test="announcement != null">
+                announcement = #{announcement},
+            </if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <delete id="delete">
+         DELETE FROM game_guild
+         WHERE id = #{guildId}
+    </delete>
 </mapper>

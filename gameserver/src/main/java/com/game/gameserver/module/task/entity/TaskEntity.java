@@ -1,11 +1,11 @@
 package com.game.gameserver.module.task.entity;
 
 import com.game.gameserver.common.config.TaskConfig;
+import com.game.gameserver.module.task.model.TaskProgress;
 import com.game.gameserver.module.task.type.TaskState;
 import com.game.gameserver.util.GameUUID;
 import com.game.gameserver.util.TaskUtil;
 import lombok.Data;
-import org.springframework.scheduling.support.TaskUtils;
 
 import java.util.List;
 
@@ -16,7 +16,7 @@ import java.util.List;
  * @date 2020/6/29 16:21
  */
 @Data
-public class Task {
+public class TaskEntity {
     /** 存储在数据库中的id*/
     private Long id;
 
@@ -32,12 +32,12 @@ public class Task {
     /** 任务进度/要求 */
     private List<TaskProgress> taskProgresses;
 
-    public Task(){
+    public TaskEntity(){
 
     }
 
     /** 新创建一个任务时使用 */
-    public Task(long playerId,TaskConfig taskConfig){
+    public TaskEntity(long playerId, TaskConfig taskConfig){
         this.id = GameUUID.getInstance().generate();
         this.taskId = taskConfig.getId();
         // 设定为已接受状态（进行中）
