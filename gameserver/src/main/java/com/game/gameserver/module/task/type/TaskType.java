@@ -1,21 +1,46 @@
 package com.game.gameserver.module.task.type;
 
 /**
- * 任务类型
+ * 任务单元类型
  *
  * @author xuewenkang
- * @date 2020/6/29 15:29
+ * @date 2020/7/15 11:20
  */
-public interface TaskType {
-    /** 主线 */
-    int MAIN = 1;
+public enum  TaskType {
+    /** 杀怪 */
+    KILL_MONSTER(1),
+    /** 升级 */
+    LEVEL_UP(2),
+    /** NPC交流 */
+    TALK_NPC(3),
+    /** 收集装备 */
+    COLLECT_BEST_EQUIP(4),
+    /** 副本 */
+    INSTANCE(5),
+    /** 装备变更 */
+    EQUIPMENT_CHANGE(6),
+    /** 加好友 */
+    FRIEND(7),
+    /** 团队 */
+    TEAM(8),
+    /** 交易 */
+    TREAD(9),
+    /** PK*/
+    PK(10),
+    /** 金币 */
+    GOLDS(11),
+    /** 任务完成 */
+    COMPLETE_TASK(12),
+    /** */
+    GUILD(13);
 
-    /** 支线 */
-    int BRANCH = 2;
+    private int type;
 
-    /** 副本任务 */
-    int INSTANCE = 3;
+    TaskType(int type){
+        this.type = type;
+    }
 
-    /** 每日任务 */
-    int DAILY = 4;
+    public int getType() {
+        return type;
+    }
 }

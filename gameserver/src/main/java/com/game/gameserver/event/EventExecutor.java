@@ -11,15 +11,12 @@ import java.lang.reflect.Method;
 public class EventExecutor {
     /** 监听器 */
     private final Object listener;
-    /** 监听的事件类型 */
-    private final int type;
     /** 执行方法 */
     private final Method method;
 
-    public EventExecutor(int type,Method method,Object listener){
+    public EventExecutor(Method method,Object listener){
         this.listener = listener;
         this.method = method;
-        this.type = type;
     }
 
     public void execute(Event event){

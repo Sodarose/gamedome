@@ -24,27 +24,23 @@ public class TaskManager {
     private final static Logger logger = LoggerFactory.getLogger(TaskManager.class);
 
     /**
-     * 本地缓存
+     * 本地任务缓存
      */
-    private volatile static Map<Long, UserTask> LOCAL_PLAYER_TASK_MAP = new ConcurrentHashMap<>();
+    private volatile static Map<Long, UserTask> LOCAL_USER_TASK_MAP = new ConcurrentHashMap<>();
 
     public Map<Long, UserTask> getPlayerTaskMap() {
-        return LOCAL_PLAYER_TASK_MAP;
+        return LOCAL_USER_TASK_MAP;
     }
 
-    public UserTask getPlayerTask(long playerId) {
-
-        return LOCAL_PLAYER_TASK_MAP.get(playerId);
+    public UserTask getUserTask(long playerId) {
+        return LOCAL_USER_TASK_MAP.get(playerId);
     }
 
-    @Autowired
-    private PlayerManager playerManager;
-    @Autowired
-    private TaskMapper taskMapper;
-
-    private void loadPlayerTask(long playerId) {
-
+    public void putUserTask(long playerId,UserTask userTask){
+        LOCAL_USER_TASK_MAP.put(playerId,userTask);
     }
 
-
+    public void removeTask(long playerId){
+        LOCAL_USER_TASK_MAP.remove(playerId);
+    }
 }

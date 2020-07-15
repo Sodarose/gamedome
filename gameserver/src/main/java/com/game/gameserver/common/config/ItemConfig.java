@@ -45,6 +45,10 @@ public class ItemConfig {
     @JSONField(name = "part")
     private Integer part;
 
+    /** 装备星级 */
+    @JSONField(name = "star")
+    private Integer star;
+
     /** 物品持有属性  根据物品类型的不同而不同*/
     @JSONField(name = "property")
     private String property;

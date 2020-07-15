@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.game.gameserver.module.task.dao.TaskMapper">
+    <!--公会信息-->
+    <resultMap id="TaskEntity" type="com.game.gameserver.module.task.entity.TaskEntity">
+        <result column="taskId" property="taskId"/>
+        <result column="state" property="state"/>
+        <result column="playerId" property="playerId"/>
+        <result column="taskProgresses" property="taskProgresses"/>
+    </resultMap>
+
+    <!--列表-->
+    <sql id="Base_TaskEntity_Column_List">
+        taskId, state, playerId, taskProgresses
+    </sql>
+
+
+    <select id="selectTaskEntityList" resultMap="TaskEntity">
+        SELECT
+        <include refid="Base_TaskEntity_Column_List" />
+        FROM game_task
+        WHERE playerId = #{playerId}
+    </select>
+
+    <select id="select" resultMap="TaskEntity">
+        SELECT
+        <include refid="Base_TaskEntity_Column_List" />
+        FROM game_task
+        WHERE playerId=#{playerId} AND taskId=#{taskId}
+    </select>
+
+    <insert id="insert" parameterType="com.game.gameserver.module.task.entity.TaskEntity">
+        INSERT INTO game_task
+        (taskId, state, playerId, taskProgresses)
+        VALUES (#{taskId},#{state},#{playerId},
+        #{taskProgresses,jdbcType=BLOB,typeHandler=com.game.gameserver.util.typehandler.TypeHandler})
+    </insert>
+
+    <update id="update" parameterType="com.game.gameserver.module.task.entity.TaskEntity">
+        UPDATE game_task
+        <set>
+            <if test="taskId != null">
+                taskId = #{taskId},
+            </if>
+            <if test="state != null">
+                state = #{state},
+            </if>
+            <if test="playerId != null">
+                playerId = #{playerId},
+            </if>
+            <if test="taskProgresses != null">
+                taskProgresses = #{taskProgresses,
+                jdbcType=BLOB,typeHandler=com.game.gameserver.util.typehandler.TypeHandler},
+            </if>
+        </set>
+        WHERE playerId=#{playerId} AND taskId=#{taskId}
+    </update>
+
+    <delete id="delete">
+         DELETE FROM game_task
+         WHERE playerId = #{playerId} AND taskId=#{taskId}
+    </delete>
+</mapper>

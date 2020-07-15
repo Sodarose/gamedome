@@ -4,6 +4,8 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
 import com.game.gameserver.common.config.ItemConfig;
 import com.game.gameserver.common.config.StaticConfigManager;
+import com.game.gameserver.event.EventBus;
+import com.game.gameserver.event.event.AddItemEvent;
 import com.game.gameserver.module.backbag.dao.BackBagDbService;
 import com.game.gameserver.module.backbag.entity.BackBagEntity;
 import com.game.gameserver.module.backbag.helper.BackBagHelper;
@@ -38,12 +40,12 @@ public class BackBagService {
     /**
      * 读取用户背包
      *
-     * @param playerDomain
+     * @param player
      * @return void
      */
-    public void loadPlayerBackBag(Player playerDomain) {
+    public void loadPlayerBackBag(Player player) {
         // 从数据库中获取数据
-        BackBagEntity backBagEntity = backBagDbService.select(playerDomain.getPlayerEntity().getId());
+        BackBagEntity backBagEntity = backBagDbService.select(player.getPlayerEntity().getId());
         BackBag backBag = new BackBag(backBagEntity);
         // 解析Json 获得道具表
         Map<Integer, Item> itemMap = JSON.parseObject(backBagEntity.getItems(),
@@ -54,45 +56,45 @@ public class BackBagService {
             backBag.getItemMap().put(key, value);
         });
         // 放入玩家实体
-        playerDomain.setBackBag(backBag);
+        player.setBackBag(backBag);
         // 同步数据到客户端
-        NotificationHelper.syncBackBag(playerDomain);
+        NotificationHelper.syncBackBag(player);
     }
 
-    public Item getItem(Player playerDomain, int bagIndex) {
-        BackBag backBag = playerDomain.getBackBag();
+    public Item getItem(Player player, int bagIndex) {
+        BackBag backBag = player.getBackBag();
         if (!verifyIndex(backBag, bagIndex)) {
-            NotificationHelper.notifyPlayer(playerDomain, "参数位置错误");
+            NotificationHelper.notifyPlayer(player, "参数位置错误");
             return null;
         }
-        return playerDomain.getBackBag().getItemMap().get(bagIndex);
+        return player.getBackBag().getItemMap().get(bagIndex);
     }
 
     /**
      * 展示玩家背包
      *
-     * @param playerDomain
+     * @param player
      * @return void
      */
-    public void showPlayerBackBag(Player playerDomain) {
-        BackBag backBag = playerDomain.getBackBag();
-        NotificationHelper.notifyPlayer(playerDomain, BackBagHelper.buildPlayerBackBag(backBag));
+    public void showPlayerBackBag(Player player) {
+        BackBag backBag = player.getBackBag();
+        NotificationHelper.notifyPlayer(player, BackBagHelper.buildPlayerBackBag(backBag));
         // 同步数据到客户端
-        NotificationHelper.syncBackBag(playerDomain);
+        NotificationHelper.syncBackBag(player);
     }
 
     /**
      * 移动道具
      *
-     * @param playerDomain
+     * @param player
      * @param sourceIndex  原位置
      * @param targetIndex  目标位置
      * @return void
      */
-    public void moveItem(Player playerDomain, int sourceIndex, int targetIndex) {
-        BackBag backBag = playerDomain.getBackBag();
+    public void moveItem(Player player, int sourceIndex, int targetIndex) {
+        BackBag backBag = player.getBackBag();
         if (!verifyIndex(backBag, sourceIndex) && verifyIndex(backBag, targetIndex)) {
-            NotificationHelper.notifyPlayer(playerDomain, "参数位置错误");
+            NotificationHelper.notifyPlayer(player, "参数位置错误");
             return;
         }
 
@@ -102,7 +104,7 @@ public class BackBagService {
             // 取出道具
             Item sourceItem = backBag.getItemMap().remove(sourceIndex);
             if (sourceItem == null) {
-                NotificationHelper.notifyPlayer(playerDomain, "该位置没有物品");
+                NotificationHelper.notifyPlayer(player, "该位置没有物品");
                 return;
             }
             // 取出目标位置的道具
@@ -112,15 +114,15 @@ public class BackBagService {
             sourceItem.setBagIndex(targetIndex);
             // 如果目标位置不为空
             if (targetItem != null) {
-                playerDomain.getBackBag().getItemMap().put(sourceIndex, targetItem);
+                player.getBackBag().getItemMap().put(sourceIndex, targetItem);
                 targetItem.setBagIndex(sourceIndex);
             }
         } finally {
             lock.unlock();
         }
         // 同步数据
-        NotificationHelper.notifyPlayer(playerDomain, "移动道具到" + targetIndex + "位置");
-        NotificationHelper.syncBackBag(playerDomain);
+        NotificationHelper.notifyPlayer(player, "移动道具到" + targetIndex + "位置");
+        NotificationHelper.syncBackBag(player);
     }
 
     /**
@@ -149,11 +151,11 @@ public class BackBagService {
     /**
      * 整理背包
      *
-     * @param playerDomain
+     * @param player
      * @return void
      */
-    public void clearUpBag(Player playerDomain) {
-        BackBag backBag = playerDomain.getBackBag();
+    public void clearUpBag(Player player) {
+        BackBag backBag = player.getBackBag();
         Lock lock = backBag.getWriteLock();
         lock.lock();
         try {
@@ -185,18 +187,18 @@ public class BackBagService {
             lock.unlock();
         }
         // 同步
-        NotificationHelper.syncBackBag(playerDomain);
+        NotificationHelper.syncBackBag(player);
     }
 
     /**
      * 放入道具
      *
-     * @param playerDomain
+     * @param player
      * @param item
      * @return boolean
      */
-    public boolean addItem(Player playerDomain, Item item) {
-        BackBag backBag = playerDomain.getBackBag();
+    public boolean addItem(Player player, Item item) {
+        BackBag backBag = player.getBackBag();
         if (item == null) {
             return false;
         }
@@ -214,27 +216,33 @@ public class BackBagService {
                     if (targetItem != null && targetItem.getItemConfigId().equals(item.getItemConfigId())) {
                         // 判断是否达到叠加上限
            /*             if(targetItem.getNum()+item.getNum()>itemConfig.getOverNum()){
-                            NotificationHelper.notifyPlayer(playerDomain, "持有物品达到上线");
+                            NotificationHelper.notifyPlayer(player, "持有物品达到上线");
                             return false;
                         }*/
                         targetItem.addNum(item.getNum());
-                        NotificationHelper.notifyPlayer(playerDomain, MessageFormat
+                        NotificationHelper.notifyPlayer(player, MessageFormat
                                 .format("物品{0} x {1}已经放入背包中", itemConfig.getName(), item.getNum()));
+                        // 发出增加道具事件
+                        AddItemEvent addItemEvent = new AddItemEvent(player,item);
+                        EventBus.EVENT_BUS.fire(addItemEvent);
                         return true;
                     }
                 }
             }
             // 不可堆叠的道具 找到一个空位放入
             if (!backBag.hasScape()) {
-                NotificationHelper.notifyPlayer(playerDomain, "背包没有空余位置");
+                NotificationHelper.notifyPlayer(player, "背包没有空余位置");
                 return false;
             }
             for (int i = 0; i < backBag.getCapacity(); i++) {
                 if (backBag.getItemMap().get(i) == null) {
                     item.setBagIndex(i);
                     backBag.getItemMap().put(i, item);
-                    NotificationHelper.notifyPlayer(playerDomain, MessageFormat
+                    NotificationHelper.notifyPlayer(player, MessageFormat
                             .format("物品{0}已经放入背包中", itemConfig.getName()));
+                    // 发出增加道具事件
+                    AddItemEvent addItemEvent = new AddItemEvent(player,item);
+                    EventBus.EVENT_BUS.fire(addItemEvent);
                     return true;
                 }
             }
@@ -300,15 +308,15 @@ public class BackBagService {
     /**
      * 移除道具
      *
-     * @param playerDomain
+     * @param player
      * @param bagIndex
      * @return com.game.gameserver.module.item.model.Item
      */
-    public Item removeItem(Player playerDomain, int bagIndex) {
-        BackBag backBag = playerDomain.getBackBag();
+    public Item removeItem(Player player, int bagIndex) {
+        BackBag backBag = player.getBackBag();
         // 验证位置参数
         if (!verifyIndex(backBag, bagIndex)) {
-            NotificationHelper.notifyPlayer(playerDomain, "参数位置错误");
+            NotificationHelper.notifyPlayer(player, "参数位置错误");
             return null;
         }
         Lock lock = backBag.getWriteLock();
@@ -316,7 +324,7 @@ public class BackBagService {
         try {
             Item item = backBag.getItemMap().get(bagIndex);
             if (item == null) {
-                NotificationHelper.notifyPlayer(playerDomain, "该位置没有道具");
+                NotificationHelper.notifyPlayer(player, "该位置没有道具");
                 return null;
             }
             // 移除该道具
@@ -324,10 +332,10 @@ public class BackBagService {
             // 同步数据
             ItemConfig itemConfig = StaticConfigManager.getInstance()
                     .getItemConfigMap().get(item.getItemConfigId());
-            NotificationHelper.notifyPlayer(playerDomain, MessageFormat.format(
+            NotificationHelper.notifyPlayer(player, MessageFormat.format(
                     "从背包中移除{0}", itemConfig.getName()
             ));
-            NotificationHelper.syncBackBag(playerDomain);
+            NotificationHelper.syncBackBag(player);
             return item;
         } finally {
             lock.unlock();

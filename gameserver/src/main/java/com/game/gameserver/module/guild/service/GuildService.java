@@ -1,5 +1,7 @@
 package com.game.gameserver.module.guild.service;
 
+import com.game.gameserver.event.EventBus;
+import com.game.gameserver.event.event.GuildEvent;
 import com.game.gameserver.module.guild.dao.GuildDbService;
 import com.game.gameserver.module.guild.dao.GuildWarehouseDbService;
 import com.game.gameserver.module.guild.model.Guild;
@@ -228,6 +230,8 @@ public class GuildService {
                 NotificationHelper.notifyGuild(guild, MessageFormat.format("玩家{0}加入公会", player.getName()));
                 NotificationHelper.notifyPlayer(applyPlayer, "你已经加入该公会");
                 // 抛出加入公会事件
+                GuildEvent guildEvent = new GuildEvent(applyPlayer,guild);
+                EventBus.EVENT_BUS.fire(guildEvent);
 
             } else if (agree == 0) {
                 // 删除申请表里面的信息

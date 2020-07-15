@@ -169,10 +169,21 @@ public enum Cmd {
     /** 从仓库拿去*/
     TAKEOUT_GUILD_W(ModuleKey.GUILD_MODULE,GuildCmd.TAKEOUT_GUILD_W),
     /** 整理仓库*/
-    CLEAR_UP_W(ModuleKey.GUILD_MODULE,GuildCmd.CLEAR_UP_W)
+    CLEAR_UP_W(ModuleKey.GUILD_MODULE,GuildCmd.CLEAR_UP_W),
 
     /** 任务*/
-
+    /** 查看所有任务 */
+    SHOW_ALL_TASK(ModuleKey.TASK_MODULE,TaskCmd.SHOW_ALL_TASK),
+    /** 查看可接受任务 */
+    SHOW_RECEIVE_ABLE_TASK(ModuleKey.TASK_MODULE,TaskCmd.SHOW_RECEIVE_ABLE_TASK),
+    /** 展示已接受任务*/
+    SHOW_RECEIVE_TASK(ModuleKey.TASK_MODULE,TaskCmd.SHOW_RECEIVE_TASK),
+    /** 接收任务 */
+    ACCEPT_TASK(ModuleKey.TASK_MODULE,TaskCmd.ACCEPT_TASK),
+    /** 取消任务 */
+    CANCEL_TASK(ModuleKey.TASK_MODULE,TaskCmd.CANCEL_TASK),
+    /** 提交任务 */
+    SUBMIT_TASK(ModuleKey.TASK_MODULE,TaskCmd.SUBMIT_TASK)
     /** 成就*/
     ;
 

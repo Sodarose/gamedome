@@ -33,7 +33,7 @@ public class EventBus {
     /**
      * 事件
      */
-    private final Map<Integer, List<EventExecutor>> eventExecutorMap = new HashMap<>();
+    private final Map<Class<? extends Event>, List<EventExecutor>> eventExecutorMap = new HashMap<>();
 
     /**
      * 线程工厂
@@ -43,7 +43,7 @@ public class EventBus {
     /**
      * 事件线程
      */
-    public final static ExecutorService EVENT_THREAD = new ThreadPoolExecutor(
+    private final static ExecutorService EVENT_THREAD = new ThreadPoolExecutor(
             1,
             1,
             30, TimeUnit.MINUTES,
@@ -58,8 +58,7 @@ public class EventBus {
      * @return void
      */
     public void fire(Event event) {
-        int type = event.getEventType();
-        List<EventExecutor> executors = eventExecutorMap.get(type);
+        List<EventExecutor> executors = eventExecutorMap.get(event.getClass());
         if (executors == null || executors.size() == 0) {
             return;
         }
@@ -78,19 +77,19 @@ public class EventBus {
     /**
      * 注册事件
      *
-     * @param type
+     * @param event 事件
      * @param eventExecutor
      * @return void
      */
-    public void register(int type, EventExecutor eventExecutor) {
+    public void register(Class<? extends Event> event, EventExecutor eventExecutor) {
         if (eventExecutor == null) {
             return;
         }
-        List<EventExecutor> executors = eventExecutorMap.get(type);
+        List<EventExecutor> executors = eventExecutorMap.get(event);
         if (executors == null) {
             executors = new ArrayList<>();
             executors.add(eventExecutor);
-            eventExecutorMap.put(type, executors);
+            eventExecutorMap.put(event, executors);
             return;
         }
         executors.add(eventExecutor);
@@ -108,9 +107,21 @@ public class EventBus {
                 if (eventHandler == null) {
                     continue;
                 }
-                int type = eventHandler.type();
-                EventExecutor executor = new EventExecutor(type, method, entry.getValue());
-                EventBus.EVENT_BUS.register(type, executor);
+                // 获得参数类型数组
+                Class<?>[] parameterTypes = method.getParameterTypes();
+                // 判断参数个数
+                if (parameterTypes.length != 1) {
+                    throw new IllegalArgumentException();
+                }
+                // 判断参数类型
+                if (!Event.class.isAssignableFrom(parameterTypes[0])) {
+                    throw new IllegalArgumentException();
+                }
+                // 创建执行器
+                EventExecutor executor = new EventExecutor(method, entry.getValue());
+                // 放入map
+                Class<? extends Event> event = (Class<? extends Event>) parameterTypes[0];
+                EventBus.EVENT_BUS.register(event, executor);
             }
         }
     }

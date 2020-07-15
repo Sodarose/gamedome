@@ -43,13 +43,13 @@ public class EmailService {
     /**
      * 加载用户邮箱
      *
-     * @param playerDomain
+     * @param player
      * @return void
      */
-    public void loadEmail(Player playerDomain) {
+    public void loadEmail(Player player) {
         // 数据库中读取数据
-        List<EmailEntity> emailEntityList = emailDbService.selectEmailList(playerDomain.getPlayerEntity().getId());
-        EmailBox emailBox = new EmailBox(playerDomain.getPlayerEntity().getId());
+        List<EmailEntity> emailEntityList = emailDbService.selectEmailList(player.getPlayerEntity().getId());
+        EmailBox emailBox = new EmailBox(player.getPlayerEntity().getId());
         emailEntityList.forEach(emailEntity -> {
             Email email = EmailHelper.createEmail(emailEntity);
             emailBox.getEmailMap().put(email.getId(),email);
@@ -110,13 +110,13 @@ public class EmailService {
             return false;
         }
         // 查看玩家是否在线
-        Player playerDomain = playerService.getPlayer(receiverId);
-        if (playerDomain != null) {
+        Player player = playerService.getPlayer(receiverId);
+        if (player != null) {
             EmailBox emailBox = emailManager.getEmailBox(receiverId);
             if (emailBox != null) {
                 // 将邮件放入玩家缓存中
                 emailBox.getEmailMap().put(email.getId(), email);
-                NotificationHelper.notifyPlayer(playerDomain, "您有一封新的邮件!");
+                NotificationHelper.notifyPlayer(player, "您有一封新的邮件!");
             }
         }
         return true;

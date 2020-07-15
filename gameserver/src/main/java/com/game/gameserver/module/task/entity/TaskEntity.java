@@ -17,9 +17,6 @@ import java.util.List;
  */
 @Data
 public class TaskEntity {
-    /** 存储在数据库中的id*/
-    private Long id;
-
     /** 任务资源id*/
     private Integer taskId;
 
@@ -29,22 +26,10 @@ public class TaskEntity {
     /** 任务所属的角色*/
     private Long playerId;
 
-    /** 任务进度/要求 */
-    private List<TaskProgress> taskProgresses;
+    /** 任务进度 */
+    private String taskProgresses;
 
     public TaskEntity(){
 
     }
-
-    /** 新创建一个任务时使用 */
-    public TaskEntity(long playerId, TaskConfig taskConfig){
-        this.id = GameUUID.getInstance().generate();
-        this.taskId = taskConfig.getId();
-        // 设定为已接受状态（进行中）
-        this.state = TaskState.ACCEPTED;
-        this.playerId = playerId;
-        // 解析要求
-        this.taskProgresses = TaskUtil.parserTaskRequire(taskConfig.getTaskRequire());
-    }
-
 }

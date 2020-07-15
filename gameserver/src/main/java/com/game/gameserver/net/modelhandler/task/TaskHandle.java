@@ -1,8 +1,16 @@
 package com.game.gameserver.net.modelhandler.task;
 
+import com.game.gameserver.module.notification.NotificationHelper;
+import com.game.gameserver.module.player.model.Player;
+import com.game.gameserver.module.player.service.PlayerService;
+import com.game.gameserver.module.task.service.TaskService;
+import com.game.gameserver.net.annotation.CmdHandler;
 import com.game.gameserver.net.annotation.ModuleHandler;
 import com.game.gameserver.net.handler.BaseHandler;
 import com.game.gameserver.net.modelhandler.ModuleKey;
+import com.game.message.Message;
+import io.netty.channel.Channel;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
@@ -12,161 +20,70 @@ import org.springframework.stereotype.Component;
 @Component
 @ModuleHandler(module = ModuleKey.TASK_MODULE)
 public class TaskHandle extends BaseHandler {
-
-   /* @Autowired
+    @Autowired
     private TaskService taskService;
 
-    *//**
-     * 查询所有任务
-     *
-     * @param message
-     * @param channel
-     * @return void
-     *//*
-    @CmdHandler(cmd = TaskCmd.QUERY_ALL_TASK)
-    public void handleQueryAllTaskReq(Message message, Channel channel) {
+    @CmdHandler(cmd = TaskCmd.SHOW_ALL_TASK)
+    public void showAllTask(Message message, Channel channel){
         Player player = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
         if (player == null) {
+            NotificationHelper.notifyChannel(channel, "请先登录角色");
             return;
         }
-        TaskProtocol.QueryAllTaskRes res = taskService.queryAllTask(player.getId());
-        Message resMsg = MessageUtil.createMessage(ModuleKey.TASK_MODULE, TaskCmd.QUERY_ALL_TASK,
-                res.toByteArray());
-        channel.writeAndFlush(resMsg);
+        taskService.showAllTask(player);
     }
 
-    *//**
-     * 查询可接受的任务
-     *
-     * @param message
-     * @param channel
-     * @return void
-     *//*
-    @CmdHandler(cmd = TaskCmd.QUERY_RECEIVE_ABLE_TASK)
-    public void handleQueryReceiveAbleTask(Message message, Channel channel) {
+    @CmdHandler(cmd = TaskCmd.SHOW_RECEIVE_ABLE_TASK)
+    public void showReceiveAbleTask(Message message,Channel channel){
         Player player = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
         if (player == null) {
+            NotificationHelper.notifyChannel(channel, "请先登录角色");
             return;
         }
-        TaskProtocol.QueryReceiveAbleTaskRes res = taskService.queryReceiveAbleTask(player.getId());
-        Message resMsg = MessageUtil.createMessage(ModuleKey.TASK_MODULE, TaskCmd.QUERY_RECEIVE_ABLE_TASK,
-                res.toByteArray());
-        channel.writeAndFlush(resMsg);
+        taskService.showReceiveAbleTask(player);
     }
 
-    *//**
-     * 查询已经接受的任务
-     *
-     * @param message
-     * @param channel
-     * @return void
-     *//*
-    @CmdHandler(cmd = TaskCmd.QUERY_RECEIVE_TASK)
-    public void handleQueryReceiveTaskReq(Message message, Channel channel) {
+    @CmdHandler(cmd = TaskCmd.SHOW_RECEIVE_TASK)
+    public void showReceiveTask(Message message,Channel channel){
         Player player = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
         if (player == null) {
+            NotificationHelper.notifyChannel(channel, "请先登录角色");
             return;
         }
-        TaskProtocol.QueryReceiveTaskRes res = taskService.queryReceiveTask(player.getId());
-        Message resMsg = MessageUtil.createMessage(ModuleKey.TASK_MODULE, TaskCmd.QUERY_RECEIVE_TASK, res.toByteArray());
-        channel.writeAndFlush(resMsg);
+        taskService.showReceiveTask(player);
     }
 
-    *//**
-     * 接受任务请求
-     *
-     * @param message
-     * @param channel
-     * @return void
-     *//*
     @CmdHandler(cmd = TaskCmd.ACCEPT_TASK)
-    public void handleAcceptTaskReq(Message message, Channel channel) {
+    public void acceptTask(Message message,Channel channel){
         Player player = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
         if (player == null) {
+            NotificationHelper.notifyChannel(channel, "请先登录角色");
             return;
         }
-        try {
-            TaskProtocol.AcceptTaskReq req = TaskProtocol.AcceptTaskReq.parseFrom(message.getData());
-            TaskProtocol.AcceptTaskTes res = taskService.acceptTask(player.getId(), req.getTaskId());
-            Message resMsg = MessageUtil.createMessage(ModuleKey.TASK_MODULE, TaskCmd.ACCEPT_TASK, res
-                    .toByteArray());
-            channel.writeAndFlush(resMsg);
-        } catch (InvalidProtocolBufferException e) {
-            e.printStackTrace();
-        }
+        int taskId = Integer.parseInt(message.getContent());
+        taskService.acceptTask(player,taskId);
     }
 
-    *//**
-     * 取消任务
-     *
-     * @param message
-     * @param channel
-     * @return void
-     *//*
     @CmdHandler(cmd = TaskCmd.CANCEL_TASK)
-    public void handleCancelTaskReq(Message message, Channel channel) {
+    public void cancelTask(Message message,Channel channel){
         Player player = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
         if (player == null) {
+            NotificationHelper.notifyChannel(channel, "请先登录角色");
             return;
         }
-        try {
-            TaskProtocol.CancelTaskReq req = TaskProtocol.CancelTaskReq.parseFrom(message.getData());
-            TaskProtocol.CancelTaskRes res = taskService.cancelTask(player.getId(),req.getTaskId());
-            Message resMsg = MessageUtil.createMessage(ModuleKey.TASK_MODULE, TaskCmd.CANCEL_TASK, res
-                    .toByteArray());
-            channel.writeAndFlush(resMsg);
-        } catch (InvalidProtocolBufferException e) {
-            e.printStackTrace();
-        }
+        int taskId = Integer.parseInt(message.getContent());
+        taskService.cancelTask(player,taskId);
     }
 
-    *//**
-     * 提交任务
-     *
-     * @param message
-     * @param channel
-     * @return void
-     *//*
     @CmdHandler(cmd = TaskCmd.SUBMIT_TASK)
-    public void handleSubmitTaskReq(Message message, Channel channel) {
+    public void submitTask(Message message,Channel channel){
         Player player = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
         if (player == null) {
+            NotificationHelper.notifyChannel(channel, "请先登录角色");
             return;
         }
-        try {
-            TaskProtocol.SubmitTaskReq req = TaskProtocol.SubmitTaskReq.parseFrom(message.getData());
-            TaskProtocol.SubmitTaskRes res = taskService.submitTask(player.getId(),req.getTaskId());
-            Message resMsg = MessageUtil.createMessage(ModuleKey.TASK_MODULE, TaskCmd.SUBMIT_TASK, res
-                    .toByteArray());
-            channel.writeAndFlush(resMsg);
-        } catch (InvalidProtocolBufferException e) {
-            e.printStackTrace();
-        }
+        int taskId = Integer.parseInt(message.getContent());
+        taskService.submitTask(player,taskId);
     }
-
-    *//**
-     * 查看任务
-     *
-     * @param message
-     * @param channel
-     * @return void
-     *//*
-    @CmdHandler(cmd = TaskCmd.CHECK_TASK)
-    public void handleCheckTaskReq(Message message, Channel channel) {
-        Player player = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
-        if (player == null) {
-            return;
-        }
-        try {
-            TaskProtocol.CheckTaskReq req = TaskProtocol.CheckTaskReq.parseFrom(message.getData());
-            TaskProtocol.CheckTaskRes res = taskService.checkTask(player.getId(),req.getTaskId());
-            Message resMsg = MessageUtil.createMessage(ModuleKey.TASK_MODULE, TaskCmd.CHECK_TASK, res
-                    .toByteArray());
-            channel.writeAndFlush(resMsg);
-        } catch (InvalidProtocolBufferException e) {
-            e.printStackTrace();
-        }
-    }
-*/
 
 }

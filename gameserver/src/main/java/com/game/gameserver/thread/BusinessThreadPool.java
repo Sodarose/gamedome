@@ -15,7 +15,7 @@ public class BusinessThreadPool {
     private final static ThreadFactory BUSINESS_THREAD_FACTORY = new ThreadFactoryBuilder()
             .setNameFormat("business-pool-%d").setUncaughtExceptionHandler((t,e) -> e.printStackTrace()).build();
     /** 业务线程池 */
-    public final static ExecutorService BUSINESS_THREAD_POOL = new ThreadPoolExecutor(
+    public final static ThreadPoolExecutor BUSINESS_THREAD_POOL = new ThreadPoolExecutor(
             Runtime.getRuntime().availableProcessors(),
             Runtime.getRuntime().availableProcessors()*2,
             30, TimeUnit.MINUTES,

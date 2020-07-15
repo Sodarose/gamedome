@@ -59,19 +59,4 @@ public class AchievementConfig {
     @JSONField(serialize = false)
     private List<Integer> equipAwards;
 
-    public Map<Integer, Integer> getPropAwards() {
-        if (propAwards != null) {
-            return propAwards;
-        }
-        propAwards = TaskUtil.parserPropAwards(props);
-        return propAwards;
-    }
-
-    public List<Integer> getEquipAwards() {
-        if (equipAwards != null) {
-            return equipAwards;
-        }
-        equipAwards = TaskUtil.parserEquipAwards(equips);
-        return equipAwards;
-    }
 }

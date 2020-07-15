@@ -2,6 +2,8 @@ package com.game.gameserver.module.task.model;
 
 import lombok.Data;
 
+import java.io.Serializable;
+
 /**
  * 任务进度
  *
@@ -9,41 +11,28 @@ import lombok.Data;
  * @date 2020/6/29 17:48
  */
 @Data
-public class TaskProgress {
-    /**
-     * 行为事件类型
-     */
-    private int type;
+public class TaskProgress implements Serializable {
 
     /**
-     * 目标
+     * 任务条件Id
      */
     private int target;
-
     /**
-     * 需要完成数量
+     * 当前进度
      */
-    private int amount;
-
-    /**
-     * 已完成数量
-     */
-    private int num;
-
+    private int progress;
     /**
      * 当前条件状态 true当前进度已经完成
      */
-    private boolean complete;
+    private boolean completed = false;
 
-    public TaskProgress(int type, int target, int amount) {
-        this.type = type;
-        this.target = target;
-        this.amount = amount;
-        this.num = 0;
-        this.complete = false;
+    public void addProgress(int value) {
+        this.progress += value;
     }
 
-    public void addNum(int value) {
-        this.num += value;
+    public TaskProgress(int target){
+        this.target = target;
+        this.progress = 0;
+        this.completed = false;
     }
 }

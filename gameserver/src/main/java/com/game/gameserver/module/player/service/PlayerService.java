@@ -14,6 +14,7 @@ import com.game.gameserver.module.player.helper.PlayerHelper;
 import com.game.gameserver.module.player.manager.PlayerManager;
 import com.game.gameserver.module.player.entity.PlayerEntity;
 import com.game.gameserver.module.scene.service.SceneService;
+import com.game.gameserver.module.task.service.TaskService;
 import com.game.gameserver.module.user.module.User;
 import com.game.gameserver.util.GameUUID;
 import io.netty.channel.Channel;
@@ -55,6 +56,8 @@ public class PlayerService {
     private EmailService emailService;
     @Autowired
     private FriendService friendService;
+    @Autowired
+    private TaskService taskService;
 
     /**
      * 获得账户角色列表
@@ -151,7 +154,7 @@ public class PlayerService {
      */
     public void showPlayer(Player player) {
         NotificationHelper.syncPlayer(player);
-        NotificationHelper.notifyPlayer(player, PlayerHelper.buildPlayerDomain(player));
+        NotificationHelper.notifyPlayer(player, PlayerHelper.buildplayer(player));
     }
 
 
@@ -203,7 +206,8 @@ public class PlayerService {
         // 加载用户背包
         backBagService.loadPlayerBackBag(player);
         // 加载用户技能
-
+        // 加载用户任务
+        taskService.loadPlayerTask(player);
         // 加载用户邮件
         emailService.loadEmail(player);
         // 加载用户好友
@@ -214,15 +218,15 @@ public class PlayerService {
         sceneService.initPlayerEntryScene(player);
     }
 
-    public void logout(Player playerDomain) {
+    public void logout(Player player) {
         // 退出场景
-        sceneService.exitScene(playerDomain);
+        sceneService.exitScene(player);
         // 保存数据
-        playerDbService.updateAsync(playerDomain.getPlayerEntity());
-        playerDomain.getChannel().attr(PLAYER_ENTITY_ATTRIBUTE_KEY).set(null);
-        NotificationHelper.notifyPlayer(playerDomain,"退出当前角色");
+        playerDbService.updateAsync(player.getPlayerEntity());
+        player.getChannel().attr(PLAYER_ENTITY_ATTRIBUTE_KEY).set(null);
+        NotificationHelper.notifyPlayer(player,"退出当前角色");
         // 从缓存中剔除
-        playerManager.removePlayer(playerDomain.getPlayerEntity().getId());
+        playerManager.removePlayer(player.getPlayerEntity().getId());
     }
 
     public Player getPlayer(long playerId){

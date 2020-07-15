@@ -1,5 +1,8 @@
 package com.game.gameserver.module.team.service;
 
+import com.game.gameserver.event.Event;
+import com.game.gameserver.event.EventBus;
+import com.game.gameserver.event.event.TeamEvent;
 import com.game.gameserver.module.notification.NotificationHelper;
 import com.game.gameserver.module.player.model.Player;
 import com.game.gameserver.module.player.service.PlayerService;
@@ -193,8 +196,9 @@ public class TeamService {
         // 进入组队
         team.getMemberMap().put(targetPlayer.getPlayerEntity().getId(), targetPlayer);
         targetPlayer.setTeamId(team.getId());
-        // 发出组队事件
-
+        // 发出组队事件 对方事件
+        TeamEvent teamEvent = new TeamEvent(targetPlayer,team);
+        EventBus.EVENT_BUS.fire(teamEvent);
         NotificationHelper.notifyTeam(team, MessageFormat.format("玩家{0}进入队伍", targetPlayer
                 .getPlayerEntity().getName()));
 
@@ -233,7 +237,9 @@ public class TeamService {
         // 进入组队
         team.getMemberMap().put(player.getPlayerEntity().getId(), player);
         player.setTeamId(team.getId());
-
+        // 发出组队事件
+        TeamEvent teamEvent = new TeamEvent(player,team);
+        EventBus.EVENT_BUS.fire(teamEvent);
         NotificationHelper.notifyTeam(team, MessageFormat.format("玩家{0}进入队伍", player
                 .getPlayerEntity().getName()));
     }

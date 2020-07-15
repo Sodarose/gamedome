@@ -1,5 +1,7 @@
 package com.game.gameserver.util;
 
+import com.game.gameserver.common.config.ItemConfig;
+import com.game.gameserver.common.config.StaticConfigManager;
 import com.game.gameserver.module.task.model.TaskProgress;
 
 import java.util.ArrayList;
@@ -21,7 +23,7 @@ public class TaskUtil {
      * @param taskRequire
      * @return java.util.List<com.game.gameserver.module.task.model.TaskProgress>
      */
-    public static List<TaskProgress> parserTaskRequire(String taskRequire) {
+    /*public static List<TaskProgress> parserTaskRequire(String taskRequire) {
         List<TaskProgress> taskProgresses = new ArrayList<>();
         String[] requireStrs = taskRequire.split("\\|");
         for (String requireStr : requireStrs) {
@@ -38,7 +40,7 @@ public class TaskUtil {
             taskProgresses.add(taskProgress);
         }
         return taskProgresses;
-    }
+    }*/
 
 
 
@@ -48,33 +50,11 @@ public class TaskUtil {
      * @param taskProgress
      * @return java.lang.String
      */
-    public static String parserTaskRequireByStr(TaskProgress taskProgress) {
+  /*  public static String parserTaskRequireByStr(TaskProgress taskProgress) {
         int type = taskProgress.getType();
         StringBuilder builder = new StringBuilder();
-        switch (type) {
-            // 杀敌任务
-            /*case EventType.EVENT_TYPE_MONSTER_DEAD:
-                // 获取目标
-                MonsterConfig monsterConfig = StaticConfigManager
-                        .getInstance().getMonsterConfigMap().get(taskProgress.getTarget());
-                if (monsterConfig == null) {
-                    return "";
-                }
-                // 获取需要击杀数
-                int amount = taskProgress.getAmount();
-                // 获取当前已经击杀数
-                int num = taskProgress.getNum();
-                builder.append("击杀怪物").append(amount).append("只").append(monsterConfig.getName())
-                        .append("\t").append("当前进度").append(num).append("/").append(amount);
-                return builder.toString();
-            // 升级任务
-            case EventType.EVENT_TYPE_LEVEL_UP:
-                return "";
-            default:
-                return "";*/
-        }
         return "";
-    }
+    }*/
 
 
     /**
@@ -83,18 +63,18 @@ public class TaskUtil {
      * @param propsMap
      * @return java.lang.String
      */
-    public static String parserPropsAward2Str(Map<Integer, Integer> propsMap){
+/*    public static String parserPropsAward2Str(Map<Integer, Integer> propsMap){
         StringBuilder result = new StringBuilder();
-      /*  for (Map.Entry<Integer, Integer> entry : propsMap.entrySet()) {
+      for (Map.Entry<Integer, Integer> entry : propsMap.entrySet()) {
             // 获取道具资源
-            PropConfig propConfig = StaticConfigManager.getInstance().getPropConfigMap().get(entry.getKey());
-            if (propConfig == null) {
+            ItemConfig itemConfig = StaticConfigManager.getInstance().getItemConfigMap().get(entry.getKey());
+            if (itemConfig == null) {
                 continue;
             }
-            result.append(propConfig.getName()).append(entry.getValue()).append("\n");
-        }*/
+            result.append(itemConfig.getName()).append(entry.getValue()).append("\n");
+        }
         return result.toString();
-    }
+    }*/
 
     /**
      * 将装备解析为字符串
@@ -102,21 +82,21 @@ public class TaskUtil {
      * @param equipList
      * @return java.lang.String
      */
-    public static String parserEquipAward2Str(List<Integer> equipList){
+   /* public static String parserEquipAward2Str(List<Integer> equipList){
         StringBuilder result = new StringBuilder();
         for (Integer equipId : equipList) {
-         /*   // 获取装备资源
-            EquipConfig equipConfig = StaticConfigManager.getInstance().getEquipConfigMap().get(equipId);
-            if (equipConfig == null) {
+          // 获取装备资源
+             ItemConfig itemConfig = StaticConfigManager.getInstance().getItemConfigMap().get(equipId);
+            if (itemConfig == null) {
                 continue;
             }
-            result.append(equipConfig.getName()).append("\n");*/
+            result.append(itemConfig.getName()).append("\n");
         }
         return result.toString();
-    }
+    }*/
 
     /** 解析道具奖励 */
-    public static Map<Integer, Integer> parserPropAwards(String props) {
+   /* public static Map<Integer, Integer> parserPropAwards(String props) {
         String[] propAwardStrs = props.split("\\|");
         Map<Integer, Integer> propAwards = new HashMap<>(propAwardStrs.length);
         for (String propAwardStr : propAwardStrs) {
@@ -129,10 +109,10 @@ public class TaskUtil {
             propAwards.put(propConfigId, num);
         }
         return propAwards;
-    }
+    }*/
 
     /** 解析装备奖励 */
-    public static List<Integer> parserEquipAwards(String equips) {
+    /*public static List<Integer> parserEquipAwards(String equips) {
         List<Integer> equipAwards = new ArrayList<>();
         String[] equipAwardStrs = equips.split("\\|");
         for (String equipAward : equipAwardStrs) {
@@ -140,5 +120,5 @@ public class TaskUtil {
             equipAwards.add(equipConfigId);
         }
         return equipAwards;
-    }
+    }*/
 }
