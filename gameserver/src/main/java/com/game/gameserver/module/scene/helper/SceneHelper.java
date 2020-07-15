@@ -16,9 +16,9 @@ public class SceneHelper {
         sb.append("场景名称:").append(scene.getName()).append("\n");
         sb.append("场景介绍:").append(scene.getDesc()).append("\n");
         sb.append("玩家列表:");
-        scene.getPlayerMap().values().forEach(playerDomain -> {
-            sb.append(playerDomain.getPlayerEntity().getName()).append("(")
-                    .append(playerDomain.getPlayerBattle().getCurrHp()).append(")")
+        scene.getPlayerMap().values().forEach(player -> {
+            sb.append(player.getPlayerEntity().getName()).append("(")
+                    .append(player.getPlayerBattle().getCurrHp()).append(")")
                     .append("\t");
         });
         sb.append("\n");
@@ -49,11 +49,11 @@ public class SceneHelper {
     public static String buildAio(Scene scene){
         StringBuilder sb = new StringBuilder("场景实体信息：").append("\n");
         sb.append("玩家实体:").append("\n");
-        scene.getPlayerMap().values().forEach(playerDomain -> {
-            sb.append("id:").append(playerDomain.getPlayerEntity().getId()).append("\n");
-            sb.append("name:").append(playerDomain.getPlayerEntity().getName()).append("\n");
-            sb.append("HP:").append(playerDomain.getPlayerBattle().getCurrHp()).append("/")
-                    .append(playerDomain.getPlayerBattle().getHp())
+        scene.getPlayerMap().values().forEach(player -> {
+            sb.append("id:").append(player.getPlayerEntity().getId()).append("\n");
+            sb.append("name:").append(player.getPlayerEntity().getName()).append("\n");
+            sb.append("HP:").append(player.getPlayerBattle().getCurrHp()).append("/")
+                    .append(player.getPlayerBattle().getHp())
                     .append("\n");
         });
         sb.append("\n");

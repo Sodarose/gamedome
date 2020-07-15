@@ -31,8 +31,8 @@ public class PlayerManager {
         return LOCAL_PLAYER_MAP.get(playerId);
     }
 
-    public void putPlayer(long playerId, Player playerDomain){
-        LOCAL_PLAYER_MAP.put(playerId,playerDomain);
+    public void putPlayer(long playerId, Player player){
+        LOCAL_PLAYER_MAP.put(playerId,player);
     }
 
     public void removePlayer(long playerId){

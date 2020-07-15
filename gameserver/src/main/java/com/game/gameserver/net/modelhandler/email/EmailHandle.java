@@ -28,29 +28,29 @@ public class EmailHandle extends BaseHandler {
 
     @CmdHandler(cmd = EmailCmd.SHOW_EMAIL_BOX)
     public void showEmailBox(Message message,Channel channel){
-        Player playerDomain = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
-        if (playerDomain == null) {
+        Player userTask = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
+        if (userTask == null) {
             NotificationHelper.notifyChannel(channel, "请先登录角色");
             return;
         }
-        emailService.showEmailBox(playerDomain);
+        emailService.showEmailBox(userTask);
     }
 
     @CmdHandler(cmd = EmailCmd.SHOW_EMAIL)
     public void showEmail(Message message,Channel channel){
-        Player playerDomain = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
-        if (playerDomain == null) {
+        Player userTask = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
+        if (userTask == null) {
             NotificationHelper.notifyChannel(channel, "请先登录角色");
             return;
         }
         long emailId = Long.parseLong(message.getContent());
-        emailService.showEmail(playerDomain,emailId);
+        emailService.showEmail(userTask,emailId);
     }
 
     @CmdHandler(cmd = EmailCmd.SEND_EMAIL)
     public void sendEmail(Message message,Channel channel){
-        Player playerDomain = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
-        if (playerDomain == null) {
+        Player userTask = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
+        if (userTask == null) {
             NotificationHelper.notifyChannel(channel, "请先登录角色");
             return;
         }
@@ -63,28 +63,28 @@ public class EmailHandle extends BaseHandler {
         for(int i=4;i<param.length;i++){
             bagIndexs.add(Integer.parseInt(param[i]));
         }
-        emailService.sendEmailByPlayer(playerDomain,receiverId,title,content,golds,bagIndexs);
+        emailService.sendEmailByPlayer(userTask,receiverId,title,content,golds,bagIndexs);
     }
 
     @CmdHandler(cmd = EmailCmd.DELETE_EMAIL)
     public void deleteEmail(Message message,Channel channel){
-        Player playerDomain = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
-        if (playerDomain == null) {
+        Player userTask = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
+        if (userTask == null) {
             NotificationHelper.notifyChannel(channel, "请先登录角色");
             return;
         }
         long emailId = Long.parseLong(message.getContent());
-        emailService.deleteEmail(playerDomain,emailId);
+        emailService.deleteEmail(userTask,emailId);
     }
 
     @CmdHandler(cmd = EmailCmd.EXTRACT_ATTACH)
     public void extractAttach(Message message,Channel channel){
-        Player playerDomain = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
-        if (playerDomain == null) {
+        Player userTask = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
+        if (userTask == null) {
             NotificationHelper.notifyChannel(channel, "请先登录角色");
             return;
         }
         long emailId = Long.parseLong(message.getContent());
-        emailService.extractAttachments(playerDomain,emailId);
+        emailService.extractAttachments(userTask,emailId);
     }
 }

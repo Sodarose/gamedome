@@ -18,6 +18,8 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
+*//*
+
 */
 /**
  * 副本管理器
@@ -25,6 +27,7 @@ import java.util.concurrent.TimeUnit;
  * @author xuewenkang
  * @date 2020/6/8 18:29
  *//*
+
 
 @Component
 @Listener
@@ -40,16 +43,21 @@ public class InstanceManager {
     private Worker worker;
 
 
-    */
+
+*/
 /**
      * 副本对象
      *//*
 
+
     private final Map<Long, InstanceObject> instanceObjectMap = new ConcurrentHashMap<>(1);
-    */
+
+*/
 /**
      * 待移除副本
      *//*
+*/
+/*
 
     private Map<Long, InstanceObject> removeMap = new ConcurrentHashMap<>(1);
 
@@ -108,4 +116,5 @@ public class InstanceManager {
         }
     }
 }
+
 */

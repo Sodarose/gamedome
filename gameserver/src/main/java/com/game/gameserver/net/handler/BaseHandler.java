@@ -1,5 +1,6 @@
 package com.game.gameserver.net.handler;
 
+import com.game.gameserver.module.buffer.model.Buffer;
 import com.game.gameserver.net.annotation.CmdHandler;
 import com.game.gameserver.thread.BusinessThreadPool;
 import com.game.message.Message;
@@ -76,6 +77,7 @@ public abstract class BaseHandler implements Handler {
         if(cmdExecutor==null){
             return;
         }
+
         // 提交到业务线程池
         BusinessThreadPool.BUSINESS_THREAD_POOL.execute(() -> {
             logger.info("处理任务: module {} cmd {}",message.getModule(),message.getCmd());

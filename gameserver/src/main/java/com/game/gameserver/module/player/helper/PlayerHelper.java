@@ -31,16 +31,16 @@ public class PlayerHelper {
         return sb.toString();
     }
 
-    public static String buildSimplePlayerMsg(Player playerDomain){
+    public static String buildSimplePlayerMsg(Player player){
         StringBuilder sb = new StringBuilder();
-        sb.append("id:").append(playerDomain.getPlayerEntity().getId()).append("\n");
-        sb.append("name:").append(playerDomain.getPlayerEntity().getName()).append("\n");
+        sb.append("id:").append(player.getPlayerEntity().getId()).append("\n");
+        sb.append("name:").append(player.getPlayerEntity().getName()).append("\n");
         CareerConfig careerConfig = StaticConfigManager.getInstance().getCareerConfigMap()
-                .get(playerDomain.getPlayerEntity().getCareerId());
+                .get(player.getPlayerEntity().getCareerId());
         sb.append("career:").append(careerConfig == null ? "" : careerConfig.getName()).append("\n");
-        sb.append("level:").append(playerDomain.getPlayerEntity().getLevel()).append("\n");
-        sb.append("HP:").append(playerDomain.getPlayerBattle().getCurrHp()).append("/")
-                .append(playerDomain.getPlayerBattle().getHp()).append("\n");
+        sb.append("level:").append(player.getPlayerEntity().getLevel()).append("\n");
+        sb.append("HP:").append(player.getPlayerBattle().getCurrHp()).append("/")
+                .append(player.getPlayerBattle().getHp()).append("\n");
         return sb.toString();
     }
 
@@ -55,27 +55,27 @@ public class PlayerHelper {
         return sb.toString();
     }
 
-    public static String buildPlayerDomain(Player playerDomain) {
+    public static String buildplayer(Player player) {
         StringBuilder sb = new StringBuilder("角色信息:").append("\n");
         // 基本信息
         sb.append("基本信息:").append("\n");
-        sb.append("id:").append(playerDomain.getPlayerEntity().getId()).append("\n");
-        sb.append("名称:").append(playerDomain.getPlayerEntity().getName()).append("\n");
-        sb.append("等级:").append(playerDomain.getPlayerEntity().getLevel()).append("\n");
+        sb.append("id:").append(player.getPlayerEntity().getId()).append("\n");
+        sb.append("名称:").append(player.getPlayerEntity().getName()).append("\n");
+        sb.append("等级:").append(player.getPlayerEntity().getLevel()).append("\n");
         CareerConfig careerConfig = StaticConfigManager.getInstance().getCareerConfigMap()
-                .get(playerDomain.getPlayerEntity().getCareerId());
+                .get(player.getPlayerEntity().getCareerId());
         sb.append("职业").append(careerConfig == null ? "" : careerConfig.getName()).append("\n");
-        sb.append("金币:").append(playerDomain.getPlayerEntity().getGolds()).append("\n");
-        sb.append("经验").append(playerDomain.getPlayerEntity().getExpr()).append("\n");
+        sb.append("金币:").append(player.getPlayerEntity().getGolds()).append("\n");
+        sb.append("经验").append(player.getPlayerEntity().getExpr()).append("\n");
         sb.append("\n");
         // 战斗属性
         sb.append("战斗属性:").append("\n");
-        sb.append("HP:").append(playerDomain.getPlayerBattle().getCurrHp()).append("/")
-                .append(playerDomain.getPlayerBattle().getHp()).append("\n");
-        sb.append("MP:").append(playerDomain.getPlayerBattle().getCurrMp()).append("/")
-                .append(playerDomain.getPlayerBattle().getMp()).append("\n");
-        sb.append("攻击力:").append(playerDomain.getPlayerBattle().getAttack()).append("\n");
-        sb.append("防御力:").append(playerDomain.getPlayerBattle().getDefense()).append("\n");
+        sb.append("HP:").append(player.getPlayerBattle().getCurrHp()).append("/")
+                .append(player.getPlayerBattle().getHp()).append("\n");
+        sb.append("MP:").append(player.getPlayerBattle().getCurrMp()).append("/")
+                .append(player.getPlayerBattle().getMp()).append("\n");
+        sb.append("攻击力:").append(player.getPlayerBattle().getAttack()).append("\n");
+        sb.append("防御力:").append(player.getPlayerBattle().getDefense()).append("\n");
         return sb.toString();
     }
 }

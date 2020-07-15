@@ -29,22 +29,22 @@ public class ItemService {
         return item;
     }
 
-    public void useItem(Player playerDomain, int bagIndex){
+    public void useItem(Player player, int bagIndex){
 
     }
 
-    public void showItem(Player playerDomain, int bagType, int bagIndex ){
+    public void showItem(Player player, int bagType, int bagIndex ){
         Item item = null;
         if(bagType== BagType.BACK_BAG){
-            item = playerDomain.getBackBag().getItemMap().get(bagIndex);
+            item = player.getBackBag().getItemMap().get(bagIndex);
         }
         if(bagType==BagType.EQUIP_BAR){
-            item = playerDomain.getEquipBar().getEquipMap().get(bagIndex);
+            item = player.getEquipBar().getEquipMap().get(bagIndex);
         }
         if(item==null){
-            NotificationHelper.notifyPlayer(playerDomain, "该位置不存在道具");
+            NotificationHelper.notifyPlayer(player, "该位置不存在道具");
             return;
         }
-        NotificationHelper.notifyPlayer(playerDomain, ItemHelper.buildItem(item));
+        NotificationHelper.notifyPlayer(player, ItemHelper.buildItem(item));
     }
 }

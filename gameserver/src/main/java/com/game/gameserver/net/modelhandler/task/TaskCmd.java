@@ -5,18 +5,10 @@ package com.game.gameserver.net.modelhandler.task;
  * @date 2020/6/29 15:00
  */
 public interface TaskCmd {
-    /** 查询所有任务 */
-    short QUERY_ALL_TASK = 1;
-    /** 查询可接受任务 */
-    short QUERY_RECEIVE_ABLE_TASK = 2;
-    /** 查询已经接受的任务*/
-    short QUERY_RECEIVE_TASK = 3;
-    /** 接取任务 */
-    short ACCEPT_TASK = 4;
-    /** 提交任务 */
-    short SUBMIT_TASK = 5;
-    /** 取消任务*/
-    short CANCEL_TASK = 6;
-    /** 查看任务 */
-    short CHECK_TASK = 6;
+    int SHOW_ALL_TASK = 1001;
+    int SHOW_RECEIVE_ABLE_TASK = 1002;
+    int SHOW_RECEIVE_TASK = 1003;
+    int ACCEPT_TASK = 1004;
+    int CANCEL_TASK = 1005;
+    int SUBMIT_TASK = 1006;
 }

@@ -1,6 +1,10 @@
 package com.game.gameserver.net.server;
 
 import com.game.gameserver.context.ServerContext;
+import com.game.gameserver.event.EventBus;
+import com.game.gameserver.event.event.LogoutEvent;
+import com.game.gameserver.module.player.model.Player;
+import com.game.gameserver.module.player.service.PlayerService;
 import com.game.gameserver.net.handler.MessageDispatcher;
 import com.game.message.Message;
 import com.game.protocol.CmdProto;
@@ -39,6 +43,9 @@ public class ServerHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {
         logger.info("channel {} inactive ",ctx.channel().id());
+        Player player = ctx.channel().attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
+        LogoutEvent logoutEvent = new LogoutEvent(player);
+        EventBus.EVENT_BUS.fire(logoutEvent);
         super.channelInactive(ctx);
     }
 
@@ -46,6 +53,9 @@ public class ServerHandler extends ChannelInboundHandlerAdapter {
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
         super.exceptionCaught(ctx,cause);
         logger.error("channel {} exception",ctx.channel().id());
+        Player player = ctx.channel().attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
+        LogoutEvent logoutEvent = new LogoutEvent(player);
+        EventBus.EVENT_BUS.fire(logoutEvent);
         ctx.channel().close();
     }
 

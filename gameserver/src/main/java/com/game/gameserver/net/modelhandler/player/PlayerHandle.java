@@ -58,8 +58,8 @@ public class PlayerHandle extends BaseHandler {
             NotificationHelper.notifyChannel(channel, "未登录");
             return;
         }
-        Player playerDomain = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
-        if(playerDomain!=null){
+        Player userTask = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
+        if(userTask!=null){
             NotificationHelper.notifyChannel(channel, "请勿重复登录");
             return;
         }
@@ -79,8 +79,8 @@ public class PlayerHandle extends BaseHandler {
             NotificationHelper.notifyChannel(channel, "参数错误");
             return;
         }
-        Player playerDomain = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
-        if(playerDomain!=null){
+        Player userTask = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
+        if(userTask!=null){
             NotificationHelper.notifyChannel(channel, "请先退出当前角色");
             return;
         }
@@ -91,21 +91,21 @@ public class PlayerHandle extends BaseHandler {
 
     @CmdHandler(cmd = PlayerCmd.SHOW_PLAYER)
     public void showPlayer(Message message, Channel channel) {
-        Player playerDomain = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
-        if (playerDomain == null) {
+        Player userTask = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
+        if (userTask == null) {
             NotificationHelper.notifyChannel(channel, "请先登录角色");
             return;
         }
-        playerService.showPlayer(playerDomain);
+        playerService.showPlayer(userTask);
     }
 
     @CmdHandler(cmd = PlayerCmd.LOGOUT)
     public void logout(Message message,Channel channel){
-        Player playerDomain = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
-        if (playerDomain == null) {
+        Player userTask = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
+        if (userTask == null) {
             NotificationHelper.notifyChannel(channel, "请先登录角色");
             return;
         }
-        playerService.logout(playerDomain);
+        playerService.logout(userTask);
     }
 }

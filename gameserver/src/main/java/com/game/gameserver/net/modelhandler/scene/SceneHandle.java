@@ -29,18 +29,18 @@ public class SceneHandle extends BaseHandler {
 
     @CmdHandler(cmd = SceneCmd.SHOW_SCENE)
     public void showScene(Message message, Channel channel){
-        Player playerDomain = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
-        if(playerDomain==null){
+        Player userTask = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
+        if(userTask==null){
             NotificationHelper.notifyChannel(channel,"请先登录角色");
             return;
         }
-        sceneService.showScene(playerDomain);
+        sceneService.showScene(userTask);
     }
 
     @CmdHandler(cmd = SceneCmd.MOVE_SCENE)
     public void moveScene(Message message,Channel channel){
-        Player playerDomain = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
-        if(playerDomain==null){
+        Player userTask = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
+        if(userTask==null){
             NotificationHelper.notifyChannel(channel,"请先登录角色");
             return;
         }
@@ -49,48 +49,48 @@ public class SceneHandle extends BaseHandler {
             return;
         }
         int sceneId = Integer.parseInt(message.getContent());
-        sceneService.moveScene(playerDomain,sceneId);
+        sceneService.moveScene(userTask,sceneId);
     }
 
     @CmdHandler(cmd = SceneCmd.AIO)
     public void aio(Message message,Channel channel){
-        Player playerDomain = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
-        if(playerDomain==null){
+        Player userTask = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
+        if(userTask==null){
             NotificationHelper.notifyChannel(channel,"请先登录角色");
             return;
         }
-        sceneService.aio(playerDomain);
+        sceneService.aio(userTask);
     }
 
     @CmdHandler(cmd = SceneCmd.SCENE_LIST)
     public void sceneList(Message message,Channel channel){
-        Player playerDomain = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
-        if(playerDomain==null){
+        Player userTask = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
+        if(userTask==null){
             NotificationHelper.notifyChannel(channel,"请先登录角色");
             return;
         }
-        sceneService.sceneList(playerDomain);
+        sceneService.sceneList(userTask);
     }
 
     @CmdHandler(cmd = SceneCmd.CHECK_SCENE)
     public void checkScene(Message message,Channel channel){
-        Player playerDomain = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
-        if(playerDomain==null){
+        Player userTask = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
+        if(userTask==null){
             NotificationHelper.notifyChannel(channel,"请先登录角色");
             return;
         }
         int sceneId = Integer.parseInt(message.getContent());
-        sceneService.checkScene(playerDomain,sceneId);
+        sceneService.checkScene(userTask,sceneId);
     }
 
     @CmdHandler(cmd = SceneCmd.TALK_NPC)
     public void talkNpc(Message message,Channel channel){
-        Player playerDomain = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
-        if(playerDomain==null){
+        Player userTask = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
+        if(userTask==null){
             NotificationHelper.notifyChannel(channel,"请先登录角色");
             return;
         }
         long npcId = Long.parseLong(message.getContent());
-        npcService.talkNpc(playerDomain,npcId);
+        npcService.talkNpc(userTask,npcId);
     }
 }

@@ -39,13 +39,13 @@ public class NotificationHelper {
         Message message = new Message();
     }
 
-    public static void notifyPlayer(Player playerDomain, String content) {
+    public static void notifyPlayer(Player player, String content) {
         Message message = new Message(content);
         CmdProto.CmdMsg  cmdMsg = Message.buildCmdProtoCmdMsg(message);
-        playerDomain.getChannel().writeAndFlush(cmdMsg);
+        player.getChannel().writeAndFlush(cmdMsg);
     }
 
-    public static void notifyPlayer(Player playerDomain, int module, int cmd, String content) {
+    public static void notifyPlayer(Player player, int module, int cmd, String content) {
 
     }
 
@@ -53,8 +53,8 @@ public class NotificationHelper {
     public static void notifyScene(Scene scene, String content) {
         Message message = new Message(content);
         CmdProto.CmdMsg cmdMsg = Message.buildCmdProtoCmdMsg(message);
-        scene.getPlayerMap().values().forEach(playerDomain -> {
-            playerDomain.getChannel().writeAndFlush(cmdMsg);
+        scene.getPlayerMap().values().forEach(player -> {
+            player.getChannel().writeAndFlush(cmdMsg);
         });
     }
 
@@ -69,8 +69,8 @@ public class NotificationHelper {
         Message message = new Message(ModuleKey.SCENE_MODULE, SceneCmd.SYNC,content);
         CmdProto.CmdMsg cmdMsg = Message.buildCmdProtoCmdMsg(message);
         scene.getPlayerMap().values().forEach(
-                playerDomain -> {
-                    playerDomain.getChannel().writeAndFlush(cmdMsg);
+                player -> {
+                    player.getChannel().writeAndFlush(cmdMsg);
                 }
         );
     }
@@ -81,11 +81,11 @@ public class NotificationHelper {
      * @param
      * @return void
      */
-    public static void syncPlayer(Player playerDomain){
-        String content = PlayerHelper.buildPlayerDomain(playerDomain);
+    public static void syncPlayer(Player player){
+        String content = PlayerHelper.buildplayer(player);
         Message message = new Message(ModuleKey.PLAYER_MODULE, PlayerCmd.SHOW_PLAYER,content);
         CmdProto.CmdMsg cmdMsg = Message.buildCmdProtoCmdMsg(message);
-        playerDomain.getChannel().writeAndFlush(cmdMsg);
+        player.getChannel().writeAndFlush(cmdMsg);
     }
 
     /**
@@ -94,11 +94,11 @@ public class NotificationHelper {
      * @param
      * @return void
      */
-    public static void syncEquipBar(Player playerDomain){
-        String content = EquipHelper.buildEquipBar(playerDomain.getEquipBar());
+    public static void syncEquipBar(Player player){
+        String content = EquipHelper.buildEquipBar(player.getEquipBar());
         Message message = new Message(ModuleKey.EQUIP_MODULE, EquipCmd.SYNC,content);
         CmdProto.CmdMsg cmdMsg = Message.buildCmdProtoCmdMsg(message);
-        playerDomain.getChannel().writeAndFlush(cmdMsg);
+        player.getChannel().writeAndFlush(cmdMsg);
     }
 
     /**
@@ -107,18 +107,18 @@ public class NotificationHelper {
      * @param
      * @return void
      */
-    public static void syncBackBag(Player playerDomain){
-        String content = BackBagHelper.buildPlayerBackBag(playerDomain.getBackBag());
+    public static void syncBackBag(Player player){
+        String content = BackBagHelper.buildPlayerBackBag(player.getBackBag());
         Message message = new Message(ModuleKey.BACK_BAG_MODULE, BackBagCmd.SYNC,content);
         CmdProto.CmdMsg cmdMsg = Message.buildCmdProtoCmdMsg(message);
-        playerDomain.getChannel().writeAndFlush(cmdMsg);
+        player.getChannel().writeAndFlush(cmdMsg);
     }
 
     public static void notifyTeam(Team team,String content){
         Message message = new Message(content);
         CmdProto.CmdMsg cmdMsg = Message.buildCmdProtoCmdMsg(message);
-        team.getMemberMap().values().forEach(playerDomain -> {
-            playerDomain.getChannel().writeAndFlush(cmdMsg);
+        team.getMemberMap().values().forEach(player -> {
+            player.getChannel().writeAndFlush(cmdMsg);
         });
     }
 

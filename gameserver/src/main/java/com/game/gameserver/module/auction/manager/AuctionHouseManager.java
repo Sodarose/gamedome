@@ -125,7 +125,7 @@ public class AuctionHouseManager {
             if(bidder!=null){
                 NotificationHelper.notifyPlayer(bidder,"您已经成功竞拍商品");
             }
-            Player playerDomain = playerService.getPlayer(auctionItem.getPlayerId());
+            Player player = playerService.getPlayer(auctionItem.getPlayerId());
             if(bidder!=null){
                 NotificationHelper.notifyPlayer(bidder,"您的商品已经被卖出");
             }

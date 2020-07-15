@@ -1,9 +1,12 @@
 package com.game.gameserver.common.config;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.annotation.JSONField;
-import com.game.gameserver.util.TaskUtil;
+import com.game.gameserver.module.task.model.Award;
+import com.game.gameserver.module.task.model.TaskCondition;
 import lombok.Data;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -36,6 +39,9 @@ public class TaskConfig {
     /**
      * 任务类型 主线 支线 副本
      */
+    @JSONField(name = "taskKind")
+    private int kind;
+
     @JSONField(name = "type")
     private int type;
 
@@ -58,14 +64,10 @@ public class TaskConfig {
     private int limitLevel;
 
     /**
-     * 任务完成条件 角色行为_目标_条件要求数量|角色行为_目标_条件要求数量
+     * 任务完成条件
      */
-    @JSONField(name = "taskRequire")
-    private String taskRequire;
-
-    /** 任务要求已经解析的字符串 */
-    @JSONField(name = "taskRequireStr")
-    private String taskRequireStr;
+    @JSONField(name = "taskCondition")
+    private String taskCondition;
 
     /**
      * 任务奖励 经验奖励
@@ -80,44 +82,28 @@ public class TaskConfig {
     private int golds;
 
     /**
-     * 道具奖励 道具基础Id_道具数量|道具基础Id_道具数量
-     */
-    @JSONField(name = "props")
-    private String props;
-
-    /**
-     * 装备奖励  装备奖励id|装备奖励Id
-     */
-    @JSONField(name = "equips")
-    private String equips;
-
-    /**
-     * 道具奖励
+     * 任务条件表
      */
     @JSONField(serialize = false)
-    private Map<Integer, Integer> propAwards;
+    private Map<Integer, TaskCondition> taskConditionMap;
 
     /**
-     * 装备奖励
+     * 任务奖励
      */
-    @JSONField(serialize = false)
-    private List<Integer> equipAwards;
+    @JSONField(name = "awards")
+    private List<Award> awards;
 
 
-    public Map<Integer, Integer> getPropAwards() {
-        if (propAwards != null) {
-            return propAwards;
+    public Map<Integer, TaskCondition> getTaskConditionMap() {
+        if (taskConditionMap != null) {
+            return taskConditionMap;
         }
-        propAwards = TaskUtil.parserPropAwards(props);
-        return propAwards;
-    }
-
-    public List<Integer> getEquipAwards() {
-        if (equipAwards != null) {
-            return equipAwards;
-        }
-        equipAwards = TaskUtil.parserEquipAwards(equips);
-        return equipAwards;
+        List<TaskCondition> taskConditions = JSON.parseArray(taskCondition,TaskCondition.class);
+        taskConditionMap = new HashMap<>();
+        taskConditions.forEach(condition -> {
+            taskConditionMap.put(condition.getTarget(),condition);
+        });
+        return taskConditionMap;
     }
 
 }

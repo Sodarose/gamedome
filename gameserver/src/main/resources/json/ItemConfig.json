@@ -29,6 +29,7 @@
     "name":"太极天帝剑",
     "level": 10,
     "part": 1,
+    "star": 10,
     "coolTime": 0,
     "property": {
       "HP":1000,
@@ -45,6 +46,7 @@
     "name":"超大陆上衣 ",
     "level": 10,
     "part": 2,
+    "star": 10,
     "coolTime": 0,
     "property": {
       "HP":1000,
@@ -61,6 +63,7 @@
     "name":"超大陆肩甲",
     "level": 10,
     "part": 3,
+    "star": 10,
     "coolTime": 0,
     "property": {
       "HP":1000,
@@ -77,6 +80,7 @@
     "name":"超大陆腰带",
     "level": 10,
     "part": 4,
+    "star": 10,
     "coolTime": 0,
     "property": {
       "HP":1000,
@@ -93,6 +97,7 @@
     "name":"超大陆裤子",
     "level": 10,
     "part": 5,
+    "star": 10,
     "coolTime": 0,
     "property": {
       "HP":1000,
@@ -109,6 +114,7 @@
     "name":"超大陆鞋子",
     "level": 10,
     "part": 6,
+    "star": 10,
     "coolTime": 0,
     "property": {
       "HP":1000,
@@ -125,6 +131,7 @@
     "name":"怪兽猎杀者",
     "level": 10,
     "part": 7,
+    "star": 10,
     "coolTime": 0,
     "property": {
       "HP":1000,

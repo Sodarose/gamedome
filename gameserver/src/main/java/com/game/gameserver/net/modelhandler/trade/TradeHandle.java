@@ -26,77 +26,77 @@ public class TradeHandle extends BaseHandler {
 
     @CmdHandler(cmd = TradeCmd.SHOW_TRADE)
     public void showTrade(Message message, Channel channel){
-        Player playerDomain = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
-        if(playerDomain==null){
+        Player userTask = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
+        if(userTask==null){
             NotificationHelper.notifyChannel(channel,"请先登录角色");
             return;
         }
-        tradeService.showTradeBoard(playerDomain);
+        tradeService.showTradeBoard(userTask);
     }
 
     @CmdHandler(cmd = TradeCmd.INITIATE)
     public void initiate(Message message,Channel channel){
-        Player playerDomain = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
-        if(playerDomain==null){
+        Player userTask = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
+        if(userTask==null){
             NotificationHelper.notifyChannel(channel,"请先登录角色");
             return;
         }
         long targetId = Long.parseLong(message.getContent());
-        tradeService.initiateTrade(playerDomain,targetId);
+        tradeService.initiateTrade(userTask,targetId);
     }
 
     @CmdHandler(cmd = TradeCmd.REPLY_TRADE)
     public void replyTrade(Message message,Channel channel){
-        Player playerDomain = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
-        if(playerDomain==null){
+        Player userTask = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
+        if(userTask==null){
             NotificationHelper.notifyChannel(channel,"请先登录角色");
             return;
         }
         String[] param = message.getContent().split("\\s+");
         long tradeId = Long.parseLong(param[0]);
         int result = Integer.parseInt(param[1]);
-        tradeService.replyTrade(playerDomain,tradeId,result);
+        tradeService.replyTrade(userTask,tradeId,result);
     }
 
     @CmdHandler(cmd = TradeCmd.PUT_ITEM_TRADE)
     public void putItemTrade(Message message,Channel channel){
-        Player playerDomain = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
-        if(playerDomain==null){
+        Player userTask = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
+        if(userTask==null){
             NotificationHelper.notifyChannel(channel,"请先登录角色");
             return;
         }
         int bagIndex = Integer.parseInt(message.getContent());
-        tradeService.putItem2Trade(playerDomain,bagIndex);
+        tradeService.putItem2Trade(userTask,bagIndex);
     }
 
     @CmdHandler(cmd = TradeCmd.PUT_GOLD_TRADE)
     public void putGoldTrade(Message message,Channel channel){
-        Player playerDomain = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
-        if(playerDomain==null){
+        Player userTask = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
+        if(userTask==null){
             NotificationHelper.notifyChannel(channel,"请先登录角色");
             return;
         }
         int price = Integer.parseInt(message.getContent());
-        tradeService.putGolds2Trade(playerDomain,price);
+        tradeService.putGolds2Trade(userTask,price);
     }
 
     @CmdHandler(cmd = TradeCmd.CANCEL_TRADE)
     public void cancelTrade(Message message,Channel channel){
-        Player playerDomain = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
-        if(playerDomain==null){
+        Player userTask = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
+        if(userTask==null){
             NotificationHelper.notifyChannel(channel,"请先登录角色");
             return;
         }
-        tradeService.cancelTrade(playerDomain);
+        tradeService.cancelTrade(userTask);
     }
 
     @CmdHandler(cmd = TradeCmd.AFFIRM_TRADE)
     public void affirmTrade(Message message,Channel channel){
-        Player playerDomain = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
-        if(playerDomain==null){
+        Player userTask = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
+        if(userTask==null){
             NotificationHelper.notifyChannel(channel,"请先登录角色");
             return;
         }
-        tradeService.affirmTrade(playerDomain);
+        tradeService.affirmTrade(userTask);
     }
 }

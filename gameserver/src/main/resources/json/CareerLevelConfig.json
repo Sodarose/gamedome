@@ -2,7 +2,9 @@
   {
     "careerId": 1,
     "levelProperty": {
-      "level": 1
+      "level": 1,
+      "property": {
+      }
     }
   }
 ]

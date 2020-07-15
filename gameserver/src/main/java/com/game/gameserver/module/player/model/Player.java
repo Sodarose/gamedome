@@ -156,4 +156,8 @@ public class Player implements Creature {
     public void setGuildId(Long guildId){
         playerEntity.setGuildId(guildId);
     }
+
+    public int getLevel(){
+        return playerEntity.getLevel();
+    }
 }

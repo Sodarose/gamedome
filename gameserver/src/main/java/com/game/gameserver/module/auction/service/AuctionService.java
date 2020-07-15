@@ -43,23 +43,23 @@ public class AuctionService {
     /**
      * 展示拍卖行
      *
-     * @param playerDomain
+     * @param player
      * @return void
      */
-    public void showAuctionHouse(Player playerDomain){
-        NotificationHelper.notifyPlayer(playerDomain,auctionHouseManager.buildAuctionHouseMsg());
+    public void showAuctionHouse(Player player){
+        NotificationHelper.notifyPlayer(player,auctionHouseManager.buildAuctionHouseMsg());
     }
 
     /**
      * 展示玩家上架的拍卖品
      *
-     * @param playerDomain
+     * @param player
      * @return void
      */
-    public void showPlayerAuctionItem(Player playerDomain){
+    public void showPlayerAuctionItem(Player player){
         List<AuctionItem> auctionItems = auctionHouseManager
-                .getAuctionItemByPlayerId(playerDomain.getPlayerEntity().getId());
-        NotificationHelper.notifyPlayer(playerDomain, AuctionHelper.buildAuctionHouse(auctionItems));
+                .getAuctionItemByPlayerId(player.getPlayerEntity().getId());
+        NotificationHelper.notifyPlayer(player, AuctionHelper.buildAuctionHouse(auctionItems));
     }
 
     /**
@@ -150,24 +150,24 @@ public class AuctionService {
     /**
      * 一口价购买
      *
-     * @param playerDomain
+     * @param player
      * @param auctionItemId
      * @return void
      */
-    public void buyAuctionItemByFixedPrice(Player playerDomain, long auctionItemId){
+    public void buyAuctionItemByFixedPrice(Player player, long auctionItemId){
         AuctionItem auctionItem = auctionHouseManager.getAuctionItem(auctionItemId);
         if(auctionItem==null){
-            NotificationHelper.notifyPlayer(playerDomain,"无该Id的商品");
+            NotificationHelper.notifyPlayer(player,"无该Id的商品");
             return;
         }
         // 判断商品模式
         if(auctionItem.getModel()!=AuctionModel.FIXED_PRICE){
-            NotificationHelper.notifyPlayer(playerDomain,"不是一口价的商品");
+            NotificationHelper.notifyPlayer(player,"不是一口价的商品");
             return;
         }
         // 金钱是否足够
-        if(playerDomain.getPlayerEntity().getGolds()<auctionItem.getPrice()){
-            NotificationHelper.notifyPlayer(playerDomain,"钱不够");
+        if(player.getPlayerEntity().getGolds()<auctionItem.getPrice()){
+            NotificationHelper.notifyPlayer(player,"钱不够");
             return;
         }
         // 购买
@@ -176,23 +176,23 @@ public class AuctionService {
         try{
             auctionItem = auctionHouseManager.getAuctionItem(auctionItemId);
             if(auctionItem==null){
-                NotificationHelper.notifyPlayer(playerDomain,"购买失败");
+                NotificationHelper.notifyPlayer(player,"购买失败");
                 return;
             }
             // 购买商品
-            playerDomain.getPlayerEntity().setGolds(playerDomain.getPlayerEntity().getGolds()-auctionItem.getPrice());
+            player.getPlayerEntity().setGolds(player.getPlayerEntity().getGolds()-auctionItem.getPrice());
             // 邮件发送
             Item item = itemService.createItem(auctionItem.getItemConfigId(),auctionItem.getNum());
             List<Item> attachments = new ArrayList<>();
             attachments.add(item);
-            emailService.sendEmail(SystemSender.AUCTION.getId(),playerDomain.getPlayerEntity().getId(),"成功拍卖物品",
+            emailService.sendEmail(SystemSender.AUCTION.getId(),player.getPlayerEntity().getId(),"成功拍卖物品",
                     "",0,attachments);
             emailService.sendEmail(SystemSender.AUCTION.getId(),auctionItem.getPlayerId(),"您的商品已经被拍下",
                     "",auctionItem.getPrice(),null);
             // 移除商品
             auctionHouseManager.removeAuctionItem(auctionItemId);
             auctionDbService.deleteAsync(auctionItemId);
-            NotificationHelper.notifyPlayer(playerDomain,"购买成功");
+            NotificationHelper.notifyPlayer(player,"购买成功");
         }finally {
             lock.unlock();
         }
@@ -205,24 +205,24 @@ public class AuctionService {
      * @param
      * @return
      */
-    public void buyAuctionItemByAuction(Player playerDomain, long auctionItemId, int price){
+    public void buyAuctionItemByAuction(Player player, long auctionItemId, int price){
         AuctionItem auctionItem = auctionHouseManager.getAuctionItem(auctionItemId);
         if(auctionItem==null){
-            NotificationHelper.notifyPlayer(playerDomain,"无该Id的商品");
+            NotificationHelper.notifyPlayer(player,"无该Id的商品");
             return;
         }
         // 判断商品模式
         if(auctionItem.getModel()!=AuctionModel.AUCTION){
-            NotificationHelper.notifyPlayer(playerDomain,"不是竞拍的商品");
+            NotificationHelper.notifyPlayer(player,"不是竞拍的商品");
             return;
         }
         // 金钱是否足够
-        if(playerDomain.getPlayerEntity().getGolds()<price){
-            NotificationHelper.notifyPlayer(playerDomain,"金币数目不符合");
+        if(player.getPlayerEntity().getGolds()<price){
+            NotificationHelper.notifyPlayer(player,"金币数目不符合");
             return;
         }
-        if(playerDomain.getPlayerEntity().getGolds()<auctionItem.getPrice()){
-            NotificationHelper.notifyPlayer(playerDomain,"不能竞拍比现在更低价");
+        if(player.getPlayerEntity().getGolds()<auctionItem.getPrice()){
+            NotificationHelper.notifyPlayer(player,"不能竞拍比现在更低价");
             return;
         }
         Lock lock = auctionItem.getWriteLock();
@@ -230,19 +230,19 @@ public class AuctionService {
         try{
             auctionItem = auctionHouseManager.getAuctionItem(auctionItemId);
             if(auctionItem==null){
-                NotificationHelper.notifyPlayer(playerDomain,"购买失败");
+                NotificationHelper.notifyPlayer(player,"购买失败");
                 return;
             }
             // 竞拍
             // 扣除金币
-            playerDomain.getPlayerEntity().setGolds(playerDomain.getPlayerEntity().getGolds()-price);
+            player.getPlayerEntity().setGolds(player.getPlayerEntity().getGolds()-price);
             // 将上一任的金钱返还
             if(auctionItem.getBidderId()!=null){
                 emailService.sendEmail(SystemSender.AUCTION.getId(),auctionItem.getBidderId(),"您竞拍的商品已有更高的价格",
                         "",auctionItem.getPrice(),null);
             }
             // 设置新的竞拍者
-            auctionItem.setBidderId(playerDomain.getPlayerEntity().getId());
+            auctionItem.setBidderId(player.getPlayerEntity().getId());
             auctionItem.setPrice(price);
             // 更新数据
             auctionDbService.updateAsync(auctionItem);
