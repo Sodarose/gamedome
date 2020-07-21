@@ -64,7 +64,7 @@ public class FriendService {
         if(userFriend==null){
             return;
         }
-        NotificationHelper.notifyPlayer(player, FriendHelper.buildFriendListMsg(userFriend.getFriendMap()));
+        NotificationHelper.notifyPlayer(player, FriendHelper.buildFriendListMsg(userFriend));
     }
 
     /**
@@ -74,10 +74,15 @@ public class FriendService {
      * @param targetId
      * @return void
      */
-    public void addFriend(Player player,long targetId){
+    public void applyForFriend(Player player, long targetId){
         UserFriend userFriend = friendManager.getUserFriend(player.getPlayerEntity().getId());
         if(userFriend.getFriendMap().get(targetId)!=null){
             NotificationHelper.notifyPlayer(player,"已经添加对方为好友了");
+            return;
+        }
+        Player target = playerService.getPlayer(targetId);
+        // 对方不在线 写入数据库
+        if(target==null){
             return;
         }
         UserFriend targetFriends = friendManager.getUserFriend(targetId);
@@ -87,10 +92,12 @@ public class FriendService {
         }
         targetFriends.getApplicant().add(player.getPlayerEntity().getId());
         NotificationHelper.notifyPlayer(player,"已发送好友请求");
+        NotificationHelper.notifyPlayer(target,MessageFormat
+                .format("{0}请求添加您为好友",player.getName()));
     }
 
     /**
-     *
+     * 出路玩家申请信息
      *
      * @param player
      * @param targetId
@@ -125,26 +132,36 @@ public class FriendService {
             NotificationHelper.notifyPlayer(target,MessageFormat.format(
                     "添加{0}为好友被拒绝",player.getPlayerEntity().getName()));
             return;
+        }else if(agree==1){
+            // 同意添加好友
+            Friend playerFriend = new Friend();
+            playerFriend.setId(GameUUID.getInstance().generate());
+            playerFriend.setFriendId(targetId);
+            playerFriend.setFriendType(FriendType.COMMON);
+            playerFriend.setPlayerId(player.getId());
+            // 放入缓存
+            userFriend.getFriendMap().put(playerFriend.getFriendId(),playerFriend);
+            if(target!=null){
+                playerFriend.setOnline(true);
+                NotificationHelper.notifyPlayer(target,MessageFormat.format("{0}已经同意添加您为好友",
+                        player.getName()));
+            }else{
+                emailService.sendEmail(SystemSender.SYSTEM.getId(),targetId,"添加好友成功", MessageFormat.format(
+                        "{0}已经同意添加您为好友",player.getPlayerEntity().getName()));
+                return;
+            }
+            // 创建好友
+            Friend targetFriend = new Friend();
+            targetFriend.setId(GameUUID.getInstance().generate());
+            targetFriend.setFriendId(player.getId());
+            targetFriend.setFriendType(FriendType.COMMON);
+            targetFriend.setPlayerId(targetId);
+            targetFriend.setOnline(true);
+            // 我方保存数据库
+            friendDbService.insert(playerFriend);
+            // 对方保存数据库
+            friendDbService.insert(targetFriend);
         }
-
-        // 同意添加好友
-        Friend playerFriend = new Friend();
-        playerFriend.setId(GameUUID.getInstance().generate());
-        playerFriend.setFriendId(targetId);
-        playerFriend.setFriendType(FriendType.COMMON);
-        if(target!=null){
-            playerFriend.setOnline(true);
-        }
-        // 放入缓存
-        userFriend.getFriendMap().put(playerFriend.getFriendId(),playerFriend);
-
-        Friend targetFriend = new Friend();
-        targetFriend.setId(GameUUID.getInstance().generate());
-        targetFriend.setFriendId(player.getId());
-        targetFriend.setFriendType(FriendType.COMMON);
-        targetFriend.setOnline(true);
-
-
     }
 
     /**
@@ -162,8 +179,9 @@ public class FriendService {
         }
         // 删除好友
         userFriend.getFriendMap().remove(targetId);
-        // 异步持久化
+        // 我方列表删除
         friendDbService.deleteAsync(targetId);
+        NotificationHelper.notifyPlayer(player,"删除好友成功");
     }
 
     /**
@@ -184,5 +202,6 @@ public class FriendService {
         friend.setFriendType(friendType);
         // 异步更新数据库
         friendDbService.updateAsync(friend);
+        NotificationHelper.notifyPlayer(player,"更改好友类型成功");
     }
 }

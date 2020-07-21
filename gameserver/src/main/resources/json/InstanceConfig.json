@@ -2,114 +2,84 @@
   {
     "id": 1001,
     "name": "牛头人巢穴",
-    "type": 0,
-    "diff": 1,
     "desc": "牛头人巢穴",
-    "openTime": "",
-    "limitTime": 600,
+    "limitTime": 300,
     "needTeam": false,
-    "minNum": 1,
-    "maxNum": 4,
+    "minTeamNum": 1,
+    "maxTeamNum": 4,
     "minLevel": 5,
     "exprAward": 1500,
     "goldAward": 2000,
-    "equipAward": [],
-    "propAward": [],
-    "instanceMonsterConfigId": 1001
+    "itemAward": [
+      {
+        "itemId": 1001,
+        "num": 30
+      }
+    ]
   },
   {
     "id": 1002,
     "name": "村庄墓地",
-    "type": 0,
-    "diff": 1,
     "desc": "村庄墓地",
-    "openTime": "",
     "limitTime": 60,
     "needTeam": false,
-    "limitNum": 10,
     "minNum": 1,
     "maxNum": 4,
     "minLevel": 10,
     "exprAward": 1500,
     "goldAward": 2000,
-    "equipAward": [],
-    "propAward": [],
-    "instanceMonsterConfigId": 1002
+    "itemAward": []
   },
   {
     "id": 1003,
     "name": "古堡地牢",
-    "type": 0,
-    "diff": 1,
     "desc": "古堡地牢",
-    "openTime": "",
     "limitTime": 60,
     "needTeam": false,
-    "limitNum": 10,
     "minNum": 1,
     "maxNum": 4,
     "minLevel": 15,
     "exprAward": 1500,
     "goldAward": 2000,
-    "equipAward": [],
-    "propAward": [],
-    "instanceMonsterConfigId": 1003
+    "itemAward": []
   },
   {
     "id": 1004,
     "name": "森岭祭坛",
-    "type": 0,
-    "diff": 1,
     "desc": "森岭祭坛",
-    "openTime": "",
     "limitTime": 60,
     "needTeam": false,
-    "limitNum": 10,
     "minNum": 1,
     "maxNum": 4,
     "minLevel": 20,
     "exprAward": 1500,
     "goldAward": 2000,
-    "equipAward": [],
-    "propAward": [],
-    "instanceMonsterConfigId": 1004
+    "itemAward": []
   },
   {
     "id": 1005,
     "name": "龙墓",
-    "type": 0,
-    "diff": 1,
     "desc": "龙墓",
-    "openTime": "",
     "limitTime": 60,
     "needTeam": false,
-    "limitNum": 10,
     "minNum": 1,
     "maxNum": 4,
     "minLevel": 40,
     "exprAward": 1500,
     "goldAward": 2000,
-    "equipAward": [],
-    "propAward": [],
-    "instanceMonsterConfigId": 1005
+    "itemAward": []
   },
   {
     "id": 1006,
     "name": "未来车站",
-    "type": 0,
-    "diff": 1,
     "desc": "未来车站",
-    "openTime": "",
     "limitTime": 600,
     "needTeam": false,
-    "limitNum": 10,
     "minNum": 1,
     "maxNum": 4,
     "minLevel": 30,
     "exprAward": 1500,
     "goldAward": 2000,
-    "equipAward": [],
-    "propAward": [],
-    "instanceMonsterConfigId": 1006
+    "itemAward": []
   }
 ]

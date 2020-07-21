@@ -1,13 +1,12 @@
 package com.game.gameserver.module.scene.manager;
 
 import com.game.gameserver.common.config.*;
-import com.game.gameserver.event.Listener;
 import com.game.gameserver.module.monster.model.Monster;
 import com.game.gameserver.module.monster.service.MonsterService;
 import com.game.gameserver.module.notification.NotificationHelper;
 import com.game.gameserver.module.npc.model.Npc;
 import com.game.gameserver.module.npc.service.NpcService;
-import com.game.gameserver.module.scene.model.Scene;
+import com.game.gameserver.module.scene.model.GameScene;
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,13 +33,13 @@ public class SceneManager {
     private final static Logger logger = LoggerFactory.getLogger(SceneManager.class);
 
     /** 本地场景缓存 */
-    private final static Map<Integer,Scene> LOCAL_SCENE_MAP = new ConcurrentHashMap<>();
+    private final static Map<Integer, GameScene> LOCAL_SCENE_MAP = new ConcurrentHashMap<>();
 
     public static SceneManager instance;
 
     /** 场景Tick线程工厂 */
     private final static ThreadFactory SCENE_THREAD_FACTORY = new ThreadFactoryBuilder()
-            .setNameFormat("Scene-Tick-%d").setUncaughtExceptionHandler((t,e) -> e.printStackTrace()).build();
+            .setNameFormat("GameScene-Tick-%d").setUncaughtExceptionHandler((t,e) -> e.printStackTrace()).build();
 
     /** 场景TICK线程 */
     private final static ScheduledThreadPoolExecutor SCENE_TICK_THREAD = new ScheduledThreadPoolExecutor(1
@@ -63,7 +62,7 @@ public class SceneManager {
         List<SceneConfig> sceneConfigList = new ArrayList<>
                 (StaticConfigManager.getInstance().getSceneConfigMap().values());
         sceneConfigList.forEach(sceneConfig -> {
-            Scene scene = createScene(sceneConfig);
+            GameScene scene = createScene(sceneConfig);
             LOCAL_SCENE_MAP.put(sceneConfig.getId(),scene);
         });
         actionTick();
@@ -73,13 +72,14 @@ public class SceneManager {
      * 场景场景
      *
      * @param sceneConfig
-     * @return com.game.gameserver.module.scene.model.Scene
+     * @return com.game.gameserver.module.scene.model.GameScene
      */
-    private Scene createScene(SceneConfig sceneConfig){
-        Scene scene = new Scene(sceneConfig);
+    private GameScene createScene(SceneConfig sceneConfig){
+        GameScene scene = new GameScene(sceneConfig);
         sceneConfig.getMonsterIds().forEach(monsterId->{
-           Monster monster =  monsterService.createScene(monsterId);
-           scene.getMonsterMap().put(monster.getMonsterId(),monster);
+           Monster monster =  monsterService.createMonster(monsterId);
+           monster.setCurrScene(scene);
+           scene.getMonsterMap().put(monster.getId(),monster);
         });
 
         sceneConfig.getNpcIds().forEach(npcId->{
@@ -92,23 +92,40 @@ public class SceneManager {
 
     private void actionTick(){
         /** 以每秒为一帧刷新场景 */
-        SCENE_TICK_THREAD.scheduleAtFixedRate(this::tick,500,1, TimeUnit.SECONDS);
+        SCENE_TICK_THREAD.scheduleAtFixedRate(this::tick,500,1000, TimeUnit.MILLISECONDS);
     }
 
     private void tick(){
-        LOCAL_SCENE_MAP.values().forEach(
-            scene -> {
-                // 刷新怪物
-                // 刷新npc
+        try {
+            LOCAL_SCENE_MAP.values().forEach(
+                    scene -> {
+                        // 刷新怪物状态
+                        scene.getMonsterMap().forEach((key, value) -> {
+                            value.update();
+                        });
+                        // 刷新npc状态
+                        scene.getNpcMap().forEach((key, value) -> {
 
-                // 同步客户端这一帧 场景的数据
-                // NotificationHelper.syncScene(scene);
-            }
-        );
+                        });
+                        // 更新玩家状态
+                        scene.getPlayerMap().forEach((key, value) -> {
+                            value.update();
+                        });
+                        // 更新宝宝状态
+                        scene.getPetMap().forEach((key, value) -> {
+                            value.update();
+                        });
+                        // 同步客户端这一帧 场景的数据
+                        NotificationHelper.syncScene(scene);
+                    }
+            );
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
 
-    public Scene getScene(int sceneId){
+    public GameScene getScene(int sceneId){
         return LOCAL_SCENE_MAP.get(sceneId);
     }
 
@@ -116,7 +133,7 @@ public class SceneManager {
         LOCAL_SCENE_MAP.remove(sceneId);
     }
 
-    public List<Scene> getSceneList(){
+    public List<GameScene> getSceneList(){
         return new ArrayList<>(LOCAL_SCENE_MAP.values());
     }
 }

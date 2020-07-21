@@ -14,6 +14,7 @@ import com.game.gameserver.module.player.helper.PlayerHelper;
 import com.game.gameserver.module.player.manager.PlayerManager;
 import com.game.gameserver.module.player.entity.PlayerEntity;
 import com.game.gameserver.module.scene.service.SceneService;
+import com.game.gameserver.module.skill.service.SkillService;
 import com.game.gameserver.module.task.service.TaskService;
 import com.game.gameserver.module.user.module.User;
 import com.game.gameserver.util.GameUUID;
@@ -58,6 +59,8 @@ public class PlayerService {
     private FriendService friendService;
     @Autowired
     private TaskService taskService;
+    @Autowired
+    private SkillService skillService;
 
     /**
      * 获得账户角色列表
@@ -105,44 +108,44 @@ public class PlayerService {
             NotificationHelper.notifyChannel(channel, "角色Id错误");
             return;
         }
-        Player domain = playerManager.getPlayer(playerId);
+        Player player = playerManager.getPlayer(playerId);
         // 当前角色未登录
-        if (domain == null) {
+        if (player == null) {
             // 从数据库中查找该角色
-            PlayerEntity player = playerDbService.select(playerId);
-            if (player == null) {
+            PlayerEntity playerEntity = playerDbService.select(playerId);
+            if (playerEntity == null) {
                 NotificationHelper.notifyChannel(channel, "查询角色数据失败");
                 return;
             }
             // 创建角色领域
-            domain = new Player(player);
-            channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).set(domain);
-            domain.setChannel(channel);
-            initPlayer(domain);
+            player = new Player(playerEntity);
+            channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).set(player);
+            player.setChannel(channel);
+            initPlayer(player);
             // 放入缓存
-            playerManager.putPlayer(playerId, domain);
+            playerManager.putPlayer(playerId, player);
             // 角色登录成功
-            NotificationHelper.notifyPlayer(domain, MessageFormat.format("角色{0}登录成功",
-                    domain.getPlayerEntity().getName()));
+            NotificationHelper.notifyPlayer(player, MessageFormat.format("角色{0}登录成功",
+                    player.getPlayerEntity().getName()));
             // 同步角色数据
-            NotificationHelper.syncPlayer(domain);
+            NotificationHelper.syncPlayer(player);
             // 发出登录事件
 
         } else {
             // 踢出当前角色
-            NotificationHelper.notifyPlayer(domain, "你被人挤下线了");
+            NotificationHelper.notifyPlayer(player, "你被人挤下线了");
             // 退出场景
-            sceneService.exitScene(domain);
-            domain.getChannel().attr(PLAYER_ENTITY_ATTRIBUTE_KEY).set(null);
+            sceneService.exitScene(player);
+            player.getChannel().attr(PLAYER_ENTITY_ATTRIBUTE_KEY).set(null);
             // 重新设置连接信息
-            domain.setChannel(channel);
-            channel.attr(PLAYER_ENTITY_ATTRIBUTE_KEY).set(domain);
+            player.setChannel(channel);
+            channel.attr(PLAYER_ENTITY_ATTRIBUTE_KEY).set(player);
             // 进入场景
-            sceneService.initPlayerEntryScene(domain);
-            NotificationHelper.notifyPlayer(domain, MessageFormat.format("角色{0}登录成功",
-                    domain.getPlayerEntity().getName()));
+            sceneService.initPlayerEntryScene(player);
+            NotificationHelper.notifyPlayer(player, MessageFormat.format("角色{0}登录成功",
+                    player.getPlayerEntity().getName()));
             // 同步角色数据
-            NotificationHelper.syncPlayer(domain);
+            NotificationHelper.syncPlayer(player);
         }
     }
 
@@ -206,6 +209,7 @@ public class PlayerService {
         // 加载用户背包
         backBagService.loadPlayerBackBag(player);
         // 加载用户技能
+        skillService.loadPlayerSkill(player);
         // 加载用户任务
         taskService.loadPlayerTask(player);
         // 加载用户邮件

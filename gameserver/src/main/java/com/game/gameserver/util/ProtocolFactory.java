@@ -1,7 +1,7 @@
 package com.game.gameserver.util;
 
-/*import com.game.gameserver.module.achievement.entity.Achievement;
-import com.game.gameserver.module.achievement.entity.PlayerAchievement;*/
+/*import com.game.gameserver.module.achievement.entity.AchievementEntity;
+import com.game.gameserver.module.achievement.model.PlayerAchievement;*/
 /*import com.game.gameserver.module.pet.entity.Pet;*/
 /*import com.game.gameserver.module.team.entity.Team;*/
 
@@ -75,15 +75,15 @@ public class ProtocolFactory {
     }
 
 
-    public static SceneProtocol.QuerySceneListRes createQuerySceneListRes(List<Scene> scenes) {
+    public static SceneProtocol.QuerySceneListRes createQuerySceneListRes(List<GameScene> scenes) {
         SceneProtocol.QuerySceneListRes.Builder builder = SceneProtocol.QuerySceneListRes.newBuilder();
-        for (Scene scene : scenes) {
+        for (GameScene scene : scenes) {
             builder.addScenes(createSimpleSceneInfo(scene));
         }
         return builder.build();
     }
 
-    public static SceneProtocol.SceneInfo createSceneInfo(Scene scene) {
+    public static SceneProtocol.SceneInfo createSceneInfo(GameScene scene) {
         SceneProtocol.SceneInfo.Builder builder = SceneProtocol.SceneInfo.newBuilder();
 
         // 写入npc信息
@@ -97,7 +97,7 @@ public class ProtocolFactory {
         return builder.build();
     }
 
-    public static SceneProtocol.SimpleSceneInfo createSimpleSceneInfo(Scene scene) {
+    public static SceneProtocol.SimpleSceneInfo createSimpleSceneInfo(GameScene scene) {
         SceneProtocol.SimpleSceneInfo.Builder builder = SceneProtocol.SimpleSceneInfo.newBuilder();
 
         return builder.build();
@@ -275,7 +275,7 @@ public class ProtocolFactory {
         return builder.build();
     }
 
-    public static InstanceProtocol.EntryInstanceRes createEntryInstanceRes(int code, String msg, InstanceObject instanceObject) {
+    public static InstanceProtocol.EntryInstanceRes createEntryInstanceRes(int code, String msg, InstanceCc instanceObject) {
         InstanceProtocol.EntryInstanceRes.Builder builder = InstanceProtocol.EntryInstanceRes.newBuilder();
         builder.setCode(code);
         builder.setMsg(msg);
@@ -291,7 +291,7 @@ public class ProtocolFactory {
         return builder.build();
     }
 
-    public static InstanceProtocol.InstanceInfo createInstanceInfo(InstanceObject instanceObject) {
+    public static InstanceProtocol.InstanceInfo createInstanceInfo(InstanceCc instanceObject) {
         InstanceConfig instanceConfig = StaticConfigManager.getInstance().getInstanceConfigMap().get(instanceObject
                 .getInstanceConfigId());
         if (instanceConfig == null) {
@@ -491,14 +491,14 @@ public class ProtocolFactory {
         builder.setCode(code);
         builder.setMsg(msg);
         if (playerAchievement != null) {
-            for (Achievement achievement : playerAchievement.getAchievements()) {
+            for (AchievementEntity achievement : playerAchievement.getAchievements()) {
                 builder.addAchievementInfos(createAchievementInfo(achievement));
             }
         }
         return builder.build();
     }*/
 
-   /* public static AchievementProtocol.AchievementInfo createAchievementInfo(Achievement achievement) {
+   /* public static AchievementProtocol.AchievementInfo createAchievementInfo(AchievementEntity achievement) {
         AchievementProtocol.AchievementInfo.Builder builder = AchievementProtocol.AchievementInfo.newBuilder();
         AchievementConfig achievementConfig = StaticConfigManager.getInstance().getAchievementConfigMap()
                 .get(achievement.getAchievementId());

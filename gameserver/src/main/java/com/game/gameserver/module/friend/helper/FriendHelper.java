@@ -1,6 +1,7 @@
 package com.game.gameserver.module.friend.helper;
 
 import com.game.gameserver.module.friend.model.Friend;
+import com.game.gameserver.module.friend.model.UserFriend;
 
 import java.util.List;
 import java.util.Map;
@@ -11,17 +12,20 @@ import java.util.Map;
  */
 public class FriendHelper {
 
-    public static String buildFriendListMsg(Map<Long,Friend> friendMap){
-        StringBuilder sb = new StringBuilder();
-        if(friendMap.size()==0){
-            sb.append("空空如也").append("\n");
-            return sb.toString();
-        }
-        friendMap.forEach((key,value)->{
+    public static String buildFriendListMsg(UserFriend userFriend){
+        StringBuilder sb = new StringBuilder().append("\n");
+        sb.append("申请列表:").append("\n");
+        sb.append("[");
+        userFriend.getApplicant().forEach(applyId->{
+            sb.append(applyId).append(",");
+        });
+        sb.append("]").append("\n");
+        sb.append("好友列表:").append("\n");
+        userFriend.getFriendMap().forEach((key,value)->{
             sb.append(buildFriendMsg(value)).append("\n");
             sb.append("\n");
         });
-        return null;
+        return sb.toString();
     }
 
     public static String buildFriendMsg(Friend friend){

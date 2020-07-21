@@ -5,9 +5,9 @@ import com.game.gameserver.common.config.PetConfig;
 import com.game.gameserver.common.config.StaticConfigManager;
 import com.game.gameserver.common.entity.Unit;
 import com.game.gameserver.common.entity.UnitType;
-import com.game.gameserver.module.ai.fsm.State;
-import com.game.gameserver.module.ai.fsm.StateMachine;
-import com.game.gameserver.module.ai.state.pet.PetState;
+import com.game.gameserver.common.fsm.State;
+import com.game.gameserver.common.fsm.StateMachine;
+import com.game.gameserver.common.fsm.state.pet.PetState;
 import com.game.gameserver.util.GameUUID;
 import lombok.Data;
 

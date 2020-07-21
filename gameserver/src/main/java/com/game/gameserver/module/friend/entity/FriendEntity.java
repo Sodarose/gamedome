@@ -11,4 +11,5 @@ public class FriendEntity {
     private long id;
     private long friendId;
     private int friendType;
+    private long playerId;
 }

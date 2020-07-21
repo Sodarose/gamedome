@@ -1,5 +1,6 @@
 package com.game.gameserver.module.shop.model;
 
+import com.game.gameserver.common.config.ItemConfig;
 import lombok.Data;
 
 /**
@@ -18,6 +19,8 @@ public class Goods {
     private int price;
     /** 是否允许批量购买*/
     private boolean bulkBuy;
+    /** 道具本地资源 */
+    private ItemConfig itemConfig;
 
     public Goods(){
 

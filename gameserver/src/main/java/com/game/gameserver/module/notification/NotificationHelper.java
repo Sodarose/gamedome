@@ -3,15 +3,19 @@ package com.game.gameserver.module.notification;
 import com.game.gameserver.module.backbag.helper.BackBagHelper;
 import com.game.gameserver.module.equipment.helper.EquipHelper;
 import com.game.gameserver.module.guild.model.Guild;
+import com.game.gameserver.module.instance.helper.InstanceHelper;
+import com.game.gameserver.module.instance.model.Instance;
 import com.game.gameserver.module.player.manager.PlayerManager;
 import com.game.gameserver.module.player.model.Player;
 import com.game.gameserver.module.player.helper.PlayerHelper;
 import com.game.gameserver.module.scene.helper.SceneHelper;
+import com.game.gameserver.module.scene.model.GameScene;
 import com.game.gameserver.module.scene.model.Scene;
 import com.game.gameserver.module.team.model.Team;
 import com.game.gameserver.net.modelhandler.ModuleKey;
 import com.game.gameserver.net.modelhandler.backbag.BackBagCmd;
 import com.game.gameserver.net.modelhandler.equipment.EquipCmd;
+import com.game.gameserver.net.modelhandler.instance.InstanceCmd;
 import com.game.gameserver.net.modelhandler.player.PlayerCmd;
 import com.game.gameserver.net.modelhandler.scene.SceneCmd;
 import com.game.message.Message;
@@ -64,11 +68,22 @@ public class NotificationHelper {
      * @param scene
      * @return void
      */
-    public static void syncScene(Scene scene){
+    public static void syncScene(GameScene scene){
         String content = SceneHelper.buildScene(scene);
         Message message = new Message(ModuleKey.SCENE_MODULE, SceneCmd.SYNC,content);
         CmdProto.CmdMsg cmdMsg = Message.buildCmdProtoCmdMsg(message);
         scene.getPlayerMap().values().forEach(
+                player -> {
+                    player.getChannel().writeAndFlush(cmdMsg);
+                }
+        );
+    }
+
+    public static void syncInstance(Instance instance){
+        String content = InstanceHelper.buildInstanceSceneMsg(instance);
+        Message message = new Message(ModuleKey.INSTANCE_MODULE, InstanceCmd.SYNC,content);
+        CmdProto.CmdMsg cmdMsg = Message.buildCmdProtoCmdMsg(message);
+        instance.getCheckPoint().getPlayerMap().values().forEach(
                 player -> {
                     player.getChannel().writeAndFlush(cmdMsg);
                 }
@@ -130,4 +145,5 @@ public class NotificationHelper {
             }
         });
     }
+
 }

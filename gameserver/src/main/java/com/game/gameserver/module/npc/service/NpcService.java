@@ -7,7 +7,7 @@ import com.game.gameserver.event.event.TalkEvent;
 import com.game.gameserver.module.notification.NotificationHelper;
 import com.game.gameserver.module.npc.model.Npc;
 import com.game.gameserver.module.player.model.Player;
-import com.game.gameserver.module.scene.model.Scene;
+import com.game.gameserver.module.scene.model.GameScene;
 import org.springframework.stereotype.Service;
 
 import java.text.MessageFormat;
@@ -25,7 +25,7 @@ public class NpcService {
     }
 
     public void talkNpc(Player player, long npcId){
-        Scene currScene = player.getCurrScene();
+        GameScene currScene = (GameScene) player.getCurrScene();
         Npc npc = currScene.getNpcMap().get(npcId);
         if(npc==null){
             NotificationHelper.notifyPlayer(player,"此场景内无此NPC");

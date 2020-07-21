@@ -2,6 +2,7 @@ package com.game.gameserver.module.shop.manager;
 
 import com.alibaba.druid.support.spring.stat.annotation.Stat;
 import com.game.gameserver.common.config.GoodsConfig;
+import com.game.gameserver.common.config.ItemConfig;
 import com.game.gameserver.common.config.StaticConfigManager;
 import com.game.gameserver.module.shop.model.Goods;
 import com.game.gameserver.module.shop.model.Shop;
@@ -40,6 +41,9 @@ public class ShopManager {
                 if(goodsConfig!=null){
                     Goods goods = new Goods(goodsConfig.getId(),goodsConfig.getItemId(),goodsConfig.getPrice()
                             ,goodsConfig.getBulkBuy());
+                    ItemConfig itemConfig = StaticConfigManager.getInstance().getItemConfigMap()
+                            .get(goodsConfig.getItemId());
+                    goods.setItemConfig(itemConfig);
                     // 放入商店
                     shop.getGoodsMap().put(goods.getId(),goods);
                 }

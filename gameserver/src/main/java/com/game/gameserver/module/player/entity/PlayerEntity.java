@@ -1,6 +1,6 @@
 package com.game.gameserver.module.player.entity;
 
-/*import com.game.gameserver.module.ai.state.player.PlayerState;*/
+/*import com.game.gameserver.common.fsm.state.player.PlayerState;*/
 import lombok.Data;
 
 import java.io.Serializable;

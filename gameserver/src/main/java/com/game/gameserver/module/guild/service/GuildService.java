@@ -230,7 +230,7 @@ public class GuildService {
                 NotificationHelper.notifyGuild(guild, MessageFormat.format("玩家{0}加入公会", player.getName()));
                 NotificationHelper.notifyPlayer(applyPlayer, "你已经加入该公会");
                 // 抛出加入公会事件
-                GuildEvent guildEvent = new GuildEvent(applyPlayer,guild);
+                GuildEvent guildEvent = new GuildEvent(player,guild);
                 EventBus.EVENT_BUS.fire(guildEvent);
 
             } else if (agree == 0) {

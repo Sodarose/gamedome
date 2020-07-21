@@ -1,6 +1,7 @@
 package com.game.gameserver.common.config;
 
 import com.alibaba.fastjson.annotation.JSONField;
+import com.game.gameserver.module.task.model.Award;
 import lombok.Data;
 
 import java.util.List;
@@ -14,27 +15,15 @@ import java.util.List;
 @Data
 public class InstanceConfig {
     /**
-     * 副本信息
+     * 副本基本信息
      */
     @JSONField(name = "id")
     private int id;
     @JSONField(name = "name")
     private String name;
-    @JSONField(name = "type")
-    private int type;
-    @JSONField(name = "diff")
-    private int diff;
+    /** */
     @JSONField(name = "desc")
     private String desc;
-
-    /**
-     * 副本开放时间
-     */
-    @JSONField(name = "openTime")
-    private String openTime;
-    /**
-     * 通关 限制
-     */
     /** 时间限制 单位秒*/
     @JSONField(name = "limitTime")
     private int limitTime;
@@ -50,10 +39,6 @@ public class InstanceConfig {
     /** 等级限制 */
     @JSONField(name = "minLevel")
     private int minLevel;
-
-    /**
-     * 副本奖励配置
-     */
     /** 经验奖励 */
     @JSONField(name = "exprAward")
     private int exprAward;
@@ -61,14 +46,6 @@ public class InstanceConfig {
     @JSONField(name = "goldAward")
     private int goldAward;
     /** 装备奖励 */
-    @JSONField(name = "equipAward")
-    private List<Integer> equipAward;
-    /** 道具奖励 */
-    @JSONField(name = "propAward")
-    private List<Integer> propAward;
-
-    /** 怪物配置 */
-    @JSONField(name = "instanceMonsterConfigId")
-    private Integer instanceMonsterConfigId;
-
+    @JSONField(name = "itemAward")
+    private List<Award> itemAward;
 }

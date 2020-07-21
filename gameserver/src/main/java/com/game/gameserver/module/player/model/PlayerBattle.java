@@ -12,9 +12,10 @@ import lombok.Data;
 public class PlayerBattle {
     /** 战斗属性 */
     private int hp = 10000;
-    private int currHp = 10000;
     private int mp = 10000;
-    private int currMp = 10000;
-    private int attack = 1500;
+
+    private int maxHp = 10000;
+    private int maxMp = 10000;
+    private int attack = 100;
     private int defense = 1500;
 }

@@ -1,9 +1,12 @@
 package com.game.gameserver.module.scene.service;
 
+import com.game.gameserver.module.instance.helper.InstanceHelper;
+import com.game.gameserver.module.instance.model.Instance;
 import com.game.gameserver.module.notification.NotificationHelper;
 import com.game.gameserver.module.player.model.Player;
 import com.game.gameserver.module.scene.helper.SceneHelper;
 import com.game.gameserver.module.scene.manager.SceneManager;
+import com.game.gameserver.module.scene.model.GameScene;
 import com.game.gameserver.module.scene.model.Scene;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,7 +26,7 @@ public class SceneService  {
     private SceneManager sceneManager;
 
 
-    public Scene getScene(int sceneId){
+    public GameScene getScene(int sceneId){
         return sceneManager.getScene(sceneId);
     }
 
@@ -39,7 +42,15 @@ public class SceneService  {
             NotificationHelper.notifyPlayer(player,"请先进入场景");
             return;
         }
-        NotificationHelper.notifyPlayer(player,SceneHelper.buildScene(currScene));
+        if(currScene instanceof GameScene){
+            NotificationHelper.notifyPlayer(player,SceneHelper.buildScene((GameScene) currScene));
+            return;
+        }
+        if(currScene instanceof Instance){
+            NotificationHelper.notifyPlayer(player,
+                    InstanceHelper.buildInstanceSceneMsg((Instance) currScene));
+            return;
+        }
     }
 
     /**
@@ -49,7 +60,7 @@ public class SceneService  {
      * @return void
      */
     public void sceneList(Player player){
-        List<Scene> scenes = sceneManager.getSceneList();
+        List<GameScene> scenes = sceneManager.getSceneList();
         StringBuilder sb = new StringBuilder("场景列表:");
         scenes.forEach(
                 scene -> {
@@ -68,7 +79,7 @@ public class SceneService  {
      * @return void
      */
     public void checkScene(Player player, int sceneId){
-        Scene scene = sceneManager.getScene(sceneId);
+        GameScene scene = sceneManager.getScene(sceneId);
         if (scene==null) {
             NotificationHelper.notifyPlayer(player,"该场景不存在");
             return;
@@ -83,7 +94,7 @@ public class SceneService  {
      * @return void
      */
     public void initPlayerEntryScene(Player player){
-        Scene scene = sceneManager.getScene(player.getPlayerEntity().getSceneId());
+        GameScene scene = sceneManager.getScene(player.getPlayerEntity().getSceneId());
         if(scene == null){
             scene = sceneManager.getScene(BEGIN_SCENE);
         }
@@ -123,7 +134,7 @@ public class SceneService  {
      */
     public void exitScene(Player player){
         // 等到玩家当前所在场景
-        Scene currScene = player.getCurrScene();
+        GameScene currScene = (GameScene) player.getCurrScene();
         // 移除玩家
         currScene.getPlayerMap().remove(player.getPlayerEntity().getId());
         player.setCurrScene(null);
@@ -143,13 +154,13 @@ public class SceneService  {
      */
     public void moveScene(Player player, int sceneId){
         // 得到当前玩家所在的场景
-        Scene currScene = player.getCurrScene();
+        GameScene currScene = (GameScene) player.getCurrScene();
         // 判断目标场景是否可达
         if(!currScene.getNeighbors().contains(sceneId)){
             NotificationHelper.notifyPlayer(player,"目标场景不可达");
             return;
         }
-        Scene targetScene = sceneManager.getScene(sceneId);
+        GameScene targetScene = sceneManager.getScene(sceneId);
         if(targetScene==null){
             NotificationHelper.notifyPlayer(player,"目标场景不存在");
             return;

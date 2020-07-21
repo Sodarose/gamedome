@@ -1,5 +1,6 @@
 package com.game.gameserver.module.item.model;
 
+import com.game.gameserver.common.config.ItemConfig;
 import lombok.Data;
 
 /**
@@ -18,7 +19,7 @@ public class Item  {
     private Integer bagIndex;
     /** 装备耐久读 */
     private Integer durability;
-
+    private ItemConfig itemConfig;
     public Item(){
 
     }

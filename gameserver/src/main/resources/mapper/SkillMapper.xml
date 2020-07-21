@@ -1,13 +1,48 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.game.gameserver.module.skill.dao.SkillMapper">
-    <resultMap id="skillResultMap" type="com.game.gameserver.module.skill.entity.Skill">
-        <id column="id" property="id"/>
+    <resultMap id="SkillEntity" type="com.game.gameserver.module.skill.entity.SkillEntity">
         <result column="skillId" property="skillId"/>
-        <result column="bagIndex" property="bagIndex"/>
         <result column="playerId" property="playerId"/>
+        <result column="level" property="level"/>
     </resultMap>
-    <select id="getSkillList" resultMap="skillResultMap">
-        SELECT id,skillId,bagIndex,playerId FROM game_skill WHERE playerId = #{playerId}
+
+    <sql id="Base_SkillEntity_Column_List">
+        skillId,playerId,level
+    </sql>
+
+    <select id="selectSkillList" resultMap="SkillEntity">
+        SELECT
+        <include refid="Base_SkillEntity_Column_List"/>
+        FROM game_skill
+        WHERE playerId = #{playerId}
     </select>
+
+    <select id="select" resultMap="SkillEntity">
+        SELECT
+        <include refid="Base_SkillEntity_Column_List"/>
+        FROM game_skill
+        WHERE skillId = #{skillId} AND playerId=#{playerId}
+    </select>
+
+    <insert id="insert" parameterType="com.game.gameserver.module.skill.entity.SkillEntity">
+        INSERT INTO game_skill
+        (skillId,playerId,level)
+        VALUES (#{skillId},#{playerId},#{level})
+    </insert>
+
+    <update id="update" parameterType="com.game.gameserver.module.skill.entity.SkillEntity">
+        UPDATE game_guild
+        <set>
+            <if test="level != null">
+                level = #{level},
+            </if>
+        </set>
+        WHERE playerId =#{playerId} AND skillId=#{skillId}
+    </update>
+
+    <delete id="delete">
+         DELETE FROM game_guild
+         WHERE skillId = #{skillId} AND playerId=#{playerId}
+    </delete>
 </mapper>

@@ -12,5 +12,7 @@ public enum InstanceEnum {
     /** 副本通关状态  */
     SUCCESS,
     /** 副本失败状态 */
-    FAILED
+    FAILED,
+    /** 副本回收*/
+    RECOVERY;
 }
