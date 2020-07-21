@@ -3,6 +3,7 @@ package com.game.gameserver.context;
 import com.game.gameserver.module.player.manager.PlayerManager;
 import com.game.gameserver.module.scene.manager.SceneManager;
 import com.game.gameserver.net.handler.MessageDispatcher;
+import com.game.gameserver.net.modelhandler.fighter.FighterHandle;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -23,6 +24,8 @@ public class ServerContext implements ApplicationContextAware {
     private SceneManager sceneManager;
     @Autowired
     private PlayerManager playerManager;
+    @Autowired
+    private FighterHandle fighterHandle;
 
     private static ApplicationContext application;
 

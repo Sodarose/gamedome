@@ -32,20 +32,20 @@
 
     <insert id="insert" parameterType="com.game.gameserver.module.friend.entity.FriendEntity">
         INSERT INTO game_friend
-        (id,  friendId, friendType,playerId)
+        (id, friendId, friendType,playerId)
         VALUES (#{id},#{friendId},#{friendType},#{playerId})
     </insert>
 
     <update id="update" parameterType="com.game.gameserver.module.friend.entity.FriendEntity">
         UPDATE game_friend
         <set>
-            <if test="itemConfigId != null">
+            <if test="friendId != null">
                 friendId = #{friendId},
             </if>
-            <if test="itemConfigId != null">
+            <if test="friendType != null">
                 friendType = #{friendType},
             </if>
-            <if test="itemConfigId != null">
+            <if test="playerId != null">
                 playerId = #{playerId},
             </if>
         </set>

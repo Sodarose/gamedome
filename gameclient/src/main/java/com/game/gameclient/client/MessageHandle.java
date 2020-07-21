@@ -1,9 +1,6 @@
 package com.game.gameclient.client;
 
-import com.game.gameclient.type.BackBagCmd;
-import com.game.gameclient.type.EquipCmd;
-import com.game.gameclient.type.ModuleKey;
-import com.game.gameclient.type.SceneCmd;
+import com.game.gameclient.type.*;
 import com.game.gameclient.view.ClientView;
 import com.game.message.Message;
 
@@ -14,28 +11,34 @@ import com.game.message.Message;
  * @date 2020/7/11 0:37
  */
 public class MessageHandle {
-    public static void handle(Message message){
+    public static void handle(Message message) {
         // 场景数据
-        if(message.getModule()== ModuleKey.SCENE_MODULE&&message.getCmd() == SceneCmd.SYNC){
+        if (message.getModule() == ModuleKey.SCENE_MODULE && message.getCmd() == SceneCmd.SYNC) {
             ClientView.print2ScenePane(message.getContent());
             return;
         }
 
         // 人物数据
-        if(message.getModule()== ModuleKey.PLAYER_MODULE){
+        if (message.getModule() == ModuleKey.PLAYER_MODULE) {
             ClientView.print2PlayerPane(message.getContent());
             return;
         }
 
         // 装备数据
-        if(message.getModule()==ModuleKey.EQUIP_MODULE&&message.getCmd() == EquipCmd.SYNC){
+        if (message.getModule() == ModuleKey.EQUIP_MODULE && message.getCmd() == EquipCmd.SYNC) {
             ClientView.print2EquipPane(message.getContent());
             return;
         }
 
         // 背包数据
-        if(message.getModule()==ModuleKey.BACK_BAG_MODULE&&message.getCmd()== BackBagCmd.SYNC){
+        if (message.getModule() == ModuleKey.BACK_BAG_MODULE && message.getCmd() == BackBagCmd.SYNC) {
             ClientView.print2BackBagPane(message.getContent());
+            return;
+        }
+
+        // 副本数据
+        if (message.getModule() == ModuleKey.INSTANCE_MODULE && message.getCmd() == InstanceCmd.SYNC) {
+            ClientView.print2ScenePane(message.getContent());
             return;
         }
 

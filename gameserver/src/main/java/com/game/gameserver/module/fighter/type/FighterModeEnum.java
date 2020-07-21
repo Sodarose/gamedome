@@ -8,11 +8,27 @@ package com.game.gameserver.module.fighter.type;
  */
 public enum  FighterModeEnum {
     /** 和平模式 只攻击怪物 */
-    PEACE,
+    PEACE(1,""),
     /** 全体模式 可以攻击任何可攻击对象 */
-    ALL,
+    ALL(2,""),
     /** 组队模式 不攻击队友 */
-    TEAM,
+    TEAM(3,""),
     /** 善恶     只能攻击红名玩家*/
-    EVIL;
+    EVIL(4,"");
+
+    private int type;
+    private String desc;
+
+    FighterModeEnum(int type,String desc){
+        this.type  = type;
+        this.desc = desc;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public String getDesc() {
+        return desc;
+    }
 }

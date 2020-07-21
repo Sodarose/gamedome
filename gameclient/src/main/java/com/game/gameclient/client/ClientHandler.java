@@ -23,7 +23,6 @@ public class ClientHandler extends ChannelInboundHandlerAdapter {
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-        logger.info("client accept message {}",msg);
         CmdProto.CmdMsg cmdMsg = (CmdProto.CmdMsg) msg;
         Message message = Message.buildMsg(cmdMsg);
         MessageHandle.handle(message);

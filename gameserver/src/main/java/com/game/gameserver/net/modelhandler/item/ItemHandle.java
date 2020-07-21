@@ -29,26 +29,26 @@ public class ItemHandle extends BaseHandler {
 
     @CmdHandler(cmd = ItemCmd.SHOW_ITEM)
     public void showItem(Message message, Channel channel){
-        Player userTask = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
-        if (userTask == null) {
+        Player player = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
+        if (player == null) {
             NotificationHelper.notifyChannel(channel, "请先登录角色");
             return;
         }
         String[] param = message.getContent().split("\\s+");
         int bagType = Integer.parseInt(param[0]);
         int bagIndex = Integer.parseInt(param[1]);
-        itemService.showItem(userTask,bagType,bagIndex);
+        itemService.showItem(player,bagType,bagIndex);
     }
 
     @CmdHandler(cmd = ItemCmd.USE_ITEM)
     public void useItem(Message message,Channel channel){
-        Player userTask = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
-        if (userTask == null) {
+        Player player = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
+        if (player == null) {
             NotificationHelper.notifyChannel(channel, "请先登录角色");
             return;
         }
         int bagIndex = Integer.parseInt(message.getContent());
-        itemService.useItem(userTask,bagIndex);
+        itemService.useItem(player,bagIndex);
     }
 }
 

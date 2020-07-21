@@ -6,7 +6,7 @@ import com.game.gameserver.module.guild.service.GuildService;
 import com.game.gameserver.module.notification.NotificationHelper;
 import com.game.gameserver.module.player.model.Player;
 import com.game.gameserver.module.player.service.PlayerService;
-import com.game.gameserver.module.scene.model.Scene;
+import com.game.gameserver.module.scene.model.GameScene;
 import com.game.gameserver.module.team.model.Team;
 import com.game.gameserver.module.team.service.TeamService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,7 +56,7 @@ public class ChatService {
      * @return void
      */
     public void localChat(Player player, String content) {
-        Scene currScene = player.getCurrScene();
+        GameScene currScene = (GameScene) player.getCurrScene();
         if(currScene==null){
             NotificationHelper.notifyPlayer(player,"未知场景");
             return;

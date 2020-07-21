@@ -67,10 +67,32 @@ public enum Cmd {
     USE_ITEM(ModuleKey.ITEM_MODULE,ItemCmd.USE_ITEM),
 
     /** 技能 */
+    /** 展示当前职业所有技能 */
+    SHOW_CAREER_SKILL(ModuleKey.SKILL_MODULE,SkillCmd.SHOW_CAREER_SKILL),
+    /** 展示当前角色技能 */
+    SHOW_SKILL(ModuleKey.SKILL_MODULE,SkillCmd.SHOW_SKILL),
+    /** 学习技能 */
+    LEARN_SKILL(ModuleKey.SKILL_MODULE,SkillCmd.LEARN_SKILL),
+    /** 遗忘技能 */
+    FORGET_SKILL(ModuleKey.SKILL_MODULE,SkillCmd.FORGET_SKILL),
+    /** 使用技能 */
+    USE_SKILL(ModuleKey.SKILL_MODULE,SkillCmd.USE_SKILL),
 
     /** 战斗 */
+    /** 攻击 */
+    ATTACK(ModuleKey.FIGHTER_MODEL,FighterCmd.ATTACK),
+    /** 切换模式 */
+    CHANGE_MODEL(ModuleKey.FIGHTER_MODEL,FighterCmd.CHANGE_MODEL),
 
     /** 副本 */
+    /** 展示所有副本 */
+    SHOW_ALL_INSTANCE(ModuleKey.INSTANCE_MODULE,InstanceCmd.SHOW_ALL_INSTANCE),
+    /** 进入副本 */
+    ENTRY_INSTANCE(ModuleKey.INSTANCE_MODULE,InstanceCmd.ENTRY_INSTANCE),
+    /** 组队进入副本 */
+    ENTRY_INSTANCE_BY_TEAM(ModuleKey.INSTANCE_MODULE,InstanceCmd.ENTRY_INSTANCE_BY_TEAM),
+    /** 退出副本 */
+    EXIT_INSTANCE(ModuleKey.INSTANCE_MODULE,InstanceCmd.EXIT_INSTANCE),
 
     /** 商店*/
 
@@ -183,8 +205,20 @@ public enum Cmd {
     /** 取消任务 */
     CANCEL_TASK(ModuleKey.TASK_MODULE,TaskCmd.CANCEL_TASK),
     /** 提交任务 */
-    SUBMIT_TASK(ModuleKey.TASK_MODULE,TaskCmd.SUBMIT_TASK)
+    SUBMIT_TASK(ModuleKey.TASK_MODULE,TaskCmd.SUBMIT_TASK),
     /** 成就*/
+
+    /** 好友 */
+    /** 展示好友列表 */
+    SHOW_FRIEND(ModuleKey.FRIEND_MODULE,FriendCmd.SHOW_FRIEND),
+    /** 申请好友 */
+    APPLY_FOR_FRIEND(ModuleKey.FRIEND_MODULE,FriendCmd.APPLY_FOR_FRIEND),
+    /** 处理好友申请 */
+    PROCESS_FRIEND_APPLY(ModuleKey.FRIEND_MODULE,FriendCmd.PROCESS_FRIEND_APPLY),
+    /** 删除好友 */
+    REMOVE_FRIEND(ModuleKey.FRIEND_MODULE,FriendCmd.REMOVE_FRIEND),
+    /** 更改好友类型 */
+    CHANGE_FRIEND_TYPE(ModuleKey.FRIEND_MODULE,FriendCmd.CHANGE_FRIEND_TYPE)
     ;
 
     private Integer module;

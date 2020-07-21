@@ -42,11 +42,13 @@ public class AuctionHouseManager {
      */
     private final static long EXPIRE_TIME = TimeUnit.MILLISECONDS.convert(24, TimeUnit.HOURS);
 
-    /** 拍卖行线程 */
+    /**
+     * 拍卖行线程
+     */
     private final static ThreadFactory AUCTION_THREAD_FACTORY = new ThreadFactoryBuilder()
-            .setNameFormat("AuctionHouse-%d").setUncaughtExceptionHandler((t,e) -> e.printStackTrace()).build();
+            .setNameFormat("AuctionHouse-%d").setUncaughtExceptionHandler((t, e) -> e.printStackTrace()).build();
     private final static ScheduledThreadPoolExecutor AUCTION_HOUSE_THREAD =
-            new ScheduledThreadPoolExecutor(1,AUCTION_THREAD_FACTORY);
+            new ScheduledThreadPoolExecutor(1, AUCTION_THREAD_FACTORY);
 
     @Autowired
     private AuctionDbService auctionDbService;
@@ -106,41 +108,46 @@ public class AuctionHouseManager {
      * @return void
      */
     private void processExpireAuctionItem(AuctionItem auctionItem) {
-        // 根据拍卖模式 进行不同的处理
-        if(auctionItem.getModel() == AuctionModel.AUCTION){
-            // 创建道具
-            Item item = itemService.createItem(auctionItem.getItemConfigId(),auctionItem.getNum());
-            // 创建附件列表
-            List<Item> attachments = new ArrayList<>();
-            // 发送邮件
-            emailService.sendEmail(SystemSender.AUCTION.getId(),
-                    auctionItem.getBidderId(),"拍卖行:成功竞拍商品",
-                    "恭喜您成功竞拍商品",0,attachments);
-            // 发送金币
-            emailService.sendEmail(SystemSender.AUCTION.getId(),
-                    auctionItem.getBidderId(),"拍卖行:商品已卖出",
-                    "恭喜您成功卖出商品",auctionItem.getPrice(),null);
-            // 在线通知用户
-            Player bidder = playerService.getPlayer(auctionItem.getBidderId());
-            if(bidder!=null){
-                NotificationHelper.notifyPlayer(bidder,"您已经成功竞拍商品");
+        auctionItem.getWriteLock().lock();
+        try {
+            // 根据拍卖模式 进行不同的处理
+            if (auctionItem.getModel() == AuctionModel.AUCTION) {
+                // 创建道具
+                Item item = itemService.createItem(auctionItem.getItemConfigId(), auctionItem.getNum());
+                // 创建附件列表
+                List<Item> attachments = new ArrayList<>();
+                // 发送邮件
+                emailService.sendEmail(SystemSender.AUCTION.getId(),
+                        auctionItem.getBidderId(), "拍卖行:成功竞拍商品",
+                        "恭喜您成功竞拍商品", 0, attachments);
+                // 发送金币
+                emailService.sendEmail(SystemSender.AUCTION.getId(),
+                        auctionItem.getBidderId(), "拍卖行:商品已卖出",
+                        "恭喜您成功卖出商品", auctionItem.getPrice(), null);
+                // 在线通知用户
+                Player bidder = playerService.getPlayer(auctionItem.getBidderId());
+                if (bidder != null) {
+                    NotificationHelper.notifyPlayer(bidder, "您已经成功竞拍商品");
+                }
+                Player player = playerService.getPlayer(auctionItem.getPlayerId());
+                if (bidder != null) {
+                    NotificationHelper.notifyPlayer(bidder, "您的商品已经被卖出");
+                }
+            } else {
+                // 一口价模式 流拍 发回给用户
+                // 创建道具
+                Item item = itemService.createItem(auctionItem.getItemConfigId(), auctionItem.getNum());
+                // 创建附件列表
+                List<Item> attachments = new ArrayList<>();
+                // 发送邮件
+                emailService.sendEmail(SystemSender.AUCTION.getId(),
+                        auctionItem.getPlayerId(), "拍卖行:商品流拍",
+                        "商品流拍", 0, attachments);
             }
-            Player player = playerService.getPlayer(auctionItem.getPlayerId());
-            if(bidder!=null){
-                NotificationHelper.notifyPlayer(bidder,"您的商品已经被卖出");
-            }
-        }else {
-            // 一口价模式 流拍 发回给用户
-            // 创建道具
-            Item item = itemService.createItem(auctionItem.getItemConfigId(), auctionItem.getNum());
-            // 创建附件列表
-            List<Item> attachments = new ArrayList<>();
-            // 发送邮件
-            emailService.sendEmail(SystemSender.AUCTION.getId(),
-                    auctionItem.getPlayerId(), "拍卖行:商品流拍",
-                    "商品流拍", 0, attachments);
+            auctionDbService.deleteAsync(auctionItem.getId());
+        } finally {
+            auctionItem.getWriteLock().unlock();
         }
-        auctionDbService.deleteAsync(auctionItem.getId());
     }
 
     /**
@@ -163,7 +170,7 @@ public class AuctionHouseManager {
         // 迭代
         Iterator<Map.Entry<Long, AuctionItem>> iterator =
                 LONG_AUCTION_ITEM_MAP.entrySet().iterator();
-        while (iterator.hasNext()){
+        while (iterator.hasNext()) {
             expireAuctionItem.add(iterator.next().getValue());
             iterator.remove();
         }
@@ -172,7 +179,7 @@ public class AuctionHouseManager {
     }
 
 
-    public void putAuctionItem(long auctionItemId,AuctionItem auctionItem) {
+    public void putAuctionItem(long auctionItemId, AuctionItem auctionItem) {
         LONG_AUCTION_ITEM_MAP.put(auctionItem.getId(), auctionItem);
     }
 
@@ -180,18 +187,18 @@ public class AuctionHouseManager {
         LONG_AUCTION_ITEM_MAP.remove(auctionItemId);
     }
 
-    public AuctionItem getAuctionItem(long auctionItemId){
+    public AuctionItem getAuctionItem(long auctionItemId) {
         return LONG_AUCTION_ITEM_MAP.get(auctionItemId);
     }
 
-    public String buildAuctionHouseMsg(){
+    public String buildAuctionHouseMsg() {
         StringBuilder sb = new StringBuilder("拍卖行信息:");
         sb.append("id").append("\t").append("名称").append("\t").append("竞拍模式").append("\t")
                 .append("价格").append("\t").append("数量").append("\n");
         LONG_AUCTION_ITEM_MAP.forEach((key, value) -> {
             sb.append(value.getId()).append("\t")
                     .append(value.getItemConfigId()).append("\t")
-                    .append(value.getModel()== AuctionModel.AUCTION?"竞拍":"一口价").append("\t")
+                    .append(value.getModel() == AuctionModel.AUCTION ? "竞拍" : "一口价").append("\t")
                     .append(value.getPrice()).append("\t")
                     .append(value.getNum()).append("\t")
                     .append("\n");
@@ -205,10 +212,10 @@ public class AuctionHouseManager {
      * @param playerId
      * @return java.util.List<com.game.gameserver.module.auction.entity.AuctionItem>
      */
-    public List<AuctionItem> getAuctionItemByPlayerId(long playerId){
+    public List<AuctionItem> getAuctionItemByPlayerId(long playerId) {
         List<AuctionItem> list = new ArrayList<>();
         LONG_AUCTION_ITEM_MAP.forEach((key, value) -> {
-            if(value.getPlayerId().equals(playerId)){
+            if (value.getPlayerId().equals(playerId)) {
                 list.add(value);
             }
         });

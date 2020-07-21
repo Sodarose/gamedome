@@ -5,6 +5,7 @@ import com.game.gameserver.module.auction.manager.AuctionHouseManager;
 import com.game.gameserver.module.guild.dao.GuildDbService;
 import com.game.gameserver.module.guild.dao.GuildMapper;
 import com.game.gameserver.module.guild.manager.GuildManager;
+import com.game.gameserver.module.instance.manager.InstanceManager;
 import com.game.gameserver.module.scene.manager.SceneManager;
 import com.game.gameserver.module.shop.manager.ShopManager;
 import org.slf4j.Logger;
@@ -32,6 +33,8 @@ public class Platform {
     private ShopManager shopManager;
     @Autowired
     private GuildManager guildManager;
+    @Autowired
+    private InstanceManager instanceManager;
 
     public void startUp() {
         logger.info("platform start up ......");
@@ -39,6 +42,8 @@ public class Platform {
         staticConfigManager.loadConfig();
         // 加载场景
         sceneManager.loadScene();
+        // 加载副本
+        instanceManager.initialize();
         // 加载拍卖行
         auctionHouseManager.loadAuctionItem();
         // 加载商店

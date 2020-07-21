@@ -198,6 +198,7 @@ public class GuildWarehouseService {
             NotificationHelper.notifyPlayer(player, "你没有使用公会仓库的权限");
             return;
         }
+
         GuildWarehouse guildWarehouse = guild.getGuildWarehouse();
         Lock lock = guildWarehouse.getWriteLock();
         lock.lock();

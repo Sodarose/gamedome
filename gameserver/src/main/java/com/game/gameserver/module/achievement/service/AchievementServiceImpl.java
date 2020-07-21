@@ -4,8 +4,8 @@ package com.game.gameserver.module.achievement.service;
 import com.game.gameserver.common.config.AchievementConfig;
 import com.game.gameserver.common.config.StaticConfigManager;
 import com.game.gameserver.module.achievement.dao.AchievementMapper;
-import com.game.gameserver.module.achievement.entity.Achievement;
-import com.game.gameserver.module.achievement.entity.PlayerAchievement;
+import com.game.gameserver.module.achievement.entity.AchievementEntity;
+import com.game.gameserver.module.achievement.model.PlayerAchievement;
 import com.game.gameserver.module.achievement.manager.AchievementManager;
 import com.game.gameserver.module.achievement.type.AchievementState;
 import com.game.gameserver.util.ProtocolFactory;
@@ -91,7 +91,7 @@ public class AchievementServiceImpl implements AchievementService {
         writeLock.lock();
         try {
             // 判断是否有该成就
-            Achievement achievement = playerAchievement.getAchievement(achievementId);
+            AchievementEntity achievement = playerAchievement.getAchievement(achievementId);
             if (achievement == null) {
                 return AchievementProtocol.SubmitAchievementRes.newBuilder()
                         .setCode(1002)

@@ -6,22 +6,26 @@ package com.game.gameserver.module.skill.type;
  * @author xuewenkang
  * @date 2020/6/23 10:21
  */
-public interface SkillType {
-    /** 伤害型技能 */
-    int DAMAGE = 1;
-    /** 辅助性技能 */
-    int ASSIST = 2;
-    /** 召唤性技能 */
-    int SUMMONER = 3;
+public enum  SkillType {
+    BUFFER(0,"自身BUFFER技能"),
+    DAMAGE(1,"伤害型技能"),
+    TREATMENT(2,"辅助型技能"),
+    SUMMONING(3,"召唤型技能")
+    ;
+    private int type;
+    private String desc;
+
+    SkillType(int type,String desc){
+        this.type = type;
+        this.desc = desc;
+    }
 
 
-    /** 指定目标性技能*/
-    int TARGET = 1;
-    /** 范围性技能 */
-    int AREA = 2;
-    /** 无目标技能*/
-    int NOT_TARGET = 3;
+    public int getType() {
+        return type;
+    }
 
-    String HP = "HP";
-    String MP = "MP";
+    public String getDesc() {
+        return desc;
+    }
 }

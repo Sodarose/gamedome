@@ -105,6 +105,7 @@ public class TaskHelper {
         taskEntity.setState(task.getState());
         // 设置进度
         String taskProgressJson = JSON.toJSONString(task.getTaskProgressMap());
+        System.out.println(taskProgressJson);
         taskEntity.setTaskProgresses(taskProgressJson);
         return taskEntity;
     }

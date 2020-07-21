@@ -2,7 +2,10 @@ package com.game.gameserver.thread;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.*;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * 业务线程池
@@ -22,4 +25,15 @@ public class BusinessThreadPool {
             new LinkedBlockingQueue<>(100),
             BUSINESS_THREAD_FACTORY
             );
+
+    /** 标识线程池 key:线程标识   value:线程*/
+    private final Map<Integer,ThreadPoolExecutor> THREAD_POOL_MAP = new HashMap<>();
+    /** 用户玩家对应的线程 key：玩家Id value:线程标识 */
+    private final Map<Long,Integer> USER_THREAD_MAP = new ConcurrentHashMap<>();
+    /** 计数器 用于均匀分配标识线程 */
+    private final AtomicInteger COUNTER = new AtomicInteger(0);
+
+    public void initialize(){
+        
+    }
 }

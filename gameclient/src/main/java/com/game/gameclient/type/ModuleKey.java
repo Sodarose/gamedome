@@ -23,4 +23,5 @@ public interface ModuleKey {
     int GUILD_MODULE = 1016;
     int AUCTION_MODULE = 1017;
     int TRADE_MODULE = 1018;
+    int FRIEND_MODULE = 1019;
 }

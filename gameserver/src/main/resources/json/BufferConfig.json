@@ -1,5 +1,44 @@
 [
   {
+    "id": 1001,
+    "name": "天堂HP恢复药剂",
+    "hp": 1000,
+    "mp": 0,
+    "property": {
 
+    },
+    "effect": 1,
+    "duration": 10000,
+    "intervalTime": 1000,
+    "times": 5,
+    "deduct": false
+  },
+  {
+    "id": 1002,
+    "name": "天堂MP恢复药剂",
+    "hp": 0,
+    "mp": 1000,
+    "property": {
+
+    },
+    "effect": 1,
+    "duration": 10000,
+    "intervalTime": 1000,
+    "times": 5,
+    "deduct": false
+  },
+  {
+    "id": 1003,
+    "name": "出血",
+    "hp": -100,
+    "mp": 0,
+    "property": {
+
+    },
+    "effect": 1,
+    "duration": 20000,
+    "intervalTime": 1000,
+    "times": 15,
+    "deduct": false
   }
 ]

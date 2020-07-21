@@ -33,6 +33,11 @@ public class PlayerPropertyService {
     }
 
 
+    public void changeHpMp(int hp,int mp){
+
+    }
+
+
     @EventHandler
     public void handleLogoutEvent(LogoutEvent logoutEvent){
         Player player = logoutEvent.getPlayer();

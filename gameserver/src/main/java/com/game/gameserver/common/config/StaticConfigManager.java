@@ -3,7 +3,6 @@ package com.game.gameserver.common.config;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.JSONReader;
-import com.game.gameserver.module.shop.model.Goods;
 import lombok.Getter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,18 +30,20 @@ public class StaticConfigManager {
 
     private Map<Integer, SceneConfig> sceneConfigMap = new HashMap<>(16);
     private Map<Integer, InstanceConfig> instanceConfigMap = new HashMap<>(16);
+    private Map<Integer, InstanceCheckPointConfig> integerInstanceCheckpointConfigMap = new HashMap<>(16);
     private Map<Integer, NpcConfig> npcConfigMap = new HashMap<>(16);
     private Map<Integer, MonsterConfig> monsterConfigMap = new HashMap<>(16);
     private Map<Integer, CommodityConfig> commodityConfigMap = new HashMap<>(16);
     private Map<Integer, CareerConfig> careerConfigMap = new HashMap<>(16);
-    private Map<Integer, SkillConfig>  skillConfigMap = new HashMap<>(16);
+    private Map<Integer, SkillConfig> skillConfigMap = new HashMap<>(16);
     private Map<Integer, PetConfig> petConfigMap = new HashMap<>(16);
     private Map<Integer, TaskConfig> taskConfigMap = new HashMap<>(16);
     private Map<Integer, AchievementConfig> achievementConfigMap = new HashMap<>(16);
     private Map<Integer, GuildLevelConfig> guildLevelConfigMap = new HashMap<>(16);
     private Map<Integer, ItemConfig> itemConfigMap = new HashMap<>(16);
     private Map<Integer, ShopConfig> shopConfigMap = new HashMap<>(16);
-    private Map<Integer, GoodsConfig> goodsConfigMap = new HashMap<>();
+    private Map<Integer, GoodsConfig> goodsConfigMap = new HashMap<>(16);
+    private Map<Integer, BufferConfig> bufferConfigMap = new HashMap<>(16);
 
     public static StaticConfigManager getInstance() {
         return INSTANCE;
@@ -78,8 +79,60 @@ public class StaticConfigManager {
         loadUnionLevelConfig(path);
         loadShopConfig(path);
         loadGoodsConfig(path);
+        loadBufferConfig(path);
+        loadInstanceCheckPointConfig(path);
+        loadPetConfig(path);
     }
 
+    private void loadPetConfig(String path){
+        logger.info("load PetConfig.json");
+        String fileName = "PetConfig.json";
+        path += "/" + fileName;
+        try {
+            JSONReader jsonReader = new JSONReader(new InputStreamReader(new FileInputStream(path)));
+            jsonReader.startArray();
+            while (jsonReader.hasNext()) {
+                PetConfig petConfig = JSON.parseObject(jsonReader.readString(),
+                        PetConfig.class);
+                petConfigMap.put(petConfig.getId(),petConfig);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void loadInstanceCheckPointConfig(String path){
+        logger.info("load InstanceCheckPointConfig.json");
+        String fileName = "InstanceCheckPointConfig.json";
+        path += "/" + fileName;
+        try {
+            JSONReader jsonReader = new JSONReader(new InputStreamReader(new FileInputStream(path)));
+            jsonReader.startArray();
+            while (jsonReader.hasNext()) {
+                InstanceCheckPointConfig instanceCheckPointConfig = JSON.parseObject(jsonReader.readString(),
+                        InstanceCheckPointConfig.class);
+                integerInstanceCheckpointConfigMap.put(instanceCheckPointConfig.getId(),instanceCheckPointConfig);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void loadBufferConfig(String path){
+        logger.info("load BufferConfig.json");
+        String fileName = "BufferConfig.json";
+        path += "/" + fileName;
+        try {
+            JSONReader jsonReader = new JSONReader(new InputStreamReader(new FileInputStream(path)));
+            jsonReader.startArray();
+            while (jsonReader.hasNext()) {
+                BufferConfig bufferConfig = JSON.parseObject(jsonReader.readString(), BufferConfig.class);
+                bufferConfigMap.put(bufferConfig.getId(),bufferConfig);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     /**
      * 读取商品配置
@@ -87,7 +140,7 @@ public class StaticConfigManager {
      * @param path
      * @return void
      */
-    private void loadGoodsConfig(String path){
+    private void loadGoodsConfig(String path) {
         logger.info("load GoodsConfig.json");
         String fileName = "GoodsConfig.json";
         path += "/" + fileName;
@@ -96,7 +149,7 @@ public class StaticConfigManager {
             jsonReader.startArray();
             while (jsonReader.hasNext()) {
                 GoodsConfig goodsConfig = JSON.parseObject(jsonReader.readString(), GoodsConfig.class);
-                goodsConfigMap.put(goodsConfig.getId(),goodsConfig);
+                goodsConfigMap.put(goodsConfig.getId(), goodsConfig);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -109,7 +162,7 @@ public class StaticConfigManager {
      * @param path
      * @return void
      */
-    private void loadShopConfig(String path){
+    private void loadShopConfig(String path) {
         logger.info("load ShopConfig.json");
         String fileName = "ShopConfig.json";
         path += "/" + fileName;
@@ -118,7 +171,7 @@ public class StaticConfigManager {
             jsonReader.startArray();
             while (jsonReader.hasNext()) {
                 ShopConfig shopConfig = JSON.parseObject(jsonReader.readString(), ShopConfig.class);
-                shopConfigMap.put(shopConfig.getId(),shopConfig);
+                shopConfigMap.put(shopConfig.getId(), shopConfig);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -140,7 +193,6 @@ public class StaticConfigManager {
             e.printStackTrace();
         }
     }
-
 
 
     private void loadMonsterConfig(String path) {
@@ -193,8 +245,6 @@ public class StaticConfigManager {
     }
 
 
-
-
     private void loadItemConfig(String path) {
         logger.info("load ItemConfig.json");
         String fileName = "ItemConfig.json";
@@ -203,8 +253,8 @@ public class StaticConfigManager {
             JSONReader jsonReader = new JSONReader(new InputStreamReader(new FileInputStream(path)));
             jsonReader.startArray();
             while (jsonReader.hasNext()) {
-                ItemConfig itemConfig = JSONObject.parseObject(jsonReader.readString(),ItemConfig.class);
-                itemConfigMap.put(itemConfig.getId(),itemConfig);
+                ItemConfig itemConfig = JSONObject.parseObject(jsonReader.readString(), ItemConfig.class);
+                itemConfigMap.put(itemConfig.getId(), itemConfig);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -243,7 +293,7 @@ public class StaticConfigManager {
         }
     }
 
-    private void loadSkillConfig(String path){
+    private void loadSkillConfig(String path) {
         logger.info("load SkillConfig.json");
         String fileName = "SkillConfig.json";
         path += "/" + fileName;
@@ -252,14 +302,14 @@ public class StaticConfigManager {
             jsonReader.startArray();
             while (jsonReader.hasNext()) {
                 SkillConfig skillConfig = JSON.parseObject(jsonReader.readString(), SkillConfig.class);
-                skillConfigMap.put(skillConfig.getId(),skillConfig);
+                skillConfigMap.put(skillConfig.getId(), skillConfig);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private void loadTaskConfig(String path){
+    private void loadTaskConfig(String path) {
         logger.info("load TaskConfig.json");
         String fileName = "TaskConfig.json";
         path += "/" + fileName;
@@ -268,14 +318,14 @@ public class StaticConfigManager {
             jsonReader.startArray();
             while (jsonReader.hasNext()) {
                 TaskConfig taskConfig = JSON.parseObject(jsonReader.readString(), TaskConfig.class);
-                taskConfigMap.put(taskConfig.getId(),taskConfig);
+                taskConfigMap.put(taskConfig.getId(), taskConfig);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private void loadAchievementConfig(String path){
+    private void loadAchievementConfig(String path) {
         logger.info("load AchievementConfig.json");
         String fileName = "AchievementConfig.json";
         path += "/" + fileName;
@@ -284,14 +334,14 @@ public class StaticConfigManager {
             jsonReader.startArray();
             while (jsonReader.hasNext()) {
                 AchievementConfig achievementConfig = JSON.parseObject(jsonReader.readString(), AchievementConfig.class);
-                achievementConfigMap.put(achievementConfig.getId(),achievementConfig);
+                achievementConfigMap.put(achievementConfig.getId(), achievementConfig);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private void loadUnionLevelConfig(String path){
+    private void loadUnionLevelConfig(String path) {
         logger.info("load GuildLevelConfig.json");
         String fileName = "GuildLevelConfig.json";
         path += "/" + fileName;
