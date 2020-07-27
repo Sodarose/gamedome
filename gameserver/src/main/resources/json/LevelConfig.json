@@ -1,0 +1,17 @@
+[
+  {
+    "careerId": 1,
+    "levelConfig": [
+      {
+        "level": 1,
+        "needExpr":1000,
+        "propertyConfig": {
+          "hp": 12000,
+          "mp": 12000,
+          "attack": 1200,
+          "defense": 1200
+        }
+      }
+    ]
+  }
+]

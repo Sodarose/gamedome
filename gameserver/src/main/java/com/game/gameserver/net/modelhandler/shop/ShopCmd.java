@@ -5,7 +5,8 @@ package com.game.gameserver.net.modelhandler.shop;
  * @date 2020/6/10 18:11
  */
 public interface StoreCmd {
-    short LIST = 1001;
-    short BUY = 1002;
-    short SELL = 1003;
+    int  SHOW_SHOP_LIST = 1001;
+    int  SHOW_SHOP = 1002;
+    int  BUY_SINGLE = 1003;
+    int  BUY_BULK = 1004;
 }

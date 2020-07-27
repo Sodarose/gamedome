@@ -10,12 +10,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
+ * 玩家属性服务
+ *
  * @author xuewenkang
  * @date 2020/7/10 14:25
  */
 @Listener
 @Service
-public class PlayerPropertyService {
+public class PlayerDataService {
 
 
     @Autowired
@@ -33,9 +35,17 @@ public class PlayerPropertyService {
     }
 
 
-    public void changeHpMp(int hp,int mp){
+    /**
+     * 增加经验
+     *
+     * @param player
+     * @param expr
+     * @return void
+     */
+    public void addExpr(Player player,int expr){
 
     }
+
 
 
     @EventHandler

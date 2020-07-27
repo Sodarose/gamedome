@@ -87,7 +87,7 @@ public class StoreService {
             NotificationHelper.notifyPlayer(player,"购买失败");
         }
         // 扣除金币
-        player.decrease(goods.getPrice());
+        player.decreaseGolds(goods.getPrice());
         NotificationHelper.notifyPlayer(player,"购买成功");
         NotificationHelper.syncBackBag(player);
     }

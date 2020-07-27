@@ -10,9 +10,8 @@ import lombok.Data;
  */
 @Data
 public class Property {
-    /** 战斗属性 */
-    private int maxHp;
-    private int maxMp;
+    private int hp;
+    private int mp;
     private int attack;
     private int defense;
 }
