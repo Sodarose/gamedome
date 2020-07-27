@@ -122,7 +122,7 @@ CANCEL_TASK 参数（任务Id）功能：取消任务
 SUBMIT_TASK 参数（任务Id）功能：提交任务  
 
 ## 成就
-SHOW_ACHIEVEMENT 参数（无）展示成就
+SHOW_ACHIEVEMENT 参数（无）展示成就  
 SUBMIT_ACHIEVEMENT 参数（成就Id）提交成就
 
 
