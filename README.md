@@ -1,25 +1,25 @@
 # gamedome
 
 ## 账户模块
-LOGIN 参数（账户，密码）  功能：登录账户  
-REGISTER 参数（账户，密码） 功能：注册账户  
-LOGOUT 参数（无）  功能：退出登录  
+LOGIN 参数（账户，密码）  功能：登录账户    
+REGISTER 参数（账户，密码） 功能：注册账户    
+LOGOUT 参数（无）  功能：退出登录    
 
 ## 角色模块  
-LOGIN_ROLE 参数（角色Id) 功能：登录角色  
-CREATE_ROLE 参数（角色名，职业Id) 功能：创建角色
-ROLE_LIST 参数（无）  功能 查看角色列表  
-CAREER_LIST 参数（无） 功能：查看职业列表  
-SHOW_ROLE 参数（无） 功能：展示当前角色信息  
-LOGOUT_ROLE 参数（无） 功能：退出当前角色  
+LOGIN_ROLE 参数（角色Id) 功能：登录角色    
+CREATE_ROLE 参数（角色名，职业Id) 功能：创建角色  
+ROLE_LIST 参数（无）  功能 查看角色列表    
+CAREER_LIST 参数（无） 功能：查看职业列表    
+SHOW_ROLE 参数（无） 功能：展示当前角色信息    
+LOGOUT_ROLE 参数（无） 功能：退出当前角色    
 
 ## 场景
-SHOW_SCENE 参数（无） 功能：展示当前角色所在场景信息  
-MOVE_SCENE 参数（场景Id） 功能：移动到别的场景  
-AIO 参数（无） 功能：查看场景所有实体数据   
-SCENE_LIST 参数(无) 功能：展示场景列表  
-CHECK_SCENE 参数（场景Id) 根据Id查看场景信息  
-TALK_NPC 参数（npcId） 与NPC交谈    
+SHOW_SCENE 参数（无） 功能：展示当前角色所在场景信息    
+MOVE_SCENE 参数（场景Id） 功能：移动到别的场景    
+AIO 参数（无） 功能：查看场景所有实体数据     
+SCENE_LIST 参数(无) 功能：展示场景列表    
+CHECK_SCENE 参数（场景Id) 根据Id查看场景信息    
+TALK_NPC 参数（npcId） 与NPC交谈      
 
 ## 装备  
 SHOW_EQUIP_BAR 参数（无） 功能：展示装备栏  
