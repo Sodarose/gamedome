@@ -6,16 +6,16 @@ import com.game.gameserver.module.player.model.Player;
 import lombok.Data;
 
 /**
- * 金币事件
+ * 金币改变事件
  *
  * @author xuewenkang
  * @date 2020/7/15 12:47
  */
 @Data
-public class GoldsEvent implements Event {
+public class GoldsChangeEvent implements Event {
     private Player player;
 
-    public GoldsEvent(Player player){
+    public GoldsChangeEvent(Player player){
         this.player = player;
     }
 }

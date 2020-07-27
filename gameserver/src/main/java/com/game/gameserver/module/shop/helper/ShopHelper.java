@@ -16,8 +16,8 @@ public class ShopHelper {
     public static String buildShopList(List<Shop> shopList) {
         StringBuilder sb = new StringBuilder("商店列表:").append("\n");
         shopList.forEach((shop) -> {
-            sb.append("id:").append(shop.getId()).append("\n");
-            sb.append("name:").append(shop.getName()).append("\n");
+            sb.append("商店id:").append(shop.getId()).append("\n");
+            sb.append("商店名称:").append(shop.getName()).append("\n");
             sb.append("\n");
         });
         return sb.toString();
@@ -25,9 +25,9 @@ public class ShopHelper {
 
     public static String buildShop(Shop shop) {
         StringBuilder sb = new StringBuilder();
-        sb.append("id:").append(shop.getId()).append("\n");
-        sb.append("name:").append(shop.getName()).append("\n");
-        sb.append("goods:").append("\n");
+        sb.append("商店id:").append(shop.getId()).append("\n");
+        sb.append("商店名称:").append(shop.getName()).append("\n");
+        sb.append("商品:").append("\n");
         shop.getGoodsMap().forEach((key, value) -> {
             sb.append(buildGoods(value));
             sb.append("\n");

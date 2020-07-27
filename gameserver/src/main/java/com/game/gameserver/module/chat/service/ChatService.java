@@ -100,7 +100,7 @@ public class ChatService {
      */
     private void worldChat(Player player,String content){
         playerService.getAllPlayer().forEach((key,value)->{
-            NotificationHelper.notifyPlayer(player,MessageFormat.format("(世界){0}:{1}",
+            NotificationHelper.notifyPlayer(value,MessageFormat.format("(世界){0}:{1}",
                     player.getName(),content));
         });
     }
@@ -134,14 +134,14 @@ public class ChatService {
      * @param content
      * @return void
      */
-    public void teamChat(Player player,String content){
+    private void teamChat(Player player, String content){
         Team team = teamService.getTeam(player.getTeamId());
         if(team==null){
             return;
         }
         // 发送和消息给队伍任务
         team.getMemberMap().forEach((key,value)->{
-            NotificationHelper.notifyPlayer(player,MessageFormat.format("(队伍){0}:{1}",
+            NotificationHelper.notifyPlayer(value,MessageFormat.format("(队伍){0}:{1}",
                     player.getName(),content));
         });
     }

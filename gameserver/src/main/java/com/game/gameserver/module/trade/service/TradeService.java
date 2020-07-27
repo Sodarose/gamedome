@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.text.MessageFormat;
+import java.util.concurrent.locks.Lock;
 
 /**
  * @author xuewenkang
@@ -36,7 +37,13 @@ public class TradeService {
             return;
         }
         TradeBoard tradeBoard = tradeManager.getTradeBoard(player.getCurrTrade());
-        NotificationHelper.notifyPlayer(player, TradeHelper.buildTradeBoard(tradeBoard));
+        Lock lock = tradeBoard.getReadLock();
+        lock.lock();
+        try {
+            NotificationHelper.notifyPlayer(player, TradeHelper.buildTradeBoard(tradeBoard));
+        } finally {
+            lock.unlock();
+        }
     }
 
 
@@ -76,6 +83,7 @@ public class TradeService {
         }
         // 接受交易
         if (result == 0) {
+
             NotificationHelper.notifyPlayer(tradeBoard.getInitiator(), "玩家接受交易");
         } else {
             // 拒绝交易 移除该交易
@@ -99,12 +107,18 @@ public class TradeService {
             return;
         }
         TradeBoard tradeBoard = tradeManager.getTradeBoard(player.getCurrTrade());
-        TradeBar tradeBar = tradeBoard.getTradeBarMap().get(player.getPlayerEntity().getId());
-        Item item = backBagService.getItem(player, bagIndex);
-        if (item == null) {
-            return;
+        Lock lock = tradeBoard.getWriteLock();
+        lock.lock();
+        try {
+            TradeBar tradeBar = tradeBoard.getTradeBarMap().get(player.getPlayerEntity().getId());
+            Item item = backBagService.getItem(player, bagIndex);
+            if (item == null) {
+                return;
+            }
+            tradeBar.getItemList().add(item);
+        } finally {
+            lock.unlock();
         }
-        tradeBar.getItemList().add(item);
         NotificationHelper.notifyPlayer(player, "放入道具到交易栏中");
     }
 
@@ -114,11 +128,17 @@ public class TradeService {
             return;
         }
         TradeBoard tradeBoard = tradeManager.getTradeBoard(player.getCurrTrade());
-        if (price > player.getPlayerEntity().getGolds()) {
-            NotificationHelper.notifyPlayer(player, "金币大于自身持有金币");
-            return;
+        Lock lock = tradeBoard.getWriteLock();
+        lock.lock();
+        try {
+            if (price > player.getGolds()) {
+                NotificationHelper.notifyPlayer(player, "金币大于自身持有金币");
+                return;
+            }
+            tradeBoard.getTradeBarMap().get(player.getPlayerEntity().getId()).setGolds(price);
+        } finally {
+            lock.unlock();
         }
-        tradeBoard.getTradeBarMap().get(player.getPlayerEntity().getId()).setGolds(price);
         NotificationHelper.notifyPlayer(player, "放入" + price + "金币");
     }
 
@@ -134,12 +154,18 @@ public class TradeService {
             return;
         }
         TradeBoard tradeBoard = tradeManager.getTradeBoard(player.getCurrTrade());
-        tradeBoard.getInitiator().setCurrTrade(null);
-        tradeBoard.getAccepter().setCurrTrade(null);
-        NotificationHelper.notifyPlayer(tradeBoard.getInitiator(), "交易被取消");
-        NotificationHelper.notifyPlayer(tradeBoard.getAccepter(), "交易被取消");
-        // 移除缓存
-        tradeManager.removeTradeBoard(tradeBoard.getId());
+        Lock lock = tradeBoard.getWriteLock();
+        lock.lock();
+        try {
+            tradeBoard.getInitiator().setCurrTrade(null);
+            tradeBoard.getAccepter().setCurrTrade(null);
+            NotificationHelper.notifyPlayer(tradeBoard.getInitiator(), "交易被取消");
+            NotificationHelper.notifyPlayer(tradeBoard.getAccepter(), "交易被取消");
+            // 移除缓存
+            tradeManager.removeTradeBoard(tradeBoard.getId());
+        } finally {
+            lock.unlock();
+        }
     }
 
     /**
@@ -154,17 +180,23 @@ public class TradeService {
             return;
         }
         TradeBoard tradeBoard = tradeManager.getTradeBoard(player.getCurrTrade());
-        // 确认交易
-        tradeBoard.getTradeBarMap().get(player.getPlayerEntity().getId()).setAffirm(true);
-        Player accepter = tradeBoard.getAccepter();
-        Player initiator = tradeBoard.getInitiator();
-        TradeBar accepterBar = tradeBoard.getTradeBarMap().get(accepter.getPlayerEntity().getId());
-        TradeBar initiatorBar = tradeBoard.getTradeBarMap().get(initiator.getPlayerEntity().getId());
-        if (accepterBar.isAffirm() && initiatorBar.isAffirm()) {
-            NotificationHelper.notifyPlayer(accepter, "正在交易");
-            NotificationHelper.notifyPlayer(initiator, "正在交易");
-            // 执行交易
-            processTrade(tradeBoard);
+        Lock lock = tradeBoard.getWriteLock();
+        lock.lock();
+        try {
+            // 确认交易
+            tradeBoard.getTradeBarMap().get(player.getPlayerEntity().getId()).setAffirm(true);
+            Player accepter = tradeBoard.getAccepter();
+            Player initiator = tradeBoard.getInitiator();
+            TradeBar accepterBar = tradeBoard.getTradeBarMap().get(accepter.getPlayerEntity().getId());
+            TradeBar initiatorBar = tradeBoard.getTradeBarMap().get(initiator.getPlayerEntity().getId());
+            if (accepterBar.isAffirm() && initiatorBar.isAffirm()) {
+                NotificationHelper.notifyPlayer(accepter, "正在交易");
+                NotificationHelper.notifyPlayer(initiator, "正在交易");
+                // 执行交易
+                processTrade(tradeBoard);
+            }
+        } finally {
+            lock.unlock();
         }
     }
 
@@ -181,29 +213,27 @@ public class TradeService {
         TradeBar initiatorBar = tradeBoard.getTradeBarMap().get(initiator.getPlayerEntity().getId());
         // 双方交换道具与金币
         // 移除接受方道具和金币
-        int accepterGolds = accepter.getPlayerEntity().getGolds() - accepterBar.getGolds();
-        accepter.getPlayerEntity().setGolds(accepterGolds);
+        accepter.goldsChange(-accepterBar.getGolds());
         // 移除道具
         for (Item item : accepterBar.getItemList()) {
             backBagService.removeItem(accepter, item.getBagIndex());
         }
 
         // 移除发起方道具和金币
-        int initiatorGolds = initiator.getPlayerEntity().getGolds() - initiatorBar.getGolds();
-        initiator.getPlayerEntity().setGolds(initiatorGolds);
+        initiator.goldsChange(-initiatorBar.getGolds());
         // 移除道具
         for (Item item : initiatorBar.getItemList()) {
             backBagService.removeItem(initiator, item.getBagIndex());
         }
 
         // 接受方增加道济和金币
-        accepter.getPlayerEntity().setGolds(accepter.getPlayerEntity().getGolds() + initiatorBar.getGolds());
+        accepter.goldsChange(initiatorBar.getGolds());
         for (Item item : initiatorBar.getItemList()) {
             backBagService.addItem(accepter, item);
         }
 
         // 发起方增加道具和金币
-        initiator.getPlayerEntity().setGolds(initiator.getPlayerEntity().getGolds() + accepterBar.getGolds());
+        initiator.goldsChange(accepterBar.getGolds());
         for (Item item : accepterBar.getItemList()) {
             backBagService.addItem(initiator, item);
         }

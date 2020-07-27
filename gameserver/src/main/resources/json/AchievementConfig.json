@@ -2,12 +2,109 @@
   {
     "id": 1,
     "name": "牛头人猎杀者",
-    "limitLevel": 10,
-    "taskRequire": "3_1000_100",
-    "taskRequireStr": "杀死100个牛头人",
-    "expr": 10000,
-    "golds": 10000,
-    "props": "0_50|1_30",
-    "equips": "1|2|3|4"
+    "description": "",
+    "kind": 2,
+    "type": 1,
+    "limitLevel": 1,
+    "taskCondition": [
+      {
+        "target": 0,
+        "amount": 10,
+        "desc": "杀死10只牛头人"
+      },
+      {
+        "target": 0,
+        "amount": 10,
+        "desc": "杀死10只牛头人"
+      }
+    ],
+    "exprAward": 1000,
+    "goldAward": 1000,
+    "itemAward": [
+      {
+        "itemId": 1009,
+        "num": 1
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "name": "洛兰!洛兰!",
+    "description": "通关一次洛兰副本 ",
+    "type": 5,
+    "cancel": true,
+    "limitLevel": 1,
+    "taskCondition": [
+      {
+        "target": 1002,
+        "amount": 1,
+        "desc": "通关洛兰副本"
+      }
+    ],
+    "exprAward": 100000,
+    "goldAward": 5000,
+    "itemAward": [
+      {
+        "itemId": 1009,
+        "num": 1
+      }
+    ]
+  },
+  {
+    "id": 11,
+    "name": "富甲天下",
+    "description": "身上金额达到100w",
+    "type": 11,
+    "cancel": true,
+    "limitLevel": 1,
+    "taskCondition": [
+      {
+        "target": 0,
+        "amount": 1000000,
+        "desc": "100w"
+      }
+    ],
+    "exprAward": 1000,
+    "goldAward": 1000,
+    "itemAward": [
+    ]
+  },
+  {
+    "id": 7,
+    "name": "好友如云",
+    "description": "添加10个好友",
+    "kind": 2,
+    "type": 7,
+    "limitLevel": 1,
+    "taskCondition": [
+      {
+        "target": 0,
+        "amount": 10,
+        "desc": "10个好友"
+      }
+    ],
+    "exprAward": 1000,
+    "goldAward": 1000,
+    "itemAward": [
+    ]
+  },
+  {
+    "id": 2,
+    "name": "满级达人",
+    "description": "升至满级",
+    "type": 2,
+    "cancel": true,
+    "limitLevel": 1,
+    "taskCondition": [
+      {
+        "target": 0,
+        "amount": 10,
+        "desc": "升级"
+      }
+    ],
+    "exprAward": 1000,
+    "goldAward": 1000,
+    "itemAward": [
+    ]
   }
 ]

@@ -1,6 +1,7 @@
 package com.game.gameserver.module.player.helper;
 
 import com.game.gameserver.common.config.CareerConfig;
+import com.game.gameserver.common.config.LevelConfig;
 import com.game.gameserver.common.config.StaticConfigManager;
 import com.game.gameserver.common.fsm.state.player.PlayerState;
 import com.game.gameserver.module.player.model.Player;
@@ -32,7 +33,7 @@ public class PlayerHelper {
         return sb.toString();
     }
 
-    public static String buildSimplePlayerMsg(Player player){
+    public static String buildSimplePlayerMsg(Player player) {
         StringBuilder sb = new StringBuilder();
         sb.append("id:").append(player.getPlayerEntity().getId()).append("\n");
         sb.append("name:").append(player.getPlayerEntity().getName()).append("\n");
@@ -40,8 +41,8 @@ public class PlayerHelper {
                 .get(player.getPlayerEntity().getCareerId());
         sb.append("career:").append(careerConfig == null ? "" : careerConfig.getName()).append("\n");
         sb.append("level:").append(player.getPlayerEntity().getLevel()).append("\n");
-        sb.append("HP:").append(player.getPlayerBattle().getHp()).append("/")
-                .append(player.getPlayerBattle().getMaxHp()).append("\n");
+        sb.append("HP:").append(player.getPlayerBattle().getCurrHp()).append("/")
+                .append(player.getPlayerBattle().getHp()).append("\n");
         return sb.toString();
     }
 
@@ -67,31 +68,35 @@ public class PlayerHelper {
                 .get(player.getPlayerEntity().getCareerId());
         sb.append("职业:").append(careerConfig == null ? "" : careerConfig.getName()).append("\n");
         sb.append("状态:").append(buildPlayerStateMsg(player)).append("\n");
+        sb.append("战斗模式:").append(player.getFighterModeEnum().getDesc()).append("\n");
         sb.append("金币:").append(player.getPlayerEntity().getGolds()).append("\n");
-        sb.append("经验").append(player.getPlayerEntity().getExpr()).append("\n");
+        LevelConfig levelConfig = StaticConfigManager.getInstance().getLevelConfigMap().get(player.getLevel() + 1);
+        sb.append("经验").append(player.getPlayerEntity()
+                .getExpr()).append("/")
+                .append(levelConfig == null ? "已满级" : levelConfig.getNeedExpr()).append("\n");
         sb.append("\n");
         // 战斗属性
         sb.append("战斗属性:").append("\n");
-        sb.append("HP:").append(player.getPlayerBattle().getHp()).append("/")
-                .append(player.getPlayerBattle().getMaxHp()).append("\n");
-        sb.append("MP:").append(player.getPlayerBattle().getMp()).append("/")
-                .append(player.getPlayerBattle().getMaxMp()).append("\n");
+        sb.append("HP:").append(player.getPlayerBattle().getCurrHp()).append("/")
+                .append(player.getPlayerBattle().getHp()).append("\n");
+        sb.append("MP:").append(player.getPlayerBattle().getCurrMp()).append("/")
+                .append(player.getPlayerBattle().getMp()).append("\n");
         sb.append("攻击力:").append(player.getPlayerBattle().getAttack()).append("\n");
         sb.append("防御力:").append(player.getPlayerBattle().getDefense()).append("\n");
         return sb.toString();
     }
 
-    public static String buildPlayerStateMsg(Player player){
-        if(player.getState()== PlayerState.PLAYER_LIVE){
+    public static String buildPlayerStateMsg(Player player) {
+        if (player.getState() == PlayerState.PLAYER_LIVE) {
             return "正常";
         }
-        if(player.getState()== PlayerState.PLAYER_ATTACK){
+        if (player.getState() == PlayerState.PLAYER_ATTACK) {
             return "攻击";
         }
-        if(player.getState()==PlayerState.PLAYER_TAKE_OFF){
+        if (player.getState() == PlayerState.PLAYER_TAKE_OFF) {
             return "脱战";
         }
-        if(player.getState()==PlayerState.PLAYER_DEAD){
+        if (player.getState() == PlayerState.PLAYER_DEAD) {
             return "死亡";
         }
         return "";

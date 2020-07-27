@@ -8,9 +8,14 @@
     "mp": 500,
     "attack": 100,
     "defense": 200,
-    "skills": [1],
+    "skills": [
+      1
+    ],
     "refreshTime": 10000,
-    "drop": ""
+    "exprAward": 1500,
+    "goldAward": 2000,
+    "itemAward": [
+    ]
   },
   {
     "id": 1001,
@@ -21,9 +26,14 @@
     "mp": 500,
     "attack": 100,
     "defense": 200,
-    "skills": [1],
+    "skills": [
+      1
+    ],
     "refreshTime": 10000,
-    "drop": ""
+    "exprAward": 1500,
+    "goldAward": 2000,
+    "itemAward": [
+    ]
   },
   {
     "id": 1002,
@@ -34,9 +44,14 @@
     "mp": 500,
     "attack": 100,
     "defense": 200,
-    "skills": [1],
+    "skills": [
+      1
+    ],
     "refreshTime": 10000,
-    "drop": ""
+    "exprAward": 1500,
+    "goldAward": 2000,
+    "itemAward": [
+    ]
   },
   {
     "id": 1003,
@@ -47,9 +62,14 @@
     "mp": 500,
     "attack": 100,
     "defense": 200,
-    "skills": [1],
+    "skills": [
+      1
+    ],
     "refreshTime": 10000,
-    "drop": ""
+    "exprAward": 1500,
+    "goldAward": 2000,
+    "itemAward": [
+    ]
   },
   {
     "id": 1004,
@@ -60,9 +80,14 @@
     "mp": 500,
     "attack": 100,
     "defense": 200,
-    "skills": [1],
+    "skills": [
+      1
+    ],
     "refreshTime": 10000,
-    "drop": ""
+    "exprAward": 1500,
+    "goldAward": 2000,
+    "itemAward": [
+    ]
   },
   {
     "id": 1005,
@@ -73,9 +98,14 @@
     "mp": 500,
     "attack": 100,
     "defense": 200,
-    "skills": [1],
+    "skills": [
+      1
+    ],
     "refreshTime": 10000,
-    "drop": ""
+    "exprAward": 1500,
+    "goldAward": 2000,
+    "itemAward": [
+    ]
   },
   {
     "id": 1006,
@@ -86,9 +116,14 @@
     "mp": 500,
     "attack": 100,
     "defense": 200,
-    "skills": [1],
+    "skills": [
+      1
+    ],
     "refreshTime": 10000,
-    "drop": ""
+    "exprAward": 1500,
+    "goldAward": 2000,
+    "itemAward": [
+    ]
   },
   {
     "id": 1007,
@@ -99,9 +134,14 @@
     "mp": 500,
     "attack": 100,
     "defense": 200,
-    "skills": [1],
+    "skills": [
+      1
+    ],
     "refreshTime": 10000,
-    "drop": ""
+    "exprAward": 1500,
+    "goldAward": 2000,
+    "itemAward": [
+    ]
   },
   {
     "id": 1008,
@@ -112,9 +152,14 @@
     "mp": 500,
     "attack": 100,
     "defense": 200,
-    "skills": [1],
+    "skills": [
+      1
+    ],
     "refreshTime": 10000,
-    "drop": ""
+    "exprAward": 1500,
+    "goldAward": 2000,
+    "itemAward": [
+    ]
   },
   {
     "id": 1009,
@@ -125,9 +170,14 @@
     "mp": 500,
     "attack": 100,
     "defense": 200,
-    "skills": [1],
+    "skills": [
+      1
+    ],
     "refreshTime": 10000,
-    "drop": ""
+    "exprAward": 1500,
+    "goldAward": 2000,
+    "itemAward": [
+    ]
   },
   {
     "id": 1010,
@@ -138,9 +188,14 @@
     "mp": 500,
     "attack": 100,
     "defense": 200,
-    "skills": [1],
+    "skills": [
+      1
+    ],
     "refreshTime": 10000,
-    "drop": ""
+    "exprAward": 1500,
+    "goldAward": 2000,
+    "itemAward": [
+    ]
   },
   {
     "id": 1011,
@@ -151,9 +206,14 @@
     "mp": 500,
     "attack": 100,
     "defense": 200,
-    "skills": [1],
+    "skills": [
+      1
+    ],
     "refreshTime": 10,
-    "drop": ""
+    "exprAward": 1500,
+    "goldAward": 2000,
+    "itemAward": [
+    ]
   },
   {
     "id": 1012,
@@ -164,9 +224,14 @@
     "mp": 500,
     "attack": 100,
     "defense": 200,
-    "skills": [1],
+    "skills": [
+      1
+    ],
     "refreshTime": 10,
-    "drop": ""
+    "exprAward": 1500,
+    "goldAward": 2000,
+    "itemAward": [
+    ]
   },
   {
     "id": 1013,
@@ -177,9 +242,14 @@
     "mp": 500,
     "attack": 100,
     "defense": 200,
-    "skills": [1],
+    "skills": [
+      1
+    ],
     "refreshTime": 10,
-    "drop": ""
+    "exprAward": 1500,
+    "goldAward": 2000,
+    "itemAward": [
+    ]
   },
   {
     "id": 1014,
@@ -190,9 +260,14 @@
     "mp": 500,
     "attack": 100,
     "defense": 200,
-    "skills": [1],
+    "skills": [
+      1
+    ],
     "refreshTime": 10,
-    "drop": ""
+    "exprAward": 1500,
+    "goldAward": 2000,
+    "itemAward": [
+    ]
   },
   {
     "id": 1015,
@@ -203,9 +278,14 @@
     "mp": 500,
     "attack": 100,
     "defense": 200,
-    "skills": [1],
+    "skills": [
+      1
+    ],
     "refreshTime": 10,
-    "drop": ""
+    "exprAward": 1500,
+    "goldAward": 2000,
+    "itemAward": [
+    ]
   },
   {
     "id": 1016,
@@ -216,9 +296,14 @@
     "mp": 500,
     "attack": 100,
     "defense": 200,
-    "skills": [1],
+    "skills": [
+      1
+    ],
     "refreshTime": 10,
-    "drop": ""
+    "exprAward": 1500,
+    "goldAward": 2000,
+    "itemAward": [
+    ]
   },
   {
     "id": 1017,
@@ -229,86 +314,301 @@
     "mp": 500,
     "attack": 100,
     "defense": 200,
-    "skills": [1],
+    "skills": [
+      1
+    ],
     "refreshTime": 10,
-    "drop": ""
+    "exprAward": 1500,
+    "goldAward": 2000,
+    "itemAward": [
+    ]
   },
   {
     "id": 1018,
-    "name": "牛头酋长",
-    "level": 15,
-    "type": 4,
+    "name": "串串怪",
+    "level": 60,
+    "type": 3,
     "hp": 1000,
     "mp": 500,
     "attack": 100,
     "defense": 200,
-    "skills": [1],
-    "refreshTime": 10,
-    "drop": ""
+    "skills": [
+      1
+    ],
+    "refreshTime": -1,
+    "exprAward": 1500,
+    "goldAward": 2000,
+    "itemAward": [
+    ]
   },
   {
     "id": 1019,
-    "name": "僵尸叔叔",
-    "level": 20,
-    "type": 4,
+    "name": "锯齿怪",
+    "level": 60,
+    "type": 3,
     "hp": 1000,
     "mp": 500,
     "attack": 100,
     "defense": 200,
-    "skills": [1],
-    "refreshTime": 10,
-    "drop": ""
+    "skills": [
+      1
+    ],
+    "refreshTime": -1,
+    "exprAward": 1500,
+    "goldAward": 2000,
+    "itemAward": [
+    ]
   },
   {
     "id": 1020,
-    "name": "伊丽莎白",
-    "level": 25,
-    "type": 4,
+    "name": "剪刀怪",
+    "level": 60,
+    "type": 3,
     "hp": 1000,
     "mp": 500,
     "attack": 100,
     "defense": 200,
-    "skills": [1],
-    "refreshTime": 10,
-    "drop": ""
+    "skills": [
+      1
+    ],
+    "refreshTime": -1,
+    "exprAward": 1500,
+    "goldAward": 2000,
+    "itemAward": [
+    ]
   },
   {
     "id": 1021,
-    "name": "祭坛守护者",
-    "level": 30,
-    "type": 4,
+    "name": "钳子怪",
+    "level": 60,
+    "type": 3,
     "hp": 1000,
     "mp": 500,
     "attack": 100,
     "defense": 200,
-    "skills": [1],
-    "refreshTime": 10,
-    "drop": ""
+    "skills": [
+      1
+    ],
+    "refreshTime": -1,
+    "exprAward": 1500,
+    "goldAward": 2000,
+    "itemAward": [
+    ]
   },
   {
-    "id": 1022,
-    "name": "骨龙",
-    "level": 45,
-    "type": 4,
+    "id": 1024,
+    "name": "绝望之迪亚典",
+    "level": 70,
+    "type": 3,
     "hp": 1000,
     "mp": 500,
     "attack": 100,
     "defense": 200,
-    "skills": [1],
-    "refreshTime": 10,
-    "drop": ""
+    "skills": [
+      1
+    ],
+    "refreshTime": -1,
+    "exprAward": 1500,
+    "goldAward": 2000,
+    "itemAward": [
+    ]
   },
   {
-    "id": 1023,
-    "name": "死亡列车",
-    "level": 45,
-    "type": 4,
+    "id": 1025,
+    "name": "毁灭之巴利阿斯达",
+    "level": 70,
+    "type": 3,
     "hp": 1000,
     "mp": 500,
     "attack": 100,
     "defense": 200,
-    "skills": [1],
-    "refreshTime": 10,
-    "drop": ""
+    "skills": [
+      1
+    ],
+    "refreshTime": -1,
+    "exprAward": 1500,
+    "goldAward": 2000,
+    "itemAward": [
+    ]
+  },
+  {
+    "id": 1026,
+    "name": "恐惧之卡瑞瑟",
+    "level": 70,
+    "type": 3,
+    "hp": 1000,
+    "mp": 500,
+    "attack": 100,
+    "defense": 200,
+    "skills": [
+      1
+    ],
+    "refreshTime": -1,
+    "exprAward": 1500,
+    "goldAward": 2000,
+    "itemAward": [
+    ]
+  },
+  {
+    "id": 1027,
+    "name": "镇守之米凯拉",
+    "level": 70,
+    "type": 3,
+    "hp": 1000,
+    "mp": 500,
+    "attack": 100,
+    "defense": 200,
+    "skills": [
+      1
+    ],
+    "refreshTime": -1,
+    "exprAward": 1500,
+    "goldAward": 2000,
+    "itemAward": [
+    ]
+  },
+  {
+    "id": 1028,
+    "name": "混沌之奥兹玛",
+    "level": 70,
+    "type": 3,
+    "hp": 1000,
+    "mp": 500,
+    "attack": 100,
+    "defense": 200,
+    "skills": [
+      1
+    ],
+    "refreshTime": -1,
+    "exprAward": 1500,
+    "goldAward": 2000,
+    "itemAward": [
+    ]
+  },
+  {
+    "id": 1029,
+    "name": "哥布林",
+    "level": 5,
+    "type": 3,
+    "hp": 8000,
+    "mp": 500,
+    "attack": 1000,
+    "defense": 200,
+    "skills": [
+      1
+    ],
+    "refreshTime": -1,
+    "exprAward": 1500,
+    "goldAward": 2000,
+    "itemAward": [
+    ]
+  },
+  {
+    "id": 1030,
+    "name": "哥布林",
+    "level": 5,
+    "type": 3,
+    "hp": 8000,
+    "mp": 500,
+    "attack": 1000,
+    "defense": 200,
+    "skills": [
+      1
+    ],
+    "refreshTime": -1,
+    "exprAward": 1500,
+    "goldAward": 2000,
+    "itemAward": [
+    ]
+  },
+  {
+    "id": 1031,
+    "name": "火焰哥布林",
+    "level": 5,
+    "type": 3,
+    "hp": 10000,
+    "mp": 500,
+    "attack": 1000,
+    "defense": 200,
+    "skills": [
+      1,7
+    ],
+    "refreshTime": -1,
+    "exprAward": 1500,
+    "goldAward": 2000,
+    "itemAward": [
+    ]
+  },
+  {
+    "id": 1032,
+    "name": "冰霜哥布林",
+    "level": 5,
+    "type": 3,
+    "hp": 10000,
+    "mp": 500,
+    "attack": 1000,
+    "defense": 200,
+    "skills": [
+      1,8
+    ],
+    "refreshTime": -1,
+    "exprAward": 1500,
+    "goldAward": 2000,
+    "itemAward": [
+    ]
+  },
+  {
+    "id": 1033,
+    "name": "牛头统帅",
+    "level": 5,
+    "type": 3,
+    "hp": 20000,
+    "mp": 500,
+    "attack": 1000,
+    "defense": 200,
+    "skills": [
+      1,9,10,11
+    ],
+    "refreshTime": -1,
+    "exprAward": 1500,
+    "goldAward": 2000,
+    "itemAward": [
+    ]
+  },
+  {
+    "id": 1034,
+    "name": "牛头将军",
+    "level": 5,
+    "type": 3,
+    "hp": 20000,
+    "mp": 500,
+    "attack": 1000,
+    "defense": 200,
+    "skills": [
+      1,9,10,11
+    ],
+    "refreshTime": -1,
+    "exprAward": 1500,
+    "goldAward": 2000,
+    "itemAward": [
+    ]
+  },
+  {
+    "id": 1035,
+    "name": "牛头巨兽",
+    "level": 5,
+    "type": 3,
+    "hp": 30000,
+    "mp": 500,
+    "attack": 5000,
+    "defense": 200,
+    "skills": [
+      1,9,10,11,12
+    ],
+    "refreshTime": -1,
+    "exprAward": 1500,
+    "goldAward": 2000,
+    "itemAward": [
+    ]
   }
 ]

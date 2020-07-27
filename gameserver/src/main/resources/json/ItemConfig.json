@@ -2,147 +2,218 @@
   {
     "id": 1001,
     "type": 1,
-    "name":"天堂HP恢复药剂",
+    "name": "天堂HP恢复药剂",
     "level": 1,
-    "coolTime":10000,
+    "coolTime": 10000,
     "property": {},
     "bufferId": 1001,
     "price": 50,
-    "maxDurability":-1,
+    "maxDurability": -1,
     "overlap": true,
     "desc": "天堂恢复药剂 5s内 恢复血量5000点"
   },
   {
     "id": 1002,
     "type": 1,
-    "name":"天堂MP恢复药剂",
+    "name": "天堂MP恢复药剂",
     "level": 1,
     "coolTime": 10000,
     "property": {},
     "bufferId": 1002,
     "price": 50,
-    "maxDurability":-1,
+    "maxDurability": -1,
     "overlap": true,
     "desc": "天堂恢复药剂 5s内 恢复血量5000点"
   },
   {
     "id": 1003,
     "type": 2,
-    "name":"太极天帝剑",
-    "level": 10,
+    "name": "太极天帝剑",
+    "level": 1,
     "part": 1,
     "star": 10,
     "coolTime": 0,
     "property": {
-      "HP":1000,
-      "ATTACK": 1000
+      "hp": 0,
+      "mp": 0,
+      "attack": 1000,
+      "defense": 0
     },
     "bufferId": -1,
     "price": 1000,
-    "maxDurability":45,
+    "maxDurability": 45,
     "overlap": false,
     "desc": "太极天帝剑 传说之剑"
   },
   {
     "id": 1004,
     "type": 2,
-    "name":"超大陆上衣 ",
-    "level": 10,
+    "name": "超大陆上衣 ",
+    "level": 1,
     "part": 2,
     "star": 10,
     "coolTime": 0,
     "property": {
-      "HP":1000,
-      "ATTACK": 1000
+      "hp": 1000,
+      "mp": 1000,
+      "attack": 0,
+      "defense": 1000
     },
     "price": 1000,
-    "maxDurability":45,
+    "maxDurability": 45,
     "overlap": false,
     "desc": "超大陆上衣"
   },
   {
     "id": 1005,
     "type": 2,
-    "name":"超大陆肩甲",
-    "level": 10,
+    "name": "超大陆肩甲",
+    "level": 1,
     "part": 3,
     "star": 10,
     "coolTime": 0,
     "property": {
-      "HP":1000,
-      "ATTACK": 1000
+      "hp": 500,
+      "mp": 500,
+      "attack": 500,
+      "defense": 500
     },
     "price": 1000,
-    "maxDurability":45,
+    "maxDurability": 45,
     "overlap": false,
     "desc": "超大陆肩甲"
   },
   {
     "id": 1006,
     "type": 2,
-    "name":"超大陆腰带",
-    "level": 10,
+    "name": "超大陆腰带",
+    "level": 1,
     "part": 4,
     "star": 10,
     "coolTime": 0,
     "property": {
-      "HP":1000,
-      "ATTACK": 1000
+      "hp": 500,
+      "mp": 0,
+      "attack": 0,
+      "defense": 0
     },
     "price": 1000,
-    "maxDurability":45,
+    "maxDurability": 45,
     "overlap": false,
     "desc": "太极天帝剑 传说之剑"
   },
   {
     "id": 1007,
     "type": 2,
-    "name":"超大陆裤子",
-    "level": 10,
+    "name": "超大陆裤子",
+    "level": 1,
     "part": 5,
     "star": 10,
     "coolTime": 0,
     "property": {
-      "HP":1000,
-      "ATTACK": 1000
+      "hp": 1000,
+      "mp": 0,
+      "attack": 1000,
+      "defense": 0
     },
     "price": 1000,
-    "maxDurability":45,
+    "maxDurability": 45,
     "overlap": false,
     "desc": "超大陆裤子"
   },
   {
     "id": 1008,
     "type": 2,
-    "name":"超大陆鞋子",
-    "level": 10,
+    "name": "超大陆鞋子",
+    "level": 1,
     "part": 6,
     "star": 10,
     "coolTime": 0,
     "property": {
-      "HP":1000,
-      "ATTACK": 1000
+      "hp": 0,
+      "mp": 1000,
+      "attack": 0,
+      "defense": 0
     },
     "price": 1000,
-    "maxDurability":45,
+    "maxDurability": 45,
     "overlap": false,
     "desc": "超大陆鞋子"
   },
   {
     "id": 1009,
     "type": 2,
-    "name":"怪兽猎杀者",
-    "level": 10,
+    "name": "怪兽猎杀者",
+    "level": 1,
     "part": 7,
     "star": 10,
     "coolTime": 0,
     "property": {
-      "HP":1000,
-      "ATTACK": 1000
+      "hp": 50,
+      "mp": 50,
+      "attack": 100,
+      "defense": 100
     },
     "price": 1000,
-    "maxDurability":45,
+    "maxDurability": 45,
     "overlap": false,
     "desc": "怪兽猎杀者"
+  },
+  {
+    "id": 1010,
+    "type": 2,
+    "name": "牛头人猎杀者",
+    "level": 1,
+    "part": 7,
+    "star": 10,
+    "coolTime": 0,
+    "property": {
+      "hp": 100,
+      "mp": 100,
+      "attack": 100,
+      "defense": 100
+    },
+    "price": 1000,
+    "maxDurability": 45,
+    "overlap": false,
+    "desc": "牛头人猎杀者"
+  },
+  {
+    "id": 1011,
+    "type": 2,
+    "name": "满级达人",
+    "level": 1,
+    "part": 7,
+    "star": 10,
+    "coolTime": 0,
+    "property": {
+      "hp": 150,
+      "mp": 150,
+      "attack": 100,
+      "defense": 100
+    },
+    "price": 1000,
+    "maxDurability": 45,
+    "overlap": false,
+    "desc": "满级达人"
+  },
+  {
+    "id": 1012,
+    "type": 2,
+    "name": "萌新",
+    "level": 1,
+    "part": 7,
+    "star": 10,
+    "coolTime": 0,
+    "property": {
+      "hp": 50,
+      "mp": 50,
+      "attack": 100,
+      "defense": 100
+    },
+    "price": 1000,
+    "maxDurability": 45,
+    "overlap": false,
+    "desc": "萌新"
   }
 ]

@@ -273,6 +273,7 @@ public class TeamService {
         }
         NotificationHelper.notifyTeam(team, MessageFormat.format("玩家{0}退出队伍", player
                 .getPlayerEntity().getName()));
+        NotificationHelper.notifyPlayer(player,"退出当前队伍");
     }
 
     public void dissolveTeam(Player player) {

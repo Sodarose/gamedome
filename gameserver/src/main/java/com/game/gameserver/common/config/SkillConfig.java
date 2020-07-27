@@ -31,7 +31,7 @@ public class SkillConfig {
 
     /** 消耗品 */
     @JSONField(name = "consume")
-    private int consume;
+    private int consume = 0;
 
     /** 技能限制等级 */
     @JSONField(name = "limitLevel")

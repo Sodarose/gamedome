@@ -1,85 +1,54 @@
 [
   {
     "id": 1001,
-    "name": "牛头人巢穴",
-    "desc": "牛头人巢穴",
-    "limitTime": 300,
+    "name": "黑色大地",
+    "limitTime": 600,
     "needTeam": false,
-    "minTeamNum": 1,
-    "maxTeamNum": 4,
-    "minLevel": 5,
+    "minNum": 1,
+    "maxNum": 4,
+    "minLevel": 70,
     "exprAward": 1500,
     "goldAward": 2000,
     "itemAward": [
       {
         "itemId": 1001,
         "num": 30
+      },
+      {
+        "itemId": 1003,
+        "num": 1
+      },
+      {
+        "itemId": 1004,
+        "num": 1
       }
-    ]
+    ],
+    "desc": "自从奥兹玛在暗黑圣战中战败后， 就与黑色大地一起被封印到了异界内……据说， 他一直在暗中培养自己的军队。 为了阻止奥兹玛入侵， 冒险家们向黑色大地进军。 可是令人惊讶的是， 被称为圣职者鼻祖的圣者米歇尔， 竟然出现在黑色大地并阻止冒险家们攻击奥兹玛。 这……到底是为什么呢？"
   },
   {
     "id": 1002,
-    "name": "村庄墓地",
-    "desc": "村庄墓地",
-    "limitTime": 60,
+    "name": "洛兰之森",
+    "limitTime": 300,
     "needTeam": false,
     "minNum": 1,
     "maxNum": 4,
-    "minLevel": 10,
+    "minLevel": 1,
     "exprAward": 1500,
     "goldAward": 2000,
-    "itemAward": []
-  },
-  {
-    "id": 1003,
-    "name": "古堡地牢",
-    "desc": "古堡地牢",
-    "limitTime": 60,
-    "needTeam": false,
-    "minNum": 1,
-    "maxNum": 4,
-    "minLevel": 15,
-    "exprAward": 1500,
-    "goldAward": 2000,
-    "itemAward": []
-  },
-  {
-    "id": 1004,
-    "name": "森岭祭坛",
-    "desc": "森岭祭坛",
-    "limitTime": 60,
-    "needTeam": false,
-    "minNum": 1,
-    "maxNum": 4,
-    "minLevel": 20,
-    "exprAward": 1500,
-    "goldAward": 2000,
-    "itemAward": []
-  },
-  {
-    "id": 1005,
-    "name": "龙墓",
-    "desc": "龙墓",
-    "limitTime": 60,
-    "needTeam": false,
-    "minNum": 1,
-    "maxNum": 4,
-    "minLevel": 40,
-    "exprAward": 1500,
-    "goldAward": 2000,
-    "itemAward": []
-  },
-  {
-    "id": 1006,
-    "name": "未来车站",
-    "desc": "未来车站",
-    "limitTime": 600,
-    "needTeam": false,
-    "minNum": 1,
-    "maxNum": 4,
-    "minLevel": 30,
-    "exprAward": 1500,
-    "goldAward": 2000,
-    "itemAward": []
+    "itemAward": [
+      {
+        "itemId": 1001,
+        "num": 30
+      },
+      {
+        "itemId": 1003,
+        "num": 1
+      },
+      {
+        "itemId": 1004,
+        "num": 1
+      }
+    ],
+    "desc": "森林深处传来一声吼叫，这 这到底怎么了？"
   }
 ]

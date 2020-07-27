@@ -1,7 +1,11 @@
 package com.game.gameserver.module.friend.model;
 
+import com.game.gameserver.module.friend.entity.PlayerFriendEntity;
+import com.game.gameserver.module.guild.model.Applicant;
+import com.game.gameserver.module.player.entity.PlayerEntity;
 import lombok.Getter;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -16,20 +20,9 @@ import java.util.concurrent.CopyOnWriteArrayList;
  * @date 2020/7/8 12:05
  */
 @Getter
-public class UserFriend {
-    private final long playerId;
-    private Map<Long,Friend> friendMap = new ConcurrentHashMap<>();
+public class PlayerFriend extends PlayerFriendEntity {
 
-    /** 好友申请 */
-    private Set<Long> applicant = new ConcurrentSkipListSet<>();
-
-    public UserFriend(long playerId){
-        this.playerId = playerId;
-    }
-
-    public void initialize(List<Friend> friendList){
-        for(Friend friend:friendList){
-            friendMap.put(friend.getFriendId(),friend);
-        }
+    public PlayerFriend(Long playerId) {
+        super(playerId);
     }
 }

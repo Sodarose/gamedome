@@ -1,7 +1,8 @@
 package com.game.gameserver.module.friend.model;
 
-import com.game.gameserver.module.friend.entity.FriendEntity;
 import lombok.Data;
+
+import java.io.Serializable;
 
 /**
  * 好友模型
@@ -10,9 +11,10 @@ import lombok.Data;
  * @date 2020/7/13 17:00
  */
 @Data
-public class Friend extends FriendEntity {
-    /** 是否在线 */
-    private boolean online = false;
+public class Friend implements Serializable {
+    private long friendId;
+    private String name;
+    private int friendType;
 
     public Friend(){
 

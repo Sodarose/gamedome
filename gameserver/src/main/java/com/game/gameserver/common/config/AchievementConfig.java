@@ -1,9 +1,12 @@
 package com.game.gameserver.common.config;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.annotation.JSONField;
-import com.game.gameserver.util.TaskUtil;
+import com.game.gameserver.module.task.model.Award;
+import com.game.gameserver.module.task.model.TaskCondition;
 import lombok.Data;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -19,44 +22,74 @@ public class AchievementConfig {
     @JSONField(name = "id")
     int id;
 
-    /** 成就Id */
+    /**
+     * 成就名称
+     */
     @JSONField(name = "name")
-    String name;
+    private String name;
 
-    /** 成就Id */
+    /**
+     * 成就描述
+     */
+    @JSONField(name = "description")
+    private String description;
+
+    /**
+     * 成就类型
+     */
+    @JSONField(name = "kind")
+    private int kind;
+
+    @JSONField(name = "type")
+    private int type;
+
+    /**
+     * 等级限制
+     */
     @JSONField(name = "limitLevel")
-    int limitLevel;
+    private int limitLevel;
 
-    /** 成就Id */
-    @JSONField(name = "taskRequire")
-    String taskRequire;
+    /**
+     * 任务完成条件
+     */
+    @JSONField(name = "taskCondition")
+    private String taskCondition;
 
-    /** 成就Id */
-    @JSONField(name = "taskRequireStr")
-    String taskRequireStr;
+    /**
+     * 任务奖励 经验奖励
+     */
+    @JSONField(name = "exprAward")
+    private int exprAward;
 
-    /** 成就Id */
-    @JSONField(name = "expr")
-    int expr;
+    /**
+     * 金币奖励
+     */
+    @JSONField(name = "goldAward")
+    private int goldAward;
 
-    /** 成就Id */
-    @JSONField(name = "golds")
-    int golds;
-
-    /** 成就Id */
-    @JSONField(name = "props")
-    String props;
-
-    /** 成就Id */
-    @JSONField(name = "equips")
-    String equips;
-
-    /** 道具奖励*/
+    /**
+     * 任务条件表
+     */
     @JSONField(serialize = false)
-    private Map<Integer, Integer> propAwards;
+    private Map<Integer, TaskCondition> taskConditionMap;
 
-    /** 装备奖励*/
-    @JSONField(serialize = false)
-    private List<Integer> equipAwards;
+    /**
+     * 任务奖励
+     */
+    @JSONField(name = "itemAward")
+    private List<Award> itemAward;
+
+
+    public Map<Integer, TaskCondition> getTaskConditionMap() {
+        if (taskConditionMap != null) {
+            return taskConditionMap;
+        }
+        List<TaskCondition> taskConditions = JSON.parseArray(taskCondition,TaskCondition.class);
+        taskConditionMap = new HashMap<>();
+        taskConditions.forEach(condition -> {
+            taskConditionMap.put(condition.getTarget(),condition);
+        });
+        return taskConditionMap;
+    }
 
 }

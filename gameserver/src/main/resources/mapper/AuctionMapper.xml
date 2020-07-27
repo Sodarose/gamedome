@@ -9,7 +9,6 @@
         <result column="price" property="price"/>
         <result column="model" property="model"/>
         <result column="publishTime" property="publishTime"/>
-        <result column="bidder" property="bidder"/>
         <result column="bidderId" property="bidderId"/>
         <result column="playerId" property="playerId"/>
     </resultMap>

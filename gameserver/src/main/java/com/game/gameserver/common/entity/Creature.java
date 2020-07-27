@@ -28,6 +28,7 @@ public interface Creature {
     /** 当前hp */
     int getCurrHp();
     void setCurrHp(int value);
+    void changeCurrHp(int value);
 
     /** mp */
     int getMp();
@@ -36,6 +37,7 @@ public interface Creature {
     /** 当前mp */
     int getCurrMp();
     void setCurrMp(int value);
+    void changeCurrMp(int value);
 
     /** 攻击力 */
     int getAttack();

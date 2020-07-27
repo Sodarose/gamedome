@@ -227,8 +227,9 @@ public class GuildService {
                 // 删除申请单
                 guild.getApplicantMap().remove(applicant.getName());
                 // 通知用户
-                NotificationHelper.notifyGuild(guild, MessageFormat.format("玩家{0}加入公会", player.getName()));
-                NotificationHelper.notifyPlayer(applyPlayer, "你已经加入该公会");
+                NotificationHelper.notifyGuild(guild, MessageFormat.format("玩家{0}加入公会", applyPlayer.getName()));
+                NotificationHelper.notifyPlayer(applyPlayer,
+                        "你已经加入该公会");
                 // 抛出加入公会事件
                 GuildEvent guildEvent = new GuildEvent(player,guild);
                 EventBus.EVENT_BUS.fire(guildEvent);
@@ -323,12 +324,12 @@ public class GuildService {
         lock.lock();
         try {
             // 判断金币是否足够
-            if (player.getPlayerEntity().getGolds() < golds) {
+            if (player.getGolds() < golds) {
                 NotificationHelper.notifyPlayer(player, "金币不足");
                 return;
             }
             // 扣除用户金币
-            player.getPlayerEntity().setGolds(player.getPlayerEntity().getGolds()-golds);
+            player.goldsChange(-golds);
             // 公会增加金币
             guild.addGolds(golds);
         }finally {

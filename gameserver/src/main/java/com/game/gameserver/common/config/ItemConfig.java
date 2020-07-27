@@ -51,7 +51,7 @@ public class ItemConfig {
 
     /** 物品持有属性  根据物品类型的不同而不同*/
     @JSONField(name = "property")
-    private String property;
+    private Property property;
 
     /** 售出价格 */
     @JSONField(name = "price")
@@ -73,20 +73,5 @@ public class ItemConfig {
     @JSONField(name = "desc")
     private String desc;
 
-    /** 道具属性 */
-    @JSONField(serialize = false)
-    private Map<String,Object> propertyMap;
 
-    /** 返回物品属性 */
-    public Map<String,Object> getPropertyMap(){
-        if(propertyMap!=null){
-            return propertyMap;
-        }
-        propertyMap = new HashMap<>();
-        JSONObject jsonObject = JSON.parseObject(property);
-        jsonObject.forEach((key,value)->{
-            propertyMap.put(key,value);
-        });
-        return  propertyMap;
-    }
 }

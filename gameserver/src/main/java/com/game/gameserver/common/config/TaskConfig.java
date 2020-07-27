@@ -72,14 +72,14 @@ public class TaskConfig {
     /**
      * 任务奖励 经验奖励
      */
-    @JSONField(name = "expr")
-    private int expr;
+    @JSONField(name = "exprAward")
+    private int exprAward;
 
     /**
      * 金币奖励
      */
-    @JSONField(name = "golds")
-    private int golds;
+    @JSONField(name = "goldAward")
+    private int goldAward;
 
     /**
      * 任务条件表
@@ -90,8 +90,8 @@ public class TaskConfig {
     /**
      * 任务奖励
      */
-    @JSONField(name = "awards")
-    private List<Award> awards;
+    @JSONField(name = "itemAward")
+    private List<Award> itemAward;
 
 
     public Map<Integer, TaskCondition> getTaskConditionMap() {

@@ -35,7 +35,6 @@ public class GameServer {
     @Autowired
     private Platform platform;
 
-
     @PostConstruct
     public void start(){
         logger.info("game server start......");

@@ -23,7 +23,7 @@ public class SceneHelper {
             sb.append(player.getPlayerEntity().getName()).append("(")
                     .append(PlayerHelper.buildPlayerStateMsg(player))
                     .append(")").append("(")
-                    .append(player.getPlayerBattle().getHp()).append(")")
+                    .append(player.getPlayerBattle().getCurrHp()).append(")")
                     .append("\t");
         });
         sb.append("\n");
@@ -66,8 +66,8 @@ public class SceneHelper {
         scene.getPlayerMap().values().forEach(player -> {
             sb.append("id:").append(player.getPlayerEntity().getId()).append("\n");
             sb.append("name:").append(player.getPlayerEntity().getName()).append("\n");
-            sb.append("HP:").append(player.getPlayerBattle().getHp()).append("/")
-                    .append(player.getPlayerBattle().getMaxHp())
+            sb.append("HP:").append(player.getPlayerBattle().getCurrHp()).append("/")
+                    .append(player.getPlayerBattle().getHp())
                     .append("\n");
         });
         sb.append("\n");

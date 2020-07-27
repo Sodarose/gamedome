@@ -14,6 +14,7 @@ import com.game.gameserver.module.monster.model.Monster;
 import com.game.gameserver.module.monster.service.MonsterService;
 import com.game.gameserver.module.notification.NotificationHelper;
 import com.game.gameserver.module.player.model.Player;
+import com.game.gameserver.module.player.service.PlayerDataService;
 import com.game.gameserver.module.scene.SceneType;
 import com.game.gameserver.module.scene.model.Scene;
 import com.game.gameserver.module.scene.service.SceneService;
@@ -43,6 +44,8 @@ public class InstanceService {
     private SceneService sceneService;
     @Autowired
     private MonsterService monsterService;
+    @Autowired
+    private PlayerDataService playerDataService;
 
 
     private Instance createInstance(InstanceConfig instanceConfig) {
@@ -90,7 +93,7 @@ public class InstanceService {
         CheckPoint checkPoint = new CheckPoint();
         checkPoint.setRound(checkPointConfig.getRound());
         checkPoint.setState(CheckPointState.RUNNING);
-        checkPoint.setCondition(checkPointConfig.getType());
+        checkPoint.setCondition(checkPointConfig.getCondition());
         checkPoint.setCheckPointConfig(checkPointConfig);
         // 加载怪物
         List<Integer> monsterIdList = checkPointConfig.getMonsters();
@@ -230,6 +233,8 @@ public class InstanceService {
         }
         // 退出副本
         instance.getPlayerMap().remove(player.getId());
+        // 初始化状态
+        playerDataService.initProperty(player);
         // 进入原场景
         sceneService.initPlayerEntryScene(player);
         NotificationHelper.notifyScene(instance,

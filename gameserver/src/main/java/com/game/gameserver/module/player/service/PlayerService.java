@@ -2,6 +2,10 @@ package com.game.gameserver.module.player.service;
 
 import com.game.gameserver.common.config.CareerConfig;
 import com.game.gameserver.common.config.StaticConfigManager;
+import com.game.gameserver.event.EventBus;
+import com.game.gameserver.event.event.LoginEvent;
+import com.game.gameserver.event.event.LogoutEvent;
+import com.game.gameserver.module.achievement.service.AchievementService;
 import com.game.gameserver.module.backbag.service.BackBagService;
 import com.game.gameserver.module.email.service.EmailService;
 import com.game.gameserver.module.equipment.service.EquipService;
@@ -48,7 +52,7 @@ public class PlayerService {
     @Autowired
     private SceneService sceneService;
     @Autowired
-    private PlayerPropertyService playerPropertyService;
+    private PlayerDataService playerPropertyService;
     @Autowired
     private EquipService equipService;
     @Autowired
@@ -61,6 +65,8 @@ public class PlayerService {
     private TaskService taskService;
     @Autowired
     private SkillService skillService;
+    @Autowired
+    private AchievementService achievementService;
 
     /**
      * 获得账户角色列表
@@ -130,7 +136,8 @@ public class PlayerService {
             // 同步角色数据
             NotificationHelper.syncPlayer(player);
             // 发出登录事件
-
+            LoginEvent loginEvent = new LoginEvent(player);
+            EventBus.EVENT_BUS.fire(loginEvent);
         } else {
             // 踢出当前角色
             NotificationHelper.notifyPlayer(player, "你被人挤下线了");
@@ -146,6 +153,8 @@ public class PlayerService {
                     player.getPlayerEntity().getName()));
             // 同步角色数据
             NotificationHelper.syncPlayer(player);
+            LoginEvent loginEvent = new LoginEvent(player);
+            EventBus.EVENT_BUS.fire(loginEvent);
         }
     }
 
@@ -182,23 +191,27 @@ public class PlayerService {
             return;
         }
         // 创建角色存储数据
-        PlayerEntity player = new PlayerEntity();
-        player.setId(GameUUID.getInstance().generate());
-        player.setName(name);
-        player.setLevel(1);
-        player.setCareerId(careerId);
-        player.setSceneId(1001);
-        player.setExpr(0);
-        player.setGolds(0);
-        player.setBackBagCapacity(36);
-        player.setWarehouseCapacity(64);
-        player.setUserId(user.getId());
+        PlayerEntity playerEntity = new PlayerEntity();
+        playerEntity.setId(GameUUID.getInstance().generate());
+        playerEntity.setName(name);
+        playerEntity.setLevel(1);
+        playerEntity.setCareerId(careerId);
+        playerEntity.setSceneId(1001);
+        playerEntity.setExpr(0);
+        playerEntity.setGolds(0);
+        playerEntity.setBackBagCapacity(36);
+        playerEntity.setWarehouseCapacity(64);
+        playerEntity.setUserId(user.getId());
 
         // 存储角色Id
-        user.getRoles().add(player.getId());
+        user.getRoles().add(playerEntity.getId());
 
         // 存入数据库
-        playerDbService.insert(player);
+        playerDbService.insert(playerEntity);
+
+        // 创建角色背包 和 装备栏;
+        equipService.createPlayerEquipBar(playerEntity.getId());
+        backBagService.createBackBag(playerEntity.getId());
         NotificationHelper.notifyChannel(channel, MessageFormat.format("角色{0}创建成功",
                 name));
     }
@@ -212,6 +225,8 @@ public class PlayerService {
         skillService.loadPlayerSkill(player);
         // 加载用户任务
         taskService.loadPlayerTask(player);
+        // 加载用户成就
+        achievementService.loadPlayerAchievement(player);
         // 加载用户邮件
         emailService.loadEmail(player);
         // 加载用户好友
@@ -226,11 +241,13 @@ public class PlayerService {
         // 退出场景
         sceneService.exitScene(player);
         // 保存数据
-        playerDbService.updateAsync(player.getPlayerEntity());
         player.getChannel().attr(PLAYER_ENTITY_ATTRIBUTE_KEY).set(null);
         NotificationHelper.notifyPlayer(player,"退出当前角色");
         // 从缓存中剔除
         playerManager.removePlayer(player.getPlayerEntity().getId());
+        // 发出角色退出事件
+        LogoutEvent logoutEvent = new LogoutEvent(player);
+        EventBus.EVENT_BUS.fire(logoutEvent);
     }
 
     public Player getPlayer(long playerId){
@@ -240,4 +257,6 @@ public class PlayerService {
     public Map<Long,Player> getAllPlayer(){
         return playerManager.getAllPlayer();
     }
+
+
 }

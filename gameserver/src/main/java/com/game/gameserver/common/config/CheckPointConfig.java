@@ -11,12 +11,19 @@ import java.util.List;
  */
 @Data
 public class CheckPointConfig {
+    /** 当前关卡 */
     @JSONField(name = "round")
     private int round;
+
+    /** 怪物列表 */
     @JSONField(name = "monsters")
     private List<Integer> monsters;
-    @JSONField(name = "type")
-    private int type;
+
+    /** 通关条件 */
+    @JSONField(name = "condition")
+    private int condition;
+
+    /** 当前关卡介绍 */
     @JSONField(name = "desc")
     private String desc;
 }

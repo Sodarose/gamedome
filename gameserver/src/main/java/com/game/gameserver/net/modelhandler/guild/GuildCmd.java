@@ -14,7 +14,7 @@ public interface GuildCmd {
     /** 申请加入公会*/
     int APPLY_FOR_GUILD = 1004;
     /** 处理用户申请 */
-    int PROCESS_Guild_APPLY = 1005;
+    int PROCESS_GUILD_APPLY = 1005;
     /** 授予职位 */
     int APPOINT = 1006;
     /** 捐献金币*/

@@ -18,36 +18,22 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
  * @date 2020/7/2 21:39
  */
 @Data
-public class BackBag {
-    /** 所有者 */
-    private Long playerId;
-    /** 背包容量 */
-    private Integer capacity;
-    /** 道具容器 */
-    private Map<Integer,Item> itemMap = new ConcurrentHashMap<>();
+public class BackBag extends BackBagEntity {
 
-    /** 读写锁 */
-    private ReentrantReadWriteLock lock;
-
-    public BackBag(){
+    public BackBag() {
 
     }
 
-    public BackBag(BackBagEntity backBagEntity){
-        this.playerId = backBagEntity.getPlayerId();
-        this.capacity = backBagEntity.getCapacity();
-        this.lock = new ReentrantReadWriteLock();
+    public boolean hasScape() {
+        return this.getItemMap().size() < this.getCapacity();
     }
 
-    public Lock getReadLock(){
-        return lock.readLock();
-    }
-
-    public Lock getWriteLock(){
-        return lock.writeLock();
-    }
-
-    public boolean hasScape(){
-        return itemMap.size()<capacity;
+    public boolean hasItem(Item item) {
+        for (Map.Entry<Integer, Item> entry : this.getItemMap().entrySet()) {
+            if (entry.getValue().getItemConfigId().equals(item.getItemConfigId())) {
+                return true;
+            }
+        }
+        return false;
     }
 }

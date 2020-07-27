@@ -1,5 +1,8 @@
 package com.game.gameserver.module.email.service;
 
+import com.game.gameserver.event.EventHandler;
+import com.game.gameserver.event.Listener;
+import com.game.gameserver.event.event.LogoutEvent;
 import com.game.gameserver.module.backbag.service.BackBagService;
 import com.game.gameserver.module.email.dao.EmailDbService;
 import com.game.gameserver.module.email.entity.EmailEntity;
@@ -25,7 +28,7 @@ import java.util.List;
  * @author xuewenkang
  * @date 2020/6/15 20:42
  */
-
+@Listener
 @Service
 public class EmailService {
     @Autowired
@@ -52,7 +55,7 @@ public class EmailService {
         EmailBox emailBox = new EmailBox(player.getPlayerEntity().getId());
         emailEntityList.forEach(emailEntity -> {
             Email email = EmailHelper.createEmail(emailEntity);
-            emailBox.getEmailMap().put(email.getId(),email);
+            emailBox.getEmailMap().put(email.getId(), email);
         });
         // 放如本地缓存
         emailManager.putEmailBox(emailBox.getPlayerId(), emailBox);
@@ -67,12 +70,8 @@ public class EmailService {
      * @param content
      * @return boolean
      */
-    public boolean sendEmail(long senderId, long receiverId, String title, String content){
-        return sendEmail(senderId,receiverId,title,content,0,null);
-    }
-
-    public boolean sendEmail(long senderId, long receiverId, String title, String content,int golds){
-        return sendEmail(senderId,receiverId,title,content,golds,null);
+    public boolean sendEmail(long senderId, long receiverId, String title, String content) {
+        return sendEmail(senderId, receiverId, title, content, 0, null);
     }
 
     /**
@@ -99,16 +98,14 @@ public class EmailService {
         email.setContent(content);
         email.setGolds(golds);
         email.setState(EmailState.UNREAD);
-        if(attachments==null){
+
+        if (attachments == null) {
             attachments = new ArrayList<>();
         }
         email.setAttachments(attachments);
 
-        // 持久化
-        int i = emailDbService.insert(email);
-        if (i != 1) {
-            return false;
-        }
+        // 异步 持久化
+        emailDbService.insertAsync(email);
         // 查看玩家是否在线
         Player player = playerService.getPlayer(receiverId);
         if (player != null) {
@@ -135,6 +132,11 @@ public class EmailService {
      */
     public void sendEmailByPlayer(Player player, long receiverId, String title, String content,
                                   int golds, List<Integer> bagIndexs) {
+        if (golds > player.getGolds()) {
+            NotificationHelper.notifyPlayer(player, "金币不足");
+            return;
+        }
+
         title = player.getPlayerEntity().getName() + ":" + title;
         // 获取玩家附件
         List<Item> attachments = new ArrayList<>();
@@ -149,11 +151,14 @@ public class EmailService {
             NotificationHelper.notifyPlayer(player, "邮件发送失败");
             return;
         }
+        // 扣除金币
+        player.goldsChange(-golds);
         for (Item item : attachments) {
             backBagService.removeItem(player, item.getBagIndex());
         }
         NotificationHelper.notifyPlayer(player, "邮件发送成功");
         NotificationHelper.syncBackBag(player);
+        NotificationHelper.syncPlayer(player);
     }
 
     /**
@@ -191,7 +196,7 @@ public class EmailService {
         }
         NotificationHelper.notifyPlayer(player, EmailHelper.buildEmail(email));
         email.setState(EmailState.READ);
-        emailDbService.update(email);
+        emailDbService.updateAsync(email);
     }
 
     /**
@@ -214,7 +219,7 @@ public class EmailService {
         }
         NotificationHelper.notifyPlayer(player, "删除邮件");
         emailBox.getEmailMap().remove(emailId);
-        emailDbService.delete(emailId);
+        emailDbService.deleteAsync(emailId);
     }
 
     /**
@@ -236,14 +241,26 @@ public class EmailService {
             return;
         }
         // 提取金币
-        player.addGolds(email.getGolds());
-        // 提取附件 如果该附件道具能够放进背包 则移除
-        email.getAttachments().removeIf(
-                item -> backBagService.addItem(player, item));
+        player.goldsChange(email.getGolds());
+        if (email.getAttachments() != null) {
+            if (!backBagService.hasSpace(player, email.getAttachments())) {
+                NotificationHelper.notifyPlayer(player, "背包空间不足");
+            } else {
+                // 提取附件 如果该附件道具能够放进背包 则移除
+                email.getAttachments().removeIf(
+                        item -> backBagService.addItem(player, item));
+            }
+        }
         // 更新邮件信息
-        emailDbService.update(email);
+        emailDbService.updateAsync(email);
         NotificationHelper.syncBackBag(player);
+        NotificationHelper.syncPlayer(player);
         NotificationHelper.notifyPlayer(player, "提取附件成功");
     }
 
+    @EventHandler
+    public void handleLogoutEvent(LogoutEvent logoutEvent) {
+        Player player = logoutEvent.getPlayer();
+        emailManager.removeEmailBox(player.getId());
+    }
 }

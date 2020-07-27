@@ -6,6 +6,9 @@ import lombok.Data;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 /**
  * 交易模型
@@ -24,6 +27,9 @@ public class TradeBoard {
     /** 接受交易的玩家 */
     private Player accepter;
 
+    /** 当前交易的锁 */
+    private ReentrantReadWriteLock lock = new ReentrantReadWriteLock();
+
 
     public TradeBoard(Player initiator, Player accepter){
         this.id = GameUUID.getInstance().generate();
@@ -37,4 +43,12 @@ public class TradeBoard {
 
     /** 双方交易版 */
     public Map<Long,TradeBar> tradeBarMap = new HashMap<>();
+
+    public Lock getReadLock(){
+        return lock.readLock();
+    }
+
+    public Lock getWriteLock(){
+        return lock.writeLock();
+    }
 }

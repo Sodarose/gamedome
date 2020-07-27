@@ -27,33 +27,33 @@ public class EquipHandle extends BaseHandler {
 
     @CmdHandler(cmd = EquipCmd.SHOW_EQUIP_BAR)
     public void showEquip(Message message, Channel channel){
-        Player userTask = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
-        if (userTask == null) {
+        Player player = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
+        if (player == null) {
             NotificationHelper.notifyChannel(channel, "请先登录角色");
             return;
         }
-        equipService.showEquipBar(userTask);
+        equipService.showEquipBar(player);
     }
 
     @CmdHandler(cmd = EquipCmd.PUT_EQUIP)
     public void putEquip(Message message,Channel channel){
-        Player userTask = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
-        if (userTask == null) {
+        Player player = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
+        if (player == null) {
             NotificationHelper.notifyChannel(channel, "请先登录角色");
             return;
         }
         int bagIndex = Integer.parseInt(message.getContent());
-        equipService.putEquip(userTask,bagIndex);
+        equipService.putEquip(player,bagIndex);
     }
 
     @CmdHandler(cmd = EquipCmd.TAKE_EQUIP)
     public void takeEquip(Message message,Channel channel){
-        Player userTask = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
-        if (userTask == null) {
+        Player player = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
+        if (player == null) {
             NotificationHelper.notifyChannel(channel, "请先登录角色");
             return;
         }
         int part = Integer.parseInt(message.getContent());
-        equipService.takeEquip(userTask,part);
+        equipService.takeEquip(player,part);
     }
 }

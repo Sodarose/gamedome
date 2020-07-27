@@ -1,16 +1,24 @@
 package com.game.gameserver.module.instance.manager;
 
 import com.game.gameserver.common.config.CheckPointConfig;
-import com.game.gameserver.common.entity.CreatureState;
+import com.game.gameserver.common.config.InstanceConfig;
+import com.game.gameserver.event.EventBus;
+import com.game.gameserver.event.event.InstanceEvent;
 import com.game.gameserver.module.backbag.service.BackBagService;
+import com.game.gameserver.module.email.service.EmailService;
+import com.game.gameserver.module.email.type.SystemSender;
+import com.game.gameserver.module.instance.helper.InstanceHelper;
 import com.game.gameserver.module.instance.model.CheckPoint;
 import com.game.gameserver.module.instance.model.Instance;
 import com.game.gameserver.module.instance.type.CheckPointState;
 import com.game.gameserver.module.instance.type.InstanceEnum;
+import com.game.gameserver.module.item.model.Item;
+import com.game.gameserver.module.item.service.ItemService;
 import com.game.gameserver.module.monster.model.Monster;
 import com.game.gameserver.module.monster.service.MonsterService;
 import com.game.gameserver.module.notification.NotificationHelper;
 import com.game.gameserver.module.player.model.Player;
+import com.game.gameserver.module.player.service.PlayerDataService;
 import com.game.gameserver.module.scene.service.SceneService;
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import org.slf4j.Logger;
@@ -69,6 +77,15 @@ public class InstanceManager {
     @Autowired
     private MonsterService monsterService;
 
+    @Autowired
+    private PlayerDataService playerDataService;
+
+    @Autowired
+    private ItemService itemService;
+
+    @Autowired
+    private EmailService emailService;
+
     public void initialize() {
         logger.info("启动副本Tick线程");
         startTick();
@@ -106,7 +123,7 @@ public class InstanceManager {
      * @param instance
      * @return void
      */
-    private void update(Instance instance){
+    private void update(Instance instance) {
         try {
             instance.getPlayerMap().forEach((key, value) -> {
                 value.update();
@@ -119,7 +136,7 @@ public class InstanceManager {
             instance.getPetMap().forEach((key, value) -> {
                 value.update();
             });
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -206,7 +223,7 @@ public class InstanceManager {
         }
         if (checkPointIsSuccess(instance.getCheckPoint())) {
             // 设置关卡通关时间
-            instance.setCurrRound(instance.getCurrRound()+1);
+            instance.setCurrRound(instance.getCurrRound() + 1);
             instance.setCheckpointTime(System.currentTimeMillis());
             instance.getCheckPoint().setState(CheckPointState.SUCCESS);
         }
@@ -264,10 +281,34 @@ public class InstanceManager {
      * @return void
      */
     private void sendReward(Instance instance) {
-        // 发放经验奖励
-        // 发放金币奖励
-        // 发放道具奖励
-        NotificationHelper.notifyScene(instance,"发放奖励");
+        InstanceConfig instanceConfig = instance.getInstanceConfig();
+        // 获得副本内成员
+        instance.getPlayerMap().forEach((key, value) -> {
+            // 发放经验
+            playerDataService.addExpr(value, instanceConfig.getExprAward());
+            // 发放金币
+            value.goldsChange(instanceConfig.getGoldAward());
+            // 发放道具
+            List<Item> items = new ArrayList<>();
+            instanceConfig.getItemAward().forEach(award -> {
+                        Item item = itemService.createItem(award.getItemId(), award.getNum());
+                        items.add(item);
+                    }
+            );
+            // 判断背包容量是否足够
+            if (backBagService.hasSpace(value, items)) {
+                items.forEach(item -> {
+                    backBagService.addItem(value, item);
+                });
+                NotificationHelper.syncBackBag(value);
+            } else {
+                // 发到邮件去
+                emailService.sendEmail(SystemSender.SYSTEM.getId(), value.getId(), "管理员:\t副本奖励",
+                        "背包空间不足", 0, items);
+            }
+            NotificationHelper.notifyPlayer(value, InstanceHelper.buildInstanceAwardMsg(instanceConfig));
+            NotificationHelper.syncPlayer(value);
+        });
     }
 
 
@@ -285,6 +326,9 @@ public class InstanceManager {
         // 发放奖励
         sendReward(instance);
         instance.setState(InstanceEnum.RECOVERY);
+        instance.getPlayerMap().values().forEach(player -> {
+            EventBus.EVENT_BUS.fire(new InstanceEvent(player, instance.getInstanceConfig().getId()));
+        });
     }
 
     /**

@@ -1,6 +1,5 @@
 package com.game.gameserver.net.modelhandler.guild;
 
-import com.game.gameserver.module.guild.model.Member;
 import com.game.gameserver.module.guild.service.GuildService;
 import com.game.gameserver.module.guild.service.GuildWarehouseService;
 import com.game.gameserver.module.notification.NotificationHelper;
@@ -69,7 +68,7 @@ public class GuildHandle extends BaseHandler {
         guildService.applyGuild(player,guildId);
     }
 
-    @CmdHandler(cmd = GuildCmd.PROCESS_Guild_APPLY)
+    @CmdHandler(cmd = GuildCmd.PROCESS_GUILD_APPLY)
     public void processApply(Message message, Channel channel){
         Player player = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
         if (player == null) {

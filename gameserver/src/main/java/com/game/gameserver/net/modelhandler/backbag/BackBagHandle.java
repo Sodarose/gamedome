@@ -26,18 +26,18 @@ public class BackBagHandle extends BaseHandler {
 
     @CmdHandler(cmd = BackBagCmd.SHOW_BACK_BAG)
     public void showBackBag(Message message, Channel channel){
-        Player userTask = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
-        if (userTask == null) {
+        Player player = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
+        if (player == null) {
             NotificationHelper.notifyChannel(channel, "请先登录角色");
             return;
         }
-        backBagService.showPlayerBackBag(userTask);
+        backBagService.showPlayerBackBag(player);
     }
 
     @CmdHandler(cmd = BackBagCmd.MOVE_ITEM)
     public void moveItem(Message message,Channel channel){
-        Player userTask = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
-        if (userTask == null) {
+        Player player = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
+        if (player == null) {
             NotificationHelper.notifyChannel(channel, "请先登录角色");
             return;
         }
@@ -50,13 +50,13 @@ public class BackBagHandle extends BaseHandler {
         }
         int sourceIndex = Integer.parseInt(param[0]);
         int targetIndex = Integer.parseInt(param[1]);
-        backBagService.moveItem(userTask,sourceIndex,targetIndex);
+        backBagService.moveItem(player,sourceIndex,targetIndex);
     }
 
     @CmdHandler(cmd = BackBagCmd.DISCARD_ITEM)
     public void discardItem(Message message,Channel channel){
-        Player userTask = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
-        if (userTask == null) {
+        Player player = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
+        if (player == null) {
             NotificationHelper.notifyChannel(channel, "请先登录角色");
             return;
         }
@@ -69,17 +69,17 @@ public class BackBagHandle extends BaseHandler {
         }
         int bagIndex = Integer.parseInt(param[0]);
         int num = Integer.parseInt(param[1]);
-        backBagService.discardItem(userTask,bagIndex,num);
+        backBagService.discardItem(player,bagIndex,num);
     }
 
     @CmdHandler(cmd = BackBagCmd.CLEAN_UP)
     public void clearUpBag(Message message,Channel channel){
-        Player userTask = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
-        if (userTask == null) {
+        Player player = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
+        if (player == null) {
             NotificationHelper.notifyChannel(channel, "请先登录角色");
             return;
         }
-        backBagService.clearUpBag(userTask);
+        backBagService.clearUpBag(player);
     }
 
 }

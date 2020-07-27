@@ -1,4 +1,4 @@
-package com.game.gameserver.module.buffer.model;
+package com.game.gameserver.common.config;
 
 import lombok.Data;
 

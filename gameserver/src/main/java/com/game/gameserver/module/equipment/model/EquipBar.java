@@ -15,21 +15,6 @@ import java.util.concurrent.ConcurrentHashMap;
  * @date 2020/7/7 3:48
  */
 @Data
-public class EquipBar {
-    private long playerId;
+public class EquipBar extends EquipBarEntity{
 
-    private final Map<Integer, Item> equipMap;
-
-    public EquipBar(){
-        this.equipMap = new ConcurrentHashMap<>();
-    }
-
-    public EquipBar(EquipBarEntity equipBarEntity) {
-        this.playerId = equipBarEntity.getPlayerId();
-        this.equipMap = new ConcurrentHashMap<>();
-    }
-
-    public Map<Integer, Item> getEquipMap() {
-        return equipMap;
-    }
 }

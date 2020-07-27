@@ -118,7 +118,7 @@ public enum MonsterState implements State<Monster> {
         public void update(Monster monster) {
             // 判断目标仇恨目标是否存在
             Creature target = monster.getTarget();
-            if(target==null){
+            if(target==null||target.isDead()){
                 monster.setTarget(null);
                 monster.changeState(MonsterState.MONSTER_TAKEOFF);
                 return;
@@ -181,7 +181,7 @@ public enum MonsterState implements State<Monster> {
             if (currTime < nextTime) {
                 return;
             }
-            monster.setCurrHp(monster.getCurrHp()+HP);
+            monster.changeCurrHp(HP);
             if (monster.getCurrHp() == monster.getHp()) {
                 monster.changeState(MonsterState.MONSTER_DEFEND);
             }

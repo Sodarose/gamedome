@@ -1,12 +1,12 @@
 package com.game.gameserver.module.equipment.service;
 
-import com.alibaba.druid.support.spring.stat.annotation.Stat;
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.TypeReference;
 import com.game.gameserver.common.config.ItemConfig;
 import com.game.gameserver.common.config.StaticConfigManager;
 import com.game.gameserver.event.EventBus;
-import com.game.gameserver.event.event.EquipmentChangeEvent;
+import com.game.gameserver.event.EventHandler;
+import com.game.gameserver.event.Listener;
+import com.game.gameserver.event.event.EquipChangeEvent;
+import com.game.gameserver.event.event.LogoutEvent;
 import com.game.gameserver.module.backbag.service.BackBagService;
 import com.game.gameserver.module.equipment.dao.EquipBarDbService;
 import com.game.gameserver.module.equipment.entity.EquipBarEntity;
@@ -18,16 +18,17 @@ import com.game.gameserver.module.notification.NotificationHelper;
 import com.game.gameserver.module.player.model.Player;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.text.MessageFormat;
-import java.util.Map;
 
 /**
  * @author xuewenkang
  * @date 2020/7/12 4:22
  */
+@Listener
 @Service
 public class EquipService {
     private final static Logger logger = LoggerFactory.getLogger(EquipService.class);
@@ -36,6 +37,14 @@ public class EquipService {
     private EquipBarDbService equipBarDbService;
     @Autowired
     private BackBagService backBagService;
+
+
+    public void createPlayerEquipBar(long playerId){
+        EquipBar equipBar = new EquipBar();
+        equipBar.setPlayerId(playerId);
+        // 异步存储
+        equipBarDbService.insert(equipBar);
+    }
 
     /**
      * 读取用户装备栏
@@ -46,15 +55,13 @@ public class EquipService {
     public void loadPlayerEquipBar(Player player) {
         logger.info("加载用户装备栏");
         EquipBarEntity equipBarEntity = equipBarDbService.select(player.getPlayerEntity().getId());
-        EquipBar equipBar = new EquipBar(equipBarEntity);
-        // 解析Json 获得道具表
-        Map<Integer, Item> itemMap = JSON.parseObject(equipBarEntity.getItems(),
-                new TypeReference<Map<Integer, Item>>() {
-                });
-        // 初始化道具 并放入背包
-        itemMap.forEach((key, value) -> {
-            equipBar.getEquipMap().put(key, value);
-        });
+        if(equipBarEntity==null){
+            equipBarEntity = new EquipBarEntity();
+            equipBarEntity.setPlayerId(player.getId());
+            equipBarDbService.insertAsync(equipBarEntity);
+        }
+        EquipBar equipBar = new EquipBar();
+        BeanUtils.copyProperties(equipBarEntity,equipBar);
         // 放入玩家实体
         player.setEquipBar(equipBar);
         NotificationHelper.syncEquipBar(player);
@@ -95,7 +102,7 @@ public class EquipService {
         // 移除该装备
         item = equipBar.getEquipMap().remove(part);
         // 发出装备变更事件
-        EquipmentChangeEvent equipmentChangeEvent = new EquipmentChangeEvent(player);
+        EquipChangeEvent equipmentChangeEvent = new EquipChangeEvent(player);
         EventBus.EVENT_BUS.fire(equipmentChangeEvent);
         // 通知
         ItemConfig itemConfig = StaticConfigManager.getInstance().getItemConfigMap().get(item.getItemConfigId());
@@ -134,7 +141,7 @@ public class EquipService {
         // 放入背包
         backBagService.addItem(player, takeEquip);
         // 发出装备变更事件
-        EquipmentChangeEvent equipmentChangeEvent = new EquipmentChangeEvent(player);
+        EquipChangeEvent equipmentChangeEvent = new EquipChangeEvent(player);
         EventBus.EVENT_BUS.fire(equipmentChangeEvent);
         // 通知
         NotificationHelper.notifyPlayer(player, MessageFormat.format("装备{0}已经穿上",
@@ -148,5 +155,12 @@ public class EquipService {
         EquipBar equipBar = player.getEquipBar();
         return equipBar.getEquipMap().values().stream().map(item -> StaticConfigManager.getInstance().getItemConfigMap()
                 .get(item.getItemConfigId())).mapToInt(ItemConfig::getStar).sum();
+    }
+
+    @EventHandler
+    public void handleLogoutEvent(LogoutEvent logoutEvent){
+        Player player = logoutEvent.getPlayer();
+        EquipBar equipBar = player.getEquipBar();
+        equipBarDbService.update(equipBar);
     }
 }

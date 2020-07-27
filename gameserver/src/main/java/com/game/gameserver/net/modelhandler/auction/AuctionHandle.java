@@ -26,28 +26,28 @@ public class AuctionHandle extends BaseHandler {
 
     @CmdHandler(cmd = AuctionCmd.SHOW_AUCTION_HOUSE)
     public void showAuctionHouse(Message message, Channel channel){
-        Player userTask = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
-        if (userTask == null) {
+        Player player = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
+        if (player == null) {
             NotificationHelper.notifyChannel(channel, "请先登录角色");
             return;
         }
-        auctionService.showAuctionHouse(userTask);
+        auctionService.showAuctionHouse(player);
     }
 
     @CmdHandler(cmd = AuctionCmd.SHOW_ME_AUCTION)
     public void showMeAuction(Message message, Channel channel){
-        Player userTask = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
-        if (userTask == null) {
+        Player player = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
+        if (player == null) {
             NotificationHelper.notifyChannel(channel, "请先登录角色");
             return;
         }
-        auctionService.showPlayerAuctionItem(userTask);
+        auctionService.showPlayerAuctionItem(player);
     }
 
     @CmdHandler(cmd = AuctionCmd.PUSH_AUCTION)
     public void pushAuction(Message message,Channel channel){
-        Player userTask = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
-        if (userTask == null) {
+        Player player = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
+        if (player == null) {
             NotificationHelper.notifyChannel(channel, "请先登录角色");
             return;
         }
@@ -56,41 +56,41 @@ public class AuctionHandle extends BaseHandler {
         int bagIndex = Integer.parseInt(param[1]);
         int num = Integer.parseInt(param[2]);
         int price = Integer.parseInt(param[3]);
-        auctionService.publishItem(userTask,model,bagIndex,num,price);
+        auctionService.publishItem(player,model,bagIndex,num,price);
     }
 
     @CmdHandler(cmd = AuctionCmd.TAKE_AUCTION)
     public void takeAuction(Message message,Channel channel){
-        Player userTask = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
-        if (userTask == null) {
+        Player player = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
+        if (player == null) {
             NotificationHelper.notifyChannel(channel, "请先登录角色");
             return;
         }
         long auctionItemId = Long.parseLong(message.getContent());
-        auctionService.takeItem(userTask,auctionItemId);
+        auctionService.takeItem(player,auctionItemId);
     }
 
     @CmdHandler(cmd = AuctionCmd.AUCTION)
     public void auction(Message message,Channel channel){
-        Player userTask = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
-        if (userTask == null) {
+        Player player = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
+        if (player == null) {
             NotificationHelper.notifyChannel(channel, "请先登录角色");
             return;
         }
         String[] param = message.getContent().split("\\s+");
         long auctionItemId = Long.parseLong(param[0]);
         int price = Integer.parseInt(param[1]);
-        auctionService.buyAuctionItemByAuction(userTask,auctionItemId,price);
+        auctionService.buyAuctionItemByAuction(player,auctionItemId,price);
     }
 
     @CmdHandler(cmd = AuctionCmd.FIXED_PRICE)
     public void fixedPrice(Message message,Channel channel){
-        Player userTask = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
-        if (userTask == null) {
+        Player player = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
+        if (player == null) {
             NotificationHelper.notifyChannel(channel, "请先登录角色");
             return;
         }
         long auctionItemId = Long.parseLong(message.getContent());
-        auctionService.buyAuctionItemByFixedPrice(userTask,auctionItemId);
+        auctionService.buyAuctionItemByFixedPrice(player,auctionItemId);
     }
 }

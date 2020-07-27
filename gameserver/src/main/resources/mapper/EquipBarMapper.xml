@@ -4,19 +4,19 @@
     <!--道具-->
     <resultMap id="equipBar" type="com.game.gameserver.module.equipment.entity.EquipBarEntity">
         <result column="playerId" property="playerId"/>
-        <result column="items" property="items" jdbcType="BLOB" typeHandler="com.game.gameserver.util.typehandler.TypeHandler"/>
+        <result column="equipMap" property="equipMap" jdbcType="BLOB" typeHandler="com.game.gameserver.util.typehandler.TypeHandler"/>
     </resultMap>
 
     <!--列表-->
     <sql id="Base_EquipBar_Column_List">
-       playerId, items
+       playerId, equipMap
     </sql>
 
     <insert id="insert" parameterType="com.game.gameserver.module.equipment.entity.EquipBarEntity">
         INSERT INTO game_player_equip_bar
-        (playerId, items)
+        (playerId, equipMap)
         VALUES (#{playerId},
-        #{items,jdbcType=BLOB,typeHandler=com.game.gameserver.util.typehandler.TypeHandler})
+        #{equipMap,jdbcType=BLOB,typeHandler=com.game.gameserver.util.typehandler.TypeHandler})
     </insert>
 
     <select id="select" resultMap="equipBar">
@@ -33,8 +33,8 @@
             <if test="itemConfigId != null">
                 itemConfigId = #{itemConfigId},
             </if>
-            <if test="items != null">
-                items = #{items,jdbcType=BLOB,typeHandler=com.game.gameserver.util.typehandler.TypeHandler},
+            <if test="equipMap != null">
+                equipMap = #{equipMap,jdbcType=BLOB,typeHandler=com.game.gameserver.util.typehandler.TypeHandler},
             </if>
         </set>
         WHERE playerId = #{playerId}

@@ -6,6 +6,7 @@ import com.game.gameserver.module.guild.entity.GuildWarehouseEntity;
 import com.game.gameserver.module.item.model.Item;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.locks.Lock;
@@ -18,7 +19,7 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
  * @date 2020/7/14 11:32
  */
 @Data
-public class GuildWarehouse {
+public class GuildWarehouse implements Serializable {
     /**
      * 工会Id
      */

@@ -3,6 +3,8 @@ package com.game.gameserver.module.item.model;
 import com.game.gameserver.common.config.ItemConfig;
 import lombok.Data;
 
+import java.io.Serializable;
+
 /**
  * 道具
  *
@@ -10,7 +12,7 @@ import lombok.Data;
  * @date 2020/7/12 2:26
  */
 @Data
-public class Item  {
+public class Item  implements Serializable {
     /** 静态资源Id */
     private Integer itemConfigId;
     /** 数量 */
@@ -19,7 +21,6 @@ public class Item  {
     private Integer bagIndex;
     /** 装备耐久读 */
     private Integer durability;
-    private ItemConfig itemConfig;
     public Item(){
 
     }
