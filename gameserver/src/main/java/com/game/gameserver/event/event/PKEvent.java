@@ -14,4 +14,11 @@ import lombok.Data;
 public class PKEvent implements Event {
     private Player initiator;
     private Player target;
+<<<<<<< HEAD
+=======
+    public PKEvent(Player initiator,Player target){
+        this.initiator = initiator;
+        this.target = target;
+    }
+>>>>>>> dev
 }

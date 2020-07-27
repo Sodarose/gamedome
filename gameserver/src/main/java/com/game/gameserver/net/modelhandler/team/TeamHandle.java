@@ -78,7 +78,7 @@ public class TeamHandle extends BaseHandler {
         teamService.inviteTeam(player,targetId);
     }
 
-    @CmdHandler(cmd = TeamCmd.PROCESS_APPLY)
+    @CmdHandler(cmd = TeamCmd.PROCESS_TEAM_APPLY)
     public void processApply(Message message, Channel channel){
         Player player = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
         if(player==null){
@@ -91,7 +91,7 @@ public class TeamHandle extends BaseHandler {
         teamService.processApply(player,targetId,agree);
     }
 
-    @CmdHandler(cmd = TeamCmd.PROCESS_INVITE)
+    @CmdHandler(cmd = TeamCmd.PROCESS_TEAM_INVITE)
     public void processInvite(Message message, Channel channel){
         Player player = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
         if(player==null){

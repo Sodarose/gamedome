@@ -1,6 +1,10 @@
 package com.game.gameserver.module.equipment.entity;
 
+import com.game.gameserver.module.item.model.Item;
 import lombok.Data;
+
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  *
@@ -11,7 +15,8 @@ import lombok.Data;
 @Data
 public class EquipBarEntity {
     private long playerId;
-    private String items;
+    /** 背吧中的道具 */
+    private Map<Integer, Item> equipMap = new ConcurrentHashMap<>();
 
     public EquipBarEntity(){
 
@@ -19,6 +24,5 @@ public class EquipBarEntity {
 
     public EquipBarEntity(long playerId,String items){
         this.playerId = playerId;
-        this.items = items;
     }
 }

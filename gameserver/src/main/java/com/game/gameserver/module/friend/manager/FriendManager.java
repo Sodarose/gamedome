@@ -1,6 +1,7 @@
 package com.game.gameserver.module.friend.manager;
 
-import com.game.gameserver.module.friend.model.UserFriend;
+import com.game.gameserver.event.Listener;
+import com.game.gameserver.module.friend.model.PlayerFriend;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -17,17 +18,17 @@ public class FriendManager {
     private final static Logger logger = LoggerFactory.getLogger(FriendManager.class);
 
     /** 本地好友缓存 */
-    private final static Map<Long, UserFriend> LOCAL_PLAYER_FRIEND_MAP = new ConcurrentHashMap<>();
+    private final static Map<Long, PlayerFriend> LOCAL_PLAYER_FRIEND_MAP = new ConcurrentHashMap<>();
 
-    public UserFriend getUserFriend(long playerId){
+    public PlayerFriend getPlayerFriend(long playerId){
         return LOCAL_PLAYER_FRIEND_MAP.get(playerId);
     }
 
-    public void putUserFriend(long playerId, UserFriend playerFriend){
+    public void putPlayerFriend(long playerId, PlayerFriend playerFriend){
         LOCAL_PLAYER_FRIEND_MAP.put(playerId,playerFriend);
     }
 
-    public void removeUserFriend(long playerId){
+    public void removePlayerFriend(long playerId){
         LOCAL_PLAYER_FRIEND_MAP.remove(playerId);
     }
 }

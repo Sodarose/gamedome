@@ -6,50 +6,48 @@
         <result column="taskId" property="taskId"/>
         <result column="state" property="state"/>
         <result column="playerId" property="playerId"/>
-        <result column="taskProgresses" property="taskProgresses"/>
+        <result column="taskProgress" property="taskProgress" jdbcType="BLOB"
+                typeHandler="com.game.gameserver.util.typehandler.TypeHandler"/>
     </resultMap>
 
     <!--列表-->
     <sql id="Base_TaskEntity_Column_List">
-        taskId, state, playerId, taskProgresses
+        taskId, state, playerId, taskProgress
     </sql>
 
 
     <select id="selectTaskEntityList" resultMap="TaskEntity">
         SELECT
-        <include refid="Base_TaskEntity_Column_List" />
+        <include refid="Base_TaskEntity_Column_List"/>
         FROM game_task
         WHERE playerId = #{playerId}
     </select>
 
     <select id="select" resultMap="TaskEntity">
         SELECT
-        <include refid="Base_TaskEntity_Column_List" />
+        <include refid="Base_TaskEntity_Column_List"/>
         FROM game_task
         WHERE playerId=#{playerId} AND taskId=#{taskId}
     </select>
 
     <insert id="insert" parameterType="com.game.gameserver.module.task.entity.TaskEntity">
         INSERT INTO game_task
-        (taskId, state, playerId, taskProgresses)
+        (taskId, state, playerId, taskProgress)
         VALUES (#{taskId},#{state},#{playerId},
-        #{taskProgresses,jdbcType=BLOB,typeHandler=com.game.gameserver.util.typehandler.TypeHandler})
+        #{taskProgress,jdbcType=BLOB,typeHandler=com.game.gameserver.util.typehandler.TypeHandler})
     </insert>
 
     <update id="update" parameterType="com.game.gameserver.module.task.entity.TaskEntity">
         UPDATE game_task
         <set>
-            <if test="taskId != null">
-                taskId = #{taskId},
-            </if>
             <if test="state != null">
                 state = #{state},
             </if>
             <if test="playerId != null">
                 playerId = #{playerId},
             </if>
-            <if test="taskProgresses != null">
-                taskProgresses = #{taskProgresses,
+            <if test="taskProgress != null">
+                taskProgress = #{taskProgress,
                 jdbcType=BLOB,typeHandler=com.game.gameserver.util.typehandler.TypeHandler},
             </if>
         </set>

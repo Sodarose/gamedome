@@ -38,7 +38,7 @@ public class MonsterService {
         monster.setTarget(null);
         monster.setState(MonsterState.MONSTER_DEFEND);
         monster.setStateMachine(new StateMachine<>(monster,MonsterState.MONSTER_DEFEND));
-
+        monster.setMonsterConfig(monsterConfig);
         // 加载怪物技能
         List<Integer> skills = monsterConfig.getSkills();
         skills.forEach(skillId->{

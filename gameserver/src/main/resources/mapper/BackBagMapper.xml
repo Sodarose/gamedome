@@ -5,21 +5,21 @@
     <resultMap id="BackBagEntity" type="com.game.gameserver.module.backbag.entity.BackBagEntity">
         <result column="playerId" property="playerId"/>
         <result column="capacity" property="capacity"/>
-        <result column="items" property="items" jdbcType="BLOB" typeHandler="com.game.gameserver.util.typehandler.TypeHandler"/>
+        <result column="itemMap" property="itemMap" jdbcType="BLOB" typeHandler="com.game.gameserver.util.typehandler.TypeHandler"/>
     </resultMap>
 
     <!--列表-->
     <sql id="Base_BackBag_Column_List">
-       playerId,  capacity, items
+       playerId,  capacity, itemMap
     </sql>
 
 
     <!--插入道具 一个背包 -->
     <insert id="insert" parameterType="com.game.gameserver.module.backbag.entity.BackBagEntity">
         INSERT INTO game_player_back_bag
-        (playerId, capacity, items)
+        (playerId, capacity, itemMap)
         VALUES (#{playerId}, #{capacity},
-          #{items,jdbcType=BLOB,typeHandler=com.game.gameserver.util.typehandler.TypeHandler})
+          #{itemMap,jdbcType=BLOB,typeHandler=com.game.gameserver.util.typehandler.TypeHandler})
     </insert>
 
     <!--查询道具列表-->
@@ -38,8 +38,8 @@
             <if test="capacity != null">
                 capacity = #{capacity},
             </if>
-            <if test="items != null">
-                items = #{items,jdbcType=BLOB,typeHandler=com.game.gameserver.util.typehandler.TypeHandler},
+            <if test="itemMap != null">
+                itemMap = #{itemMap,jdbcType=BLOB,typeHandler=com.game.gameserver.util.typehandler.TypeHandler},
             </if>
         </set>
         WHERE playerId = #{playerId}

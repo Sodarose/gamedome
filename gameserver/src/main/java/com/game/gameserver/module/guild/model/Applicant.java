@@ -2,6 +2,8 @@ package com.game.gameserver.module.guild.model;
 
 import lombok.Data;
 
+import java.io.Serializable;
+
 /**
  * 申请者
  *
@@ -9,7 +11,7 @@ import lombok.Data;
  * @date 2020/7/3 12:21
  */
 @Data
-public class Applicant {
+public class Applicant implements Serializable {
 
     /** 申请者名称 */
     private String name;

@@ -1,7 +1,6 @@
 package com.game.gameserver.common.config;
 
 import com.alibaba.fastjson.annotation.JSONField;
-import com.game.gameserver.module.buffer.model.Property;
 import lombok.Data;
 
 /**

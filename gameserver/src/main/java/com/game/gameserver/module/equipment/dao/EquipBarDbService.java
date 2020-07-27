@@ -18,35 +18,37 @@ public class EquipBarDbService extends BaseDbService {
     @Autowired
     private EquipBarMapper equipBarMapper;
 
-    public EquipBarEntity select(long playerId){
+    public EquipBarEntity select(long playerId) {
         return equipBarMapper.select(playerId);
     }
 
-    public int insert(EquipBar equipBar){
-        // 将道具列表转化为JSON
-        String items = JSON.toJSONString(equipBar.getEquipMap());
-        // 创建实体对象
-        EquipBarEntity equipBarEntity = new EquipBarEntity(equipBar.getPlayerId(),items);
+    public int insert(EquipBarEntity equipBarEntity) {
         return equipBarMapper.insert(equipBarEntity);
     }
 
-    public int update(EquipBar equipBar){
-        return 0;
+    public int update(EquipBarEntity equipBarEntity) {
+        return equipBarMapper.update(equipBarEntity);
     }
 
-    public int delete(EquipBar equipBar){
-        return 0;
+    public int delete(long playerId) {
+        return equipBarMapper.delete(playerId);
     }
 
-    public void insertAsync(EquipBar equipBar){
-        return;
+    public void insertAsync(EquipBarEntity equipBarEntity) {
+        submit(() -> {
+            int i = equipBarMapper.insert(equipBarEntity);
+        });
     }
 
-    public void updateAsync(EquipBar equipBar){
-
+    public void updateAsync(EquipBarEntity equipBarEntity) {
+        submit(() -> {
+            int i = equipBarMapper.update(equipBarEntity);
+        });
     }
 
-    public void deleteAsync(EquipBar equipBar){
-
+    public void deleteAsync(long playerId) {
+        submit(() -> {
+            int i = equipBarMapper.delete(playerId);
+        });
     }
 }

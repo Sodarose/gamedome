@@ -58,8 +58,8 @@ public class PlayerHandle extends BaseHandler {
             NotificationHelper.notifyChannel(channel, "未登录");
             return;
         }
-        Player userTask = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
-        if(userTask!=null){
+        Player player = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
+        if(player!=null){
             NotificationHelper.notifyChannel(channel, "请勿重复登录");
             return;
         }
@@ -79,8 +79,8 @@ public class PlayerHandle extends BaseHandler {
             NotificationHelper.notifyChannel(channel, "参数错误");
             return;
         }
-        Player userTask = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
-        if(userTask!=null){
+        Player player = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
+        if(player!=null){
             NotificationHelper.notifyChannel(channel, "请先退出当前角色");
             return;
         }
@@ -91,21 +91,21 @@ public class PlayerHandle extends BaseHandler {
 
     @CmdHandler(cmd = PlayerCmd.SHOW_PLAYER)
     public void showPlayer(Message message, Channel channel) {
-        Player userTask = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
-        if (userTask == null) {
+        Player player = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
+        if (player == null) {
             NotificationHelper.notifyChannel(channel, "请先登录角色");
             return;
         }
-        playerService.showPlayer(userTask);
+        playerService.showPlayer(player);
     }
 
     @CmdHandler(cmd = PlayerCmd.LOGOUT)
     public void logout(Message message,Channel channel){
-        Player userTask = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
-        if (userTask == null) {
+        Player player = channel.attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
+        if (player == null) {
             NotificationHelper.notifyChannel(channel, "请先登录角色");
             return;
         }
-        playerService.logout(userTask);
+        playerService.logout(player);
     }
 }

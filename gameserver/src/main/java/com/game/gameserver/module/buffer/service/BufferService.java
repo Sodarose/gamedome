@@ -118,8 +118,8 @@ public class BufferService {
 
         }
         // hp mp 效果
-        creature.setCurrHp(creature.getCurrHp()+buffer.getBufferConfig().getHp());
-        creature.setCurrMp(creature.getCurrMp()+buffer.getBufferConfig().getMp());
+        creature.changeCurrHp(buffer.getBufferConfig().getHp());
+        creature.changeCurrMp(buffer.getBufferConfig().getMp());
         if (creature.getType().equals(CreatureType.PLAYER)) {
             Player player = (Player) creature;
             NotificationHelper.notifyPlayer(player, MessageFormat.format("hp效果:{0}  mp效果:{1}",

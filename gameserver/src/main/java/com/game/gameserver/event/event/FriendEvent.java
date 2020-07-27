@@ -1,7 +1,6 @@
 package com.game.gameserver.event.event;
 
 import com.game.gameserver.event.Event;
-import com.game.gameserver.module.friend.entity.FriendEntity;
 import com.game.gameserver.module.player.model.Player;
 import lombok.Data;
 

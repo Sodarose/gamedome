@@ -1,13 +1,11 @@
 package com.game.gameserver.module.task.entity;
 
-import com.game.gameserver.common.config.TaskConfig;
 import com.game.gameserver.module.task.model.TaskProgress;
-import com.game.gameserver.module.task.type.TaskState;
-import com.game.gameserver.util.GameUUID;
-import com.game.gameserver.util.TaskUtil;
 import lombok.Data;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 角色任务实体  需存档
@@ -19,17 +17,10 @@ import java.util.List;
 public class TaskEntity {
     /** 任务资源id*/
     private Integer taskId;
-
     /** 任务状态*/
     private Integer state;
-
     /** 任务所属的角色*/
     private Long playerId;
-
-    /** 任务进度 */
-    private String taskProgresses;
-
-    public TaskEntity(){
-
-    }
+    /** 任务进度表  目标，任务进度*/
+    private Map<Integer, TaskProgress> taskProgress = new HashMap<>();
 }

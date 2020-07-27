@@ -8,6 +8,7 @@ import com.game.gameserver.module.guild.manager.GuildManager;
 import com.game.gameserver.module.instance.manager.InstanceManager;
 import com.game.gameserver.module.scene.manager.SceneManager;
 import com.game.gameserver.module.shop.manager.ShopManager;
+import com.game.gameserver.thread.BusinessThreadPool;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,8 @@ public class Platform {
     private StaticConfigManager staticConfigManager = StaticConfigManager.getInstance();
 
     @Autowired
+    private BusinessThreadPool businessThreadPool;
+    @Autowired
     private SceneManager sceneManager;
     @Autowired
     private AuctionHouseManager auctionHouseManager;
@@ -38,6 +41,8 @@ public class Platform {
 
     public void startUp() {
         logger.info("platform start up ......");
+        // 初始化业务线程池
+        businessThreadPool.initialize();
         // 加载静态资源
         staticConfigManager.loadConfig();
         // 加载场景

@@ -5,7 +5,10 @@
     "hp": 1000,
     "mp": 0,
     "property": {
-
+      "hp": 0,
+      "mp": 0,
+      "attack": 0,
+      "defense": 0
     },
     "effect": 1,
     "duration": 10000,
@@ -19,7 +22,10 @@
     "hp": 0,
     "mp": 1000,
     "property": {
-
+      "hp": 0,
+      "mp": 0,
+      "attack": 0,
+      "defense": 0
     },
     "effect": 1,
     "duration": 10000,
@@ -33,12 +39,67 @@
     "hp": -100,
     "mp": 0,
     "property": {
-
+      "hp": 0,
+      "mp": 0,
+      "attack": 0,
+      "defense": 0
     },
     "effect": 1,
     "duration": 20000,
     "intervalTime": 1000,
     "times": 15,
     "deduct": false
+  },
+  {
+    "id": 1004,
+    "name": "感电",
+    "hp": -50,
+    "mp": 0,
+    "property": {
+      "hp": 0,
+      "mp": 0,
+      "attack": 0,
+      "defense": 0
+    },
+    "effect": 1,
+    "duration": 20000,
+    "intervalTime": 1000,
+    "times": 15,
+    "deduct": false
+  },
+  {
+    "id": 1005,
+    "name": "灼烧",
+    "hp": -500,
+    "mp": 0,
+    "property": {
+      "hp": 0,
+      "mp": 0,
+      "attack": 0,
+      "defense": 0
+    },
+    "effect": 1,
+    "duration": 10000,
+    "intervalTime": 1000,
+    "times": 5,
+    "deduct": false
+  },
+  {
+    "id": 1005,
+    "name": "霜冻",
+    "hp": -500,
+    "mp": 0,
+    "property": {
+      "hp": 0,
+      "mp": 0,
+      "attack": 0,
+      "defense": 0
+    },
+    "effect": 1,
+    "duration": 10000,
+    "intervalTime": 1000,
+    "times": 5,
+    "deduct": false
   }
+
 ]

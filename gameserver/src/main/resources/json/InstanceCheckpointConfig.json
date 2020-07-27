@@ -1,25 +1,92 @@
 [
   {
     "id": 1001,
+    "roundAmount": 6,
+    "checkpointConfig": [
+      {
+        "round": 1,
+        "monsters": [
+          1018,
+          1019,
+          1020,
+          1021
+        ],
+        "condition": 1,
+        "desc": "黑色大地1"
+      },
+      {
+        "round": 2,
+        "monsters": [
+          1024
+        ],
+        "condition": 1,
+        "desc": "黑色大地2"
+      },
+      {
+        "round": 3,
+        "monsters": [
+          1025
+        ],
+        "condition": 1,
+        "desc": "黑色大地3"
+      },
+      {
+        "round": 4,
+        "monsters": [
+          1026
+        ],
+        "condition": 1,
+        "desc": "黑色大地4"
+      },
+      {
+        "round": 5,
+        "monsters": [
+          1027
+        ],
+        "condition": 1,
+        "desc": "黑色大地5"
+      },
+      {
+        "round": 6,
+        "monsters": [
+          1028
+        ],
+        "condition": 1,
+        "desc": "黑色大地6"
+      }
+    ]
+  },
+  {
+    "id": 1002,
     "roundAmount": 3,
     "checkpointConfig": [
       {
         "round": 1,
-        "monsters": [1000,1001,1002],
-        "type": 1,
-        "desc": "神墓1层"
+        "monsters": [
+          1029,
+          1030,
+          1031,
+          1032
+        ],
+        "condition": 1,
+        "desc": "洛兰1"
       },
       {
         "round": 2,
-        "monsters": [1018],
-        "type": 1,
-        "desc": "神墓2层"
+        "monsters": [
+          1033,
+          1034
+        ],
+        "condition": 1,
+        "desc": "洛兰2"
       },
       {
         "round": 3,
-        "monsters": [1022],
-        "type": 1,
-        "desc": "神墓3层"
+        "monsters": [
+          1035
+        ],
+        "condition": 1,
+        "desc": "洛兰3"
       }
     ]
   }

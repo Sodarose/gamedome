@@ -21,9 +21,7 @@ public class ItemHelper {
         }
         sb.append("buffer:").append(itemConfig.getBufferId()).append("\n");
         sb.append("property:").append("\n");
-        itemConfig.getPropertyMap().forEach((key,value)->{
-            sb.append(key).append(":").append(value).append("\n");
-        });
+
         return sb.toString();
     }
 

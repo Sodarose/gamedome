@@ -24,39 +24,33 @@ public class BackBagDbService extends BaseDbService {
         return backBagMapper.select(playerId);
     }
 
-
-
-    public int insert(BackBag backBag){
-        // 将道具列表转化为JSON
-        String items = JSON.toJSONString(backBag.getItemMap());
-        // 创建实体对象
-        BackBagEntity backBagEntity = new BackBagEntity(backBag.getPlayerId(),backBag.getCapacity(),items);
-        int i = backBagMapper.insert(backBagEntity);
-        if(i==0){
-            logger.info("playerId {} 背包未插入数据库失败",backBag.getPlayerId());
-        }
-        return i;
+    public int insert(BackBagEntity backBagEntity){
+        return backBagMapper.insert(backBagEntity);
     }
 
-    public void insertAsync(BackBag backBag){
+    public int update(BackBagEntity backBagEntity){
+        return backBagMapper.update(backBagEntity);
+    }
+
+    public int delete(long playerId){
+        return backBagMapper.delete(playerId);
+    }
+
+    public void insertAsync(BackBagEntity backBagEntity){
         submit(()->{
-            insert(backBag);
+            insert(backBagEntity);
         });
     }
 
-    public void update(BackBag backBag,boolean async){
-        // 将道具列表转化为JSON
-        String items = JSON.toJSONString(backBag.getItemMap());
-        // 创建实体对象
-        BackBagEntity backBagEntity = new BackBagEntity(backBag.getPlayerId(),backBag.getCapacity(),items);
-        int i = backBagMapper.update(backBagEntity);
-        if(i==0){
-            logger.info("playerId {} 背包未插入数据库失败",backBag.getPlayerId());
-        }
+    public void updateAsync(BackBagEntity backBagEntity){
+        submit(()->{
+            int i = update(backBagEntity);
+        });
     }
 
-    public void delete(BackBag backBag ,boolean async){
-
+    public void deleteAsync(long playerId){
+        submit(()->{
+            int i = delete(playerId);
+        });
     }
-
 }

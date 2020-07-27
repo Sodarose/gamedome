@@ -31,7 +31,7 @@ public enum  TaskType {
     GOLDS(11),
     /** 任务完成 */
     COMPLETE_TASK(12),
-    /** */
+    /**公会 */
     GUILD(13);
 
     private int type;

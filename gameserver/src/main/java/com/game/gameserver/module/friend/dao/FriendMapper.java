@@ -1,6 +1,6 @@
 package com.game.gameserver.module.friend.dao;
 
-import com.game.gameserver.module.friend.entity.FriendEntity;
+import com.game.gameserver.module.friend.entity.PlayerFriendEntity;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -13,9 +13,8 @@ import java.util.List;
 @Mapper
 @Repository
 public interface FriendMapper {
-    List<FriendEntity> selectFriendEntityList(long playerId);
-    FriendEntity select(long id);
-    int update(FriendEntity friendEntity);
-    int insert(FriendEntity friendEntity);
-    int delete(long id);
+    PlayerFriendEntity select(long playerId);
+    int update(PlayerFriendEntity playerFriendEntity);
+    int insert(PlayerFriendEntity playerFriendEntity);
+    int delete(long playerId);
 }

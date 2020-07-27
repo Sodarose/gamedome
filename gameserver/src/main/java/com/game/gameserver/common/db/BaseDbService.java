@@ -24,7 +24,7 @@ public abstract class BaseDbService {
             DB_THREAD_FACTORY
     );
 
-    protected void submit(Runnable runnable){
+    public void submit(Runnable runnable){
         DB_THREAD_POOL.execute(runnable);
     }
 

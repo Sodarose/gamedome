@@ -14,7 +14,7 @@ public interface ModuleKey {
     int SCENE_MODULE = 1006;
     int FIGHTER_MODEL = 1007;
     int INSTANCE_MODULE = 1008;
-    int STORE_MODULE = 1009;
+    int SHOP_MODULE = 1009;
     int CHAT_MODULE = 1010;
     int EMAIL_MODULE = 1011;
     int TEAM_MODULE = 1012;

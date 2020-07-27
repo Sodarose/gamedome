@@ -1,0 +1,102 @@
+[
+  {
+    "level": 1,
+    "needExpr": 1000,
+    "property": {
+      "hp": 20000,
+      "mp": 12000,
+      "attack": 1200,
+      "defense": 1200
+    }
+  },
+  {
+    "level": 2,
+    "needExpr": 2000,
+    "property": {
+      "hp": 24000,
+      "mp": 14000,
+      "attack": 1300,
+      "defense": 1300
+    }
+  },
+  {
+    "level": 3,
+    "needExpr": 3000,
+    "property": {
+      "hp": 26000,
+      "mp": 15000,
+      "attack": 1400,
+      "defense": 1400
+    }
+  },
+  {
+    "level": 4,
+    "needExpr": 4000,
+    "property": {
+      "hp": 28000,
+      "mp": 16000,
+      "attack": 1500,
+      "defense": 1500
+    }
+  },
+  {
+    "level": 5,
+    "needExpr": 5000,
+    "property": {
+      "hp": 30000,
+      "mp": 17000,
+      "attack": 1600,
+      "defense": 1600
+    }
+  },
+  {
+    "level": 6,
+    "needExpr": 6000,
+    "property": {
+      "hp": 32000,
+      "mp": 18000,
+      "attack": 1700,
+      "defense": 1700
+    }
+  },
+  {
+    "level": 7,
+    "needExpr": 7000,
+    "property": {
+      "hp": 34000,
+      "mp": 19000,
+      "attack": 1800,
+      "defense": 1800
+    }
+  },
+  {
+    "level": 8,
+    "needExpr": 8000,
+    "property": {
+      "hp": 36000,
+      "mp": 21000,
+      "attack": 1900,
+      "defense": 1900
+    }
+  },
+  {
+    "level": 9,
+    "needExpr": 9000,
+    "property": {
+      "hp": 38000,
+      "mp": 22000,
+      "attack": 2000,
+      "defense": 2000
+    }
+  },
+  {
+    "level": 10,
+    "needExpr": 10000,
+    "property": {
+      "hp": 40000,
+      "mp": 23000,
+      "attack": 2100,
+      "defense": 2100
+    }
+  }
+]

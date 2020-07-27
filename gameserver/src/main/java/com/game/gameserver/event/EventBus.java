@@ -33,7 +33,7 @@ public class EventBus {
     /**
      * 事件
      */
-    private final Map<Class<? extends Event>, List<EventExecutor>> eventExecutorMap = new HashMap<>();
+    private final Map<Class<? extends Event>, List<EventExecutor>> EVENT_EXECUTOR_MAP = new HashMap<>();
 
     /**
      * 线程工厂
@@ -58,7 +58,7 @@ public class EventBus {
      * @return void
      */
     public void fire(Event event) {
-        List<EventExecutor> executors = eventExecutorMap.get(event.getClass());
+        List<EventExecutor> executors = EVENT_EXECUTOR_MAP.get(event.getClass());
         if (executors == null || executors.size() == 0) {
             return;
         }
@@ -85,11 +85,11 @@ public class EventBus {
         if (eventExecutor == null) {
             return;
         }
-        List<EventExecutor> executors = eventExecutorMap.get(event);
+        List<EventExecutor> executors = EVENT_EXECUTOR_MAP.get(event);
         if (executors == null) {
             executors = new ArrayList<>();
             executors.add(eventExecutor);
-            eventExecutorMap.put(event, executors);
+            EVENT_EXECUTOR_MAP.put(event, executors);
             return;
         }
         executors.add(eventExecutor);

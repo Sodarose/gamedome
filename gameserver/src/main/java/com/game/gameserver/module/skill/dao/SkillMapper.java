@@ -24,7 +24,7 @@ public interface SkillMapper {
 
     SkillEntity select(long skillId,long playerId);
 
-    int inert(SkillEntity skillEntity);
+    int insert(SkillEntity skillEntity);
 
     int update(SkillEntity skillEntity);
 

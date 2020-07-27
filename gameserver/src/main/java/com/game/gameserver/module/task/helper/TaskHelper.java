@@ -1,19 +1,13 @@
 package com.game.gameserver.module.task.helper;
 
-import com.alibaba.druid.support.spring.stat.annotation.Stat;
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.TypeReference;
 import com.game.gameserver.common.config.ItemConfig;
 import com.game.gameserver.common.config.StaticConfigManager;
 import com.game.gameserver.common.config.TaskConfig;
-import com.game.gameserver.module.guild.model.Applicant;
-import com.game.gameserver.module.task.entity.TaskEntity;
 import com.game.gameserver.module.task.model.Task;
 import com.game.gameserver.module.task.model.TaskCondition;
-import com.game.gameserver.module.task.model.TaskProgress;
+import com.game.gameserver.module.task.type.TaskState;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * 任务帮助类
@@ -42,7 +36,10 @@ public class TaskHelper {
             sb.append(value.getDesc()).append(":").append(value.getAmount()).append("\n");
         });
         sb.append("任务奖励:").append("\n");
-        taskConfig.getAwards().forEach(award -> {
+        sb.append("经验奖励:").append(taskConfig.getExprAward()).append("\n");
+        sb.append("金币奖励:").append(taskConfig.getGoldAward()).append("\n");
+        sb.append("道具奖励:").append("\n");
+        taskConfig.getItemAward().forEach(award -> {
             ItemConfig itemConfig = StaticConfigManager.getInstance().getItemConfigMap().get(award.getItemId());
             sb.append(itemConfig.getName()).append(" x ").append(award.getNum()).append("\n");
         });
@@ -62,9 +59,9 @@ public class TaskHelper {
         sb.append("任务Id:").append(task.getTaskConfig().getId()).append("\n");
         sb.append("任务名称:").append(task.getTaskConfig().getName()).append("\n");
         sb.append("任务介绍:").append(task.getTaskConfig().getDescription()).append("\n");
-        sb.append("任务状态:").append(task.getState()).append("\n");
+        sb.append("任务状态:").append(buildTaskStateMsg(task.getState())).append("\n");
         sb.append("任务进度:").append("\n");
-        task.getTaskProgressMap().values().forEach(taskProgress -> {
+        task.getTaskProgress().values().forEach(taskProgress -> {
             TaskCondition taskCondition = task.getTaskConfig().getTaskConditionMap().get(taskProgress.getTarget());
             sb.append(taskCondition.getDesc())
                     .append(":\t").append(taskProgress.getProgress())
@@ -72,13 +69,17 @@ public class TaskHelper {
         });
         sb.append("\n");
         sb.append("任务奖励:").append("\n");
-        task.getTaskConfig().getAwards().forEach(award -> {
+        sb.append("经验奖励:").append(task.getTaskConfig().getExprAward()).append("\n");
+        sb.append("金币奖励:").append(task.getTaskConfig().getGoldAward()).append("\n");
+        sb.append("道具奖励:").append("\n");
+        task.getTaskConfig().getItemAward().forEach(award -> {
             ItemConfig itemConfig = StaticConfigManager.getInstance().getItemConfigMap().get(award.getItemId());
             sb.append(itemConfig.getName()).append(" x ").append(award.getNum()).append("\n");
         });
         return sb.toString();
     }
 
+<<<<<<< HEAD
     public static Task transFromTask(TaskEntity taskEntity) {
         Task task = new Task();
         // 基本信息
@@ -107,5 +108,18 @@ public class TaskHelper {
         String taskProgressJson = JSON.toJSONString(task.getTaskProgressMap());
         taskEntity.setTaskProgresses(taskProgressJson);
         return taskEntity;
+=======
+    private static String buildTaskStateMsg(int state) {
+        if (state == TaskState.ACCEPTED) {
+            return "进行中";
+        }
+        if (state == TaskState.COMPLETED) {
+            return "已完成";
+        }
+        if(state == TaskState.FINISH){
+            return "已结束";
+        }
+        return "";
+>>>>>>> dev
     }
 }

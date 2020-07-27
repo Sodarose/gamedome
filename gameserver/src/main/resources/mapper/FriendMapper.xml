@@ -2,59 +2,53 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.game.gameserver.module.friend.dao.FriendMapper">
     <!--道具-->
-    <resultMap id="friendEntity" type="com.game.gameserver.module.friend.entity.FriendEntity">
-        <id column="id" property="id"/>
-        <result column="friendId" property="friendId"/>
-        <result column="friendType" property="friendType"/>
-        <result column="playerId" property="playerId"/>
+    <resultMap id="PlayerFriendEntity" type="com.game.gameserver.module.friend.entity.PlayerFriendEntity">
+        <id column="playerId" property="playerId"/>
+        <result column="friendMap" property="friendMap" jdbcType="BLOB"
+                typeHandler="com.game.gameserver.util.typehandler.TypeHandler"/>
+        <result column="applicantMap" property="applicantMap" jdbcType="BLOB"
+                typeHandler="com.game.gameserver.util.typehandler.TypeHandler"/>
     </resultMap>
 
     <!--列表-->
-    <sql id="Base_FriendEntity_Column_List">
-       id, friendId, friendType,playerId
+    <sql id="Base_PlayerFriendEntity_Column_List">
+       playerId, friendMap, applicantMap
     </sql>
 
-    <select id="selectFriendEntityList" resultMap="friendEntity">
+    <select id="select" resultMap="PlayerFriendEntity">
         SELECT
-        <include refid="Base_FriendEntity_Column_List" />
+        <include refid="Base_PlayerFriendEntity_Column_List" />
         FROM game_friend
         WHERE
         playerId=#{playerId}
     </select>
 
-    <select id="select" resultMap="friendEntity">
-        SELECT
-        <include refid="Base_FriendEntity_Column_List" />
-        FROM game_friend
-        WHERE
-        id=#{id}
-    </select>
-
-    <insert id="insert" parameterType="com.game.gameserver.module.friend.entity.FriendEntity">
+    <insert id="insert" parameterType="com.game.gameserver.module.friend.entity.PlayerFriendEntity">
         INSERT INTO game_friend
-        (id, friendId, friendType,playerId)
-        VALUES (#{id},#{friendId},#{friendType},#{playerId})
+        ( playerId, friendMap, applicantMap)
+        VALUES (#{playerId},
+        #{friendMap,jdbcType=BLOB,typeHandler=com.game.gameserver.util.typehandler.TypeHandler},
+        #{applicantMap,jdbcType=BLOB,typeHandler=com.game.gameserver.util.typehandler.TypeHandler})
     </insert>
 
-    <update id="update" parameterType="com.game.gameserver.module.friend.entity.FriendEntity">
+    <update id="update" parameterType="com.game.gameserver.module.friend.entity.PlayerFriendEntity">
         UPDATE game_friend
         <set>
-            <if test="friendId != null">
-                friendId = #{friendId},
+            <if test="friendMap != null">
+                friendMap =
+                #{friendMap,jdbcType=BLOB,typeHandler=com.game.gameserver.util.typehandler.TypeHandler},
             </if>
-            <if test="friendType != null">
-                friendType = #{friendType},
-            </if>
-            <if test="playerId != null">
-                playerId = #{playerId},
+            <if test="applicantMap != null">
+                applicantMap =
+                #{applicantMap,jdbcType=BLOB,typeHandler=com.game.gameserver.util.typehandler.TypeHandler},
             </if>
         </set>
-        WHERE id = #{id}
+        WHERE playerId=#{playerId}
     </update>
 
     <delete id="delete">
     DELETE FROM  game_friend
-    WHERE id = #{id}
+    WHERE playerId=#{playerId}
     </delete>
 
 </mapper>

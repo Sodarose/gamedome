@@ -1,40 +1,55 @@
 [
   {
     "id": 1,
-    "name": "牛头人之乱1",
-    "description": "牛头人肆虐 请大侠伸出援手 清剿部分牛头人",
+    "name": "洛兰之森1-变异哥布林",
+    "description": "杀死变异哥布林",
     "kind": 2,
     "type": 1,
     "cancel": true,
-    "limitLevel": 10,
+    "limitLevel": 1,
     "taskCondition": [
       {
-        "target": 0,
-        "amount": 10,
-        "desc": "杀死10只牛头人"
+        "target": 1031,
+        "amount": 1,
+        "desc": "火焰哥布林"
       },
       {
-        "target": 0,
-        "amount": 10,
-        "desc": "杀死10只牛头人"
+        "target": 1032,
+        "amount": 1,
+        "desc": "冰霜哥布林"
       }
     ],
-    "expr": 1000,
-    "golds": 1000,
-    "awards": [
-      {
-        "itemId": 1001,
-        "num": 10
-      }
+    "exprAward": 1000,
+    "goldAward": 1000,
+    "itemAward": [
     ]
   },
   {
     "id": 2,
-    "name": "老村长之谜",
+    "name": "升级任务",
+    "description": "请升至5级",
+    "type": 2,
+    "cancel": false,
+    "limitLevel": 1,
+    "taskCondition": [
+      {
+        "target": 0,
+        "amount": 5,
+        "desc": "升级"
+      }
+    ],
+    "exprAward": 1000,
+    "goldAward": 1000,
+    "itemAward": [
+    ]
+  },
+  {
+    "id": 3,
+    "name": "新人大礼包",
     "description": "去找老村长 领取新手装备 ",
     "type": 3,
     "cancel": false,
-    "limitLevel": 10,
+    "limitLevel": 1,
     "taskCondition": [
       {
         "target": 1002,
@@ -42,9 +57,17 @@
         "desc": "与村长交谈"
       }
     ],
-    "expr": 1000,
-    "golds": 1000,
-    "awards": [
+    "exprAward": 1000000,
+    "goldAward": 1000,
+    "itemAward": [
+      {
+        "itemId": 1001,
+        "num": 50
+      },
+      {
+        "itemId": 1002,
+        "num": 50
+      },
       {
         "itemId": 1003,
         "num": 1
@@ -68,76 +91,49 @@
       {
         "itemId": 1008,
         "num": 1
-      }
-    ]
-  },
-  {
-    "id": 3,
-    "name": "组队一次",
-    "description": "组队一次 ",
-    "type": 8,
-    "cancel": true,
-    "limitLevel": 10,
-    "taskCondition": [
+      },
       {
-        "target": 0,
-        "amount": 1,
-        "desc": "组队一次"
-      }
-    ],
-    "expr": 1000,
-    "golds": 1000,
-    "awards": [
-      {
-        "itemId": 1001,
-        "num": 60
+        "itemId": 1012,
+        "num": 1
       }
     ]
   },
   {
     "id": 4,
-    "name": "加入一个公会",
-    "description": "加入一个公会 ",
-    "type": 13,
+    "name": "收集5件10星装备",
+    "description": "收集5件10星装备 ",
+    "type": 4,
     "cancel": true,
-    "limitLevel": 10,
+    "limitLevel": 1,
     "taskCondition": [
       {
-        "target": 0,
-        "amount": 1,
-        "desc": "组队一次"
+        "target": 10,
+        "amount": 5,
+        "desc": "10星装备"
       }
     ],
-    "expr": 1000,
-    "golds": 1000,
-    "awards": [
-      {
-        "itemId": 1001,
-        "num": 60
-      }
+    "exprAward": 1000,
+    "goldAward": 1000,
+    "itemAward": [
     ]
   },
   {
     "id": 5,
-    "name": "交易一次",
-    "description": "交易一次",
-    "type": 9,
+    "name": "通关一次洛兰副本",
+    "description": "通关一次洛兰副本 ",
+    "type": 5,
     "cancel": true,
-    "limitLevel": 10,
+    "limitLevel": 1,
     "taskCondition": [
       {
-        "target": 0,
+        "target": 1002,
         "amount": 1,
-        "desc": "交易一次"
+        "desc": "通关洛兰副本"
       }
     ],
-    "expr": 1000,
-    "golds": 1000,
-    "awards": [
-      {
-        "itemId": 1001,
-        "num": 60
-      }
+    "exprAward": 1000,
+    "goldAward": 1000,
+    "itemAward": [
     ]
   },
   {
@@ -146,7 +142,7 @@
     "description": "身上装备达到30星",
     "type": 6,
     "cancel": true,
-    "limitLevel": 10,
+    "limitLevel": 1,
     "taskCondition": [
       {
         "target": 0,
@@ -154,13 +150,149 @@
         "desc": "身上装备达到30星"
       }
     ],
-    "expr": 1000,
-    "golds": 1000,
-    "awards": [
+    "exprAward": 1000,
+    "goldAward": 1000,
+    "itemAward": [
       {
         "itemId": 1001,
         "num": 60
       }
+    ]
+  },
+  {
+    "id": 7,
+    "name": "添加一个好友",
+    "description": "添加一个好友",
+    "type": 7,
+    "cancel": true,
+    "limitLevel": 1,
+    "taskCondition": [
+      {
+        "target": 0,
+        "amount": 1,
+        "desc": "添加一个好友"
+      }
+    ],
+    "exprAward": 1000,
+    "goldAward": 1000,
+    "itemAward": []
+  },
+  {
+    "id": 8,
+    "name": "组队一次",
+    "description": "组队一次 ",
+    "type": 8,
+    "cancel": true,
+    "limitLevel": 1,
+    "taskCondition": [
+      {
+        "target": 0,
+        "amount": 1,
+        "desc": "组队一次"
+      }
+    ],
+    "exprAward": 1000,
+    "goldAward": 1000,
+    "itemAward": [
+      {
+        "itemId": 1001,
+        "num": 60
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "name": "交易一次",
+    "description": "交易一次",
+    "type": 9,
+    "cancel": true,
+    "limitLevel": 1,
+    "taskCondition": [
+      {
+        "target": 0,
+        "amount": 1,
+        "desc": "交易一次"
+      }
+    ],
+    "exprAward": 1000,
+    "goldAward": 1000,
+    "itemAward": [
+    ]
+  },
+  {
+    "id": 10,
+    "name": "PK胜利一次",
+    "description": "PK胜利一次",
+    "type": 10,
+    "cancel": true,
+    "limitLevel": 1,
+    "taskCondition": [
+      {
+        "target": 0,
+        "amount": 1,
+        "desc": "PK胜利"
+      }
+    ],
+    "exprAward": 1000,
+    "goldAward": 1000,
+    "itemAward": [
+    ]
+  },
+  {
+    "id": 11,
+    "name": "第一桶金",
+    "description": "身上金额达到5w",
+    "type": 11,
+    "cancel": true,
+    "limitLevel": 1,
+    "taskCondition": [
+      {
+        "target": 0,
+        "amount": 50000,
+        "desc": "第一桶金"
+      }
+    ],
+    "exprAward": 1000,
+    "goldAward": 1000,
+    "itemAward": [
+    ]
+  },
+  {
+    "id": 12,
+    "name": "完成任务",
+    "description": "完成任务",
+    "type": 12,
+    "cancel": true,
+    "limitLevel": 1,
+    "taskCondition": [
+      {
+        "target": 5,
+        "amount": 1,
+        "desc": "组队一次"
+      }
+    ],
+    "exprAward": 1000,
+    "goldAward": 1000,
+    "itemAward": [
+    ]
+  },
+  {
+    "id": 13,
+    "name": "加入一个公会",
+    "description": "加入一个公会 ",
+    "type": 13,
+    "cancel": true,
+    "limitLevel": 1,
+    "taskCondition": [
+      {
+        "target": 0,
+        "amount": 1,
+        "desc": "加入公会"
+      }
+    ],
+    "exprAward": 1000,
+    "goldAward": 1000,
+    "itemAward": [
     ]
   }
 ]

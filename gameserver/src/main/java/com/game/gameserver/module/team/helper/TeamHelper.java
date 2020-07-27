@@ -27,7 +27,7 @@ public class TeamHelper {
         sb.append("member:").append("\n");
         team.getMemberMap().forEach((key,value)->{
             sb.append(value.getPlayerEntity().getName()).append("(")
-                    .append(value.getPlayerBattle().getHp())
+                    .append(value.getPlayerBattle().getCurrHp())
                     .append(")").append("\t");
         });
         sb.append("\n");

@@ -54,14 +54,20 @@ public class Pet implements Creature {
 
     private Player master;
 
-    /** 怪物当前场景 */
+    /**
+     * 怪物当前场景
+     */
     private Scene currScene;
 
-    /** 召唤物当前状态 */
+    /**
+     * 召唤物当前状态
+     */
     private PetState petState;
 
-    /** 状态机 */
-    private StateMachine<Pet,PetState> stateMachine;
+    /**
+     * 状态机
+     */
+    private StateMachine<Pet, PetState> stateMachine;
 
     /*** 攻击目标*/
     private Creature target;
@@ -72,19 +78,23 @@ public class Pet implements Creature {
     /*** 技能CD表*/
     private Map<Integer, Skill> skillCdMap = new ConcurrentHashMap<>();
 
-    /** 怪物技能表 */
-    private Map<Integer,Skill> skillMap = new HashMap<>();
+    /**
+     * 怪物技能表
+     */
+    private Map<Integer, Skill> skillMap = new HashMap<>();
 
-    /** 临时数据 */
-    private Map<String,Object> tempData = new HashMap<>();
+    /**
+     * 临时数据
+     */
+    private Map<String, Object> tempData = new HashMap<>();
 
     private PetConfig petConfig;
 
-    public Pet(){
+    public Pet() {
 
     }
 
-    public Pet(Player master,PetConfig petConfig){
+    public Pet(Player master, PetConfig petConfig) {
         this.id = GameUUID.getInstance().generate();
         this.name = petConfig.getName();
         this.level = petConfig.getLevel();
@@ -97,7 +107,7 @@ public class Pet implements Creature {
         this.attack = petConfig.getAttack();
         this.defense = petConfig.getDefense();
         this.petState = PetState.PET_FOLLOW;
-        this.stateMachine = new StateMachine<>(this,PetState.PET_FOLLOW);
+        this.stateMachine = new StateMachine<>(this, PetState.PET_FOLLOW);
         this.master = master;
     }
 
@@ -132,6 +142,18 @@ public class Pet implements Creature {
     }
 
     @Override
+    public void changeCurrHp(int value) {
+        this.currHp += value;
+        if (currHp > hp) {
+            currHp = hp;
+        }
+        if (currHp < 0) {
+            currHp = 0;
+        }
+    }
+
+
+    @Override
     public int getMp() {
         return mp;
     }
@@ -149,6 +171,17 @@ public class Pet implements Creature {
     @Override
     public void setCurrMp(int value) {
         this.currMp = value;
+    }
+
+    @Override
+    public void changeCurrMp(int value) {
+        this.currMp += value;
+        if (currMp > mp) {
+            currMp = mp;
+        }
+        if (currMp < 0) {
+            currMp = 0;
+        }
     }
 
     @Override
@@ -203,22 +236,22 @@ public class Pet implements Creature {
 
     @Override
     public void setDead(boolean dead) {
-        if(dead){
-            if(stateMachine!=null){
+        if (dead) {
+            if (stateMachine != null) {
                 stateMachine.changeState(PetState.PET_DEAD);
             }
         }
     }
 
-    public void changeState(PetState petState){
-        if(stateMachine!=null){
+    public void changeState(PetState petState) {
+        if (stateMachine != null) {
             stateMachine.changeState(petState);
         }
     }
 
     @Override
     public void update() {
-        if(stateMachine!=null){
+        if (stateMachine != null) {
             stateMachine.update();
         }
     }

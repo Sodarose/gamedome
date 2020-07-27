@@ -2,7 +2,6 @@ package com.game.gameserver.module.skill.dao;
 
 import com.game.gameserver.common.db.BaseDbService;
 import com.game.gameserver.module.skill.entity.SkillEntity;
-import com.game.gameserver.module.skill.model.Skill;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -31,7 +30,7 @@ public class SkillDbService extends BaseDbService {
     }
 
     public int insert(SkillEntity skillEntity) {
-        return skillMapper.inert(skillEntity);
+        return skillMapper.insert(skillEntity);
     }
 
     public int delete(SkillEntity skillEntity) {

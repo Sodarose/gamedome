@@ -24,8 +24,6 @@ public class ServerContext implements ApplicationContextAware {
     private SceneManager sceneManager;
     @Autowired
     private PlayerManager playerManager;
-    @Autowired
-    private FighterHandle fighterHandle;
 
     private static ApplicationContext application;
 

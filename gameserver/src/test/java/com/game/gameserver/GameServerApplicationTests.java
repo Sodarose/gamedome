@@ -24,12 +24,12 @@ class GameServerApplicationTests {
     private EquipBarDbService equipBarDbService;
     @Test
     void contextLoads() {
-
+        p();
     }
 
     public void equip(){
         EquipBar equipBar = new EquipBar();
-        equipBar.setPlayerId(2);
+        equipBar.setPlayerId(1);
         equipBarDbService.insert(equipBar);
     }
 
@@ -100,7 +100,7 @@ class GameServerApplicationTests {
         item.setDurability(45);
         item.setItemConfigId(1009);
         backBag.getItemMap().put(item.getBagIndex(),item);
-        backBagDbService.insert(backBag);
+        backBagDbService.update(backBag);
     }
 
 }

@@ -53,14 +53,13 @@ public class InstanceHelper {
         ).append("\n");
         sb.append("副本名称:").append(instance.getName()).append("\n");
         sb.append("副本介绍:").append(instance.getInstanceConfig().getDesc()).append("\n");
-        sb.append("当前关卡信息:").append("\n");
+        sb.append("当前关卡:");
         CheckPoint checkPoint = instance.getCheckPoint();
-        sb.append("当前关卡").append(checkPoint.getCheckPointConfig().getRound()).append("\n");
         sb.append(checkPoint.getCheckPointConfig().getDesc()).append("\n");
         sb.append("玩家列表:").append("\n");
         checkPoint.getPlayerMap().values().forEach(player -> {
             sb.append(player.getPlayerEntity().getName()).append("(")
-                    .append(player.getPlayerBattle().getHp()).append(")")
+                    .append(player.getPlayerBattle().getCurrHp()).append(")")
                     .append("\t");
         });
         sb.append("\n");
@@ -75,6 +74,24 @@ public class InstanceHelper {
             sb.append(pet.getName()).append("(").append(pet.getCurrHp()).append(")")
                     .append("\t");
         });
+        return sb.toString();
+    }
+
+    /**
+     * 道具奖励
+     *
+     * @param instanceConfig
+     * @return java.lang.String
+     */
+    public static String buildInstanceAwardMsg(InstanceConfig instanceConfig){
+        StringBuilder sb = new StringBuilder();
+        sb.append("获得经验:").append(instanceConfig.getExprAward()).append("\n");
+        sb.append("获得金币:").append(instanceConfig.getGoldAward()).append("\n");
+        sb.append("获得道具:").append("\n");
+        for (Award award : instanceConfig.getItemAward()) {
+            ItemConfig itemConfig = StaticConfigManager.getInstance().getItemConfigMap().get(award.getItemId());
+            sb.append(itemConfig.getName()).append(" x ").append(award.getNum()).append("\n");
+        }
         return sb.toString();
     }
 }

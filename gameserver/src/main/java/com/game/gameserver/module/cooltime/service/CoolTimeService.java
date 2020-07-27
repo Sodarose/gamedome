@@ -32,7 +32,7 @@ public class CoolTimeService {
             .setNameFormat("Buffer_Thread-%d").setUncaughtExceptionHandler((t, e) -> e.printStackTrace()).build();
 
     /**
-     * Buffer线程
+     * 冷却定时器
      */
     private final static ScheduledThreadPoolExecutor COOL_TIME_THREAD = new ScheduledThreadPoolExecutor(2
             , COOL_TIME_THREAD_FACTORY);

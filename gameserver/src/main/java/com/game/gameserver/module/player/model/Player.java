@@ -4,6 +4,8 @@ import com.game.gameserver.common.entity.Creature;
 import com.game.gameserver.common.entity.CreatureType;
 import com.game.gameserver.common.fsm.StateMachine;
 import com.game.gameserver.common.fsm.state.player.PlayerState;
+import com.game.gameserver.event.EventBus;
+import com.game.gameserver.event.event.GoldsChangeEvent;
 import com.game.gameserver.module.backbag.model.BackBag;
 import com.game.gameserver.module.equipment.model.EquipBar;
 import com.game.gameserver.module.buffer.model.Buffer;
@@ -16,6 +18,7 @@ import com.game.gameserver.module.skill.model.Skill;
 import io.netty.channel.Channel;
 import lombok.Data;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -30,7 +33,9 @@ import java.util.concurrent.CopyOnWriteArrayList;
 @Data
 public class Player implements Creature {
 
-    /** 玩家实体属性*/
+    /**
+     * 玩家实体属性
+     */
     private final PlayerEntity playerEntity;
 
     /*** 战斗属性*/
@@ -45,7 +50,9 @@ public class Player implements Creature {
     /*** 个人背包Id*/
     private BackBag backBag;
 
-    /** 角色技能 */
+    /**
+     * 角色技能
+     */
     private PlayerSkill playerSkill;
 
     /*** 当前所在的组队 队伍ID*/
@@ -72,105 +79,38 @@ public class Player implements Creature {
     /*** 角色当前交易Id*/
     private Long currTrade;
 
-    /** 角色状态 */
+    /**
+     * 临时数据存放地
+     */
+    private Map<String, Object> tempData = new HashMap<>();
+
+    /**
+     * 角色状态
+     */
     private PlayerState state;
 
-    /** 角色攻击目标 */
+    /**
+     * 角色攻击目标
+     */
     private Creature target;
 
-    /** 角色状态机 */
-    private StateMachine<Player,PlayerState> stateMachine;
+    /**
+     * 角色状态机
+     */
+    private StateMachine<Player, PlayerState> stateMachine;
 
     public Player(PlayerEntity playerEntity) {
         this.playerEntity = playerEntity;
         this.state = PlayerState.PLAYER_LIVE;
-        this.stateMachine = new StateMachine<>(this,PlayerState.PLAYER_LIVE);
+        this.stateMachine = new StateMachine<>(this, PlayerState.PLAYER_LIVE);
     }
 
-    public void setTarget(Creature target){
-        this.target = target;
-    }
-
-    public Long getCurrTrade() {
-        return currTrade;
-    }
-
-    public void setCurrTrade(Long currTrade) {
-        this.currTrade = currTrade;
-    }
-
-    public void setOnline(boolean online) {
-        this.online = online;
-    }
-
-    public boolean isOnline() {
-        return online;
-    }
-
-    public void setCurrScene(Scene currScene) {
-        this.currScene = currScene;
-    }
-
-    public Scene getCurrScene() {
-        return currScene;
-    }
-
-    public void setTeamId(Long teamId) {
-        this.teamId = teamId;
-    }
-
-    public Long getTeamId() {
-        return teamId;
-    }
-
-    public void setFighterModeEnum(FighterModeEnum fighterModeEnum) {
-        this.fighterModeEnum = fighterModeEnum;
-    }
-
-    public FighterModeEnum getFighterModeEnum() {
-        return fighterModeEnum;
-    }
-
-    public void setBackBag(BackBag backBag) {
-        this.backBag = backBag;
-    }
-
-    public BackBag getBackBag() {
-        return backBag;
-    }
-
-    public void setEquipBar(EquipBar equipBar) {
-        this.equipBar = equipBar;
-    }
-
-    public EquipBar getEquipBar() {
-        return equipBar;
-    }
-
-    public PlayerEntity getPlayerEntity() {
-        return playerEntity;
-    }
-
-    public void setPlayerBattle(PlayerBattle playerBattle) {
-        this.playerBattle = playerBattle;
-    }
-
-    public PlayerBattle getPlayerBattle() {
-        return playerBattle;
-    }
-
-    public void setChannel(Channel channel) {
-        this.channel = channel;
-    }
-
-    public Channel getChannel() {
-        return channel;
-    }
 
     @Override
     public long getId() {
         return playerEntity.getId();
     }
+
 
     @Override
     public String getName() {
@@ -179,42 +119,71 @@ public class Player implements Creature {
 
     @Override
     public int getHp() {
-        return playerBattle.getMaxHp();
-    }
-
-    @Override
-    public void setHp(int hp) {
-        playerBattle.setMaxHp(hp);
-    }
-
-    @Override
-    public int getCurrHp() {
         return playerBattle.getHp();
     }
 
     @Override
-    public void setCurrHp(int value) {
-        playerBattle.setHp(value);
+    public void setHp(int hp) {
+        playerBattle.setHp(hp);
     }
+
+    @Override
+    public int getCurrHp() {
+        return playerBattle.getCurrHp();
+    }
+
+    @Override
+    public void setCurrHp(int value) {
+        playerBattle.setCurrHp(value);
+    }
+
+    @Override
+    public void changeCurrHp(int value) {
+        int currHp = getCurrHp() + value;
+        if (currHp > getHp()) {
+            setCurrHp(getHp());
+            return;
+        }
+        if (currHp < 0) {
+            setCurrHp(0);
+            return;
+        }
+        setCurrHp(currHp);
+    }
+
 
     @Override
     public int getMp() {
-        return playerBattle.getMaxMp();
-    }
-
-    @Override
-    public void setMp(int mp) {
-        playerBattle.setMaxMp(mp);
-    }
-
-    @Override
-    public int getCurrMp() {
         return playerBattle.getMp();
     }
 
     @Override
+    public void setMp(int mp) {
+        playerBattle.setMp(mp);
+    }
+
+    @Override
+    public int getCurrMp() {
+        return playerBattle.getCurrMp();
+    }
+
+    @Override
     public void setCurrMp(int value) {
-        playerBattle.setMp(value);
+        playerBattle.setCurrMp(value);
+    }
+
+    @Override
+    public void changeCurrMp(int value) {
+        int currMp = getCurrMp() + value;
+        if (currMp > getMp()) {
+            setCurrHp(getMp());
+            return;
+        }
+        if(currMp<0){
+            setCurrMp(0);
+            return;
+        }
+        setCurrMp(currMp);
     }
 
     @Override
@@ -269,48 +238,47 @@ public class Player implements Creature {
 
     @Override
     public boolean isDead() {
-        return state ==PlayerState.PLAYER_DEAD;
+        return state == PlayerState.PLAYER_DEAD;
     }
 
     @Override
     public void setDead(boolean dead) {
-        if(dead){
-            if(stateMachine!=null){
+        if (dead) {
+            if (stateMachine != null) {
                 stateMachine
                         .changeState(PlayerState.PLAYER_DEAD);
             }
         }
     }
 
-    /**
-     * 得到攻击目标 AI使用
-     */
-    @Override
-    public Creature getTarget() {
-        return target;
-    }
-
     @Override
     public void update() {
-        if(stateMachine!=null){
+        if (stateMachine != null) {
             stateMachine.update();
         }
     }
 
-    public void changeState(PlayerState playerState){
-        if(stateMachine!=null){
+    public void changeState(PlayerState playerState) {
+        if (stateMachine != null) {
             stateMachine.changeState(playerState);
         }
     }
 
-    public void addGolds(int value) {
+    /**
+     * 金币变化
+     *
+     * @param value
+     * @return void
+     */
+    public void goldsChange(int value) {
         int golds = playerEntity.getGolds() + value;
         playerEntity.setGolds(golds);
+        // 发出金币改变事件
+        EventBus.EVENT_BUS.fire(new GoldsChangeEvent(this));
     }
 
-    public void decrease(int value) {
-        int golds = playerEntity.getGolds() - value;
-        playerEntity.setGolds(golds);
+    public int getGolds() {
+        return playerEntity.getGolds();
     }
 
     public Long getGuildId() {
@@ -325,6 +293,10 @@ public class Player implements Creature {
         return playerEntity.getLevel();
     }
 
+    public void setLevel(int level) {
+        this.playerEntity.setLevel(level);
+    }
+
     public Map<Integer, Item> getItemCdMap() {
         return itemCdMap;
     }
@@ -337,11 +309,7 @@ public class Player implements Creature {
         return skillCdMap;
     }
 
-    public int getGolds(){
-        return playerEntity.getGolds();
-    }
-
-    public int getCareerId(){
+    public int getCareerId() {
         return playerEntity.getCareerId();
     }
 
@@ -352,4 +320,13 @@ public class Player implements Creature {
     public PlayerState getState() {
         return state;
     }
+
+    public int getExpr() {
+        return playerEntity.getExpr();
+    }
+
+    public void setExpr(int expr) {
+        playerEntity.setExpr(expr);
+    }
+
 }

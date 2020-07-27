@@ -22,40 +22,45 @@ public class ServerHandler extends ChannelInboundHandlerAdapter {
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-        logger.info("server accept message {}",msg);
-        CmdProto.CmdMsg cmdMsg =  (CmdProto.CmdMsg) msg;
-        Message message1 = Message.buildMsg(cmdMsg);
+        logger.info("server accept message {}", msg);
+        CmdProto.CmdMsg cmdMsg = (CmdProto.CmdMsg) msg;
+        Message message = Message.buildMsg(cmdMsg);
         try {
             MessageDispatcher messageDispatcher = ServerContext.getApplication()
                     .getBean(MessageDispatcher.class);
-            messageDispatcher.dispatch(message1,ctx.channel());
-        }catch (Exception e){
+            messageDispatcher.dispatch(message, ctx.channel());
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
-        logger.info("有连接接通 Channel Id {}",ctx.channel().id());
+        logger.info("有连接接通 Channel Id {}", ctx.channel().id());
         super.channelActive(ctx);
     }
 
     @Override
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {
-        logger.info("channel {} inactive ",ctx.channel().id());
+        logger.info("channel {} inactive ", ctx.channel().id());
         Player player = ctx.channel().attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
-        LogoutEvent logoutEvent = new LogoutEvent(player);
-        EventBus.EVENT_BUS.fire(logoutEvent);
-        super.channelInactive(ctx);
+        if (player != null) {
+            LogoutEvent logoutEvent = new LogoutEvent(player);
+            EventBus.EVENT_BUS.fire(logoutEvent);
+            super.channelInactive(ctx);
+        }
     }
 
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
-        super.exceptionCaught(ctx,cause);
-        logger.error("channel {} exception",ctx.channel().id());
+        super.exceptionCaught(ctx, cause);
+        logger.error("channel {} exception", ctx.channel().id());
         Player player = ctx.channel().attr(PlayerService.PLAYER_ENTITY_ATTRIBUTE_KEY).get();
-        LogoutEvent logoutEvent = new LogoutEvent(player);
-        EventBus.EVENT_BUS.fire(logoutEvent);
+        if (player != null) {
+            LogoutEvent logoutEvent = new LogoutEvent(player);
+            EventBus.EVENT_BUS.fire(logoutEvent);
+            super.channelInactive(ctx);
+        }
         ctx.channel().close();
     }
 

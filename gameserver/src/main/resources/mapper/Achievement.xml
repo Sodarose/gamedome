@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.game.gameserver.module.achievement.dao.AchievementMapper">
+    <!--公会信息-->
+    <resultMap id="AchievementEntity" type="com.game.gameserver.module.achievement.entity.AchievementEntity">
+        <result column="achievementId" property="achievementId"/>
+        <result column="state" property="state"/>
+        <result column="playerId" property="playerId"/>
+        <result column="taskProgress" property="taskProgress" jdbcType="BLOB"
+                typeHandler="com.game.gameserver.util.typehandler.TypeHandler"/>
+    </resultMap>
+
+    <!--列表-->
+    <sql id="Base_AchievementEntity_Column_List">
+        achievementId, state, playerId, taskProgress
+    </sql>
+
+
+    <select id="selectAchievementList" resultMap="AchievementEntity">
+        SELECT
+        <include refid="Base_AchievementEntity_Column_List" />
+        FROM game_achievement
+        WHERE playerId = #{playerId}
+    </select>
+
+    <select id="select" resultMap="AchievementEntity">
+        SELECT
+        <include refid="Base_AchievementEntity_Column_List" />
+        FROM game_achievement
+        WHERE playerId=#{playerId} AND achievementId=#{achievementId}
+    </select>
+
+    <insert id="insert" parameterType="com.game.gameserver.module.achievement.entity.AchievementEntity">
+        INSERT INTO game_achievement
+        (achievementId, state, playerId, taskProgress)
+        VALUES (#{achievementId},#{state},#{playerId},
+        #{taskProgress,jdbcType=BLOB,typeHandler=com.game.gameserver.util.typehandler.TypeHandler})
+    </insert>
+
+    <update id="update" parameterType="com.game.gameserver.module.achievement.entity.AchievementEntity">
+        UPDATE game_achievement
+        <set>
+            <if test="state != null">
+                state = #{state},
+            </if>
+            <if test="taskProgresses != null">
+                taskProgress = #{taskProgress,
+                jdbcType=BLOB,typeHandler=com.game.gameserver.util.typehandler.TypeHandler},
+            </if>
+        </set>
+        WHERE playerId=#{playerId} AND achievementId=#{achievementId}
+    </update>
+
+    <delete id="delete">
+         DELETE FROM game_achievement
+         WHERE playerId = #{playerId} AND achievementId=#{achievementId}
+    </delete>
+</mapper>

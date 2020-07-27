@@ -1,5 +1,6 @@
 package com.game.gameserver.module.achievement.model;
 
+import com.game.gameserver.common.config.AchievementConfig;
 import com.game.gameserver.module.achievement.entity.AchievementEntity;
 import lombok.Data;
 
@@ -9,4 +10,6 @@ import lombok.Data;
  */
 @Data
 public class Achievement extends AchievementEntity {
+    /** 成就本地资源 */
+    private AchievementConfig achievementConfig;
 }

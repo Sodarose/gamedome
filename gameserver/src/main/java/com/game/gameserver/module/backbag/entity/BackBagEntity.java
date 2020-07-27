@@ -1,7 +1,11 @@
 package com.game.gameserver.module.backbag.entity;
 
 import com.game.gameserver.module.backbag.model.BackBag;
+import com.game.gameserver.module.item.model.Item;
 import lombok.Data;
+
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @author xuewenkang
@@ -14,16 +18,15 @@ public class BackBagEntity {
     private Long playerId;
     /** 背包容量 */
     private Integer capacity;
-    /** 背包中的道具 */
-    private String items;
+    /** 背吧中的道具 */
+    private Map<Integer, Item> itemMap = new ConcurrentHashMap<>();
 
     public BackBagEntity(){
 
     }
 
-    public BackBagEntity(long playerId,int capacity,String items){
+    public BackBagEntity(long playerId,int capacity){
         this.playerId = playerId;
         this.capacity = capacity;
-        this.items = items;
     }
 }

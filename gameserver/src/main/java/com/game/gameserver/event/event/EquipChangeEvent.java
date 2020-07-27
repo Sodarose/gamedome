@@ -13,10 +13,10 @@ import java.awt.*;
  * @date 2020/7/15 10:42
  */
 @Data
-public class EquipmentChangeEvent implements Event {
+public class EquipChangeEvent implements Event {
     private Player player;
 
-    public EquipmentChangeEvent(Player player) {
+    public EquipChangeEvent(Player player) {
         this.player = player;
     }
 }

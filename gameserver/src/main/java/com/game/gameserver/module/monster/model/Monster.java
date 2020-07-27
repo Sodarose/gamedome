@@ -52,16 +52,22 @@ public class Monster implements Creature {
 
     private int defense;
 
+    private MonsterConfig monsterConfig;
+
     /*** 怪物刷新时间*/
     private long refreshTime;
 
-    /** 怪物当前场景 */
+    /**
+     * 怪物当前场景
+     */
     private Scene currScene;
 
-    /** 怪物状态 */
+    /**
+     * 怪物状态
+     */
     private MonsterState state;
 
-    private StateMachine<Monster,MonsterState> stateMachine;
+    private StateMachine<Monster, MonsterState> stateMachine;
 
     /*** 攻击目标*/
     private Creature target;
@@ -72,11 +78,15 @@ public class Monster implements Creature {
     /*** 技能CD表*/
     private Map<Integer, Skill> skillCdMap = new ConcurrentHashMap<>();
 
-    /** 怪物技能表 */
-    private Map<Integer,Skill> skillMap = new HashMap<>();
+    /**
+     * 怪物技能表
+     */
+    private Map<Integer, Skill> skillMap = new HashMap<>();
 
-    /** 临时数据存放地 */
-    private Map<String,Object> tempData = new HashMap<>();
+    /**
+     * 临时数据存放地
+     */
+    private Map<String, Object> tempData = new HashMap<>();
 
     public Monster() {
 
@@ -101,6 +111,17 @@ public class Monster implements Creature {
     @Override
     public void setCurrHp(int value) {
         this.currHp = value;
+    }
+
+    @Override
+    public void changeCurrHp(int value) {
+        currHp += value;
+        if (currHp > hp) {
+            currHp = hp;
+        }
+        if (currHp < 0) {
+            currHp = 0;
+        }
     }
 
     @Override
@@ -131,6 +152,11 @@ public class Monster implements Creature {
     @Override
     public void setCurrMp(int value) {
         this.currMp = value;
+    }
+
+    @Override
+    public void changeCurrMp(int value) {
+
     }
 
     @Override
@@ -181,13 +207,13 @@ public class Monster implements Creature {
 
     @Override
     public boolean isDead() {
-        return state==MonsterState.MONSTER_DEAD;
+        return state == MonsterState.MONSTER_DEAD;
     }
 
     @Override
     public void setDead(boolean dead) {
-        if(dead){
-            if(stateMachine!=null){
+        if (dead) {
+            if (stateMachine != null) {
                 stateMachine.changeState(MonsterState.MONSTER_DEAD);
             }
         }
@@ -203,13 +229,13 @@ public class Monster implements Creature {
 
     @Override
     public void update() {
-        if(stateMachine!=null){
+        if (stateMachine != null) {
             stateMachine.update();
         }
     }
 
-    public void changeState(MonsterState monsterState){
-        if(stateMachine!=null){
+    public void changeState(MonsterState monsterState) {
+        if (stateMachine != null) {
             stateMachine.changeState(monsterState);
         }
     }

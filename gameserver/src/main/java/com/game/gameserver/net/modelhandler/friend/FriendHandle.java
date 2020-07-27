@@ -49,9 +49,9 @@ public class FriendHandle extends BaseHandler {
             return;
         }
         String[] param = message.getContent().split("\\s+");
-        long playerId = Long.parseLong(param[0]);
+        String playerName = param[0];
         int agree = Integer.parseInt(param[1]);
-        friendService.processFriendApply(player,playerId,agree);
+        friendService.processFriendApply(player,playerName,agree);
     }
 
     @CmdHandler(cmd = FriendCmd.REMOVE_FRIEND)

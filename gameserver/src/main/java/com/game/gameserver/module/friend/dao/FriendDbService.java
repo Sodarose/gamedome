@@ -1,7 +1,8 @@
 package com.game.gameserver.module.friend.dao;
 
 import com.game.gameserver.common.db.BaseDbService;
-import com.game.gameserver.module.friend.entity.FriendEntity;
+import com.game.gameserver.module.friend.entity.PlayerFriendEntity;
+import com.game.gameserver.module.friend.model.PlayerFriend;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -16,41 +17,37 @@ public class FriendDbService extends BaseDbService {
     @Autowired
     private FriendMapper friendMapper;
 
-    public List<FriendEntity> selectFriendEntityList(long playerId){
-        return friendMapper.selectFriendEntityList(playerId);
+    public PlayerFriendEntity select(long playerId){
+        return friendMapper.select(playerId);
     }
 
-    public FriendEntity select(long id){
-        return friendMapper.select(id);
+    public int update(PlayerFriendEntity playerFriendEntity){
+        return friendMapper.update(playerFriendEntity);
     }
 
-    public int update(FriendEntity friendEntity){
-        return friendMapper.update(friendEntity);
+    public int insert(PlayerFriendEntity playerFriendEntity){
+        return friendMapper.insert(playerFriendEntity);
     }
 
-    public int insert(FriendEntity friendEntity){
-        return friendMapper.insert(friendEntity);
+    public int delete(long playerId){
+        return friendMapper.delete(playerId);
     }
 
-    public int delete(long id){
-        return friendMapper.delete(id);
-    }
-
-    public void updateAsync(FriendEntity friendEntity){
+    public void updateAsync(PlayerFriendEntity playerFriendEntity){
         submit(()->{
-            update(friendEntity);
+            update(playerFriendEntity);
         });
     }
 
-    public void insertAsync(FriendEntity friendEntity){
+    public void insertAsync(PlayerFriendEntity playerFriendEntity){
         submit(()->{
-            insert(friendEntity);
+            insert(playerFriendEntity);
         });
     }
 
-    public void deleteAsync(long id){
+    public void deleteAsync(long playerId){
         submit(()->{
-            delete(id);
+            delete(playerId);
         });
     }
 }

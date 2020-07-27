@@ -95,7 +95,14 @@ public enum Cmd {
     EXIT_INSTANCE(ModuleKey.INSTANCE_MODULE,InstanceCmd.EXIT_INSTANCE),
 
     /** 商店*/
-
+    /** 展示商店列表 */
+    SHOW_SHOP_LIST(ModuleKey.SHOP_MODULE,ShopCmd.SHOW_SHOP_LIST),
+    /** 展示商店 */
+    SHOW_SHOP(ModuleKey.SHOP_MODULE,ShopCmd.SHOW_SHOP),
+    /** 出售商品 */
+    SELL(ModuleKey.SHOP_MODULE,ShopCmd.SELL),
+    /** 购买 */
+    BUY(ModuleKey.SHOP_MODULE,ShopCmd.BUY),
 
     /** 聊天*/
     /** 私聊 */
@@ -127,11 +134,11 @@ public enum Cmd {
     /** 申请组队 */
     APPLY_FOR_TEAM(ModuleKey.TEAM_MODULE,TeamCmd.APPLY_FOR_TEAM),
     /** 邀请组队 */
-    INVITE_TEAM(ModuleKey.TEAM_MODULE,TeamCmd.INVITE_TEAM),
+    INVITE_TEAM_APPLY(ModuleKey.TEAM_MODULE,TeamCmd.INVITE_TEAM),
     /** 处理申请 */
-    PROCESS_APPLY(ModuleKey.TEAM_MODULE,TeamCmd.PROCESS_APPLY),
+    PROCESS_TEAM_APPLY(ModuleKey.TEAM_MODULE,TeamCmd.PROCESS_TEAM_APPLY),
     /** 处理邀请 */
-    PROCESS_INVITE(ModuleKey.TEAM_MODULE,TeamCmd.PROCESS_INVITE),
+    PROCESS_TEAM_INVITE(ModuleKey.TEAM_MODULE,TeamCmd.PROCESS_TEAM_INVITE),
     /** 退出队伍 */
     EXIT_TEAM(ModuleKey.TEAM_MODULE,TeamCmd.EXIT_TEAM),
     /** 解散队伍 */
@@ -206,7 +213,12 @@ public enum Cmd {
     CANCEL_TASK(ModuleKey.TASK_MODULE,TaskCmd.CANCEL_TASK),
     /** 提交任务 */
     SUBMIT_TASK(ModuleKey.TASK_MODULE,TaskCmd.SUBMIT_TASK),
+
     /** 成就*/
+    /** 展示成就 */
+    SHOW_ACHIEVEMENT(ModuleKey.ACHIEVEMENT_MODULE,AchievementCmd.SHOW_ACHIEVEMENT),
+    /** 提交成就 */
+    SUBMIT_ACHIEVEMENT(ModuleKey.ACHIEVEMENT_MODULE,AchievementCmd.SUBMIT_ACHIEVEMENT),
 
     /** 好友 */
     /** 展示好友列表 */
